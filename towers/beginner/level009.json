@@ -1,0 +1,58 @@
+{
+    "description": "Time to hone your skills and apply all of the abilities that you have learned.",
+    "tip": "Watch your back.",
+    "clue": "Don't just keep shooting the bow while you are being attacked from behind.",
+
+    "timeBonus": 40,
+    "size": {
+        "width": 11,
+        "height": 1
+    },
+    "stairs": {
+        "x": 0,
+        "y": 0
+    },
+
+    "warrior": {
+        "x": 5,
+        "y": 0,
+        "facing": "east",
+        "abilities": {
+            "actions": [],
+            "senses": []
+        }
+    },
+
+    "units": [
+        {
+            "type": "captive",
+            "x": 1,
+            "y": 0,
+            "facing": "east"
+        },
+        {
+            "type": "archer",
+            "x": 2,
+            "y": 0,
+            "facing": "east"
+        },
+        {
+            "type": "thickSludge",
+            "x": 7,
+            "y": 0,
+            "facing": "west"
+        },
+        {
+            "type": "wizard",
+            "x": 9,
+            "y": 0,
+            "facing": "west"
+        },
+        {
+            "type": "captive",
+            "x": 10,
+            "y": 0,
+            "facing": "west"
+        }
+    ]
+}

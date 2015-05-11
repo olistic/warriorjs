@@ -1,0 +1,42 @@
+{
+    "description": "You feel a wall right in front of you and an opening behind you.",
+    "tip": "You are not as effective at attacking backward. Use `warrior.feel().isWall()` and `warrior.pivot()` to turn around.",
+    "clue": "",
+
+    "timeBonus": 30,
+    "size": {
+        "width": 6,
+        "height": 1
+    },
+    "stairs": {
+        "x": 0,
+        "y": 0
+    },
+
+    "warrior": {
+        "x": 5,
+        "y": 0,
+        "facing": "east",
+        "abilities": {
+            "actions": [
+                "pivot"
+            ],
+            "senses": []
+        }
+    },
+
+    "units": [
+        {
+            "type": "archer",
+            "x": 1,
+            "y": 0,
+            "facing": "east"
+        },
+        {
+            "type": "thickSludge",
+            "x": 3,
+            "y": 0,
+            "facing": "east"
+        }
+    ]
+}

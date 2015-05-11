@@ -1,0 +1,29 @@
+{
+    "description": "You see before yourself a long hallway with stairs at the end. There is nothing in the way.",
+    "tip": "Call `warrior.walk()` to walk forward in the Player `playTurn` method.",
+    "clue": "",
+
+    "timeBonus": 15,
+    "size": {
+        "width": 8,
+        "height": 1
+    },
+    "stairs": {
+        "x": 7,
+        "y": 0
+    },
+
+    "warrior": {
+        "x": 0,
+        "y": 0,
+        "facing": "east",
+        "abilities": {
+            "actions": [
+                "walk"
+            ],
+            "senses": []
+        }
+    },
+
+    "units": []
+}

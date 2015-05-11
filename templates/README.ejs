@@ -1,0 +1,28 @@
+Level <%- level.getNumber() %>
+
+<%- level.getDescription() %>
+
+Tip: <%- level.getTip() %>
+
+<%- level.getFloor().getCharacter() %>
+
+  > = Stairs
+<% level.getFloor().getUniqueUnits().forEach(function(unit) { %>
+  <%= unit.getCharacter() %> = <%= unit.getName() %> (<%= unit.getMaxHealth() %> HP)
+<% }); %>
+
+
+Warrior Abilities:
+<% Object.keys(level.getWarrior().getActions()).forEach(function(name) { %>
+
+  warrior.<%- name %>()
+    <%- level.getWarrior().getActions()[name].getDescription() %>
+<% }); %>
+<% Object.keys(level.getWarrior().getSenses()).forEach(function(name) { %>
+
+  warrior.<%- name %>()
+    <%- level.getWarrior().getSenses()[name].getDescription() %>
+<% }); %>
+
+
+When you're done editing Player.js, run the warriorjs command again.

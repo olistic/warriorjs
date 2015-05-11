@@ -1,0 +1,56 @@
+{
+    "description": "The air feels thicker than before. There must be a horde of sludge.",
+    "tip": "Be careful not to die! Use `warrior.health()` to keep an eye on your health, and `warrior.rest()` to earn 10% of max health back.",
+    "clue": "When there is no enemy ahead of you, call `warrior.rest()` until health is full before walking forward.",
+
+    "timeBonus": 35,
+    "size": {
+        "width": 9,
+        "height": 1
+    },
+    "stairs": {
+        "x": 8,
+        "y": 0
+    },
+
+    "warrior": {
+        "x": 0,
+        "y": 0,
+        "facing": "east",
+        "abilities": {
+            "actions": [
+                "rest"
+            ],
+            "senses": [
+                "health"
+            ]
+        }
+    },
+
+    "units": [
+        {
+            "type": "sludge",
+            "x": 2,
+            "y": 0,
+            "facing": "west"
+        },
+        {
+            "type": "sludge",
+            "x": 4,
+            "y": 0,
+            "facing": "west"
+        },
+        {
+            "type": "sludge",
+            "x": 5,
+            "y": 0,
+            "facing": "west"
+        },
+        {
+            "type": "sludge",
+            "x": 7,
+            "y": 0,
+            "facing": "west"
+        }
+    ]
+}
