@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import { RELATIVE_DIRECTIONS } from '../Position';
 
 class Base {
@@ -42,7 +41,7 @@ class Base {
   }
 
   verifyDirection(direction) {
-    if (!_.includes(RELATIVE_DIRECTIONS, direction)) {
+    if (!RELATIVE_DIRECTIONS.includes(direction)) {
       throw new Error(`Unknown direction '${direction}'. Should be 'forward', 'backward', 'left' or 'right'.`);
     }
   }

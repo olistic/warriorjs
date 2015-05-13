@@ -148,7 +148,7 @@ class Level {
   }
 
   failed() {
-    return !_.includes(this.getFloor().getUnits(), this.getWarrior());
+    return !this.getFloor().getUnits().includes(this.getWarrior());
   }
 
   exists() {

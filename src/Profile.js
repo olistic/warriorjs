@@ -94,7 +94,7 @@ class Profile {
   }
 
   static load(profilePath) {
-    let player = _.assign(new Profile(), Profile.decode(fs.readFileSync(profilePath, 'utf8')));
+    let player = Object.assign(new Profile(), Profile.decode(fs.readFileSync(profilePath, 'utf8')));
     player.setPlayerPath(path.dirname(profilePath));
     return player;
   }
