@@ -158,6 +158,7 @@ class Level {
   setupWarrior(warrior) {
     this._warrior = warrior;
     this._warrior.addActions(this.getProfile().getActions());
+    this._warrior.addSenses(this.getProfile().getSenses());
     this._warrior.setName(this.getProfile().getWarriorName());
     return this._warrior;
   }
