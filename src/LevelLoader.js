@@ -25,7 +25,7 @@ class LevelLoader {
     this.size(level.size.width, level.size.height);
     this.stairs(level.stairs.x, level.stairs.y);
 
-    this.warrior(level.warrior.x, level.warrior.y, level.warrior.facing, level.warrior.abilities.actions);
+    this.warrior(level.warrior.x, level.warrior.y, level.warrior.facing, level.warrior.abilities.actions, level.warrior.abilities.senses);
 
     level.units.forEach((unit) => {
       this.unit(unit.type, unit.x, unit.y, unit.facing);
