@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import readlineSync from 'readline-sync';
+import sleep from 'sleep';
 import Config from './Config';
 
 class UI {
@@ -10,7 +11,10 @@ class UI {
   }
 
   static printLineWithDelay(msg) {
-    // TODO: add blocking delay
+    if (Config.getDelay()) {
+      sleep.usleep(Config.getDelay() * 1000000);
+    }
+
     UI.printLine(msg);
   }
 
