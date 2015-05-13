@@ -4,4 +4,4 @@ class Player {
   }
 }
 
-export default Player;
+global.Player = Player;

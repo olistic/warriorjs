@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import _ from 'lodash';
-import System from 'systemjs';
+import * as babel from 'babel-core';
 import LevelLoader from './LevelLoader';
 import PlayerGenerator from './PlayerGenerator';
 import UI from './UI';
@@ -86,9 +86,7 @@ class Level {
   }
 
   loadPlayer() {
-    // TODO: transpile source before eval
-    // eval(fs.readFileSync(path.join(this.getPlayerPath(), 'Player.js'), 'utf8'));
-    // eval(babel.transformFileSync(path.join(this.getPlayerPath(), 'Player.js').code));
+    eval(babel.transformFileSync(path.join(this.getPlayerPath(), 'Player.js')).code);
   }
 
   generatePlayerFiles() {
@@ -107,7 +105,6 @@ class Level {
       UI.print(this.getFloor().getCharacter());
       this.getFloor().getUnits().forEach((unit) => unit.prepareTurn());
       this.getFloor().getUnits().forEach((unit) => unit.performTurn());
-      // yield if block_given?
       if (this.getTimeBonus() > 0) {
         this.setTimeBonus(this.getTimeBonus() - 1);
       }

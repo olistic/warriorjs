@@ -20,7 +20,7 @@ class Warrior extends Base {
   }
 
   getPlayer() {
-    this._player = this._player || new Player();
+    this._player = this._player || new global.Player();
     return this._player;
   }
 
