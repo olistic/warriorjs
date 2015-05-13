@@ -8,7 +8,7 @@ import Tower from './Tower';
 
 class Game {
   start() {
-    UI.printLine('Welcome to Warrior.js');
+    UI.printLine('Welcome to WarriorJS');
 
     if (fs.existsSync(path.join(Config.getPathPrefix(), '.profile'))) {
       this.setProfile(Profile.load(path.join(Config.getPathPrefix(), '.profile')));
@@ -90,6 +90,10 @@ class Game {
   getProfile() {
     this._profile = this._profile || this.chooseProfile();
     return this._profile;
+  }
+
+  setProfile(profile) {
+    this._profile = profile;
   }
 
   newProfile() {
