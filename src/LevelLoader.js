@@ -1,7 +1,7 @@
 import fs from 'fs-extra';
 import Floor from './Floor';
 import Archer from './units/Archer';
-// import Captive from './units/Captive';
+import Captive from './units/Captive';
 import Sludge from './units/Sludge';
 import ThickSludge from './units/ThickSludge';
 import Warrior from './units/Warrior';
@@ -63,9 +63,9 @@ class LevelLoader {
       case 'archer':
         unit = new Archer();
         break;
-      // case 'captive':
-      //   unit = new Captive();
-      //   break;
+      case 'captive':
+        unit = new Captive();
+        break;
       case 'sludge':
         unit = new Sludge();
         break;
