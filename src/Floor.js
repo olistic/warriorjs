@@ -42,7 +42,7 @@ class Floor {
   getUniqueUnits() {
     const uniqueUnits = [];
     this.getUnits().forEach((unit) => {
-      if (_.includes(!uniqueUnits.map((u) => u.constructor), (unit.constructor))) {
+      if (!_.includes(uniqueUnits.map((u) => u.constructor), (unit.constructor))) {
         uniqueUnits.push(unit);
       }
     });
