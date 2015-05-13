@@ -4,25 +4,34 @@ Level <%- level.getNumber() %>
 
 Tip: <%- level.getTip() %>
 
+
 <%- level.getFloor().getCharacter() %>
 
   > = Stairs
-<% level.getFloor().getUniqueUnits().forEach(function(unit) { %>
+<% level.getFloor().getUniqueUnits().forEach(function(unit) { -%>
   <%= unit.getCharacter() %> = <%= unit.getName() %> (<%= unit.getMaxHealth() %> HP)
-<% }); %>
+<% }); -%>
 
 
 Warrior Abilities:
-<% Object.keys(level.getWarrior().getActions()).forEach(function(name) { %>
+<% if (Object.keys(level.getWarrior().getActions()).length) { -%>
 
-  warrior.<%- name %>()
-    <%- level.getWarrior().getActions()[name].getDescription() %>
-<% }); %>
-<% Object.keys(level.getWarrior().getSenses()).forEach(function(name) { %>
+  Actions:
+  <% Object.keys(level.getWarrior().getActions()).forEach(function(name) { -%>
 
-  warrior.<%- name %>()
-    <%- level.getWarrior().getSenses()[name].getDescription() %>
-<% }); %>
+    warrior.<%- name %>()
+      <%- level.getWarrior().getActions()[name].getDescription() %>
+  <% }); -%>
+<% }; -%>
+<% if (Object.keys(level.getWarrior().getSenses()).length) { -%>
+
+  Senses:
+  <% Object.keys(level.getWarrior().getSenses()).forEach(function(name) { -%>
+
+    warrior.<%- name %>()
+      <%- level.getWarrior().getSenses()[name].getDescription() %>
+  <% }); -%>
+<% }; -%>
 
 
 When you're done editing Player.js, run the warriorjs command again.
