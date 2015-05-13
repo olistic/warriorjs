@@ -33,6 +33,10 @@ class Warrior extends Base {
     return 5;
   }
 
+  getShootPower() {
+    return 3;
+  }
+
   getMaxHealth() {
     return 20;
   }

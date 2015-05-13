@@ -48,6 +48,10 @@ describe('Warrior', () => {
     ctx.warrior.getAttackPower().should.equal(5);
   });
 
+  it('should have an shoot power of 3', (ctx) => {
+    ctx.warrior.getShootPower().should.equal(3);
+  });
+
   it('should appear as @ on map', (ctx) => {
     ctx.warrior.getCharacter().should.equal('@');
   });
