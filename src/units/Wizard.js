@@ -8,13 +8,21 @@ class Wizard extends Base {
   }
 
   playTurn(turn) {
-    ['forward', 'left', 'right', 'backward'].forEach((direction) => {
-      turn.look(direction).forEach((space) => {
-        if (space.isPlayer()) {
-          turn.shoot(direction);
-          return;
-        }
-      });
+    let shot = false;
+    ['forward', 'left', 'right', 'backward'].every((direction) => {
+      if (!shot) {
+        turn.look(direction).every((space) => {
+          if (space.isPlayer()) {
+            turn.shoot(direction);
+            shot = true;
+            return false;
+          }
+
+          return space.isEmpty();
+        });
+      }
+
+      return !shot;
     });
   }
 
