@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import Runner from '../src/Runner';
+var Runner = require('../lib/Runner');
 
-const runner = new Runner(process.argv, process.stdin, process.stdout);
+var runner = new Runner(process.argv, process.stdin, process.stdout);
 runner.run();
