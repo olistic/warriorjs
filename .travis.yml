@@ -1,0 +1,22 @@
+cache:
+  directories:
+    - node_modules
+
+install: npm update
+
+language: node_js
+
+node_js:
+  - "0.12"
+  - iojs
+
+script: "npm run-script test-travis"
+
+deploy:
+  provider: npm
+  email: m@matioli.me
+  api_key:
+    secure: Bv1R5SC7kJNUl6HAu8HyH1CLPwm6PzkdPcSjUxLK7ta74L5P2JCBiWCFmRMLy946VsU84PflPbYeV+Rrnrxh2bLN6ApXlLSSLtM0jyvwVBABuRxlXbqGGngbJPqOgmmX/N61R52Qk98ecn8I4YJh5aBwvpLjfO9fhH/vY6vtP6M=
+  on:
+    branch: master
+    tags: true

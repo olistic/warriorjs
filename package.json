@@ -7,7 +7,8 @@
   "scripts": {
     "compile": "babel src --out-dir lib",
     "prepublish": "npm run compile",
-    "test": "make test"
+    "test": "make test",
+    "test-travis": "echo \"No ES5 tests yet\" && exit 0"
   },
   "repository": {
     "type": "git",
