@@ -15,11 +15,17 @@
     "url": "https://github.com/olistic/warriorjs.git"
   },
   "keywords": [
+    "play",
     "game",
-    "javascript",
+    "learn",
+    "es6",
+    "es7",
+    "ai",
     "artificial-intelligence",
     "warrior",
-    "learn"
+    "warriorjs",
+    "interactive",
+    "cli"
   ],
   "author": "Matias Olivera <m@matioli.me>",
   "license": "MIT",
