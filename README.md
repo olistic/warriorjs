@@ -1,4 +1,4 @@
-This game was originally designed and developed by Ryan Bates to teach the Ruby language. Special thanks to him for the original [ruby-warrior](https://github.com/ryanb/ruby-warrior).
+[![Build Status](https://travis-ci.org/olistic/warriorjs.svg?branch=master)](https://travis-ci.org/olistic/warriorjs)
 
 # WarriorJS
 
@@ -24,10 +24,36 @@ WarriorJS is run from the command line.
 $ warriorjs
 ```
 
-That's it! This will create a warriorjs directory in your current location, where you will find a Player.js file among other things.
+That's it! This will create a warriorjs directory in your current location, where you will find a Player.js file in your profile's directory containing this:
 
-Check out all the [command line options for WarriorJS](https://github.com/olistic/warriorjs/wiki/Command-Line-options-for-WarriorJS).
+```javascript
+class Player {
+  playTurn(warrior) {
+    // Cool code goes here
+  }
+}
 
-## Contributing
+global.Player = Player;
+```
 
-WarriorJS is still a work in progress. Pull-requests and ideas are always welcome, as long as they align with the coding-style and direction of the project.
+Your objective is to fill the playTurn method with commands to instruct the warrior what to do. With each level, your abilities will grow along with the difficulty. See the README in your profile's directory for details on what abilities your warrior has available on the current level.
+
+Here is a simple example which will instruct the warrior to attack if he feels an enemy, otherwise he will walk forward:
+
+```javascript
+class Player {
+  playTurn(warrior) {
+    if (warrior.feel().isEnemy()) {
+      warrior.attack();
+    } else {
+      warrior.walk();
+    }
+  }
+}
+
+global.Player = Player;
+```
+
+## Credits
+
+This game was originally developed by Ryan Bates to teach the Ruby language. Special thanks to him for the original [ruby-warrior](https://github.com/ryanb/ruby-warrior).
