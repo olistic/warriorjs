@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import _ from 'lodash';
-import * as babel from 'babel-core';
+import * as babel from 'babel';
 import LevelLoader from './LevelLoader';
 import PlayerGenerator from './PlayerGenerator';
 import UI from './UI';
