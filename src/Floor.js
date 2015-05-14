@@ -1,3 +1,4 @@
+import chalk from 'chalk';
 import Position from './Position';
 import Space from './Space';
 import Warrior from './units/Warrior';
@@ -85,6 +86,21 @@ class Floor {
       rows.push(row);
     }
     rows.push(` ${Array(this._width + 1).join('-')}`);
+    return `${rows.join('\n')}\n`;
+  }
+
+  getStyledCharacter() {
+    const rows = [];
+    rows.push(chalk.gray(` ${Array(this._width + 1).join('-')}`));
+    for (let y = 0; y < this._height; y++) {
+      let row = chalk.gray('|');
+      for (let x = 0; x < this._width; x++) {
+        row += this.getSpace(x, y).getStyledCharacter();
+      }
+      row += chalk.gray('|');
+      rows.push(row);
+    }
+    rows.push(chalk.gray(` ${Array(this._width + 1).join('-')}`));
     return `${rows.join('\n')}\n`;
   }
 }

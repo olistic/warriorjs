@@ -1,4 +1,5 @@
 import chai from 'chai';
+import sinon from 'sinon';
 import { it, beforeEach } from 'arrow-mocha/es5';
 import chaiAlive from '../helpers/chaiAlive';
 import Base from '../../src/units/Base';
@@ -54,7 +55,7 @@ describe('Base', () => {
   });
 
   it('should print out line with name when speaking', (ctx) => {
-    const expectation = ctx.sandbox.mock(UI).expects('printLineWithDelay').withArgs('Base foo');
+    const expectation = ctx.sandbox.mock(UI).expects('printLineWithDelay').withArgs(sinon.match(/Base foo/));
     ctx.unit.say('foo');
     expectation.verify();
   });

@@ -1,8 +1,10 @@
+import chalk from 'chalk';
 import Base from './Base';
 
 class Wizard extends Base {
   constructor() {
     super();
+    this.style = chalk.cyan;
     this.addActions(['shoot']);
     this.addSenses(['look']);
   }

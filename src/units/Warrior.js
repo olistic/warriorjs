@@ -1,3 +1,4 @@
+import chalk from 'chalk';
 import Base from './Base';
 
 class Warrior extends Base {
@@ -5,6 +6,7 @@ class Warrior extends Base {
     super();
     // TODO: make score dynamic
     this._score = 0;
+    this._style = chalk.blue;
   }
 
   playTurn(turn) {

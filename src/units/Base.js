@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import chalk from 'chalk';
 import Turn from '../Turn';
 import UI from '../UI';
 import Attack from '../abilities/Attack';
@@ -17,6 +18,7 @@ class Base {
     this._health = null;
     this._actions = {};
     this._senses = {};
+    this._style = chalk.white;
   }
 
   getPosition() {
@@ -51,7 +53,7 @@ class Base {
   takeDamage(amount) {
     if (this.getHealth() !== null) {
       this._health -= amount;
-      this.say(`takes ${amount} damage, ${this.getHealth()} health power left`);
+      this.say(`takes ${chalk.bold(amount)} damage, ${chalk.bold(this.getHealth())} health power left`);
       if (this.getHealth() <= 0) {
         this._position = null;
         this.say('dies');
@@ -77,7 +79,7 @@ class Base {
   }
 
   say(msg) {
-    UI.printLineWithDelay(`${this.getName()} ${msg}`);
+    UI.printLineWithDelay(this._style(`${this.getName()} ${msg}`));
   }
 
   getName() {
@@ -165,6 +167,10 @@ class Base {
 
   getCharacter() {
     return '?';
+  }
+
+  getStyledCharacter() {
+    return this._style(this.getCharacter());
   }
 }
 

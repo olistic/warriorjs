@@ -54,6 +54,16 @@ class Space {
     }
   }
 
+  getStyledCharacter() {
+    if (this.getUnit()) {
+      return this.getUnit().getStyledCharacter();
+    } else if (this.isStairs()) {
+      return '>';
+    } else {
+      return ' ';
+    }
+  }
+
   toString() {
     if (this.getUnit()) {
       return this.getUnit().toString();

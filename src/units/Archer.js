@@ -1,8 +1,10 @@
+import chalk from 'chalk';
 import Base from './Base';
 
 class Archer extends Base {
   constructor() {
     super();
+    this._style = chalk.red;
     this.addActions(['shoot']);
     this.addSenses(['look']);
   }
