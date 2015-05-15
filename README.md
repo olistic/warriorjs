@@ -5,7 +5,7 @@
 
 This is a game designed to teach JavaScript and artificial intelligence in a fun, interactive way.
 
-You play as a warrior climbing a tall tower to rescue the princess at the top level. On each floor, you need to write JavaScript (with fully ES6 support) to instruct the warrior to battle enemies, rescue captives, and reach the stairs.
+You play as a warrior climbing a tall tower to rescue the princess at the top level. On each floor, you need to write JavaScript (with full ES6 support) to instruct the warrior to battle enemies, rescue captives, and reach the stairs.
 
 ## Installation
 
