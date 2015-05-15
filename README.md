@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/olistic/warriorjs.svg?branch=master)](https://travis-ci.org/olistic/warriorjs)
 [![npm version](https://badge.fury.io/js/warriorjs.svg)](http://badge.fury.io/js/warriorjs)
+[![Join the chat at https://gitter.im/olistic/warriorjs](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/olistic/warriorjs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 This is a game designed to teach JavaScript and artificial intelligence in a fun, interactive way.
 
