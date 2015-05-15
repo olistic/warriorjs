@@ -9,6 +9,8 @@ You play as a warrior climbing a tall tower to rescue the princess at the top le
 
 ## Installation
 
+[![Join the chat at https://gitter.im/olistic/warriorjs](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/olistic/warriorjs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 ```bash
 $ npm install -g warriorjs
 ```
