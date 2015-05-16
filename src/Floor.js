@@ -76,7 +76,7 @@ class Floor {
 
   getCharacter() {
     const rows = [];
-    rows.push(` ${Array(this._width + 1).join('-')}`);
+    rows.push(` ${'-'.repeat(this._width)}`);
     for (let y = 0; y < this._height; y++) {
       let row = '|';
       for (let x = 0; x < this._width; x++) {
@@ -85,13 +85,13 @@ class Floor {
       row += '|';
       rows.push(row);
     }
-    rows.push(` ${Array(this._width + 1).join('-')}`);
+    rows.push(` ${'-'.repeat(this._width)}`);
     return `${rows.join('\n')}\n`;
   }
 
   getStyledCharacter() {
     const rows = [];
-    rows.push(chalk.gray(` ${Array(this._width + 1).join('-')}`));
+    rows.push(chalk.gray(` ${'-'.repeat(this._width)}`));
     for (let y = 0; y < this._height; y++) {
       let row = chalk.gray('|');
       for (let x = 0; x < this._width; x++) {
@@ -100,7 +100,7 @@ class Floor {
       row += chalk.gray('|');
       rows.push(row);
     }
-    rows.push(chalk.gray(` ${Array(this._width + 1).join('-')}`));
+    rows.push(chalk.gray(` ${'-'.repeat(this._width)}`));
     return `${rows.join('\n')}\n`;
   }
 }
