@@ -1,6 +1,6 @@
 import chai from 'chai';
 import { it, beforeEach } from 'arrow-mocha/es5';
-import Archer from '../../src/units/Archer';
+import Archer from '../../../src/units/Archer';
 
 chai.should();
 
@@ -13,7 +13,7 @@ describe('Archer', () => {
     ctx.archer.getActions().should.include.key('shoot');
   });
 
-  it('should have feel sense', (ctx) => {
+  it('should have look sense', (ctx) => {
     ctx.archer.getSenses().should.include.key('look');
   });
 

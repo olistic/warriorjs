@@ -1,11 +1,11 @@
 import chai from 'chai';
 import { it, beforeEach } from 'arrow-mocha/es5';
-import Warrior from '../../src/units/Warrior';
+import Warrior from '../../../src/units/Warrior';
 
 chai.should();
 
 class Player {
-  playTurn (warrior) {
+  playTurn(warrior) {
   }
 }
 

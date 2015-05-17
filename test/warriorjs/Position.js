@@ -1,7 +1,7 @@
 import chai from 'chai';
 import { it, beforeEach } from 'arrow-mocha/es5';
-import Floor from '../src/Floor';
-import Base from '../src/units/Base';
+import Floor from '../../src/Floor';
+import Base from '../../src/units/Base';
 
 const should = chai.should();
 

@@ -1,8 +1,8 @@
 import chai from 'chai';
 import { it, beforeEach } from 'arrow-mocha/es5';
-import Profile from '../src/Profile';
-import Level from '../src/Level';
-import LevelLoader from '../src/LevelLoader';
+import Profile from '../../src/Profile';
+import Level from '../../src/Level';
+import LevelLoader from '../../src/LevelLoader';
 
 chai.should();
 

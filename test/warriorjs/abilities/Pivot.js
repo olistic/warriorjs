@@ -1,6 +1,6 @@
 import chai from 'chai';
 import { it, beforeEach } from 'arrow-mocha/es5';
-import Pivot from '../../src/abilities/Pivot';
+import Pivot from '../../../src/abilities/Pivot';
 
 chai.should();
 

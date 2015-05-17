@@ -1,7 +1,7 @@
 import chai from 'chai';
 import { it, beforeEach } from 'arrow-mocha/es5';
-import Turn from '../src/Turn';
-import Feel from '../src/abilities/Feel';
+import Turn from '../../src/Turn';
+import Feel from '../../src/abilities/Feel';
 
 const should = chai.should();
 

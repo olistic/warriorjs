@@ -1,7 +1,7 @@
 import chai from 'chai';
 import fs from 'fs';
 import { it, beforeEach } from 'arrow-mocha/es5';
-import Profile from '../src/profile';
+import Profile from '../../src/profile';
 
 chai.should();
 

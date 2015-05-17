@@ -1,7 +1,7 @@
 import chai from 'chai';
 import sinon from 'sinon';
 import { it, beforeEach } from 'arrow-mocha/es5';
-import Shoot from '../../src/abilities/Shoot';
+import Shoot from '../../../src/abilities/Shoot';
 
 chai.should();
 
@@ -31,5 +31,11 @@ describe('Shoot', () => {
     ctx.shoot.perform();
     receiverExpectations.verify();
     shootExpectation.verify();
+  });
+
+  it('should shoot and do nothing if no units in the way', (ctx) => {
+    const expectation = ctx.sandbox.mock(ctx.shoot).expects('getUnits').withArgs('forward', sinon.match.any).returns([null, null]);
+    ctx.shoot.perform.bind(ctx.shoot).should.not.throw(Error);
+    expectation.verify();
   });
 });

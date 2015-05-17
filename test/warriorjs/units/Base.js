@@ -1,10 +1,10 @@
 import chai from 'chai';
 import sinon from 'sinon';
 import { it, beforeEach } from 'arrow-mocha/es5';
-import chaiAlive from '../helpers/chaiAlive';
-import Base from '../../src/units/Base';
-import Walk from '../../src/abilities/Walk';
-import UI from '../../src/UI';
+import chaiAlive from '../../helpers/chaiAlive';
+import Base from '../../../src/units/Base';
+import Walk from '../../../src/abilities/Walk';
+import UI from '../../../src/UI';
 
 const should = chai.should();
 chai.use(chaiAlive);
@@ -26,6 +26,10 @@ describe('Base', () => {
   it('should consider itself alive with position', (ctx) => {
     ctx.unit.setPosition(ctx.sandbox.stub());
     ctx.unit.should.be.alive;
+  });
+
+  it('should do nothing when earning points', (ctx) => {
+    ctx.unit.earnPoints.bind(ctx.unit, 10).should.not.throw(Error);
   });
 
   it('should default max health to 0', (ctx) => {
@@ -98,7 +102,55 @@ describe('Base', () => {
     ctx.unit.performTurn.bind(ctx.unit).should.not.throw(Error);
   });
 
+  // it('should pass abilities to new turn when calling nextTurn', (ctx) => {
+  //   const expectation = ctx.sandbox.mock(Turn).expects('constructor').withArgs({ walk: null, attack: null }, { feel: null }).returns('turn');
+  //   ctx.sandbox.stub(ctx.unit, 'getActions').returns({ walk: null, attack: null });
+  //   ctx.sandbox.stub(ctx.unit, 'getSenses').returns({ feel: null });
+  //   ctx.unit.getNextTurn().should.equal('turn');
+  //   expectation.verify();
+  // });
+
+  // it('should add action', (ctx) => {
+  //   const expectation = ctx.sandbox.mock(Walk).expects('constructor').withArgs(ctx.unit).returns('walk');
+  //   ctx.unit.addActions(['walk']);
+  //   ctx.units.getActions().should.eql({ walk: 'walk' });
+  //   expectation.verify();
+  // });
+
+  // it('should add sense', (ctx) => {
+  //   const expectation = ctx.sandbox.mock(Feel).expects('constructor').withArgs(ctx.unit).returns('feel');
+  //   ctx.unit.addSenses(['feel']);
+  //   ctx.units.getSenses().should.eql({ feel: 'feel' });
+  //   expectation.verify();
+  // });
+
   it('should appear as ? on map', (ctx) => {
     ctx.unit.getCharacter().should.equal('?');
+  });
+
+
+  it('should be released from bonds when taking damage', (ctx) => {
+    ctx.sandbox.stub(ctx.unit, 'getMaxHealth').returns(10);
+    ctx.unit.bind();
+    ctx.unit.should.be.bound;
+    ctx.unit.takeDamage(2);
+    ctx.unit.should.not.be.bound;
+  });
+
+  it('should be released from bonds when calling release', (ctx) => {
+    ctx.unit.bind();
+    ctx.unit.unbind();
+    ctx.unit.should.not.be.bound;
+  });
+
+  it('should not perform action when bound', (ctx) => {
+    ctx.unit.setPosition({});
+    ctx.unit.bind();
+    ctx.sandbox.stub(Walk.prototype, 'perform').throws('action should not be called');
+    ctx.unit.addActions(['walk']);
+    const turn = { getAction: ctx.sandbox.stub().returns(['walk', ['backward']])};
+    ctx.sandbox.stub(ctx.unit, 'getNextTurn').returns(turn);
+    ctx.unit.prepareTurn();
+    ctx.unit.performTurn();
   });
 });

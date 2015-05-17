@@ -1,6 +1,6 @@
 import chai from 'chai';
 import { it, beforeEach } from 'arrow-mocha/es5';
-import Wizard from '../../src/units/Wizard';
+import Wizard from '../../../src/units/Wizard';
 
 chai.should();
 
@@ -13,7 +13,7 @@ describe('Wizard', () => {
     ctx.wizard.getActions().should.include.key('shoot');
   });
 
-  it('should have feel sense', (ctx) => {
+  it('should have look sense', (ctx) => {
     ctx.wizard.getSenses().should.include.key('look');
   });
 

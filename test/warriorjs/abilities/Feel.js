@@ -1,6 +1,6 @@
 import chai from 'chai';
 import { it, beforeEach } from 'arrow-mocha/es5';
-import Feel from '../../src/abilities/Feel';
+import Feel from '../../../src/abilities/Feel';
 
 chai.should();
 

@@ -1,6 +1,6 @@
 import chai from 'chai';
 import { it, beforeEach } from 'arrow-mocha/es5';
-import Tower from '../src/Tower';
+import Tower from '../../src/Tower';
 
 chai.should();
 

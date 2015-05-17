@@ -1,10 +1,10 @@
 import chai from 'chai';
 import { it, beforeEach } from 'arrow-mocha/es5';
-import chaiPassed from './helpers/chaiPassed';
-import Profile from '../src/Profile';
-import Floor from '../src/Floor';
-import Level from '../src/Level';
-import Warrior from '../src/units/Warrior';
+import chaiPassed from '../helpers/chaiPassed';
+import Profile from '../../src/Profile';
+import Floor from '../../src/Floor';
+import Level from '../../src/Level';
+import Warrior from '../../src/units/Warrior';
 
 chai.should();
 chai.use(chaiPassed);

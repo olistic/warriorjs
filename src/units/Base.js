@@ -51,6 +51,10 @@ class Base {
   }
 
   takeDamage(amount) {
+    if (this.isBound()) {
+      this.unbind();
+    }
+
     if (this.getHealth() !== null) {
       this._health -= amount;
       this.say(`takes ${chalk.bold(amount)} damage, ${chalk.bold(this.getHealth())} health power left`);
@@ -146,7 +150,7 @@ class Base {
 
   performTurn() {
     if (this._position) {
-      if (this._currentTurn.getAction()) {
+      if (this._currentTurn.getAction() && !this.isBound()) {
         const [name, args] = this._currentTurn.getAction();
         this._actions[name].perform(...args);
       }

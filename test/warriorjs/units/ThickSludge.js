@@ -1,6 +1,6 @@
 import chai from 'chai';
 import { it, beforeEach } from 'arrow-mocha/es5';
-import ThickSludge from '../../src/units/ThickSludge';
+import ThickSludge from '../../../src/units/ThickSludge';
 
 chai.should();
 

@@ -1,10 +1,10 @@
 import chai from 'chai';
 import { it, beforeEach } from 'arrow-mocha/es5';
-import chaiOutOfBounds from './helpers/chaiOutOfBounds';
-import Floor from '../src/Floor';
-import Base from '../src/units/Base';
-import Warrior from '../src/units/Warrior';
-import Space from '../src/Space';
+import chaiOutOfBounds from '../helpers/chaiOutOfBounds';
+import Floor from '../../src/Floor';
+import Base from '../../src/units/Base';
+import Warrior from '../../src/units/Warrior';
+import Space from '../../src/Space';
 
 chai.should();
 chai.use(chaiOutOfBounds);

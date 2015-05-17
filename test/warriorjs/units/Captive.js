@@ -1,7 +1,7 @@
 import chai from 'chai';
 import { it, beforeEach } from 'arrow-mocha/es5';
-import chaiBound from '../helpers/chaiBound';
-import Captive from '../../src/units/Captive';
+import chaiBound from '../../helpers/chaiBound';
+import Captive from '../../../src/units/Captive';
 
 chai.should();
 chai.use(chaiBound);

@@ -1,15 +1,15 @@
 import chai from 'chai';
 import { it, beforeEach } from 'arrow-mocha/es5';
-import chaiWarrior from './helpers/chaiWarrior';
-import chaiEnemy from './helpers/chaiEnemy';
-import chaiCaptive from './helpers/chaiCaptive';
-import chaiWall from './helpers/chaiWall';
-import chaiStairs from './helpers/chaiStairs';
-import chaiPlayer from './helpers/chaiPlayer';
-import Floor from '../src/Floor';
-import Warrior from '../src/units/Warrior';
-import Sludge from '../src/units/Sludge';
-import Captive from '../src/units/Captive';
+import chaiWarrior from '../helpers/chaiWarrior';
+import chaiEnemy from '../helpers/chaiEnemy';
+import chaiCaptive from '../helpers/chaiCaptive';
+import chaiWall from '../helpers/chaiWall';
+import chaiStairs from '../helpers/chaiStairs';
+import chaiPlayer from '../helpers/chaiPlayer';
+import Floor from '../../src/Floor';
+import Warrior from '../../src/units/Warrior';
+import Sludge from '../../src/units/Sludge';
+import Captive from '../../src/units/Captive';
 
 chai.should();
 chai.use(chaiWarrior);

@@ -11,8 +11,10 @@ class Rescue extends Base {
       const recipient = this.getUnit(direction);
       this._unit.say(`unbinds ${direction} and rescues ${recipient}`);
       recipient.unbind();
-      recipient.setPosition(null);
-      this._unit.earnPoints(20);
+      if (recipient.constructor.name === 'Captive') {
+        recipient.setPosition(null);
+        this._unit.earnPoints(20);
+      }
     } else {
       this._unit.say(`unbinds ${direction} and rescues nothing`);
     }

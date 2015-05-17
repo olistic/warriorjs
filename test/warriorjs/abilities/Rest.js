@@ -1,7 +1,7 @@
 import chai from 'chai';
 import { it, beforeEach } from 'arrow-mocha/es5';
-import Rest from '../../src/abilities/Rest';
-import Warrior from '../../src/units/Warrior';
+import Rest from '../../../src/abilities/Rest';
+import Warrior from '../../../src/units/Warrior';
 
 chai.should();
 

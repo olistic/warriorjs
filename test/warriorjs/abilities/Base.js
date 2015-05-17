@@ -1,6 +1,6 @@
 import chai from 'chai';
 import { it, beforeEach } from 'arrow-mocha/es5';
-import Base from '../../src/abilities/Base';
+import Base from '../../../src/abilities/Base';
 
 const should = chai.should();
 

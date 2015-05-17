@@ -1,11 +1,13 @@
 import chai from 'chai';
 import { it, beforeEach } from 'arrow-mocha/es5';
-import Rescue from '../../src/abilities/Rescue';
-import Warrior from '../../src/units/Warrior';
-import Captive from '../../src/units/Captive';
-import Base from '../../src/units/Base';
+import chaiBound from '../../helpers/chaiBound';
+import Rescue from '../../../src/abilities/Rescue';
+import Warrior from '../../../src/units/Warrior';
+import Captive from '../../../src/units/Captive';
+import Base from '../../../src/units/Base';
 
 const should = chai.should();
+chai.use(chaiBound);
 
 describe('Rescue', () => {
   beforeEach((ctx) => {
@@ -31,6 +33,19 @@ describe('Rescue', () => {
     ctx.sandbox.mock(ctx.rescue).expects('getUnit').withArgs('forward').never();
     const expectation = ctx.sandbox.mock(ctx.warrior).expects('earnPoints').never();
     ctx.rescue.perform();
+    unit.getPosition().should.not.be.null;
+    expectation.verify();
+  });
+
+  it('should release other unit when bound', (ctx) => {
+    const unit = new Base();
+    unit.bind();
+    unit.setPosition({});
+    ctx.sandbox.mock(ctx.rescue).expects('getSpace').withArgs('forward').returns({ isCaptive: ctx.sandbox.stub().returns(true) });
+    ctx.sandbox.mock(ctx.rescue).expects('getUnit').withArgs('forward').returns(unit);
+    const expectation = ctx.sandbox.mock(ctx.warrior).expects('earnPoints').never();
+    ctx.rescue.perform();
+    unit.should.not.be.bound;
     unit.getPosition().should.not.be.null;
     expectation.verify();
   });
