@@ -4,6 +4,7 @@
     "clue": "",
 
     "timeBonus": 15,
+    "aceScore": 10,
     "size": {
         "width": 8,
         "height": 1

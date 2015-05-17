@@ -102,28 +102,6 @@ describe('Base', () => {
     ctx.unit.performTurn.bind(ctx.unit).should.not.throw(Error);
   });
 
-  // it('should pass abilities to new turn when calling nextTurn', (ctx) => {
-  //   const expectation = ctx.sandbox.mock(Turn).expects('constructor').withArgs({ walk: null, attack: null }, { feel: null }).returns('turn');
-  //   ctx.sandbox.stub(ctx.unit, 'getActions').returns({ walk: null, attack: null });
-  //   ctx.sandbox.stub(ctx.unit, 'getSenses').returns({ feel: null });
-  //   ctx.unit.getNextTurn().should.equal('turn');
-  //   expectation.verify();
-  // });
-
-  // it('should add action', (ctx) => {
-  //   const expectation = ctx.sandbox.mock(Walk).expects('constructor').withArgs(ctx.unit).returns('walk');
-  //   ctx.unit.addActions(['walk']);
-  //   ctx.units.getActions().should.eql({ walk: 'walk' });
-  //   expectation.verify();
-  // });
-
-  // it('should add sense', (ctx) => {
-  //   const expectation = ctx.sandbox.mock(Feel).expects('constructor').withArgs(ctx.unit).returns('feel');
-  //   ctx.unit.addSenses(['feel']);
-  //   ctx.units.getSenses().should.eql({ feel: 'feel' });
-  //   expectation.verify();
-  // });
-
   it('should appear as ? on map', (ctx) => {
     ctx.unit.getCharacter().should.equal('?');
   });

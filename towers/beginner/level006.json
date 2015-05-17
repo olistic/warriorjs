@@ -4,6 +4,7 @@
     "clue": "Walk backward if you are taking damage from afar and do not have enough health to attack. You may also want to consider walking backward until `warrior.feel('backward').isWall()`.",
 
     "timeBonus": 55,
+    "aceScore": 105,
     "size": {
         "width": 8,
         "height": 1

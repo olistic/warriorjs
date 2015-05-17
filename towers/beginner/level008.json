@@ -4,6 +4,7 @@
     "clue": "Wizards are deadly but low in health. Kill them before they have time to attack.",
 
     "timeBonus": 20,
+    "aceScore": 46,
     "size": {
         "width": 6,
         "height": 1

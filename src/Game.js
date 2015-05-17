@@ -5,6 +5,7 @@ import UI from './UI';
 import Config from './Config';
 import Profile from './Profile';
 import Tower from './Tower';
+import Level from './Level';
 
 class Game {
   start() {
@@ -18,7 +19,15 @@ class Game {
       }
     }
 
-    this.playNormalMode();
+    if (this.getProfile().isEpic()) {
+      if (this.getProfile().hasLevelAfterEpic()) {
+        this.goToNormalMode();
+      } else {
+        this.playEpicMode();
+      }
+    } else {
+      this.playNormalMode();
+    }
   }
 
   makeGameDirectory() {
@@ -30,40 +39,85 @@ class Game {
     }
   }
 
-  playNormalMode() {
-    if (this.getCurrentLevel().getNumber() === 0) {
-      this.prepareNextLevel();
-      UI.printLine(`First level has been generated. See the warriorjs/${this.getProfile().getDirectoryName()}/README for instructions.`);
+  playEpicMode() {
+    if (Config.getDelay()) {
+      Config.setDelay(Config.getDelay() / 2);
+    }
+
+    this.getProfile().setCurrentEpicScore(0);
+    this.getProfile().setCurrentEpicGrades({});
+    if (Config.getPracticeLevel()) {
+      if (new Level(this.getProfile(), Config.getPracticeLevel()).exists()) {
+        this._currentLevel = this._nextLevel = null;
+        this.getProfile().setLevelNumber(Config.getPracticeLevel());
+        this.playCurrentLevel();
+      } else {
+        UI.printLine('Unable to practice non-existent level, try another.');
+      }
     } else {
-      this.playCurrentLevel();
+      let playing = true;
+      while (playing) {
+        this._currentLevel = this._nextLevel = null;
+        this.getProfile().incLevelNumber();
+        playing = this.playCurrentLevel();
+      }
+      this.getProfile().save();
+    }
+  }
+
+  playNormalMode() {
+    if (Config.getPracticeLevel()) {
+      UI.printLine('Unable to practice level while not in epic mode, remove -l option.');
+    } else {
+      if (this.getCurrentLevel().getNumber() === 0) {
+        this.prepareNextLevel();
+        UI.printLine(`First level has been generated. See the warriorjs/${this.getProfile().getDirectoryName()}/README for instructions.`);
+      } else {
+        this.playCurrentLevel();
+      }
     }
   }
 
   playCurrentLevel() {
+    let playing = true;
     this.getCurrentLevel().loadPlayer();
     UI.printLine(`Starting Level ${this.getCurrentLevel().getNumber()}`);
     this.getCurrentLevel().play();
     if (this.getCurrentLevel().passed()) {
-      if (this.getNextLevel()) {
+      if (this.getNextLevel().exists()) {
         UI.printLine('Success! You have found the stairs.');
       } else {
         UI.printLine('CONGRATULATIONS! You have climbed to the top of the tower.');
+        playing = false;
       }
 
       this.getCurrentLevel().tallyPoints();
-      this.requestNextLevel();
+      if (this.getProfile().isEpic()) {
+        if (this.getFinalReport() && !playing) {
+          UI.printLine(this.getFinalReport());
+        }
+      } else {
+        this.requestNextLevel();
+      }
     } else {
+      playing = false;
       UI.printLine(`Sorry, you failed level ${this.getCurrentLevel().getNumber()}. Change your script and try again.`);
       if (!Config.getSkipInput() && this.getCurrentLevel().getClue() && UI.ask('Would you like to read the additional clues for this level?')) {
         UI.printLine(this.getCurrentLevel().getClue());
       }
     }
+    return playing;
   }
 
   requestNextLevel() {
-    if (!Config.getSkipInput() && this.getNextLevel() && UI.ask('Would you like to continue on to the next level?')) {
-      this.prepareNextLevel();
-      UI.printLine(`See the updated README in the warriorjs/${this.getProfile().getDirectoryName()} directory.`);
+    if (!Config.getSkipInput() && (this.getNextLevel().exists() ? UI.ask('Would you like to continue on to the next level?') : UI.ask('Would you like to continue on to epic mode?'))) {
+      if (this.getNextLevel().exists()) {
+        this.prepareNextLevel();
+        UI.printLine(`See the updated README in the warriorjs/${this.getProfile().getDirectoryName()} directory.`);
+      } else {
+        this.prepareEpicMode();
+        UI.printLine('Run warriorjs again to play epic mode.');
+      }
     } else {
       UI.printLine('Staying on current level. Try to earn more points next time.');
     }
@@ -71,8 +125,21 @@ class Game {
 
   prepareNextLevel() {
     this.getNextLevel().generatePlayerFiles();
-    this.getProfile().setLevelNumber(this.getProfile().getLevelNumber() + 1);
+    this.getProfile().incLevelNumber();
     this.getProfile().save();
+  }
+
+  prepareEpicMode() {
+    this.getProfile().enableEpicMode();
+    this.getProfile().setLevelNumber(0);
+    this.getProfile().save();
+  }
+
+  goToNormalMode() {
+    this.getProfile().enableNormalMode();
+    this.prepareNextLevel();
+    UI.printLine('Another level has been added since you started epic, going back to normal mode.');
+    UI.printLine(`See the updated README in the warriorjs/${this.getProfile().getDirectoryName()} directory.`);
   }
 
   /*
@@ -144,6 +211,20 @@ class Game {
   getNextLevel() {
     this._nextLevel = this._nextLevel || this.getProfile().getNextLevel();
     return this._nextLevel;
+  }
+
+  getFinalReport() {
+    if (this.getProfile().calculateAverageGrade() && !Config.getPracticeLevel()) {
+      let report = '';
+      report += `Your average grade for this tower is: ${Level.getGradeLetter(this.getProfile().calculateAverageGrade())}\n\n`;
+      Object.keys(this.getProfile().getCurrentEpicGrades()).sort().forEach((level) => {
+        report += `  Level ${level}: ${Level.getGradeLetter(this.getProfile().getCurrentEpicGrades()[level])}\n`;
+      });
+      report += `\nTo practice a level, use the -l option.`;
+      return report;
+    }
+
+    return null;
   }
 }
 

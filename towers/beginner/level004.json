@@ -4,6 +4,7 @@
     "clue": "Set `_health` to your current health at the end of the turn. If this is greater than your current health next turn, then you know you're taking damage and shouldn't rest.",
 
     "timeBonus": 45,
+    "aceScore": 90,
     "size": {
         "width": 7,
         "height": 1

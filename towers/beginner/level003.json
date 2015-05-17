@@ -4,6 +4,7 @@
     "clue": "When there is no enemy ahead of you, call `warrior.rest()` until health is full before walking forward.",
 
     "timeBonus": 35,
+    "aceScore": 71,
     "size": {
         "width": 9,
         "height": 1

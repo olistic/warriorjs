@@ -4,6 +4,7 @@
     "clue": "Don't just keep shooting the bow while you are being attacked from behind.",
 
     "timeBonus": 40,
+    "aceScore": 100,
     "size": {
         "width": 11,
         "height": 1

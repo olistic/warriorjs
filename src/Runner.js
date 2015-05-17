@@ -26,6 +26,10 @@ class Runner {
           alias: 'directory',
           describe: 'Run under given directory'
         },
+        l: {
+          alias: 'level',
+          describe: 'Practice level on epic'
+        },
         s: {
           alias: 'skip',
           describe: 'Skip user input'
@@ -38,9 +42,21 @@ class Runner {
       .help('help', 'Show this message')
       .parse(this._args);
 
-    if (argv.directory) Config.setPathPrefix(argv.directory);
-    if (argv.skip) Config.setSkipInput(argv.skip);
-    if (argv.time) Config.setDelay(argv.time);
+    if (argv.directory) {
+      Config.setPathPrefix(argv.directory);
+    }
+
+    if (argv.level) {
+      Config.setPracticeLevel(Number.parseInt(argv.level));
+    }
+
+    if (argv.skip) {
+      Config.setSkipInput(argv.skip);
+    }
+
+    if (argv.time) {
+      Config.setDelay(Number.parseFloat(argv.time));
+    }
   }
 }
 

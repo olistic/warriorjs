@@ -7,6 +7,22 @@ import PlayerGenerator from './PlayerGenerator';
 import UI from './UI';
 
 class Level {
+  static getGradeLetter(percent) {
+    if (percent >= 1.0) {
+      return 'S';
+    } else if (percent >= 0.9) {
+      return 'A';
+    } else if (percent >= 0.8) {
+      return 'B';
+    } else if (percent >= 0.7) {
+      return 'C';
+    } else if (percent >= 0.6) {
+      return 'D';
+    }
+
+    return 'F';
+  }
+
   constructor(profile, number) {
     this._profile = profile;
     this._number = number;
@@ -69,6 +85,18 @@ class Level {
     this._timeBonus = timeBonus;
   }
 
+  decTimeBonus() {
+    this._timeBonus -= 1;
+  }
+
+  getAceScore() {
+    return this._aceScore;
+  }
+
+  setAceScore(aceScore) {
+    this._aceScore = aceScore;
+  }
+
   getPlayerPath() {
     return this._profile.getPlayerPath();
   }
@@ -106,7 +134,7 @@ class Level {
       this.getFloor().getUnits().forEach((unit) => unit.prepareTurn());
       this.getFloor().getUnits().forEach((unit) => unit.performTurn());
       if (this.getTimeBonus() > 0) {
-        this.setTimeBonus(this.getTimeBonus() - 1);
+        this.decTimeBonus();
       }
     }
   }
@@ -125,10 +153,31 @@ class Level {
       score += this.getClearBonus();
     }
 
-    UI.printLine(`Total Score: ${this.scoreCalculation(this._profile.getScore(), score)}`);
-    this.getProfile().setScore(this.getProfile().getScore() + score);
-    this.getProfile().setActions(Object.keys(this.getWarrior().getActions()));
-    this.getProfile().setSenses(Object.keys(this.getWarrior().getSenses()));
+    if (this.getProfile().isEpic()) {
+      if (this.getGradeFor(score)) {
+        UI.printLine(`Level Grade: ${this.getGradeFor(score)}`);
+      }
+
+      UI.printLine(`Total Score: ${this.scoreCalculation(this._profile.getCurrentEpicScore(), score)}`);
+      if (this.getAceScore()) {
+        this.getProfile().getCurrentEpicGrades()[this._number] = (score * 1.0 / this.getAceScore());
+      }
+
+      this.getProfile().addCurrentEpicScore(score);
+    } else {
+      UI.printLine(`Total Score: ${this.scoreCalculation(this._profile.getScore(), score)}`);
+      this.getProfile().addScore(score);
+      this.getProfile().setActions(Object.keys(this.getWarrior().getActions()));
+      this.getProfile().setSenses(Object.keys(this.getWarrior().getSenses()));
+    }
+  }
+
+  getGradeFor(score) {
+    if (this.getAceScore()) {
+      return Level.getGradeLetter(score * 1.0 / this.getAceScore());
+    }
+
+    return null;
   }
 
   getClearBonus() {

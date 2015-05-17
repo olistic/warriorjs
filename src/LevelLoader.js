@@ -19,9 +19,15 @@ class LevelLoader {
 
     this.description(level.description);
     this.tip(level.tip);
-    this.clue(level.clue);
+    if (level.clue) {
+      this.clue(level.clue);
+    }
 
     this.timeBonus(level.timeBonus);
+    if (level.aceScore) {
+      this.aceScore(level.aceScore);
+    }
+
     this.size(level.size.width, level.size.height);
     this.stairs(level.stairs.x, level.stairs.y);
 
@@ -46,6 +52,10 @@ class LevelLoader {
 
   timeBonus(bonus) {
     this._level.setTimeBonus(bonus);
+  }
+
+  aceScore(score) {
+    this._level.setAceScore(score);
   }
 
   size(width, height) {

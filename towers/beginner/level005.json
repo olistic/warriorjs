@@ -4,6 +4,7 @@
     "clue": "Don't forget to constantly check if you're taking damage. Rest until your health is full if you aren't taking damage.",
 
     "timeBonus": 45,
+    "aceScore": 123,
     "size": {
         "width": 7,
         "height": 1

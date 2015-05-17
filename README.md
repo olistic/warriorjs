@@ -54,6 +54,18 @@ Losing all of your health will cause you to fail the level. You are not punished
 
 Once you pass a level (by reaching the stairs), the profile README will be updated for the next level. Alter the Player.js file and run `warriorjs` again to play the next level.
 
+## Epic mode
+
+Once you reach the top of the tower, you will enter epic mode. When running `warriorjs` again, it will run your current Player.js through all levels in the tower without stopping.
+
+Your warrior will most likely not succeed the first time around, so use the -l option on levels you are having difficulty or want to fine-tune the scoring.
+
+```bash
+$ warriorjs -l 4
+```
+
+Once your warrior reaches the top again, you will receive an average grade, along with a grade for each level. The grades from best to worst are S, A, B, C, D and F. Try to get S on each level for the ultimate score!
+
 ## Credits
 
 This game was originally developed by @ryanb to teach the Ruby language. Special thanks to him for the original [ruby-warrior](https://github.com/ryanb/ruby-warrior).
