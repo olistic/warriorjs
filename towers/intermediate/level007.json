@@ -1,0 +1,60 @@
+{
+    "description": "Another ticking sound, but some sludge is blocking the way.",
+    "tip": "Quickly kill the sludge and rescue the captive before the bomb goes off. You can't simply go around them.",
+    "clue": "Determine the direction of the ticking captive and kill any enemies blocking that path. You may need to bind surrounding enemies first.",
+
+    "timeBonus": 70,
+    "aceScore": 134,
+    "size": {
+        "width": 5,
+        "height": 3
+    },
+    "stairs": {
+        "x": 4,
+        "y": 0
+    },
+
+    "warrior": {
+        "x": 0,
+        "y": 1,
+        "facing": "east",
+        "abilities": {
+            "actions": [],
+            "senses": []
+        }
+    },
+
+    "units": [
+        {
+            "type": "sludge",
+            "x": 1,
+            "y": 0,
+            "facing": "south"
+        },
+        {
+            "type": "sludge",
+            "x": 1,
+            "y": 2,
+            "facing": "north"
+        },
+        {
+            "type": "captive",
+            "x": 2,
+            "y": 1,
+            "facing": "west"
+        },
+        {
+            "type": "captive",
+            "x": 4,
+            "y": 1,
+            "facing": "west",
+            "explode": 10
+        },
+        {
+            "type": "captive",
+            "x": 2,
+            "y": 0,
+            "facing": "west"
+        }
+    ]
+}

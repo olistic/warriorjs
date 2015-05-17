@@ -3,8 +3,15 @@ import chalk from 'chalk';
 import Turn from '../Turn';
 import UI from '../UI';
 import Attack from '../abilities/Attack';
+import Bind from '../abilities/Bind';
+import Detonate from '../abilities/Detonate';
+import DirectionOf from '../abilities/DirectionOf';
+import DirectionOfStairs from '../abilities/DirectionOfStairs';
+import DistanceOf from '../abilities/DistanceOf';
+import Explode from '../abilities/Explode';
 import Feel from '../abilities/Feel';
 import Health from '../abilities/Health';
+import Listen from '../abilities/Listen';
 import Look from '../abilities/Look';
 import Pivot from '../abilities/Pivot';
 import Rescue from '../abilities/Rescue';
@@ -100,6 +107,15 @@ class Base {
         case 'attack':
           this._actions[action] = new Attack(this);
           break;
+        case 'bind':
+          this._actions[action] = new Bind(this);
+          break;
+        case 'detonate':
+          this._actions[action] = new Detonate(this);
+          break;
+        case 'explode':
+          this._actions[action] = new Explode(this);
+          break;
         case 'pivot':
           this._actions[action] = new Pivot(this);
           break;
@@ -124,11 +140,23 @@ class Base {
   addSenses(newSenses) {
     newSenses.forEach((sense) => {
       switch (sense) {
+        case 'directionOf':
+          this._senses[sense] = new DirectionOf(this);
+          break;
+        case 'directionOfStairs':
+          this._senses[sense] = new DirectionOfStairs(this);
+          break;
+        case 'distanceOf':
+          this._senses[sense] = new DistanceOf(this);
+          break;
         case 'feel':
           this._senses[sense] = new Feel(this);
           break;
         case 'health':
           this._senses[sense] = new Health(this);
+          break;
+        case 'listen':
+          this._senses[sense] = new Listen(this);
           break;
         case 'look':
           this._senses[sense] = new Look(this);

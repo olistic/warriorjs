@@ -1,0 +1,62 @@
+{
+    "description": "Your ears become more in tune with the surroundings. Listen to find enemies and captives!",
+    "tip": "Use `warrior.listen()` to find spaces with other units, and warrior.direction_of to determine what direction they're in.",
+    "clue": "Walk towards an enemy or captive with warrior.walk(warrior.directionOf(warrior.listen()[0])), once `warrior.listen().isEmpty()` then head for the stairs.",
+
+    "timeBonus": 55,
+    "aceScore": 144,
+    "size": {
+        "width": 4,
+        "height": 3
+    },
+    "stairs": {
+        "x": 3,
+        "y": 2
+    },
+
+    "warrior": {
+        "x": 1,
+        "y": 1,
+        "facing": "east",
+        "abilities": {
+            "actions": [],
+            "senses": [
+                "listen",
+                "directionOf"
+            ]
+        }
+    },
+
+    "units": [
+        {
+            "type": "captive",
+            "x": 0,
+            "y": 0,
+            "facing": "east"
+        },
+        {
+            "type": "captive",
+            "x": 0,
+            "y": 2,
+            "facing": "east"
+        },
+        {
+            "type": "sludge",
+            "x": 2,
+            "y": 0,
+            "facing": "south"
+        },
+        {
+            "type": "thickSludge",
+            "x": 3,
+            "y": 1,
+            "facing": "west"
+        },
+        {
+            "type": "sludge",
+            "x": 2,
+            "y": 2,
+            "facing": "north"
+        }
+    ]
+}
