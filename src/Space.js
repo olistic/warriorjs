@@ -36,6 +36,10 @@ class Space {
     return _.isEqual(this._floor.getStairsLocation(), this.getLocation());
   }
 
+  isTicking() {
+    return this.getUnit() && Object.keys(this.getUnit().getActions()).includes('explode');
+  }
+
   getUnit() {
     return this._floor.getUnit(this._x, this._y);
   }

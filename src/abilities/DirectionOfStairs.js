@@ -1,6 +1,6 @@
 import Base from './Base';
 
-class DirectionOf extends Base {
+class DirectionOfStairs extends Base {
   getDescription() {
     return 'Returns the direction (\'left\', \'right\', \'forward\', \'backward\') the stairs are from your location.';
   }
@@ -10,4 +10,4 @@ class DirectionOf extends Base {
   }
 }
 
-export default DirectionOf;
+export default DirectionOfStairs;

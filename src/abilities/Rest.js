@@ -1,6 +1,6 @@
 import Base from './Base';
 
-class Rescue extends Base {
+class Rest extends Base {
   getDescription() {
     return 'Gain 10% of max health back, but do nothing more.';
   }
@@ -20,4 +20,4 @@ class Rescue extends Base {
   }
 }
 
-export default Rescue;
+export default Rest;

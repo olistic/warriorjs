@@ -6,6 +6,7 @@ import chaiCaptive from '../helpers/chaiCaptive';
 import chaiWall from '../helpers/chaiWall';
 import chaiStairs from '../helpers/chaiStairs';
 import chaiPlayer from '../helpers/chaiPlayer';
+import chaiTicking from '../helpers/chaiTicking';
 import Floor from '../../src/Floor';
 import Warrior from '../../src/units/Warrior';
 import Sludge from '../../src/units/Sludge';
@@ -18,6 +19,7 @@ chai.use(chaiCaptive);
 chai.use(chaiWall);
 chai.use(chaiStairs);
 chai.use(chaiPlayer);
+chai.use(chaiTicking);
 
 describe('Space', () => {
   beforeEach((ctx) => {
@@ -57,6 +59,10 @@ describe('Space', () => {
 
     it('should say \'nothing\' as name', (ctx) => {
       ctx.space.toString().should.equal('nothing');
+    });
+
+    it('should not be ticking', (ctx) => {
+      ctx.space.should.not.be.ticking;
     });
   });
 
@@ -126,11 +132,26 @@ describe('Space', () => {
     it('should have name of unit', (ctx) => {
       ctx.space.toString().should.equal('Sludge');
     });
+
+    describe('bound', () => {
+      beforeEach((ctx) => {
+        ctx.space.getUnit().bind();
+      });
+
+      it('should be captive', (ctx) => {
+        ctx.space.should.be.captive;
+      });
+
+      it('should not look like enemy', (ctx) => {
+        ctx.space.should.not.be.enemy;
+      });
+    });
   });
 
   describe('with captive', () => {
     beforeEach((ctx) => {
-      ctx.floor.addUnit(new Captive(), 0, 0);
+      ctx.captive = new Captive();
+      ctx.floor.addUnit(ctx.captive, 0, 0);
       ctx.space = ctx.floor.getSpace(0, 0);
     });
 
@@ -140,6 +161,15 @@ describe('Space', () => {
 
     it('should not be enemy', (ctx) => {
       ctx.space.should.not.be.enemy;
+    });
+
+    it('should be ticking if captive has time bomb', (ctx) => {
+      ctx.captive.addActions(['explode']);
+      ctx.space.should.be.ticking;
+    });
+
+    it('should not be ticking if captive does not have time bomb', (ctx) => {
+      ctx.space.should.not.be.ticking;
     });
   });
 });
