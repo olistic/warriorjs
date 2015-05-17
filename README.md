@@ -8,6 +8,8 @@ This is a game designed to teach JavaScript and artificial intelligence in a fun
 
 You play as a warrior climbing a tall tower to rescue the princess at the top level. On each floor, you need to write JavaScript (with full ES6 support) to instruct the warrior to battle enemies, rescue captives, and reach the stairs.
 
+NOTE: Watch the repo or check `npm outdated -g warriorjs` regularly to find out about new levels and abilities.
+
 ## Installation
 
 ```bash
