@@ -54,7 +54,7 @@ class Runner {
       Config.setSkipInput(argv.skip);
     }
 
-    if (typeof argv.time !== undefined) {
+    if (argv.time) {
       Config.setDelay(Number.parseFloat(argv.time));
     }
   }
