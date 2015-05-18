@@ -1,6 +1,6 @@
 {
   "name": "warriorjs",
-  "version": "0.3.2",
+  "version": "0.4.0",
   "bin": "./bin/warriorjs",
   "description": "Game written in JavaScript for learning JavaScript and artificial intelligence",
   "main": "index.js",
