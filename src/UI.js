@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import readlineSync from 'readline-sync';
-import sleep from 'sleep';
+import sleep from 'thread-sleep';
 import Config from './Config';
 
 class UI {
@@ -12,7 +12,7 @@ class UI {
 
   static printLineWithDelay(msg) {
     if (Config.getDelay()) {
-      sleep.usleep(Config.getDelay() * 1000000);
+      sleep(Config.getDelay() * 1000);
     }
 
     UI.printLine(msg);

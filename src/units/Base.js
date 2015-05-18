@@ -178,6 +178,9 @@ class Base {
 
   performTurn() {
     if (this._position) {
+      this.getAbilities().forEach((ability) => {
+        ability.passTurn();
+      });
       if (this._currentTurn.getAction() && !this.isBound()) {
         const [name, args] = this._currentTurn.getAction();
         this._actions[name].perform(...args);
@@ -187,6 +190,10 @@ class Base {
 
   playTurn(turn) {
     // To be overriden by subclass
+  }
+
+  getAbilities() {
+    return _.union(this.getActions(), this.getSenses());
   }
 
   getActions() {
