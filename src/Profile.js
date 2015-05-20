@@ -147,7 +147,11 @@ class Profile {
   }
 
   static decode(str) {
-    return JSON.parse(new Buffer(str, 'base64').toString());
+    try {
+      return JSON.parse(new Buffer(str, 'base64').toString());
+    } catch (err) {
+      throw new Error('Invalid .profile file. Try changing the directory under you are running warriorjs.');
+    }
   }
 
   static load(profilePath) {
