@@ -106,6 +106,7 @@ class Game {
         UI.printLine(this.getCurrentLevel().getClue());
       }
     }
+
     return playing;
   }
 

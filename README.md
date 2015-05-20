@@ -6,7 +6,7 @@
 
 This is a game designed to teach JavaScript and artificial intelligence in a fun, interactive way.
 
-You play as a warrior climbing a tall tower to rescue the princess at the top level. On each floor, you need to write JavaScript (with full ES6 support) to instruct the warrior to battle enemies, rescue captives, and reach the stairs.
+You play as a warrior climbing a tall tower to `<insert something that motivates you here>` at the top level. On each floor, you need to write JavaScript (with full ES6 support) to instruct the warrior to battle enemies, rescue captives, and reach the stairs.
 
 NOTE: Watch the repo or check `npm outdated -g warriorjs` regularly to find out about new levels and abilities.
 
@@ -70,9 +70,9 @@ Once your warrior reaches the top again, you will receive an average grade, alon
 
 ## Credits
 
-This game was originally developed by @ryanb to teach the Ruby language. Special thanks to him for the original [ruby-warrior](https://github.com/ryanb/ruby-warrior).
+This game was originally developed by [@ryanb](https://github.com/ryanb) to teach the Ruby language. Special thanks to him for the original [ruby-warrior](https://github.com/ryanb/ruby-warrior).
 
-Thanks to @guillecura for the awesome logo idea and for carrying it out.
+Thanks to [@guillecura](https://github.com/guillecura) for the awesome logo idea and for carrying it out.
 
 
 
