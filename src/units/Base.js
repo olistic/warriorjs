@@ -193,7 +193,9 @@ class Base {
   }
 
   getAbilities() {
-    return Object.assign(this._actions, this._senses);
+    const abilities = {};
+    Object.assign(abilities, this._actions, this._senses);
+    return abilities;
   }
 
   getActions() {
