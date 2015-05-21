@@ -32,6 +32,8 @@ class Player {
 }
 ```
 
+## Objective
+
 Your objective is to fill the `playTurn` method with commands to instruct the warrior what to do. With each level, your abilities will grow along with the difficulty. See the README in your profile's directory for details on what abilities your warrior has available on the current level.
 
 Here is a simple example which will instruct the warrior to attack if he feels an enemy, otherwise he will walk forward:
@@ -48,6 +50,8 @@ class Player {
 }
 ```
 
+## Playing
+
 Once you are done editing Player.js, save the file and run the `warriorjs` command again to start playing the level. The play happens through a series of turns. On each one, your `playTurn` method is called along with any enemy's.
 
 You cannot change your code in the middle of a level. You must take into account everything that may happen on that level and give your warrior the proper instructions from the start.
@@ -55,6 +59,159 @@ You cannot change your code in the middle of a level. You must take into account
 Losing all of your health will cause you to fail the level. You are not punished by this, you simply need to go back to your Player.js file, improve your code, and try again.
 
 Once you pass a level (by reaching the stairs), the profile README will be updated for the next level. Alter the Player.js file and run `warriorjs` again to play the next level.
+
+## Scoring
+
+Your objective is to not only reach the stairs, but to get the highest score you can. There are many ways you can earn points on a level.
+
+* defeat an enemy to add his max health to your score
+
+* rescue a captive to earn 20 points
+
+* pass the level within the bonus time to earn the amount of bonus time remaining
+
+* defeat all enemies and rescue all captives to receive a 20% overall bonus
+
+A total score is kept as you progress through the levels. When you pass a level, that score is added to your total.
+
+## Perspective
+
+Even though this is a text-based game, think of it as two-dimensional where you are viewing from overhead. Each level is always rectangular in shape and is made up of a number of squares. Only one unit can be on a given square at a time, and your objective is to find the square with the stairs. Here is an example level map and key:
+
+```
+ ----
+|C s>|
+| S s|
+|C @ |
+ ----
+
+> = Stairs
+@ = Warrior (20 HP)
+s = Sludge (12 HP)
+S = Thick Sludge (24 HP)
+C = Captive (1 HP)
+```
+
+## Abilities
+
+When you first start, your warrior will only have a few abilities, but with each level your abilities will grow. A warrior has two kinds of abilities: actions and senses. 
+
+Most of the abilities can be performed in the following directions: forward, backward, left and right. You have to pass a string with the direction as the first argument, e.g. `warrior.walk('backward');`.
+
+### Actions
+
+An *action* is something that effects the game in some way. **Only one action can be performed per turn**, so choose wisely. Here is the complete list of actions:
+
+* `warrior.walk(direction)`:
+
+  > Move in given direction (forward by default).
+
+* `warrior.attack(direction)`:
+
+  > Attack a unit in given direction (forward by default).
+
+* `warrior.rest()`:
+  
+  > Gain 10% of max health back, but do nothing more.
+
+* `warrior.rescue(direction)`:
+  
+  > Rescue a captive from his chains (earning 20 points) in given direction (forward by default).
+
+* `warrior.pivot(direction)`:
+  
+  > Rotate left, right or backward (default).
+
+* `warrior.shoot(direction)`:
+  
+  > Shoot your bow & arrow in given direction (forward by default).
+
+
+**NEW** in *intermediate* tower:
+
+* `warrior.bind(direction)`:
+  
+  > Binds a unit in given direction to keep him from moving (forward by default).
+
+* `warrior.detonate(direction)`:
+  
+  > Detonate a bomb in a given direction (forward by default) which damages that space and surrounding 4 spaces (including yourself).
+
+* `warrior.explode()`:
+  
+  > Kills you and all surrounding units. You probably don't want to do this intentionally.
+
+### Senses
+
+A *sense* is something which gathers information about the floor. You can perform senses as often as you want per turn to gather information about your surroundings and to aid you in choosing the proper action. Here is the complete list of senses:
+
+* `warrior.feel(direction)`:
+  
+  > Returns a `Space` for the given direction (forward by default).
+
+* `warrior.health()`:
+  
+  > Returns an integer representing your current health.
+
+* `warrior.look()`:
+  
+  > Returns an array of up to three `Spaces` in the given direction (forward by default).
+
+**NEW** in *intermediate* tower:
+
+* `warrior.directionOfStairs()`:
+
+  > Returns the direction the stairs are from your location.
+
+* `warrior.directionOf(space)`:
+
+  > Pass a `Space` as an argument, and the direction to that space will be returned.
+
+* `warrior.distanceOf(space)`:
+
+  > Pass a `Space` as an argument, and it will return an integer representing the distance to that space.
+
+* `warrior.listen()`:
+
+  > Returns an array of all spaces which have units in them.
+
+Since what you sense will change each turn, you should record what information you gather for use on the next turn. For example, you can determine if you are being attacked if your health has gone down since the last turn.
+
+## Spaces
+
+Whenever you sense an area, often one or multiple spaces (in an array) will be returned. A space is an object representing a square in the level.
+
+You can call methods on a space to gather information about what is there. Here are the various methods that are available to you:
+
+* `space.isEmpty()`:
+  
+  > If `true`, this means that nothing (except maybe stairs) is at this location and you can walk here.
+
+* `space.isStairs()`:
+  
+  > Determine if stairs are at that location.
+
+* `space.isEnemy()`:
+  
+  > Determine if an enemy unit is at this location.
+
+* `space.isCaptive()`:
+  
+  > Determine if a captive is at this location.
+
+* `space.isWall()`:
+  
+  > Returns `true` if this is the edge of the level. You can't walk here.
+
+* `space.isTicking()`:
+
+  > Returns `true` if this space contains a bomb which will explode in time.
+
+You will often call these methods directly after a sense. For example, the `feel` sense returns one `Space`. You can call `isCaptive()` on this to determine if a captive is in front of you.
+
+```javascript
+warrior.feel().isCaptive();
+```
 
 ## Epic mode
 
