@@ -34,15 +34,11 @@ class LevelLoader {
     this.warrior(level.warrior.x, level.warrior.y, level.warrior.facing, level.warrior.abilities.actions, level.warrior.abilities.senses);
 
     level.units.forEach((unit) => {
-      const actions = [];
-      if (unit.explode) {
-        actions.push('explode');
-      }
-
-      const addedUnit = this.unit(unit.type, unit.x, unit.y, unit.facing, actions);
+      const newUnit = this.unit(unit.type, unit.x, unit.y, unit.facing);
 
       if (unit.explode) {
-        addedUnit.getActions().explode.setTime(unit.explode);
+        newUnit.addActions(['explode']);
+        newUnit.getActions().explode.setTime(unit.explode);
       }
     });
   }

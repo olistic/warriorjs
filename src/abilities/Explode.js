@@ -15,7 +15,7 @@ class Explode extends Base {
 
   perform() {
     if (this._unit.getPosition()) {
-      this._unit.say(`explodes, collapsing the ceiling and damanging every unit.`);
+      this._unit.say(`explodes, collapsing the ceiling and damaging every unit.`);
       this._unit.getPosition().getFloor().getUnits().forEach((unit) => unit.takeDamage(100));
     }
   }

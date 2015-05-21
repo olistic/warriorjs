@@ -178,8 +178,8 @@ class Base {
 
   performTurn() {
     if (this._position) {
-      this.getAbilities().forEach((ability) => {
-        ability.passTurn();
+      Object.keys(this.getAbilities()).forEach((name) => {
+        this.getAbilities()[name].passTurn();
       });
       if (this._currentTurn.getAction() && !this.isBound()) {
         const [name, args] = this._currentTurn.getAction();
@@ -193,7 +193,7 @@ class Base {
   }
 
   getAbilities() {
-    return _.union(this.getActions(), this.getSenses());
+    return Object.assign(this._actions, this._senses);
   }
 
   getActions() {

@@ -1,9 +1,11 @@
+import _ from 'lodash';
 import chai from 'chai';
 import sinon from 'sinon';
 import { it, beforeEach } from 'arrow-mocha/es5';
 import chaiAlive from '../../helpers/chaiAlive';
 import Base from '../../../src/units/Base';
 import Walk from '../../../src/abilities/Walk';
+import Floor from '../../../src/Floor';
 import UI from '../../../src/UI';
 
 const should = chai.should();
@@ -24,7 +26,7 @@ describe('Base', () => {
   });
 
   it('should consider itself alive with position', (ctx) => {
-    ctx.unit.setPosition(ctx.sandbox.stub());
+    ctx.unit.setPosition({});
     ctx.unit.should.be.alive;
   });
 
@@ -52,7 +54,7 @@ describe('Base', () => {
   });
 
   it('should set position to null when running out of health', (ctx) => {
-    ctx.unit.setPosition(ctx.sandbox.stub());
+    ctx.unit.setPosition({});
     ctx.sandbox.stub(ctx.unit, 'getMaxHealth').returns(10);
     ctx.unit.takeDamage(10);
     should.equal(ctx.unit.getPosition(), null);
@@ -130,5 +132,28 @@ describe('Base', () => {
     ctx.sandbox.stub(ctx.unit, 'getNextTurn').returns(turn);
     ctx.unit.prepareTurn();
     ctx.unit.performTurn();
+  });
+
+  describe('with explosive', () => {
+    beforeEach((ctx) => {
+      ctx.floor = new Floor();
+      ctx.floor.setWidth(2);
+      ctx.floor.setHeight(3);
+      ctx.floor.addUnit(ctx.unit, 0, 0);
+      ctx.unit.addActions(['explode']);
+    });
+
+    it('should explode when time reaches 0', (ctx) => {
+      ctx.unit.setHealth(10);
+      ctx.unit.getActions().explode.setTime(3);
+      _.times(2, () => {
+        ctx.unit.prepareTurn();
+        ctx.unit.performTurn();
+      });
+      ctx.unit.getHealth().should.equal(10);
+      ctx.unit.prepareTurn();
+      ctx.unit.performTurn();
+      ctx.unit.getHealth().should.equal(-90);
+    });
   });
 });
