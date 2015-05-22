@@ -150,7 +150,7 @@ class Profile {
     try {
       return JSON.parse(new Buffer(str, 'base64').toString());
     } catch (err) {
-      throw new Error('Invalid .profile file. Try changing the directory under you are running warriorjs.');
+      throw new Error('Invalid .profile file. Try changing the directory under which you are running warriorjs.');
     }
   }
 

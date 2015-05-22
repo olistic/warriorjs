@@ -155,7 +155,7 @@ A *sense* is something which gathers information about the floor. You can perfor
 
 * `warrior.look()`:
   
-  > Returns an array of up to three `Spaces` in the given direction (forward by default).
+  > Returns an array of up to three spaces in the given direction (forward by default).
 
 **NEW** in *intermediate* tower:
 
