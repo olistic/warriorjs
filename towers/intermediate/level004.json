@@ -1,7 +1,7 @@
 {
     "description": "Your ears become more in tune with the surroundings. Listen to find enemies and captives!",
-    "tip": "Use `warrior.listen()` to find spaces with other units, and warrior.direction_of to determine what direction they're in.",
-    "clue": "Walk towards an enemy or captive with warrior.walk(warrior.directionOf(warrior.listen()[0])), once `warrior.listen().isEmpty()` then head for the stairs.",
+    "tip": "Use `warrior.listen()` to find spaces with other units, and `warrior.directionOf()` to determine what direction they're in.",
+    "clue": "Walk towards an enemy or captive with warrior.walk(warrior.directionOf(warrior.listen()[0])), once `warrior.listen().length === 0` then head for the stairs.",
 
     "timeBonus": 55,
     "aceScore": 144,
