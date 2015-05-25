@@ -7,7 +7,8 @@ class Feel extends Base {
 
   perform(direction = 'forward') {
     this.verifyDirection(direction);
-    return this.getSpace(direction);
+	var space = this.getSpace(direction);
+    return space && space.playerObject();
   }
 }
 

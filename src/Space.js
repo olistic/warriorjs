@@ -48,6 +48,20 @@ class Space {
     return [this._x, this._y];
   }
 
+  /** Makes a new object that acts like a proxy of a Space. Allows to access its methods without
+  the risk of exposing intimate details of the implementation, to the code provided by the user.
+  */
+  playerObject(allowedMembers) {
+	allowedMembers = allowedMembers || 
+		['isWall', 'isWarrior','isPlayer', 'isEnemy', 'isCaptive', 'isEmpty', 'isStairs','isTicking'];
+	var space = this,
+		result = {};
+	allowedMembers.forEach((id) => {
+		result[id] = space[id].bind(space);
+	});
+	return result;
+  }
+  
   getCharacter() {
     if (this.getUnit()) {
       return this.getUnit().getCharacter();
