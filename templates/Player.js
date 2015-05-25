@@ -4,4 +4,4 @@ class Player {
   }
 }
 
-global.Player = Player;
+export class Player;
