@@ -14,10 +14,6 @@ describe('Sludge', () => {
     ctx.sludge.getActions().should.include.key('attack');
   });
 
-  it('should have feel sense', (ctx) => {
-    ctx.sludge.getSenses().should.include.key('feel');
-  });
-
   it('should have attack power of 3', (ctx) => {
     ctx.sludge.getAttackPower().should.equal(3);
   });

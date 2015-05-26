@@ -1,29 +1,18 @@
 import chalk from 'chalk';
-import Base from './Base';
+import Ranged from './Ranged';
 
-class Wizard extends Base {
+class Wizard extends Ranged {
   constructor() {
     super();
     this.addActions(['shoot']);
-    this.addSenses(['look']);
   }
 
   playTurn(turn) {
-    let shot = false;
-    ['forward', 'left', 'right', 'backward'].every((direction) => {
-      if (!shot) {
-        turn.look(direction).every((space) => {
-          if (space.isPlayer()) {
-            turn.shoot(direction);
-            shot = true;
-            return false;
-          }
-
-          return space.isEmpty();
-        });
+    ['forward', 'left', 'right', 'backward'].some((direction) => {
+      if (this.isPlayerInSight(turn, direction)) {
+        turn.shoot(direction);
+        return true;
       }
-
-      return !shot;
     });
   }
 

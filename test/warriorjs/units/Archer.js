@@ -14,10 +14,6 @@ describe('Archer', () => {
     ctx.archer.getActions().should.include.key('shoot');
   });
 
-  it('should have look sense', (ctx) => {
-    ctx.archer.getSenses().should.include.key('look');
-  });
-
   it('should have shoot power of 3', (ctx) => {
     ctx.archer.getShootPower().should.equal(3);
   });

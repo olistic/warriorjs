@@ -1,18 +1,17 @@
 import chalk from 'chalk';
-import Base from './Base';
+import Melee from './Melee';
 
-class Sludge extends Base {
+class Sludge extends Melee {
   constructor() {
     super();
     this.addActions(['attack']);
-    this.addSenses(['feel']);
   }
 
   playTurn(turn) {
-    ['forward', 'left', 'right', 'backward'].forEach((direction) => {
+    ['forward', 'left', 'right', 'backward'].some((direction) => {
       if (turn.feel(direction).isPlayer()) {
         turn.attack(direction);
-        return;
+        return true;
       }
     });
   }

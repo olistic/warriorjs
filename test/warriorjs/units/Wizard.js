@@ -14,10 +14,6 @@ describe('Wizard', () => {
     ctx.wizard.getActions().should.include.key('shoot');
   });
 
-  it('should have look sense', (ctx) => {
-    ctx.wizard.getSenses().should.include.key('look');
-  });
-
   it('should have shoot power of 11', (ctx) => {
     ctx.wizard.getShootPower().should.equal(11);
   });
