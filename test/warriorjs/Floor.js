@@ -1,5 +1,6 @@
 import chai from 'chai';
 import { it, beforeEach } from 'arrow-mocha/es5';
+import chalk from 'chalk';
 import chaiOutOfBounds from '../helpers/chaiOutOfBounds';
 import Floor from '../../src/Floor';
 import Base from '../../src/units/Base';
@@ -73,7 +74,7 @@ describe('Floor', () => {
     it('should print map with stairs and unit', (ctx) => {
       ctx.floor.addUnit(new Warrior(), 0, 0);
       ctx.floor.placeStairs(2, 0);
-      ctx.floor.getCharacter().should.equal(' ---\n|@ >|\n ---\n');
+      chalk.stripColor(ctx.floor.getCharacter()).should.equal('╔═══╗\n║@ >║\n╚═══╝');
     });
 
     it('should return unique units', (ctx) => {

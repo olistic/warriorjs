@@ -1,5 +1,6 @@
 import chai from 'chai';
 import { it, beforeEach } from 'arrow-mocha/es5';
+import chalk from 'chalk';
 import Archer from '../../../src/units/Archer';
 
 chai.should();
@@ -26,6 +27,6 @@ describe('Archer', () => {
   });
 
   it('should appear as a on map', (ctx) => {
-    ctx.archer.getCharacter().should.equal('a');
+    chalk.stripColor(ctx.archer.getCharacter()).should.equal('a');
   });
 });

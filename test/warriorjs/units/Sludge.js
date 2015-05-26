@@ -1,5 +1,6 @@
 import chai from 'chai';
 import { it, beforeEach } from 'arrow-mocha/es5';
+import chalk from 'chalk';
 import Sludge from '../../../src/units/Sludge';
 
 chai.should();
@@ -26,6 +27,6 @@ describe('Sludge', () => {
   });
 
   it('should appear as s on map', (ctx) => {
-    ctx.sludge.getCharacter().should.equal('s');
+    chalk.stripColor(ctx.sludge.getCharacter()).should.equal('s');
   });
 });

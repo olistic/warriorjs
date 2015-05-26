@@ -1,5 +1,6 @@
 import chai from 'chai';
 import { it, beforeEach } from 'arrow-mocha/es5';
+import chalk from 'chalk';
 import Wizard from '../../../src/units/Wizard';
 
 chai.should();
@@ -26,6 +27,6 @@ describe('Wizard', () => {
   });
 
   it('should appear as w on map', (ctx) => {
-    ctx.wizard.getCharacter().should.equal('w');
+    chalk.stripColor(ctx.wizard.getCharacter()).should.equal('w');
   });
 });

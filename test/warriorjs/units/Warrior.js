@@ -1,5 +1,6 @@
 import chai from 'chai';
 import { it, beforeEach } from 'arrow-mocha/es5';
+import chalk from 'chalk';
 import Warrior from '../../../src/units/Warrior';
 
 chai.should();
@@ -53,6 +54,6 @@ describe('Warrior', () => {
   });
 
   it('should appear as @ on map', (ctx) => {
-    ctx.warrior.getCharacter().should.equal('@');
+    chalk.stripColor(ctx.warrior.getCharacter()).should.equal('@');
   });
 });

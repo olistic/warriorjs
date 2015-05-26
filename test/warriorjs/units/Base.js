@@ -2,6 +2,7 @@ import _ from 'lodash';
 import chai from 'chai';
 import sinon from 'sinon';
 import { it, beforeEach } from 'arrow-mocha/es5';
+import chalk from 'chalk';
 import chaiAlive from '../../helpers/chaiAlive';
 import Base from '../../../src/units/Base';
 import Walk from '../../../src/abilities/Walk';
@@ -18,6 +19,10 @@ describe('Base', () => {
 
   it('should have an attack power which defaults to zero', (ctx) => {
     ctx.unit.getAttackPower().should.equal(0);
+  });
+
+  it('should have a shoot power which defaults to zero', (ctx) => {
+    ctx.unit.getShootPower().should.equal(0);
   });
 
   it('should consider itself dead when no position', (ctx) => {
@@ -105,7 +110,7 @@ describe('Base', () => {
   });
 
   it('should appear as ? on map', (ctx) => {
-    ctx.unit.getCharacter().should.equal('?');
+    chalk.stripColor(ctx.unit.getCharacter()).should.equal('?');
   });
 
 
