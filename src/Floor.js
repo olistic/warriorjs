@@ -75,16 +75,16 @@ class Floor {
 
   getCharacter() {
     const rows = [];
-    rows.push(` ${'-'.repeat(this._width)}`);
+    rows.push(`╔${'═'.repeat(this._width)}╗`);
     for (let y = 0; y < this._height; y++) {
-      let row = '|';
+      let row = '║';
       for (let x = 0; x < this._width; x++) {
         row += this.getSpace(x, y).getCharacter();
       }
-      row += '|';
+      row += '║';
       rows.push(row);
     }
-    rows.push(` ${'-'.repeat(this._width)}`);
+    rows.push(`╚${'═'.repeat(this._width)}╝`);
     return rows.join('\n');
   }
 }

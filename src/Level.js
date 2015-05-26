@@ -129,7 +129,7 @@ class Level {
         return;
       }
 
-      UI.printLine(`- turn ${n + 1} -`);
+      UI.printLine(`-------------------------- turn ${n + 1} --------------------------`);
       UI.printLineWithDelay(this.getFloor().getCharacter());
       this.getFloor().getUnits().forEach((unit) => unit.prepareTurn());
       this.getFloor().getUnits().forEach((unit) => unit.performTurn());
