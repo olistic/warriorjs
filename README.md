@@ -229,6 +229,46 @@ $ warriorjs -l 4
 
 Once your warrior reaches the top again, you will receive an average grade, along with a grade for each level. The grades from best to worst are S, A, B, C, D and F. Try to get S on each level for the ultimate score!
 
+## Tips & hints
+
+### General
+
+* If you ever get stuck on a level, review the README documentation and be sure you're trying each ability out. If you can't keep your health up, be sure to rest when no enemy is around (while keeping an eye on your health). Also, try to use far-ranged weapons whenever possible (such as the bow).
+
+* Remember, you're working in JavaScript here. Don't simply fill up the `playTurn` method with a lot of code. Organize it with methods and classes.
+
+* Senses are cheap, so use them liberally. Store the sensed information to help you better determine what actions to take in the future.
+
+* Running `warriorjs` while you are in your profile directory will auto-select that profile so you don't have to each time.
+
+* If you're aiming for points, remember to sweep the area. Even if you're close to the stairs, don't go in until you've gotten everything (if you have the health). Use far-ranged senses (such as look and listen) to determine if there are any enemies left.
+
+### ES6 specific
+
+* If you want some code to be executed at the beginning of each level, define a [constructor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/constructor) in the `Player` class, like this:
+
+```javascript
+class Player {
+  constructor() {
+    this._health = 20;
+    // ...
+  }
+
+  // ...
+}
+```
+
+* Some senses (like look and listen) return an array of spaces, so you might find many of the [Array prototype methods](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/prototype#Methods) really useful. Here is an example of the [Array.prototype.find](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find) method:
+
+```javascript
+isEnemyInSight(warrior) {
+  const unit = warrior.look().find((space) => !space.isEmpty());
+  return unit && unit.isEnemy();
+}
+```
+
+* In the above example, you can see the [Arrow functions](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Functions/Arrow_functions) in use. Make sure to take a look at them too!
+
 ## Credits
 
 This game was originally developed by [@ryanb](https://github.com/ryanb) to teach the Ruby language. Special thanks to him for the original [ruby-warrior](https://github.com/ryanb/ruby-warrior).
