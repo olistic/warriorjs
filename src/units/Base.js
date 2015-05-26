@@ -39,8 +39,15 @@ class Base {
     return 0;
   }
 
+  getShootPower() {
+    return 0;
+  }
+
   getMaxHealth() {
     return 0;
+  }
+
+  earnPoints(points) {
   }
 
   getHealth() {
@@ -52,19 +59,16 @@ class Base {
     this._health = health;
   }
 
-  earnPoints(points) {
-    // To be overriden by subclass
-  }
-
   takeDamage(amount) {
     if (this.isBound()) {
       this.unbind();
     }
 
-    if (this.getHealth() !== null) {
-      this._health -= amount;
-      this.say(`takes ${chalk.bold(amount)} damage, ${chalk.bold(this.getHealth())} health power left`);
-      if (this.getHealth() <= 0) {
+    if (this.getHealth()) {
+      const revisedAmount = this._health - amount < 0 ? this._health : amount;
+      this._health -= revisedAmount;
+      this.say(`takes ${revisedAmount} damage, ${this.getHealth()} health power left`);
+      if (!this.getHealth()) {
         this._position = null;
         this.say('dies');
       }

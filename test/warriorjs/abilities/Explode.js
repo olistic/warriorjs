@@ -20,12 +20,12 @@ describe('Explode', () => {
 
   it('should subtract 100 health from each unit on the floor', (ctx) => {
     const unit = new Base();
-    unit.setHealth(20);
+    unit.setHealth(101);
     ctx.floor.addUnit(unit, 0, 1);
     ctx.captive.setHealth(10);
     ctx.explode.perform();
-    ctx.captive.getHealth().should.equal(-90);
-    unit.getHealth().should.equal(-80);
+    ctx.captive.getHealth().should.equal(0);
+    unit.getHealth().should.equal(1);
   });
 
   it('should explode when bomb time reaches zero', (ctx) => {
@@ -34,6 +34,6 @@ describe('Explode', () => {
     _.times(2, () => ctx.explode.passTurn());
     ctx.captive.getHealth().should.equal(10);
     ctx.explode.passTurn();
-    ctx.captive.getHealth().should.equal(-90);
+    ctx.captive.getHealth().should.equal(0);
   });
 });

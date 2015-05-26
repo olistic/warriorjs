@@ -49,7 +49,7 @@ describe('Detonate', () => {
     captive.addActions(['explode']);
     ctx.floor.addUnit(captive, 1, 1);
     ctx.detonate.perform();
-    captive.getHealth().should.equal(-99);
-    ctx.warrior.getHealth().should.equal(-80);
+    captive.getHealth().should.equal(0);
+    ctx.warrior.getHealth().should.equal(0);
   });
 });

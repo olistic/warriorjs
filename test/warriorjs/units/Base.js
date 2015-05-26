@@ -54,6 +54,12 @@ describe('Base', () => {
     ctx.unit.getHealth().should.equal(7);
   });
 
+  it('should not go under zero health when taking damage', (ctx) => {
+    ctx.sandbox.stub(ctx.unit, 'getMaxHealth').returns(10);
+    ctx.unit.takeDamage(11);
+    ctx.unit.getHealth().should.equal(0);
+  });
+
   it('should do nothing when taking damage if health isn\'t set', (ctx) => {
     ctx.unit.takeDamage.bind(ctx.unit, 3).should.not.throw(Error);
   });
@@ -158,7 +164,7 @@ describe('Base', () => {
       ctx.unit.getHealth().should.equal(10);
       ctx.unit.prepareTurn();
       ctx.unit.performTurn();
-      ctx.unit.getHealth().should.equal(-90);
+      ctx.unit.getHealth().should.equal(0);
     });
   });
 });
