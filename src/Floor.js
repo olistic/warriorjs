@@ -86,7 +86,7 @@ class Floor {
       rows.push(row);
     }
     rows.push(` ${'-'.repeat(this._width)}`);
-    return `${rows.join('\n')}\n`;
+    return rows.join('\n');
   }
 
   getStyledCharacter() {
@@ -101,7 +101,7 @@ class Floor {
       rows.push(row);
     }
     rows.push(chalk.gray(` ${'-'.repeat(this._width)}`));
-    return `${rows.join('\n')}\n`;
+    return rows.join('\n');
   }
 }
 

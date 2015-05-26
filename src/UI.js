@@ -4,23 +4,20 @@ import sleep from 'thread-sleep';
 import Config from './Config';
 
 class UI {
-  static printLine(msg) {
-    if (Config.getOutStream()) {
-      Config.getOutStream().write(`${msg}\n`);
-    }
-  }
-
-  static printLineWithDelay(msg) {
-    if (Config.getDelay()) {
-      sleep(Config.getDelay() * 1000);
-    }
-
-    UI.printLine(msg);
-  }
-
   static print(msg) {
     if (Config.getOutStream()) {
       Config.getOutStream().write(msg);
+    }
+  }
+
+  static printLine(msg) {
+    UI.print(`${msg}\n`);
+  }
+
+  static printLineWithDelay(msg) {
+    UI.printLine(msg);
+    if (Config.getDelay()) {
+      sleep(Config.getDelay() * 1000);
     }
   }
 
