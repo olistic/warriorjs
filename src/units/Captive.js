@@ -4,7 +4,6 @@ import Base from './Base';
 class Captive extends Base {
   constructor() {
     super();
-    this._style = chalk.magenta;
     this.bind();
   }
 
@@ -13,7 +12,11 @@ class Captive extends Base {
   }
 
   getCharacter() {
-    return 'C';
+    return this.style('C');
+  }
+
+  style(str) {
+    return chalk.magenta(str);
   }
 }
 

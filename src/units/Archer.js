@@ -4,7 +4,6 @@ import Base from './Base';
 class Archer extends Base {
   constructor() {
     super();
-    this._style = chalk.red;
     this.addActions(['shoot']);
     this.addSenses(['look']);
   }
@@ -37,7 +36,11 @@ class Archer extends Base {
   }
 
   getCharacter() {
-    return 'a';
+    return this.style('a');
+  }
+
+  style(str) {
+    return chalk.red(str);
   }
 }
 

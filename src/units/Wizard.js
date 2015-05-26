@@ -4,7 +4,6 @@ import Base from './Base';
 class Wizard extends Base {
   constructor() {
     super();
-    this.style = chalk.cyan;
     this.addActions(['shoot']);
     this.addSenses(['look']);
   }
@@ -37,7 +36,11 @@ class Wizard extends Base {
   }
 
   getCharacter() {
-    return 'w';
+    return this.style('w');
+  }
+
+  style(str) {
+    return chalk.cyan(str);
   }
 }
 

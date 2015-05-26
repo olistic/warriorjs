@@ -4,9 +4,7 @@ import Base from './Base';
 class Warrior extends Base {
   constructor() {
     super();
-    // TODO: make score dynamic
     this._score = 0;
-    this._style = chalk.blue;
   }
 
   playTurn(turn) {
@@ -60,7 +58,11 @@ class Warrior extends Base {
   }
 
   getCharacter() {
-    return '@';
+    return this.style('@');
+  }
+
+  style(str) {
+    return chalk.blue(str);
   }
 }
 

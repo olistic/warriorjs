@@ -5,11 +5,11 @@ Level <%- level.getNumber() %>
 Tip: <%- level.getTip() %>
 
 
-<%- level.getFloor().getCharacter() %>
+<%- chalk.stripColor(level.getFloor().getCharacter()) %>
 
   > = Stairs
 <% level.getFloor().getUniqueUnits().forEach(function(unit) { -%>
-  <%= unit.getCharacter() %> = <%= unit.getName() %> (<%= unit.getMaxHealth() %> HP)
+  <%= chalk.stripColor(unit.getCharacter()) %> = <%= unit.getName() %> (<%= unit.getMaxHealth() %> HP)
 <% }); -%>
 
 

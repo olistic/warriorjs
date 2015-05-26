@@ -1,5 +1,6 @@
 import path from 'path';
 import fs from 'fs-extra';
+import chalk from 'chalk';
 import ejs from 'ejs';
 import Level from './Level';
 
@@ -34,7 +35,7 @@ class PlayerGenerator {
   }
 
   readTemplate(templatePath) {
-    return ejs.render(fs.readFileSync(templatePath, 'utf8'), { level: this.getLevel() });
+    return ejs.render(fs.readFileSync(templatePath, 'utf8'), { level: this.getLevel(), chalk: chalk });
   }
 }
 

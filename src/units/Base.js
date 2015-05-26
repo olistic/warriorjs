@@ -25,7 +25,6 @@ class Base {
     this._health = null;
     this._actions = {};
     this._senses = {};
-    this._style = chalk.white;
   }
 
   getPosition() {
@@ -90,7 +89,7 @@ class Base {
   }
 
   say(msg) {
-    UI.printLineWithDelay(this._style(`${this.getName()} ${msg}`));
+    UI.printLineWithDelay(this.style(`${this.getName()} ${this.styleMessage(msg)}`));
   }
 
   getName() {
@@ -205,11 +204,15 @@ class Base {
   }
 
   getCharacter() {
-    return '?';
+    return this.style('?');
   }
 
-  getStyledCharacter() {
-    return this._style(this.getCharacter());
+  style(str) {
+    return chalk.white(str);
+  }
+
+  styleMessage(msg) {
+    return msg.split(' ').map((word) => /\d+/.test(word) ? chalk.bold(word) : word).join(' ');
   }
 }
 

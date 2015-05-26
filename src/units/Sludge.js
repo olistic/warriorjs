@@ -4,7 +4,6 @@ import Base from './Base';
 class Sludge extends Base {
   constructor() {
     super();
-    this._style = chalk.green;
     this.addActions(['attack']);
     this.addSenses(['feel']);
   }
@@ -27,7 +26,11 @@ class Sludge extends Base {
   }
 
   getCharacter() {
-    return 's';
+    return this.style('s');
+  }
+
+  style(str) {
+    return chalk.green(str);
   }
 }
 
