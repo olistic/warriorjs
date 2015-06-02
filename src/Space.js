@@ -1,4 +1,4 @@
-import _ from 'lodash';
+﻿import _ from 'lodash';
 import Warrior from './units/Warrior';
 
 class Space {
@@ -52,14 +52,16 @@ class Space {
   the risk of exposing intimate details of the implementation, to the code provided by the user.
   */
   playerObject(allowedMembers) {
-	allowedMembers = allowedMembers || 
-		['isWall', 'isWarrior','isPlayer', 'isEnemy', 'isCaptive', 'isEmpty', 'isStairs','isTicking'];
-	var space = this,
-		result = {};
-	allowedMembers.forEach((id) => {
-		result[id] = space[id].bind(space);
-	});
-	return result;
+    allowedMembers = allowedMembers || 
+      ['isWall', 'isWarrior','isPlayer', 'isEnemy', 'isCaptive', 'isEmpty', 'isStairs','isTicking'];
+    var space = this;
+    var result = {};
+    allowedMembers.forEach((id) => {
+	  if (typeof space[id] === 'function') {
+        result[id] = space[id].bind(space);
+	  }
+    });
+    return result;
   }
   
   getCharacter() {
