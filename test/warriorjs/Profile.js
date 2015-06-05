@@ -1,3 +1,4 @@
+import path from 'path';
 import chai from 'chai';
 import { it, beforeEach } from 'arrow-mocha/es5';
 import chaiEpic from '../helpers/chaiEpic';
@@ -150,7 +151,7 @@ describe('Profile', () => {
     });
 
     it('should guess at the player path', (ctx) => {
-      ctx.profile.getPlayerPath().should.equal('warriorjs/joe-tower');
+      ctx.profile.getPlayerPath().should.equal(path.normalize('warriorjs/joe-tower'));
     });
 
     it('should use specified player path', (ctx) => {

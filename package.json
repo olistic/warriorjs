@@ -1,4 +1,4 @@
-{
+﻿{
   "name": "warriorjs",
   "version": "0.7.0",
   "bin": "./bin/warriorjs",
@@ -8,7 +8,8 @@
     "compile": "babel src --out-dir lib",
     "prepublish": "npm run compile",
     "test": "make test",
-    "test-travis": "echo \"No ES5 tests yet\" && exit 0"
+    "test-travis": "echo \"No ES5 tests yet\" && exit 0",
+	"test-nomake": "./node_modules/.bin/mocha --compilers js:babel/register --ui bdd --reporter spec --recursive"
   },
   "repository": {
     "type": "git",

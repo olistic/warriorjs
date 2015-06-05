@@ -1,4 +1,4 @@
-class Turn {
+﻿class Turn {
   constructor(actions, senses) {
     this._action = null;
     this._senses = {};
@@ -24,7 +24,8 @@ class Turn {
         }
 
         this._action = [name, args];
-      }
+      },
+      enumerable: true
     });
   }
 
@@ -33,8 +34,23 @@ class Turn {
     Object.defineProperty(this, name, {
       value: (...args) => {
         return this._senses[name].perform(...args);
-      }
+      },
+	  enumerable: true
     });
+  }
+  
+  /** Makes a new object that acts like a proxy of a Turn. Allows to access its methods without
+  the risk of exposing intimate details of the implementation, to the code provided by the user.
+  */
+  playerObject() {
+    var result = {};
+	var turn = this;
+	Object.keys(this).forEach((id) => {
+	  if (typeof turn[id] === 'function') {
+        result[id] = turn[id].bind(turn);
+	  }
+    });
+    return result;
   }
 }
 

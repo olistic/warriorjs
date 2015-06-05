@@ -2,6 +2,7 @@ import chai from 'chai';
 import { it, beforeEach } from 'arrow-mocha/es5';
 import Turn from '../../src/Turn';
 import Feel from '../../src/abilities/Feel';
+import Space from '../../src/Space'
 
 const should = chai.should();
 
@@ -38,15 +39,16 @@ describe('Turn', () => {
     beforeEach((ctx) => {
       ctx.feel = new Feel(ctx.sandbox.stub());
       const stub = ctx.sandbox.stub(ctx.feel, 'getSpace');
-      stub.returns(ctx.sandbox.stub());
-      stub.withArgs('backward').returns(ctx.sandbox.stub());
+      stub.returns(new Space(null, 1, 1));
+      stub.withArgs('backward').returns(new Space(null, 0, 1));
       ctx.turn = new Turn({}, { 'feel': ctx.feel });
     });
 
-    it('should be able to call sense with any argument and return expected results', (ctx) => {
-      ctx.turn.feel().should.equal(ctx.feel.perform());
-      ctx.turn.feel('backward').should.equal(ctx.feel.perform('backward'));
-      should.equal(ctx.turn.getAction(), null);
+    it('should be able to call sense with any argument', (ctx) => {
+		ctx.turn.feel();
+		should.equal(ctx.turn.getAction(), null);
+		ctx.turn.feel('backward');
+		should.equal(ctx.turn.getAction(), null);
     });
   });
 });

@@ -1,4 +1,4 @@
-import _ from 'lodash';
+﻿import _ from 'lodash';
 import chai from 'chai';
 import sinon from 'sinon';
 import { it, beforeEach } from 'arrow-mocha/es5';
@@ -7,6 +7,7 @@ import chaiAlive from '../../helpers/chaiAlive';
 import Base from '../../../src/units/Base';
 import Walk from '../../../src/abilities/Walk';
 import Floor from '../../../src/Floor';
+import Turn from '../../../src/Turn';
 import UI from '../../../src/UI';
 
 const should = chai.should();
@@ -83,8 +84,10 @@ describe('Base', () => {
   });
 
   it('should prepare turn by calling playTurn with next turn object', (ctx) => {
-    ctx.sandbox.stub(ctx.unit, 'getNextTurn').returns('nextTurn');
-    const expectation = ctx.sandbox.mock(ctx.unit).expects('playTurn').withArgs('nextTurn');;
+    var turn = new Turn({}, {});
+	var turnObj = turn.playerObject();
+    ctx.sandbox.stub(ctx.unit, 'getNextTurn').returns(turn);
+    const expectation = ctx.sandbox.mock(ctx.unit).expects('playTurn').withArgs(turnObj);
     ctx.unit.prepareTurn();
     expectation.verify();
   });
@@ -93,7 +96,8 @@ describe('Base', () => {
     ctx.unit.setPosition({});
     const expectation = ctx.sandbox.mock(Walk.prototype).expects('perform').withArgs('backward');
     ctx.unit.addActions(['walk']);
-    const turn = { getAction: ctx.sandbox.stub().returns(['walk', ['backward']])};
+    var turn = new Turn({'walk': null}, {});
+	turn.walk('backward');
     ctx.sandbox.stub(ctx.unit, 'getNextTurn').returns(turn);
     ctx.unit.prepareTurn();
     ctx.unit.performTurn();
@@ -104,7 +108,8 @@ describe('Base', () => {
     ctx.unit.setPosition(null);
     ctx.sandbox.stub(Walk.prototype, 'perform').throws('action should not be called');
     ctx.unit.addActions(['walk']);
-    const turn = { getAction: ctx.sandbox.stub().returns(['walk', ['backward']])};
+    var turn = new Turn({'walk': null}, {});
+	turn.walk('backward');
     ctx.sandbox.stub(ctx.unit, 'getNextTurn').returns(turn);
     ctx.unit.prepareTurn();
     ctx.unit.performTurn();
@@ -139,7 +144,8 @@ describe('Base', () => {
     ctx.unit.bind();
     ctx.sandbox.stub(Walk.prototype, 'perform').throws('action should not be called');
     ctx.unit.addActions(['walk']);
-    const turn = { getAction: ctx.sandbox.stub().returns(['walk', ['backward']])};
+    var turn = new Turn({'walk': null}, {});
+	turn.walk('backward');
     ctx.sandbox.stub(ctx.unit, 'getNextTurn').returns(turn);
     ctx.unit.prepareTurn();
     ctx.unit.performTurn();
