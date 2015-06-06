@@ -39,9 +39,10 @@ describe('Warrior', () => {
 
   it('should call player.playTurn and pass turn to player', (ctx) => {
     const player = new Player();
+    const turn = { getPlayerObject: () => 'turn' }
     const expectation = ctx.sandbox.mock(player).expects('playTurn').withArgs('turn');
     ctx.sandbox.stub(ctx.warrior, 'getPlayer').returns(player);
-    ctx.warrior.playTurn('turn');
+    ctx.warrior.playTurn(turn);
     expectation.verify();
   });
 

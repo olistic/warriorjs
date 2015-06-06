@@ -1,6 +1,9 @@
 import _ from 'lodash';
 import Warrior from './units/Warrior';
 
+const ALLOWED_MEMBERS = ['isWall', 'isWarrior', 'isPlayer', 'isEnemy',
+                         'isCaptive', 'isEmpty', 'isStairs', 'isTicking'];
+
 class Space {
   constructor(floor, x, y) {
     this._floor = floor;
@@ -46,6 +49,20 @@ class Space {
 
   getLocation() {
     return [this._x, this._y];
+  }
+
+  /**
+   * Make a new object that acts like a proxy of the Space, preventing the player
+   * to access methods that don't belong to the Player API
+   */
+  getPlayerObject(allowedMembers = ALLOWED_MEMBERS) {
+    const result = {};
+    allowedMembers.forEach((id) => {
+      if (typeof this[id] === 'function') {
+        result[id] = this[id].bind(this);
+      }
+    });
+    return result;
   }
 
   getCharacter() {

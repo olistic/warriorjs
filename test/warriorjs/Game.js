@@ -41,7 +41,7 @@ describe('Game', () => {
   });
 
   it('should find profile paths using glob search', (ctx) => {
-    const expectation = ctx.sandbox.mock(glob).expects('sync').withArgs('warriorjs/**/.profile');
+    const expectation = ctx.sandbox.mock(glob).expects('sync').withArgs(path.normalize('warriorjs/**/.profile'));
     ctx.game.getProfilePaths();
     expectation.verify();
   });

@@ -13,11 +13,11 @@ describe('Look', () => {
     ctx.look = new Look(ctx.unit);
   });
 
-  it('should get 3 objects at position from offset', (ctx) => {
+  it('should get three proxy objects at position from offset', (ctx) => {
     const expectations = ctx.sandbox.mock(ctx.unit.getPosition());
-    expectations.expects('getRelativeSpace').withArgs(1, 0).returns(1);
-    expectations.expects('getRelativeSpace').withArgs(2, 0).returns(2);
-    expectations.expects('getRelativeSpace').withArgs(3, 0).returns(3);
+    expectations.expects('getRelativeSpace').withArgs(1, 0).returns({ getPlayerObject: () => 1 });
+    expectations.expects('getRelativeSpace').withArgs(2, 0).returns({ getPlayerObject: () => 2 });
+    expectations.expects('getRelativeSpace').withArgs(3, 0).returns({ getPlayerObject: () => 3 });
     ctx.look.perform('forward').should.eql([1, 2, 3]);
     expectations.verify();
   });
