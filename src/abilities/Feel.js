@@ -1,4 +1,4 @@
-﻿import Base from './Base';
+import Base from './Base';
 
 class Feel extends Base {
   getDescription() {
@@ -7,8 +7,7 @@ class Feel extends Base {
 
   perform(direction = 'forward') {
     this.verifyDirection(direction);
-    var space = this.getSpace(direction);
-    return space && space.playerObject();
+    return this.getSpace(direction).getPlayerObject();
   }
 }
 

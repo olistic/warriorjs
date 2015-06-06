@@ -1,4 +1,4 @@
-﻿import _ from 'lodash';
+import _ from 'lodash';
 import Base from './Base';
 
 class Listen extends Base {
@@ -9,7 +9,7 @@ class Listen extends Base {
   perform() {
     return _.compact(this._unit.getPosition().getFloor().getUnits().map((unit) => {
       if (unit !== this._unit) {
-        return unit.getPosition().getSpace().playerObject();
+        return unit.getPosition().getSpace().getPlayerObject();
       }
     }));
   }

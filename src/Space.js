@@ -1,5 +1,8 @@
-﻿import _ from 'lodash';
+import _ from 'lodash';
 import Warrior from './units/Warrior';
+
+const ALLOWED_MEMBERS = ['isWall', 'isWarrior', 'isPlayer', 'isEnemy',
+                         'isCaptive', 'isEmpty', 'isStairs', 'isTicking'];
 
 class Space {
   constructor(floor, x, y) {
@@ -48,22 +51,20 @@ class Space {
     return [this._x, this._y];
   }
 
-  /** Makes a new object that acts like a proxy of a Space. Allows to access its methods without
-  the risk of exposing intimate details of the implementation, to the code provided by the user.
-  */
-  playerObject(allowedMembers) {
-    allowedMembers = allowedMembers || 
-      ['isWall', 'isWarrior','isPlayer', 'isEnemy', 'isCaptive', 'isEmpty', 'isStairs','isTicking'];
-    var space = this;
-    var result = {};
+  /**
+   * Make a new object that acts like a proxy of the Space, preventing the player
+   * to access methods that don't belong to the Player API
+   */
+  getPlayerObject(allowedMembers = ALLOWED_MEMBERS) {
+    const result = {};
     allowedMembers.forEach((id) => {
-	  if (typeof space[id] === 'function') {
-        result[id] = space[id].bind(space);
-	  }
+      if (typeof this[id] === 'function') {
+        result[id] = this[id].bind(this);
+      }
     });
     return result;
   }
-  
+
   getCharacter() {
     if (this.getUnit()) {
       return this.getUnit().getCharacter();

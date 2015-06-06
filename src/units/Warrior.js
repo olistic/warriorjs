@@ -8,7 +8,7 @@ class Warrior extends Base {
   }
 
   playTurn(turn) {
-    this.getPlayer().playTurn(turn);
+    this.getPlayer().playTurn(turn.getPlayerObject());
   }
 
   performTurn() {

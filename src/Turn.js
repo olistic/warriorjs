@@ -1,15 +1,15 @@
-﻿class Turn {
+const ALLOWED_MEMBERS = ['attack', 'bind', 'detonate', 'directionOf',
+                         'directionOfStairs', 'distanceOf', 'explode', 'feel',
+                         'health', 'listen', 'look', 'pivot', 'rescue', 'rest',
+                         'shoot', 'walk'];
+
+class Turn {
   constructor(actions, senses) {
     this._action = null;
     this._senses = {};
 
-    Object.keys(actions).forEach((name) => {
-      this.addAction(name);
-    });
-
-    Object.keys(senses).forEach((name) => {
-      this.addSense(name, senses[name]);
-    });
+    Object.keys(actions).forEach((name) => this.addAction(name));
+    Object.keys(senses).forEach((name) => this.addSense(name, senses[name]));
   }
 
   getAction() {
@@ -24,8 +24,7 @@
         }
 
         this._action = [name, args];
-      },
-      enumerable: true
+      }
     });
   }
 
@@ -34,21 +33,20 @@
     Object.defineProperty(this, name, {
       value: (...args) => {
         return this._senses[name].perform(...args);
-      },
-	  enumerable: true
+      }
     });
   }
-  
-  /** Makes a new object that acts like a proxy of a Turn. Allows to access its methods without
-  the risk of exposing intimate details of the implementation, to the code provided by the user.
-  */
-  playerObject() {
-    var result = {};
-	var turn = this;
-	Object.keys(this).forEach((id) => {
-	  if (typeof turn[id] === 'function') {
-        result[id] = turn[id].bind(turn);
-	  }
+
+  /**
+   * Make a new object that acts like a proxy of the Turn, preventing the player
+   * to access methods that don't belong to the Player API
+   */
+  getPlayerObject(allowedMembers = ALLOWED_MEMBERS) {
+    const result = {};
+    allowedMembers.forEach((id) => {
+      if (typeof this[id] === 'function') {
+        result[id] = this[id].bind(this);
+      }
     });
     return result;
   }

@@ -176,7 +176,7 @@ class Base {
 
   prepareTurn() {
     this._currentTurn = this.getNextTurn();
-    this.playTurn(this._currentTurn.playerObject());
+    this.playTurn(this._currentTurn);
   }
 
   performTurn() {

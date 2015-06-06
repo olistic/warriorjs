@@ -1,4 +1,4 @@
-﻿import Base from './Base';
+import Base from './Base';
 
 class Look extends Base {
   getDescription() {
@@ -7,9 +7,7 @@ class Look extends Base {
 
   perform(direction = 'forward') {
     this.verifyDirection(direction);
-    return [1, 2, 3].map((amount) => {
-      return this.getSpace(direction, amount);
-    });
+    return [1, 2, 3].map((amount) => this.getSpace(direction, amount).getPlayerObject());
   }
 }
 
