@@ -14,7 +14,7 @@ describe('Feel', () => {
   });
 
   it('should get object at position from offset', (ctx) => {
-    const expectation = ctx.sandbox.mock(ctx.unit.getPosition()).expects('getRelativeSpace').withArgs(1, 0);
+    const expectation = ctx.sandbox.mock(ctx.unit.getPosition()).expects('getRelativeSpace').withArgs(1, 0).returns({ getPlayerObject: () => null });
     ctx.feel.perform('forward');
     expectation.verify();
   });
