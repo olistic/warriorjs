@@ -2,14 +2,13 @@ import chai from 'chai';
 import { it, beforeEach } from 'arrow-mocha/es5';
 import Turn from '../../src/Turn';
 import Feel from '../../src/abilities/Feel';
-import Space from '../../src/Space'
 
 const should = chai.should();
 
 describe('Turn', () => {
   beforeEach((ctx) => {
     ctx.feel = new Feel(ctx.sandbox.stub());
-    ctx.sandbox.stub(ctx.feel, 'getSpace').returns(new Space(null, 1, 1));
+    ctx.sandbox.stub(ctx.feel, 'getSpace').returns({ getPlayerObject: () => null });
     ctx.turn = new Turn({
       'walk': null,
       'attack': null
