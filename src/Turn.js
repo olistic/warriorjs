@@ -42,13 +42,19 @@ class Turn {
    * to access methods that don't belong to the Player API
    */
   getPlayerObject(allowedMembers = ALLOWED_MEMBERS) {
-    const result = {};
+    const playerObject = {};
+
+    // Add allowed members to the player object and bind them to the original instance
     allowedMembers.forEach((id) => {
       if (typeof this[id] === 'function') {
-        result[id] = this[id].bind(this);
+        playerObject[id] = this[id].bind(this);
       }
     });
-    return result;
+
+    // Add a flag to the object indicating it is a proxy
+    playerObject.isPlayerObject = true;
+
+    return playerObject;
   }
 }
 

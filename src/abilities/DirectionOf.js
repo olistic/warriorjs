@@ -1,4 +1,5 @@
 import Base from './Base';
+import { originalSpaces } from '../Space';
 
 class DirectionOf extends Base {
   getDescription() {
@@ -6,7 +7,8 @@ class DirectionOf extends Base {
   }
 
   perform(space) {
-    return this._unit.getPosition().getRelativeDirectionOf(space);
+    const originalSpace = space.isPlayerObject ? originalSpaces.get(space) : space;
+    return this._unit.getPosition().getRelativeDirectionOf(originalSpace);
   }
 }
 
