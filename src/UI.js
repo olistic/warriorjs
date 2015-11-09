@@ -1,49 +1,76 @@
-import _ from 'lodash';
-import readlineSync from 'readline-sync';
-import sleep from 'thread-sleep';
+import inquirer from 'inquirer';
+import Promise from 'bluebird';
 import Config from './Config';
 
 class UI {
-  static print(msg) {
+  static print(message) {
     if (Config.getOutStream()) {
-      Config.getOutStream().write(msg);
+      Config.getOutStream().write(message);
     }
   }
 
-  static printLine(msg) {
-    UI.print(`${msg}\n`);
+  static printLine(message) {
+    UI.print(`${message}\n`);
   }
 
-  static printLineWithDelay(msg) {
-    UI.printLine(msg);
-    if (Config.getDelay()) {
-      sleep(Config.getDelay() * 1000);
-    }
+  static printLineWithDelay(message) {
+    return new Promise((resolve) => {
+      UI.printLine(message);
+      setTimeout(resolve, Config.getDelay() * 1000);
+    });
   }
 
-  static request(msg) {
-    return readlineSync.question(msg);
+  static request(message) {
+    return new Promise((resolve) => {
+      const name = 'request';
+      inquirer.prompt([
+        {
+          type: 'input',
+          name: name,
+          message: message,
+        },
+      ], (answers) => {
+        resolve(answers[name]);
+      });
+    });
   }
 
-  static ask(msg) {
-    return readlineSync.keyInYNStrict(msg);
+  static ask(message) {
+    return new Promise((resolve) => {
+      const name = 'confirmation';
+      inquirer.prompt([
+        {
+          type: 'confirm',
+          name: name,
+          message: message,
+        },
+      ], (answers) => {
+        resolve(answers[name]);
+      });
+    });
   }
 
   static choose(itemName, items) {
-    let response;
-    if (items.length === 1) {
-      response = items[0];
-    } else {
-      const itemsNames = items.map((item) => (Array.isArray(item) ? _.last(item) : item).toString());
-      const choice = readlineSync.keyInSelect(itemsNames, `Choose ${itemName} by typing the number: `, { guide: false, cancel: false });
-      response = items[choice];
-    }
+    return new Promise((resolve) => {
+      const choices = items.map((item) => {
+        return {
+          name: item.toString(),
+          value: item,
+        };
+      });
 
-    if (Array.isArray(response)) {
-      return _.first(response);
-    }
-
-    return response;
+      const name = 'choice';
+      inquirer.prompt([
+        {
+          type: 'list',
+          name: name,
+          message: `Choose ${itemName}:`,
+          choices: choices,
+        },
+      ], (answers) => {
+        resolve(answers[name]);
+      });
+    });
   }
 }
 

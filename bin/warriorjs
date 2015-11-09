@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-require('babel/polyfill');
 var Runner = require('../lib/Runner');
 
 var runner = new Runner(process.argv, process.stdin, process.stdout);

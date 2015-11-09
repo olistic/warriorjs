@@ -1,37 +1,8 @@
-Level <%- level.getNumber() %>
+Level <%-  %>
 
-<%- level.getDescription() %>
+<%- level.description %>
 
-Tip: <%- level.getTip() %>
-
-
-<%- chalk.stripColor(level.getFloor().getCharacter()) %>
-
-  > = Stairs
-<% level.getFloor().getUniqueUnits().forEach(function(unit) { -%>
-  <%= chalk.stripColor(unit.getCharacter()) %> = <%= unit.getName() %> (<%= unit.getMaxHealth() %> HP)
-<% }); -%>
-
-
-Warrior Abilities:
-<% if (Object.keys(level.getWarrior().getActions()).length) { -%>
-
-  Actions:
-  <% Object.keys(level.getWarrior().getActions()).forEach(function(name) { -%>
-
-    warrior.<%- name %>()
-      <%- level.getWarrior().getActions()[name].getDescription() %>
-  <% }); -%>
-<% }; -%>
-<% if (Object.keys(level.getWarrior().getSenses()).length) { -%>
-
-  Senses:
-  <% Object.keys(level.getWarrior().getSenses()).forEach(function(name) { -%>
-
-    warrior.<%- name %>()
-      <%- level.getWarrior().getSenses()[name].getDescription() %>
-  <% }); -%>
-<% }; -%>
+Tip: <%- level.tip %>
 
 
 When you're done editing Player.js, run the warriorjs command again.

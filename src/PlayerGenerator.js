@@ -1,33 +1,33 @@
 import path from 'path';
 import fs from 'fs-extra';
-import chalk from 'chalk';
 import ejs from 'ejs';
-import Level from './Level';
+import Promise from 'bluebird';
 
 class PlayerGenerator {
-  constructor(level) {
+  _profile;
+  _level;
+
+  constructor(profile, level) {
+    this._profile = profile;
     this._level = level;
   }
 
-  getLevel() {
-    return this._level;
-  }
-
-  getPreviousLevel() {
-    this._previousLevel = this._previousLevel || new Level(this.getLevel().getProfile(), this.getLevel().getNumber() - 1);
-    return this._previousLevel;
-  }
-
   generate() {
-    if (this.getLevel().getNumber() === 1) {
-      if (!fs.existsSync(this.getLevel().getPlayerPath())) {
-        fs.mkdirpSync(this.getLevel().getPlayerPath());
-      }
+    return Promise.join(this.generatePlayer(), this.generateReadme());
+  }
 
-      fs.copySync(path.join(this.getTemplatesPath(), 'Player.js'), path.join(this.getLevel().getPlayerPath(), 'Player.js'));
+  generatePlayer() {
+    if (this._profile.getLevelNumber() === 1) {
+      return fs.ensureDirAsync(this._profile.getPlayerPath())
+        .then(() => fs.copyAsync(path.join(this.getTemplatesPath(), 'Player.js'), path.join(this._profile.getPlayerPath(), 'Player.js')));
     }
 
-    fs.writeFileSync(path.join(this.getLevel().getPlayerPath(), 'README'), this.readTemplate(path.join(this.getTemplatesPath(), 'README.ejs')));
+    return Promise.resolve();
+  }
+
+  generateReadme() {
+    return this.readTemplate(path.join(this.getTemplatesPath(), 'README.ejs'))
+      .then((renderedReadme) => fs.writeFileAsync(path.join(this._profile.getPlayerPath(), 'README'), renderedReadme));
   }
 
   getTemplatesPath() {
@@ -35,7 +35,10 @@ class PlayerGenerator {
   }
 
   readTemplate(templatePath) {
-    return ejs.render(fs.readFileSync(templatePath, 'utf8'), { level: this.getLevel(), chalk: chalk });
+    return fs.readFileAsync(templatePath, 'utf8')
+      .then((template) => {
+        return Promise.resolve(ejs.render(template, { level: this._level }));
+      });
   }
 }
 

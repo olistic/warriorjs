@@ -7,26 +7,28 @@
   "scripts": {
     "compile": "babel src --out-dir lib",
     "prepublish": "npm run compile",
-    "test": "make test",
+    "test": "mocha --compilers js:babel/register --ui bdd --reporter spec --recursive",
     "test-travis": "echo \"No ES5 tests yet\" && exit 0",
-    "test-nomake": "./node_modules/.bin/mocha --compilers js:babel/register --ui bdd --reporter spec --recursive"
+    "lint": "eslint . --ext .js"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/olistic/warriorjs.git"
   },
   "keywords": [
+    "es6",
+    "es7",
+    "es2015",
+    "es2016",
+    "warriorjs",
+    "core",
+    "engine",
     "play",
     "game",
     "fun",
     "teach",
     "learn",
-    "es6",
-    "es7",
     "ai",
-    "artificial-intelligence",
-    "warrior",
-    "warriorjs",
     "interactive",
     "cli"
   ],
@@ -37,21 +39,15 @@
   },
   "homepage": "https://github.com/olistic/warriorjs",
   "devDependencies": {
-    "arrow-mocha": "^1.0.1",
-    "babel": "^5.3.0",
-    "chai": "^2.3.0",
-    "mocha": "^2.2.4",
-    "sinon": "^1.14.1"
+    "babel": "^5.8.29",
+    "chai": "^3.4.0",
+    "mocha": "^2.3.3",
+    "sinon": "^1.17.2"
   },
   "dependencies": {
-    "babel": "^5.3.3",
-    "chalk": "^1.0.0",
-    "ejs": "^2.3.1",
-    "fs-extra": "^0.18.2",
-    "glob": "^5.0.5",
-    "lodash": "^3.7.0",
-    "readline-sync": "^1.2.14",
-    "thread-sleep": "^1.0.3",
-    "yargs": "^3.8.0"
+    "bluebird": "^3.0.5",
+    "ejs": "^2.3.4",
+    "fs-extra": "^0.26.2",
+    "inquirer": "^0.11.0"
   }
 }

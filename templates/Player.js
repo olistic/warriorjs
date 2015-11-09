@@ -3,5 +3,3 @@ class Player {
     // Cool code goes here
   }
 }
-
-global.Player = Player;

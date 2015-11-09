@@ -1,8 +1,0 @@
-{
-  "rules": {
-/**
- * Best practices
- */
-    "no-unused-expressions": 0,      // http://eslint.org/docs/rules/no-unused-expressions
-  }
-}

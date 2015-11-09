@@ -16,7 +16,7 @@ class Config {
   }
 
   static getDelay() {
-    return this._delay;
+    return this._delay || 0.6;
   }
 
   static setDelay(delay) {

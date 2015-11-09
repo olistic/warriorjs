@@ -3,19 +3,21 @@ import Config from './Config';
 import Game from './Game';
 
 class Runner {
+  _args;
+  _stdin;
+  _stdout;
+
   constructor(args, stdin, stdout) {
     this._args = args;
     this._stdin = stdin;
     this._stdout = stdout;
-    this._game = new Game();
   }
 
   run() {
     Config.setInStream(this._stdin);
     Config.setOutStream(this._stdout);
-    Config.setDelay(0.6);
     this.parseOptions();
-    this._game.start();
+    new Game().start();
   }
 
   parseOptions() {
@@ -24,20 +26,20 @@ class Runner {
       .options({
         d: {
           alias: 'directory',
-          describe: 'Run under given directory'
+          describe: 'Run under given directory',
         },
         l: {
           alias: 'level',
-          describe: 'Practice level on epic'
+          describe: 'Practice level on epic',
         },
         s: {
           alias: 'skip',
-          describe: 'Skip user input'
+          describe: 'Skip user input',
         },
         t: {
           alias: 'time',
-          describe: 'Delay each turn by seconds'
-        }
+          describe: 'Delay each turn by seconds',
+        },
       })
       .help('help', 'Show this message')
       .parse(this._args);
@@ -47,7 +49,7 @@ class Runner {
     }
 
     if (argv.level) {
-      Config.setPracticeLevel(Number.parseInt(argv.level));
+      Config.setPracticeLevel(Number.parseInt(argv.level, 10));
     }
 
     if (argv.skip) {

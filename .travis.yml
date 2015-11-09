@@ -7,8 +7,7 @@ install: npm update
 language: node_js
 
 node_js:
-  - "0.12"
-  - iojs
+  - "4.0.0"
 
 script: "npm run-script test-travis"
 

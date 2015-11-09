@@ -1,24 +1,39 @@
-import fs from 'fs';
 import path from 'path';
-import _ from 'lodash';
+import fs from 'fs-extra';
+import Promise from 'bluebird';
 import Config from './Config';
+import Game from './Game';
 import Tower from './Tower';
-import Level from './Level';
 
 class Profile {
-  constructor() {
-    this._towerPath = null;
-    this._warriorName = null;
-    this._score = 0;
-    this._currentEpicScore = 0;
-    this._currentEpicGrades = {};
-    this._epicScore = 0;
-    this._averageGrade = null;
-    this._actions = [];
-    this._senses = [];
-    this._levelNumber = 0;
-    this._lastLevelNumber = null;
-    this._playerPath = null;
+  _towerPath = null;
+  _warriorName = null;
+  _score = 0;
+  _epic = false;
+  _epicScore = 0;
+  _currentEpicScore = 0;
+  _currentEpicGrades = {};
+  _averageGrade = null;
+  _actions = new Set();
+  _senses = new Set();
+  _levelNumber = 0;
+  _lastLevelNumber = null;
+  _playerPath = null;
+
+  getTowerPath() {
+    return this._towerPath;
+  }
+
+  setTowerPath(towerPath) {
+    this._towerPath = towerPath;
+  }
+
+  getWarriorName() {
+    return this._warriorName;
+  }
+
+  setWarriorName(warriorName) {
+    this._warriorName = warriorName;
   }
 
   getScore() {
@@ -31,6 +46,10 @@ class Profile {
 
   addScore(points) {
     this._score += points;
+  }
+
+  isEpic() {
+    return this._epic;
   }
 
   getEpicScore() {
@@ -57,20 +76,20 @@ class Profile {
     this._currentEpicScore += points;
   }
 
-  getAverageGrade() {
-    return this._averageGrade;
-  }
-
-  setAverageGrade(grade) {
-    this._averageGrade = grade;
-  }
-
   getCurrentEpicGrades() {
     return this._currentEpicGrades;
   }
 
   setCurrentEpicGrades(grades) {
     this._currentEpicGrades = grades;
+  }
+
+  getAverageGrade() {
+    return this._averageGrade;
+  }
+
+  setAverageGrade(grade) {
+    this._averageGrade = grade;
   }
 
   getActions() {
@@ -81,12 +100,20 @@ class Profile {
     this._actions = actions;
   }
 
+  addActions(actions) {
+    this.setActions(new Set([...this.getActions(), ...actions]));
+  }
+
   getSenses() {
     return this._senses;
   }
 
   setSenses(senses) {
     this._senses = senses;
+  }
+
+  addSenses(senses) {
+    this.setSenses(new Set([...this.getSenses(), ...senses]));
   }
 
   getLevelNumber() {
@@ -109,22 +136,6 @@ class Profile {
     this._lastLevelNumber = levelNumber;
   }
 
-  getTowerPath() {
-    return this._towerPath;
-  }
-
-  setTowerPath(towerPath) {
-    this._towerPath = towerPath;
-  }
-
-  getWarriorName() {
-    return this._warriorName;
-  }
-
-  setWarriorName(warriorName) {
-    this._warriorName = warriorName;
-  }
-
   getPlayerPath() {
     return this._playerPath || path.join(Config.getPathPrefix(), 'warriorjs', this.getDirectoryName());
   }
@@ -133,72 +144,30 @@ class Profile {
     this._playerPath = playerPath;
   }
 
-  encode() {
-    return new Buffer(JSON.stringify(this)).toString('base64');
-  }
-
-  save() {
-    this.updateEpicScore();
-    if (this.isEpic()) {
-      this._levelNumber = 0;
-    }
-
-    fs.writeFileSync(path.join(this.getPlayerPath(), '/.profile'), this.encode());
-  }
-
-  static decode(str) {
-    try {
-      return JSON.parse(new Buffer(str, 'base64').toString());
-    } catch (err) {
-      throw new Error('Invalid .profile file. Try changing the directory under which you are running warriorjs.');
-    }
-  }
-
-  static load(profilePath) {
-    let player = Object.assign(new Profile(), Profile.decode(fs.readFileSync(profilePath, 'utf8')));
-    player.setPlayerPath(path.dirname(profilePath));
-    return player;
+  getTower() {
+    return new Tower(this.getTowerPath());
   }
 
   getDirectoryName() {
-    return [this.getWarriorName().toLowerCase().replace(/[^a-z0-9]+/, '-'), this.getTower().getName()].join('-');
+    const warriorName = this.getWarriorName();
+    const towerName = this.getTower().getName();
+    return `${warriorName}-${towerName}`.toLowerCase().replace(/[^a-z0-9]+/, '-');
   }
 
   toString() {
+    const warriorName = this.getWarriorName();
+    const towerName = this.getTower().getName();
+
     if (this.isEpic()) {
-      return [this.getWarriorName(), this.getTower().getName(), `first score ${this.getScore()}`, `epic score ${this.getEpicScoreWithGrade()}`].join(' - ');
+      return `${warriorName} - ${towerName} - first score ${this.getScore()} - epic score ${this.getEpicScoreWithGrade()}`;
     }
 
-    return [this.getWarriorName(), this.getTower().getName(), `level ${this.getLevelNumber()}`, `score ${this.getScore()}`].join(' - ');
+    return `${warriorName} - ${towerName} - level ${this.getLevelNumber()} - score ${this.getScore()}`;
   }
 
-  getEpicScoreWithGrade() {
-    if (this._averageGrade) {
-      return `${this.getEpicScore()} (${Level.getGradeLetter(this._averageGrade)})`;
-    }
-
-    return this.getEpicScore();
-  }
-
-  getTower() {
-    return new Tower(path.basename(this.getTowerPath()));
-  }
-
-  getCurrentLevel() {
-    return new Level(this, this.getLevelNumber());
-  }
-
-  getNextLevel() {
-    return new Level(this, this.getLevelNumber() + 1);
-  }
-
-  addActions(actions) {
-    this.setActions(_.union(this.getActions(), actions));
-  }
-
-  addSenses(senses) {
-    this.setSenses(_.union(this.getSenses(), senses));
-  }
+  /*
+   * Game modes
+   */
 
   enableEpicMode() {
     this._epic = true;
@@ -217,16 +186,17 @@ class Profile {
     this._lastLevelNumber = null;
   }
 
-  isEpic() {
-    return this._epic;
-  }
+  /*
+   * Score
+   */
 
-  hasLevelAfterEpic() {
-    if (this._lastLevelNumber) {
-      return new Level(this, this._lastLevelNumber + 1).exists();
+  calculateAverageGrade() {
+    const grades = Object.values(this._currentEpicGrades);
+    if (grades.length) {
+      return grades.reduce((sum, value) => sum + value) / grades.length;
     }
 
-    return false;
+    return null;
   }
 
   updateEpicScore() {
@@ -236,12 +206,46 @@ class Profile {
     }
   }
 
-  calculateAverageGrade() {
-    if (Object.keys(this._currentEpicGrades).length) {
-      return _.values(this._currentEpicGrades).reduce((sum, value) => sum + value) / Object.keys(this._currentEpicGrades).length;
+  getEpicScoreWithGrade() {
+    if (this._averageGrade) {
+      return `${this.getEpicScore()} (${Game.getGradeLetter(this._averageGrade)})`;
     }
 
-    return null;
+    return this.getEpicScore();
+  }
+
+  /*
+   * IO
+   */
+
+  encode() {
+    return new Buffer(JSON.stringify(this)).toString('base64');
+  }
+
+  save() {
+    this.updateEpicScore();
+    if (this.isEpic()) {
+      this._levelNumber = 0;
+    }
+
+    return fs.writeFileAsync(path.join(this.getPlayerPath(), '.profile'), this.encode());
+  }
+
+  static decode(encodedProfile) {
+    try {
+      return JSON.parse(new Buffer(encodedProfile, 'base64').toString());
+    } catch (err) {
+      throw new Error('Invalid .profile file. Try changing the directory under which you are running warriorjs.');
+    }
+  }
+
+  static load(profilePath) {
+    return fs.readFileAsync(profilePath, 'utf8')
+      .then(encodedProfile => {
+        const profile = Object.assign(new Profile(), Profile.decode(encodedProfile));
+        profile.setPlayerPath(path.dirname(profilePath));
+        return Promise.resolve(profile);
+      });
   }
 }
 
