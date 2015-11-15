@@ -19,12 +19,18 @@
         "y": 0,
         "facing": "east",
         "abilities": {
-            "actions": [
-                "detonate"
-            ],
-            "senses": [
-                "look"
-            ]
+            "attack": [],
+            "bind": [],
+            "detonate": [],
+            "directionOf": [],
+            "directionOfStairs": [],
+            "feel": [],
+            "health": [],
+            "listen": [],
+            "look": [],
+            "rescue": [],
+            "rest": [],
+            "walk": []
         }
     },
 
@@ -34,7 +40,9 @@
             "x": 5,
             "y": 0,
             "facing": "west",
-            "explode": 9
+            "abilities": {
+                "explode": [9]
+            }
         },
         {
             "type": "thickSludge",

@@ -18,13 +18,9 @@
         "y": 1,
         "facing": "east",
         "abilities": {
-            "actions": [
-                "walk"
-            ],
-            "senses": [
-                "feel",
-                "directionOfStairs"
-            ]
+            "directionOfStairs": [],
+            "feel": [],
+            "walk": []
         }
     },
 

@@ -19,8 +19,16 @@
         "y": 1,
         "facing": "east",
         "abilities": {
-            "actions": [],
-            "senses": []
+            "attack": [],
+            "bind": [],
+            "directionOf": [],
+            "directionOfStairs": [],
+            "feel": [],
+            "health": [],
+            "listen": [],
+            "rescue": [],
+            "rest": [],
+            "walk": []
         }
     },
 
@@ -48,7 +56,9 @@
             "x": 4,
             "y": 1,
             "facing": "west",
-            "explode": 10
+            "abilities": {
+                "explode": [10]
+            }
         },
         {
             "type": "captive",

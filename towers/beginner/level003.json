@@ -19,12 +19,11 @@
         "y": 0,
         "facing": "east",
         "abilities": {
-            "actions": [
-                "rest"
-            ],
-            "senses": [
-                "health"
-            ]
+            "attack": [],
+            "feel": [],
+            "health": [],
+            "rest": [],
+            "walk": []
         }
     },
 
