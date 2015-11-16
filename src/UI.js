@@ -48,9 +48,9 @@ class UI {
       const name = 'request';
       inquirer.prompt([
         {
+          name,
+          message,
           type: 'input',
-          name: name,
-          message: message,
         },
       ], (answers) => {
         resolve(answers[name]);
@@ -58,14 +58,15 @@ class UI {
     });
   }
 
-  static ask(message) {
+  static ask(message, defaultAnswer = true) {
     return new Promise((resolve) => {
       const name = 'confirmation';
       inquirer.prompt([
         {
+          name,
+          message,
           type: 'confirm',
-          name: name,
-          message: message,
+          default: defaultAnswer,
         },
       ], (answers) => {
         resolve(answers[name]);
@@ -85,10 +86,10 @@ class UI {
       const name = 'choice';
       inquirer.prompt([
         {
+          name,
+          choices,
           type: 'list',
-          name: name,
           message: `Choose ${itemName}:`,
-          choices: choices,
         },
       ], (answers) => {
         resolve(answers[name]);

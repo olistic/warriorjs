@@ -369,6 +369,10 @@ class Game {
     const profile = new Profile();
     return UI.request('Enter a name for your warrior:')
       .then((warriorName) => {
+        if (!warriorName) {
+          throw new Error('Your warrior must have a name if you want him to become a legend!');
+        }
+
         profile.setWarriorName(warriorName);
         return this.getTowers();
       })
@@ -379,14 +383,14 @@ class Game {
       })
       .then((exists) => {
         if (exists) {
-          return UI.ask('Are you sure you want to replace your existing profile for this tower?')
+          return UI.ask('Are you sure you want to replace your existing profile for this tower?', false)
             .then((answer) => {
-              if (answer) {
-                UI.printLine('Replacing existing profile...');
-                return Promise.resolve(profile);
+              if (!answer) {
+                throw new Error('Unable to continue without profile.');
               }
 
-              throw new Error('Unable to continue without profile.');
+              UI.printLine('Replacing existing profile...');
+              return Promise.resolve(profile);
             });
         }
 
