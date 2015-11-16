@@ -25,30 +25,19 @@ describe('Profile', function () {
     this.profile.getScore().should.equal(5);
   });
 
-  it('should have no actions and allow adding', function () {
-    Array.from(this.profile.getActions()).should.be.empty;
-    this.profile.addActions(['foo', 'bar']);
-    Array.from(this.profile.getActions()).should.have.members(['foo', 'bar']);
-  });
-
-  it('should have no senses and allow adding', function () {
-    Array.from(this.profile.getSenses()).should.be.empty;
-    this.profile.addSenses(['foo', 'bar']);
-    Array.from(this.profile.getSenses()).should.have.members(['foo', 'bar']);
+  it('should have no abilities and allow adding', function () {
+    Object.keys(this.profile.getAbilities()).should.be.empty;
+    this.profile.addAbilities({ foo: [], bar: [] });
+    Object.keys(this.profile.getAbilities()).should.have.members(['foo', 'bar']);
   });
 
   it('should encode with JSON + base64', function () {
     this.profile.encode().should.equal(new Buffer(JSON.stringify(this.profile)).toString('base64'));
   });
 
-  it('should add actions and remove duplicates', function () {
-    this.profile.addActions(['foo', 'bar', 'blah', 'bar']);
-    Array.from(this.profile.getActions()).should.have.members(['foo', 'bar', 'blah']);
-  });
-
-  it('should add senses and remove duplicates', function () {
-    this.profile.addSenses(['foo', 'bar', 'blah', 'bar']);
-    Array.from(this.profile.getSenses()).should.have.members(['foo', 'bar', 'blah']);
+  it('should add abilities and remove duplicates', function () {
+    this.profile.addAbilities({ foo: [], bar: [], blah: [], bar: [] }); // eslint-disable-line no-dupe-keys
+    Object.keys(this.profile.getAbilities()).should.have.members(['foo', 'bar', 'blah']);
   });
 
   it('should enable epic mode and reset scores if null', function () {

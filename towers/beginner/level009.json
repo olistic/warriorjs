@@ -18,17 +18,7 @@
         "x": 5,
         "y": 0,
         "facing": "east",
-        "abilities": {
-            "attack": [],
-            "feel": [],
-            "health": [],
-            "look": [],
-            "pivot": [],
-            "rescue": [],
-            "rest": [],
-            "shoot": [],
-            "walk": []
-        }
+        "abilities": {}
     },
 
     "units": [

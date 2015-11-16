@@ -14,8 +14,7 @@ class Profile {
   _currentEpicScore = 0;
   _currentEpicGrades = {};
   _averageGrade = null;
-  _actions = new Set();
-  _senses = new Set();
+  _abilities = {};
   _levelNumber = 0;
   _lastLevelNumber = null;
   _playerPath = null;
@@ -92,28 +91,12 @@ class Profile {
     this._averageGrade = grade;
   }
 
-  getActions() {
-    return this._actions;
+  getAbilities() {
+    return this._abilities;
   }
 
-  setActions(actions) {
-    this._actions = actions;
-  }
-
-  addActions(actions) {
-    this.setActions(new Set([...this.getActions(), ...actions]));
-  }
-
-  getSenses() {
-    return this._senses;
-  }
-
-  setSenses(senses) {
-    this._senses = senses;
-  }
-
-  addSenses(senses) {
-    this.setSenses(new Set([...this.getSenses(), ...senses]));
+  addAbilities(abilities) {
+    Object.assign(this._abilities, abilities);
   }
 
   getLevelNumber() {
@@ -215,7 +198,7 @@ class Profile {
   }
 
   /*
-   * IO
+   * I/O
    */
 
   encode() {

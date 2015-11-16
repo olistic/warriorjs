@@ -20,11 +20,8 @@
         "facing": "east",
         "abilities": {
             "attack": [],
-            "directionOfStairs": [],
-            "feel": [],
             "health": [],
-            "rest": [],
-            "walk": []
+            "rest": []
         }
     },
 

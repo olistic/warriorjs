@@ -19,12 +19,7 @@
         "y": 0,
         "facing": "east",
         "abilities": {
-            "attack": [],
-            "feel": [],
-            "health": [],
-            "rescue": [],
-            "rest": [],
-            "walk": []
+            "rescue": []
         }
     },
 

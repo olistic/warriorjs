@@ -46,8 +46,10 @@
   },
   "dependencies": {
     "bluebird": "^3.0.5",
+    "chalk": "^1.1.1",
     "ejs": "^2.3.4",
     "fs-extra": "^0.26.2",
-    "inquirer": "^0.11.0"
+    "inquirer": "^0.11.0",
+    "warriorjs-engine": "^0.1.1"
   }
 }

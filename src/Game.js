@@ -25,54 +25,60 @@ class Game {
         this._profile = profile;
 
         if (profile.isEpic()) {
-          this.hasLevelAfterEpic()
+          return this.hasLevelAfterEpic()
             .then((hasLevel) => {
               if (hasLevel) {
-                this.goToNormalMode();
-              } else {
-                this.playEpicMode();
+                return this.goToNormalMode();
               }
+
+              return this.playEpicMode();
             });
-        } else {
-          this.playNormalMode();
         }
+
+        return this.playNormalMode();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => UI.printLine(err.message));
   }
 
   /*
    * Play
    */
 
-  // playEpicMode() {
-  //   if (Config.getDelay()) {
-  //     Config.setDelay(Config.getDelay() / 2);
-  //   }
-  //
-  //   this._profile.setCurrentEpicScore(0);
-  //   this._profile.setCurrentEpicGrades({});
-  //
-  //   if (Config.getPracticeLevel()) {
-  //     this.levelExists(Config.getPracticeLevel())
-  //       .then((exists) => {
-  //         if (exists) {
-  //           this._profile.setLevelNumber(Config.getPracticeLevel());
-  //           this.playCurrentLevel();
-  //         } else {
-  //           throw new Error('Unable to practice non-existent level, try another.');
-  //         }
-  //       });
-  //   } else {
-  //     // TODO: play loop
-  //     //   let playing = true;
-  //     //   while (playing) {
-  //     //     this._currentLevel = this._nextLevel = null;
-  //     //     this.getProfile().incLevelNumber();
-  //     //     playing = this.playCurrentLevel();
-  //     //   }
-  //     this._profile.save();
-  //   }
-  // }
+  playEpicMode() {
+    if (Config.getDelay()) {
+      Config.setDelay(Config.getDelay() / 2);
+    }
+
+    this._profile.setCurrentEpicScore(0);
+    this._profile.setCurrentEpicGrades({});
+
+    if (Config.getPracticeLevel()) {
+      return this.levelExists(Config.getPracticeLevel())
+        .then((exists) => {
+          if (exists) {
+            this._profile.setLevelNumber(Config.getPracticeLevel());
+            return this.playCurrentLevel();
+          }
+
+          throw new Error('Unable to practice non-existent level, try another.');
+        });
+    }
+
+    const playLoop = () => {
+      return this.playCurrentLevel()
+        .then((playing) => {
+          if (!playing) {
+            return Promise.resolve();
+          }
+
+          this._profile.incLevelNumber();
+          return playLoop();
+        });
+    };
+
+    this._profile.incLevelNumber();
+    return playLoop().then(() => this._profile.save());
+  }
 
   playNormalMode() {
     if (Config.getPracticeLevel()) {
@@ -91,53 +97,53 @@ class Game {
     let playing = true;
     return Promise.join(this.getPlayerCode(), this.getCurrentLevelConfig(), (playerCode, config) => {
       const warrior = {
+        playerCode,
         name: this._profile.getWarriorName(),
-        abilities: {
-          actions: this._profile.getActions(),
-          senses: this._profile.getSenses(),
-        },
-        playerCode: playerCode,
+        abilities: this._profile.getAbilities(),
       };
 
       const { passed, trace, points } = Engine.playLevel(config, warrior);
+      return UI.printTrace(trace)
+        .then(() => {
+          if (passed) {
+            return this.levelExists(this._profile.getLevelNumber() + 1)
+              .then((exists) => {
+                if (exists) {
+                  UI.printLine('Success! You have found the stairs.');
+                } else {
+                  playing = false;
+                  UI.printLine('CONGRATULATIONS! You have climbed to the top of the tower.');
+                }
 
-      // TODO: print floor reprentation
+                this.tallyPoints(points, config.aceScore);
+                this._profile.addAbilities(config.warrior.abilities);
+                if (this._profile.isEpic()) {
+                  if (!playing && !Config.getPracticeLevel() && this._profile.calculateAverageGrade()) {
+                    UI.printLine(this.getFinalReport());
+                  }
 
-      if (passed) {
-        this.levelExists(this._profile.getLevelNumber() + 1)
-          .then((exists) => {
-            if (exists) {
-              UI.printLine('Success! You have found the stairs.');
-            } else {
-              UI.printLine('CONGRATULATIONS! You have climbed to the top of the tower.');
-              playing = false;
-            }
+                  return Promise.resolve(playing);
+                }
 
-            this.tallyPoints(points);
+                return this.requestNextLevel().then(() => Promise.resolve(playing));
+              });
+          }
 
-            this._profile.addActions(config.warrior.abilities.actions);
-            this._profile.addSenses(config.warrior.abilities.senses);
+          playing = false;
+          UI.printLine(`Sorry, you failed level ${this._profile.getLevelNumber()}. Change your script and try again.`);
+          if (!Config.getSkipInput() && config.clue) {
+            return UI.ask('Would you like to read the additional clues for this level?')
+              .then((answer) => {
+                if (answer) {
+                  UI.printLine(config.clue);
+                }
 
-            if (this._profile.isEpic()) {
-              if (!playing && !Config.getPracticeLevel() && this._profile.calculateAverageGrade()) {
-                UI.printLine(this.getFinalReport());
-              }
-            } else {
-              this.requestNextLevel();
-            }
-          });
-      } else {
-        playing = false;
-        UI.printLine(`Sorry, you failed level ${this._profile.getLevelNumber()}. Change your script and try again.`);
-        if (!Config.getSkipInput() && config.clue) {
-          UI.ask('Would you like to read the additional clues for this level?')
-            .then((answer) => {
-              if (answer) {
-                UI.printLine(config.clue);
-              }
-            });
-        }
-      }
+                return Promise.resolve(playing);
+              });
+          }
+
+          return Promise.resolve(playing);
+        });
     });
   }
 
@@ -208,7 +214,7 @@ class Game {
    * Score
    */
 
-  tallyPoints(points) {
+  tallyPoints(points, aceScore) {
     let score = 0;
 
     UI.printLine(`Level Score: ${points.levelScore}`);
@@ -221,14 +227,14 @@ class Game {
     score += points.clearBonus;
 
     if (this._profile.isEpic()) {
-      // if (currentLevel.aceScore) {
-      //   UI.printLine(`Level Grade: ${Game.getGradeFor(score, aceScore)}`);
-      // }
+      if (aceScore) {
+        UI.printLine(`Level Grade: ${Game.getGradeFor(score, aceScore)}`);
+      }
 
       UI.printLine(`Total Score: ${Game.scoreCalculation(this._profile.getCurrentEpicScore(), score)}`);
-      // if (currentLevel.aceScore) {
-      //   this._profile.getCurrentEpicGrades()[this._profile.getLevelNumber()] = (score * 1.0 / currentLevel.aceScore);
-      // }
+      if (aceScore) {
+        this._profile.getCurrentEpicGrades()[this._profile.getLevelNumber()] = (score * 1.0 / aceScore);
+      }
 
       this._profile.addCurrentEpicScore(score);
     } else {
@@ -355,7 +361,7 @@ class Game {
           return fs.mkdirAsync(this._gameDirectoryPath);
         }
 
-        throw new Error('Unable to continue without directory');
+        throw new Error('Unable to continue without directory.');
       });
   }
 
@@ -380,7 +386,7 @@ class Game {
                 return Promise.resolve(profile);
               }
 
-              throw new Error('Unable to continue without profile');
+              throw new Error('Unable to continue without profile.');
             });
         }
 

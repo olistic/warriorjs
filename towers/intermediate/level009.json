@@ -19,19 +19,7 @@
         "y": 1,
         "facing": "east",
         "abilities": {
-            "attack": [],
-            "bind": [],
-            "detonate": [],
-            "directionOf": [],
-            "directionOfStairs": [],
-            "distanceOf": [],
-            "feel": [],
-            "health": [],
-            "listen": [],
-            "look": [],
-            "rescue": [],
-            "rest": [],
-            "walk": []
+            "distanceOf": []
         }
     },
 
