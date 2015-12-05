@@ -4,7 +4,9 @@ import ejs from 'ejs';
 import Promise from 'bluebird';
 import UI from './UI';
 
-class PlayerGenerator {
+const TEMPLATES_PATH = path.resolve(__dirname, '..', 'templates');
+
+export default class PlayerGenerator {
   _profile;
   _level;
 
@@ -14,76 +16,66 @@ class PlayerGenerator {
   }
 
   generate() {
-    return Promise.join(this.generatePlayer(), this.generateReadme());
+    return Promise.join(this._generatePlayer(), this._generateReadme());
   }
 
-  generatePlayer() {
-    if (this._profile.getLevelNumber() === 1) {
-      return fs.ensureDirAsync(this._profile.getPlayerPath())
-        .then(() => fs.copyAsync(path.join(this.getTemplatesPath(), 'Player.js'), path.join(this._profile.getPlayerPath(), 'Player.js')));
+  _generatePlayer() {
+    if (this._profile.levelNumber === 1) {
+      return fs.ensureDirAsync(this._profile.playerPath)
+        .then(() => fs.copyAsync(path.join(TEMPLATES_PATH, 'Player.js'), path.join(this._profile.playerPath, 'Player.js')));
     }
 
     return Promise.resolve();
   }
 
-  generateReadme() {
-    return this.readTemplate(path.join(this.getTemplatesPath(), 'README.ejs'))
-      .then((renderedReadme) => fs.writeFileAsync(path.join(this._profile.getPlayerPath(), 'README'), renderedReadme));
+  _generateReadme() {
+    return this._readTemplate(path.join(TEMPLATES_PATH, 'README.ejs'))
+      .then((renderedReadme) => fs.writeFileAsync(path.join(this._profile.playerPath, 'README'), renderedReadme));
   }
 
-  getTemplatesPath() {
-    return path.resolve(__dirname, '..', 'templates');
-  }
-
-  readTemplate(templatePath) {
+  _readTemplate(templatePath) {
+    const level = Object.assign(
+      {},
+      this._level,
+      {
+        number: this._profile.levelNumber,
+        floorMap: this._getFloorMap(),
+        warriorAbilities: {
+          existent: this._profile.abilities,
+          new: this._level.warrior.abilities,
+        },
+        units: this._getUniqueUnits(),
+      },
+    );
     return fs.readFileAsync(templatePath, 'utf8')
-      .then((template) => Promise.resolve(ejs.render(template, {
-        levelNumber: this._profile.getLevelNumber(),
-        level: this._level,
-        levelFloor: this.getLevelFloor(),
-        levelUnits: this.getLevelUnits(),
-      })));
+      .then((template) => Promise.resolve(ejs.render(template, { level })));
   }
 
-  // FIXME: Re-utilize methods from UI
-
-  getLevelFloor() {
-    const rows = [];
-    rows.push(`╔${'═'.repeat(this._level.size.width)}╗`);
-    for (let y = 0; y < this._level.size.height; y++) {
-      let row = '║';
-      for (let x = 0; x < this._level.size.width; x++) {
-        const foundUnit = this._level.units.find((unit) => unit.x === x && unit.y === y); // eslint-disable-line no-loop-func
-        if (foundUnit) {
-          row += UI.getUnitCharacter(foundUnit.type);
-        } else if (this._level.warrior.x === x && this._level.warrior.y === y) {
-          row += UI.getUnitCharacter('warrior');
-        } else if (this._level.stairs.x === x && this._level.stairs.y === y) {
-          row += '>';
-        } else {
-          row += ' ';
-        }
-      }
-
-      row += '║';
-      rows.push(row);
-    }
-
-    rows.push(`╚${'═'.repeat(this._level.size.width)}╝`);
-    return rows.join('\n');
+  _getFloorMap() {
+    const { width, height } = this._level.size;
+    const stairsLocation = [this._level.stairs.x, this._level.stairs.y];
+    const units = this._level.units
+      .concat(Object.assign({}, this._level.warrior, { type: 'warrior' }))
+      .map((unit) => ({
+        type: unit.type,
+        position: {
+          x: unit.x,
+          y: unit.y,
+          facing: unit.facing,
+        },
+      }));
+    return UI.getFloorCharacter(width, height, stairsLocation, units, false);
   }
 
-  getLevelUnits() {
-    const levelUnits = {};
+  _getUniqueUnits() {
+    const uniqueUnits = {};
     this._level.units.forEach((unit) => {
-      if (!Object.keys(levelUnits).includes(unit.type)) {
-        levelUnits[unit.type] = UI.getUnitCharacter(unit.type);
+      if (!Object.keys(uniqueUnits).includes(unit.type)) {
+        uniqueUnits[unit.type] = UI.getUnitCharacter(unit.type);
       }
     });
-    const warriorName = this._profile.getWarriorName();
-    levelUnits[warriorName] = UI.getUnitCharacter('warrior');
-    return levelUnits;
+    const warriorName = this._profile.warriorName;
+    uniqueUnits[warriorName] = UI.getUnitCharacter('warrior');
+    return uniqueUnits;
   }
 }
-
-export default PlayerGenerator;

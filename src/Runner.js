@@ -2,7 +2,7 @@ import yargs from 'yargs';
 import Config from './Config';
 import Game from './Game';
 
-class Runner {
+export default class Runner {
   _args;
   _stdin;
   _stdout;
@@ -14,13 +14,13 @@ class Runner {
   }
 
   run() {
-    Config.setInStream(this._stdin);
-    Config.setOutStream(this._stdout);
-    this.parseOptions();
+    Config.inStream = this._stdin;
+    Config.outStream = this._stdout;
+    this._parseOptions();
     new Game().start();
   }
 
-  parseOptions() {
+  _parseOptions() {
     const argv = yargs
       .usage('Usage: $0 [options]')
       .options({
@@ -45,21 +45,19 @@ class Runner {
       .parse(this._args);
 
     if (argv.directory) {
-      Config.setPathPrefix(argv.directory);
+      Config.pathPrefix = argv.directory;
     }
 
     if (argv.level) {
-      Config.setPracticeLevel(Number.parseInt(argv.level, 10));
+      Config.practiceLevel = Number.parseInt(argv.level, 10);
     }
 
     if (argv.skip) {
-      Config.setSkipInput(argv.skip);
+      Config.skipInput = argv.skip;
     }
 
     if (argv.time) {
-      Config.setDelay(Number.parseFloat(argv.time));
+      Config.delay = Number.parseFloat(argv.time);
     }
   }
 }
-
-export default Runner;

@@ -1,21 +1,19 @@
 import path from 'path';
 
-class Tower {
+export default class Tower {
   constructor(towerPath) {
     this._path = towerPath;
   }
 
-  getPath() {
+  get path() {
     return this._path;
   }
 
-  getName() {
-    return path.basename(this.getPath());
+  get name() {
+    return path.basename(this.path);
   }
 
   toString() {
-    return this.getName();
+    return this.name;
   }
 }
-
-export default Tower;

@@ -23,8 +23,8 @@ const UNIT_TYPE_STYLES = {
 
 class UI {
   static print(message) {
-    if (Config.getOutStream()) {
-      Config.getOutStream().write(message);
+    if (Config.outStream) {
+      Config.outStream.write(message);
     }
   }
 
@@ -35,7 +35,7 @@ class UI {
   static printLineWithDelay(message) {
     return new Promise((resolve) => {
       UI.printLine(message);
-      setTimeout(resolve, Config.getDelay() * 1000);
+      setTimeout(resolve, Config.delay * 1000);
     });
   }
 
@@ -104,7 +104,7 @@ class UI {
   static printTrace(trace) {
     return Promise.reduce(trace, (_, turn) => {
       UI.printLine(`-------------------------- turn ${turn.turnNumber} --------------------------`);
-      return UI.printFloor(turn.floor).then(() => UI.printLog(turn.log));
+      return UI.printFloor(turn.floor).then(() => UI.printMessages(turn.logEntries));
     }, null);
   }
 
@@ -113,13 +113,15 @@ class UI {
     return UI.printLineWithDelay(floorCharacter);
   }
 
-  static printLog(log) {
-    return Promise.reduce(log, (_, entry) => {
-      UI.printLineWithDelay(UNIT_TYPE_STYLES[entry.unitType](entry.message));
+  static printMessages(logEntries) {
+    return Promise.reduce(logEntries, (_, logEntry) => {
+      const { unitType, message } = logEntry;
+      const style = UI.getUnitStyle(unitType);
+      return UI.printLineWithDelay(style(message));
     }, null);
   }
 
-  static getFloorCharacter(width, height, stairsLocation, units) {
+  static getFloorCharacter(width, height, stairsLocation, units, styled = true) {
     const rows = [];
     rows.push(`╔${'═'.repeat(width)}╗`);
     for (let y = 0; y < height; y++) {
@@ -127,7 +129,9 @@ class UI {
       for (let x = 0; x < width; x++) {
         const foundUnit = units.find((unit) => unit.position.x === x && unit.position.y === y); // eslint-disable-line no-loop-func
         if (foundUnit) {
-          row += UI.getUnitStyle(foundUnit.type)(UI.getUnitCharacter(foundUnit.type));
+          row += styled ?
+            UI.getUnitStyle(foundUnit.type)(UI.getUnitCharacter(foundUnit.type)) :
+            UI.getUnitCharacter(foundUnit.type);
         } else if (stairsLocation[0] === x && stairsLocation[1] === y) {
           row += '>';
         } else {

@@ -5,7 +5,7 @@ import Config from './Config';
 import Game from './Game';
 import Tower from './Tower';
 
-class Profile {
+export default class Profile {
   _towerPath = null;
   _warriorName = null;
   _score = 0;
@@ -19,187 +19,142 @@ class Profile {
   _lastLevelNumber = null;
   _playerPath = null;
 
-  getTowerPath() {
+  get towerPath() {
     return this._towerPath;
   }
 
-  setTowerPath(towerPath) {
+  set towerPath(towerPath) {
     this._towerPath = towerPath;
   }
 
-  getWarriorName() {
+  get warriorName() {
     return this._warriorName;
   }
 
-  setWarriorName(warriorName) {
+  set warriorName(warriorName) {
     this._warriorName = warriorName;
   }
 
-  getScore() {
+  get score() {
     return this._score;
   }
 
-  setScore(score) {
+  set score(score) {
     this._score = score;
   }
 
-  addScore(points) {
-    this._score += points;
+  get epicScore() {
+    return this._epicScore;
+  }
+
+  set epicScore(score) {
+    this._epicScore = score;
+  }
+
+  get currentEpicScore() {
+    return this._currentEpicScore;
+  }
+
+  set currentEpicScore(score) {
+    this._currentEpicScore = score;
+  }
+
+  get currentEpicGrades() {
+    return this._currentEpicGrades;
+  }
+
+  set currentEpicGrades(grades) {
+    this._currentEpicGrades = grades;
+  }
+
+  get averageGrade() {
+    return this._averageGrade;
+  }
+
+  set averageGrade(grade) {
+    this._averageGrade = grade;
+  }
+
+  get epicScoreWithGrade() {
+    return this.averageGrade ?
+      `${this.epicScore} (${Game.getGradeLetter(this.averageGrade)})` :
+      this.epicScore;
+  }
+
+  get abilities() {
+    return this._abilities;
+  }
+
+  get levelNumber() {
+    return this._levelNumber;
+  }
+
+  set levelNumber(levelNumber) {
+    this._levelNumber = levelNumber;
+  }
+
+  get lastLevelNumber() {
+    return this._lastLevelNumber;
+  }
+
+  set lastLevelNumber(levelNumber) {
+    this._lastLevelNumber = levelNumber;
+  }
+
+  get playerPath() {
+    return this._playerPath || path.join(Config.pathPrefix, 'warriorjs', this.directoryName);
+  }
+
+  set playerPath(playerPath) {
+    this._playerPath = playerPath;
+  }
+
+  get tower() {
+    return new Tower(this.towerPath);
+  }
+
+  get directoryName() {
+    return `${this.warriorName}-${this.tower.name}`.toLowerCase().replace(/[^a-z0-9]+/, '-');
+  }
+
+  addAbilities(abilities) {
+    Object.assign(this.abilities, abilities);
   }
 
   isEpic() {
     return this._epic;
   }
 
-  getEpicScore() {
-    return this._epicScore;
-  }
-
-  setEpicScore(score) {
-    this._epicScore = score;
-  }
-
-  addEpicScore(points) {
-    this._epicScore += points;
-  }
-
-  getCurrentEpicScore() {
-    return this._currentEpicScore;
-  }
-
-  setCurrentEpicScore(score) {
-    this._currentEpicScore = score;
-  }
-
-  addCurrentEpicScore(points) {
-    this._currentEpicScore += points;
-  }
-
-  getCurrentEpicGrades() {
-    return this._currentEpicGrades;
-  }
-
-  setCurrentEpicGrades(grades) {
-    this._currentEpicGrades = grades;
-  }
-
-  getAverageGrade() {
-    return this._averageGrade;
-  }
-
-  setAverageGrade(grade) {
-    this._averageGrade = grade;
-  }
-
-  getAbilities() {
-    return this._abilities;
-  }
-
-  addAbilities(abilities) {
-    Object.assign(this._abilities, abilities);
-  }
-
-  getLevelNumber() {
-    return this._levelNumber;
-  }
-
-  setLevelNumber(levelNumber) {
-    this._levelNumber = levelNumber;
-  }
-
-  incLevelNumber() {
-    this._levelNumber += 1;
-  }
-
-  getLastLevelNumber() {
-    return this._lastLevelNumber;
-  }
-
-  setLastLevelNumber(levelNumber) {
-    this._lastLevelNumber = levelNumber;
-  }
-
-  getPlayerPath() {
-    return this._playerPath || path.join(Config.getPathPrefix(), 'warriorjs', this.getDirectoryName());
-  }
-
-  setPlayerPath(playerPath) {
-    this._playerPath = playerPath;
-  }
-
-  getTower() {
-    return new Tower(this.getTowerPath());
-  }
-
-  getDirectoryName() {
-    const warriorName = this.getWarriorName();
-    const towerName = this.getTower().getName();
-    return `${warriorName}-${towerName}`.toLowerCase().replace(/[^a-z0-9]+/, '-');
-  }
-
-  toString() {
-    const warriorName = this.getWarriorName();
-    const towerName = this.getTower().getName();
-
-    if (this.isEpic()) {
-      return `${warriorName} - ${towerName} - first score ${this.getScore()} - epic score ${this.getEpicScoreWithGrade()}`;
-    }
-
-    return `${warriorName} - ${towerName} - level ${this.getLevelNumber()} - score ${this.getScore()}`;
-  }
-
-  /*
-   * Game modes
-   */
-
   enableEpicMode() {
     this._epic = true;
-    this._epicScore = this._epicScore || 0;
-    this._currentEpicScore = this._currentEpicScore || 0;
-    this._lastLevelNumber = this._lastLevelNumber || this._levelNumber;
+    this.epicScore = this.epicScore || 0;
+    this.currentEpicScore = this.currentEpicScore || 0;
+    this.lastLevelNumber = this.lastLevelNumber || this.levelNumber;
   }
 
   enableNormalMode() {
     this._epic = false;
-    this._epicScore = 0;
-    this._currentEpicScore = 0;
-    this._currentEpicGrades = {};
-    this._averageGrade = null;
-    this._levelNumber = this._lastLevelNumber;
-    this._lastLevelNumber = null;
+    this.epicScore = 0;
+    this.currentEpicScore = 0;
+    this.currentEpicGrades = {};
+    this.averageGrade = null;
+    this.levelNumber = this.lastLevelNumber;
+    this.lastLevelNumber = null;
   }
 
-  /*
-   * Score
-   */
-
   calculateAverageGrade() {
-    const grades = Object.values(this._currentEpicGrades);
-    if (grades.length) {
-      return grades.reduce((sum, value) => sum + value) / grades.length;
-    }
-
-    return null;
+    const grades = Object.values(this.currentEpicGrades);
+    return grades.length ?
+      grades.reduce((sum, value) => sum + value) / grades.length :
+      null;
   }
 
   updateEpicScore() {
-    if (this._currentEpicScore > this._epicScore) {
-      this._epicScore = this._currentEpicScore;
-      this._averageGrade = this.calculateAverageGrade();
+    if (this.currentEpicScore > this.epicScore) {
+      this.epicScore = this.currentEpicScore;
+      this.averageGrade = this.calculateAverageGrade();
     }
   }
-
-  getEpicScoreWithGrade() {
-    if (this._averageGrade) {
-      return `${this.getEpicScore()} (${Game.getGradeLetter(this._averageGrade)})`;
-    }
-
-    return this.getEpicScore();
-  }
-
-  /*
-   * I/O
-   */
 
   encode() {
     return new Buffer(JSON.stringify(this)).toString('base64');
@@ -208,10 +163,10 @@ class Profile {
   save() {
     this.updateEpicScore();
     if (this.isEpic()) {
-      this._levelNumber = 0;
+      this.levelNumber = 0;
     }
 
-    return fs.writeFileAsync(path.join(this.getPlayerPath(), '.profile'), this.encode());
+    return fs.writeFileAsync(path.join(this.playerPath, '.profile'), this.encode());
   }
 
   static decode(encodedProfile) {
@@ -226,10 +181,14 @@ class Profile {
     return fs.readFileAsync(profilePath, 'utf8')
       .then(encodedProfile => {
         const profile = Object.assign(new Profile(), Profile.decode(encodedProfile));
-        profile.setPlayerPath(path.dirname(profilePath));
+        profile.playerPath = path.dirname(profilePath);
         return Promise.resolve(profile);
       });
   }
-}
 
-export default Profile;
+  toString() {
+    return this.isEpic() ?
+      `${this.warriorName} - ${this.tower.name} - first score ${this.score} - epic score ${this.epicScoreWithGrade}` :
+      `${this.warriorName} - ${this.tower.name} - level ${this.levelNumber} - score ${this.score}`;
+  }
+}

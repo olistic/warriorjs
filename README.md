@@ -6,7 +6,7 @@
 
 This is a game designed to teach JavaScript and artificial intelligence in a fun, interactive way.
 
-You play as a warrior climbing a tall tower to `<insert something that motivates you here>` at the top level. On each floor, you need to write JavaScript (with full ES6 support) to instruct the warrior to battle enemies, rescue captives, and reach the stairs.
+You play as a warrior climbing a tall tower to `<insert something that motivates you here>` at the top level. On each floor, you need to write JavaScript (with full ES2015 support) to instruct the warrior to battle enemies, rescue captives, and reach the stairs.
 
 NOTE: Watch the repo or check `npm outdated -g warriorjs` regularly to find out about new levels and abilities.
 
@@ -79,11 +79,11 @@ A total score is kept as you progress through the levels. When you pass a level,
 Even though this is a text-based game, think of it as two-dimensional where you are viewing from overhead. Each level is always rectangular in shape and is made up of a number of squares. Only one unit can be on a given square at a time, and your objective is to find the square with the stairs. Here is an example level map and key:
 
 ```
- ----
-|C s>|
-| S s|
-|C @ |
- ----
+╔════╗
+║C s>║
+║ S s║
+║C @ ║
+╚════╝
 
 > = Stairs
 @ = Warrior (20 HP)
@@ -94,13 +94,13 @@ C = Captive (1 HP)
 
 ## Abilities
 
-When you first start, your warrior will only have a few abilities, but with each level your abilities will grow. A warrior has two kinds of abilities: *actions* and *senses*. 
+When you first start, your warrior will only have a few abilities, but with each level your abilities will grow. A warrior has two kinds of abilities: *actions* and *senses*.
 
 Most of the abilities can be performed in the following directions: forward, backward, left and right. You have to pass a string with the direction as the first argument, e.g. `warrior.walk('backward');`.
 
 ### Actions
 
-An *action* is something that effects the game in some way. **Only one action can be performed per turn**, so choose wisely. 
+An *action* is something that effects the game in some way. **Only one action can be performed per turn**, so choose wisely.
 
 Here is the complete list of actions:
 
@@ -113,59 +113,59 @@ Here is the complete list of actions:
   *Attack a unit in given direction (forward by default).*
 
 * `warrior.rest()`:
-  
+
   *Gain 10% of max health back, but do nothing more.*
 
 * `warrior.rescue(direction)`:
-  
+
   *Rescue a captive from his chains (earning 20 points) in given direction (forward by default).*
 
 * `warrior.pivot(direction)`:
-  
+
   *Rotate left, right or backward (default).*
 
 * `warrior.shoot(direction)`:
-  
+
   *Shoot your bow & arrow in given direction (forward by default).*
 
 
 **NEW** in intermediate tower:
 
 * `warrior.bind(direction)`:
-  
-  *Binds a unit in given direction to keep him from moving (forward by default).*
+
+  *Bind a unit in given direction to keep him from moving (forward by default).*
 
 * `warrior.detonate(direction)`:
-  
+
   *Detonate a bomb in a given direction (forward by default) which damages that space and surrounding 4 spaces (including yourself).*
 
 * `warrior.explode()`:
-  
+
   *Kills you and all surrounding units. You probably don't want to do this intentionally.*
 
 ### Senses
 
-A *sense* is something which gathers information about the floor. You can perform senses as often as you want per turn to gather information about your surroundings and to aid you in choosing the proper action. 
+A *sense* is something which gathers information about the floor. You can perform senses as often as you want per turn to gather information about your surroundings and to aid you in choosing the proper action.
 
 Here is the complete list of senses:
 
 * `warrior.feel(direction)`:
-  
-  *Returns a `Space` for the given direction (forward by default).*
+
+  *Return a `Space` for the given direction (forward by default).*
 
 * `warrior.health()`:
-  
-  *Returns an integer representing your current health.*
+
+  *Return an integer representing your current health.*
 
 * `warrior.look(direction)`:
-  
-  *Returns an array of up to three spaces in the given direction (forward by default).*
+
+  *Return an array of up to three spaces in the given direction (forward by default).*
 
 **NEW** in intermediate tower:
 
 * `warrior.directionOfStairs()`:
 
-  *Returns the direction the stairs are from your location.*
+  *Return the direction the stairs are from your location.*
 
 * `warrior.directionOf(space)`:
 
@@ -177,7 +177,7 @@ Here is the complete list of senses:
 
 * `warrior.listen()`:
 
-  *Returns an array of all spaces which have units in them.*
+  *Return an array of all spaces which have units in them.*
 
 Since what you sense will change each turn, you should record what information you gather for use on the next turn. For example, you can determine if you are being attacked if your health has gone down since the last turn.
 
@@ -188,28 +188,28 @@ Whenever you sense an area, often one or multiple spaces (in an array) will be r
 You can call methods on a `Space` to gather information about what is there. Here are the various methods that are available to you:
 
 * `space.isEmpty()`:
-  
+
   *If `true`, this means that nothing (except maybe stairs) is at this location and you can walk here.*
 
 * `space.isStairs()`:
-  
+
   *Determine if stairs are at that location.*
 
 * `space.isEnemy()`:
-  
+
   *Determine if an enemy unit is at this location.*
 
 * `space.isCaptive()`:
-  
+
   *Determine if a captive is at this location.*
 
 * `space.isWall()`:
-  
-  *Returns `true` if this is the edge of the level. You can't walk here.*
+
+  *Return `true` if this is the edge of the level. You can't walk here.*
 
 * `space.isTicking()`:
 
-  *Returns `true` if this space contains a bomb which will explode in time.*
+  *Return `true` if this space contains a bomb which will explode in time.*
 
 You will often call these methods directly after a sense. For example, the `feel` sense returns one `Space`. You can call `isCaptive()` on this to determine if a captive is in front of you.
 
@@ -243,7 +243,7 @@ Once your warrior reaches the top again, you will receive an average grade, alon
 
 * If you're aiming for points, remember to sweep the area. Even if you're close to the stairs, don't go in until you've gotten everything (if you have the health). Use far-ranged senses (such as look and listen) to determine if there are any enemies left.
 
-### ES6 specific
+### ES2015 specific
 
 * If you want some code to be executed at the beginning of each level, define a [constructor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/constructor) in the `Player` class, like this:
 
@@ -274,11 +274,3 @@ isEnemyInSight(warrior) {
 This game was originally developed by [@ryanb](https://github.com/ryanb) to teach the Ruby language. Special thanks to him for the original [ruby-warrior](https://github.com/ryanb/ruby-warrior).
 
 Thanks to [@guillecura](https://github.com/guillecura) for the awesome logo idea and for carrying it out.
-
-
-
-
-
-
-
-

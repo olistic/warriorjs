@@ -1,22 +1,26 @@
-Level <%- levelNumber %>
+Level <%- level.number %>
 
 <%- level.description %>
 
 Tip: <%- level.tip %>
 
 
-<%- levelFloor %>
+<%- level.floorMap %>
 
   > = stairs
-<% Object.keys(levelUnits).forEach(function (name) { -%>
-  <%= levelUnits[name] %> = <%= name %>
+<% Object.keys(level.units).forEach(function (name) { -%>
+  <%= level.units[name] %> = <%= name %>
 <% }); -%>
 
 
 Warrior abilities:
-<% Object.keys(level.warrior.abilities).forEach(function (name) { -%>
+<% Object.keys(level.warriorAbilities.existent).forEach(function (name) { -%>
 
   warrior.<%- name %>()
+<% }); -%>
+<% Object.keys(level.warriorAbilities.new).forEach(function (name) { -%>
+
+  warrior.<%- name %>() (NEW!)
 <% }); -%>
 
 

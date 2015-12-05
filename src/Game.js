@@ -12,19 +12,19 @@ import Tower from './Tower';
 Promise.promisifyAll(fs);
 Promise.promisifyAll(glob);
 
-class Game {
+export default class Game {
   _profile;
-  _profilePath = path.join(Config.getPathPrefix(), '.profile');
-  _gameDirectoryPath = path.join(Config.getPathPrefix(), 'warriorjs');
+  _profilePath = path.join(Config.pathPrefix, '.profile');
+  _gameDirectoryPath = path.join(Config.pathPrefix, 'warriorjs');
 
   start() {
     UI.printLine('Welcome to WarriorJS');
 
-    this.getProfile()
+    this.loadProfile()
       .then((profile) => {
         this._profile = profile;
 
-        if (profile.isEpic()) {
+        if (this._profile.isEpic()) {
           return this.hasLevelAfterEpic()
             .then((hasLevel) => {
               if (hasLevel) {
@@ -45,18 +45,18 @@ class Game {
    */
 
   playEpicMode() {
-    if (Config.getDelay()) {
-      Config.setDelay(Config.getDelay() / 2);
+    if (Config.delay) {
+      Config.delay = Config.delay / 2;
     }
 
-    this._profile.setCurrentEpicScore(0);
-    this._profile.setCurrentEpicGrades({});
+    this._profile.currentEpicScore = 0;
+    this._profile.currentEpicGrades = {};
 
-    if (Config.getPracticeLevel()) {
-      return this.levelExists(Config.getPracticeLevel())
+    if (Config.practiceLevel) {
+      return this.levelExists(Config.practiceLevel)
         .then((exists) => {
           if (exists) {
-            this._profile.setLevelNumber(Config.getPracticeLevel());
+            this._profile.levelNumber = Config.practiceLevel;
             return this.playCurrentLevel();
           }
 
@@ -71,22 +71,22 @@ class Game {
             return Promise.resolve();
           }
 
-          this._profile.incLevelNumber();
+          this._profile.levelNumber += 1;
           return playLoop();
         });
     };
 
-    this._profile.incLevelNumber();
+    this._profile.levelNumber += 1;
     return playLoop().then(() => this._profile.save());
   }
 
   playNormalMode() {
-    if (Config.getPracticeLevel()) {
+    if (Config.practiceLevel) {
       throw new Error('Unable to practice level while not in epic mode, remove -l option.');
     } else {
-      if (this._profile.getLevelNumber() === 0) {
+      if (this._profile.levelNumber === 0) {
         return this.prepareNextLevel()
-          .then(() => UI.printLine(`First level has been generated. See the warriorjs/${this._profile.getDirectoryName()}/README for instructions.`));
+          .then(() => UI.printLine(`First level has been generated. See the warriorjs/${this._profile.directoryName}/README for instructions.`));
       }
 
       return this.playCurrentLevel();
@@ -98,15 +98,15 @@ class Game {
     return Promise.join(this.getPlayerCode(), this.getCurrentLevelConfig(), (playerCode, config) => {
       const warrior = {
         playerCode,
-        name: this._profile.getWarriorName(),
-        abilities: this._profile.getAbilities(),
+        name: this._profile.warriorName,
+        abilities: this._profile.abilities,
       };
 
       const { passed, trace, points } = Engine.playLevel(config, warrior);
       return UI.printTrace(trace)
         .then(() => {
           if (passed) {
-            return this.levelExists(this._profile.getLevelNumber() + 1)
+            return this.levelExists(this._profile.levelNumber + 1)
               .then((exists) => {
                 if (exists) {
                   UI.printLine('Success! You have found the stairs.');
@@ -118,7 +118,7 @@ class Game {
                 this.tallyPoints(points, config.aceScore);
                 this._profile.addAbilities(config.warrior.abilities);
                 if (this._profile.isEpic()) {
-                  if (!playing && !Config.getPracticeLevel() && this._profile.calculateAverageGrade()) {
+                  if (!playing && !Config.practiceLevel && this._profile.calculateAverageGrade()) {
                     UI.printLine(this.getFinalReport());
                   }
 
@@ -130,8 +130,8 @@ class Game {
           }
 
           playing = false;
-          UI.printLine(`Sorry, you failed level ${this._profile.getLevelNumber()}. Change your script and try again.`);
-          if (!Config.getSkipInput() && config.clue) {
+          UI.printLine(`Sorry, you failed level ${this._profile.levelNumber}. Change your script and try again.`);
+          if (!Config.skipInput && config.clue) {
             return UI.ask('Would you like to read the additional clues for this level?')
               .then((answer) => {
                 if (answer) {
@@ -148,7 +148,7 @@ class Game {
   }
 
   getPlayerCode() {
-    return fs.readFileAsync(path.join(this._profile.getPlayerPath(), 'Player.js'), 'utf8');
+    return fs.readFileAsync(path.join(this._profile.playerPath, 'Player.js'), 'utf8');
   }
 
   generatePlayerFiles() {
@@ -156,8 +156,8 @@ class Game {
   }
 
   requestNextLevel() {
-    if (!Config.getSkipInput()) {
-      return this.levelExists(this._profile.getLevelNumber() + 1)
+    if (!Config.skipInput) {
+      return this.levelExists(this._profile.levelNumber + 1)
         .then((exists) => {
           if (exists) {
             return UI.ask('Would you like to continue on to the next level?')
@@ -165,7 +165,7 @@ class Game {
                 if (answer) {
                   return this.prepareNextLevel()
                     .then(() => {
-                      UI.printLine(`See the updated README in the warriorjs/${this._profile.getDirectoryName()} directory.`);
+                      UI.printLine(`See the updated README in the warriorjs/${this._profile.directoryName} directory.`);
                       return Promise.resolve();
                     });
                 }
@@ -190,13 +190,13 @@ class Game {
   }
 
   prepareNextLevel() {
-    this._profile.incLevelNumber();
+    this._profile.levelNumber += 1;
     return this.generatePlayerFiles().then(() => this._profile.save());
   }
 
   prepareEpicMode() {
     this._profile.enableEpicMode();
-    this._profile.setLevelNumber(0);
+    this._profile.levelNumber = 0;
     return this._profile.save();
   }
 
@@ -205,7 +205,7 @@ class Game {
     return this.prepareNextLevel()
       .then(() => {
         UI.printLine('Another level has been added since you started epic, going back to normal mode.');
-        UI.printLine(`See the updated README in the warriorjs/${this._profile.getDirectoryName()} directory.`);
+        UI.printLine(`See the updated README in the warriorjs/${this._profile.directoryName} directory.`);
         return Promise.resolve();
       });
   }
@@ -231,23 +231,23 @@ class Game {
         UI.printLine(`Level Grade: ${Game.getGradeFor(score, aceScore)}`);
       }
 
-      UI.printLine(`Total Score: ${Game.scoreCalculation(this._profile.getCurrentEpicScore(), score)}`);
+      UI.printLine(`Total Score: ${Game.scoreCalculation(this._profile.currentEpicScore, score)}`);
       if (aceScore) {
-        this._profile.getCurrentEpicGrades()[this._profile.getLevelNumber()] = (score * 1.0 / aceScore);
+        this._profile.currentEpicGrades[this._profile.levelNumber] = (score * 1.0 / aceScore);
       }
 
-      this._profile.addCurrentEpicScore(score);
+      this._profile.currentEpicScore += score;
     } else {
-      UI.printLine(`Total Score: ${Game.scoreCalculation(this._profile.getScore(), score)}`);
-      this._profile.addScore(score);
+      UI.printLine(`Total Score: ${Game.scoreCalculation(this._profile.score, score)}`);
+      this._profile.score += score;
     }
   }
 
   getFinalReport() {
     let report = '';
     report += `Your average grade for this tower is: ${Game.getGradeLetter(this._profile.calculateAverageGrade())}\n\n`;
-    Object.keys(this._profile.getCurrentEpicGrades()).sort().forEach((level) => {
-      report += `  Level ${level}: ${Game.getGradeLetter(this._profile.getCurrentEpicGrades()[level])}\n`;
+    Object.keys(this._profile.currentEpicGrades).sort().forEach((level) => {
+      report += `  Level ${level}: ${Game.getGradeLetter(this._profile.currentEpicGrades[level])}\n`;
     });
 
     report += `\nTo practice a level, use the -l option.`;
@@ -286,7 +286,7 @@ class Game {
    * Profiles
    */
 
-  getProfile() {
+  loadProfile() {
     return this.profileExists()
       .then((exists) => {
         if (exists) {
@@ -330,7 +330,7 @@ class Game {
   getProfilePaths() {
     return this.ensureGameDirectory()
       .then(() => {
-        const profilePattern = path.join(Config.getPathPrefix(), 'warriorjs', '**', '.profile');
+        const profilePattern = path.join(Config.pathPrefix, 'warriorjs', '**', '.profile');
         return glob.globAsync(profilePattern);
       });
   }
@@ -373,12 +373,12 @@ class Game {
           throw new Error('Your warrior must have a name if you want him to become a legend!');
         }
 
-        profile.setWarriorName(warriorName);
+        profile.warriorName = warriorName;
         return this.getTowers();
       })
       .then((towerChoices) => UI.choose('tower', towerChoices))
       .then((tower) => {
-        profile.setTowerPath(tower.getPath());
+        profile.towerPath = tower.path;
         return this.isExistingProfile(profile);
       })
       .then((exists) => {
@@ -401,7 +401,7 @@ class Game {
   isExistingProfile(newProfile) {
     return this.getProfiles()
       .then((profiles) => {
-        return Promise.resolve(profiles.some((profile) => profile.getPlayerPath() === newProfile.getPlayerPath()));
+        return Promise.resolve(profiles.some((profile) => profile.playerPath === newProfile.playerPath));
       });
   }
 
@@ -427,7 +427,7 @@ class Game {
    */
 
   getLevelPath(levelNumber) {
-    return path.join(this._profile.getTowerPath(), `level${String(levelNumber).padLeft(3, '0')}.json`);
+    return path.join(this._profile.towerPath, `level${String(levelNumber).padLeft(3, '0')}.json`);
   }
 
   levelExists(levelNumber) {
@@ -439,17 +439,15 @@ class Game {
   }
 
   getCurrentLevelConfig() {
-    const levelNumber = this._profile.getLevelNumber();
+    const levelNumber = this._profile.levelNumber;
     return fs.readJsonAsync(this.getLevelPath(levelNumber));
   }
 
   hasLevelAfterEpic() {
-    if (this._profile.getLastLevelNumber()) {
-      return this.levelExists(this._profile.getLastLevelNumber() + 1);
+    if (this._profile.lastLevelNumber) {
+      return this.levelExists(this._profile.lastLevelNumber + 1);
     }
 
     return Promise.resolve(false);
   }
 }
-
-export default Game;

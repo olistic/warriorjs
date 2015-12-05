@@ -9,10 +9,10 @@ describe('Tower', function () {
   });
 
   it('should consider last part of path as name', function () {
-    this.tower.getName().should.equal('tower');
+    this.tower.name.should.equal('tower');
   });
 
   it('should use name when converting to string', function () {
-    this.tower.toString().should.equal(this.tower.getName());
+    this.tower.toString().should.equal(this.tower.name);
   });
 });

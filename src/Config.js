@@ -1,49 +1,49 @@
-class Config {
-  static getPathPrefix() {
+export default class Config {
+  static get pathPrefix() {
     return this._pathPrefix || '.';
   }
 
-  static setPathPrefix(path) {
+  static set pathPrefix(path) {
     this._pathPrefix = path;
   }
 
-  static getSkipInput() {
+  static get skipInput() {
     return this._skipInput;
   }
 
-  static setSkipInput(skip) {
+  static set skipInput(skip) {
     this._skipInput = skip;
   }
 
-  static getDelay() {
+  static get delay() {
     return this._delay || 0.6;
   }
 
-  static setDelay(delay) {
+  static set delay(delay) {
     this._delay = delay;
   }
 
-  static getInStream() {
+  static get inStream() {
     return this._inStream;
   }
 
-  static setInStream(stream) {
+  static set inStream(stream) {
     this._inStream = stream;
   }
 
-  static getOutStream() {
+  static get outStream() {
     return this._outStream;
   }
 
-  static setOutStream(stream) {
+  static set outStream(stream) {
     this._outStream = stream;
   }
 
-  static getPracticeLevel() {
+  static get practiceLevel() {
     return this._practiceLevel;
   }
 
-  static setPracticeLevel(practiceLevel) {
+  static set practiceLevel(practiceLevel) {
     this._practiceLevel = practiceLevel;
   }
 
@@ -55,5 +55,3 @@ class Config {
     });
   }
 }
-
-export default Config;

@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+
 var Runner = require('../lib/Runner');
 
 var runner = new Runner(process.argv, process.stdin, process.stdout);
