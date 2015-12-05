@@ -19,7 +19,6 @@
         "facing": "east",
         "abilities": {
             "directionOfStairs": [],
-            "feel": [],
             "walk": []
         }
     },
