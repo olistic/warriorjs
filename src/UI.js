@@ -102,9 +102,13 @@ class UI {
    */
 
   static printTrace(trace) {
+    let turnNumber = 1;
     return Promise.reduce(trace, (_, turn) => {
-      UI.printLine(`-------------------------- turn ${turn.turnNumber} --------------------------`);
-      return UI.printFloor(turn.floor).then(() => UI.printMessages(turn.logEntries));
+      UI.printLine(`-------------------------- turn ${turnNumber} --------------------------`);
+      turnNumber += 1;
+
+      const { floor, log } = turn;
+      return UI.printFloor(floor).then(() => UI.printLog(log));
     }, null);
   }
 
@@ -113,11 +117,10 @@ class UI {
     return UI.printLineWithDelay(floorCharacter);
   }
 
-  static printMessages(logEntries) {
-    return Promise.reduce(logEntries, (_, logEntry) => {
-      const { unitType, message } = logEntry;
-      const style = UI.getUnitStyle(unitType);
-      return UI.printLineWithDelay(style(message));
+  static printLog(log) {
+    return Promise.reduce(log, (_, entry) => {
+      const { unitType, message } = entry;
+      return UI.printLineWithDelay(UI.getUnitStyle(unitType)(message));
     }, null);
   }
 
