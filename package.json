@@ -51,7 +51,9 @@
     "chalk": "^1.1.1",
     "ejs": "^2.3.4",
     "fs-extra": "^0.26.2",
+    "glob": "^6.0.1",
     "inquirer": "^0.11.0",
-    "warriorjs-engine": "^0.4.0"
+    "warriorjs-engine": "^0.4.2",
+    "yargs": "^3.31.0"
   }
 }
