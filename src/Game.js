@@ -96,14 +96,15 @@ export default class Game {
   playCurrentLevel() {
     let playing = true;
     return Promise.join(this.getPlayerCode(), this.getCurrentLevelConfig(), (playerCode, config) => {
-      const warrior = {
+      const profile = {
         playerCode,
-        name: this._profile.warriorName,
+        warriorName: this._profile.warriorName,
         abilities: this._profile.abilities,
       };
 
-      const { passed, trace, points } = Engine.playLevel(config, warrior);
-      return UI.printTrace(trace)
+      const { passed, trace, points } = Engine.playLevel(config, profile);
+
+      return UI.printPlay(trace)
         .then(() => {
           if (passed) {
             return this.levelExists(this._profile.levelNumber + 1)
@@ -116,7 +117,10 @@ export default class Game {
                 }
 
                 this.tallyPoints(points, config.aceScore);
-                this._profile.addAbilities(config.warrior.abilities);
+
+                const warrior = config.floor.units[0];
+                this._profile.addAbilities(warrior.abilities);
+
                 if (this._profile.isEpic()) {
                   if (!playing && !Config.practiceLevel && this._profile.calculateAverageGrade()) {
                     UI.printLine(this.getFinalReport());

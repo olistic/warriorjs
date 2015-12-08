@@ -5,43 +5,45 @@
 
     "timeBonus": 20,
     "aceScore": 46,
-    "size": {
-        "width": 6,
-        "height": 1
-    },
-    "stairs": {
-        "x": 5,
-        "y": 0
-    },
 
-    "warrior": {
-        "x": 0,
-        "y": 0,
-        "facing": "east",
-        "abilities": {
-            "look": [],
-            "shoot": []
-        }
-    },
-
-    "units": [
-        {
-            "type": "captive",
-            "x": 2,
-            "y": 0,
-            "facing": "west"
+    "floor": {
+        "size": {
+            "width": 6,
+            "height": 1
         },
-        {
-            "type": "wizard",
-            "x": 3,
-            "y": 0,
-            "facing": "west"
+        "stairs": {
+            "x": 5,
+            "y": 0
         },
-        {
-            "type": "wizard",
-            "x": 4,
-            "y": 0,
-            "facing": "west"
-        }
-    ]
+        "units": [
+            {
+                "type": "warrior",
+                "x": 0,
+                "y": 0,
+                "facing": "east",
+                "abilities": {
+                    "look": [],
+                    "shoot": []
+                }
+            },
+            {
+                "type": "captive",
+                "x": 2,
+                "y": 0,
+                "facing": "west"
+            },
+            {
+                "type": "wizard",
+                "x": 3,
+                "y": 0,
+                "facing": "west"
+            },
+            {
+                "type": "wizard",
+                "x": 4,
+                "y": 0,
+                "facing": "west"
+            }
+        ]
+    }
 }

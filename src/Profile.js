@@ -117,7 +117,7 @@ export default class Profile {
     return `${this.warriorName}-${this.tower.name}`.toLowerCase().replace(/[^a-z0-9]+/, '-');
   }
 
-  addAbilities(abilities) {
+  addAbilities(abilities = {}) {
     Object.assign(this.abilities, abilities);
   }
 

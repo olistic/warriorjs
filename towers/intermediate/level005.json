@@ -5,40 +5,41 @@
 
     "timeBonus": 45,
     "aceScore": 107,
-    "size": {
-        "width": 5,
-        "height": 2
-    },
-    "stairs": {
-        "x": 1,
-        "y": 1
-    },
 
-    "warrior": {
-        "x": 0,
-        "y": 1,
-        "facing": "east",
-        "abilities": {}
-    },
-
-    "units": [
-        {
-            "type": "thickSludge",
-            "x": 4,
-            "y": 0,
-            "facing": "west"
+    "floor": {
+        "size": {
+            "width": 5,
+            "height": 2
         },
-        {
-            "type": "thickSludge",
-            "x": 3,
-            "y": 1,
-            "facing": "north"
+        "stairs": {
+            "x": 1,
+            "y": 1
         },
-        {
-            "type": "captive",
-            "x": 4,
-            "y": 1,
-            "facing": "west"
-        }
-    ]
+        "units": [
+            {
+                "type": "warrior",
+                "x": 0,
+                "y": 1,
+                "facing": "east"
+            },
+            {
+                "type": "thickSludge",
+                "x": 4,
+                "y": 0,
+                "facing": "west"
+            },
+            {
+                "type": "thickSludge",
+                "x": 3,
+                "y": 1,
+                "facing": "north"
+            },
+            {
+                "type": "captive",
+                "x": 4,
+                "y": 1,
+                "facing": "west"
+            }
+        ]
+    }
 }

@@ -4,23 +4,26 @@
 
     "timeBonus": 15,
     "aceScore": 10,
-    "size": {
-        "width": 8,
-        "height": 1
-    },
-    "stairs": {
-        "x": 7,
-        "y": 0
-    },
 
-    "warrior": {
-        "x": 0,
-        "y": 0,
-        "facing": "east",
-        "abilities": {
-          "walk": []
-        }
-    },
-
-    "units": []
+    "floor": {
+        "size": {
+            "width": 8,
+            "height": 1
+        },
+        "stairs": {
+            "x": 7,
+            "y": 0
+        },
+        "units": [
+            {
+                "type": "warrior",
+                "x": 0,
+                "y": 0,
+                "facing": "east",
+                "abilities": {
+                    "walk": []
+                }
+            }
+        ]
+    }
 }

@@ -5,54 +5,56 @@
 
     "timeBonus": 45,
     "aceScore": 123,
-    "size": {
-        "width": 7,
-        "height": 1
-    },
-    "stairs": {
-        "x": 6,
-        "y": 0
-    },
 
-    "warrior": {
-        "x": 0,
-        "y": 0,
-        "facing": "east",
-        "abilities": {
-            "rescue": []
-        }
-    },
-
-    "units": [
-        {
-            "type": "captive",
-            "x": 2,
-            "y": 0,
-            "facing": "west"
+    "floor": {
+        "size": {
+            "width": 7,
+            "height": 1
         },
-        {
-            "type": "archer",
-            "x": 3,
-            "y": 0,
-            "facing": "west"
-        },
-        {
-            "type": "archer",
-            "x": 4,
-            "y": 0,
-            "facing": "west"
-        },
-        {
-            "type": "thickSludge",
-            "x": 5,
-            "y": 0,
-            "facing": "west"
-        },
-        {
-            "type": "captive",
+        "stairs": {
             "x": 6,
-            "y": 0,
-            "facing": "west"
-        }
-    ]
+            "y": 0
+        },
+        "units": [
+            {
+                "type": "warrior",
+                "x": 0,
+                "y": 0,
+                "facing": "east",
+                "abilities": {
+                    "rescue": []
+                }
+            },
+            {
+                "type": "captive",
+                "x": 2,
+                "y": 0,
+                "facing": "west"
+            },
+            {
+                "type": "archer",
+                "x": 3,
+                "y": 0,
+                "facing": "west"
+            },
+            {
+                "type": "archer",
+                "x": 4,
+                "y": 0,
+                "facing": "west"
+            },
+            {
+                "type": "thickSludge",
+                "x": 5,
+                "y": 0,
+                "facing": "west"
+            },
+            {
+                "type": "captive",
+                "x": 6,
+                "y": 0,
+                "facing": "west"
+            }
+        ]
+    }
 }

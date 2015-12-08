@@ -5,81 +5,83 @@
 
     "timeBonus": 70,
     "aceScore": 176,
-    "size": {
-        "width": 4,
-        "height": 3
-    },
-    "stairs": {
-        "x": 3,
-        "y": 0
-    },
 
-    "warrior": {
-        "x": 0,
-        "y": 1,
-        "facing": "east",
-        "abilities": {
-            "distanceOf": []
-        }
-    },
-
-    "units": [
-        {
-            "type": "captive",
-            "x": 2,
-            "y": 0,
-            "facing": "south",
-            "abilities": {
-                "explode": [20]
-            }
+    "floor": {
+        "size": {
+            "width": 4,
+            "height": 3
         },
-        {
-            "type": "captive",
-            "x": 2,
-            "y": 2,
-            "facing": "north"
-        },
-        {
-            "type": "sludge",
-            "x": 0,
-            "y": 0,
-            "facing": "south"
-        },
-        {
-            "type": "sludge",
-            "x": 1,
-            "y": 0,
-            "facing": "south"
-        },
-        {
-            "type": "sludge",
-            "x": 1,
-            "y": 1,
-            "facing": "east"
-        },
-        {
-            "type": "sludge",
-            "x": 2,
-            "y": 1,
-            "facing": "east"
-        },
-        {
-            "type": "sludge",
+        "stairs": {
             "x": 3,
-            "y": 1,
-            "facing": "east"
+            "y": 0
         },
-        {
-            "type": "sludge",
-            "x": 0,
-            "y": 2,
-            "facing": "north"
-        },
-        {
-            "type": "sludge",
-            "x": 1,
-            "y": 2,
-            "facing": "north"
-        }
-    ]
+        "units": [
+            {
+                "type": "warrior",
+                "x": 0,
+                "y": 1,
+                "facing": "east",
+                "abilities": {
+                    "distanceOf": []
+                }
+            },
+            {
+                "type": "captive",
+                "x": 2,
+                "y": 0,
+                "facing": "south",
+                "abilities": {
+                    "explode": [20]
+                }
+            },
+            {
+                "type": "captive",
+                "x": 2,
+                "y": 2,
+                "facing": "north"
+            },
+            {
+                "type": "sludge",
+                "x": 0,
+                "y": 0,
+                "facing": "south"
+            },
+            {
+                "type": "sludge",
+                "x": 1,
+                "y": 0,
+                "facing": "south"
+            },
+            {
+                "type": "sludge",
+                "x": 1,
+                "y": 1,
+                "facing": "east"
+            },
+            {
+                "type": "sludge",
+                "x": 2,
+                "y": 1,
+                "facing": "east"
+            },
+            {
+                "type": "sludge",
+                "x": 3,
+                "y": 1,
+                "facing": "east"
+            },
+            {
+                "type": "sludge",
+                "x": 0,
+                "y": 2,
+                "facing": "north"
+            },
+            {
+                "type": "sludge",
+                "x": 1,
+                "y": 2,
+                "facing": "north"
+            }
+        ]
+    }
 }

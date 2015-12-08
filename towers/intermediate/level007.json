@@ -5,55 +5,56 @@
 
     "timeBonus": 70,
     "aceScore": 134,
-    "size": {
-        "width": 5,
-        "height": 3
-    },
-    "stairs": {
-        "x": 4,
-        "y": 0
-    },
 
-    "warrior": {
-        "x": 0,
-        "y": 1,
-        "facing": "east",
-        "abilities": {}
-    },
-
-    "units": [
-        {
-            "type": "sludge",
-            "x": 1,
-            "y": 0,
-            "facing": "south"
+    "floor": {
+        "size": {
+            "width": 5,
+            "height": 3
         },
-        {
-            "type": "sludge",
-            "x": 1,
-            "y": 2,
-            "facing": "north"
-        },
-        {
-            "type": "captive",
-            "x": 2,
-            "y": 1,
-            "facing": "west"
-        },
-        {
-            "type": "captive",
+        "stairs": {
             "x": 4,
-            "y": 1,
-            "facing": "west",
-            "abilities": {
-                "explode": [10]
-            }
+            "y": 0
         },
-        {
-            "type": "captive",
-            "x": 2,
-            "y": 0,
-            "facing": "west"
-        }
-    ]
+        "units": [
+            {
+                "type": "warrior",
+                "x": 0,
+                "y": 1,
+                "facing": "east"
+            },
+            {
+                "type": "sludge",
+                "x": 1,
+                "y": 0,
+                "facing": "south"
+            },
+            {
+                "type": "sludge",
+                "x": 1,
+                "y": 2,
+                "facing": "north"
+            },
+            {
+                "type": "captive",
+                "x": 2,
+                "y": 1,
+                "facing": "west"
+            },
+            {
+                "type": "captive",
+                "x": 4,
+                "y": 1,
+                "facing": "west",
+                "abilities": {
+                    "explode": [10]
+                }
+            },
+            {
+                "type": "captive",
+                "x": 2,
+                "y": 0,
+                "facing": "west"
+            }
+        ]
+    }
 }

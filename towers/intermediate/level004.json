@@ -5,55 +5,57 @@
 
     "timeBonus": 55,
     "aceScore": 144,
-    "size": {
-        "width": 4,
-        "height": 3
-    },
-    "stairs": {
-        "x": 3,
-        "y": 2
-    },
 
-    "warrior": {
-        "x": 1,
-        "y": 1,
-        "facing": "east",
-        "abilities": {
-            "directionOf": [],
-            "listen": []
-        }
-    },
-
-    "units": [
-        {
-            "type": "captive",
-            "x": 0,
-            "y": 0,
-            "facing": "east"
+    "floor": {
+        "size": {
+            "width": 4,
+            "height": 3
         },
-        {
-            "type": "captive",
-            "x": 0,
-            "y": 2,
-            "facing": "east"
-        },
-        {
-            "type": "sludge",
-            "x": 2,
-            "y": 0,
-            "facing": "south"
-        },
-        {
-            "type": "thickSludge",
+        "stairs": {
             "x": 3,
-            "y": 1,
-            "facing": "west"
+            "y": 2
         },
-        {
-            "type": "sludge",
-            "x": 2,
-            "y": 2,
-            "facing": "north"
-        }
-    ]
+        "units": [
+            {
+                "type": "warrior",
+                "x": 1,
+                "y": 1,
+                "facing": "east",
+                "abilities": {
+                    "directionOf": [],
+                    "listen": []
+                }
+            },
+            {
+                "type": "captive",
+                "x": 0,
+                "y": 0,
+                "facing": "east"
+            },
+            {
+                "type": "captive",
+                "x": 0,
+                "y": 2,
+                "facing": "east"
+            },
+            {
+                "type": "sludge",
+                "x": 2,
+                "y": 0,
+                "facing": "south"
+            },
+            {
+                "type": "thickSludge",
+                "x": 3,
+                "y": 1,
+                "facing": "west"
+            },
+            {
+                "type": "sludge",
+                "x": 2,
+                "y": 2,
+                "facing": "north"
+            }
+        ]
+    }
 }

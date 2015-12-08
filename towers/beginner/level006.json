@@ -5,46 +5,48 @@
 
     "timeBonus": 55,
     "aceScore": 105,
-    "size": {
-        "width": 8,
-        "height": 1
-    },
-    "stairs": {
-        "x": 7,
-        "y": 0
-    },
 
-    "warrior": {
-        "x": 2,
-        "y": 0,
-        "facing": "east",
-        "abilities": {}
-    },
-
-    "units": [
-        {
-            "type": "captive",
-            "x": 0,
-            "y": 0,
-            "facing": "east"
+    "floor": {
+        "size": {
+            "width": 8,
+            "height": 1
         },
-        {
-            "type": "thickSludge",
-            "x": 4,
-            "y": 0,
-            "facing": "west"
-        },
-        {
-            "type": "archer",
-            "x": 6,
-            "y": 0,
-            "facing": "west"
-        },
-        {
-            "type": "archer",
+        "stairs": {
             "x": 7,
-            "y": 0,
-            "facing": "west"
-        }
-    ]
+            "y": 0
+        },
+        "units": [
+            {
+                "type": "warrior",
+                "x": 2,
+                "y": 0,
+                "facing": "east",
+                "abilities": {}
+            },
+            {
+                "type": "captive",
+                "x": 0,
+                "y": 0,
+                "facing": "east"
+            },
+            {
+                "type": "thickSludge",
+                "x": 4,
+                "y": 0,
+                "facing": "west"
+            },
+            {
+                "type": "archer",
+                "x": 6,
+                "y": 0,
+                "facing": "west"
+            },
+            {
+                "type": "archer",
+                "x": 7,
+                "y": 0,
+                "facing": "west"
+            }
+        ]
+    }
 }

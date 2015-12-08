@@ -5,31 +5,33 @@
 
     "timeBonus": 20,
     "aceScore": 26,
-    "size": {
-        "width": 8,
-        "height": 1
-    },
-    "stairs": {
-        "x": 7,
-        "y": 0
-    },
 
-    "warrior": {
-        "x": 0,
-        "y": 0,
-        "facing": "east",
-        "abilities": {
-            "attack": [],
-            "feel": []
-        }
-    },
-
-    "units": [
-        {
-            "type": "sludge",
-            "x": 4,
-            "y": 0,
-            "facing": "west"
-        }
-    ]
+    "floor": {
+        "size": {
+            "width": 8,
+            "height": 1
+        },
+        "stairs": {
+            "x": 7,
+            "y": 0
+        },
+        "units": [
+            {
+                "type": "warrior",
+                "x": 0,
+                "y": 0,
+                "facing": "east",
+                "abilities": {
+                    "attack": [],
+                    "feel": []
+                }
+            },
+            {
+                "type": "sludge",
+                "x": 4,
+                "y": 0,
+                "facing": "west"
+            }
+        ]
+    }
 }

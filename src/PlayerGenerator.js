@@ -34,48 +34,35 @@ export default class PlayerGenerator {
   }
 
   _readTemplate(templatePath) {
-    const level = Object.assign(
-      {},
-      this._level,
-      {
-        number: this._profile.levelNumber,
-        floorMap: this._getFloorMap(),
-        warriorAbilities: {
-          existent: this._profile.abilities,
-          new: this._level.warrior.abilities,
-        },
-        units: this._getUniqueUnits(),
+    const warrior = this._level.floor.units[0];
+    const level = Object.assign({}, this._level, {
+      number: this._profile.levelNumber,
+      floorMap: UI.getFloorCharacter(this._level.floor, false),
+      units: this._getUniqueUnits(),
+      warriorAbilities: {
+        existent: this._profile.abilities,
+        new: warrior.abilities,
       },
-    );
+    });
+
     return fs.readFileAsync(templatePath, 'utf8')
       .then((template) => Promise.resolve(ejs.render(template, { level })));
   }
 
-  _getFloorMap() {
-    const { width, height } = this._level.size;
-    const stairsLocation = [this._level.stairs.x, this._level.stairs.y];
-    const units = this._level.units
-      .concat(Object.assign({}, this._level.warrior, { type: 'warrior' }))
-      .map((unit) => ({
-        type: unit.type,
-        position: {
-          x: unit.x,
-          y: unit.y,
-          facing: unit.facing,
-        },
-      }));
-    return UI.getFloorCharacter(width, height, stairsLocation, units, false);
-  }
-
   _getUniqueUnits() {
-    const uniqueUnits = {};
-    this._level.units.forEach((unit) => {
-      if (!Object.keys(uniqueUnits).includes(unit.type)) {
-        uniqueUnits[unit.type] = UI.getUnitCharacter(unit.type);
-      }
-    });
     const warriorName = this._profile.warriorName;
-    uniqueUnits[warriorName] = UI.getUnitCharacter('warrior');
+    const uniqueUnits = {
+      [warriorName]: UI.getUnitCharacter('warrior')
+    };
+
+    this._level.floor.units
+      .slice(1)
+      .forEach((unit) => {
+        if (!(unit.type in uniqueUnits)) {
+          uniqueUnits[unit.type] = UI.getUnitCharacter(unit.type);
+        }
+      });
+
     return uniqueUnits;
   }
 }

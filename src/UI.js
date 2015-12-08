@@ -101,20 +101,39 @@ class UI {
    * Graphics
    */
 
-  static printTrace(trace) {
+  static printPlay(trace) {
     let turnNumber = 1;
     return Promise.reduce(trace, (_, turn) => {
       UI.printLine(`-------------------------- turn ${turnNumber} --------------------------`);
-      turnNumber += 1;
 
-      const { floor, log } = turn;
-      return UI.printFloor(floor).then(() => UI.printLog(log));
+      let y = 0;
+
+      let stepNumber = 1;
+
+      return Promise.reduce(turn, (_, step) => { // eslint-disable-line no-shadow
+        const { initialFloor, log, finalFloor } = step;
+
+        UI.printFloor(initialFloor, y);
+        return Promise.delay(stepNumber === 1 ? Config.delay * 1000 : 0)
+          .then(() => UI.printLog(log))
+          .then(() => y += log.length)
+          .then(() => UI.printFloor(finalFloor, y))
+          .then(() => Promise.delay(stepNumber === turn.length ? Config.delay * 1000 : 0))
+          .then(() => stepNumber += 1);
+      }, null).then(() => turnNumber += 1);
     }, null);
   }
 
-  static printFloor(floor) {
-    const floorCharacter = UI.getFloorCharacter(floor.width, floor.height, floor.stairsLocation, floor.units);
-    return UI.printLineWithDelay(floorCharacter);
+  static printFloor(floor, y) {
+    if (y) {
+      Config.outStream.write(`\x1B[${y + floor.size.height + 2}A`);
+    }
+
+    UI.printLine(UI.getFloorCharacter(floor));
+
+    if (y) {
+      Config.outStream.write(`\x1B[${y}B`);
+    }
   }
 
   static printLog(log) {
@@ -124,18 +143,18 @@ class UI {
     }, null);
   }
 
-  static getFloorCharacter(width, height, stairsLocation, units, styled = true) {
+  static getFloorCharacter({ size, stairs, units }, styled = true) {
     const rows = [];
-    rows.push(`╔${'═'.repeat(width)}╗`);
-    for (let y = 0; y < height; y++) {
+    rows.push(`╔${'═'.repeat(size.width)}╗`);
+    for (let y = 0; y < size.height; y++) {
       let row = '║';
-      for (let x = 0; x < width; x++) {
-        const foundUnit = units.find((unit) => unit.position.x === x && unit.position.y === y); // eslint-disable-line no-loop-func
+      for (let x = 0; x < size.width; x++) {
+        const foundUnit = units.find((unit) => unit.x === x && unit.y === y); // eslint-disable-line no-loop-func
         if (foundUnit) {
           row += styled ?
             UI.getUnitStyle(foundUnit.type)(UI.getUnitCharacter(foundUnit.type)) :
             UI.getUnitCharacter(foundUnit.type);
-        } else if (stairsLocation[0] === x && stairsLocation[1] === y) {
+        } else if (stairs.x === x && stairs.y === y) {
           row += '>';
         } else {
           row += ' ';
@@ -146,7 +165,7 @@ class UI {
       rows.push(row);
     }
 
-    rows.push(`╚${'═'.repeat(width)}╝`);
+    rows.push(`╚${'═'.repeat(size.width)}╝`);
     return rows.join('\n');
   }
 

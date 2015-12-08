@@ -40,9 +40,11 @@
   "homepage": "https://github.com/olistic/warriorjs",
   "devDependencies": {
     "babel": "^5.8.29",
+    "babel-eslint": "^4.1.6",
     "chai": "^3.4.0",
-    "mocha": "^2.3.3",
-    "sinon": "^1.17.2"
+    "eslint": "^1.10.3",
+    "eslint-config-airbnb": "^2.0.0",
+    "mocha": "^2.3.3"
   },
   "dependencies": {
     "bluebird": "^3.0.5",
@@ -50,6 +52,6 @@
     "ejs": "^2.3.4",
     "fs-extra": "^0.26.2",
     "inquirer": "^0.11.0",
-    "warriorjs-engine": "^0.3.0"
+    "warriorjs-engine": "^0.4.0"
   }
 }

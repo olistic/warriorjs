@@ -5,52 +5,54 @@
 
     "timeBonus": 40,
     "aceScore": 100,
-    "size": {
-        "width": 11,
-        "height": 1
-    },
-    "stairs": {
-        "x": 0,
-        "y": 0
-    },
 
-    "warrior": {
-        "x": 5,
-        "y": 0,
-        "facing": "east",
-        "abilities": {}
-    },
-
-    "units": [
-        {
-            "type": "captive",
-            "x": 1,
-            "y": 0,
-            "facing": "east"
+    "floor": {
+        "size": {
+            "width": 11,
+            "height": 1
         },
-        {
-            "type": "archer",
-            "x": 2,
-            "y": 0,
-            "facing": "east"
+        "stairs": {
+            "x": 0,
+            "y": 0
         },
-        {
-            "type": "thickSludge",
-            "x": 7,
-            "y": 0,
-            "facing": "west"
-        },
-        {
-            "type": "wizard",
-            "x": 9,
-            "y": 0,
-            "facing": "west"
-        },
-        {
-            "type": "captive",
-            "x": 10,
-            "y": 0,
-            "facing": "west"
-        }
-    ]
+        "units": [
+            {
+                "type": "warrior",
+                "x": 5,
+                "y": 0,
+                "facing": "east",
+                "abilities": {}
+            },
+            {
+                "type": "captive",
+                "x": 1,
+                "y": 0,
+                "facing": "east"
+            },
+            {
+                "type": "archer",
+                "x": 2,
+                "y": 0,
+                "facing": "east"
+            },
+            {
+                "type": "thickSludge",
+                "x": 7,
+                "y": 0,
+                "facing": "west"
+            },
+            {
+                "type": "wizard",
+                "x": 9,
+                "y": 0,
+                "facing": "west"
+            },
+            {
+                "type": "captive",
+                "x": 10,
+                "y": 0,
+                "facing": "west"
+            }
+        ]
+    }
 }

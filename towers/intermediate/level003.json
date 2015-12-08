@@ -5,49 +5,51 @@
 
     "timeBonus": 50,
     "aceScore": 101,
-    "size": {
-        "width": 3,
-        "height": 3
-    },
-    "stairs": {
-        "x": 0,
-        "y": 0
-    },
 
-    "warrior": {
-        "x": 1,
-        "y": 1,
-        "facing": "east",
-        "abilities": {
-            "bind": [],
-            "rescue": []
-        }
-    },
-
-    "units": [
-        {
-            "type": "sludge",
-            "x": 1,
-            "y": 0,
-            "facing": "west"
+    "floor": {
+        "size": {
+            "width": 3,
+            "height": 3
         },
-        {
-            "type": "captive",
-            "x": 1,
-            "y": 2,
-            "facing": "west"
-        },
-        {
-            "type": "sludge",
+        "stairs": {
             "x": 0,
-            "y": 1,
-            "facing": "west"
+            "y": 0
         },
-        {
-            "type": "sludge",
-            "x": 2,
-            "y": 1,
-            "facing": "west"
-        }
-    ]
+        "units": [
+            {
+                "type": "warrior",
+                "x": 1,
+                "y": 1,
+                "facing": "east",
+                "abilities": {
+                    "bind": [],
+                    "rescue": []
+                }
+            },
+            {
+                "type": "sludge",
+                "x": 1,
+                "y": 0,
+                "facing": "west"
+            },
+            {
+                "type": "captive",
+                "x": 1,
+                "y": 2,
+                "facing": "west"
+            },
+            {
+                "type": "sludge",
+                "x": 0,
+                "y": 1,
+                "facing": "west"
+            },
+            {
+                "type": "sludge",
+                "x": 2,
+                "y": 1,
+                "facing": "west"
+            }
+        ]
+    }
 }
