@@ -1,14 +1,14 @@
 ![banner](https://s3.amazonaws.com/f.cl.ly/items/2z1v1z1v0i1j0y192k30/WarriorJS%20Banner.png)
 
-[![Build Status](https://travis-ci.org/olistic/warriorjs.svg?branch=master)](https://travis-ci.org/olistic/warriorjs)
-[![npm version](https://badge.fury.io/js/warriorjs.svg)](http://badge.fury.io/js/warriorjs)
-[![Join the chat at https://gitter.im/olistic/warriorjs](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/olistic/warriorjs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+*Special thanks to [guillecura](https://dribbble.com/guillecura) for the logo.*
+
+[![Travis](https://img.shields.io/travis/olistic/warriorjs.svg?style=flat-square)](https://travis-ci.org/olistic/warriorjs)
+[![npm](https://img.shields.io/npm/v/warriorjs.svg?style=flat-square)](https://www.npmjs.com/package/warriorjs)
+[![Gitter](https://img.shields.io/gitter/room/olistic/warriorjs.svg?style=flat-square)](https://gitter.im/olistic/warriorjs)
 
 This is a game designed to teach JavaScript and artificial intelligence in a fun, interactive way.
 
 You play as a warrior climbing a tall tower to `<insert something that motivates you here>` at the top level. On each floor, you need to write JavaScript (with full ES2015 support) to instruct the warrior to battle enemies, rescue captives, and reach the stairs.
-
-NOTE: Watch the repo or check `npm outdated -g warriorjs` regularly to find out about new levels and abilities.
 
 ## Installation
 
@@ -273,4 +273,6 @@ isEnemyInSight(warrior) {
 
 This game was originally developed by [@ryanb](https://github.com/ryanb) to teach the Ruby language. Special thanks to him for the original [ruby-warrior](https://github.com/ryanb/ruby-warrior).
 
-Thanks to [@guillecura](https://github.com/guillecura) for the awesome logo idea and for carrying it out.
+## License
+
+MIT
