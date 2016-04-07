@@ -76,12 +76,12 @@ class UI {
 
   static choose(itemName, items) {
     return new Promise((resolve) => {
-      const choices = items.map((item) => {
-        return {
+      const choices = items.map(item => (
+        {
           name: item.toString(),
           value: item,
-        };
-      });
+        }
+      ));
 
       const name = 'choice';
       inquirer.prompt([
@@ -149,7 +149,7 @@ class UI {
     for (let y = 0; y < size.height; y++) {
       let row = '║';
       for (let x = 0; x < size.width; x++) {
-        const foundUnit = units.find((unit) => unit.x === x && unit.y === y); // eslint-disable-line no-loop-func
+        const foundUnit = units.find(unit => unit.x === x && unit.y === y);
         if (foundUnit) {
           row += styled ?
             UI.getUnitStyle(foundUnit.type)(UI.getUnitCharacter(foundUnit.type)) :

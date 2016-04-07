@@ -48,7 +48,14 @@ export default class Config {
   }
 
   static reset() {
-    ['_pathPrefix', '_skipInput', '_delay', '_inStream', '_outStream', '_practiceLevel'].forEach((prop) => {
+    [
+      '_pathPrefix',
+      '_skipInput',
+      '_delay',
+      '_inStream',
+      '_outStream',
+      '_practiceLevel',
+    ].forEach((prop) => {
       if (this.hasOwnProperty(prop)) {
         delete this[prop];
       }

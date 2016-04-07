@@ -3,9 +3,5 @@
 
   "env": {
     "mocha": true
-  },
-
-  "rules": {
-    "id-length": [2, {"min": 2, "properties": "never", "exceptions": ["n", "x", "y", "_"]}]
   }
 }

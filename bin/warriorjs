@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-var Runner = require('../lib/Runner');
+const Runner = require('../lib/Runner').default;
 
-var runner = new Runner(process.argv, process.stdin, process.stdout);
+const runner = new Runner(process.argv, process.stdin, process.stdout);
 runner.run();
