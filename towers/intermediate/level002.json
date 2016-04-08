@@ -15,19 +15,30 @@
             "x": 3,
             "y": 1
         },
+        "warrior": {
+          "x": 0,
+          "y": 0,
+          "facing": "east",
+          "abilities": [
+              {
+                  "name": "feel",
+                  "args": []
+              },
+              {
+                  "name": "attack",
+                  "args": []
+              },
+              {
+                  "name": "health",
+                  "args": []
+              },
+              {
+                  "name": "rest",
+                  "args": []
+              }
+          ]
+        },
         "units": [
-            {
-                "type": "warrior",
-                "x": 0,
-                "y": 0,
-                "facing": "east",
-                "abilities": {
-                    "feel": [],
-                    "attack": [],
-                    "health": [],
-                    "rest": []
-                }
-            },
             {
                 "type": "sludge",
                 "x": 1,

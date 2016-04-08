@@ -14,16 +14,17 @@
             "x": 7,
             "y": 0
         },
-        "units": [
-            {
-                "type": "warrior",
-                "x": 0,
-                "y": 0,
-                "facing": "east",
-                "abilities": {
-                    "walk": []
-                }
-            }
-        ]
+        "warrior": {
+          "x": 0,
+          "y": 0,
+          "facing": "east",
+          "abilities": [
+              {
+                  "name": "walk",
+                  "args": []
+              }
+          ]
+        },
+        "units": []
     }
 }

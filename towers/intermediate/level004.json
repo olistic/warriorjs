@@ -15,17 +15,22 @@
             "x": 3,
             "y": 2
         },
+        "warrior": {
+          "x": 1,
+          "y": 1,
+          "facing": "east",
+          "abilities": [
+              {
+                  "name": "directionOf",
+                  "args": []
+              },
+              {
+                  "name": "listen",
+                  "args": []
+              }
+          ]
+        },
         "units": [
-            {
-                "type": "warrior",
-                "x": 1,
-                "y": 1,
-                "facing": "east",
-                "abilities": {
-                    "directionOf": [],
-                    "listen": []
-                }
-            },
             {
                 "type": "captive",
                 "x": 0,

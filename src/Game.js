@@ -2,7 +2,7 @@ import path from 'path';
 import fs from 'fs-extra';
 import glob from 'glob';
 import Promise from 'bluebird';
-import Engine from 'warriorjs-engine';
+import { playLevel } from 'warriorjs-engine';
 import UI from './UI';
 import Config from './Config';
 import Profile from './Profile';
@@ -64,8 +64,8 @@ export default class Game {
         });
     }
 
-    const playLoop = () => {
-      return this.playCurrentLevel()
+    const playLoop = () => (
+      this.playCurrentLevel()
         .then((playing) => {
           if (!playing) {
             return Promise.resolve();
@@ -73,8 +73,8 @@ export default class Game {
 
           this._profile.levelNumber += 1;
           return playLoop();
-        });
-    };
+        })
+    );
 
     this._profile.levelNumber += 1;
     return playLoop().then(() => this._profile.save());
@@ -95,60 +95,65 @@ export default class Game {
 
   playCurrentLevel() {
     let playing = true;
-    return Promise.join(this.getPlayerCode(), this.getCurrentLevelConfig(), (playerCode, config) => {
-      const profile = {
-        playerCode,
-        warriorName: this._profile.warriorName,
-        abilities: this._profile.abilities,
-      };
+    return Promise.join(
+      this.getPlayerCode(),
+      this.getCurrentLevelConfig(),
+      (playerCode, levelConfig) => {
+        const profile = {
+          playerCode,
+          warriorName: this._profile.warriorName,
+          abilities: this._profile.abilities,
+        };
 
-      const { passed, trace, points } = Engine.playLevel(config, profile);
+        const { passed, events, score } = playLevel(levelConfig, profile);
 
-      return UI.printPlay(trace)
-        .then(() => {
-          if (passed) {
-            return this.levelExists(this._profile.levelNumber + 1)
-              .then((exists) => {
-                if (exists) {
-                  UI.printLine('Success! You have found the stairs.');
-                } else {
-                  playing = false;
-                  UI.printLine('CONGRATULATIONS! You have climbed to the top of the tower.');
-                }
+        return UI.printPlay(levelConfig.floor, events)
+          .then(() => {
+            if (passed) {
+              return this.levelExists(this._profile.levelNumber + 1)
+                .then((exists) => {
+                  if (exists) {
+                    UI.printLine('Success! You have found the stairs.');
+                  } else {
+                    playing = false;
+                    UI.printLine('CONGRATULATIONS! You have climbed to the top of the tower.');
+                  }
 
-                this.tallyPoints(points, config.aceScore);
+                  const { aceScore, floor } = levelConfig;
 
-                const warrior = config.floor.units[0];
-                this._profile.addAbilities(warrior.abilities);
+                  this.tallyPoints({ ...score, aceScore });
 
-                if (this._profile.isEpic()) {
-                  if (!playing && !Config.practiceLevel && this._profile.calculateAverageGrade()) {
-                    UI.printLine(this.getFinalReport());
+                  const { warrior: { abilities } } = floor;
+                  this._profile.addAbilities(abilities);
+
+                  if (this._profile.isEpic()) {
+                    if (!playing && !Config.practiceLevel && this._profile.calculateAverageGrade()) {
+                      UI.printLine(this.getFinalReport());
+                    }
+
+                    return Promise.resolve(playing);
+                  }
+
+                  return this.requestNextLevel().then(() => Promise.resolve(playing));
+                });
+            }
+
+            playing = false;
+            UI.printLine(`Sorry, you failed level ${this._profile.levelNumber}. Change your script and try again.`);
+            if (!Config.skipInput && levelConfig.clue) {
+              return UI.ask('Would you like to read the additional clues for this level?')
+                .then((answer) => {
+                  if (answer) {
+                    UI.printLine(levelConfig.clue);
                   }
 
                   return Promise.resolve(playing);
-                }
+                });
+            }
 
-                return this.requestNextLevel().then(() => Promise.resolve(playing));
-              });
-          }
-
-          playing = false;
-          UI.printLine(`Sorry, you failed level ${this._profile.levelNumber}. Change your script and try again.`);
-          if (!Config.skipInput && config.clue) {
-            return UI.ask('Would you like to read the additional clues for this level?')
-              .then((answer) => {
-                if (answer) {
-                  UI.printLine(config.clue);
-                }
-
-                return Promise.resolve(playing);
-              });
-          }
-
-          return Promise.resolve(playing);
-        });
-    });
+            return Promise.resolve(playing);
+          });
+      });
   }
 
   getPlayerCode() {
@@ -156,7 +161,9 @@ export default class Game {
   }
 
   generatePlayerFiles() {
-    return this.getCurrentLevelConfig().then((level) => new PlayerGenerator(this._profile, level).generate());
+    return this.getCurrentLevelConfig().then(level => (
+      new PlayerGenerator(this._profile, level).generate()
+    ));
   }
 
   requestNextLevel() {
@@ -218,17 +225,17 @@ export default class Game {
    * Score
    */
 
-  tallyPoints(points, aceScore) {
+  tallyPoints({ level, timeBonus, clearBonus, aceScore }) {
     let score = 0;
 
-    UI.printLine(`Level Score: ${points.levelScore}`);
-    score += points.levelScore;
+    UI.printLine(`Level Score: ${level}`);
+    score += level;
 
-    UI.printLine(`Time Bonus: ${points.timeBonus}`);
-    score += points.timeBonus;
+    UI.printLine(`Time Bonus: ${timeBonus}`);
+    score += timeBonus;
 
-    UI.printLine(`Clear Bonus: ${points.clearBonus}`);
-    score += points.clearBonus;
+    UI.printLine(`Clear Bonus: ${clearBonus}`);
+    score += clearBonus;
 
     if (this._profile.isEpic()) {
       if (aceScore) {
@@ -312,9 +319,7 @@ export default class Game {
   chooseProfile() {
     const newProfileChoice = 'New profile';
     return this.getProfiles()
-      .then((profileChoices) => {
-        return UI.choose('profile', profileChoices.concat(newProfileChoice));
-      })
+      .then(profileChoices => UI.choose('profile', profileChoices.concat(newProfileChoice)))
       .then((profile) => {
         if (profile === newProfileChoice) {
           return this.newProfile();
@@ -326,9 +331,7 @@ export default class Game {
 
   getProfiles() {
     return this.getProfilePaths()
-      .then((profilePaths) => {
-        return Promise.map(profilePaths, (profilePath) => Profile.load(profilePath));
-      });
+      .then(profilePaths => Promise.map(profilePaths, (profilePath) => Profile.load(profilePath)));
   }
 
   getProfilePaths() {
@@ -404,9 +407,9 @@ export default class Game {
 
   isExistingProfile(newProfile) {
     return this.getProfiles()
-      .then((profiles) => {
-        return Promise.resolve(profiles.some((profile) => profile.playerPath === newProfile.playerPath));
-      });
+      .then(profiles => (
+        Promise.resolve(profiles.some(profile => profile.playerPath === newProfile.playerPath))
+      ));
   }
 
   /*
@@ -415,10 +418,9 @@ export default class Game {
 
   getTowers() {
     return this.getTowerPaths()
-      .then((towerPaths) => {
-        const towers = towerPaths.map((towerPath) => new Tower(towerPath));
-        return Promise.resolve(towers);
-      });
+      .then(towerPaths => (
+        Promise.resolve(towerPaths.map((towerPath) => new Tower(towerPath)))
+      ));
   }
 
   getTowerPaths() {

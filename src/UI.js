@@ -101,49 +101,44 @@ class UI {
    * Graphics
    */
 
-  static printPlay(trace) {
-    let turnNumber = 1;
-    return Promise.reduce(trace, (_, turn) => {
-      UI.printLine(`-------------------------- turn ${turnNumber} --------------------------`);
+  static printPlay(initialFloor, events) {
+    let offset = 0;
+    let lastFloor = initialFloor;
 
-      let y = 0;
-
-      let stepNumber = 1;
-
-      return Promise.reduce(turn, (_, step) => { // eslint-disable-line no-shadow
-        const { initialFloor, log, finalFloor } = step;
-
-        UI.printFloor(initialFloor, y);
-        return Promise.delay(stepNumber === 1 ? Config.delay * 1000 : 0)
-          .then(() => UI.printLog(log))
-          .then(() => y += log.length)
-          .then(() => UI.printFloor(finalFloor, y))
-          .then(() => Promise.delay(stepNumber === turn.length ? Config.delay * 1000 : 0))
-          .then(() => stepNumber += 1);
-      }, null).then(() => turnNumber += 1);
+    return Promise.reduce(events, (_, event) => {
+      switch (event.type) {
+        case 'TURN_CHANGED':
+          offset = 0;
+          UI.printLine(`-------------------------- turn ${event.turn} --------------------------`);
+          return UI.printFloor(lastFloor, offset);
+        case 'UNIT_SPOKE': {
+          offset += 1;
+          const { unitType, message } = event;
+          return UI.printLineWithDelay(UI.getUnitStyle(unitType)(message));
+        }
+        case 'FLOOR_CHANGED':
+          lastFloor = event.floor;
+          return UI.printFloor(lastFloor, offset);
+        default:
+          return Promise.resolve(true);
+      }
     }, null);
   }
 
-  static printFloor(floor, y) {
-    if (y) {
-      Config.outStream.write(`\x1B[${y + floor.size.height + 2}A`);
+  static printFloor(floor, offset) {
+    if (offset) {
+      Config.outStream.write(`\x1B[${offset + floor.size.height + 2}A`);
     }
 
-    UI.printLine(UI.getFloorCharacter(floor));
-
-    if (y) {
-      Config.outStream.write(`\x1B[${y}B`);
-    }
+    return UI.printLineWithDelay(UI.getFloorCharacter(floor))
+      .then(() => {
+        if (offset) {
+          Config.outStream.write(`\x1B[${offset}B`);
+        }
+      });
   }
 
-  static printLog(log) {
-    return Promise.reduce(log, (_, entry) => {
-      const { unitType, message } = entry;
-      return UI.printLineWithDelay(UI.getUnitStyle(unitType)(message));
-    }, null);
-  }
-
-  static getFloorCharacter({ size, stairs, units }, styled = true) {
+  static getFloorCharacter({ size, stairs, warrior, units }, styled = true) {
     const rows = [];
     rows.push(`╔${'═'.repeat(size.width)}╗`);
     for (let y = 0; y < size.height; y++) {
@@ -151,9 +146,9 @@ class UI {
       for (let x = 0; x < size.width; x++) {
         const foundUnit = units.find(unit => unit.x === x && unit.y === y);
         if (foundUnit) {
-          row += styled ?
-            UI.getUnitStyle(foundUnit.type)(UI.getUnitCharacter(foundUnit.type)) :
-            UI.getUnitCharacter(foundUnit.type);
+          row += UI.getUnitStyle(foundUnit.type)(UI.getUnitCharacter(foundUnit.type));
+        } else if (warrior && warrior.x === x && warrior.y === y) {
+          row += UI.getUnitStyle('warrior')(UI.getUnitCharacter('warrior'));
         } else if (stairs.x === x && stairs.y === y) {
           row += '>';
         } else {
@@ -166,7 +161,9 @@ class UI {
     }
 
     rows.push(`╚${'═'.repeat(size.width)}╝`);
-    return rows.join('\n');
+
+    const floorCharacter = rows.join('\n');
+    return styled ? floorCharacter : chalk.stripColor(floorCharacter);
   }
 
   static getUnitCharacter(type) {

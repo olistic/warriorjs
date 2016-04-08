@@ -15,17 +15,22 @@
             "x": 7,
             "y": 0
         },
+        "warrior": {
+          "x": 0,
+          "y": 0,
+          "facing": "east",
+          "abilities": [
+              {
+                  "name": "attack",
+                  "args": []
+              },
+              {
+                  "name": "feel",
+                  "args": []
+              }
+          ]
+        },
         "units": [
-            {
-                "type": "warrior",
-                "x": 0,
-                "y": 0,
-                "facing": "east",
-                "abilities": {
-                    "attack": [],
-                    "feel": []
-                }
-            },
             {
                 "type": "sludge",
                 "x": 4,

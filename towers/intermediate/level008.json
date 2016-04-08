@@ -15,25 +15,33 @@
             "x": 6,
             "y": 0
         },
+        "warrior": {
+          "x": 0,
+          "y": 0,
+          "facing": "east",
+          "abilities": [
+              {
+                  "name": "detonate",
+                  "args": []
+              },
+              {
+                  "name": "look",
+                  "args": []
+              }
+          ]
+        },
         "units": [
-            {
-                "type": "warrior",
-                "x": 0,
-                "y": 0,
-                "facing": "east",
-                "abilities": {
-                    "detonate": [],
-                    "look": []
-                }
-            },
             {
                 "type": "captive",
                 "x": 5,
                 "y": 0,
                 "facing": "west",
-                "abilities": {
-                    "explode": [9]
-                }
+                "abilities": [
+                    {
+                        "name": "explode",
+                        "args": [9]
+                    }
+                ]
             },
             {
                 "type": "thickSludge",

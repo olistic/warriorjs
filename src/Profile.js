@@ -14,7 +14,7 @@ export default class Profile {
   _currentEpicScore = 0;
   _currentEpicGrades = {};
   _averageGrade = null;
-  _abilities = {};
+  _abilities = [];
   _levelNumber = 0;
   _lastLevelNumber = null;
   _playerPath = null;
@@ -117,8 +117,12 @@ export default class Profile {
     return `${this.warriorName}-${this.tower.name}`.toLowerCase().replace(/[^a-z0-9]+/, '-');
   }
 
-  addAbilities(abilities = {}) {
-    Object.assign(this.abilities, abilities);
+  addAbilities(abilities = []) {
+    abilities.forEach((newAbility) => {
+      if (this.abilities.map(ability => ability.name).indexOf(newAbility.name) === -1) {
+        this.abilities.push(newAbility);
+      }
+    });
   }
 
   isEpic() {

@@ -26,9 +26,15 @@ describe('Profile', function () {
   });
 
   it('should have no abilities and allow adding', function () {
-    Object.keys(this.profile.abilities).should.be.empty;
-    this.profile.addAbilities({ foo: [], bar: [] });
-    Object.keys(this.profile.abilities).should.have.members(['foo', 'bar']);
+    this.profile.abilities.should.be.empty;
+    this.profile.addAbilities([
+      { name: 'foo', args: [] },
+      { name: 'bar', args: [] },
+    ]);
+    this.profile.abilities.should.deep.have.members([
+      { name: 'foo', args: [] },
+      { name: 'bar', args: [] },
+    ]);
   });
 
   it('should encode with JSON + base64', function () {
@@ -36,8 +42,18 @@ describe('Profile', function () {
   });
 
   it('should add abilities and remove duplicates', function () {
-    this.profile.addAbilities({ foo: [], bar: [], blah: [], bar: [] }); // eslint-disable-line no-dupe-keys
-    Object.keys(this.profile.abilities).should.have.members(['foo', 'bar', 'blah']);
+    this.profile.addAbilities([
+      { name: 'foo', args: [] },
+      { name: 'bar', args: [] },
+      { name: 'blah', args: [] },
+      { name: 'bar', args: [] },
+    ]);
+    this.profile.abilities.length.should.equal(3);
+    this.profile.abilities.should.deep.have.members([
+      { name: 'foo', args: [] },
+      { name: 'bar', args: [] },
+      { name: 'blah', args: [] },
+    ]);
   });
 
   it('should enable epic mode and reset scores if null', function () {

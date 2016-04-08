@@ -15,17 +15,22 @@
             "x": 0,
             "y": 0
         },
+        "warrior": {
+          "x": 1,
+          "y": 1,
+          "facing": "east",
+          "abilities": [
+              {
+                  "name": "bind",
+                  "args": []
+              },
+              {
+                  "name": "rescue",
+                  "args": []
+              }
+          ]
+        },
         "units": [
-            {
-                "type": "warrior",
-                "x": 1,
-                "y": 1,
-                "facing": "east",
-                "abilities": {
-                    "bind": [],
-                    "rescue": []
-                }
-            },
             {
                 "type": "sludge",
                 "x": 1,

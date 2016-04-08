@@ -34,14 +34,14 @@ export default class PlayerGenerator {
   }
 
   _readTemplate(templatePath) {
-    const warrior = this._level.floor.units[0];
+    const warrior = this._level.floor.warrior;
     const level = Object.assign({}, this._level, {
       number: this._profile.levelNumber,
       floorMap: UI.getFloorCharacter(this._level.floor, false),
       units: this._getUniqueUnits(),
       warriorAbilities: {
         existent: this._profile.abilities,
-        new: warrior.abilities,
+        new: warrior.abilities || [],
       },
     });
 

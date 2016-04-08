@@ -14,13 +14,13 @@ Tip: <%- level.tip %>
 
 
 Warrior abilities:
-<% Object.keys(level.warriorAbilities.existent).forEach(function (name) { -%>
+<% level.warriorAbilities.existent.forEach(function (ability) { -%>
 
-  warrior.<%- name %>()
+  warrior.<%- ability.name %>()
 <% }); -%>
-<% Object.keys(level.warriorAbilities.new).forEach(function (name) { -%>
+<% level.warriorAbilities.new.forEach(function (ability) { -%>
 
-  warrior.<%- name %>() (NEW!)
+  warrior.<%- ability.name %>() (NEW!)
 <% }); -%>
 
 

@@ -15,17 +15,22 @@
             "x": 5,
             "y": 0
         },
+        "warrior": {
+          "x": 0,
+          "y": 0,
+          "facing": "east",
+          "abilities": [
+              {
+                  "name": "look",
+                  "args": []
+              },
+              {
+                  "name": "shoot",
+                  "args": []
+              }
+          ]
+        },
         "units": [
-            {
-                "type": "warrior",
-                "x": 0,
-                "y": 0,
-                "facing": "east",
-                "abilities": {
-                    "look": [],
-                    "shoot": []
-                }
-            },
             {
                 "type": "captive",
                 "x": 2,

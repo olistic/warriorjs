@@ -15,16 +15,18 @@
             "x": 6,
             "y": 0
         },
+        "warrior": {
+          "x": 0,
+          "y": 0,
+          "facing": "east",
+          "abilities": [
+              {
+                  "name": "rescue",
+                  "args": []
+              }
+          ]
+        },
         "units": [
-            {
-                "type": "warrior",
-                "x": 0,
-                "y": 0,
-                "facing": "east",
-                "abilities": {
-                    "rescue": []
-                }
-            },
             {
                 "type": "captive",
                 "x": 2,

@@ -15,13 +15,12 @@
             "x": 5,
             "y": 0
         },
+        "warrior": {
+          "x": 0,
+          "y": 1,
+          "facing": "east"
+        },
         "units": [
-            {
-                "type": "warrior",
-                "x": 0,
-                "y": 1,
-                "facing": "east"
-            },
             {
                 "type": "sludge",
                 "x": 1,
@@ -45,9 +44,12 @@
                 "x": 4,
                 "y": 1,
                 "facing": "west",
-                "abilities": {
-                    "explode": [7]
-                }
+                "abilities": [
+                    {
+                        "name": "explode",
+                        "args": [7]
+                    }
+                ]
             }
         ]
     }

@@ -56,7 +56,7 @@
     "fs-extra": "^0.26.7",
     "glob": "^7.0.3",
     "inquirer": "^0.12.0",
-    "warriorjs-engine": "^0.4.2",
+    "warriorjs-engine": "^0.8.0",
     "yargs": "^4.4.0"
   }
 }

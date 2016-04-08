@@ -15,16 +15,18 @@
             "x": 0,
             "y": 0
         },
+        "warrior": {
+          "x": 5,
+          "y": 0,
+          "facing": "east",
+          "abilities": [
+              {
+                  "name": "pivot",
+                  "args": []
+              }
+          ]
+        },
         "units": [
-            {
-                "type": "warrior",
-                "x": 5,
-                "y": 0,
-                "facing": "east",
-                "abilities": {
-                    "pivot": []
-                }
-            },
             {
                 "type": "archer",
                 "x": 1,
