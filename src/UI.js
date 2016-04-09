@@ -21,7 +21,7 @@ const UNIT_TYPE_STYLES = {
   wizard: chalk.blue,
 };
 
-class UI {
+export default class UI {
   static print(message) {
     if (Config.outStream) {
       Config.outStream.write(message);
@@ -109,8 +109,8 @@ class UI {
       switch (event.type) {
         case 'TURN_CHANGED':
           offset = 0;
-          UI.printLine(`-------------------------- turn ${event.turn} --------------------------`);
-          return UI.printFloor(lastFloor, offset);
+          return UI.printLineWithDelay(`-------------------------- turn ${event.turn} --------------------------`)
+            .then(() => UI.printFloor(lastFloor, offset));
         case 'UNIT_SPOKE': {
           offset += 1;
           const { unitType, message } = event;
@@ -174,5 +174,3 @@ class UI {
     return UNIT_TYPE_STYLES[type];
   }
 }
-
-export default UI;

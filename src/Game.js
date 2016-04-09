@@ -96,16 +96,26 @@ export default class Game {
   playCurrentLevel() {
     let playing = true;
     return Promise.join(
-      this.getPlayerCode(),
       this.getCurrentLevelConfig(),
-      (playerCode, levelConfig) => {
-        const profile = {
-          playerCode,
-          warriorName: this._profile.warriorName,
-          abilities: this._profile.abilities,
+      this.getPlayerCode(),
+      (levelConfig, playerCode) => {
+        const newAbilities = levelConfig.floor.warrior.abilities || [];
+        const augmentedLevelConfig = {
+          ...levelConfig,
+          floor: {
+            ...levelConfig.floor,
+            warrior: {
+              ...levelConfig.floor.warrior,
+              name: this._profile.warriorName,
+              abilities: [
+                ...newAbilities,
+                ...this._profile.abilities,
+              ],
+            },
+          },
         };
 
-        const { passed, events, score } = playLevel(levelConfig, profile);
+        const { passed, events, score } = playLevel(augmentedLevelConfig, playerCode);
 
         return UI.printPlay(levelConfig.floor, events)
           .then(() => {
