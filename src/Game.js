@@ -117,7 +117,7 @@ export default class Game {
 
         const { passed, events, score } = playLevel(augmentedLevelConfig, playerCode);
 
-        return UI.printPlay(levelConfig.floor, events)
+        return UI.printPlay(events)
           .then(() => {
             if (passed) {
               return this.levelExists(this._profile.levelNumber + 1)
@@ -235,11 +235,11 @@ export default class Game {
    * Score
    */
 
-  tallyPoints({ level, timeBonus, clearBonus, aceScore }) {
+  tallyPoints({ warrior, timeBonus, clearBonus, aceScore }) {
     let score = 0;
 
-    UI.printLine(`Level Score: ${level}`);
-    score += level;
+    UI.printLine(`Warrior Score: ${warrior}`);
+    score += warrior;
 
     UI.printLine(`Time Bonus: ${timeBonus}`);
     score += timeBonus;

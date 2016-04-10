@@ -101,20 +101,24 @@ export default class UI {
    * Graphics
    */
 
-  static printPlay(initialFloor, events) {
+  static printPlay(events) {
+    let lastFloor;
     let offset = 0;
-    let lastFloor = initialFloor;
 
     return Promise.reduce(events, (_, event) => {
       switch (event.type) {
-        case 'TURN_CHANGED':
+        case 'PLAY_STARTED':
+          lastFloor = event.initialFloor;
+          return Promise.resolve(true);
+        case 'TURN_CHANGED': {
           offset = 0;
-          return UI.printLineWithDelay(`-------------------------- turn ${event.turn} --------------------------`)
-            .then(() => UI.printFloor(lastFloor, offset));
+          const turnNumber = event.turn;
+          return UI.printTurnHeader(turnNumber).then(() => UI.printFloor(lastFloor, offset));
+        }
         case 'UNIT_SPOKE': {
           offset += 1;
           const { unitType, message } = event;
-          return UI.printLineWithDelay(UI.getUnitStyle(unitType)(message));
+          return UI.printUnitMessage(unitType, message);
         }
         case 'FLOOR_CHANGED':
           lastFloor = event.floor;
@@ -125,10 +129,23 @@ export default class UI {
     }, null);
   }
 
+  static printTurnHeader(turnNumber) {
+    return UI.printLineWithDelay(
+      chalk.gray(`-------------------------- turn ${turnNumber} --------------------------`)
+    );
+  }
+
+  static printUnitMessage(unitType, message) {
+    return UI.printLineWithDelay(UI.getUnitStyle(unitType)(message));
+  }
+
   static printFloor(floor, offset) {
     if (offset) {
-      Config.outStream.write(`\x1B[${offset + floor.size.height + 2}A`);
+      Config.outStream.write(`\x1B[${offset + floor.size.height + 2 + 1}A`);
     }
+
+    const warriorHealth = floor.warrior && floor.warrior.health || 0;
+    UI.printLine(chalk.red(`♥ ${String(warriorHealth).padRight(9, ' ')}`));
 
     return UI.printLineWithDelay(UI.getFloorCharacter(floor))
       .then(() => {
