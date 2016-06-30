@@ -33,10 +33,9 @@ export default class UI {
   }
 
   static printLineWithDelay(message) {
-    return new Promise((resolve) => {
-      UI.printLine(message);
-      setTimeout(resolve, Config.delay * 1000);
-    });
+    UI.printLine(message);
+    const ms = Config.delay * 1000;
+    return Promise.delay(ms);
   }
 
   /*
@@ -44,57 +43,43 @@ export default class UI {
    */
 
   static request(message) {
-    return new Promise((resolve) => {
-      const name = 'request';
-      inquirer.prompt([
-        {
-          name,
-          message,
-          type: 'input',
-        },
-      ], (answers) => {
-        resolve(answers[name]);
-      });
-    });
+    const name = 'request';
+    return inquirer.prompt([
+      {
+        name,
+        message,
+        type: 'input',
+      },
+    ]).then(answers => Promise.resolve(answers[name]));
   }
 
   static ask(message, defaultAnswer = true) {
-    return new Promise((resolve) => {
-      const name = 'confirmation';
-      inquirer.prompt([
-        {
-          name,
-          message,
-          type: 'confirm',
-          default: defaultAnswer,
-        },
-      ], (answers) => {
-        resolve(answers[name]);
-      });
-    });
+    const name = 'confirmation';
+    return inquirer.prompt([
+      {
+        name,
+        message,
+        type: 'confirm',
+        default: defaultAnswer,
+      },
+    ]).then(answers => Promise.resolve(answers[name]));
   }
 
   static choose(itemName, items) {
-    return new Promise((resolve) => {
-      const choices = items.map(item => (
-        {
-          name: item.toString(),
-          value: item,
-        }
-      ));
+    const name = 'choice';
+    const choices = items.map(item => ({
+      name: item.toString(),
+      value: item,
+    }));
 
-      const name = 'choice';
-      inquirer.prompt([
-        {
-          name,
-          choices,
-          type: 'list',
-          message: `Choose ${itemName}:`,
-        },
-      ], (answers) => {
-        resolve(answers[name]);
-      });
-    });
+    return inquirer.prompt([
+      {
+        name,
+        choices,
+        type: 'list',
+        message: `Choose ${itemName}:`,
+      },
+    ]).then(answers => Promise.resolve(answers[name]));
   }
 
   /*
