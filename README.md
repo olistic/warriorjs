@@ -10,10 +10,6 @@ This is a game designed to teach JavaScript and artificial intelligence in a fun
 
 You play as a warrior climbing a tall tower to `<insert something that motivates you here>` at the top level. On each floor, you need to write JavaScript (with full ES2015 support) to instruct the warrior to battle enemies, rescue captives, and reach the stairs.
 
-> **Note on upgrade**
-
-> Version 2.0.0 introduces breaking changes in the Profile, which means that games started with version 1.x won't work out of the box.
-
 ## Installation
 
 ```bash
@@ -35,6 +31,10 @@ class Player {
   }
 }
 ```
+
+> **Note on CLI**
+
+> Run `$ warriorjs --help` to see the options you can use to customize the game.
 
 ## Objective
 
