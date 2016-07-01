@@ -177,7 +177,9 @@ export default class Profile {
     try {
       return JSON.parse(new Buffer(encodedProfile, 'base64').toString());
     } catch (err) {
-      throw new Error('Invalid .profile file. Try changing the directory under which you are running warriorjs.');
+      throw new Error(
+        'Invalid .profile file. Try changing the directory under which you are running warriorjs.'
+      );
     }
   }
 
@@ -192,7 +194,8 @@ export default class Profile {
 
   toString() {
     return this.isEpic() ?
-      `${this.warriorName} - ${this.tower.name} - first score ${this.score} - epic score ${this.epicScoreWithGrade}` :
+      `${this.warriorName} - ${this.tower.name} - first score ${this.score} - epic score ` +
+        `${this.epicScoreWithGrade}` :
       `${this.warriorName} - ${this.tower.name} - level ${this.levelNumber} - score ${this.score}`;
   }
 }

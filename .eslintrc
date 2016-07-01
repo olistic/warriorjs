@@ -5,5 +5,10 @@
 
   "env": {
     "mocha": true
+  },
+
+  "rules": {
+    "consistent-return": [0],
+    "no-underscore-dangle": [0]
   }
 }

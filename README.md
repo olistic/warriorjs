@@ -265,7 +265,7 @@ class Player {
 
 ```javascript
 isEnemyInSight(warrior) {
-  const unit = warrior.look().find((space) => !space.isEmpty());
+  const unit = warrior.look().find(space => !space.isEmpty());
   return unit && unit.isEnemy();
 }
 ```

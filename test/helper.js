@@ -1,4 +1,4 @@
-import Config from '../src/config';
+import Config from '../src/Config';
 
 beforeEach(function () {
   Config.reset();

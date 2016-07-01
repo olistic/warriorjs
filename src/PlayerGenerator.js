@@ -21,16 +21,24 @@ export default class PlayerGenerator {
 
   _generatePlayer() {
     if (this._profile.levelNumber === 1) {
-      return fs.ensureDirAsync(this._profile.playerPath)
-        .then(() => fs.copyAsync(path.join(TEMPLATES_PATH, 'Player.js'), path.join(this._profile.playerPath, 'Player.js')));
+      return fs
+        .ensureDirAsync(this._profile.playerPath)
+        .then(() => fs.copyAsync(
+          path.join(TEMPLATES_PATH, 'Player.js'),
+          path.join(this._profile.playerPath, 'Player.js')
+        ));
     }
 
     return Promise.resolve();
   }
 
   _generateReadme() {
-    return this._readTemplate(path.join(TEMPLATES_PATH, 'README.ejs'))
-      .then((renderedReadme) => fs.writeFileAsync(path.join(this._profile.playerPath, 'README'), renderedReadme));
+    return this.
+      _readTemplate(path.join(TEMPLATES_PATH, 'README.ejs'))
+      .then(renderedReadme => fs.writeFileAsync(
+        path.join(this._profile.playerPath, 'README'),
+        renderedReadme
+      ));
   }
 
   _readTemplate(templatePath) {
@@ -45,14 +53,15 @@ export default class PlayerGenerator {
       },
     });
 
-    return fs.readFileAsync(templatePath, 'utf8')
-      .then((template) => Promise.resolve(ejs.render(template, { level })));
+    return fs
+      .readFileAsync(templatePath, 'utf8')
+      .then(template => Promise.resolve(ejs.render(template, { level })));
   }
 
   _getUniqueUnits() {
     const warriorName = this._profile.warriorName;
     const uniqueUnits = {
-      [warriorName]: UI.getUnitCharacter('warrior')
+      [warriorName]: UI.getUnitCharacter('warrior'),
     };
 
     this._level.floor.units

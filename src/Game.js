@@ -37,7 +37,7 @@ export default class Game {
 
         return this.playNormalMode();
       })
-      .catch((err) => UI.printLine(err.message));
+      .catch(err => UI.printLine(err.message));
   }
 
   /*
@@ -86,7 +86,10 @@ export default class Game {
     } else {
       if (this._profile.levelNumber === 0) {
         return this.prepareNextLevel()
-          .then(() => UI.printLine(`First level has been generated. See the warriorjs/${this._profile.directoryName}/README for instructions.`));
+          .then(() => UI.printLine(
+            `First level has been generated. See the warriorjs/${this._profile.directoryName}` +
+              '/README for instructions.'
+          ));
       }
 
       return this.playCurrentLevel();
@@ -137,7 +140,8 @@ export default class Game {
                   this._profile.addAbilities(abilities);
 
                   if (this._profile.isEpic()) {
-                    if (!playing && !Config.practiceLevel && this._profile.calculateAverageGrade()) {
+                    if (!playing && !Config.practiceLevel &&
+                      this._profile.calculateAverageGrade()) {
                       UI.printLine(this.getFinalReport());
                     }
 
@@ -149,7 +153,10 @@ export default class Game {
             }
 
             playing = false;
-            UI.printLine(`Sorry, you failed level ${this._profile.levelNumber}. Change your script and try again.`);
+            UI.printLine(
+              `Sorry, you failed level ${this._profile.levelNumber}. Change your script and try ` +
+                'again.'
+            );
             if (!Config.skipInput && levelConfig.clue) {
               return UI.ask('Would you like to read the additional clues for this level?')
                 .then((answer) => {
@@ -186,7 +193,10 @@ export default class Game {
                 if (answer) {
                   return this.prepareNextLevel()
                     .then(() => {
-                      UI.printLine(`See the updated README in the warriorjs/${this._profile.directoryName} directory.`);
+                      UI.printLine(
+                        `See the updated README in the warriorjs/${this._profile.directoryName} ` +
+                          'directory.'
+                      );
                       return Promise.resolve();
                     });
                 }
@@ -225,8 +235,12 @@ export default class Game {
     this._profile.enableNormalMode();
     return this.prepareNextLevel()
       .then(() => {
-        UI.printLine('Another level has been added since you started epic, going back to normal mode.');
-        UI.printLine(`See the updated README in the warriorjs/${this._profile.directoryName} directory.`);
+        UI.printLine(
+          'Another level has been added since you started epic, going back to normal mode.'
+        );
+        UI.printLine(
+          `See the updated README in the warriorjs/${this._profile.directoryName} directory.`
+        );
         return Promise.resolve();
       });
   }
@@ -266,9 +280,11 @@ export default class Game {
 
   getFinalReport() {
     let report = '';
-    report += `Your average grade for this tower is: ${Game.getGradeLetter(this._profile.calculateAverageGrade())}\n\n`;
+    report += 'Your average grade for this tower is: ' +
+      `${Game.getGradeLetter(this._profile.calculateAverageGrade())}\n\n`;
     Object.keys(this._profile.currentEpicGrades).sort().forEach((level) => {
-      report += `  Level ${level}: ${Game.getGradeLetter(this._profile.currentEpicGrades[level])}\n`;
+      report += `  Level ${level}: ` +
+        `${Game.getGradeLetter(this._profile.currentEpicGrades[level])}\n`;
     });
 
     report += `\nTo practice a level, use the -l option.`;
@@ -393,14 +409,17 @@ export default class Game {
         profile.warriorName = warriorName;
         return this.getTowers();
       })
-      .then((towerChoices) => UI.choose('tower', towerChoices))
+      .then(towerChoices => UI.choose('tower', towerChoices))
       .then((tower) => {
         profile.towerPath = tower.path;
         return this.isExistingProfile(profile);
       })
       .then((exists) => {
         if (exists) {
-          return UI.ask('Are you sure you want to replace your existing profile for this tower?', false)
+          return UI.ask(
+            'Are you sure you want to replace your existing profile for this tower?',
+            false
+          )
             .then((answer) => {
               if (!answer) {
                 throw new Error('Unable to continue without profile.');
@@ -429,7 +448,7 @@ export default class Game {
   getTowers() {
     return this.getTowerPaths()
       .then(towerPaths => (
-        Promise.resolve(towerPaths.map((towerPath) => new Tower(towerPath)))
+        Promise.resolve(towerPaths.map(towerPath => new Tower(towerPath)))
       ));
   }
 

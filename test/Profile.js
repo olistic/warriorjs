@@ -1,6 +1,6 @@
 import chai from 'chai';
 import chaiEpic from './helpers/chaiEpic';
-import Profile from '../src/profile';
+import Profile from '../src/Profile';
 
 const should = chai.should();
 chai.use(chaiEpic);
@@ -99,7 +99,7 @@ describe('Profile', function () {
     this.profile.lastLevelNumber.should.equal(7);
   });
 
-  it('should enable normal mode by clearing epic scores and resetting last level number', function () {
+  it('should enable normal mode by clearing epic scores and resetting last level number', function () { // eslint-disable-line max-len
     this.profile.lastLevelNumber = 7;
     this.profile.epicScore = 123;
     this.profile.currentEpicScore = 100;
