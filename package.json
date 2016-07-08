@@ -56,8 +56,8 @@
     "ejs": "^2.4.2",
     "fs-extra": "^0.30.0",
     "glob": "^7.0.5",
-    "inquirer": "^1.1.0",
-    "warriorjs-engine": "^0.10.1",
+    "inquirer": "^1.1.2",
+    "warriorjs-engine": "^0.11.0",
     "yargs": "^4.7.1"
   }
 }
