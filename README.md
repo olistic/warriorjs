@@ -16,6 +16,10 @@ You play as a warrior climbing a tall tower to `<insert something that motivates
 $ npm install -g warriorjs
 ```
 
+> **Note on Installation**
+
+> Node.js needs to be installed in your computer before running the `npm` command. The recommended installation method is through the [official installer](https://nodejs.org).
+
 ## Usage
 
 ```bash
@@ -246,18 +250,32 @@ Once your warrior reaches the top again, you will receive an average grade, alon
 
 * If you're aiming for points, remember to sweep the area. Even if you're close to the stairs, don't go in until you've gotten everything (if you have the health). Use far-ranged senses (such as look and listen) to determine if there are any enemies left.
 
-### ES2015 specific
+### ES2015+
 
 * If you want some code to be executed at the beginning of each level, define a [constructor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/constructor) in the `Player` class, like this:
 
 ```javascript
 class Player {
   constructor() {
+    // This code will be executed only once, at the beginning of the level
     this._health = 20;
-    // ...
   }
 
-  // ...
+  playTurn(warrior) {
+    // Cool code goes here
+  }
+}
+```
+
+* If you just want to initialize a property, like `_health` in the example above, you can make use of [Class Instance Fields](https://github.com/jeffmo/es-class-fields-and-static-properties#part-1-class-instance-fields):
+
+```javascript
+class Player {
+  _health = 20;
+
+  playTurn(warrior) {
+    // Cool code goes here
+  }
 }
 ```
 
@@ -270,7 +288,7 @@ isEnemyInSight(warrior) {
 }
 ```
 
-* In the above example, you can see the [Arrow functions](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Functions/Arrow_functions) in use. Make sure to take a look at them too!
+* In the example above, you can see the [Arrow functions](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Functions/Arrow_functions) in use. Make sure to take a look at them too!
 
 ## Credits
 
