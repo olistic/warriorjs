@@ -8,7 +8,7 @@
     "compile": "babel src -d lib",
     "prepublish": "npm run compile",
     "test": "mocha --compilers js:babel-register --ui bdd --reporter spec --recursive",
-    "test-travis": "echo \"No ES5 tests yet\" && exit 0",
+    "test:babel": "babel test -d . && npm test",
     "lint": "eslint . --ext .js --ignore-path .gitignore --ignore-pattern templates"
   },
   "repository": {
