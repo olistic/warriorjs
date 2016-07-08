@@ -1,5 +1,5 @@
 {
-  "extends": "airbnb/base",
+  "extends": "airbnb-base",
 
   "parser": "babel-eslint",
 
@@ -8,7 +8,7 @@
   },
 
   "rules": {
-    "consistent-return": [0],
+    "no-prototype-builtins": [0],
     "no-underscore-dangle": [0]
   }
 }

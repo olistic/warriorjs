@@ -129,7 +129,7 @@ export default class UI {
       Config.outStream.write(`\x1B[${offset + floor.size.height + 2 + 1}A`);
     }
 
-    const warriorHealth = floor.warrior && floor.warrior.health || 0;
+    const warriorHealth = (floor.warrior && floor.warrior.health) || 0;
     UI.printLine(chalk.red(`♥ ${String(warriorHealth).padRight(9, ' ')}`));
 
     return UI.printLineWithDelay(UI.getFloorCharacter(floor))

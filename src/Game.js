@@ -200,6 +200,8 @@ export default class Game {
                       return Promise.resolve();
                     });
                 }
+
+                return Promise.resolve();
               });
           }
 
@@ -212,6 +214,8 @@ export default class Game {
                     return Promise.resolve();
                   });
               }
+
+              return Promise.resolve();
             });
         });
     }
@@ -268,7 +272,7 @@ export default class Game {
 
       UI.printLine(`Total Score: ${Game.scoreCalculation(this._profile.currentEpicScore, score)}`);
       if (aceScore) {
-        this._profile.currentEpicGrades[this._profile.levelNumber] = (score * 1.0 / aceScore);
+        this._profile.currentEpicGrades[this._profile.levelNumber] = ((score * 1.0) / aceScore);
       }
 
       this._profile.currentEpicScore += score;
@@ -292,7 +296,7 @@ export default class Game {
   }
 
   static getGradeFor(score, aceScore) {
-    return Game.getGradeLetter(score * 1.0 / aceScore);
+    return Game.getGradeLetter((score * 1.0) / aceScore);
   }
 
   static getGradeLetter(percent) {
