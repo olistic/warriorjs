@@ -40,7 +40,7 @@
   "homepage": "https://github.com/olistic/warriorjs",
   "devDependencies": {
     "babel-cli": "^6.10.1",
-    "babel-eslint": "^6.1.0",
+    "babel-eslint": "^6.1.1",
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-stage-0": "^6.5.0",
     "babel-register": "^6.9.0",
@@ -57,7 +57,7 @@
     "fs-extra": "^0.30.0",
     "glob": "^7.0.5",
     "inquirer": "^1.1.2",
-    "warriorjs-engine": "^0.11.0",
+    "warriorjs-engine": "^1.0.0",
     "yargs": "^4.7.1"
   }
 }

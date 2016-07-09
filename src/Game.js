@@ -2,7 +2,7 @@ import path from 'path';
 import fs from 'fs-extra';
 import glob from 'glob';
 import Promise from 'bluebird';
-import { playLevel } from 'warriorjs-engine';
+import playLevel from 'warriorjs-engine';
 import UI from './UI';
 import Config from './Config';
 import Profile from './Profile';
