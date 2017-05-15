@@ -76,9 +76,9 @@ export default class Profile {
   }
 
   get epicScoreWithGrade() {
-    return this.averageGrade ?
-      `${this.epicScore} (${Game.getGradeLetter(this.averageGrade)})` :
-      this.epicScore;
+    return this.averageGrade
+      ? `${this.epicScore} (${Game.getGradeLetter(this.averageGrade)})`
+      : this.epicScore;
   }
 
   get abilities() {
@@ -148,9 +148,7 @@ export default class Profile {
 
   calculateAverageGrade() {
     const grades = Object.values(this.currentEpicGrades);
-    return grades.length ?
-      grades.reduce((sum, value) => sum + value) / grades.length :
-      null;
+    return grades.length ? grades.reduce((sum, value) => sum + value) / grades.length : null;
   }
 
   updateEpicScore() {
@@ -178,24 +176,23 @@ export default class Profile {
       return JSON.parse(new Buffer(encodedProfile, 'base64').toString());
     } catch (err) {
       throw new Error(
-        'Invalid .profile file. Try changing the directory under which you are running warriorjs.'
+        'Invalid .profile file. Try changing the directory under which you are running warriorjs.',
       );
     }
   }
 
   static load(profilePath) {
-    return fs.readFileAsync(profilePath, 'utf8')
-      .then(encodedProfile => {
-        const profile = Object.assign(new Profile(), Profile.decode(encodedProfile));
-        profile.playerPath = path.dirname(profilePath);
-        return Promise.resolve(profile);
-      });
+    return fs.readFileAsync(profilePath, 'utf8').then((encodedProfile) => {
+      const profile = Object.assign(new Profile(), Profile.decode(encodedProfile));
+      profile.playerPath = path.dirname(profilePath);
+      return Promise.resolve(profile);
+    });
   }
 
   toString() {
-    return this.isEpic() ?
-      `${this.warriorName} - ${this.tower.name} - first score ${this.score} - epic score ` +
-        `${this.epicScoreWithGrade}` :
-      `${this.warriorName} - ${this.tower.name} - level ${this.levelNumber} - score ${this.score}`;
+    return this.isEpic()
+      ? `${this.warriorName} - ${this.tower.name} - first score ${this.score} - epic score ` +
+          `${this.epicScoreWithGrade}`
+      : `${this.warriorName} - ${this.tower.name} - level ${this.levelNumber} - score ${this.score}`;
   }
 }

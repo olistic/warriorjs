@@ -44,25 +44,29 @@ export default class UI {
 
   static request(message) {
     const name = 'request';
-    return inquirer.prompt([
-      {
-        name,
-        message,
-        type: 'input',
-      },
-    ]).then(answers => Promise.resolve(answers[name]));
+    return inquirer
+      .prompt([
+        {
+          name,
+          message,
+          type: 'input',
+        },
+      ])
+      .then(answers => Promise.resolve(answers[name]));
   }
 
   static ask(message, defaultAnswer = true) {
     const name = 'confirmation';
-    return inquirer.prompt([
-      {
-        name,
-        message,
-        type: 'confirm',
-        default: defaultAnswer,
-      },
-    ]).then(answers => Promise.resolve(answers[name]));
+    return inquirer
+      .prompt([
+        {
+          name,
+          message,
+          type: 'confirm',
+          default: defaultAnswer,
+        },
+      ])
+      .then(answers => Promise.resolve(answers[name]));
   }
 
   static choose(itemName, items) {
@@ -72,14 +76,16 @@ export default class UI {
       value: item,
     }));
 
-    return inquirer.prompt([
-      {
-        name,
-        choices,
-        type: 'list',
-        message: `Choose ${itemName}:`,
-      },
-    ]).then(answers => Promise.resolve(answers[name]));
+    return inquirer
+      .prompt([
+        {
+          name,
+          choices,
+          type: 'list',
+          message: `Choose ${itemName}:`,
+        },
+      ])
+      .then(answers => Promise.resolve(answers[name]));
   }
 
   /*
@@ -90,33 +96,37 @@ export default class UI {
     let lastFloor;
     let offset = 0;
 
-    return Promise.reduce(events, (_, event) => {
-      switch (event.type) {
-        case 'PLAY_STARTED':
-          lastFloor = event.initialFloor;
-          return Promise.resolve(true);
-        case 'TURN_CHANGED': {
-          offset = 0;
-          const turnNumber = event.turn;
-          return UI.printTurnHeader(turnNumber).then(() => UI.printFloor(lastFloor, offset));
+    return Promise.reduce(
+      events,
+      (_, event) => {
+        switch (event.type) {
+          case 'PLAY_STARTED':
+            lastFloor = event.initialFloor;
+            return Promise.resolve(true);
+          case 'TURN_CHANGED': {
+            offset = 0;
+            const turnNumber = event.turn;
+            return UI.printTurnHeader(turnNumber).then(() => UI.printFloor(lastFloor, offset));
+          }
+          case 'UNIT_SPOKE': {
+            offset += 1;
+            const { unitType, message } = event;
+            return UI.printUnitMessage(unitType, message);
+          }
+          case 'FLOOR_CHANGED':
+            lastFloor = event.floor;
+            return UI.printFloor(lastFloor, offset);
+          default:
+            return Promise.resolve(true);
         }
-        case 'UNIT_SPOKE': {
-          offset += 1;
-          const { unitType, message } = event;
-          return UI.printUnitMessage(unitType, message);
-        }
-        case 'FLOOR_CHANGED':
-          lastFloor = event.floor;
-          return UI.printFloor(lastFloor, offset);
-        default:
-          return Promise.resolve(true);
-      }
-    }, null);
+      },
+      null,
+    );
   }
 
   static printTurnHeader(turnNumber) {
     return UI.printLineWithDelay(
-      chalk.gray(`-------------------------- turn ${turnNumber} --------------------------`)
+      chalk.gray(`-------------------------- turn ${turnNumber} --------------------------`),
     );
   }
 
@@ -132,12 +142,11 @@ export default class UI {
     const warriorHealth = (floor.warrior && floor.warrior.health) || 0;
     UI.printLine(chalk.red(`♥ ${String(warriorHealth).padRight(9, ' ')}`));
 
-    return UI.printLineWithDelay(UI.getFloorCharacter(floor))
-      .then(() => {
-        if (offset) {
-          Config.outStream.write(`\x1B[${offset}B`);
-        }
-      });
+    return UI.printLineWithDelay(UI.getFloorCharacter(floor)).then(() => {
+      if (offset) {
+        Config.outStream.write(`\x1B[${offset}B`);
+      }
+    });
   }
 
   static getFloorCharacter({ size, stairs, warrior, units }, styled = true) {

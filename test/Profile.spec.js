@@ -22,10 +22,7 @@ describe('Profile', () => {
 
   it('should have no abilities and allow adding', () => {
     expect(profile.abilities.length).toBe(0);
-    profile.addAbilities([
-      { name: 'foo', args: [] },
-      { name: 'bar', args: [] },
-    ]);
+    profile.addAbilities([{ name: 'foo', args: [] }, { name: 'bar', args: [] }]);
     expect(profile.abilities).toContainEqual({ name: 'foo', args: [] });
     expect(profile.abilities).toContainEqual({ name: 'bar', args: [] });
   });
@@ -90,7 +87,7 @@ describe('Profile', () => {
     expect(profile.lastLevelNumber).toBe(7);
   });
 
-  it('should enable normal mode by clearing epic scores and resetting last level number', () => { // eslint-disable-line max-len
+  it('should enable normal mode by clearing epic scores and resetting last level number', () => {
     profile.lastLevelNumber = 7;
     profile.epicScore = 123;
     profile.currentEpicScore = 100;
