@@ -5,30 +5,23 @@
   "description": "Game written in JavaScript for learning JavaScript and artificial intelligence",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint . --ext .js --ignore-path .gitignore --ignore-pattern templates",
+    "test": "jest",
     "compile": "babel src -d lib",
-    "prepublish": "npm run compile",
-    "test": "mocha --compilers js:babel-register --ui bdd --reporter spec --recursive",
-    "test:babel": "babel test -d . && npm test",
-    "lint": "eslint . --ext .js --ignore-path .gitignore --ignore-pattern templates"
+    "prepublish": "npm run compile"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/olistic/warriorjs.git"
   },
   "keywords": [
-    "es6",
-    "es7",
-    "es2015",
-    "es2016",
     "warriorjs",
-    "core",
-    "engine",
-    "play",
     "game",
-    "fun",
-    "teach",
+    "play",
     "learn",
+    "javascript",
     "ai",
+    "fun",
     "interactive",
     "cli"
   ],
@@ -43,12 +36,10 @@
     "babel-eslint": "^7.2.3",
     "babel-preset-env": "^1.4.0",
     "babel-preset-stage-2": "^6.24.1",
-    "babel-register": "^6.9.0",
-    "chai": "^3.5.0",
     "eslint": "^3.0.1",
     "eslint-config-airbnb-base": "^11.2.0",
     "eslint-plugin-import": "^2.2.0",
-    "mocha": "^3.4.1"
+    "jest": "^20.0.1"
   },
   "dependencies": {
     "bluebird": "^3.5.0",

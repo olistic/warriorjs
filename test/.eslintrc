@@ -1,9 +1,0 @@
-{
-  "rules": {
-    "func-names": [0],
-    "import/no-extraneous-dependencies": [2, {"devDependencies": true}],
-    "no-unused-expressions": [0],
-    "prefer-arrow-callback": [0],
-    "space-before-function-paren": [2, {"anonymous": "always", "named": "never"}]
-  }
-}
