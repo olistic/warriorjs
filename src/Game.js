@@ -439,6 +439,7 @@ export default class Game {
     );
   }
 
+  // eslint-disable-next-line
   getTowerPaths() {
     const towerPattern = path.resolve(__dirname, '..', 'towers', '*');
     return glob.globAsync(towerPattern);
