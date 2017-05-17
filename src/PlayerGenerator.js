@@ -23,22 +23,21 @@ export default class PlayerGenerator {
     if (this._profile.levelNumber === 1) {
       return fs
         .ensureDirAsync(this._profile.playerPath)
-        .then(() => fs.copyAsync(
-          path.join(TEMPLATES_PATH, 'Player.js'),
-          path.join(this._profile.playerPath, 'Player.js')
-        ));
+        .then(() =>
+          fs.copyAsync(
+            path.join(TEMPLATES_PATH, 'Player.js'),
+            path.join(this._profile.playerPath, 'Player.js'),
+          ),
+        );
     }
 
     return Promise.resolve();
   }
 
   _generateReadme() {
-    return this.
-      _readTemplate(path.join(TEMPLATES_PATH, 'README.ejs'))
-      .then(renderedReadme => fs.writeFileAsync(
-        path.join(this._profile.playerPath, 'README'),
-        renderedReadme
-      ));
+    return this._readTemplate(path.join(TEMPLATES_PATH, 'README.ejs')).then(renderedReadme =>
+      fs.writeFileAsync(path.join(this._profile.playerPath, 'README'), renderedReadme),
+    );
   }
 
   _readTemplate(templatePath) {
@@ -64,13 +63,11 @@ export default class PlayerGenerator {
       [warriorName]: UI.getUnitCharacter('warrior'),
     };
 
-    this._level.floor.units
-      .slice(1)
-      .forEach((unit) => {
-        if (!(unit.type in uniqueUnits)) {
-          uniqueUnits[unit.type] = UI.getUnitCharacter(unit.type);
-        }
-      });
+    this._level.floor.units.slice(1).forEach((unit) => {
+      if (!(unit.type in uniqueUnits)) {
+        uniqueUnits[unit.type] = UI.getUnitCharacter(unit.type);
+      }
+    });
 
     return uniqueUnits;
   }

@@ -1,12 +1,6 @@
-cache:
-  directories:
-    - node_modules
-
-install: npm update
-
 language: node_js
-
 node_js:
-  - "6"
-  - "4"
-  - "0.12"
+  - "node"
+script:
+  - yarn test
+cache: yarn

@@ -25,14 +25,13 @@ export default class Game {
         this._profile = profile;
 
         if (this._profile.isEpic()) {
-          return this.hasLevelAfterEpic()
-            .then((hasLevel) => {
-              if (hasLevel) {
-                return this.goToNormalMode();
-              }
+          return this.hasLevelAfterEpic().then((hasLevel) => {
+            if (hasLevel) {
+              return this.goToNormalMode();
+            }
 
-              return this.playEpicMode();
-            });
+            return this.playEpicMode();
+          });
         }
 
         return this.playNormalMode();
@@ -46,35 +45,32 @@ export default class Game {
 
   playEpicMode() {
     if (Config.delay) {
-      Config.delay = Config.delay / 2;
+      Config.delay /= 2;
     }
 
     this._profile.currentEpicScore = 0;
     this._profile.currentEpicGrades = {};
 
     if (Config.practiceLevel) {
-      return this.levelExists(Config.practiceLevel)
-        .then((exists) => {
-          if (exists) {
-            this._profile.levelNumber = Config.practiceLevel;
-            return this.playCurrentLevel();
-          }
+      return this.levelExists(Config.practiceLevel).then((exists) => {
+        if (exists) {
+          this._profile.levelNumber = Config.practiceLevel;
+          return this.playCurrentLevel();
+        }
 
-          throw new Error('Unable to practice non-existent level, try another.');
-        });
+        throw new Error('Unable to practice non-existent level, try another.');
+      });
     }
 
-    const playLoop = () => (
-      this.playCurrentLevel()
-        .then((playing) => {
-          if (!playing) {
-            return Promise.resolve();
-          }
+    const playLoop = () =>
+      this.playCurrentLevel().then((playing) => {
+        if (!playing) {
+          return Promise.resolve();
+        }
 
-          this._profile.levelNumber += 1;
-          return playLoop();
-        })
-    );
+        this._profile.levelNumber += 1;
+        return playLoop();
+      });
 
     this._profile.levelNumber += 1;
     return playLoop().then(() => this._profile.save());
@@ -85,11 +81,12 @@ export default class Game {
       throw new Error('Unable to practice level while not in epic mode, remove -l option.');
     } else {
       if (this._profile.levelNumber === 0) {
-        return this.prepareNextLevel()
-          .then(() => UI.printLine(
+        return this.prepareNextLevel().then(() =>
+          UI.printLine(
             `First level has been generated. See the warriorjs/${this._profile.directoryName}` +
-              '/README for instructions.'
-          ));
+              '/README for instructions.',
+          ),
+        );
       }
 
       return this.playCurrentLevel();
@@ -110,67 +107,63 @@ export default class Game {
             warrior: {
               ...levelConfig.floor.warrior,
               name: this._profile.warriorName,
-              abilities: [
-                ...newAbilities,
-                ...this._profile.abilities,
-              ],
+              abilities: [...newAbilities, ...this._profile.abilities],
             },
           },
         };
 
         const { passed, events, score } = playLevel(augmentedLevelConfig, playerCode);
 
-        return UI.printPlay(events)
-          .then(() => {
-            if (passed) {
-              return this.levelExists(this._profile.levelNumber + 1)
-                .then((exists) => {
-                  if (exists) {
-                    UI.printLine('Success! You have found the stairs.');
-                  } else {
-                    playing = false;
-                    UI.printLine('CONGRATULATIONS! You have climbed to the top of the tower.');
-                  }
+        return UI.printPlay(events).then(() => {
+          if (passed) {
+            return this.levelExists(this._profile.levelNumber + 1).then((exists) => {
+              if (exists) {
+                UI.printLine('Success! You have found the stairs.');
+              } else {
+                playing = false;
+                UI.printLine('CONGRATULATIONS! You have climbed to the top of the tower.');
+              }
 
-                  const { aceScore, floor } = levelConfig;
+              const { aceScore, floor } = levelConfig;
 
-                  this.tallyPoints({ ...score, aceScore });
+              this.tallyPoints({ ...score, aceScore });
 
-                  const { warrior: { abilities } } = floor;
-                  this._profile.addAbilities(abilities);
+              const { warrior: { abilities } } = floor;
+              this._profile.addAbilities(abilities);
 
-                  if (this._profile.isEpic()) {
-                    if (!playing && !Config.practiceLevel &&
-                      this._profile.calculateAverageGrade()) {
-                      UI.printLine(this.getFinalReport());
-                    }
+              if (this._profile.isEpic()) {
+                if (!playing && !Config.practiceLevel && this._profile.calculateAverageGrade()) {
+                  UI.printLine(this.getFinalReport());
+                }
 
-                    return Promise.resolve(playing);
-                  }
+                return Promise.resolve(playing);
+              }
 
-                  return this.requestNextLevel().then(() => Promise.resolve(playing));
-                });
-            }
+              return this.requestNextLevel().then(() => Promise.resolve(playing));
+            });
+          }
 
-            playing = false;
-            UI.printLine(
-              `Sorry, you failed level ${this._profile.levelNumber}. Change your script and try ` +
-                'again.'
-            );
-            if (!Config.skipInput && levelConfig.clue) {
-              return UI.ask('Would you like to read the additional clues for this level?')
-                .then((answer) => {
-                  if (answer) {
-                    UI.printLine(levelConfig.clue);
-                  }
+          playing = false;
+          UI.printLine(
+            `Sorry, you failed level ${this._profile.levelNumber}. Change your script and try ` +
+              'again.',
+          );
+          if (!Config.skipInput && levelConfig.clue) {
+            return UI.ask(
+              'Would you like to read the additional clues for this level?',
+            ).then((answer) => {
+              if (answer) {
+                UI.printLine(levelConfig.clue);
+              }
 
-                  return Promise.resolve(playing);
-                });
-            }
+              return Promise.resolve(playing);
+            });
+          }
 
-            return Promise.resolve(playing);
-          });
-      });
+          return Promise.resolve(playing);
+        });
+      },
+    );
   }
 
   getPlayerCode() {
@@ -178,46 +171,41 @@ export default class Game {
   }
 
   generatePlayerFiles() {
-    return this.getCurrentLevelConfig().then(level => (
-      new PlayerGenerator(this._profile, level).generate()
-    ));
+    return this.getCurrentLevelConfig().then(level =>
+      new PlayerGenerator(this._profile, level).generate(),
+    );
   }
 
   requestNextLevel() {
     if (!Config.skipInput) {
-      return this.levelExists(this._profile.levelNumber + 1)
-        .then((exists) => {
-          if (exists) {
-            return UI.ask('Would you like to continue on to the next level?')
-              .then((answer) => {
-                if (answer) {
-                  return this.prepareNextLevel()
-                    .then(() => {
-                      UI.printLine(
-                        `See the updated README in the warriorjs/${this._profile.directoryName} ` +
-                          'directory.'
-                      );
-                      return Promise.resolve();
-                    });
-                }
-
+      return this.levelExists(this._profile.levelNumber + 1).then((exists) => {
+        if (exists) {
+          return UI.ask('Would you like to continue on to the next level?').then((answer) => {
+            if (answer) {
+              return this.prepareNextLevel().then(() => {
+                UI.printLine(
+                  `See the updated README in the warriorjs/${this._profile.directoryName} ` +
+                    'directory.',
+                );
                 return Promise.resolve();
               });
-          }
+            }
 
-          return UI.ask('Would you like to continue on to epic mode?')
-            .then((answer) => {
-              if (answer) {
-                return this.prepareEpicMode()
-                  .then(() => {
-                    UI.printLine('Run warriorjs again to play epic mode.');
-                    return Promise.resolve();
-                  });
-              }
+            return Promise.resolve();
+          });
+        }
 
+        return UI.ask('Would you like to continue on to epic mode?').then((answer) => {
+          if (answer) {
+            return this.prepareEpicMode().then(() => {
+              UI.printLine('Run warriorjs again to play epic mode.');
               return Promise.resolve();
             });
+          }
+
+          return Promise.resolve();
         });
+      });
     }
 
     UI.printLine('Staying on current level. Try to earn more points next time.');
@@ -237,16 +225,15 @@ export default class Game {
 
   goToNormalMode() {
     this._profile.enableNormalMode();
-    return this.prepareNextLevel()
-      .then(() => {
-        UI.printLine(
-          'Another level has been added since you started epic, going back to normal mode.'
-        );
-        UI.printLine(
-          `See the updated README in the warriorjs/${this._profile.directoryName} directory.`
-        );
-        return Promise.resolve();
-      });
+    return this.prepareNextLevel().then(() => {
+      UI.printLine(
+        'Another level has been added since you started epic, going back to normal mode.',
+      );
+      UI.printLine(
+        `See the updated README in the warriorjs/${this._profile.directoryName} directory.`,
+      );
+      return Promise.resolve();
+    });
   }
 
   /*
@@ -272,7 +259,7 @@ export default class Game {
 
       UI.printLine(`Total Score: ${Game.scoreCalculation(this._profile.currentEpicScore, score)}`);
       if (aceScore) {
-        this._profile.currentEpicGrades[this._profile.levelNumber] = ((score * 1.0) / aceScore);
+        this._profile.currentEpicGrades[this._profile.levelNumber] = score * 1.0 / aceScore;
       }
 
       this._profile.currentEpicScore += score;
@@ -284,19 +271,19 @@ export default class Game {
 
   getFinalReport() {
     let report = '';
-    report += 'Your average grade for this tower is: ' +
+    report +=
+      'Your average grade for this tower is: ' +
       `${Game.getGradeLetter(this._profile.calculateAverageGrade())}\n\n`;
     Object.keys(this._profile.currentEpicGrades).sort().forEach((level) => {
-      report += `  Level ${level}: ` +
-        `${Game.getGradeLetter(this._profile.currentEpicGrades[level])}\n`;
+      report += `  Level ${level}: ${Game.getGradeLetter(this._profile.currentEpicGrades[level])}\n`;
     });
 
-    report += `\nTo practice a level, use the -l option.`;
+    report += '\nTo practice a level, use the -l option.';
     return report;
   }
 
   static getGradeFor(score, aceScore) {
-    return Game.getGradeLetter((score * 1.0) / aceScore);
+    return Game.getGradeLetter(score * 1.0 / aceScore);
   }
 
   static getGradeLetter(percent) {
@@ -328,19 +315,19 @@ export default class Game {
    */
 
   loadProfile() {
-    return this.profileExists()
-      .then((exists) => {
-        if (exists) {
-          return Profile.load(this._profilePath);
-        }
+    return this.profileExists().then((exists) => {
+      if (exists) {
+        return Profile.load(this._profilePath);
+      }
 
-        return this.chooseProfile();
-      });
+      return this.chooseProfile();
+    });
   }
 
   profileExists() {
     return new Promise((resolve) => {
-      fs.statAsync(this._profilePath)
+      fs
+        .statAsync(this._profilePath)
         .then(() => resolve(true))
         .catch({ code: 'ENOENT' }, () => resolve(false));
     });
@@ -360,46 +347,45 @@ export default class Game {
   }
 
   getProfiles() {
-    return this.getProfilePaths()
-      .then(profilePaths => Promise.map(profilePaths, (profilePath) => Profile.load(profilePath)));
+    return this.getProfilePaths().then(profilePaths =>
+      Promise.map(profilePaths, profilePath => Profile.load(profilePath)),
+    );
   }
 
   getProfilePaths() {
-    return this.ensureGameDirectory()
-      .then(() => {
-        const profilePattern = path.join(Config.pathPrefix, 'warriorjs', '**', '.profile');
-        return glob.globAsync(profilePattern);
-      });
+    return this.ensureGameDirectory().then(() => {
+      const profilePattern = path.join(Config.pathPrefix, 'warriorjs', '**', '.profile');
+      return glob.globAsync(profilePattern);
+    });
   }
 
   ensureGameDirectory() {
-    return this.gameDirectoryExists()
-      .then((exists) => {
-        if (!exists) {
-          return this.makeGameDirectory();
-        }
+    return this.gameDirectoryExists().then((exists) => {
+      if (!exists) {
+        return this.makeGameDirectory();
+      }
 
-        return Promise.resolve();
-      });
+      return Promise.resolve();
+    });
   }
 
   gameDirectoryExists() {
     return new Promise((resolve) => {
-      fs.statAsync(this._gameDirectoryPath)
+      fs
+        .statAsync(this._gameDirectoryPath)
         .then(() => resolve(true))
         .catch({ code: 'ENOENT' }, () => resolve(false));
     });
   }
 
   makeGameDirectory() {
-    return UI.ask('No warriorjs directory found, would you like to create one?')
-      .then((answer) => {
-        if (answer) {
-          return fs.mkdirAsync(this._gameDirectoryPath);
-        }
+    return UI.ask('No warriorjs directory found, would you like to create one?').then((answer) => {
+      if (answer) {
+        return fs.mkdirAsync(this._gameDirectoryPath);
+      }
 
-        throw new Error('Unable to continue without directory.');
-      });
+      throw new Error('Unable to continue without directory.');
+    });
   }
 
   newProfile() {
@@ -422,16 +408,15 @@ export default class Game {
         if (exists) {
           return UI.ask(
             'Are you sure you want to replace your existing profile for this tower?',
-            false
-          )
-            .then((answer) => {
-              if (!answer) {
-                throw new Error('Unable to continue without profile.');
-              }
+            false,
+          ).then((answer) => {
+            if (!answer) {
+              throw new Error('Unable to continue without profile.');
+            }
 
-              UI.printLine('Replacing existing profile...');
-              return Promise.resolve(profile);
-            });
+            UI.printLine('Replacing existing profile...');
+            return Promise.resolve(profile);
+          });
         }
 
         return Promise.resolve(profile);
@@ -439,10 +424,9 @@ export default class Game {
   }
 
   isExistingProfile(newProfile) {
-    return this.getProfiles()
-      .then(profiles => (
-        Promise.resolve(profiles.some(profile => profile.playerPath === newProfile.playerPath))
-      ));
+    return this.getProfiles().then(profiles =>
+      Promise.resolve(profiles.some(profile => profile.playerPath === newProfile.playerPath)),
+    );
   }
 
   /*
@@ -450,12 +434,12 @@ export default class Game {
    */
 
   getTowers() {
-    return this.getTowerPaths()
-      .then(towerPaths => (
-        Promise.resolve(towerPaths.map(towerPath => new Tower(towerPath)))
-      ));
+    return this.getTowerPaths().then(towerPaths =>
+      Promise.resolve(towerPaths.map(towerPath => new Tower(towerPath))),
+    );
   }
 
+  // eslint-disable-next-line
   getTowerPaths() {
     const towerPattern = path.resolve(__dirname, '..', 'towers', '*');
     return glob.globAsync(towerPattern);
@@ -471,7 +455,8 @@ export default class Game {
 
   levelExists(levelNumber) {
     return new Promise((resolve) => {
-      fs.statAsync(this.getLevelPath(levelNumber))
+      fs
+        .statAsync(this.getLevelPath(levelNumber))
         .then(() => resolve(true))
         .catch({ code: 'ENOENT' }, () => resolve(false));
     });

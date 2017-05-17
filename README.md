@@ -1,14 +1,13 @@
-![banner](https://s3.amazonaws.com/f.cl.ly/items/2z1v1z1v0i1j0y192k30/WarriorJS%20Banner.png)
-
-*Special thanks to [guillecura](https://dribbble.com/guillecura) for the logo.*
-
-[![Travis](https://img.shields.io/travis/olistic/warriorjs.svg?style=flat-square)](https://travis-ci.org/olistic/warriorjs)
-[![npm](https://img.shields.io/npm/v/warriorjs.svg?style=flat-square)](https://www.npmjs.com/package/warriorjs)
-[![Gitter](https://img.shields.io/gitter/room/olistic/warriorjs.svg?style=flat-square)](https://gitter.im/olistic/warriorjs)
+# <p align="center"><a href="http://warrior.js.org"><img src="https://raw.githubusercontent.com/warriorjs/warriorjs-core/c130b2ea5b3877bacc82a99ad911c22f5d428fad/logo/logo-dark.png" height="260px"></a></p>
 
 This is a game designed to teach JavaScript and artificial intelligence in a fun, interactive way.
 
-You play as a warrior climbing a tall tower to `<insert something that motivates you here>` at the top level. On each floor, you need to write JavaScript (with full ES2015 support) to instruct the warrior to battle enemies, rescue captives, and reach the stairs.
+You play as a warrior climbing a tall tower to `[insert something motivating here]` at the top level. On each floor, you need to write JavaScript to instruct the warrior to battle enemies, rescue captives, and reach the stairs.
+
+[![Travis](https://img.shields.io/travis/olistic/warriorjs.svg?style=flat-square)](https://travis-ci.org/olistic/warriorjs)
+[![npm](https://img.shields.io/npm/v/warriorjs.svg?style=flat-square)](https://www.npmjs.com/package/warriorjs)
+[![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+[![Gitter](https://img.shields.io/gitter/room/olistic/warriorjs.svg?style=flat-square)](https://gitter.im/olistic/warriorjs)
 
 ## Installation
 
