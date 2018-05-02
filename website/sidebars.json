@@ -1,0 +1,19 @@
+{
+  "docs": {
+    "Intro": [
+      "overview",
+      "object",
+      "set-up",
+      "gameplay",
+      "perspective",
+      "scoring",
+      "epic-mode"
+    ],
+    "Basic Concepts": ["towers", "units", "abilities", "effects", "spaces"],
+    "Tips & Tricks": ["general-tips", "js-tips"],
+    "API Reference": ["cli"]
+  },
+  "community": {
+    "Community": ["socialize", "ecosystem", "roadmap"]
+  }
+}

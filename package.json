@@ -1,59 +1,42 @@
 {
-  "name": "warriorjs",
-  "version": "3.0.0",
-  "bin": "./bin/warriorjs",
-  "description": "Game written in JavaScript for learning JavaScript and artificial intelligence",
-  "main": "index.js",
+  "private": true,
+  "workspaces": ["packages/*", "website"],
+  "homepage": "https://warrior.js.org",
+  "repository": "https://github.com/olistic/warriorjs",
   "scripts": {
-    "clean": "rimraf lib coverage",
-    "lint": "eslint src test",
+    "bootstrap": "lerna bootstrap",
+    "release": "yarn clean:build && yarn build && yarn test && lerna publish",
+    "build": "lerna run build --stream --ignore warriorjs-website",
+    "clean": "yarn clean:build & yarn clean:coverage & yarn clean:modules",
+    "clean:build": "rm -rf packages/*/lib",
+    "clean:coverage": "rm -rf coverage",
+    "clean:modules": "lerna clean --yes",
+    "lint": "eslint --cache packages/**/src",
+    "lint:fix": "yarn lint --fix",
+    "precommit": "lint-staged",
+    "pretest": "yarn lint",
     "test": "jest",
-    "test:watch": "yarn test -- --watch",
-    "test:cov": "yarn test -- --coverage",
-    "build": "babel src --out-dir lib",
-    "prepublish": "yarn run clean && yarn run lint && yarn test && yarn run build"
+    "test:coverage": "yarn test --coverage",
+    "test:watch": "yarn test --watch"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/olistic/warriorjs.git"
-  },
-  "keywords": [
-    "warriorjs",
-    "game",
-    "play",
-    "learn",
-    "javascript",
-    "ai",
-    "fun",
-    "interactive",
-    "cli"
-  ],
-  "author": "Matias Olivera <moliverafreire@gmail.com>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/olistic/warriorjs/issues"
-  },
-  "homepage": "https://github.com/olistic/warriorjs",
   "devDependencies": {
-    "babel-cli": "^6.24.1",
-    "babel-eslint": "^7.2.3",
-    "babel-preset-env": "^1.4.0",
-    "babel-preset-stage-2": "^6.24.1",
-    "eslint": "^3.0.1",
-    "eslint-config-airbnb-base": "^11.2.0",
-    "eslint-plugin-import": "^2.2.0",
-    "jest": "^20.0.1",
-    "prettier": "^1.3.1",
-    "rimraf": "^2.6.1"
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-prettier": "^2.6.0",
+    "eslint-plugin-react": "^7.4.0",
+    "husky": "^0.14.3",
+    "jest": "^22.4.3",
+    "lerna": "^2.11.0",
+    "lint-staged": "^7.0.5",
+    "prettier": "1.12.1"
   },
-  "dependencies": {
-    "bluebird": "^3.5.0",
-    "chalk": "^1.1.3",
-    "ejs": "^2.5.6",
-    "fs-extra": "^3.0.1",
-    "glob": "^7.1.1",
-    "inquirer": "^3.0.6",
-    "warriorjs-engine": "^1.0.0",
-    "yargs": "^8.0.1"
+  "lint-staged": {
+    "*.{js,json,css,md}": ["prettier --write", "git add"]
   }
 }

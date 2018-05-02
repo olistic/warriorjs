@@ -1,6 +1,7 @@
 # Logs
 logs
 *.log
+lerna-debug.log*
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
@@ -57,5 +58,11 @@ typings/
 # dotenv environment variables file
 .env
 
-# Build directory
-lib
+# Build directories
+packages/*/lib/
+
+# Website
+website/translated_docs
+website/build/
+website/i18n/*
+!website/i18n/en.json

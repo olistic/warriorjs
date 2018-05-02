@@ -1,0 +1,8 @@
+{
+  "rules": {
+    "import/no-dynamic-require": "off",
+    "import/no-extraneous-dependencies": "off",
+    "react/jsx-filename-extension": "off",
+    "react/no-array-index-key": "off"
+  }
+}

@@ -1,0 +1,48 @@
+version: 2
+jobs:
+  build:
+    branches:
+      ignore:
+        - gh-pages
+
+    docker:
+      - image: circleci/node:8
+
+    working_directory: ~/warriorjs
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          name: Restore Yarn package cache
+          keys:
+            - yarn-packages-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - yarn-packages-{{ .Branch }}
+            - yarn-packages-master
+            - yarn-packages-
+
+      - run:
+          name: Install dependencies
+          command: yarn install
+
+      - run:
+          name: Build cross-dependencies
+          command: yarn build
+
+      - run:
+          name: Link cross-dependencies
+          command: yarn bootstrap
+
+      - save_cache:
+          name: Save Yarn package cache
+          key: yarn-packages-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          paths:
+            - node_modules
+
+      - run:
+          name: Run tests
+          command: yarn test:coverage
+
+      - run:
+          name: Report coverage
+          command: bash <(curl -s https://codecov.io/bash)
