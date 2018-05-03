@@ -8,12 +8,15 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [0.1.1] - 2018-05-03
+
 ### Fixed
 
 * Add missing `bin` directory to `@warriorjs/cli` package files
 
-## [0.1.0] - 2018-05-03
+## 0.1.0 - 2018-05-03 [YANKED]
 
 Initial version.
 
-[unreleased]: https://github.com/olistic/warriorjs/compare/v0.1.0...HEAD
+[unreleased]: https://github.com/olistic/warriorjs/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/olistic/warriorjs/compare/v0.1.0...v0.1.1
