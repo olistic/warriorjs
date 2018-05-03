@@ -1,12 +1,11 @@
 {
   "name": "@warriorjs/cli",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "WarriorJS command line",
   "author": "Matias Olivera <moliverafreire@gmail.com>",
   "license": "MIT",
   "homepage": "https://warrior.js.org",
-  "repository":
-    "https://github.com/olistic/warriorjs/tree/master/packages/warriorjs-cli",
+  "repository": "https://github.com/olistic/warriorjs/tree/master/packages/warriorjs-cli",
   "keywords": [
     "warriorjs",
     "warriorjs-cli",
@@ -31,7 +30,11 @@
   "engines": {
     "node": ">=8"
   },
-  "files": ["bin", "lib", "templates"],
+  "files": [
+    "bin",
+    "lib",
+    "templates"
+  ],
   "publishConfig": {
     "access": "public"
   },
