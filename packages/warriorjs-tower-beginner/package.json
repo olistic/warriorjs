@@ -5,14 +5,11 @@
   "author": "Matias Olivera <moliverafreire@gmail.com>",
   "license": "MIT",
   "homepage": "https://warrior.js.org",
-  "repository": "https://github.com/olistic/warriorjs/tree/master/packages/warriorjs-tower-beginner",
+  "repository":
+    "https://github.com/olistic/warriorjs/tree/master/packages/warriorjs-tower-beginner",
   "main": "lib/index.js",
-  "keywords": [
-    "warriorjs-tower"
-  ],
-  "files": [
-    "lib"
-  ],
+  "keywords": ["warriorjs-tower"],
+  "files": ["lib"],
   "publishConfig": {
     "access": "public"
   },
@@ -20,7 +17,7 @@
     "build": "babel src --out-dir lib"
   },
   "peerDependencies": {
-    "@warriorjs/core": "^0.0.0"
+    "@warriorjs/core": "^0.1.0"
   },
   "dependencies": {
     "@warriorjs/abilities": "^0.1.0",
