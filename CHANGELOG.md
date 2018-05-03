@@ -8,4 +8,8 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [0.1.0] - 2018-05-03
+
+Initial version.
+
 [unreleased]: https://github.com/olistic/warriorjs/compare/v0.1.0...HEAD
