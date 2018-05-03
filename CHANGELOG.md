@@ -8,6 +8,10 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Fixed
+
+* Add missing `bin` directory to `@warriorjs/cli` package files
+
 ## [0.1.0] - 2018-05-03
 
 Initial version.
