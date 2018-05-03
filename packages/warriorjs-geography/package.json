@@ -1,14 +1,15 @@
 {
   "name": "@warriorjs/geography",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "WarriorJS directioning",
   "author": "Matias Olivera <moliverafreire@gmail.com>",
   "license": "MIT",
   "homepage": "https://warrior.js.org",
-  "repository":
-    "https://github.com/olistic/warriorjs/tree/master/packages/warriorjs-geography",
+  "repository": "https://github.com/olistic/warriorjs/tree/master/packages/warriorjs-geography",
   "main": "lib/index.js",
-  "files": ["lib"],
+  "files": [
+    "lib"
+  ],
   "publishConfig": {
     "access": "public"
   },
