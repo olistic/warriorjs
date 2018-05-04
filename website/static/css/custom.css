@@ -39,6 +39,20 @@ pre code {
 }
 
 /*
+ * Search
+ */
+
+.reactNavSearchWrapper input#search_input_react {
+  background-color: $secondaryColor;
+}
+
+@media only screen and (max-width: 735px) {
+  .reactNavSearchWrapper input#search_input_react {
+    background-color: $secondaryColor;
+  }
+}
+
+/*
  * Docs Sidebar
  */
 
@@ -78,7 +92,7 @@ pre code {
   transform: translate(50%, -50%) rotate(90deg);
 }
 
-@media only screen and (max-width: 736px) {
+@media only screen and (max-width: 735px) {
   .footerSection .sitemap div {
     margin: 0 0 20px 0;
   }
