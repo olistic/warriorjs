@@ -1,11 +1,11 @@
 const PropTypes = require('prop-types');
 const React = require('react');
 
-const { MarkdownBlock } = require('../../core/CompLibrary.js'); // eslint-disable-line import/no-unresolved
 const GitHubButton = require(`${process.cwd()}/core/GitHubButton`);
 const getDocUrl = require(`${process.cwd()}/utils/getDocUrl`);
 const getImgUrl = require(`${process.cwd()}/utils/getImgUrl`);
 const siteConfig = require(`${process.cwd()}/siteConfig.js`);
+const { MarkdownBlock } = require('../../core/CompLibrary.js'); // eslint-disable-line import/no-unresolved
 
 const PromoSection = ({ children }) => (
   <div className="section promoSection">
@@ -57,7 +57,7 @@ const HomeSplash = () => (
             <small>{siteConfig.tagline}</small>
           </h2>
           <PromoSection>
-            <Button href={getDocUrl('set-up.html')} primary>
+            <Button href={getDocUrl('overview.html')} primary>
               Get Started
             </Button>
             <Button href={siteConfig.gitHubUrl}>Github</Button>

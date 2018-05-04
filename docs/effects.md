@@ -3,5 +3,6 @@ id: effects
 title: Effects
 ---
 
-Effects are a variety of conditions that affect units in a positive or negative
-way. They are generally caused by abilities and usually have a limited duration.
+An **effect** is any kind of status that affects your warrior. They're generally
+applied by actions and can have a positive or negative impact. Most effects are
+temporary.

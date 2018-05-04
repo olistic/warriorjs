@@ -20,7 +20,7 @@ const siteConfig = {
   noIndex: false,
   editUrl: `${gitHubUrl}/edit/master/docs/`,
   headerLinks: [
-    { doc: 'overview', label: 'Docs' },
+    { doc: 'overview', label: 'Play' },
     { doc: 'socialize', label: 'Community' },
     { search: true },
     { href: gitHubUrl, label: 'GitHub' },
