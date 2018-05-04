@@ -13,8 +13,7 @@ const Footer = ({ config }) => (
       </a>
       <div>
         <h5>Docs</h5>
-        <a href={getDocUrl('overview.html')}>Overview</a>
-        <a href={getDocUrl('set-up.html')}>Set Up</a>
+        <a href={getDocUrl('overview.html')}>Play</a>
       </div>
       <div>
         <h5>Community</h5>

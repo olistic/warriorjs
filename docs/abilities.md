@@ -3,24 +3,33 @@ id: abilities
 title: Abilities
 ---
 
-Abilities are skills possessed by units.
+An **ability** is a skill possessed by your warrior. You activate abilities
+during your warrior's turn.
 
-When you first start, your warrior will only have a few abilities, but with each
-level you'll learn new things or find artifacts that'll expand your
-capabilities.
+> Ability selection is the way you can customize how your warrior plays.
 
-There are two kinds of abilities: **actions** and **senses**.
+## Learning new abilities
 
-## Actions
+When you first start, your warrior will only have a few abilities. Additional
+abilities are acquired progressing through the tower. With each level, you'll
+learn new things or find artifacts that will expand your capabilities.
 
-An action is an ability that affects the game in some way.
+## Ability types
 
-**Only one action can be performed per turn**, so choose wisely.
+There are two types of abilities: actions and senses.
 
-## Senses
+### Actions
 
-A sense, on the contrary, doesn't affect the game but gathers information about
-the floor. You can perform senses as often as you want per turn to collect
+An **action** is an ability that affects the game in some way. Is through
+actions that you're able to inflict damage, protect yourself or other units, and
+interact with your environment.
+
+> Only one action can be performed per turn, so choose wisely.
+
+### Senses
+
+A **sense**, on the contrary, doesn't affect the game but gathers information
+about the floor. You can perform senses as often as you want per turn to collect
 information about your surroundings and to aid you in choosing the best action
 according to the circumstances.
 

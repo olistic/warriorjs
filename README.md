@@ -66,7 +66,8 @@ Jump straight to some of the most-visited pages:
 
 * [**Set Up**](https://warrior.js.org/docs/set-up)
 * [Gameplay](https://warrior.js.org/docs/gameplay)
-* [API Reference](https://warrior.js.org/docs/cli)
+* [Space API](https://warrior.js.org/docs/space-api)
+* [CLI](https://warrior.js.org/docs/cli)
 
 ## Preview
 

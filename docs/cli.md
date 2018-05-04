@@ -13,9 +13,6 @@ Here is a detailed list:
 Path to a directory under which to run the game. By default, the current working
 directory is used.
 
-> Running `warriorjs` while you are in your profile's directory will auto-select
-> that profile so you don't have to each time.
-
 ## `--level <number>` (Epic Mode only)
 
 Practice a level. Use this option on levels you are having difficulty or want to
