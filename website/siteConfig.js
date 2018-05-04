@@ -39,6 +39,10 @@ const siteConfig = {
   disableHeaderTitle: true,
   onPageNav: 'separate',
   gaTrackingId: 'UA-118632697-1',
+  algolia: {
+    apiKey: 'af0d3f56837aacc96ccd573d9208966c',
+    indexName: 'warriorjs',
+  },
 };
 
 module.exports = siteConfig;
