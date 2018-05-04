@@ -38,6 +38,12 @@ pre code {
   height: 50%;
 }
 
+@media only screen and (max-width: 375px) {
+  .fixedHeaderContainer .headerWrapper .logo {
+    display: block;
+  }
+}
+
 /*
  * Search
  */
