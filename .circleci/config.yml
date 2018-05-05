@@ -1,43 +1,44 @@
+aliases:
+  - &restore-yarn-cache
+      name: Restore Yarn package cache
+      keys:
+        - yarn-packages-{{ .Branch }}-{{ checksum "yarn.lock" }}
+        - yarn-packages-{{ .Branch }}
+        - yarn-packages-master
+        - yarn-packages-
+
+  - &save-yarn-cache
+      name: Save Yarn package cache
+      key: yarn-packages-{{ .Branch }}-{{ checksum "yarn.lock" }}
+      paths:
+        - node_modules
+
+  - &install-yarn-dependencies
+      name: Install dependencies
+      command: yarn install && yarn build && yarn bootstrap
+
+defaults: &defaults
+  working_directory: ~/warriorjs
+  docker:
+    - image: circleci/node:8
+
 version: 2
 jobs:
   build:
+    <<: *defaults
+
     branches:
       ignore:
         - gh-pages
 
-    docker:
-      - image: circleci/node:8
-
-    working_directory: ~/warriorjs
-
     steps:
       - checkout
 
-      - restore_cache:
-          name: Restore Yarn package cache
-          keys:
-            - yarn-packages-{{ .Branch }}-{{ checksum "yarn.lock" }}
-            - yarn-packages-{{ .Branch }}
-            - yarn-packages-master
-            - yarn-packages-
+      - restore_cache: *restore-yarn-cache
 
-      - run:
-          name: Install dependencies
-          command: yarn install
+      - run: *install-yarn-dependencies
 
-      - run:
-          name: Build cross-dependencies
-          command: yarn build
-
-      - run:
-          name: Link cross-dependencies
-          command: yarn bootstrap
-
-      - save_cache:
-          name: Save Yarn package cache
-          key: yarn-packages-{{ .Branch }}-{{ checksum "yarn.lock" }}
-          paths:
-            - node_modules
+      - save_cache: *save-yarn-cache
 
       - run:
           name: Run tests
