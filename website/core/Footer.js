@@ -1,11 +1,11 @@
 const PropTypes = require('prop-types');
 const React = require('react');
 
-const GitHubButton = require(`${process.cwd()}/core/GitHubButton`);
-const TwitterButton = require(`${process.cwd()}/core/TwitterButton`);
-const getDocUrl = require(`${process.cwd()}/utils/getDocUrl`);
+const GitHubButton = require('./GitHubButton');
+const TwitterButton = require('./TwitterButton');
+const getDocUrl = require('../utils/getDocUrl');
 
-const Footer = ({ config }) => (
+const Footer = ({ config, language }) => (
   <footer className="footerSection nav-footer" id="footer">
     <section className="sitemap">
       <a href={config.baseUrl} className="nav-home">
@@ -13,7 +13,7 @@ const Footer = ({ config }) => (
       </a>
       <div>
         <h5>Docs</h5>
-        <a href={getDocUrl('overview.html')}>Play</a>
+        <a href={getDocUrl('overview.html', language)}>Play</a>
       </div>
       <div>
         <h5>Community</h5>
@@ -61,6 +61,7 @@ Footer.propTypes = {
     gitHubUrl: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
   }).isRequired,
+  language: PropTypes.string.isRequired,
 };
 
 module.exports = Footer;
