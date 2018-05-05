@@ -17,6 +17,14 @@ aliases:
       name: Install dependencies
       command: yarn install && yarn build && yarn bootstrap
 
+  - &filter-only-master
+      branches:
+        only: master
+
+  - &filter-ignore-gh-pages
+      branches:
+        ignore: gh-pages
+
 defaults: &defaults
   working_directory: ~/warriorjs
   docker:
@@ -26,10 +34,6 @@ version: 2
 jobs:
   build:
     <<: *defaults
-
-    branches:
-      ignore:
-        - gh-pages
 
     steps:
       - checkout
@@ -51,3 +55,30 @@ jobs:
       - run:
           name: Build website
           command: cd website && yarn build
+
+  deploy-website:
+    <<: *defaults
+
+    steps:
+      - checkout
+
+      - run:
+          name: Deploy Website to GitHub Pages
+          command: |
+            git config --global user.email "warriorjs-bot@users.noreply.github.com"
+            git config --global user.name "WarriorJS Bot"
+            echo "machine github.com login warriorjs-bot password $GITHUB_TOKEN" > ~/.netrc
+            cd website && yarn install && GIT_USER=warriorjs-bot yarn publish-gh-pages
+
+workflows:
+  version: 2
+
+  build-deploy:
+    jobs:
+      - build:
+          filters: *filter-ignore-gh-pages
+
+      - deploy-website:
+          requires:
+            - build
+          filters: *filter-only-master
