@@ -4,8 +4,10 @@ const React = require('react');
 const GitHubButton = require(`${process.cwd()}/core/GitHubButton`);
 const getDocUrl = require(`${process.cwd()}/utils/getDocUrl`);
 const getImgUrl = require(`${process.cwd()}/utils/getImgUrl`);
-const siteConfig = require(`${process.cwd()}/siteConfig.js`);
-const { MarkdownBlock } = require('../../core/CompLibrary.js'); // eslint-disable-line import/no-unresolved
+const siteConfig = require(`${process.cwd()}/siteConfig`);
+const translation = require('../../server/translation.js'); // eslint-disable-line import/no-unresolved
+const { MarkdownBlock } = require('../../core/CompLibrary'); // eslint-disable-line import/no-unresolved
+const { translate } = require('../../server/translate'); // eslint-disable-line import/no-unresolved
 
 const PromoSection = ({ children }) => (
   <div className="section promoSection">
@@ -43,7 +45,7 @@ Button.defaultProps = {
   target: '_self',
 };
 
-const HomeSplash = () => (
+const HomeSplash = ({ language }) => (
   <div className="homeContainer">
     <div className="homeSplashFade">
       <div className="wrapper homeWrapper">
@@ -54,13 +56,13 @@ const HomeSplash = () => (
               title={siteConfig.title}
               src={getImgUrl('warriorjs.svg')}
             />
-            <small>{siteConfig.tagline}</small>
+            <small>{translation[language]['localized-strings'].tagline}</small>
           </h2>
           <PromoSection>
-            <Button href={getDocUrl('overview.html')} primary>
-              Get Started
+            <Button href={getDocUrl('overview.html', language)} primary>
+              <translate>Get Started</translate>
             </Button>
-            <Button href={siteConfig.gitHubUrl}>Github</Button>
+            <Button href={siteConfig.gitHubUrl}>GitHub</Button>
           </PromoSection>
           <div className="githubButton" style={{ minHeight: '20px' }}>
             <GitHubButton
@@ -74,21 +76,29 @@ const HomeSplash = () => (
   </div>
 );
 
+HomeSplash.propTypes = {
+  language: PropTypes.string.isRequired,
+};
+
 const sh = (...args) => `~~~sh\n${String.raw(...args)}\n~~~`;
 
 const QuickStart = () => (
   <div className="quickStart productShowcaseSection">
-    <h2>Quick Start</h2>
+    <h2>
+      <translate>Quick Start</translate>
+    </h2>
     <ol>
       <li>
-        Install WarriorJS:
+        <translate>Install WarriorJS:</translate>
         <MarkdownBlock>{sh`npm install --global @warriorjs/cli`}</MarkdownBlock>
       </li>
       <li>
-        Launch the game:
+        <translate>Launch the game:</translate>
         <MarkdownBlock>{sh`warriorjs`}</MarkdownBlock>
       </li>
-      <li>Create your warrior and begin your journey!</li>
+      <li>
+        <translate>Create your warrior and begin your journey!</translate>
+      </li>
     </ol>
   </div>
 );
@@ -100,7 +110,9 @@ const Sponsors = () => {
 
   return (
     <div className="productShowcaseSection lightBackground">
-      <h2>Sponsors</h2>
+      <h2>
+        <translate>Sponsors</translate>
+      </h2>
       <ul className="sponsors-list">
         {siteConfig.sponsors.map((sponsor, index) => (
           <li key={index}>
@@ -115,21 +127,25 @@ const Sponsors = () => {
       </ul>
       <PromoSection>
         <Button href="https://opencollective.com/warriorjs" target="_blank">
-          Become a sponsor
+          <translate>Become a sponsor</translate>
         </Button>
       </PromoSection>
     </div>
   );
 };
 
-const Index = () => (
+const Index = ({ language }) => (
   <div>
-    <HomeSplash />
+    <HomeSplash language={language} />
     <div className="mainContainer">
       <QuickStart />
       <Sponsors />
     </div>
   </div>
 );
+
+Index.propTypes = {
+  language: PropTypes.string.isRequired,
+};
 
 module.exports = Index;

@@ -44,9 +44,27 @@ pre code {
   }
 }
 
-/*
- * Search
- */
+/* Languages */
+
+#languages-menu {
+  font-size: 0px;
+  padding: 0;
+}
+#languages-menu .languages-icon {
+  margin: 0;
+  padding: 6px 10px;
+}
+#languages-dropdown {
+  width: auto;
+  right: 0;
+}
+@media only screen and (min-width: 1024px) {
+  .nav-site > span > li {
+    position: relative;
+  }
+}
+
+/* Search */
 
 .reactNavSearchWrapper input#search_input_react {
   background-color: $secondaryColor;
