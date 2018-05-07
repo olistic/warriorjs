@@ -41,11 +41,14 @@
     "Quick Start|no description given": "Quick Start",
     "Install WarriorJS:|no description given": "Install WarriorJS:",
     "Launch the game:|no description given": "Launch the game:",
-    "Create your warrior and begin your journey!|no description given": "Create your warrior and begin your journey!",
+    "Create your warrior and begin your journey!|no description given":
+      "Create your warrior and begin your journey!",
     "Sponsors|no description given": "Sponsors",
     "Become a sponsor|no description given": "Become a sponsor",
-    "Help Translate|recruit community translators for your project": "Help Translate",
+    "Help Translate|recruit community translators for your project":
+      "Help Translate",
     "Edit this Doc|recruitment message asking to edit the doc source": "Edit",
-    "Translate this Doc|recruitment message asking to translate the docs": "Translate"
+    "Translate this Doc|recruitment message asking to translate the docs":
+      "Translate"
   }
 }
