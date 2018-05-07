@@ -13,7 +13,7 @@ Here is a detailed list:
 Path to a directory under which to run the game. By default, the current working
 directory is used.
 
-## `--level <number>` (Epic Mode only)
+## `--level <number>` (epic mode only)
 
 Practice a level. Use this option on levels you are having difficulty or want to
 fine-tune the scoring.
