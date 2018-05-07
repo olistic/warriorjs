@@ -1,6 +1,6 @@
 project_identifier_env: CROWDIN_WARRIORJS_PROJECT_ID
 api_key_env: CROWDIN_WARRIORJS_API_KEY
-base_path: "./"
+base_path: "../"
 preserve_hierarchy: true
 
 files:
