@@ -3,14 +3,14 @@ id: warrior
 title: Warrior
 ---
 
-A **warrior** is a character controlled by you. To create a warrior, you're
-guided through a two-step process where you determine your warrior's name and
-the tower you want to climb. Once created, you use the warrior to progress
-through that tower.
+A **warrior** is a character controlled by you. To create a warrior, you'll be
+guided through a two-step process where you'll determine your warrior's name and
+the tower you want to climb. Once created, you'll use the warrior to progress
+through the tower.
 
-The warrior and tower combination is usually referred to as a **profile**. The
-number of profiles you can have is unlimited, but you can't use the same warrior
-name/tower combination twice.
+> The warrior and tower combination is usually referred to as a **profile**. The
+> number of profiles you can have is unlimited, but you can't use the same
+> warrior/tower combination twice.
 
 ## Attributes
 
