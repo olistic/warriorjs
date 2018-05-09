@@ -1975,9 +1975,9 @@ doctrine@^2.0.2, doctrine@^2.1.0:
   dependencies:
     esutils "^2.0.2"
 
-docusaurus@^1.0.14:
-  version "1.0.14"
-  resolved "https://registry.yarnpkg.com/docusaurus/-/docusaurus-1.0.14.tgz#5fc333bbcc0faa3faf04ec1d1c3430ee45b8754b"
+docusaurus@^1.0.15:
+  version "1.0.15"
+  resolved "https://registry.yarnpkg.com/docusaurus/-/docusaurus-1.0.15.tgz#c7a90f344adeafe66190ced22c1c643387a0c6b3"
   dependencies:
     babel-plugin-transform-class-properties "^6.24.1"
     babel-plugin-transform-object-rest-spread "^6.26.0"

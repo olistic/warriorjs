@@ -13,7 +13,7 @@
     "crowdin-download": "crowdin download -b master"
   },
   "devDependencies": {
-    "docusaurus": "^1.0.14"
+    "docusaurus": "^1.0.15"
   },
   "dependencies": {
     "js-yaml": "^3.11.0",
