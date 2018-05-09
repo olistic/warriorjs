@@ -7,10 +7,6 @@ blockquote {
   border-left-color: #e5e9f0;
 }
 
-pre code {
-  border-left-color: $accentColor;
-}
-
 /*
  * Links
  */
@@ -79,14 +75,6 @@ pre code {
 /*
  * Docs Sidebar
  */
-
-.docsNavContainer nav.toc .toggleNav .navGroup {
-  background: #eceff4;
-}
-
-.docsNavContainer nav.toc .toggleNav .navGroup h3 {
-  color: #eceff4;
-}
 
 .docsNavContainer nav.toc .toggleNav .navItem:hover {
   color: $accentColor;
