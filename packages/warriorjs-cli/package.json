@@ -5,7 +5,8 @@
   "author": "Matias Olivera <moliverafreire@gmail.com>",
   "license": "MIT",
   "homepage": "https://warrior.js.org",
-  "repository": "https://github.com/olistic/warriorjs/tree/master/packages/warriorjs-cli",
+  "repository":
+    "https://github.com/olistic/warriorjs/tree/master/packages/warriorjs-cli",
   "keywords": [
     "warriorjs",
     "warriorjs-cli",
@@ -30,11 +31,7 @@
   "engines": {
     "node": ">=8"
   },
-  "files": [
-    "bin",
-    "lib",
-    "templates"
-  ],
+  "files": ["bin", "lib", "templates"],
   "publishConfig": {
     "access": "public"
   },
@@ -43,7 +40,7 @@
   },
   "devDependencies": {
     "ansi-styles": "^3.2.1",
-    "mock-fs": "^4.4.2"
+    "mock-fs": "^4.5.0"
   },
   "dependencies": {
     "@warriorjs/core": "^0.1.0",
@@ -52,7 +49,7 @@
     "chalk": "^2.4.1",
     "cp-file": "^5.0.0",
     "delay": "^2.0.0",
-    "ejs": "^2.5.9",
+    "ejs": "^2.6.1",
     "globby": "^8.0.1",
     "inquirer": "^5.1.0",
     "lodash.merge": "^4.6.1",
