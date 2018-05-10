@@ -8,7 +8,7 @@ describe('Unit', () => {
   let floor;
 
   beforeEach(() => {
-    unit = new Unit('Joe', '@', 20);
+    unit = new Unit('Joe', '@', 20, 30);
     unit.say = jest.fn();
     floor = new Floor(5, 6, [0, 0]);
     floor.addUnit(unit, { x: 1, y: 2, facing: NORTH });
@@ -24,6 +24,16 @@ describe('Unit', () => {
 
   test('has a max health', () => {
     expect(unit.maxHealth).toBe(20);
+  });
+
+  describe('has a reward', () => {
+    test('which is as assigned', () => {
+      expect(unit.reward).toBe(30);
+    });
+
+    test('which defaults to max health', () => {
+      expect(new Unit('Joe', '@', 20).reward).toBe(20);
+    });
   });
 
   test('has a captive status which defaults to false', () => {
@@ -201,15 +211,16 @@ describe('Unit', () => {
     beforeEach(() => {
       receiver = new Unit();
       receiver.maxHealth = 5;
+      receiver.reward = 10;
       receiver.health = 5;
       receiver.position = {};
       receiver.say = jest.fn();
     });
 
-    test('earns points equal to max health when killing unit', () => {
+    test('earns points equal to reward when killing unit', () => {
       unit.earnPoints = jest.fn();
       unit.damage(receiver, 5);
-      expect(unit.earnPoints).toHaveBeenCalledWith(5);
+      expect(unit.earnPoints).toHaveBeenCalledWith(10);
     });
 
     test("doesn't earn points when not killing unit", () => {

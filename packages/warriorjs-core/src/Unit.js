@@ -10,11 +10,13 @@ class Unit {
    * @param {string} character The character of the unit.
    * @param {number} maxHealth The max health in HP.
    * @param {boolean} captive Whether the unit is a captive or not.
+   * @param {number} reward The number of points to reward when killed.
    */
-  constructor(name, character, maxHealth, captive = false) {
+  constructor(name, character, maxHealth, reward = null, captive = false) {
     this.name = name;
     this.character = character;
     this.maxHealth = maxHealth;
+    this.reward = reward === null ? maxHealth : reward;
     this.captive = captive;
     this.abilities = new Map();
     this.effects = new Map();
@@ -157,7 +159,7 @@ class Unit {
   damage(receiver, amount) {
     receiver.takeDamage(amount);
     if (!receiver.isAlive()) {
-      this.earnPoints(receiver.maxHealth);
+      this.earnPoints(receiver.reward);
     }
   }
 
