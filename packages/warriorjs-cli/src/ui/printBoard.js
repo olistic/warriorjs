@@ -4,7 +4,7 @@ import print from './print';
 import printFloorMap from './printFloorMap';
 import printWarriorStatus from './printWarriorStatus';
 
-const warriorStatusRows = 1;
+const warriorStatusRows = 2;
 
 /**
  * Prints the game board after moving the cursor up a given number of rows.

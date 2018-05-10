@@ -26,7 +26,7 @@ test('moves cursor up and down with offset', () => {
     warrior: {},
   };
   printBoard(floor, 1);
-  expect(print).toHaveBeenCalledWith(ansiEscapes.cursorUp(3));
+  expect(print).toHaveBeenCalledWith(ansiEscapes.cursorUp(4));
   expect(printWarriorStatus).toHaveBeenCalledWith(floor.warrior);
   expect(printFloorMap).toHaveBeenCalledWith(floor.map);
   expect(print).toHaveBeenCalledWith(ansiEscapes.cursorDown(1));

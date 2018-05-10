@@ -10,10 +10,15 @@ import printLine from './printLine';
  */
 function printWarriorStatus(warrior) {
   const [screenWidth] = getScreenSize();
-  const warriorStatus = chalk.red(
+  const warriorHealth = chalk.redBright(
     `♥ ${warrior.health}`.padEnd(screenWidth, ' '),
   );
-  printLine(warriorStatus);
+  printLine(warriorHealth);
+
+  const warriorScore = chalk.yellowBright(
+    `⬥ ${warrior.score}`.padEnd(screenWidth, ' '),
+  );
+  printLine(warriorScore);
 }
 
 export default printWarriorStatus;
