@@ -38,6 +38,12 @@
   },
   "pages-strings": {
     "Get Started|no description given": "Get Started",
+    "Write JavaScript to teach your warrior what to do depending on the situation. Select abilities to customize how your warrior plays.|no description given":
+      "Write JavaScript to teach your warrior what to do depending on the situation. Select abilities to customize how your warrior plays.",
+    "Code|no description given": "Code",
+    "Launch the game from your terminal and check how your warrior does.|no description given":
+      "Launch the game from your terminal and check how your warrior does.",
+    "Play|no description given": "Play",
     "Quick Start|no description given": "Quick Start",
     "Install WarriorJS:|no description given": "Install WarriorJS:",
     "Launch the game:|no description given": "Launch the game:",

@@ -152,20 +152,13 @@ blockquote {
   color: $primaryColor;
 }
 
-.mainContainer .productShowcaseSection {
+.mainContainer .productShowcaseSection,
+.mainContainer .container {
   background: #e5e9f0;
-  padding-bottom: 50px;
-  padding-top: 50px;
-  text-align: center;
 }
 
-.mainContainer .productShowcaseSection.lightBackground {
+.mainContainer .lightBackground {
   background: #eceff4;
-}
-
-.mainContainer .productShowcaseSection h2 {
-  font-size: 30px;
-  text-align: center;
 }
 
 /* Quick Start */

@@ -6,7 +6,11 @@ const getDocUrl = require(`${process.cwd()}/utils/getDocUrl`);
 const getImgUrl = require(`${process.cwd()}/utils/getImgUrl`);
 const siteConfig = require(`${process.cwd()}/siteConfig`);
 const translation = require('../../server/translation.js'); // eslint-disable-line import/no-unresolved
-const { MarkdownBlock } = require('../../core/CompLibrary'); // eslint-disable-line import/no-unresolved
+const {
+  Container,
+  GridBlock,
+  MarkdownBlock,
+} = require('../../core/CompLibrary'); // eslint-disable-line import/no-unresolved
 const { translate } = require('../../server/translate'); // eslint-disable-line import/no-unresolved
 
 const PromoSection = ({ children }) => (
@@ -80,10 +84,54 @@ HomeSplash.propTypes = {
   language: PropTypes.string.isRequired,
 };
 
+const Code = () => (
+  <Container padding={['bottom', 'top']}>
+    <GridBlock
+      contents={[
+        {
+          content: (
+            <translate>
+              Write JavaScript to teach your warrior what to do depending on the
+              situation. Select abilities to customize how your warrior plays.
+            </translate>
+          ),
+          imageAlign: 'right',
+          image: getImgUrl('code-preview.png'),
+          imageAlt: 'Code Preview',
+          title: <translate>Code</translate>,
+        },
+      ]}
+      layout="twoColumn"
+    />
+  </Container>
+);
+
+const Play = () => (
+  <Container padding={['bottom', 'top']} background="light">
+    <GridBlock
+      contents={[
+        {
+          content: (
+            <translate>
+              Launch the game from your terminal and check how your warrior
+              does.
+            </translate>
+          ),
+          imageAlign: 'left',
+          image: getImgUrl('play-preview.png'),
+          imageAlt: 'Play Preview',
+          title: <translate>Play</translate>,
+        },
+      ]}
+      layout="twoColumn"
+    />
+  </Container>
+);
+
 const sh = (...args) => `~~~sh\n${String.raw(...args)}\n~~~`;
 
 const QuickStart = () => (
-  <div className="quickStart productShowcaseSection">
+  <div className="quickStart productShowcaseSection paddingTop paddingBottom">
     <h2>
       <translate>Quick Start</translate>
     </h2>
@@ -109,7 +157,7 @@ const Sponsors = () => {
   }
 
   return (
-    <div className="productShowcaseSection lightBackground">
+    <div className="productShowcaseSection lightBackground paddingTop paddingBottom">
       <h2>
         <translate>Sponsors</translate>
       </h2>
@@ -138,6 +186,8 @@ const Index = ({ language }) => (
   <div>
     <HomeSplash language={language} />
     <div className="mainContainer">
+      <Code />
+      <Play />
       <QuickStart />
       <Sponsors />
     </div>
