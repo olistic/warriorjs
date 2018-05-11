@@ -8,6 +8,14 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Added
+
+* Add reward property to Unit class ([@Rascal_Two](https://github.com/RascalTwo)
+  in [#67](https://github.com/olistic/warriorjs/pull/67))
+* Add warrior score next to health in play log
+  ([@Rascal_Two](https://github.com/RascalTwo) in
+  [#70](https://github.com/olistic/warriorjs/pull/70))
+
 ## [0.1.1] - 2018-05-03
 
 ### Fixed
