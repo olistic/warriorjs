@@ -16,7 +16,6 @@
     "docusaurus": "^1.0.15"
   },
   "dependencies": {
-    "js-yaml": "^3.11.0",
     "prop-types": "^15.6.1"
   }
 }
