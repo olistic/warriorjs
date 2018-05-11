@@ -1,10 +1,8 @@
-const loadYaml = require('./utils/loadYaml');
 const pkg = require('../package');
+const sponsors = require('./data/sponsors');
 
 const gitHubUrl = pkg.repository;
 const twitterUsername = 'warrior_js';
-
-const sponsors = loadYaml('./data/sponsors.yml');
 
 const siteConfig = {
   gitHubUrl,

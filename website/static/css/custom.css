@@ -190,28 +190,3 @@ blockquote {
 .quickStart ol li:nth-of-type(3)::before {
   content: '3.';
 }
-
-/* Sponsors */
-
-.mainContainer ul.sponsors-list {
-  align-items: center;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin: 0 auto;
-  max-width: 800px;
-  padding: 0;
-}
-.mainContainer ul.sponsors-list li {
-  list-style: none;
-  margin: 5px;
-}
-.mainContainer .sponsors-list a,
-.mainContainer .sponsors-list a:hover {
-  background: none;
-  border: none;
-}
-.mainContainer .sponsors-list img {
-  max-height: 90px;
-  max-width: 270px;
-}
