@@ -43,6 +43,7 @@ class Warrior extends Unit {
     return {
       ...super.toJSON(),
       warrior: true,
+      score: this.score,
     };
   }
 }
