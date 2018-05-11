@@ -161,18 +161,16 @@ const Sponsors = () => {
       <h2>
         <translate>Sponsors</translate>
       </h2>
-      <ul className="sponsors-list">
+      <div className="logos">
         {siteConfig.sponsors.map((sponsor, index) => (
-          <li key={index}>
-            <a href={sponsor.url} title={sponsor.name}>
-              <img
-                src={getImgUrl(`sponsors/${sponsor.logo}`)}
-                alt={`Sponsored by ${sponsor.name}`}
-              />
-            </a>
-          </li>
+          <a href={sponsor.url} title={sponsor.name} key={index}>
+            <img
+              src={getImgUrl(`sponsors/${sponsor.logo}`)}
+              alt={`Sponsored by ${sponsor.name}`}
+            />
+          </a>
         ))}
-      </ul>
+      </div>
       <PromoSection>
         <Button href="https://opencollective.com/warriorjs" target="_blank">
           <translate>Become a sponsor</translate>
