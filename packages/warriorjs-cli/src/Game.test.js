@@ -1,4 +1,5 @@
 import fs from 'fs';
+import path from 'path';
 
 import mock from 'mock-fs';
 import { getLevel } from '@warriorjs/core';
@@ -31,7 +32,9 @@ describe('Game', () => {
   });
 
   test('has a game directory path', () => {
-    expect(game.gameDirectoryPath).toBe('/path/to/game/warriorjs');
+    expect(game.gameDirectoryPath).toBe(
+      path.normalize('/path/to/game/warriorjs'),
+    );
   });
 
   describe('when loading profile', () => {
