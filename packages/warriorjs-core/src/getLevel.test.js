@@ -226,20 +226,6 @@ test('returns level', () => {
               character: 's',
               health: 12,
               maxHealth: 12,
-              abilities: {
-                actions: [
-                  [
-                    'attack',
-                    'Attack a unit in the given direction (forward by default) dealing 3 HP of damage.',
-                  ],
-                ],
-                senses: [
-                  [
-                    'feel',
-                    'Return the adjacent space in the given direction (forward by default).',
-                  ],
-                ],
-              },
             },
           },
           {
