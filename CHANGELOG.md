@@ -10,11 +10,13 @@ and this project adheres to
 
 ### Added
 
-* Add reward property to Unit class ([@Rascal_Two](https://github.com/RascalTwo)
-  in [#67](https://github.com/olistic/warriorjs/pull/67))
-* Add warrior score next to health in play log
-  ([@Rascal_Two](https://github.com/RascalTwo) in
-  [#70](https://github.com/olistic/warriorjs/pull/70))
+* Add reward property to Unit class ([@RascalTwo][] in [#67][])
+* Add warrior score next to health in play log ([@RascalTwo][] in [#70][])
+* Add Support for Node 9 and 10 ([@olistic][] in [#81][])
+
+### Fixed
+
+* Fix path normalization in tests ([@jakehamilton][] in [#77][])
 
 ## [0.1.1] - 2018-05-03
 
@@ -24,7 +26,14 @@ and this project adheres to
 
 ## 0.1.0 - 2018-05-03 [YANKED]
 
-Initial version.
+Initial version
 
 [unreleased]: https://github.com/olistic/warriorjs/compare/v0.1.1...HEAD
 [0.1.1]: https://github.com/olistic/warriorjs/compare/v0.1.0...v0.1.1
+[@olistic]: https://github.com/olistic
+[@rascaltwo]: https://github.com/RascalTwo
+[@jakehamilton]: https://github.com/jakehamilton
+[#67]: https://github.com/olistic/warriorjs/pull/67
+[#70]: https://github.com/olistic/warriorjs/pull/70
+[#77]: https://github.com/olistic/warriorjs/pull/77
+[#81]: https://github.com/olistic/warriorjs/pull/81
