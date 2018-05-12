@@ -17,6 +17,14 @@ aliases:
       name: Install dependencies
       command: yarn install
 
+  - &build-cross-dependencies
+      name: Build cross-dependencies
+      command: yarn build
+
+  - &link-cross-dependencies
+      name: Link cross-dependencies
+      command: yarn bootstrap
+
   - &filter-only-master
       branches:
         only: master
@@ -27,69 +35,87 @@ aliases:
 
 defaults: &defaults
   working_directory: ~/warriorjs
-  docker:
-    - image: circleci/node:8
 
 version: 2
 jobs:
-  build:
+  test-node-8:
     <<: *defaults
-
+    docker:
+      - image: circleci/node:8
     steps:
       - checkout
-
       - restore_cache: *restore-yarn-cache
-
       - run: *install-yarn-dependencies
-
       - save_cache: *save-yarn-cache
-
-      - run:
-          name: Build and link cross-dependencies
-          command: yarn build && yarn bootstrap
-
+      - run: *build-cross-dependencies
+      - run: *link-cross-dependencies
       - run:
           name: Run tests
           command: yarn test:coverage
-
       - run:
           name: Report coverage
           command: bash <(curl -s https://codecov.io/bash)
 
-      - run:
-          name: Build website
-          command: cd website && yarn build
-
-  deploy-website:
+  test-node-9:
     <<: *defaults
-
+    docker:
+      - image: circleci/node:9
     steps:
       - checkout
-
       - restore_cache: *restore-yarn-cache
-
       - run: *install-yarn-dependencies
-
       - save_cache: *save-yarn-cache
+      - run: *build-cross-dependencies
+      - run: *link-cross-dependencies
+      - run:
+          name: Run tests
+          command: yarn test
 
+  test-node-10:
+    <<: *defaults
+    docker:
+      - image: circleci/node:10
+    steps:
+      - checkout
+      - restore_cache: *restore-yarn-cache
+      - run: *install-yarn-dependencies
+      - save_cache: *save-yarn-cache
+      - run: *build-cross-dependencies
+      - run: *link-cross-dependencies
+      - run:
+          name: Run tests
+          command: yarn test
+
+  build-and-deploy-website:
+    <<: *defaults
+    docker:
+      - image: circleci/node:8
+    steps:
+      - checkout
+      - restore_cache: *restore-yarn-cache
+      - run: *install-yarn-dependencies
+      - save_cache: *save-yarn-cache
+      - run:
+          name: Build website
+          command: cd website && yarn build && cd ..
       - run:
           name: Install Crowdin
           command: |
             sudo apt-get update && sudo apt-get install default-jre rsync
             wget https://artifacts.crowdin.com/repo/deb/crowdin.deb -O crowdin.deb
             sudo dpkg -i crowdin.deb
-
+      - run:
+          name: Write translations
+          command: cd website && yarn write-translations && cd ..
       - run:
           name: Sync translation files
-          command: cd website && yarn write-translations && yarn crowdin-upload && yarn crowdin-download && cd ..
-
+          command: cd website && yarn crowdin-upload && yarn crowdin-download && cd ..
       - run:
           name: Configure GitHub machine user
           command: |
             git config --global user.email "warriorjs-bot@users.noreply.github.com"
             git config --global user.name "WarriorJS Bot"
             echo "machine github.com login warriorjs-bot password $GITHUB_TOKEN" > ~/.netrc
-
       - run:
           name: Deploy website to GitHub Pages
           command: cd website && GIT_USER=warriorjs-bot yarn publish-gh-pages && cd ..
@@ -97,12 +123,13 @@ jobs:
 workflows:
   version: 2
 
-  build-deploy:
+  build-and-deploy:
     jobs:
-      - build:
+      - test-node-8:
           filters: *filter-ignore-gh-pages
-
-      - deploy-website:
-          requires:
-            - build
+      - test-node-9:
+          filters: *filter-ignore-gh-pages
+      - test-node-10:
+          filters: *filter-ignore-gh-pages
+      - build-and-deploy-website:
           filters: *filter-only-master
