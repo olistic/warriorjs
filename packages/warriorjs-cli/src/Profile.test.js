@@ -1,4 +1,5 @@
 import fs from 'fs';
+import path from 'path';
 
 import mock from 'mock-fs';
 
@@ -19,7 +20,9 @@ describe('Profile.load', () => {
     expect(profile).toBeInstanceOf(Profile);
     expect(profile.warriorName).toBe('Joe');
     expect(profile.towerName).toBe('beginner');
-    expect(profile.directoryPath).toBe('/path/to/profile');
+    expect(path.normalize(profile.directoryPath)).toBe(
+      path.normalize('/path/to/profile'),
+    );
     expect(profile.foo).toBe(42);
   });
 
@@ -131,11 +134,15 @@ describe('Profile', () => {
   });
 
   test('knows the path to the player code file', () => {
-    expect(profile.getPlayerCodeFilePath()).toBe('/path/to/profile/Player.js');
+    expect(profile.getPlayerCodeFilePath()).toBe(
+      path.normalize('/path/to/profile/Player.js'),
+    );
   });
 
   test('knows the path to the README file', () => {
-    expect(profile.getReadmeFilePath()).toBe('/path/to/profile/README.md');
+    expect(profile.getReadmeFilePath()).toBe(
+      path.normalize('/path/to/profile/README.md'),
+    );
   });
 
   describe('when going to the next level', () => {
@@ -223,7 +230,9 @@ describe('Profile', () => {
   });
 
   test('knows the path to the profile file', () => {
-    expect(profile.getProfileFilePath()).toBe('/path/to/profile/.profile');
+    expect(profile.getProfileFilePath()).toBe(
+      path.normalize('/path/to/profile/.profile'),
+    );
   });
 
   test('encodes with JSON + base64', () => {
