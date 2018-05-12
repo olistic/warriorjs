@@ -11,9 +11,9 @@ Open the terminal and run:
 npm install --global @warriorjs/cli
 ```
 
-> [Node.js](https://nodejs.org) needs to be installed in your computer before
-> running the `npm` command. The recommended installation method is through the
-> [official installer](https://nodejs.org/en/download).
+> **[Node.js](https://nodejs.org) >=8 needs to be installed in your computer**
+> before running the `npm` command. The recommended installation method is
+> through the [official installer](https://nodejs.org/en/download).
 
 After installing the game, you can execute it by running the `warriorjs` command
 in the terminal:
