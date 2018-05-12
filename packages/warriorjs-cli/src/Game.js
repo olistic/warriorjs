@@ -31,13 +31,21 @@ class Game {
    * @param {string} runDirectoryPath The directory under which to run the game.
    * @param {number} practiceLevel The level to practice.
    * @param {boolean} skipInput Whether to skip user input or not.
+   * @param {boolean} silentGameplay Whether to skip displaying game logs or not.
    * @param {number} delay The delay between each turn in seconds.
    */
-  constructor(runDirectoryPath, practiceLevel, skipInput, delay) {
+  constructor(
+    runDirectoryPath,
+    practiceLevel,
+    skipInput,
+    silentGameplay,
+    delay,
+  ) {
     this.runDirectoryPath = runDirectoryPath;
     this.gameDirectoryPath = path.join(this.runDirectoryPath, gameDirectory);
     this.practiceLevel = practiceLevel;
     this.skipInput = skipInput;
+    this.silentGameplay = silentGameplay;
     this.delay = delay * 1000;
   }
 
@@ -280,7 +288,9 @@ class Game {
 
     const { events, passed, score } = await this.runLevel(levelConfig);
 
-    await printPlay(levelNumber, events, this.delay);
+    if (!this.silentGameplay) {
+      await printPlay(levelNumber, events, this.delay);
+    }
 
     if (!passed) {
       printFailureLine(

@@ -7,8 +7,8 @@ import parseArgs from './parseArgs';
  * @param {string[]} args The command line arguments.
  */
 async function run(args) {
-  const { directory, level, skip, time } = parseArgs(args);
-  const game = new Game(directory, level, skip, time);
+  const { directory, level, skip, time, silent } = parseArgs(args);
+  const game = new Game(directory, level, skip, silent, time);
   await game.start();
 }
 

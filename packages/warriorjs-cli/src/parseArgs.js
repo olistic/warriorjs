@@ -35,6 +35,11 @@ function parseArgs(args) {
         describe: 'Skip user input',
         type: 'boolean',
       },
+      sl: {
+        alias: 'silent',
+        describe: 'Skip displaying game logs',
+        type: 'boolean',
+      },
       t: {
         alias: 'time',
         coerce: arg => {
