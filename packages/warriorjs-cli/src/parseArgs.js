@@ -35,7 +35,7 @@ function parseArgs(args) {
         describe: 'Skip user input',
         type: 'boolean',
       },
-      sl: {
+      m: {
         alias: 'silent',
         describe: 'Skip displaying game logs',
         type: 'boolean',
