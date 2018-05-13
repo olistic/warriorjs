@@ -228,6 +228,13 @@ describe('Unit', () => {
       unit.damage(receiver, 3);
       expect(unit.earnPoints).not.toHaveBeenCalled();
     });
+
+    test('lose points equal to reward when killing a friendly unit', () => {
+      receiver.captive = true;
+      unit.losePoints = jest.fn();
+      unit.damage(receiver, 5);
+      expect(unit.losePoints).toHaveBeenCalledWith(10);
+    });
   });
 
   test('considers itself alive with position', () => {
@@ -271,6 +278,18 @@ describe('Unit', () => {
   test('can earn points', () => {
     unit.earnPoints(5);
     expect(unit.score).toBe(5);
+  });
+
+  test('can lose points', () => {
+    unit.score = 10;
+    unit.losePoints(5);
+    expect(unit.score).toBe(5);
+  });
+
+  test("can't lose points under zero", () => {
+    unit.score = 3;
+    unit.losePoints(5);
+    expect(unit.score).toBe(0);
   });
 
   test("doesn't fetch itself when fetching other units", () => {

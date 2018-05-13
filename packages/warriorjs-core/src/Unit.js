@@ -159,7 +159,11 @@ class Unit {
   damage(receiver, amount) {
     receiver.takeDamage(amount);
     if (!receiver.isAlive()) {
-      this.earnPoints(receiver.reward);
+      if (receiver.isCaptive()) {
+        this.losePoints(receiver.reward);
+      } else {
+        this.earnPoints(receiver.reward);
+      }
     }
   }
 
@@ -205,6 +209,18 @@ class Unit {
    */
   earnPoints(points) {
     this.score += points;
+  }
+
+  /**
+   * Substract the given points from the score.
+   *
+   * @param {number} points The points to lose.
+   */
+  losePoints(points) {
+    this.score -= points;
+    if (this.score < 0) {
+      this.score = 0;
+    }
   }
 
   /**
