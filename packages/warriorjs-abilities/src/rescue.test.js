@@ -20,7 +20,7 @@ describe('rescue', () => {
 
   test('has a description', () => {
     expect(rescue.description).toBe(
-      `Rescue a captive from his chains (earning 20 points) in the given direction (${FORWARD} by default).`,
+      `Rescue a captive from his chains (earning a reward) in the given direction (${FORWARD} by default).`,
     );
   });
 
@@ -55,6 +55,7 @@ describe('rescue', () => {
           unbind: jest.fn(),
           vanish: jest.fn(),
           toString: () => 'receiver',
+          reward: 20,
         };
         unit.getSpaceAt = () => ({ getUnit: () => receiver });
       });

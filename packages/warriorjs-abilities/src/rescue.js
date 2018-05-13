@@ -1,12 +1,11 @@
 import { FORWARD } from '@warriorjs/geography';
 
 const defaultDirection = FORWARD;
-const rescuingReward = 20;
 
 function rescue() {
   return unit => ({
     action: true,
-    description: `Rescue a captive from his chains (earning ${rescuingReward} points) in the given direction (${defaultDirection} by default).`,
+    description: `Rescue a captive from his chains (earning a reward) in the given direction (${defaultDirection} by default).`,
     perform(direction = defaultDirection) {
       const receiver = unit.getSpaceAt(direction).getUnit();
       if (receiver && receiver.isBound()) {
@@ -14,7 +13,7 @@ function rescue() {
         receiver.unbind();
         if (receiver.isCaptive()) {
           receiver.vanish();
-          unit.earnPoints(rescuingReward);
+          unit.earnPoints(receiver.reward);
         }
       } else {
         unit.say(`unbinds ${direction} and rescues nothing`);
