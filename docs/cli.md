@@ -18,12 +18,11 @@ directory is used.
 Practice a level. Use this option on levels you are having difficulty or want to
 fine-tune the scoring.
 
-## `--skip`
-
-Skip confirmation dialogs, choosing the default answer for each question (always
-the most conservative).
-
 ## `--time <seconds>`
 
 Delay each turn by seconds. By default, each step of each turn is delayed by 0.6
 seconds.
+
+## `--yes`
+
+Assume yes in all confirmation dialogs.
