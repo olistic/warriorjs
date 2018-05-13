@@ -170,7 +170,7 @@ const languages = [
     tag: 'zh-CN',
   },
   {
-    enabled: false,
+    enabled: true,
     name: '繁體中文',
     tag: 'zh-TW',
   },
