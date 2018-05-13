@@ -46,20 +46,6 @@ describe('-l', () => {
   });
 });
 
-describe('-s', () => {
-  test('parses correctly', () => {
-    expect(parseArgs(['-s']).s).toBe(true);
-  });
-
-  test('has alias --skip', () => {
-    expect(parseArgs(['--skip']).skip).toBe(true);
-  });
-
-  test('defaults to false', () => {
-    expect(parseArgs([]).s).toBe(false);
-  });
-});
-
 describe('-t', () => {
   test('parses correctly', () => {
     expect(parseArgs(['-t', '0.3']).t).toBe(0.3);
@@ -87,5 +73,19 @@ describe('-t', () => {
     process.exit = originalExit;
     console.error = originalError;
     /* eslint-enable no-console */
+  });
+
+  describe('-y', () => {
+    test('parses correctly', () => {
+      expect(parseArgs(['-y']).y).toBe(true);
+    });
+
+    test('has alias --yes', () => {
+      expect(parseArgs(['--yes']).yes).toBe(true);
+    });
+
+    test('defaults to false', () => {
+      expect(parseArgs([]).y).toBe(false);
+    });
   });
 });

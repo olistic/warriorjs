@@ -30,11 +30,6 @@ function parseArgs(args) {
         describe: 'Practice level (epic mode only)',
         type: 'number',
       },
-      s: {
-        alias: 'skip',
-        describe: 'Skip user input',
-        type: 'boolean',
-      },
       t: {
         alias: 'time',
         coerce: arg => {
@@ -48,6 +43,11 @@ function parseArgs(args) {
         default: 0.6,
         describe: 'Delay each turn by seconds',
         type: 'number',
+      },
+      y: {
+        alias: 'yes',
+        describe: 'Assume yes',
+        type: 'boolean',
       },
     })
     .version()
