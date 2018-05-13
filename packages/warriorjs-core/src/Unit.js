@@ -328,14 +328,6 @@ class Unit {
       character: this.character,
       maxHealth: this.maxHealth,
       health: this.health,
-      abilities: {
-        actions: [...this.abilities]
-          .filter(([, ability]) => ability.action)
-          .map(([name, action]) => [name, action.description]),
-        senses: [...this.abilities]
-          .filter(([, ability]) => !ability.action)
-          .map(([name, sense]) => [name, sense.description]),
-      },
     };
   }
 }

@@ -18,6 +18,7 @@ function getLevelConfig(levelNumber, tower, profile) {
     : tower.levels.slice(0, levelNumber);
   const abilities = getWarriorAbilities(levels);
   return merge({}, level, {
+    towerName: tower.name,
     number: levelNumber,
     floor: {
       warrior: {
