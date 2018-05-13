@@ -30,15 +30,15 @@ class Game {
    *
    * @param {string} runDirectoryPath The directory under which to run the game.
    * @param {number} practiceLevel The level to practice.
-   * @param {boolean} skipInput Whether to skip user input or not.
    * @param {number} delay The delay between each turn in seconds.
+   * @param {boolean} assumeYes Whether to answer yes to every question or not.
    */
-  constructor(runDirectoryPath, practiceLevel, skipInput, delay) {
+  constructor(runDirectoryPath, practiceLevel, delay, assumeYes) {
     this.runDirectoryPath = runDirectoryPath;
     this.gameDirectoryPath = path.join(this.runDirectoryPath, gameDirectory);
     this.practiceLevel = practiceLevel;
-    this.skipInput = skipInput;
     this.delay = delay * 1000;
+    this.assumeYes = assumeYes;
   }
 
   /**
@@ -287,14 +287,12 @@ class Game {
         `Sorry, you failed level ${levelNumber}. Change your script and try again.`,
       );
 
-      if (
-        !this.skipInput &&
-        !this.profile.shouldShowClue() &&
-        levelConfig.clue
-      ) {
-        const showClue = await requestConfirmation(
-          'Would you like to read the additional clues for this level?',
-        );
+      if (levelConfig.clue && !this.profile.isShowingClue()) {
+        const showClue =
+          this.assumeYes ||
+          (await requestConfirmation(
+            'Would you like to read the additional clues for this level?',
+          ));
         if (showClue) {
           await this.profile.requestClue();
           await this.generatePlayer();
@@ -363,16 +361,20 @@ class Game {
    * continue on to epic mode.
    */
   async requestNextLevel() {
-    if (this.skipInput) {
-      printLine('Staying on current level. Try to earn more points next time.');
-    } else if (this.tower.hasLevel(this.profile.levelNumber + 1)) {
-      const continueToNextLevel = await requestConfirmation(
-        'Would you like to continue on to the next level?',
-      );
+    if (this.tower.hasLevel(this.profile.levelNumber + 1)) {
+      const continueToNextLevel =
+        this.assumeYes ||
+        (await requestConfirmation(
+          'Would you like to continue on to the next level?',
+        ));
       if (continueToNextLevel) {
         await this.prepareNextLevel();
         printSuccessLine(
           `See ${this.profile.getReadmeFilePath()} for updated instructions.`,
+        );
+      } else {
+        printLine(
+          'Staying on current level. Try to earn more points next time.',
         );
       }
     } else {

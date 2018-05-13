@@ -162,11 +162,11 @@ class Profile {
   }
 
   /**
-   * Check if the clue should be shown.
+   * Check if the clue is being shown.
    *
-   * @returns {boolean} Whether the clue should be shown or not.
+   * @returns {boolean} Whether the clue is being shown or not.
    */
-  shouldShowClue() {
+  isShowingClue() {
     return this.clue;
   }
 

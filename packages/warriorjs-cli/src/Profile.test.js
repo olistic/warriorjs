@@ -185,10 +185,10 @@ describe('Profile', () => {
     });
   });
 
-  test('knows if it should show clue', () => {
-    expect(profile.shouldShowClue()).toBe(false);
+  test('knows if clue is being shown', () => {
+    expect(profile.isShowingClue()).toBe(false);
     profile.clue = true;
-    expect(profile.shouldShowClue()).toBe(true);
+    expect(profile.isShowingClue()).toBe(true);
   });
 
   describe('enabling epic mode', () => {

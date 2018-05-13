@@ -258,16 +258,6 @@ describe('Game', () => {
       game.prepareEpicMode = jest.fn();
     });
 
-    test('stays in current level if skip input', async () => {
-      game.skipInput = true;
-      await game.requestNextLevel();
-      expect(printLine).toHaveBeenCalledWith(
-        'Staying on current level. Try to earn more points next time.',
-      );
-      expect(game.prepareNextLevel).not.toHaveBeenCalled();
-      expect(game.prepareEpicMode).not.toHaveBeenCalled();
-    });
-
     test('checks if tower has next level', async () => {
       game.tower = { hasLevel: jest.fn() };
       await game.requestNextLevel();
@@ -294,6 +284,25 @@ describe('Game', () => {
         expect(printSuccessLine).toHaveBeenCalledWith(
           'See /path/to/profile/readme for updated instructions.',
         );
+      });
+
+      test('prepares next level if assume yes', async () => {
+        game.assumeYes = true;
+        await game.requestNextLevel();
+        expect(game.prepareNextLevel).toHaveBeenCalled();
+        expect(printSuccessLine).toHaveBeenCalledWith(
+          'See /path/to/profile/readme for updated instructions.',
+        );
+      });
+
+      test("stays in current level if player doesn't confirm", async () => {
+        requestConfirmation.mockResolvedValue(false);
+        await game.requestNextLevel();
+        expect(printLine).toHaveBeenCalledWith(
+          'Staying on current level. Try to earn more points next time.',
+        );
+        expect(game.prepareNextLevel).not.toHaveBeenCalled();
+        expect(game.prepareEpicMode).not.toHaveBeenCalled();
       });
     });
 
