@@ -9,8 +9,8 @@ class Unit {
    * @param {string} name The name of the unit.
    * @param {string} character The character of the unit.
    * @param {number} maxHealth The max health in HP.
-   * @param {boolean} captive Whether the unit is a captive or not.
    * @param {number} reward The number of points to reward when killed.
+   * @param {boolean} captive Whether the unit is a captive or not.
    */
   constructor(name, character, maxHealth, reward = null, captive = false) {
     this.name = name;
