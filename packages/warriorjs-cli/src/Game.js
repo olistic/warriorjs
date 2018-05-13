@@ -287,7 +287,7 @@ class Game {
         `Sorry, you failed level ${levelNumber}. Change your script and try again.`,
       );
 
-      if (!this.profile.shouldShowClue() && levelConfig.clue) {
+      if (levelConfig.clue && !this.profile.isShowingClue()) {
         const showClue =
           this.assumeYes ||
           (await requestConfirmation(
