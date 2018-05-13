@@ -9,6 +9,10 @@ describe('Captive', () => {
     expect(Captive.maxHealth).toBe(1);
   });
 
+  test('has a reward of 20 points', () => {
+    expect(Captive.reward).toBe(20);
+  });
+
   test('is a captive', () => {
     expect(Captive.captive).toBe(true);
   });
