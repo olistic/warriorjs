@@ -116,7 +116,7 @@ describe('Game', () => {
       mock({ '/path/to/game/warriorjs': '' });
       await expect(game.makeGameDirectory()).rejects.toThrow(
         new GameError(
-          'A file warriorjs already exists at this location. Please change the directory under which you are running warriorjs.',
+          'A file named warriorjs exists at this location. Please change the directory under which you are running warriorjs.',
         ),
       );
       mock.restore();
@@ -274,6 +274,7 @@ describe('Game', () => {
         await game.requestNextLevel();
         expect(requestConfirmation).toHaveBeenCalledWith(
           'Would you like to continue on to the next level?',
+          true,
         );
       });
 
@@ -316,6 +317,7 @@ describe('Game', () => {
         await game.requestNextLevel();
         expect(requestConfirmation).toHaveBeenCalledWith(
           'Would you like to continue on to epic mode?',
+          true,
         );
       });
 
