@@ -50,7 +50,7 @@ class Space {
   }
 
   /**
-   * Checks if there is an enemy unit located at this space.
+   * Checks if there is a hostile unit located at this space.
    *
    * A bound unit does not count as an enemy.
    *
@@ -74,6 +74,7 @@ class Space {
   }
 
   /**
+   * WARNING: Deprecared method
    * Checks if there is an enemy unit located at this space.
    *
    * A bound unit does not count as an enemy.
@@ -111,6 +112,7 @@ class Space {
   }
 
   /**
+   * WARNING: Deprecared method
    * Checks if there is a captive unit located at this space.
    *
    * @returns {boolean} Whether there is a captive unit located at this space or

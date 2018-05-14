@@ -43,9 +43,9 @@ class Player {
 class Player {
   // ...
 
-  isEnemyInSight(warrior) {
+  isHostileInSight(warrior) {
     const unit = warrior.look().find(space => !space.isEmpty());
-    return unit && unit.isEnemy();
+    return unit && unit.isHostile();
   }
 }
 ```

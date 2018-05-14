@@ -11,7 +11,7 @@ class Warrior extends Unit {
    * @param {number} maxHealth The max health in HP.
    */
   constructor(name, character, maxHealth) {
-    super(name, character, maxHealth, null, false);
+    super(name, character, maxHealth, null);
   }
 
   /**

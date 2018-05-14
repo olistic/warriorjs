@@ -36,8 +36,8 @@ describe('Unit', () => {
     });
   });
 
-  test('has a captive status which defaults to false', () => {
-    expect(unit.captive).toBe(false);
+  test('has a hostile status which defaults to true', () => {
+    expect(unit.hostile).toBe(true);
   });
 
   test('has a collection of abilities which starts empty', () => {
@@ -54,8 +54,8 @@ describe('Unit', () => {
     expect(unit.health).toBe(20);
   });
 
-  test('has a bound status which defaults to captive status', () => {
-    expect(unit.bound).toBe(unit.captive);
+  test('has a bound status which defaults to !hostile status', () => {
+    expect(unit.bound).toBe(!unit.hostile);
   });
 
   test('starts with a score of zero', () => {
@@ -95,8 +95,14 @@ describe('Unit', () => {
 
   test('knows if it is a captive', () => {
     expect(unit.isCaptive()).toBe(false);
-    unit.captive = true;
+    unit.hostile = false;
     expect(unit.isCaptive()).toBe(true);
+  });
+
+  test('knows if it is a friendly', () => {
+    expect(unit.isFriendly()).toBe(false);
+    unit.hostile = false;
+    expect(unit.isFriendly()).toBe(true);
   });
 
   test('prepares turn by calling playTurn with next turn object', () => {

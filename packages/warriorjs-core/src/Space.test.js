@@ -223,7 +223,7 @@ describe('Space', () => {
 
     describe('captive', () => {
       beforeEach(() => {
-        unit.captive = true;
+        unit.hostile = false;
       });
 
       test('is not enemy', () => {
