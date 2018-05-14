@@ -25,4 +25,4 @@ seconds.
 
 ## `--yes`
 
-Assume yes in all confirmation dialogs.
+Assume yes in non-destructive confirmation dialogs.

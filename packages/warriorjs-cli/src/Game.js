@@ -104,10 +104,12 @@ class Game {
    * Creates the game directory.
    */
   async makeGameDirectory() {
-    const makeDirectory = await requestConfirmation(
-      'No warriorjs directory found, would you like to create one?',
-      true,
-    );
+    const makeDirectory =
+      this.assumeYes ||
+      (await requestConfirmation(
+        'No warriorjs directory found, would you like to create one?',
+        true,
+      ));
     if (!makeDirectory) {
       throw new GameError('Unable to continue without directory.');
     }
@@ -379,10 +381,12 @@ class Game {
         );
       }
     } else {
-      const continueToEpicMode = await requestConfirmation(
-        'Would you like to continue on to epic mode?',
-        true,
-      );
+      const continueToEpicMode =
+        this.assumeYes ||
+        (await requestConfirmation(
+          'Would you like to continue on to epic mode?',
+          true,
+        ));
       if (continueToEpicMode) {
         await this.prepareEpicMode();
         printSuccessLine('Run warriorjs again to play epic mode.');
