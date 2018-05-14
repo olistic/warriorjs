@@ -104,6 +104,15 @@ describe('Game', () => {
       mock.restore();
     });
 
+    test('creates game directory if assume yes', async () => {
+      game.assumeYes = true;
+      mock();
+      await game.makeGameDirectory();
+      expect(requestConfirmation).not.toHaveBeenCalled();
+      expect(fs.statSync('/path/to/game/warriorjs').isDirectory()).toBe(true);
+      mock.restore();
+    });
+
     test("throws if if player doesn't confirm", async () => {
       requestConfirmation.mockResolvedValue(false);
       await expect(game.makeGameDirectory()).rejects.toThrow(
@@ -290,6 +299,7 @@ describe('Game', () => {
       test('prepares next level if assume yes', async () => {
         game.assumeYes = true;
         await game.requestNextLevel();
+        expect(requestConfirmation).not.toHaveBeenCalled();
         expect(game.prepareNextLevel).toHaveBeenCalled();
         expect(printSuccessLine).toHaveBeenCalledWith(
           'See /path/to/profile/readme for updated instructions.',
@@ -321,9 +331,19 @@ describe('Game', () => {
         );
       });
 
-      test('prepares next level if player confirms', async () => {
+      test('prepares epic mode if player confirms', async () => {
         requestConfirmation.mockResolvedValue(true);
         await game.requestNextLevel();
+        expect(game.prepareEpicMode).toHaveBeenCalled();
+        expect(printSuccessLine).toHaveBeenCalledWith(
+          'Run warriorjs again to play epic mode.',
+        );
+      });
+
+      test('prepares epic mode if assume yes', async () => {
+        game.assumeYes = true;
+        await game.requestNextLevel();
+        expect(requestConfirmation).not.toHaveBeenCalled();
         expect(game.prepareEpicMode).toHaveBeenCalled();
         expect(printSuccessLine).toHaveBeenCalledWith(
           'Run warriorjs again to play epic mode.',
