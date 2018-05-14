@@ -117,7 +117,7 @@ class Game {
     } catch (err) {
       if (err.code === 'EEXIST') {
         throw new GameError(
-          'A file warriorjs already exists at this location. Please change the directory under which you are running warriorjs.',
+          'A file named warriorjs exists at this location. Please change the directory under which you are running warriorjs.',
         );
       }
 
@@ -366,6 +366,7 @@ class Game {
         this.assumeYes ||
         (await requestConfirmation(
           'Would you like to continue on to the next level?',
+          true,
         ));
       if (continueToNextLevel) {
         await this.prepareNextLevel();
@@ -380,6 +381,7 @@ class Game {
     } else {
       const continueToEpicMode = await requestConfirmation(
         'Would you like to continue on to epic mode?',
+        true,
       );
       if (continueToEpicMode) {
         await this.prepareEpicMode();
