@@ -17,7 +17,7 @@
     "build": "babel src --out-dir lib"
   },
   "peerDependencies": {
-    "@warriorjs/core": "^0.1.0"
+    "@warriorjs/core": "^0.2.0"
   },
   "dependencies": {
     "@warriorjs/abilities": "^0.1.0",
