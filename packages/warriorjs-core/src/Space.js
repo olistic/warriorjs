@@ -70,7 +70,7 @@ class Space {
    */
   isFriendly() {
     const unit = this.getUnit();
-    return !!unit && unit.friendly();
+    return !!unit && unit.isFriendly();
   }
 
   /**
