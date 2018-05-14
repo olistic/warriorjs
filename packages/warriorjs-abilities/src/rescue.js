@@ -11,7 +11,7 @@ function rescue() {
       if (receiver && receiver.isBound()) {
         unit.say(`unbinds ${direction} and rescues ${receiver}`);
         receiver.unbind();
-        if (receiver.isCaptive()) {
+        if (receiver.isFriendly()) {
           receiver.vanish();
           unit.earnPoints(receiver.reward);
         }

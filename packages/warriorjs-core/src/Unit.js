@@ -12,12 +12,20 @@ class Unit {
    * @param {number} reward The number of points to reward when killed.
    * @param {boolean} captive Whether the unit is a captive or not.
    */
-  constructor(name, character, maxHealth, reward = null, captive = false) {
+  constructor(
+    name,
+    character,
+    maxHealth,
+    reward = null,
+    captive = false,
+    hostile = false,
+  ) {
     this.name = name;
     this.character = character;
     this.maxHealth = maxHealth;
     this.reward = reward === null ? maxHealth : reward;
     this.captive = captive;
+    this.hostile = hostile;
     this.abilities = new Map();
     this.effects = new Map();
     this.health = maxHealth;
@@ -103,6 +111,24 @@ class Unit {
         this.abilities.get(name).perform(...args);
       }
     }
+  }
+
+  /**
+   * Checks if the unit is a captive.
+   *
+   * @returns {boolean} Whether the unit is a captive or not.
+   */
+  isHostile() {
+    return this.hostile;
+  }
+
+  /**
+   * Checks if the unit is a captive.
+   *
+   * @returns {boolean} Whether the unit is a captive or not.
+   */
+  isFriendly() {
+    return !this.hostile;
   }
 
   /**

@@ -51,7 +51,7 @@ describe('rescue', () => {
       beforeEach(() => {
         receiver = {
           isBound: () => true,
-          isCaptive: () => false,
+          isFriendly: () => false,
           unbind: jest.fn(),
           vanish: jest.fn(),
           toString: () => 'receiver',
@@ -77,7 +77,7 @@ describe('rescue', () => {
       });
 
       test('earns points if rescuing a captive', () => {
-        receiver.isCaptive = () => true;
+        receiver.isFriendly = () => true;
         rescue.perform();
         expect(receiver.vanish).toHaveBeenCalled();
         expect(unit.earnPoints).toHaveBeenCalledWith(20);
