@@ -77,3 +77,11 @@ Returns an array of up to `[range]` [spaces][spaces] in the given direction
 [actions]: https://warrior.js.org/docs/abilities#actions
 [senses]: https://warrior.js.org/docs/abilities#senses
 [spaces]: https://warrior.js.org/docs/spaces
+
+### `unit.think(thought)`:
+
+Think about your options before choosing an action.
+
+[actions]: https://warrior.js.org/docs/abilities#actions
+[senses]: https://warrior.js.org/docs/abilities#senses
+[spaces]: https://warrior.js.org/docs/spaces
