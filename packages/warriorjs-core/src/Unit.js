@@ -18,7 +18,7 @@ class Unit {
     maxHealth,
     reward = null,
     captive = false,
-    hostile = false,
+    hostile = true,
   ) {
     this.name = name;
     this.character = character;

@@ -4,6 +4,7 @@ const Captive = {
   maxHealth: 1,
   reward: 20,
   captive: true,
+  hostile: false,
   playTurn() {},
 };
 
