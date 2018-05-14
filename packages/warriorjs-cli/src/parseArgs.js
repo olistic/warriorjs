@@ -46,7 +46,7 @@ function parseArgs(args) {
       },
       y: {
         alias: 'yes',
-        describe: 'Assume yes',
+        describe: 'Assume yes in non-destructive confirmation dialogs',
         type: 'boolean',
       },
     })
