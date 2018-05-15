@@ -7,6 +7,14 @@ You can call methods on a space to gather information about what's there.
 
 Here are the various methods that are available to you:
 
+## `space.getLocation()`:
+
+Returns the location of this space.
+
+**Returns**
+
+_(number[])_: The location of this space as a pair of coordinates [x, y].
+
 ## `space.isEmpty()`:
 
 Determines if nothing (except maybe stairs) is at this location.
