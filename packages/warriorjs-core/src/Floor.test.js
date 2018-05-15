@@ -37,13 +37,13 @@ describe('Floor', () => {
 
   test('returns the space at the stairs location', () => {
     const stairsSpace = floor.getStairsSpace();
-    expect(stairsSpace.location).toEqual(floor.stairsLocation);
+    expect(stairsSpace.getLocation()).toEqual(floor.stairsLocation);
   });
 
   test('returns the space at the specified location', () => {
     const space = floor.getSpaceAt([0, 0]);
     expect(space).toBeInstanceOf(Space);
-    expect(space.location).toEqual([0, 0]);
+    expect(space.getLocation()).toEqual([0, 0]);
   });
 
   test('adds a unit and fetches it at that position', () => {

@@ -21,12 +21,21 @@ class Space {
   }
 
   /**
+   * Returns the location of this space.
+   *
+   * @returns {number[]} The location as a pair of coordinates [x, y].
+   */
+  getLocation() {
+    return this.location;
+  }
+
+  /**
    * Checks if there is a wall located at this space.
    *
    * @returns {boolean} Whether there is a wall located at this space or not.
    */
   isWall() {
-    return this.floor.isOutOfBounds(this.location);
+    return this.floor.isOutOfBounds(this.getLocation());
   }
 
   /**
@@ -45,7 +54,7 @@ class Space {
    */
   isStairs() {
     const [stairsX, stairsY] = this.floor.stairsLocation;
-    const [locationX, locationY] = this.location;
+    const [locationX, locationY] = this.getLocation();
     return stairsX === locationX && stairsY === locationY;
   }
 
@@ -127,7 +136,7 @@ class Space {
    * @returns {Unit} The unit.
    */
   getUnit() {
-    return this.floor.getUnitAt(this.location);
+    return this.floor.getUnitAt(this.getLocation());
   }
 
   /**
@@ -137,7 +146,7 @@ class Space {
    */
   getCharacter() {
     if (this.isWall()) {
-      const [locationX, locationY] = this.location;
+      const [locationX, locationY] = this.getLocation();
       if (locationX < 0) {
         if (locationY < 0) {
           return upperLeftWallCharacter;
