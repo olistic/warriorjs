@@ -10,10 +10,11 @@ describe('Space', () => {
 
   beforeEach(() => {
     floor = new Floor(2, 3, [0, 2]);
+    space = floor.getSpaceAt([0, 0]);
   });
 
   test('knows its location', () => {
-    expect(floor.getSpaceAt([0, 0]).getLocation()).toEqual([0, 0]);
+    expect(space.getLocation()).toEqual([0, 0]);
   });
 
   describe('out of bounds', () => {
@@ -283,6 +284,48 @@ describe('Space', () => {
 
     test('is not empty', () => {
       expect(space.isEmpty()).toBe(false);
+    });
+  });
+
+  describe('player object', () => {
+    let playerObject;
+
+    beforeEach(() => {
+      playerObject = space.toPlayerObject();
+    });
+
+    test('allows calling Player API methods', () => {
+      const playerApi = [
+        'getLocation',
+        'isBound',
+        'isCaptive',
+        'isEmpty',
+        'isEnemy',
+        'isPlayer',
+        'isStairs',
+        'isUnderEffect',
+        'isWall',
+        'isWarrior',
+      ];
+      playerApi.forEach(method => {
+        playerObject[method]();
+      });
+    });
+
+    test("throws when calling methods that don't belong to the Player API", () => {
+      const forbiddenApi = [
+        'constructor',
+        'getUnit',
+        'getCharacter',
+        'toPlayerObject',
+        'toJSON',
+        'toString',
+      ];
+      forbiddenApi.forEach(method => {
+        expect(() => {
+          playerObject[method]();
+        }).toThrow(new Error(`${method} does not belong to the Player API`));
+      });
     });
   });
 });

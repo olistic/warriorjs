@@ -7,8 +7,8 @@ describe('listen', () => {
   beforeEach(() => {
     unit = {
       getOtherUnits: () => [
-        { getSpace: () => 'space1' },
-        { getSpace: () => 'space2' },
+        { getSpace: () => ({ toPlayerObject: () => 'space1' }) },
+        { getSpace: () => ({ toPlayerObject: () => 'space2' }) },
       ],
     };
     listen = listenCreator()(unit);

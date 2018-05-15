@@ -7,6 +7,19 @@ const horizontalWallCharacter = '═';
 const emptyCharacter = ' ';
 const stairsCharacter = '>';
 
+const playerApi = [
+  'getLocation',
+  'isBound',
+  'isCaptive',
+  'isEmpty',
+  'isEnemy',
+  'isPlayer',
+  'isStairs',
+  'isUnderEffect',
+  'isWall',
+  'isWarrior',
+];
+
 /** Class representing a space in the floor. */
 class Space {
   /**
@@ -177,6 +190,28 @@ class Space {
     }
 
     return emptyCharacter;
+  }
+
+  /**
+   * Returns the player object for this space.
+   *
+   * The player object has the subset of the Space methods that belong to the
+   * Player API.
+   *
+   * @returns {object} The player object.
+   */
+  toPlayerObject() {
+    const playerObject = {};
+    Object.getOwnPropertyNames(Space.prototype).forEach(propertyName => {
+      if (playerApi.includes(propertyName)) {
+        playerObject[propertyName] = this[propertyName].bind(this);
+      } else {
+        playerObject[propertyName] = () => {
+          throw new Error(`${propertyName} does not belong to the Player API`);
+        };
+      }
+    });
+    return playerObject;
   }
 
   /**

@@ -22,6 +22,10 @@ describe('feel', () => {
   });
 
   describe('performing', () => {
+    beforeEach(() => {
+      unit.getSpaceAt.mockReturnValue({ toPlayerObject: () => 'space' });
+    });
+
     test('feels forward by default', () => {
       feel.perform();
       expect(unit.getSpaceAt).toHaveBeenCalledWith(FORWARD);
@@ -33,7 +37,6 @@ describe('feel', () => {
     });
 
     test('returns adjacent space in specified direction', () => {
-      unit.getSpaceAt.mockReturnValue('space');
       expect(feel.perform()).toBe('space');
     });
   });
