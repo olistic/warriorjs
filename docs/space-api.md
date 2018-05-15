@@ -46,3 +46,11 @@ Returns the unit located at this space (if any).
 **Returns**
 
 _(Unit)_: The unit at this location.
+
+## `space.getLocation()`:
+
+Returns the location of this space.
+
+**Returns**
+
+_(number[])_: The location of this space as a pair of coordinates [x, y].
