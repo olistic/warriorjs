@@ -99,6 +99,68 @@ describe('Unit', () => {
     expect(unit.isCaptive()).toBe(true);
   });
 
+  describe('next turn', () => {
+    let turn;
+    let feel;
+    let walk;
+
+    beforeEach(() => {
+      feel = { perform: jest.fn() };
+      walk = {
+        action: true,
+        perform: jest.fn(),
+      };
+      unit.addAbility('feel', feel);
+      unit.addAbility('walk', walk);
+      turn = unit.getNextTurn();
+    });
+
+    test('defines a function for each ability of the unit', () => {
+      expect(turn.feel).toBeInstanceOf(Function);
+      expect(turn.walk).toBeInstanceOf(Function);
+    });
+
+    describe('with actions', () => {
+      test('has no action performed at first', () => {
+        expect(turn.action).toBeNull();
+      });
+
+      test('can call action and recall it', () => {
+        turn.walk();
+        expect(turn.action).toEqual(['walk', []]);
+      });
+
+      test('includes arguments passed to action', () => {
+        turn.walk('forward');
+        expect(turn.action).toEqual(['walk', ['forward']]);
+      });
+
+      test("can't call multiple actions per turn", () => {
+        turn.walk();
+        expect(() => {
+          turn.walk();
+        }).toThrow('Only one action can be performed per turn.');
+      });
+
+      test('defers execution when calling action', () => {
+        turn.walk();
+        expect(walk.perform).not.toHaveBeenCalled();
+      });
+    });
+
+    describe('with senses', () => {
+      test('can call multiple senses per turn', () => {
+        turn.feel();
+        turn.feel();
+      });
+
+      test('executes immediately when calling sense', () => {
+        turn.feel();
+        expect(feel.perform).toHaveBeenCalled();
+      });
+    });
+  });
+
   test('prepares turn by calling playTurn with next turn object', () => {
     unit.getNextTurn = () => 'nextTurn';
     unit.playTurn = jest.fn();
