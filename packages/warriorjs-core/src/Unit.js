@@ -106,9 +106,9 @@ class Unit {
   }
 
   /**
-   * Checks if the unit is a captive.
+   * Checks if the unit is hostile.
    *
-   * @returns {boolean} Whether the unit is a captive or not.
+   * @returns {boolean} Whether the unit is hostile or not.
    */
   isHostile() {
     return this.hostile;
