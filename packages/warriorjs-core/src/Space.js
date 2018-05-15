@@ -52,9 +52,9 @@ class Space {
   /**
    * Checks if there is a hostile unit located at this space.
    *
-   * A bound unit does not count as an enemy.
+   * A bound unit does not count as a hostile.
    *
-   * @returns {boolean} Whether there is an enemy unit located at this space
+   * @returns {boolean} Whether there is a hostile unit located at this space
    * or not.
    */
   isHostile() {

@@ -62,12 +62,12 @@ _(boolean)_: Whether an enemy unit is at this space or not.
 
 **Deprecated in favor of `space.isHostile()`**
 
-Determines if an enemy unit is at this location. A bound unit doesn't count as
-an enemy.
+Determines if a hostile unit is at this location. A bound unit doesn't count as
+hostile.
 
 **Returns**
 
-_(boolean)_: Whether an enemy unit is at this space or not.
+_(boolean)_: Whether a hostile unit is at this space or not.
 
 ## `space.isWarrior()`:
 
