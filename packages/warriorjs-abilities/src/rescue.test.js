@@ -76,7 +76,7 @@ describe('rescue', () => {
         expect(receiver.unbind).toHaveBeenCalled();
       });
 
-      test('earns points if rescuing a captive', () => {
+      test('earns points if rescuing a friendly unit', () => {
         receiver.isFriendly = () => true;
         rescue.perform();
         expect(receiver.vanish).toHaveBeenCalled();

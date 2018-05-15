@@ -43,7 +43,7 @@ class Player {
 class Player {
   // ...
 
-  isHostileInSight(warrior) {
+  isHostileUnitInSight(warrior) {
     const unit = warrior.look().find(space => !space.isEmpty());
     return unit && unit.isHostile();
   }

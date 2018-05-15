@@ -99,7 +99,7 @@ describe('Unit', () => {
     expect(unit.isCaptive()).toBe(true);
   });
 
-  test('knows if it is a friendly', () => {
+  test('knows if it is friendly', () => {
     expect(unit.isFriendly()).toBe(false);
     unit.hostile = false;
     expect(unit.isFriendly()).toBe(true);
