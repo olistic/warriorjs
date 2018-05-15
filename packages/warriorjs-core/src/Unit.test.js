@@ -286,10 +286,10 @@ describe('Unit', () => {
     expect(unit.score).toBe(5);
   });
 
-  test("can't lose points under zero", () => {
+  test('can lose points under zero', () => {
     unit.score = 3;
     unit.losePoints(5);
-    expect(unit.score).toBe(0);
+    expect(unit.score).toBe(-2);
   });
 
   test("doesn't fetch itself when fetching other units", () => {

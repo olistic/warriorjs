@@ -212,15 +212,12 @@ class Unit {
   }
 
   /**
-   * Substract the given points from the score.
+   * Subtract the given points from the score.
    *
    * @param {number} points The points to lose.
    */
   losePoints(points) {
     this.score -= points;
-    if (this.score < 0) {
-      this.score = 0;
-    }
   }
 
   /**
