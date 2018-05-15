@@ -59,7 +59,7 @@ class Space {
    */
   isHostile() {
     const unit = this.getUnit();
-    return !!unit && unit.isHostile();
+    return !this.isBound() && !this.isWarrior() && !!unit && unit.isHostile();
   }
 
   /**

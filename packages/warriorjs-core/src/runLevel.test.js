@@ -109,7 +109,7 @@ test('passes level with a winner player code', () => {
   const playerCode = `
     class Player {
       playTurn(warrior) {
-        if (warrior.feel().isEnemy()) {
+        if (warrior.feel().isHostile()) {
           warrior.attack();
         } else {
           warrior.walk();
