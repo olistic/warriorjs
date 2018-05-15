@@ -389,6 +389,61 @@ describe('Unit', () => {
     });
   });
 
+  describe('player object', () => {
+    let playerObject;
+
+    beforeEach(() => {
+      playerObject = unit.toPlayerObject();
+    });
+
+    test('allows calling Player API methods', () => {
+      const playerApi = [
+        'isHostile',
+        'isFriendly',
+        'isPlayer',
+        'isWarrior',
+        'isBound',
+        'isUnderEffect',
+      ];
+      playerApi.forEach(propertyName => {
+        playerObject[propertyName]();
+      });
+    });
+
+    test("doesn't allow calling methods that don't belong to the Player API", () => {
+      const forbiddenApi = [
+        'addAbility',
+        'addEffect',
+        'triggerEffect',
+        'getNextTurn',
+        'prepareTurn',
+        'performTurn',
+        'heal',
+        'takeDamage',
+        'damage',
+        'isAlive',
+        'unbind',
+        'bind',
+        'earnPoints',
+        'losePoints',
+        'getOtherUnits',
+        'getSpace',
+        'getSpaceAt',
+        'getDirectionOfStairs',
+        'getDirectionOf',
+        'getDistanceOf',
+        'move',
+        'rotate',
+        'vanish',
+        'say',
+        'toPlayerObject',
+      ];
+      forbiddenApi.forEach(propertyName => {
+        expect(playerObject).not.toHaveProperty(propertyName);
+      });
+    });
+  });
+
   test('has a nice string representation', () => {
     expect(unit.toString()).toBe(unit.name);
   });

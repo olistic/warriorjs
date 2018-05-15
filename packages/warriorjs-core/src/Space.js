@@ -117,6 +117,28 @@ class Space {
   }
 
   /**
+   * Returns the player object for this space.
+   *
+   * The player object has the subset of the Space methods that belong to the
+   * Player API.
+   *
+   * @returns {object} The player object.
+   */
+  toPlayerObject() {
+    return {
+      getLocation: this.getLocation.bind(this),
+      getUnit: () => {
+        const unit = this.getUnit.call(this);
+        return unit && unit.toPlayerObject();
+      },
+      isEmpty: this.isEmpty.bind(this),
+      isStairs: this.isStairs.bind(this),
+      isUnit: this.isUnit.bind(this),
+      isWall: this.isWall.bind(this),
+    };
+  }
+
+  /**
    * Returns the string representation of this space.
    *
    * @returns {string} The string representation.

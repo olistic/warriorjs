@@ -359,6 +359,25 @@ class Unit {
   }
 
   /**
+   * Returns the player object for this unit.
+   *
+   * The player object has the subset of the unit methods that belong to the
+   * Player API.
+   *
+   * @returns {object} The player object.
+   */
+  toPlayerObject() {
+    return {
+      isHostile: this.isHostile.bind(this),
+      isFriendly: this.isFriendly.bind(this),
+      isPlayer: this.isPlayer.bind(this),
+      isWarrior: this.isWarrior.bind(this),
+      isBound: this.isBound.bind(this),
+      isUnderEffect: this.isUnderEffect.bind(this),
+    };
+  }
+
+  /**
    * Returns the string representation of this unit.
    *
    * @returns {string} The string representation.
