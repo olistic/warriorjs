@@ -11,6 +11,10 @@ describe('Space', () => {
     floor = new Floor(2, 3, [0, 2]);
   });
 
+  test('knows its location', () => {
+    expect(floor.getSpaceAt([0, 0]).getLocation()).toEqual([0, 0]);
+  });
+
   describe('out of bounds', () => {
     beforeEach(() => {
       space = floor.getSpaceAt([-1, 1]);

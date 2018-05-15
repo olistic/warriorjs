@@ -309,7 +309,7 @@ describe('Unit', () => {
 
   test("returns the space where it's located", () => {
     const space = unit.getSpace();
-    expect(space.location).toEqual(unit.position.location);
+    expect(space.getLocation()).toEqual(unit.position.location);
   });
 
   test('returns space at a given direction and number of spaces', () => {
