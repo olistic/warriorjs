@@ -1,15 +1,18 @@
 {
   "name": "@warriorjs/tower-beginner",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "WarriorJS beginner tower",
   "author": "Matias Olivera <moliverafreire@gmail.com>",
   "license": "MIT",
   "homepage": "https://warrior.js.org",
-  "repository":
-    "https://github.com/olistic/warriorjs/tree/master/packages/warriorjs-tower-beginner",
+  "repository": "https://github.com/olistic/warriorjs/tree/master/packages/warriorjs-tower-beginner",
   "main": "lib/index.js",
-  "keywords": ["warriorjs-tower"],
-  "files": ["lib"],
+  "keywords": [
+    "warriorjs-tower"
+  ],
+  "files": [
+    "lib"
+  ],
   "publishConfig": {
     "access": "public"
   },
@@ -20,8 +23,8 @@
     "@warriorjs/core": "^0.3.0"
   },
   "dependencies": {
-    "@warriorjs/abilities": "^0.2.0",
+    "@warriorjs/abilities": "^0.3.0",
     "@warriorjs/geography": "^0.1.0",
-    "@warriorjs/units": "^0.2.0"
+    "@warriorjs/units": "^0.3.0"
   }
 }

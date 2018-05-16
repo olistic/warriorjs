@@ -1,6 +1,6 @@
 {
   "lerna": "2.9.0",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "command": {
     "bootstrap": {
       "ignore": "warriorjs-website"
