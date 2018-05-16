@@ -119,10 +119,6 @@ describe('Space', () => {
       expect(space.isEmpty()).toBe(true);
     });
 
-    test('is not enemy', () => {
-      expect(space.isEnemy()).toBe(false);
-    });
-
     test('is not hostile', () => {
       expect(space.isHostile()).toBe(false);
     });
@@ -198,10 +194,6 @@ describe('Space', () => {
     });
 
     describe('enemy', () => {
-      test('is enemy', () => {
-        expect(space.isEnemy()).toBe(true);
-      });
-
       test('is hostile', () => {
         expect(space.isHostile()).toBe(true);
       });
@@ -223,10 +215,6 @@ describe('Space', () => {
           unit.bind();
         });
 
-        test("doesn't look like enemy", () => {
-          expect(space.isEnemy()).toBe(false);
-        });
-
         test("doesn't look like a hostile", () => {
           expect(space.isHostile()).toBe(false);
         });
@@ -236,10 +224,6 @@ describe('Space', () => {
     describe('captive', () => {
       beforeEach(() => {
         unit.hostile = false;
-      });
-
-      test('is not enemy', () => {
-        expect(space.isEnemy()).toBe(false);
       });
 
       test('is not hostile', () => {
@@ -287,10 +271,6 @@ describe('Space', () => {
 
     test('is player', () => {
       expect(space.isPlayer()).toBe(true);
-    });
-
-    test('is not enemy', () => {
-      expect(space.isEnemy()).toBe(false);
     });
 
     test('is not hostile', () => {

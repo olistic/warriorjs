@@ -74,24 +74,6 @@ class Space {
   }
 
   /**
-   * WARNING: Deprecared method
-   * Checks if there is an enemy unit located at this space.
-   *
-   * A bound unit does not count as an enemy.
-   *
-   * @returns {boolean} Whether there is an enemy unit located at this space
-   * or not.
-   */
-  isEnemy() {
-    return (
-      !!this.getUnit() &&
-      !this.isPlayer() &&
-      !this.isFriendly() &&
-      !this.isBound()
-    );
-  }
-
-  /**
    * Checks if there is a player unit located at this space.
    *
    * @returns {boolean} Whether there is a player unit located at this space

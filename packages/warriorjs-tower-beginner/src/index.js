@@ -100,7 +100,7 @@ export default {
       tip:
         'Be careful not to die! Use `warrior.health()` to keep an eye on your health, and `warrior.rest()` to earn 10% of your max health back.',
       clue:
-        "When there's no enemy ahead of you, call `warrior.rest()` until your health is full before walking forward.",
+        "When there's no hostile ahead of you, call `warrior.rest()` until your health is full before walking forward.",
       timeBonus: 35,
       aceScore: 71,
       floor: {
