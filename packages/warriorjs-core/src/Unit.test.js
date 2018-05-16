@@ -93,6 +93,68 @@ describe('Unit', () => {
     expect(itching.trigger).not.toHaveBeenCalled();
   });
 
+  describe('next turn', () => {
+    let turn;
+    let feel;
+    let walk;
+
+    beforeEach(() => {
+      feel = { perform: jest.fn() };
+      walk = {
+        action: true,
+        perform: jest.fn(),
+      };
+      unit.addAbility('feel', feel);
+      unit.addAbility('walk', walk);
+      turn = unit.getNextTurn();
+    });
+
+    test('defines a function for each ability of the unit', () => {
+      expect(turn.feel).toBeInstanceOf(Function);
+      expect(turn.walk).toBeInstanceOf(Function);
+    });
+
+    describe('with actions', () => {
+      test('has no action performed at first', () => {
+        expect(turn.action).toBeNull();
+      });
+
+      test('can call action and recall it', () => {
+        turn.walk();
+        expect(turn.action).toEqual(['walk', []]);
+      });
+
+      test('includes arguments passed to action', () => {
+        turn.walk('forward');
+        expect(turn.action).toEqual(['walk', ['forward']]);
+      });
+
+      test("can't call multiple actions per turn", () => {
+        turn.walk();
+        expect(() => {
+          turn.walk();
+        }).toThrow('Only one action can be performed per turn.');
+      });
+
+      test('defers execution when calling action', () => {
+        turn.walk();
+        expect(walk.perform).not.toHaveBeenCalled();
+      });
+    });
+
+    describe('with senses', () => {
+      test('can call multiple senses per turn', () => {
+        turn.feel();
+        turn.feel();
+      });
+
+      test('executes immediately when calling sense', () => {
+        turn.feel();
+        expect(feel.perform).toHaveBeenCalled();
+      });
+    });
+  });
+
   test('prepares turn by calling playTurn with next turn object', () => {
     unit.getNextTurn = () => 'nextTurn';
     unit.playTurn = jest.fn();
@@ -309,7 +371,7 @@ describe('Unit', () => {
 
   test("returns the space where it's located", () => {
     const space = unit.getSpace();
-    expect(space.location).toEqual(unit.position.location);
+    expect(space.getLocation()).toEqual(unit.position.location);
   });
 
   test('returns space at a given direction and number of spaces', () => {
@@ -386,6 +448,61 @@ describe('Unit', () => {
     test('murmurs something', () => {
       unit.vanish();
       expect(unit.say).toHaveBeenCalled();
+    });
+  });
+
+  describe('player object', () => {
+    let playerObject;
+
+    beforeEach(() => {
+      playerObject = unit.toPlayerObject();
+    });
+
+    test('allows calling Player API methods', () => {
+      const playerApi = [
+        'isHostile',
+        'isFriendly',
+        'isPlayer',
+        'isWarrior',
+        'isBound',
+        'isUnderEffect',
+      ];
+      playerApi.forEach(propertyName => {
+        playerObject[propertyName]();
+      });
+    });
+
+    test("doesn't allow calling methods that don't belong to the Player API", () => {
+      const forbiddenApi = [
+        'addAbility',
+        'addEffect',
+        'triggerEffect',
+        'getNextTurn',
+        'prepareTurn',
+        'performTurn',
+        'heal',
+        'takeDamage',
+        'damage',
+        'isAlive',
+        'unbind',
+        'bind',
+        'earnPoints',
+        'losePoints',
+        'getOtherUnits',
+        'getSpace',
+        'getSpaceAt',
+        'getDirectionOfStairs',
+        'getDirectionOf',
+        'getDistanceOf',
+        'move',
+        'rotate',
+        'vanish',
+        'say',
+        'toPlayerObject',
+      ];
+      forbiddenApi.forEach(propertyName => {
+        expect(playerObject).not.toHaveProperty(propertyName);
+      });
     });
   });
 

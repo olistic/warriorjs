@@ -31,7 +31,7 @@ class Space {
     }
 
     if (this.isWall()) {
-      const [locationX, locationY] = this.location;
+      const [locationX, locationY] = this.getLocation();
       if (locationX < 0) {
         if (locationY < 0) {
           return upperLeftWallCharacter;
@@ -76,7 +76,7 @@ class Space {
    */
   isStairs() {
     const [stairsX, stairsY] = this.floor.stairsLocation;
-    const [locationX, locationY] = this.location;
+    const [locationX, locationY] = this.getLocation();
     return stairsX === locationX && stairsY === locationY;
   }
 
@@ -104,7 +104,38 @@ class Space {
    * @returns {Unit} The unit.
    */
   getUnit() {
-    return this.floor.getUnitAt(this.location);
+    return this.floor.getUnitAt(this.getLocation());
+  }
+
+  /**
+   * Returns the location of this space.
+   *
+   * @returns {number[]} The location as a pair of coordinates [x, y].
+   */
+  getLocation() {
+    return this.location;
+  }
+
+  /**
+   * Returns the player object for this space.
+   *
+   * The player object has the subset of the Space methods that belong to the
+   * Player API.
+   *
+   * @returns {object} The player object.
+   */
+  toPlayerObject() {
+    return {
+      getLocation: this.getLocation.bind(this),
+      getUnit: () => {
+        const unit = this.getUnit.call(this);
+        return unit && unit.toPlayerObject();
+      },
+      isEmpty: this.isEmpty.bind(this),
+      isStairs: this.isStairs.bind(this),
+      isUnit: this.isUnit.bind(this),
+      isWall: this.isWall.bind(this),
+    };
   }
 
   /**

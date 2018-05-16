@@ -1,5 +1,4 @@
 import Logger from './Logger';
-import Turn from './Turn';
 
 /** Class representing a unit. */
 class Unit {
@@ -81,10 +80,37 @@ class Unit {
   /**
    * Returns the next turn to be played.
    *
-   * @returns {Turn} The next turn.
+   * @returns {Object} The next turn.
    */
   getNextTurn() {
-    return new Turn(this.abilities);
+    const turn = { action: null };
+    this.abilities.forEach((ability, name) => {
+      if (ability.action) {
+        // This defines a new method in the turn named after the action. When
+        // this new method is called on the turn, the `action` property of the
+        // turn is set to an array with the name of the action and the args
+        // passed to the action method.
+        Object.defineProperty(turn, name, {
+          value: (...args) => {
+            // If the action was already set, calling this other action will
+            // throw as only one action can be performed per turn.
+            if (turn.action) {
+              throw new Error('Only one action can be performed per turn.');
+            }
+
+            turn.action = [name, args];
+          },
+        });
+      } else {
+        // This defines a new method in the turn named after the sense. Whe
+        // this new method is called on the turn, the sense is performed
+        // immediately.
+        Object.defineProperty(turn, name, {
+          value: (...args) => ability.perform(...args),
+        });
+      }
+    });
+    return turn;
   }
 
   /**
@@ -356,6 +382,25 @@ class Unit {
    */
   say(message) {
     Logger.unit(this, message);
+  }
+
+  /**
+   * Returns the player object for this unit.
+   *
+   * The player object has the subset of the unit methods that belong to the
+   * Player API.
+   *
+   * @returns {object} The player object.
+   */
+  toPlayerObject() {
+    return {
+      isHostile: this.isHostile.bind(this),
+      isFriendly: this.isFriendly.bind(this),
+      isPlayer: this.isPlayer.bind(this),
+      isWarrior: this.isWarrior.bind(this),
+      isBound: this.isBound.bind(this),
+      isUnderEffect: this.isUnderEffect.bind(this),
+    };
   }
 
   /**

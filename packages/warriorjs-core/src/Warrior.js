@@ -17,7 +17,7 @@ class Warrior extends Unit {
   /**
    * Delegates the turn to the player instance.
    *
-   * @param {Turn} turn The turn.
+   * @param {Object} turn The turn object.
    */
   playTurn(turn) {
     try {

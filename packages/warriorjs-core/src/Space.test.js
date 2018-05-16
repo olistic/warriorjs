@@ -9,6 +9,11 @@ describe('Space', () => {
 
   beforeEach(() => {
     floor = new Floor(2, 3, [0, 2]);
+    space = floor.getSpaceAt([0, 0]);
+  });
+
+  test('knows its location', () => {
+    expect(space.getLocation()).toEqual([0, 0]);
   });
 
   describe('out of bounds', () => {
@@ -241,6 +246,35 @@ describe('Space', () => {
 
     test('appears as its character on map', () => {
       expect(space.getCharacter()).toBe('f');
+    });
+  });
+
+  describe('player object', () => {
+    let playerObject;
+
+    beforeEach(() => {
+      playerObject = space.toPlayerObject();
+    });
+
+    test('allows calling Player API methods', () => {
+      const playerApi = [
+        'getLocation',
+        'getUnit',
+        'isEmpty',
+        'isStairs',
+        'isUnit',
+        'isWall',
+      ];
+      playerApi.forEach(propertyName => {
+        playerObject[propertyName]();
+      });
+    });
+
+    test("throws when calling methods that don't belong to the Player API", () => {
+      const forbiddenApi = ['getCharacter', 'toPlayerObject'];
+      forbiddenApi.forEach(propertyName => {
+        expect(playerObject).not.toHaveProperty(propertyName);
+      });
     });
   });
 });
