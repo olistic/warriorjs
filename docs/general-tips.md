@@ -7,9 +7,9 @@ sidebar_label: General
 * **If you ever get stuck on a level, review the README** and be sure you're
   trying each ability out.
 
-* **If you can't keep your health up, be sure to rest when no enemy is around**
-  (while keeping an eye on your health). Also, try to use far-ranged weapons
-  whenever possible (such as the bow).
+* **If you can't keep your health up, be sure to rest when no hostile unit is
+  around** (while keeping an eye on your health). Also, try to use far-ranged
+  weapons whenever possible (such as the bow).
 
 * **Senses are cheap, so use them liberally.** Store the sensed information to
   help you better determine what actions to take in the future.

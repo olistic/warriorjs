@@ -41,17 +41,6 @@ _(boolean)_: Whether a friendly unit is at this space or not.
 
 ## `space.isHostile()`:
 
-Determines if an enemy unit is at this location. A bound unit doesn't count as a
-hostile.
-
-**Returns**
-
-_(boolean)_: Whether an enemy unit is at this space or not.
-
-## `space.isEnemy()`: `(deprecated)`
-
-**Deprecated in favor of `space.isHostile()`**
-
 Determines if a hostile unit is at this location. A bound unit doesn't count as
 hostile.
 

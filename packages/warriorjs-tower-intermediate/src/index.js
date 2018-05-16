@@ -57,7 +57,7 @@ export default {
       tip:
         'Just like walking, you can attack and feel in multiple directions (forward, left, right, backward).',
       clue:
-        "Call `warrior.feel().isHostile()` in each direction to make sure there isn't an enemy beside you (attack if there is). Call `warrior.rest()` if you're low in health when there are no enemies around.",
+        "Call `warrior.feel().isHostile()` in each direction to make sure there isn't a hostile unit beside you (attack if there is). Call `warrior.rest()` if you're low in health when there are no enemies around.",
       timeBonus: 40,
       aceScore: 84,
       floor: {
@@ -114,9 +114,9 @@ export default {
     {
       description: 'You feel slime on all sides, you are surrounded!',
       tip:
-        'Call `warrior.bind()` to bind an enemy to keep him from attacking. Bound enemies no longer look like enemies.',
+        'Call `warrior.bind()` to bind a hostile unit to keep him from attacking. Bound enemies no longer look like enemies.',
       clue:
-        'Count the number of enemies around you. Bind an enemy if there are two or more.',
+        'Count the number of hostile units around you. Bind one if there are two or more.',
       timeBonus: 50,
       aceScore: 101,
       floor: {

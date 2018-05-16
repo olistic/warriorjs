@@ -193,7 +193,7 @@ describe('Space', () => {
       expect(space.isBound()).toBe(false);
     });
 
-    describe('enemy', () => {
+    describe('hostile', () => {
       test('is hostile', () => {
         expect(space.isHostile()).toBe(true);
       });
