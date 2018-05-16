@@ -15,6 +15,7 @@ import {
   pivot,
   rescue,
   rest,
+  think,
   shoot,
   walk,
 } from '@warriorjs/abilities';
@@ -40,13 +41,14 @@ export default {
         },
         warrior: {
           ...Warrior,
+          abilities: {
+            think: think(),
+            walk: walk(),
+          },
           position: {
             x: 0,
             y: 0,
             facing: EAST,
-          },
-          abilities: {
-            walk: walk(),
           },
         },
         units: [],

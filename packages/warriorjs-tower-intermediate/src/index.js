@@ -13,6 +13,7 @@ import {
   look,
   rescue,
   rest,
+  think,
   walk,
 } from '@warriorjs/abilities';
 import { ticking } from '@warriorjs/effects';
@@ -40,6 +41,7 @@ export default {
           ...Warrior,
           abilities: {
             directionOfStairs: directionOfStairs(),
+            think: think(),
             walk: walk(),
           },
           position: {
