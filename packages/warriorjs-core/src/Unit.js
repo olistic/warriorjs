@@ -175,7 +175,7 @@ class Unit {
   damage(receiver, amount) {
     receiver.takeDamage(amount);
     if (!receiver.isAlive()) {
-      if (receiver.isCaptive()) {
+      if (receiver.isFriendly()) {
         this.losePoints(receiver.reward);
       } else {
         this.earnPoints(receiver.reward);

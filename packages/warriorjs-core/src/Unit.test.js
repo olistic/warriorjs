@@ -230,7 +230,7 @@ describe('Unit', () => {
     });
 
     test('lose points equal to reward when killing a friendly unit', () => {
-      receiver.captive = true;
+      receiver.hostile = false;
       unit.losePoints = jest.fn();
       unit.damage(receiver, 5);
       expect(unit.losePoints).toHaveBeenCalledWith(10);
