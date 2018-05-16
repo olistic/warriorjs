@@ -50,20 +50,27 @@ class Space {
   }
 
   /**
-   * Checks if there is an enemy unit located at this space.
+   * Checks if there is a hostile unit located at this space.
    *
-   * A bound unit does not count as an enemy.
+   * A bound unit is not considered hostile.
    *
-   * @returns {boolean} Whether there is an enemy unit located at this space
+   * @returns {boolean} Whether there is a hostile unit located at this space
    * or not.
    */
-  isEnemy() {
-    return (
-      !!this.getUnit() &&
-      !this.isPlayer() &&
-      !this.isCaptive() &&
-      !this.isBound()
-    );
+  isHostile() {
+    const unit = this.getUnit();
+    return !!unit && !this.isBound() && unit.isHostile();
+  }
+
+  /**
+   * Checks if there is a friendly unit located at this space.
+   *
+   * @returns {boolean} Whether there is a friendly unit located at this space or
+   * not.
+   */
+  isFriendly() {
+    const unit = this.getUnit();
+    return !!unit && unit.isFriendly();
   }
 
   /**
@@ -84,17 +91,6 @@ class Space {
   isWarrior() {
     const { warrior } = this.floor;
     return !!warrior && warrior === this.getUnit();
-  }
-
-  /**
-   * Checks if there is a captive unit located at this space.
-   *
-   * @returns {boolean} Whether there is a captive unit located at this space or
-   * not.
-   */
-  isCaptive() {
-    const unit = this.getUnit();
-    return !!unit && unit.isCaptive();
   }
 
   /**

@@ -17,7 +17,7 @@ describe('Floor', () => {
     const map = floor.getMap();
     expect(map[0][0].isWall()).toBe(true);
     expect(map[1][1].isEmpty()).toBe(true);
-    expect(map[2][1].isEnemy()).toBe(true);
+    expect(map[2][1].isHostile()).toBe(true);
     expect(map[3][2].isStairs()).toBe(true);
   });
 

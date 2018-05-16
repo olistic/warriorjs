@@ -216,7 +216,7 @@ export default {
     {
       description: 'You hear cries for help. Captives must need rescuing.',
       tip:
-        "Use `warrior.feel().isCaptive()` to see if there's a captive and `warrior.rescue()` to rescue him. Don't attack captives.",
+        "Use `warrior.feel().isFriendly() && warrior.feel().isBound()` to see if there's a captive and `warrior.rescue()` to rescue him. Don't attack captives.",
       clue:
         "Don't forget to constantly check if you are being attacked. Rest until your health is full if you're not taking damage.",
       timeBonus: 45,

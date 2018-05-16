@@ -32,12 +32,16 @@ describe('Unit', () => {
     });
 
     test('which defaults to max health', () => {
-      expect(new Unit('Joe', '@', 20).reward).toBe(20);
+      expect(new Unit('Foo', 'f', 20).reward).toBe(20);
     });
   });
 
-  test('has a captive status which defaults to false', () => {
-    expect(unit.captive).toBe(false);
+  test('has a hostile status which defaults to true', () => {
+    expect(unit.hostile).toBe(true);
+  });
+
+  test('has a bound status which defaults to false', () => {
+    expect(unit.bound).toBe(false);
   });
 
   test('has a collection of abilities which starts empty', () => {
@@ -52,10 +56,6 @@ describe('Unit', () => {
 
   test('has a health which defaults to max health', () => {
     expect(unit.health).toBe(20);
-  });
-
-  test('has a bound status which defaults to captive status', () => {
-    expect(unit.bound).toBe(unit.captive);
   });
 
   test('starts with a score of zero', () => {
@@ -93,10 +93,10 @@ describe('Unit', () => {
     expect(itching.trigger).not.toHaveBeenCalled();
   });
 
-  test('knows if it is a captive', () => {
-    expect(unit.isCaptive()).toBe(false);
-    unit.captive = true;
-    expect(unit.isCaptive()).toBe(true);
+  test('knows if it is friendly', () => {
+    expect(unit.isFriendly()).toBe(false);
+    unit.hostile = false;
+    expect(unit.isFriendly()).toBe(true);
   });
 
   test('prepares turn by calling playTurn with next turn object', () => {
@@ -230,7 +230,7 @@ describe('Unit', () => {
     });
 
     test('lose points equal to reward when killing a friendly unit', () => {
-      receiver.captive = true;
+      receiver.hostile = false;
       unit.losePoints = jest.fn();
       unit.damage(receiver, 5);
       expect(unit.losePoints).toHaveBeenCalledWith(10);

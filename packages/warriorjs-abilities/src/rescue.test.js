@@ -20,7 +20,7 @@ describe('rescue', () => {
 
   test('has a description', () => {
     expect(rescue.description).toBe(
-      `Rescue a captive from his chains (earning a reward) in the given direction (${FORWARD} by default).`,
+      `Release a unit from his chains in the given direction (${FORWARD} by default).`,
     );
   });
 
@@ -50,12 +50,12 @@ describe('rescue', () => {
 
       beforeEach(() => {
         receiver = {
+          reward: 20,
+          isFriendly: () => false,
           isBound: () => true,
-          isCaptive: () => false,
           unbind: jest.fn(),
           vanish: jest.fn(),
           toString: () => 'receiver',
-          reward: 20,
         };
         unit.getSpaceAt = () => ({ getUnit: () => receiver });
       });
@@ -76,8 +76,8 @@ describe('rescue', () => {
         expect(receiver.unbind).toHaveBeenCalled();
       });
 
-      test('earns points if rescuing a captive', () => {
-        receiver.isCaptive = () => true;
+      test('earns points if rescuing a friendly unit', () => {
+        receiver.isFriendly = () => true;
         rescue.perform();
         expect(receiver.vanish).toHaveBeenCalled();
         expect(unit.earnPoints).toHaveBeenCalledWith(20);

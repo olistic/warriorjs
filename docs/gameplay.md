@@ -31,7 +31,7 @@ ahead, otherwise walk forward:
 ```js
 class Player {
   playTurn(warrior) {
-    if (warrior.feel().isEnemy()) {
+    if (warrior.feel().isHostile()) {
       warrior.attack();
     } else {
       warrior.walk();

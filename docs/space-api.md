@@ -31,22 +31,22 @@ Determines if the stairs are at this location.
 
 _(boolean)_: Whether the stairs are at this space or not.
 
-## `space.isCaptive()`:
+## `space.isHostile()`:
 
-Determines if a captive unit is at this location.
-
-**Returns**
-
-_(boolean)_: Whether a captive unit is at this space or not.
-
-## `space.isEnemy()`:
-
-Determines if an enemy unit is at this location. A bound unit doesn't count as
-an enemy.
+Determines if a hostile unit is at this location. A bound unit is not considered
+hostile.
 
 **Returns**
 
-_(boolean)_: Whether an enemy unit is at this space or not.
+_(boolean)_: Whether a hostile unit is at this space or not.
+
+## `space.isFriendly()`:
+
+Determines if a friendly unit is at this location.
+
+**Returns**
+
+_(boolean)_: Whether a friendly unit is at this space or not.
 
 ## `space.isWarrior()`:
 

@@ -10,19 +10,27 @@ class Unit {
    * @param {string} character The character of the unit.
    * @param {number} maxHealth The max health in HP.
    * @param {number} reward The number of points to reward when killed.
-   * @param {boolean} captive Whether the unit is a captive or not.
+   * @param {boolean} hostile Whether the unit is hostile or not.
+   * @param {boolean} bound Whether the unit is bound or not.
    */
-  constructor(name, character, maxHealth, reward = null, captive = false) {
+  constructor(
+    name,
+    character,
+    maxHealth,
+    reward = null,
+    hostile = true,
+    bound = false,
+  ) {
     this.name = name;
     this.character = character;
     this.maxHealth = maxHealth;
     this.reward = reward === null ? maxHealth : reward;
-    this.captive = captive;
+    this.hostile = hostile;
+    this.bound = bound;
     this.abilities = new Map();
     this.effects = new Map();
     this.health = maxHealth;
     this.position = null;
-    this.bound = captive;
     this.score = 0;
     this.turn = null;
   }
@@ -106,12 +114,21 @@ class Unit {
   }
 
   /**
-   * Checks if the unit is a captive.
+   * Checks if the unit is hostile.
    *
-   * @returns {boolean} Whether the unit is a captive or not.
+   * @returns {boolean} Whether the unit is hostile or not.
    */
-  isCaptive() {
-    return this.captive;
+  isHostile() {
+    return this.hostile;
+  }
+
+  /**
+   * Checks if the unit is friendly.
+   *
+   * @returns {boolean} Whether the unit is friendly or not.
+   */
+  isFriendly() {
+    return !this.hostile;
   }
 
   /**
@@ -159,10 +176,10 @@ class Unit {
   damage(receiver, amount) {
     receiver.takeDamage(amount);
     if (!receiver.isAlive()) {
-      if (receiver.isCaptive()) {
-        this.losePoints(receiver.reward);
-      } else {
+      if (receiver.isHostile()) {
         this.earnPoints(receiver.reward);
+      } else {
+        this.losePoints(receiver.reward);
       }
     }
   }

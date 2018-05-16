@@ -13,7 +13,11 @@ describe('Captive', () => {
     expect(Captive.reward).toBe(20);
   });
 
-  test('is a captive', () => {
-    expect(Captive.captive).toBe(true);
+  test('is not hostile', () => {
+    expect(Captive.hostile).toBe(false);
+  });
+
+  test('is bound', () => {
+    expect(Captive.bound).toBe(true);
   });
 });
