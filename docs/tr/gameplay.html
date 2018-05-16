@@ -36,7 +36,7 @@
 <p>Here is an example which will instruct the warrior to attack if there's an enemy ahead, otherwise walk forward:</p>
 <pre><code class="hljs css js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Player</span> </span>{
   playTurn(warrior) {
-    <span class="hljs-keyword">if</span> (warrior.feel().isEnemy()) {
+    <span class="hljs-keyword">if</span> (warrior.feel().isHostile()) {
       warrior.attack();
     } <span class="hljs-keyword">else</span> {
       warrior.walk();

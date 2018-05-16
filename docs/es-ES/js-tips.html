@@ -55,9 +55,9 @@
 <pre><code class="hljs css js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Player</span> </span>{
   <span class="hljs-comment">// ...</span>
 
-  isEnemyInSight(warrior) {
+  isHostileUnitInSight(warrior) {
     <span class="hljs-keyword">const</span> unit = warrior.look().find(<span class="hljs-function"><span class="hljs-params">space</span> =&gt;</span> !space.isEmpty());
-    <span class="hljs-keyword">return</span> unit &amp;&amp; unit.isEnemy();
+    <span class="hljs-keyword">return</span> unit &amp;&amp; unit.isHostile();
   }
 }
 </code></pre>
