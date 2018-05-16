@@ -13,8 +13,8 @@ const Archer = {
     const playerDirection = RELATIVE_DIRECTIONS.find(direction => {
       const spaceWithUnit = archer
         .look(direction)
-        .find(space => !space.isEmpty());
-      return spaceWithUnit && spaceWithUnit.isPlayer();
+        .find(space => space.isUnit());
+      return spaceWithUnit && spaceWithUnit.getUnit().isPlayer();
     });
     if (playerDirection) {
       archer.shoot(playerDirection);

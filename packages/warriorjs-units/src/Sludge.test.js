@@ -33,7 +33,7 @@ describe('Sludge', () => {
     let space;
 
     beforeEach(() => {
-      space = { isPlayer: () => false };
+      space = { isUnit: () => false };
       turn = {
         attack: jest.fn(),
         feel: jest.fn(() => space),
@@ -50,8 +50,11 @@ describe('Sludge', () => {
 
     test('stops looking if it finds player', () => {
       turn.feel
-        .mockReturnValueOnce({ isPlayer: () => false })
-        .mockReturnValueOnce({ isPlayer: () => true });
+        .mockReturnValueOnce({ isUnit: () => false })
+        .mockReturnValueOnce({
+          isUnit: () => true,
+          getUnit: () => ({ isPlayer: () => true }),
+        });
       Sludge.playTurn(turn);
       expect(turn.feel).toHaveBeenCalledWith(FORWARD);
       expect(turn.feel).toHaveBeenCalledWith(RIGHT);
