@@ -17,6 +17,7 @@ import printPlay from './ui/printPlay';
 import printSuccessLine from './ui/printSuccessLine';
 import printTowerReport from './ui/printTowerReport';
 import printWarningLine from './ui/printWarningLine';
+import printWelcomeMessage from './ui/printWelcomeMessage';
 import requestChoice, { SEPARATOR } from './ui/requestChoice';
 import requestConfirmation from './ui/requestConfirmation';
 import requestInput from './ui/requestInput';
@@ -45,7 +46,7 @@ class Game {
    * Starts the game.
    */
   async start() {
-    printLine('Welcome to WarriorJS');
+    printWelcomeMessage();
 
     try {
       this.profile = await this.loadProfile();
