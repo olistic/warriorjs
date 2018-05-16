@@ -6,18 +6,18 @@ class Player {
     if (this._nextSpaces[2].isStairs()) {
       this.walkForward = true;
     }
-    if (this._nextSpaces[0].isEnemy()) {
+    if (this._nextSpaces[0].isHostile()) {
       warrior.attack('backward');
       return;
     }
-    if (this._nextSpaces[0].isEmpty() && this._nextSpaces[1].isEnemy()) {
+    if (this._nextSpaces[0].isEmpty() && this._nextSpaces[1].isHostile()) {
       warrior.shoot('backward');
       return;
     }
     if (
       this._nextSpaces[0].isEmpty() &&
       this._nextSpaces[1].isEmpty() &&
-      this._nextSpaces[2].isEnemy()
+      this._nextSpaces[2].isHostile()
     ) {
       warrior.shoot('backward');
       return;
@@ -25,18 +25,18 @@ class Player {
 
     if (this.notFirstContact) {
       this._nextSpaces = warrior.look();
-      if (this._nextSpaces[0].isEnemy()) {
+      if (this._nextSpaces[0].isHostile()) {
         warrior.attack();
         return;
       }
-      if (this._nextSpaces[0].isEmpty() && this._nextSpaces[1].isEnemy()) {
+      if (this._nextSpaces[0].isEmpty() && this._nextSpaces[1].isHostile()) {
         warrior.shoot();
         return;
       }
       if (
         this._nextSpaces[0].isEmpty() &&
         this._nextSpaces[1].isEmpty() &&
-        this._nextSpaces[2].isEnemy()
+        this._nextSpaces[2].isHostile()
       ) {
         warrior.shoot();
         return;
@@ -54,10 +54,10 @@ class Player {
     } else if (warrior.feel('backward').isFriendly() && !this.walkForward) {
       warrior.rescue('backward');
       this.notFirstContact = true;
-    } else if (warrior.feel().isCaptive()) {
+    } else if (warrior.feel().isFriendly() && warrior.feel().isBound()) {
       warrior.rescue();
       this.notFirstContact = true;
-    } else if (warrior.feel().isEnemy()) {
+    } else if (warrior.feel().isHostile()) {
       warrior.attack();
       this.notFirstContact = true;
       //} else if (warrior.health() < 20 && this._health <= warrior.health()) {

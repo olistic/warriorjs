@@ -86,7 +86,8 @@ class Space {
     return (
       !!this.getUnit() &&
       !this.isPlayer() &&
-      !this.isCaptive() &&
+      !this.isFriendly() &&
+      !this.isBound() &&
       !this.isBound()
     );
   }
@@ -109,18 +110,6 @@ class Space {
   isWarrior() {
     const { warrior } = this.floor;
     return !!warrior && warrior === this.getUnit();
-  }
-
-  /**
-   * WARNING: Deprecared method
-   * Checks if there is a captive unit located at this space.
-   *
-   * @returns {boolean} Whether there is a captive unit located at this space or
-   * not.
-   */
-  isCaptive() {
-    const unit = this.getUnit();
-    return !!unit && unit.isCaptive();
   }
 
   /**

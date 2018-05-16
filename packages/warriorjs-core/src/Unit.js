@@ -131,16 +131,6 @@ class Unit {
   }
 
   /**
-   * WARNING: Deprecared method
-   * Checks if the unit is a captive.
-   *
-   * @returns {boolean} Whether the unit is a captive or not.
-   */
-  isCaptive() {
-    return !this.hostile;
-  }
-
-  /**
    * Adds the given amount of health in HP.
    *
    * @param {number} amount The amount of HP to add.

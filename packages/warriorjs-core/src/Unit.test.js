@@ -93,12 +93,6 @@ describe('Unit', () => {
     expect(itching.trigger).not.toHaveBeenCalled();
   });
 
-  test('knows if it is a captive', () => {
-    expect(unit.isCaptive()).toBe(false);
-    unit.hostile = false;
-    expect(unit.isCaptive()).toBe(true);
-  });
-
   test('knows if it is friendly', () => {
     expect(unit.isFriendly()).toBe(false);
     unit.hostile = false;

@@ -206,8 +206,8 @@ describe('Space', () => {
         expect(space.isHostile()).toBe(true);
       });
 
-      test('is not captive', () => {
-        expect(space.isCaptive()).toBe(false);
+      test('is not friendly', () => {
+        expect(space.isFriendly()).toBe(false);
       });
 
       test('is not warrior', () => {
@@ -246,8 +246,8 @@ describe('Space', () => {
         expect(space.isHostile()).toBe(false);
       });
 
-      test('is captive', () => {
-        expect(space.isCaptive()).toBe(true);
+      test('is friendly', () => {
+        expect(space.isFriendly()).toBe(true);
       });
     });
 
