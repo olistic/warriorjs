@@ -3,8 +3,8 @@ id: abilities
 title: Abilities
 ---
 
-An **ability** is a skill possessed by your warrior. You activate abilities
-during your warrior's turn.
+An **ability** is a skill possessed by a unit. As the player, you activate
+abilities during your warrior's turn.
 
 > Ability selection is the way you can customize how your warrior plays.
 

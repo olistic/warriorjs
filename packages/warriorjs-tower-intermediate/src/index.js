@@ -57,7 +57,7 @@ export default {
       tip:
         'Just like walking, you can attack and feel in multiple directions (forward, left, right, backward).',
       clue:
-        "Call `warrior.feel().isHostile()` in each direction to make sure there isn't an enemy beside you (attack if there is). Call `warrior.rest()` if you're low in health when there are no enemies around.",
+        "Call `warrior.feel().isUnit()` and `unit.isHostile()` in each direction to make sure there isn't an enemy beside you (attack if there is). Call `warrior.rest()` if you're low in health when there are no enemies around.",
       timeBonus: 40,
       aceScore: 84,
       floor: {
@@ -308,9 +308,9 @@ export default {
       description:
         "What's that ticking? Some captives have a timed bomb at their feet!",
       tip:
-        "Hurry and rescue captives that have `space.isUnderEffect('ticking')` first, they'll soon go!",
+        "Hurry and rescue captives that have `unit.isUnderEffect('ticking')` first, they'll soon go!",
       clue:
-        "Avoid fighting enemies at first. Use `warrior.listen()` and `space.isUnderEffect('ticking')` and quickly rescue those captives.",
+        "Avoid fighting enemies at first. Use `warrior.listen()` and `unit.isUnderEffect('ticking')` and quickly rescue those captives.",
       timeBonus: 50,
       aceScore: 108,
       floor: {
@@ -448,7 +448,7 @@ export default {
       tip:
         'Detonate a bomb when you see a couple enemies ahead of you (`warrior.look()`). Watch out for your health too.',
       clue:
-        'Calling `warrior.look()` will return an array of Spaces. If the first two contain enemies, detonate a bomb with `warrior.detonate()`.',
+        'Calling `warrior.look()` will return an array of spaces. If the first two contain enemies, detonate a bomb with `warrior.detonate()`.',
       timeBonus: 30,
       aceScore: 91,
       floor: {
