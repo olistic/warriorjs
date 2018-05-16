@@ -114,24 +114,6 @@ class Unit {
   }
 
   /**
-   * Checks if the unit is hostile.
-   *
-   * @returns {boolean} Whether the unit is hostile or not.
-   */
-  isHostile() {
-    return this.hostile;
-  }
-
-  /**
-   * Checks if the unit is friendly.
-   *
-   * @returns {boolean} Whether the unit is friendly or not.
-   */
-  isFriendly() {
-    return !this.hostile;
-  }
-
-  /**
    * Adds the given amount of health in HP.
    *
    * @param {number} amount The amount of HP to add.
@@ -193,6 +175,44 @@ class Unit {
    */
   isAlive() {
     return this.position !== null;
+  }
+
+  /**
+   * Checks if the unit is hostile.
+   *
+   * A bound unit is not considered hostile.
+   *
+   * @returns {boolean} Whether the unit is hostile or not.
+   */
+  isHostile() {
+    return this.hostile && !this.bound;
+  }
+
+  /**
+   * Checks if the unit is friendly.
+   *
+   * @returns {boolean} Whether the unit is friendly or not.
+   */
+  isFriendly() {
+    return !this.hostile;
+  }
+
+  /**
+   * Checks if the unit is controlled by the player.
+   *
+   * @returns {boolean} Whether the unit is controlled by the player or not.
+   */
+  isPlayer() {
+    return this.isWarrior();
+  }
+
+  /**
+   * Checks if the unit is the warrior.
+   *
+   * @returns {boolean} Whether the unit is the warrior or not.
+   */
+  isWarrior() {
+    return this.constructor.name === 'Warrior';
   }
 
   /**
@@ -358,6 +378,7 @@ class Unit {
       character: this.character,
       maxHealth: this.maxHealth,
       health: this.health,
+      warrior: this.isWarrior(),
     };
   }
 }

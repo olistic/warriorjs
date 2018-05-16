@@ -15,10 +15,10 @@ describe('Floor', () => {
     const unit = new Unit();
     floor.addUnit(unit, { x: 0, y: 1, facing: NORTH });
     const map = floor.getMap();
-    expect(map[0][0].isWall()).toBe(true);
     expect(map[1][1].isEmpty()).toBe(true);
-    expect(map[2][1].isHostile()).toBe(true);
     expect(map[3][2].isStairs()).toBe(true);
+    expect(map[0][0].isWall()).toBe(true);
+    expect(map[2][1].isUnit()).toBe(true);
   });
 
   test("doesn't consider corners out of bounds", () => {

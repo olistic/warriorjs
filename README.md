@@ -66,8 +66,8 @@ Jump straight to some of the most-visited pages:
 
 * [**Set Up**](https://warrior.js.org/docs/set-up)
 * [Gameplay](https://warrior.js.org/docs/gameplay)
-* [Space API](https://warrior.js.org/docs/space-api)
-* [CLI](https://warrior.js.org/docs/cli)
+* [Player API](https://warrior.js.org/docs/space-api)
+* [CLI Options](https://warrior.js.org/docs/cli-options)
 
 ## Preview
 
@@ -91,7 +91,7 @@ We welcome contributions to WarriorJS! These are the many ways you can help:
 * Report bugs
 * Follow us on [Twitter](https://twitter.com/warrior_js)
 * Participate in the [Spectrum community](https://spectrum.chat/warriorjs)
-* And [donate financially](https://opencollective.com/warriorjs)
+* And [donate financially](https://opencollective.com/warriorjs)!
 
 Please read our [contribution guide](CONTRIBUTING.md) to get started. Also note
 that this project is released with a

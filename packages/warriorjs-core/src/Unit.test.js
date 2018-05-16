@@ -93,12 +93,6 @@ describe('Unit', () => {
     expect(itching.trigger).not.toHaveBeenCalled();
   });
 
-  test('knows if it is friendly', () => {
-    expect(unit.isFriendly()).toBe(false);
-    unit.hostile = false;
-    expect(unit.isFriendly()).toBe(true);
-  });
-
   test('prepares turn by calling playTurn with next turn object', () => {
     unit.getNextTurn = () => 'nextTurn';
     unit.playTurn = jest.fn();
@@ -244,6 +238,20 @@ describe('Unit', () => {
   test('considers itself dead when no position', () => {
     unit.position = null;
     expect(unit.isAlive()).toBe(false);
+  });
+
+  test('knows if it is hostile or friendly', () => {
+    expect(unit.isHostile()).toBe(true);
+    expect(unit.isFriendly()).toBe(false);
+    unit.hostile = false;
+    expect(unit.isHostile()).toBe(false);
+    expect(unit.isFriendly()).toBe(true);
+  });
+
+  test("doesn't look like hostile when bound", () => {
+    expect(unit.isHostile()).toBe(true);
+    unit.bind();
+    expect(unit.isHostile()).toBe(false);
   });
 
   test('is bound after calling bind', () => {

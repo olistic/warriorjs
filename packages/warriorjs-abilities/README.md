@@ -25,8 +25,7 @@ Rotate in the given direction (backward by default).
 
 ### `unit.rescue([direction])`:
 
-Rescue a captive from his chains (earning a reward) in the given direction
-(forward by default).
+Release a unit from his chains in the given direction (forward by default).
 
 ### `unit.rest()`:
 
