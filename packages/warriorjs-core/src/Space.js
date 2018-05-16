@@ -7,6 +7,19 @@ const horizontalWallCharacter = '═';
 const emptyCharacter = ' ';
 const stairsCharacter = '>';
 
+const playerApi = [
+  'getLocation',
+  'isBound',
+  'isCaptive',
+  'isEmpty',
+  'isEnemy',
+  'isPlayer',
+  'isStairs',
+  'isUnderEffect',
+  'isWall',
+  'isWarrior',
+];
+
 /** Class representing a space in the floor. */
 class Space {
   /**
@@ -21,12 +34,21 @@ class Space {
   }
 
   /**
+   * Returns the location of this space.
+   *
+   * @returns {number[]} The location as a pair of coordinates [x, y].
+   */
+  getLocation() {
+    return this.location;
+  }
+
+  /**
    * Checks if there is a wall located at this space.
    *
    * @returns {boolean} Whether there is a wall located at this space or not.
    */
   isWall() {
-    return this.floor.isOutOfBounds(this.location);
+    return this.floor.isOutOfBounds(this.getLocation());
   }
 
   /**
@@ -45,7 +67,7 @@ class Space {
    */
   isStairs() {
     const [stairsX, stairsY] = this.floor.stairsLocation;
-    const [locationX, locationY] = this.location;
+    const [locationX, locationY] = this.getLocation();
     return stairsX === locationX && stairsY === locationY;
   }
 
@@ -123,7 +145,7 @@ class Space {
    * @returns {Unit} The unit.
    */
   getUnit() {
-    return this.floor.getUnitAt(this.location);
+    return this.floor.getUnitAt(this.getLocation());
   }
 
   /**
@@ -133,7 +155,7 @@ class Space {
    */
   getCharacter() {
     if (this.isWall()) {
-      const [locationX, locationY] = this.location;
+      const [locationX, locationY] = this.getLocation();
       if (locationX < 0) {
         if (locationY < 0) {
           return upperLeftWallCharacter;
@@ -164,6 +186,28 @@ class Space {
     }
 
     return emptyCharacter;
+  }
+
+  /**
+   * Returns the player object for this space.
+   *
+   * The player object has the subset of the Space methods that belong to the
+   * Player API.
+   *
+   * @returns {object} The player object.
+   */
+  toPlayerObject() {
+    const playerObject = {};
+    Object.getOwnPropertyNames(Space.prototype).forEach(propertyName => {
+      if (playerApi.includes(propertyName)) {
+        playerObject[propertyName] = this[propertyName].bind(this);
+      } else {
+        playerObject[propertyName] = () => {
+          throw new Error(`${propertyName} does not belong to the Player API`);
+        };
+      }
+    });
+    return playerObject;
   }
 
   /**

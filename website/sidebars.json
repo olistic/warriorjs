@@ -3,7 +3,7 @@
     "Intro": ["overview", "set-up"],
     "Game": ["object", "gameplay", "perspective", "scoring", "epic-mode"],
     "Player": ["warrior", "abilities", "effects", "spaces"],
-    "API Reference": ["warrior-api", "space-api", "cli"],
+    "Reference": ["warrior-api", "space-api", "cli"],
     "Tips & Tricks": ["general-tips", "js-tips", "cli-tips"]
   },
   "community": {
