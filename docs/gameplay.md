@@ -25,8 +25,8 @@ do depending on the situation.
 See the README in your profile's directory for details on what's on the current
 level and what abilities your warrior has available to deal with it.
 
-Here is an example which will instruct the warrior to attack if there's a
-hostile unit ahead, otherwise walk forward:
+Here is an example which will instruct the warrior to attack if there's an enemy
+ahead, otherwise walk forward:
 
 ```js
 class Player {

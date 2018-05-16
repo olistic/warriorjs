@@ -32,12 +32,16 @@ describe('Unit', () => {
     });
 
     test('which defaults to max health', () => {
-      expect(new Unit('Joe', '@', 20).reward).toBe(20);
+      expect(new Unit('Foo', 'f', 20).reward).toBe(20);
     });
   });
 
   test('has a hostile status which defaults to true', () => {
     expect(unit.hostile).toBe(true);
+  });
+
+  test('has a bound status which defaults to false', () => {
+    expect(unit.bound).toBe(false);
   });
 
   test('has a collection of abilities which starts empty', () => {
@@ -52,10 +56,6 @@ describe('Unit', () => {
 
   test('has a health which defaults to max health', () => {
     expect(unit.health).toBe(20);
-  });
-
-  test('has a bound status which defaults to false status', () => {
-    expect(unit.bound).toBe(false);
   });
 
   test('starts with a score of zero', () => {

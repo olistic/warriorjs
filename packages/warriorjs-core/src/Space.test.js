@@ -115,24 +115,28 @@ describe('Space', () => {
       space = floor.getSpaceAt([0, 0]);
     });
 
+    test('is not wall', () => {
+      expect(space.isWall()).toBe(false);
+    });
+
     test('is empty', () => {
       expect(space.isEmpty()).toBe(true);
+    });
+
+    test('is not stairs', () => {
+      expect(space.isStairs()).toBe(false);
     });
 
     test('is not hostile', () => {
       expect(space.isHostile()).toBe(false);
     });
 
+    test('is not friendly', () => {
+      expect(space.isFriendly()).toBe(false);
+    });
+
     test('is not warrior', () => {
       expect(space.isWarrior()).toBe(false);
-    });
-
-    test('is not wall', () => {
-      expect(space.isWall()).toBe(false);
-    });
-
-    test('is not stairs', () => {
-      expect(space.isStairs()).toBe(false);
     });
 
     test('is not bound', () => {
@@ -174,19 +178,21 @@ describe('Space', () => {
     let unit;
 
     beforeEach(() => {
-      unit = new Unit();
-      unit.name = 'Joe';
-      unit.character = '@';
+      unit = new Unit('Foo', 'f');
       floor.addUnit(unit, { x: 0, y: 0, facing: NORTH });
       space = floor.getSpaceAt([0, 0]);
     });
 
     test('has name of unit', () => {
-      expect(space.toString()).toEqual('Joe');
+      expect(space.toString()).toEqual('Foo');
     });
 
-    test("appears as '@' on map", () => {
-      expect(space.getCharacter()).toBe('@');
+    test('appears as its character on map', () => {
+      expect(space.getCharacter()).toBe('f');
+    });
+
+    test('is not empty', () => {
+      expect(space.isEmpty()).toBe(false);
     });
 
     test('is not bound', () => {
@@ -206,16 +212,12 @@ describe('Space', () => {
         expect(space.isWarrior()).toBe(false);
       });
 
-      test('is not empty', () => {
-        expect(space.isEmpty()).toBe(false);
-      });
-
       describe('bound', () => {
         beforeEach(() => {
           unit.bind();
         });
 
-        test("doesn't look like a hostile", () => {
+        test("doesn't look like hostile", () => {
           expect(space.isHostile()).toBe(false);
         });
       });
@@ -259,26 +261,34 @@ describe('Space', () => {
 
   describe('with warrior', () => {
     beforeEach(() => {
-      const warrior = new Warrior();
+      const warrior = new Warrior('Joe', '@');
       floor.addUnit(warrior, { x: 0, y: 0, facing: NORTH });
       floor.warrior = warrior;
       space = floor.getSpaceAt([0, 0]);
     });
 
-    test('is warrior', () => {
-      expect(space.isWarrior()).toBe(true);
+    test('has name of warrior', () => {
+      expect(space.toString()).toEqual('Joe');
     });
 
-    test('is player', () => {
-      expect(space.isPlayer()).toBe(true);
+    test('appears as its character on map', () => {
+      expect(space.getCharacter()).toBe('@');
+    });
+
+    test('is not empty', () => {
+      expect(space.isEmpty()).toBe(false);
     });
 
     test('is not hostile', () => {
       expect(space.isHostile()).toBe(false);
     });
 
-    test('is not empty', () => {
-      expect(space.isEmpty()).toBe(false);
+    test('is player', () => {
+      expect(space.isPlayer()).toBe(true);
+    });
+
+    test('is warrior', () => {
+      expect(space.isWarrior()).toBe(true);
     });
   });
 });
