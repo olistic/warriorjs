@@ -28,6 +28,7 @@ const levelConfig = {
       y: 0,
     },
     warrior: {
+      name: 'Joe',
       character: '@',
       maxHealth: 20,
       abilities: {
@@ -101,9 +102,10 @@ const levelConfig = {
           }),
         },
         playTurn(sludge) {
-          const playerDirection = RELATIVE_DIRECTIONS.find(direction =>
-            sludge.feel(direction).isPlayer(),
-          );
+          const playerDirection = RELATIVE_DIRECTIONS.find(direction => {
+            const space = sludge.feel(direction);
+            return space.isUnit() && space.getUnit().isPlayer();
+          });
           if (playerDirection) {
             sludge.attack(playerDirection);
           }
@@ -181,11 +183,12 @@ test('returns level', () => {
             character: '@',
             stairs: false,
             unit: {
+              name: 'Joe',
               character: '@',
-              health: 20,
               maxHealth: 20,
-              score: 0,
               warrior: true,
+              health: 20,
+              score: 0,
               abilities: {
                 actions: [
                   [
@@ -224,8 +227,9 @@ test('returns level', () => {
             unit: {
               name: 'Sludge',
               character: 's',
-              health: 12,
               maxHealth: 12,
+              warrior: false,
+              health: 12,
             },
           },
           {
@@ -289,6 +293,10 @@ test('returns level', () => {
         ],
       ],
       warrior: {
+        name: 'Joe',
+        character: '@',
+        maxHealth: 20,
+        warrior: true,
         abilities: {
           actions: [
             [
@@ -307,11 +315,8 @@ test('returns level', () => {
             ],
           ],
         },
-        character: '@',
         health: 20,
-        maxHealth: 20,
         score: 0,
-        warrior: true,
       },
     },
   });

@@ -20,6 +20,7 @@ const levelConfig = {
       y: 0,
     },
     warrior: {
+      name: 'Joe',
       character: '@',
       maxHealth: 20,
       abilities: {
@@ -88,9 +89,10 @@ const levelConfig = {
           }),
         },
         playTurn(sludge) {
-          const playerDirection = RELATIVE_DIRECTIONS.find(direction =>
-            sludge.feel(direction).isPlayer(),
-          );
+          const playerDirection = RELATIVE_DIRECTIONS.find(direction => {
+            const space = sludge.feel(direction);
+            return space.isUnit() && space.getUnit().isPlayer();
+          });
           if (playerDirection) {
             sludge.attack(playerDirection);
           }
@@ -109,7 +111,8 @@ test('passes level with a winner player code', () => {
   const playerCode = `
     class Player {
       playTurn(warrior) {
-        if (warrior.feel().isHostile()) {
+        const spaceAhead = warrior.feel();
+        if (spaceAhead.isUnit() && spaceAhead.getUnit().isHostile()) {
           warrior.attack();
         } else {
           warrior.walk();

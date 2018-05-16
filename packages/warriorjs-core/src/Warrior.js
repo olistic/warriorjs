@@ -1,7 +1,7 @@
 import PlayerError from './PlayerError';
 import Unit from './Unit';
 
-/** Class that represents a warrior. */
+/** Class representing a warrior. */
 class Warrior extends Unit {
   /**
    * Creates a warrior.
@@ -42,7 +42,6 @@ class Warrior extends Unit {
   toJSON() {
     return {
       ...super.toJSON(),
-      warrior: true,
       score: this.score,
       abilities: {
         actions: [...this.abilities]
