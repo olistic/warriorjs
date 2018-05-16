@@ -54,8 +54,8 @@ describe('Unit', () => {
     expect(unit.health).toBe(20);
   });
 
-  test('has a bound status which defaults to !hostile status', () => {
-    expect(unit.bound).toBe(!unit.hostile);
+  test('has a bound status which defaults to false status', () => {
+    expect(unit.bound).toBe(false);
   });
 
   test('starts with a score of zero', () => {

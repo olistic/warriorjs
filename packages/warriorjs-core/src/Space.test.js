@@ -221,7 +221,7 @@ describe('Space', () => {
       });
     });
 
-    describe('captive', () => {
+    describe('friendly', () => {
       beforeEach(() => {
         unit.hostile = false;
       });
