@@ -8,6 +8,24 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [0.3.0] - 2018-05-16
+
+### Added
+
+* Subtract reward points when killing a friendly unit ([@Terseus][] in [#87][])
+* Think ability (`console.log` alternative) ([@olistic][] in [#102][])
+
+### Changed
+
+* Distinguish between hostile and friendly units ([@xFloki][] in [#101][])
+* Move unit methods out of the Space API and to the Unit API ([@olistic][] in
+  [#113][])
+
+### Fixed
+
+* Enforce [Player API](https://warrior.js.org/docs/space-api) ([@olistic][] in
+  [#114][])
+
 ## [0.2.0] - 2018-05-14
 
 ### Added
@@ -42,19 +60,27 @@ and this project adheres to
 
 Initial version
 
-[unreleased]: https://github.com/olistic/warriorjs/compare/v0.2.0...HEAD
+[unreleased]: https://github.com/olistic/warriorjs/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/olistic/warriorjs/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/olistic/warriorjs/compare/v0.1.1...v0.2.0
 [0.1.1]: https://github.com/olistic/warriorjs/compare/v0.1.0...v0.1.1
 [@olistic]: https://github.com/olistic
 [@rascaltwo]: https://github.com/RascalTwo
 [@jakehamilton]: https://github.com/jakehamilton
+[@terseus]: https://github.com/Terseus
+[@xfloki]: https://github.com/xFloki
 [#67]: https://github.com/olistic/warriorjs/pull/67
 [#70]: https://github.com/olistic/warriorjs/pull/70
 [#77]: https://github.com/olistic/warriorjs/pull/77
 [#81]: https://github.com/olistic/warriorjs/pull/81
 [#83]: https://github.com/olistic/warriorjs/pull/83
 [#86]: https://github.com/olistic/warriorjs/pull/86
+[#87]: https://github.com/olistic/warriorjs/pull/87
 [#90]: https://github.com/olistic/warriorjs/pull/90
 [#93]: https://github.com/olistic/warriorjs/pull/93
 [#97]: https://github.com/olistic/warriorjs/pull/97
 [#98]: https://github.com/olistic/warriorjs/pull/98
+[#101]: https://github.com/olistic/warriorjs/pull/101
+[#102]: https://github.com/olistic/warriorjs/pull/102
+[#113]: https://github.com/olistic/warriorjs/pull/113
+[#114]: https://github.com/olistic/warriorjs/pull/114
