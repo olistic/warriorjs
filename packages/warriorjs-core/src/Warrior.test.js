@@ -50,5 +50,4 @@ describe('Warrior', () => {
     warrior.losePoints(5);
     expect(warrior.say).toHaveBeenCalledWith('loses 5 points');
   });
-
 });
