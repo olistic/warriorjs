@@ -22,6 +22,14 @@ describe('look', () => {
   });
 
   describe('performing', () => {
+    beforeEach(() => {
+      unit.getSpaceAt
+        .mockReturnValueOnce({ toPlayerObject: () => 'space1' })
+        .mockReturnValueOnce({ toPlayerObject: () => 'space2' })
+        .mockReturnValueOnce({ toPlayerObject: () => 'space3' })
+        .mockReturnValueOnce({ toPlayerObject: () => 'space4' });
+    });
+
     test('looks forward by default', () => {
       look.perform();
       expect(unit.getSpaceAt).toHaveBeenCalledWith(FORWARD, 1);

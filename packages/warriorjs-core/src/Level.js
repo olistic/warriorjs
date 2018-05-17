@@ -72,7 +72,8 @@ class Level {
    * @returns {boolean} Whether the level was passed or not.
    */
   wasPassed() {
-    return this.floor.getStairsSpace().isWarrior();
+    const stairsSpace = this.floor.getStairsSpace();
+    return stairsSpace.isUnit() && stairsSpace.getUnit().isWarrior();
   }
 
   /**

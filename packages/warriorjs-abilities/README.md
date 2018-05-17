@@ -25,8 +25,7 @@ Rotate in the given direction (backward by default).
 
 ### `unit.rescue([direction])`:
 
-Rescue a captive from his chains (earning a reward) in the given direction
-(forward by default).
+Release a unit from his chains in the given direction (forward by default).
 
 ### `unit.rest()`:
 
@@ -74,6 +73,14 @@ yourself).
 
 Returns an array of up to `[range]` [spaces][spaces] in the given direction
 (forward by default).
+
+[actions]: https://warrior.js.org/docs/abilities#actions
+[senses]: https://warrior.js.org/docs/abilities#senses
+[spaces]: https://warrior.js.org/docs/spaces
+
+### `unit.think(thought)`:
+
+Think about your options before choosing an action.
 
 [actions]: https://warrior.js.org/docs/abilities#actions
 [senses]: https://warrior.js.org/docs/abilities#senses

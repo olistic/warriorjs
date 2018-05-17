@@ -1,5 +1,4 @@
 import Logger from './Logger';
-import Turn from './Turn';
 
 /** Class representing a unit. */
 class Unit {
@@ -10,19 +9,27 @@ class Unit {
    * @param {string} character The character of the unit.
    * @param {number} maxHealth The max health in HP.
    * @param {number} reward The number of points to reward when killed.
-   * @param {boolean} captive Whether the unit is a captive or not.
+   * @param {boolean} hostile Whether the unit is hostile or not.
+   * @param {boolean} bound Whether the unit is bound or not.
    */
-  constructor(name, character, maxHealth, reward = null, captive = false) {
+  constructor(
+    name,
+    character,
+    maxHealth,
+    reward = null,
+    hostile = true,
+    bound = false,
+  ) {
     this.name = name;
     this.character = character;
     this.maxHealth = maxHealth;
     this.reward = reward === null ? maxHealth : reward;
-    this.captive = captive;
+    this.hostile = hostile;
+    this.bound = bound;
     this.abilities = new Map();
     this.effects = new Map();
     this.health = maxHealth;
     this.position = null;
-    this.bound = captive;
     this.score = 0;
     this.turn = null;
   }
@@ -73,10 +80,37 @@ class Unit {
   /**
    * Returns the next turn to be played.
    *
-   * @returns {Turn} The next turn.
+   * @returns {Object} The next turn.
    */
   getNextTurn() {
-    return new Turn(this.abilities);
+    const turn = { action: null };
+    this.abilities.forEach((ability, name) => {
+      if (ability.action) {
+        // This defines a new method in the turn named after the action. When
+        // this new method is called on the turn, the `action` property of the
+        // turn is set to an array with the name of the action and the args
+        // passed to the action method.
+        Object.defineProperty(turn, name, {
+          value: (...args) => {
+            // If the action was already set, calling this other action will
+            // throw as only one action can be performed per turn.
+            if (turn.action) {
+              throw new Error('Only one action can be performed per turn.');
+            }
+
+            turn.action = [name, args];
+          },
+        });
+      } else {
+        // This defines a new method in the turn named after the sense. Whe
+        // this new method is called on the turn, the sense is performed
+        // immediately.
+        Object.defineProperty(turn, name, {
+          value: (...args) => ability.perform(...args),
+        });
+      }
+    });
+    return turn;
   }
 
   /**
@@ -103,15 +137,6 @@ class Unit {
         this.abilities.get(name).perform(...args);
       }
     }
-  }
-
-  /**
-   * Checks if the unit is a captive.
-   *
-   * @returns {boolean} Whether the unit is a captive or not.
-   */
-  isCaptive() {
-    return this.captive;
   }
 
   /**
@@ -159,10 +184,10 @@ class Unit {
   damage(receiver, amount) {
     receiver.takeDamage(amount);
     if (!receiver.isAlive()) {
-      if (receiver.isCaptive()) {
-        this.losePoints(receiver.reward);
-      } else {
+      if (receiver.isHostile()) {
         this.earnPoints(receiver.reward);
+      } else {
+        this.losePoints(receiver.reward);
       }
     }
   }
@@ -176,6 +201,44 @@ class Unit {
    */
   isAlive() {
     return this.position !== null;
+  }
+
+  /**
+   * Checks if the unit is hostile.
+   *
+   * A bound unit is not considered hostile.
+   *
+   * @returns {boolean} Whether the unit is hostile or not.
+   */
+  isHostile() {
+    return this.hostile && !this.bound;
+  }
+
+  /**
+   * Checks if the unit is friendly.
+   *
+   * @returns {boolean} Whether the unit is friendly or not.
+   */
+  isFriendly() {
+    return !this.hostile;
+  }
+
+  /**
+   * Checks if the unit is controlled by the player.
+   *
+   * @returns {boolean} Whether the unit is controlled by the player or not.
+   */
+  isPlayer() {
+    return this.isWarrior();
+  }
+
+  /**
+   * Checks if the unit is the warrior.
+   *
+   * @returns {boolean} Whether the unit is the warrior or not.
+   */
+  isWarrior() {
+    return this.constructor.name === 'Warrior';
   }
 
   /**
@@ -322,6 +385,25 @@ class Unit {
   }
 
   /**
+   * Returns the player object for this unit.
+   *
+   * The player object has the subset of the unit methods that belong to the
+   * Player API.
+   *
+   * @returns {object} The player object.
+   */
+  toPlayerObject() {
+    return {
+      isHostile: this.isHostile.bind(this),
+      isFriendly: this.isFriendly.bind(this),
+      isPlayer: this.isPlayer.bind(this),
+      isWarrior: this.isWarrior.bind(this),
+      isBound: this.isBound.bind(this),
+      isUnderEffect: this.isUnderEffect.bind(this),
+    };
+  }
+
+  /**
    * Returns the string representation of this unit.
    *
    * @returns {string} The string representation.
@@ -341,6 +423,7 @@ class Unit {
       character: this.character,
       maxHealth: this.maxHealth,
       health: this.health,
+      warrior: this.isWarrior(),
     };
   }
 }

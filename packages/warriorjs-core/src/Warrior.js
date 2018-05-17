@@ -1,7 +1,7 @@
 import PlayerError from './PlayerError';
 import Unit from './Unit';
 
-/** Class that represents a warrior. */
+/** Class representing a warrior. */
 class Warrior extends Unit {
   /**
    * Creates a warrior.
@@ -17,7 +17,7 @@ class Warrior extends Unit {
   /**
    * Delegates the turn to the player instance.
    *
-   * @param {Turn} turn The turn.
+   * @param {Object} turn The turn object.
    */
   playTurn(turn) {
     try {
@@ -47,7 +47,6 @@ class Warrior extends Unit {
   toJSON() {
     return {
       ...super.toJSON(),
-      warrior: true,
       score: this.score,
       abilities: {
         actions: [...this.abilities]

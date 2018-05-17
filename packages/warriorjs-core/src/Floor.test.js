@@ -15,10 +15,10 @@ describe('Floor', () => {
     const unit = new Unit();
     floor.addUnit(unit, { x: 0, y: 1, facing: NORTH });
     const map = floor.getMap();
-    expect(map[0][0].isWall()).toBe(true);
     expect(map[1][1].isEmpty()).toBe(true);
-    expect(map[2][1].isEnemy()).toBe(true);
     expect(map[3][2].isStairs()).toBe(true);
+    expect(map[0][0].isWall()).toBe(true);
+    expect(map[2][1].isUnit()).toBe(true);
   });
 
   test("doesn't consider corners out of bounds", () => {
@@ -37,13 +37,13 @@ describe('Floor', () => {
 
   test('returns the space at the stairs location', () => {
     const stairsSpace = floor.getStairsSpace();
-    expect(stairsSpace.location).toEqual(floor.stairsLocation);
+    expect(stairsSpace.getLocation()).toEqual(floor.stairsLocation);
   });
 
   test('returns the space at the specified location', () => {
     const space = floor.getSpaceAt([0, 0]);
     expect(space).toBeInstanceOf(Space);
-    expect(space.location).toEqual([0, 0]);
+    expect(space.getLocation()).toEqual([0, 0]);
   });
 
   test('adds a unit and fetches it at that position', () => {

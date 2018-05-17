@@ -1,6 +1,6 @@
 {
   "name": "@warriorjs/tower-intermediate",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "WarriorJS intermediate tower",
   "author": "Matias Olivera <moliverafreire@gmail.com>",
   "license": "MIT",
@@ -20,12 +20,12 @@
     "build": "babel src --out-dir lib"
   },
   "peerDependencies": {
-    "@warriorjs/core": "^0.2.0"
+    "@warriorjs/core": "^0.3.0"
   },
   "dependencies": {
-    "@warriorjs/abilities": "^0.2.0",
+    "@warriorjs/abilities": "^0.3.0",
     "@warriorjs/effects": "^0.1.0",
     "@warriorjs/geography": "^0.1.0",
-    "@warriorjs/units": "^0.2.0"
+    "@warriorjs/units": "^0.3.0"
   }
 }
