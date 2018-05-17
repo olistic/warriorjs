@@ -145,7 +145,7 @@ const languages = [
     tag: 'sr',
   },
   {
-    enabled: false,
+    enabled: true,
     name: 'Svenska',
     tag: 'sv-SE',
   },
