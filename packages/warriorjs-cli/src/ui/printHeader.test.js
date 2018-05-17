@@ -1,15 +1,15 @@
 import style from 'ansi-styles';
 
-import getScreenSize from './getScreenSize';
-import printLine from './printLine';
 import printHeader from './printHeader';
+import printRow from './printRow';
 
-jest.mock('./getScreenSize');
-jest.mock('./printLine');
+jest.mock('./printRow');
 
-test('prints header with padding in gray', () => {
-  getScreenSize.mockReturnValue([11, 0]);
+test('prints header centered and with gray dash as padding', () => {
   printHeader('foo');
-  const padding = `${style.gray.open}---${style.gray.close}`;
-  expect(printLine).toHaveBeenCalledWith(`${padding} foo ${padding}`);
+  expect(printRow).toHaveBeenCalledWith(
+    ' foo ',
+    'center',
+    `${style.gray.open}-${style.gray.close}`,
+  );
 });

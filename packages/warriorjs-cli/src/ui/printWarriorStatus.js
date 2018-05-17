@@ -1,7 +1,6 @@
 import chalk from 'chalk';
 
-import getScreenSize from './getScreenSize';
-import printLine from './printLine';
+import printRow from './printRow';
 
 /**
  * Prints the warrior status line.
@@ -9,16 +8,10 @@ import printLine from './printLine';
  * @param {Object} warrior The warrior.
  */
 function printWarriorStatus(warrior) {
-  const [screenWidth] = getScreenSize();
-  const warriorHealth = chalk.redBright(
-    `♥ ${warrior.health}`.padEnd(screenWidth, ' '),
-  );
-  printLine(warriorHealth);
-
-  const warriorScore = chalk.yellowBright(
-    `♦ ${warrior.score}`.padEnd(screenWidth, ' '),
-  );
-  printLine(warriorScore);
+  const warriorHealth = chalk.redBright(`♥ ${warrior.health}`);
+  printRow(warriorHealth);
+  const warriorScore = chalk.yellowBright(`♦ ${warrior.score}`);
+  printRow(warriorScore);
 }
 
 export default printWarriorStatus;

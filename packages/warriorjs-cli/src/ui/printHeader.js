@@ -1,7 +1,6 @@
 import chalk from 'chalk';
 
-import getScreenSize from './getScreenSize';
-import printLine from './printLine';
+import printRow from './printRow';
 
 /**
  * Prints the given header.
@@ -9,11 +8,7 @@ import printLine from './printLine';
  * @param {string} header The header.
  */
 function printHeader(header) {
-  const [screenWidth] = getScreenSize();
-  const headerLength = header.length + 2; // 2 spaces surrounding the header.
-  const paddingLength = (screenWidth - headerLength) / 2;
-  const padding = chalk.gray('-'.repeat(paddingLength));
-  printLine(`${padding} ${header} ${padding}`);
+  printRow(` ${header} `, 'center', chalk.gray('-'));
 }
 
 export default printHeader;
