@@ -8,6 +8,10 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Added
+
+* Make warrior upset when losing points ([@skywalker212][] in [#107][])
+
 ## [0.3.0] - 2018-05-16
 
 ### Added
@@ -69,6 +73,7 @@ Initial version
 [@jakehamilton]: https://github.com/jakehamilton
 [@terseus]: https://github.com/Terseus
 [@xfloki]: https://github.com/xFloki
+[@skywalker212]: https://github.com/skywalker212
 [#67]: https://github.com/olistic/warriorjs/pull/67
 [#70]: https://github.com/olistic/warriorjs/pull/70
 [#77]: https://github.com/olistic/warriorjs/pull/77
@@ -82,5 +87,6 @@ Initial version
 [#98]: https://github.com/olistic/warriorjs/pull/98
 [#101]: https://github.com/olistic/warriorjs/pull/101
 [#102]: https://github.com/olistic/warriorjs/pull/102
+[#107]: https://github.com/olistic/warriorjs/pull/107
 [#113]: https://github.com/olistic/warriorjs/pull/113
 [#114]: https://github.com/olistic/warriorjs/pull/114
