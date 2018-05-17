@@ -6,7 +6,7 @@ import printHeader from './printHeader';
  * @param {number} levelNumber The level number.
  */
 function printLevelHeader(levelNumber) {
-  printHeader(`level ${String(levelNumber).padStart(3, '0')}`);
+  printHeader(`level ${levelNumber}`);
 }
 
 export default printLevelHeader;

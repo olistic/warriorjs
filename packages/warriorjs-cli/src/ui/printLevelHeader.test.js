@@ -5,5 +5,5 @@ jest.mock('./printHeader');
 
 test('prints level header', () => {
   printLevelHeader(1);
-  expect(printHeader).toHaveBeenCalledWith('level 001');
+  expect(printHeader).toHaveBeenCalledWith('level 1');
 });
