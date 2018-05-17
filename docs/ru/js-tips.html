@@ -1,0 +1,71 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Советы по JavaScript · WarriorJS</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta property="og:title" content="Советы по JavaScript · WarriorJS"/><meta property="og:type" content="website"/><meta property="og:url" content="https://warrior.js.org/index.html"/><meta property="og:description" content="* Don&#x27;t simply fill up the `playTurn` method with a lot of code, **organize your code with methods and classes**. For example:"/><meta property="og:image" content="https://warrior.js.org/img/warriorjs.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://warrior.js.org/img/warriorjs.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-118632697-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible doc separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/ru"><img class="logo" src="/img/warriorjs-text.svg" alt="WarriorJS"/></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/ru/overview.html" target="_self">Воспроизвести</a></li><li class=""><a href="/docs/ru/socialize.html" target="_self">Сообщество</a></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg"/>Русский</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/en">English</a></li><li><a href="/es-ES">Español</a></li><li><a href="/sv-SE">Svenska</a></li><li><a href="/tr">Türkçe</a></li><li><a href="/zh-CN">中文</a></li><li><a href="/zh-TW">繁體中文</a></li><li><a href="https://crowdin.com/project/warriorjs" target="_blank" rel="noreferrer noopener">Помочь с переводом</a></li></ul></div></li><script>
+        const languagesMenuItem = document.getElementById("languages-menu");
+        const languagesDropDown = document.getElementById("languages-dropdown");
+        languagesMenuItem.addEventListener("click", function(){
+          if(languagesDropDown.className == "hide") {
+            languagesDropDown.className = "visible";
+          } else {
+            languagesDropDown.className = "hide";
+          }
+        });
+      </script></span><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><li class=""><a href="https://github.com/olistic/warriorjs" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>Советы и подсказки</span></h2></div><div class="navGroups"><div class="navGroup navGroupActive"><h3>Введение</h3><ul><li class="navListItem"><a class="navItem" href="/docs/ru/overview.html">Обзор</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/set-up.html">Настройка</a></li></ul></div><div class="navGroup navGroupActive"><h3>Игра</h3><ul><li class="navListItem"><a class="navItem" href="/docs/ru/object.html">Объект</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/gameplay.html">Игровой процесс</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/perspective.html">Перспектива</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/scoring.html">Подсчет очков</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/epic-mode.html">Эпический режим</a></li></ul></div><div class="navGroup navGroupActive"><h3>Concepts</h3><ul><li class="navListItem"><a class="navItem" href="/docs/ru/units.html">Units</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/warrior.html">Воин</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/abilities.html">Способности</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/effects.html">Эффекты</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/spaces.html">Разделы</a></li></ul></div><div class="navGroup navGroupActive"><h3>Player API</h3><ul><li class="navListItem"><a class="navItem" href="/docs/ru/space-api.html">API Разделов</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/unit-api.html">Unit API</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/turn-api.html">Turn API</a></li></ul></div><div class="navGroup navGroupActive"><h3>Советы и подсказки</h3><ul><li class="navListItem"><a class="navItem" href="/docs/ru/general-tips.html">Основныe</a></li><li class="navListItem navListItemActive"><a class="navItem navItemActive" href="/docs/ru/js-tips.html">JavaScript</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/cli-tips.html">CLI</a></li></ul></div><div class="navGroup navGroupActive"><h3>Configuration</h3><ul><li class="navListItem"><a class="navItem" href="/docs/ru/cli-options.html">CLI Options</a></li></ul></div></div></section></div><script>
+          var toggler = document.getElementById('navToggler');
+          var nav = document.getElementById('docsNav');
+          toggler.onclick = function() {
+            nav.classList.toggle('docsSliderActive');
+          };
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/warriorjs/ru" target="_blank" rel="noreferrer noopener">Translate</a><h1>Советы по JavaScript</h1></header><article><div><span><ul>
+<li>Don't simply fill up the <code>playTurn</code> method with a lot of code, <strong>organize your code with methods and classes</strong>. For example:</li>
+</ul>
+<pre><code class="hljs css js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Player</span> </span>{
+  playTurn(warrior) {
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.isInjured(warrior)) {
+      warrior.rest();
+    }
+  }
+
+  isInjured(warrior) {
+    <span class="hljs-keyword">return</span> warrior.health() &lt; <span class="hljs-number">20</span>;
+  }
+}
+</code></pre>
+<ul>
+<li>If you want some code to be executed at the beginning of each level, <strong>define a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/constructor">constructor</a> in the <code>Player</code> class</strong>, like this:</li>
+</ul>
+<pre><code class="hljs css js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Player</span> </span>{
+  <span class="hljs-keyword">constructor</span>() {
+    <span class="hljs-comment">// This code will be executed only once, at the beginning of the level.</span>
+    <span class="hljs-keyword">this</span>.health = <span class="hljs-number">20</span>;
+  }
+
+  <span class="hljs-comment">// ...</span>
+}
+</code></pre>
+<ul>
+<li>Some senses (like look and listen) return an array of spaces, so <strong>you might find many of the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/prototype#Methods">Array prototype methods</a> really useful</strong>. Here is an example of the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find">Array.prototype.find</a> method:</li>
+</ul>
+<pre><code class="hljs css js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Player</span> </span>{
+  <span class="hljs-comment">// ...</span>
+
+  isEnemyInSight(warrior) {
+    <span class="hljs-keyword">const</span> spaceWithUnit = warrior.look().find(<span class="hljs-function"><span class="hljs-params">space</span> =&gt;</span> space.isUnit());
+    <span class="hljs-keyword">return</span> spaceWithUnit &amp;&amp; spaceWithUnit.getUnit().isHostile();
+  }
+}
+</code></pre>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="general-tips.html">← Общие подсказки</a><a class="docs-next button" href="cli-tips.html">Советы по CLI →</a></div></div></div><nav class="onPageNav"></nav></div><footer class="footerSection nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/warriorjs-sword.svg" alt="WarriorJS"/></a><div><h5>Docs</h5><a href="/docs/ru/overview.html">Play</a></div><div><h5>Community</h5><a href="https://spectrum.chat/warriorjs" target="_blank" rel="noopener noreferrer">Spectrum</a><a href="https://twitter.com/warrior_js" target="_blank" rel="noopener noreferrer">Twitter</a><a href="https://twitter.com/warrior_js" target="_blank" rel="noopener noreferrer"><img alt="Follow WarriorJS on Twitter" src="https://img.shields.io/twitter/follow/warrior_js.svg?label=Follow+WarriorJS&amp;style=social"/></a></div><div><h5>More</h5><a href="https://opencollective.com/warriorjs" target="_blank" rel="noopener noreferrer">Donate</a><a href="https://github.com/olistic/warriorjs" target="_blank" rel="noopener noreferrer">GitHub</a><a class="github-button" href="https://github.com/olistic/warriorjs" data-icon="octicon-star" data-show-count="true" aria-label="Star this project on GitHub">Star</a></div></section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+              var search = docsearch({
+                
+                apiKey: 'af0d3f56837aacc96ccd573d9208966c',
+                indexName: 'warriorjs',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>
