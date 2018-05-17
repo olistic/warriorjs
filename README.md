@@ -71,7 +71,7 @@ Jump straight to some of the most-visited pages:
 
 ## Preview
 
-![WarriorJS Preview](https://user-images.githubusercontent.com/5600126/39439641-af8366ac-4c7e-11e8-9997-af4cb1104c0b.gif)
+![WarriorJS Preview](https://user-images.githubusercontent.com/5600126/40150855-8b2acdd2-5952-11e8-9034-00dcee0c4c2c.gif)
 
 > WarriorJS launched from the
 > [Integrated Terminal](https://code.visualstudio.com/docs/editor/integrated-terminal)
