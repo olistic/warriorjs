@@ -6,7 +6,7 @@ import printHeader from './printHeader';
  * @param {number} turnNumber The turn number.
  */
 function printTurnHeader(turnNumber) {
-  printHeader(`turn ${String(turnNumber).padStart(3, '0')}`);
+  printHeader(`turn ${String(turnNumber).padStart(3, '0')}`, '-');
 }
 
 export default printTurnHeader;

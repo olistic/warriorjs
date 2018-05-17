@@ -5,5 +5,5 @@ jest.mock('./printHeader');
 
 test('prints turn header', () => {
   printTurnHeader(1);
-  expect(printHeader).toHaveBeenCalledWith('turn 001');
+  expect(printHeader).toHaveBeenCalledWith('turn 001', '-');
 });

@@ -5,8 +5,8 @@ import printRow from './printRow';
 
 jest.mock('./printRow');
 
-test('prints header centered and with gray dash as padding', () => {
-  printHeader('foo');
+test('prints header centered and with gray padding', () => {
+  printHeader('foo', '-');
   expect(printRow).toHaveBeenCalledWith(
     ' foo ',
     'center',
