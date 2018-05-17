@@ -130,7 +130,7 @@ const languages = [
     tag: 'ro',
   },
   {
-    enabled: false,
+    enabled: true,
     name: 'Русский',
     tag: 'ru',
   },
@@ -145,7 +145,7 @@ const languages = [
     tag: 'sr',
   },
   {
-    enabled: false,
+    enabled: true,
     name: 'Svenska',
     tag: 'sv-SE',
   },
@@ -165,7 +165,7 @@ const languages = [
     tag: 'vi',
   },
   {
-    enabled: false,
+    enabled: true,
     name: '中文',
     tag: 'zh-CN',
   },
