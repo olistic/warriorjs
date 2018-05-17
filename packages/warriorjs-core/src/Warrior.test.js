@@ -45,4 +45,9 @@ describe('Warrior', () => {
     warrior.earnPoints(5);
     expect(warrior.say).toHaveBeenCalledWith('earns 5 points');
   });
+
+  test('is upset for losing points', () => {
+    warrior.losePoints(5);
+    expect(warrior.say).toHaveBeenCalledWith('loses 5 points');
+  });
 });

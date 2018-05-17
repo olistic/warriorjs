@@ -39,6 +39,11 @@ class Warrior extends Unit {
     this.say(`earns ${points} points`);
   }
 
+  losePoints(points) {
+    super.losePoints(points);
+    this.say(`loses ${points} points`);
+  }
+
   toJSON() {
     return {
       ...super.toJSON(),
