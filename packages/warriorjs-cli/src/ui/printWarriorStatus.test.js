@@ -3,7 +3,6 @@ import style from 'ansi-styles';
 import getScreenSize from './getScreenSize';
 import printLine from './printLine';
 import printWarriorStatus from './printWarriorStatus';
-import isWindows from 'is-windows';
 
 jest.mock('./getScreenSize');
 jest.mock('./printLine');
@@ -26,8 +25,6 @@ test('prints warrior score in bright yellow', () => {
   };
   printWarriorStatus(warrior);
   expect(printLine).toHaveBeenCalledWith(
-    `${style.yellowBright.open}${isWindows ? `♦` : `⬥`} 10 ${
-      style.yellowBright.close
-    }`,
+    `${style.yellowBright.open}♦ 10 ${style.yellowBright.close}`,
   );
 });

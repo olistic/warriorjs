@@ -2,7 +2,6 @@ import chalk from 'chalk';
 
 import getScreenSize from './getScreenSize';
 import printLine from './printLine';
-import isWindows from 'is-windows';
 
 /**
  * Prints the warrior status line.
@@ -17,7 +16,7 @@ function printWarriorStatus(warrior) {
   printLine(warriorHealth);
 
   const warriorScore = chalk.yellowBright(
-    `${isWindows ? `♦` : `⬥`} ${warrior.score}`.padEnd(screenWidth, ' '),
+    `♦ ${warrior.score}`.padEnd(screenWidth, ' '),
   );
   printLine(warriorScore);
 }
