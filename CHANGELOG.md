@@ -12,6 +12,10 @@ and this project adheres to
 
 * Make warrior upset when losing points ([@skywalker212][] in [#107][])
 
+### Fixed
+
+* Diamond symbol on Windows ([@glneto][] in [#121][])
+
 ## [0.3.0] - 2018-05-16
 
 ### Added
@@ -74,6 +78,7 @@ Initial version
 [@terseus]: https://github.com/Terseus
 [@xfloki]: https://github.com/xFloki
 [@skywalker212]: https://github.com/skywalker212
+[@glneto]: https://github.com/glneto
 [#67]: https://github.com/olistic/warriorjs/pull/67
 [#70]: https://github.com/olistic/warriorjs/pull/70
 [#77]: https://github.com/olistic/warriorjs/pull/77
@@ -90,3 +95,4 @@ Initial version
 [#107]: https://github.com/olistic/warriorjs/pull/107
 [#113]: https://github.com/olistic/warriorjs/pull/113
 [#114]: https://github.com/olistic/warriorjs/pull/114
+[#121]: https://github.com/olistic/warriorjs/pull/121
