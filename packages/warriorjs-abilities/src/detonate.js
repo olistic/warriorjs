@@ -8,7 +8,7 @@ function detonate({ targetPower, surroundingPower }) {
     action: true,
     description: `Detonate a bomb in a given direction (${defaultDirection} by default) dealing ${targetPower} HP of damage to that space and ${surroundingPower} HP of damage to surrounding 4 spaces (including yourself).`,
     perform(direction = defaultDirection) {
-      unit.say(`detonates a bomb ${direction} launching a deadly explosion`);
+      unit.log(`detonates a bomb ${direction} launching a deadly explosion`);
       const targetSpace = unit.getSpaceAt(direction);
       this.bomb(targetSpace, targetPower);
       surroundingOffsets
@@ -22,7 +22,7 @@ function detonate({ targetPower, surroundingPower }) {
       if (receiver) {
         unit.damage(receiver, power);
         if (receiver.isUnderEffect('ticking')) {
-          receiver.say(
+          receiver.log(
             "caught in bomb's flames which detonates ticking explosive",
           );
           receiver.triggerEffect('ticking');

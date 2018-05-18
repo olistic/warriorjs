@@ -151,7 +151,7 @@ class Unit {
         : amount;
     this.health += revisedAmount;
 
-    this.say(`receives ${amount} health, up to ${this.health} health`);
+    this.log(`receives ${amount} health, up to ${this.health} health`);
   }
 
   /**
@@ -167,10 +167,10 @@ class Unit {
     const revisedAmount = this.health - amount < 0 ? this.health : amount;
     this.health -= revisedAmount;
 
-    this.say(`takes ${amount} damage, ${this.health} health power left`);
+    this.log(`takes ${amount} damage, ${this.health} health power left`);
 
     if (!this.health) {
-      this.say('dies');
+      this.log('dies');
       this.vanish();
     }
   }
@@ -255,7 +255,7 @@ class Unit {
    */
   unbind() {
     this.bound = false;
-    this.say('released from bonds');
+    this.log('released from bonds');
   }
 
   /**
@@ -354,7 +354,7 @@ class Unit {
    */
   move(direction, forward = 1, right = 0) {
     this.position.move(direction, [forward, right]);
-    this.say();
+    this.log();
   }
 
   /**
@@ -364,7 +364,7 @@ class Unit {
    */
   rotate(direction) {
     this.position.rotate(direction);
-    this.say();
+    this.log();
   }
 
   /**
@@ -372,7 +372,7 @@ class Unit {
    */
   vanish() {
     this.position = null;
-    this.say();
+    this.log();
   }
 
   /**
@@ -380,7 +380,7 @@ class Unit {
    *
    * @param {string} message The message to log.
    */
-  say(message) {
+  log(message) {
     Logger.unit(this, message);
   }
 

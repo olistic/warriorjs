@@ -9,10 +9,10 @@ function bind() {
     perform(direction = defaultDirection) {
       const receiver = unit.getSpaceAt(direction).getUnit();
       if (receiver) {
-        unit.say(`binds ${direction} and restricts ${receiver}`);
+        unit.log(`binds ${direction} and restricts ${receiver}`);
         receiver.bind();
       } else {
-        unit.say(`binds ${direction} and restricts nothing`);
+        unit.log(`binds ${direction} and restricts nothing`);
       }
     },
   });

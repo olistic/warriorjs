@@ -12,7 +12,7 @@ describe('Level', () => {
 
   beforeEach(() => {
     warrior = new Warrior();
-    warrior.say = jest.fn();
+    warrior.log = jest.fn();
     floor = new Floor(2, 1, [1, 0]);
     floor.addUnit(warrior, { x: 0, y: 0, facing: EAST });
     floor.warrior = warrior;

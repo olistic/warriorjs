@@ -9,7 +9,7 @@ describe('Unit', () => {
 
   beforeEach(() => {
     unit = new Unit('Joe', '@', 20, 30);
-    unit.say = jest.fn();
+    unit.log = jest.fn();
     floor = new Floor(5, 6, [0, 0]);
     floor.addUnit(unit, { x: 1, y: 2, facing: NORTH });
   });
@@ -188,7 +188,7 @@ describe('Unit', () => {
       unit.health = 5;
       unit.heal(3);
       expect(unit.health).toBe(8);
-      expect(unit.say).toHaveBeenCalledWith(
+      expect(unit.log).toHaveBeenCalledWith(
         'receives 3 health, up to 8 health',
       );
     });
@@ -197,7 +197,7 @@ describe('Unit', () => {
       unit.health = 19;
       unit.heal(2);
       expect(unit.health).toBe(20);
-      expect(unit.say).toHaveBeenCalledWith(
+      expect(unit.log).toHaveBeenCalledWith(
         'receives 2 health, up to 20 health',
       );
     });
@@ -205,7 +205,7 @@ describe('Unit', () => {
     test("doesn't add health when at max", () => {
       unit.heal(1);
       expect(unit.health).toBe(20);
-      expect(unit.say).toHaveBeenCalledWith(
+      expect(unit.log).toHaveBeenCalledWith(
         'receives 1 health, up to 20 health',
       );
     });
@@ -215,7 +215,7 @@ describe('Unit', () => {
     test('subtracts health', () => {
       unit.takeDamage(3);
       expect(unit.health).toBe(17);
-      expect(unit.say).toHaveBeenCalledWith(
+      expect(unit.log).toHaveBeenCalledWith(
         'takes 3 damage, 17 health power left',
       );
     });
@@ -223,7 +223,7 @@ describe('Unit', () => {
     test("doesn't go under zero health", () => {
       unit.takeDamage(21);
       expect(unit.health).toBe(0);
-      expect(unit.say).toHaveBeenCalledWith(
+      expect(unit.log).toHaveBeenCalledWith(
         'takes 21 damage, 0 health power left',
       );
     });
@@ -231,10 +231,10 @@ describe('Unit', () => {
     test('dies when running out of health', () => {
       unit.takeDamage(20);
       expect(unit.isAlive()).toBe(false);
-      expect(unit.say).toHaveBeenCalledWith(
+      expect(unit.log).toHaveBeenCalledWith(
         'takes 20 damage, 0 health power left',
       );
-      expect(unit.say).toHaveBeenCalledWith('dies');
+      expect(unit.log).toHaveBeenCalledWith('dies');
     });
   });
 
@@ -256,7 +256,7 @@ describe('Unit', () => {
     const receiver = new Unit();
     receiver.health = 10;
     receiver.position = {};
-    receiver.say = jest.fn();
+    receiver.log = jest.fn();
     unit.damage(receiver, 3);
     expect(receiver.health).toBe(7);
   });
@@ -270,7 +270,7 @@ describe('Unit', () => {
       receiver.reward = 10;
       receiver.health = 5;
       receiver.position = {};
-      receiver.say = jest.fn();
+      receiver.log = jest.fn();
     });
 
     test('earns points equal to reward when killing unit', () => {
@@ -418,7 +418,7 @@ describe('Unit', () => {
 
     test('murmurs something', () => {
       unit.move(FORWARD);
-      expect(unit.say).toHaveBeenCalled();
+      expect(unit.log).toHaveBeenCalled();
     });
   });
 
@@ -434,7 +434,7 @@ describe('Unit', () => {
 
     test('murmurs something', () => {
       unit.rotate(BACKWARD);
-      expect(unit.say).toHaveBeenCalled();
+      expect(unit.log).toHaveBeenCalled();
     });
   });
 
@@ -447,7 +447,7 @@ describe('Unit', () => {
 
     test('murmurs something', () => {
       unit.vanish();
-      expect(unit.say).toHaveBeenCalled();
+      expect(unit.log).toHaveBeenCalled();
     });
   });
 
@@ -497,7 +497,7 @@ describe('Unit', () => {
         'move',
         'rotate',
         'vanish',
-        'say',
+        'log',
         'toPlayerObject',
       ];
       forbiddenApi.forEach(propertyName => {

@@ -9,7 +9,7 @@ describe('rescue', () => {
   beforeEach(() => {
     unit = {
       earnPoints: jest.fn(),
-      say: jest.fn(),
+      log: jest.fn(),
     };
     rescue = rescueCreator()(unit);
   });
@@ -40,7 +40,7 @@ describe('rescue', () => {
     test('misses if no receiver', () => {
       unit.getSpaceAt = () => ({ getUnit: () => null });
       rescue.perform();
-      expect(unit.say).toHaveBeenCalledWith(
+      expect(unit.log).toHaveBeenCalledWith(
         `unbinds ${FORWARD} and rescues nothing`,
       );
     });
@@ -63,14 +63,14 @@ describe('rescue', () => {
       test("does nothing to receiver if it's not bound", () => {
         receiver.isBound = () => false;
         rescue.perform();
-        expect(unit.say).toHaveBeenCalledWith(
+        expect(unit.log).toHaveBeenCalledWith(
           `unbinds ${FORWARD} and rescues nothing`,
         );
       });
 
       test('rescues receiver', () => {
         rescue.perform();
-        expect(unit.say).toHaveBeenCalledWith(
+        expect(unit.log).toHaveBeenCalledWith(
           `unbinds ${FORWARD} and rescues receiver`,
         );
         expect(receiver.unbind).toHaveBeenCalled();

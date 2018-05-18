@@ -30,18 +30,18 @@ class Warrior extends Unit {
   performTurn() {
     super.performTurn();
     if (!this.turn.action || this.isBound()) {
-      this.say('does nothing');
+      this.log('does nothing');
     }
   }
 
   earnPoints(points) {
     super.earnPoints(points);
-    this.say(`earns ${points} points`);
+    this.log(`earns ${points} points`);
   }
 
   losePoints(points) {
     super.losePoints(points);
-    this.say(`loses ${points} points`);
+    this.log(`loses ${points} points`);
   }
 
   toJSON() {
