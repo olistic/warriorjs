@@ -1,9 +1,15 @@
-import printHeader from './printHeader';
+import style from 'ansi-styles';
+
+import printRow from './printRow';
 import printLevelHeader from './printLevelHeader';
 
-jest.mock('./printHeader');
+jest.mock('./printRow');
 
 test('prints level header', () => {
   printLevelHeader(1);
-  expect(printHeader).toHaveBeenCalledWith('level 1', '#');
+  expect(printRow).toHaveBeenCalledWith(
+    ' level 1 ',
+    'center',
+    `${style.gray.open}#${style.gray.close}`,
+  );
 });

@@ -1,4 +1,6 @@
-import printHeader from './printHeader';
+import chalk from 'chalk';
+
+import printRow from './printRow';
 
 /**
  * Prints the turn header.
@@ -6,7 +8,11 @@ import printHeader from './printHeader';
  * @param {number} turnNumber The turn number.
  */
 function printTurnHeader(turnNumber) {
-  printHeader(`turn ${String(turnNumber).padStart(3, '0')}`, '-');
+  printRow(
+    ` turn ${String(turnNumber).padStart(3, '0')} `,
+    'center',
+    chalk.gray('-'),
+  );
 }
 
 export default printTurnHeader;

@@ -1,4 +1,6 @@
-import printHeader from './printHeader';
+import chalk from 'chalk';
+
+import printRow from './printRow';
 
 /**
  * Prints the level header.
@@ -6,7 +8,7 @@ import printHeader from './printHeader';
  * @param {number} levelNumber The level number.
  */
 function printLevelHeader(levelNumber) {
-  printHeader(`level ${levelNumber}`, '#');
+  printRow(` level ${levelNumber} `, 'center', chalk.gray('#'));
 }
 
 export default printLevelHeader;
