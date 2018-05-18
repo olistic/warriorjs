@@ -9,7 +9,7 @@ describe('walk', () => {
   beforeEach(() => {
     unit = {
       move: jest.fn(),
-      say: jest.fn(),
+      log: jest.fn(),
     };
     walk = walkCreator()(unit);
   });
@@ -43,15 +43,15 @@ describe('walk', () => {
         toString: () => 'space',
       });
       walk.perform();
-      expect(unit.say).toHaveBeenCalledWith(`walks ${FORWARD}`);
-      expect(unit.say).toHaveBeenLastCalledWith('bumps into space');
+      expect(unit.log).toHaveBeenCalledWith(`walks ${FORWARD}`);
+      expect(unit.log).toHaveBeenLastCalledWith('bumps into space');
       expect(unit.move).not.toHaveBeenCalled();
     });
 
     test('moves in specified direction if space if empty', () => {
       unit.getSpaceAt = () => ({ isEmpty: () => true });
       walk.perform(RIGHT);
-      expect(unit.say).toHaveBeenCalledWith(`walks ${RIGHT}`);
+      expect(unit.log).toHaveBeenCalledWith(`walks ${RIGHT}`);
       expect(unit.move).toHaveBeenCalledWith(RIGHT);
     });
   });

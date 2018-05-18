@@ -10,7 +10,7 @@ describe('detonate', () => {
     unit = {
       damage: jest.fn(),
       isUnderEffect: () => false,
-      say: jest.fn(),
+      log: jest.fn(),
     };
     detonate = detonateCreator({ targetPower: 4, surroundingPower: 2 })(unit);
   });
@@ -49,7 +49,7 @@ describe('detonate', () => {
         .mockReturnValueOnce({ getUnit: () => surroundingReceiver })
         .mockReturnValueOnce({ getUnit: () => unit });
       detonate.perform();
-      expect(unit.say).toHaveBeenCalledWith(
+      expect(unit.log).toHaveBeenCalledWith(
         `detonates a bomb ${FORWARD} launching a deadly explosion`,
       );
       expect(unit.getSpaceAt).toHaveBeenCalledWith(FORWARD);
@@ -66,14 +66,14 @@ describe('detonate', () => {
       const receiver = {
         isUnderEffect: () => true,
         triggerEffect: jest.fn(),
-        say: jest.fn(),
+        log: jest.fn(),
       };
       unit.getSpaceAt = jest
         .fn()
         .mockReturnValueOnce({ getUnit: () => receiver })
         .mockReturnValue({ getUnit: () => null });
       detonate.perform();
-      expect(receiver.say).toHaveBeenCalledWith(
+      expect(receiver.log).toHaveBeenCalledWith(
         "caught in bomb's flames which detonates ticking explosive",
       );
       expect(receiver.triggerEffect).toHaveBeenCalledWith('ticking');

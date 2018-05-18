@@ -9,14 +9,14 @@ function rescue() {
     perform(direction = defaultDirection) {
       const receiver = unit.getSpaceAt(direction).getUnit();
       if (receiver && receiver.isBound()) {
-        unit.say(`unbinds ${direction} and rescues ${receiver}`);
+        unit.log(`unbinds ${direction} and rescues ${receiver}`);
         receiver.unbind();
         if (receiver.isFriendly()) {
           receiver.vanish();
           unit.earnPoints(receiver.reward);
         }
       } else {
-        unit.say(`unbinds ${direction} and rescues nothing`);
+        unit.log(`unbinds ${direction} and rescues nothing`);
       }
     },
   });

@@ -5,7 +5,7 @@ describe('think', () => {
   let unit;
 
   beforeEach(() => {
-    unit = { say: jest.fn() };
+    unit = { log: jest.fn() };
     think = thinkCreator()(unit);
   });
 
@@ -22,12 +22,12 @@ describe('think', () => {
   describe('performing', () => {
     test('thinks nothing by default', () => {
       think.perform();
-      expect(unit.say).toHaveBeenCalledWith('thinks nothing');
+      expect(unit.log).toHaveBeenCalledWith('thinks nothing');
     });
 
     test('allows to specify thought', () => {
       think.perform('he should be brave');
-      expect(unit.say).toHaveBeenCalledWith('thinks he should be brave');
+      expect(unit.log).toHaveBeenCalledWith('thinks he should be brave');
     });
   });
 });

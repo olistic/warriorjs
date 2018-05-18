@@ -9,7 +9,7 @@ describe('attack', () => {
   beforeEach(() => {
     unit = {
       damage: jest.fn(),
-      say: jest.fn(),
+      log: jest.fn(),
     };
     attack = attackCreator({ power: 3 })(unit);
   });
@@ -40,7 +40,7 @@ describe('attack', () => {
     test('misses if no receiver', () => {
       unit.getSpaceAt = () => ({ getUnit: () => null });
       attack.perform();
-      expect(unit.say).toHaveBeenCalledWith(
+      expect(unit.log).toHaveBeenCalledWith(
         `attacks ${FORWARD} and hits nothing`,
       );
       expect(unit.damage).not.toHaveBeenCalled();
@@ -53,7 +53,7 @@ describe('attack', () => {
 
       test('damages receiver', () => {
         attack.perform();
-        expect(unit.say).toHaveBeenCalledWith(
+        expect(unit.log).toHaveBeenCalledWith(
           `attacks ${FORWARD} and hits receiver`,
         );
         expect(unit.damage).toHaveBeenCalledWith('receiver', 3);
@@ -61,7 +61,7 @@ describe('attack', () => {
 
       test('reduces power when attacking backward', () => {
         attack.perform(BACKWARD);
-        expect(unit.say).toHaveBeenCalledWith(
+        expect(unit.log).toHaveBeenCalledWith(
           `attacks ${BACKWARD} and hits receiver`,
         );
         expect(unit.damage).toHaveBeenCalledWith('receiver', 2);

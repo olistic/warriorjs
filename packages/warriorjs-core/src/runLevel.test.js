@@ -27,12 +27,12 @@ const levelConfig = {
         walk: unit => ({
           action: true,
           perform(direction = FORWARD) {
-            unit.say(`walks ${direction}`);
+            unit.log(`walks ${direction}`);
             const space = unit.getSpaceAt(direction);
             if (space.isEmpty()) {
               unit.move(direction);
             } else {
-              unit.say(`bumps into ${space}`);
+              unit.log(`bumps into ${space}`);
             }
           },
         }),
@@ -41,12 +41,12 @@ const levelConfig = {
           perform(direction = FORWARD) {
             const receiver = unit.getSpaceAt(direction).getUnit();
             if (receiver) {
-              unit.say(`attacks ${direction} and hits ${receiver}`);
+              unit.log(`attacks ${direction} and hits ${receiver}`);
               const attackingBackward = direction === BACKWARD;
               const amount = attackingBackward ? 3 : 5;
               unit.damage(receiver, amount);
             } else {
-              unit.say(`attacks ${direction} and hits nothing`);
+              unit.log(`attacks ${direction} and hits nothing`);
             }
           },
         }),
@@ -73,12 +73,12 @@ const levelConfig = {
             perform(direction = FORWARD) {
               const receiver = unit.getSpaceAt(direction).getUnit();
               if (receiver) {
-                unit.say(`attacks ${direction} and hits ${receiver}`);
+                unit.log(`attacks ${direction} and hits ${receiver}`);
                 const attackingBackward = direction === BACKWARD;
                 const amount = attackingBackward ? 2 : 3;
                 unit.damage(receiver, amount);
               } else {
-                unit.say(`attacks ${direction} and hits nothing`);
+                unit.log(`attacks ${direction} and hits nothing`);
               }
             },
           }),

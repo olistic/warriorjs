@@ -8,7 +8,7 @@ describe('ticking', () => {
     unit = {
       health: 20,
       takeDamage: jest.fn(),
-      say: jest.fn(),
+      log: jest.fn(),
     };
     ticking = tickingCreator({ time: 3 })(unit);
   });
@@ -23,7 +23,7 @@ describe('ticking', () => {
     test('counts down bomb timer once', () => {
       ticking.passTurn();
       expect(ticking.time).toBe(2);
-      expect(unit.say).toHaveBeenCalledWith('is ticking');
+      expect(unit.log).toHaveBeenCalledWith('is ticking');
     });
 
     test("doesn't count down bomb timer below zero", () => {
@@ -51,7 +51,7 @@ describe('ticking', () => {
       };
       unit.getOtherUnits = () => [anotherUnit];
       ticking.trigger();
-      expect(unit.say).toHaveBeenCalledWith(
+      expect(unit.log).toHaveBeenCalledWith(
         'explodes, collapsing the ceiling and killing every unit',
       );
       expect(anotherUnit.takeDamage).toHaveBeenCalledWith(10);

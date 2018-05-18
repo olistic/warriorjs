@@ -6,7 +6,7 @@ describe('Warrior', () => {
 
   beforeEach(() => {
     warrior = new Warrior('Joe', '@', 20);
-    warrior.say = jest.fn();
+    warrior.log = jest.fn();
   });
 
   test('delegates playTurn to the player', () => {
@@ -31,23 +31,23 @@ describe('Warrior', () => {
   test('is upset for not doing anything when no action', () => {
     warrior.turn = { action: null };
     warrior.performTurn();
-    expect(warrior.say).toHaveBeenCalledWith('does nothing');
+    expect(warrior.log).toHaveBeenCalledWith('does nothing');
   });
 
   test('is upset for not doing anything when bound', () => {
     warrior.bind();
     warrior.turn = { action: ['walk', []] };
     warrior.performTurn();
-    expect(warrior.say).toHaveBeenCalledWith('does nothing');
+    expect(warrior.log).toHaveBeenCalledWith('does nothing');
   });
 
   test('is proud of earning points', () => {
     warrior.earnPoints(5);
-    expect(warrior.say).toHaveBeenCalledWith('earns 5 points');
+    expect(warrior.log).toHaveBeenCalledWith('earns 5 points');
   });
 
   test('is upset for losing points', () => {
     warrior.losePoints(5);
-    expect(warrior.say).toHaveBeenCalledWith('loses 5 points');
+    expect(warrior.log).toHaveBeenCalledWith('loses 5 points');
   });
 });

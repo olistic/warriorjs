@@ -9,7 +9,7 @@ describe('shoot', () => {
   beforeEach(() => {
     unit = {
       damage: jest.fn(),
-      say: jest.fn(),
+      log: jest.fn(),
     };
     shoot = shootCreator({ power: 3, range: 3 })(unit);
   });
@@ -49,7 +49,7 @@ describe('shoot', () => {
         .mockReturnValueOnce({ getUnit: () => null })
         .mockReturnValueOnce({ getUnit: () => 'anotherUnit' });
       shoot.perform();
-      expect(unit.say).toHaveBeenCalledWith(
+      expect(unit.log).toHaveBeenCalledWith(
         `shoots ${FORWARD} and hits nothing`,
       );
       expect(unit.damage).not.toHaveBeenCalled();
@@ -66,7 +66,7 @@ describe('shoot', () => {
 
       test('damages receiver', () => {
         shoot.perform();
-        expect(unit.say).toHaveBeenCalledWith(
+        expect(unit.log).toHaveBeenCalledWith(
           `shoots ${FORWARD} and hits receiver`,
         );
         expect(unit.damage).toHaveBeenCalledWith('receiver', 3);

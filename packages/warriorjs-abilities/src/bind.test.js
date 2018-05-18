@@ -7,7 +7,7 @@ describe('bind', () => {
   let unit;
 
   beforeEach(() => {
-    unit = { say: jest.fn() };
+    unit = { log: jest.fn() };
     bind = bindCreator()(unit);
   });
 
@@ -37,7 +37,7 @@ describe('bind', () => {
     test('misses if no receiver', () => {
       unit.getSpaceAt = () => ({ getUnit: () => null });
       bind.perform();
-      expect(unit.say).toHaveBeenCalledWith(
+      expect(unit.log).toHaveBeenCalledWith(
         `binds ${FORWARD} and restricts nothing`,
       );
     });
@@ -55,7 +55,7 @@ describe('bind', () => {
 
       test('binds receiver', () => {
         bind.perform();
-        expect(unit.say).toHaveBeenCalledWith(
+        expect(unit.log).toHaveBeenCalledWith(
           `binds ${FORWARD} and restricts receiver`,
         );
         expect(receiver.bind).toHaveBeenCalled();
