@@ -25,6 +25,6 @@ test('prints warrior score in bright yellow', () => {
   };
   printWarriorStatus(warrior);
   expect(printLine).toHaveBeenCalledWith(
-    `${style.yellowBright.open}⬥ 10 ${style.yellowBright.close}`,
+    `${style.yellowBright.open}♦ 10 ${style.yellowBright.close}`,
   );
 });

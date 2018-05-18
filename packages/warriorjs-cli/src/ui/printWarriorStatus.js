@@ -16,7 +16,7 @@ function printWarriorStatus(warrior) {
   printLine(warriorHealth);
 
   const warriorScore = chalk.yellowBright(
-    `⬥ ${warrior.score}`.padEnd(screenWidth, ' '),
+    `♦ ${warrior.score}`.padEnd(screenWidth, ' '),
   );
   printLine(warriorScore);
 }
