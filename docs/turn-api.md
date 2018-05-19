@@ -24,10 +24,10 @@ tower:
 * `warrior.feel()`
 ```
 
-In this level, your warrior has the abilities attack, walk, and feel, which
-means you can call these three methods on your turn: `warrior.attack()`,
+In this level, your warrior has the abilities "attack", "walk", and "feel",
+which means you can call these three methods on your turn: `warrior.attack()`,
 `warrior.walk()`, and `warrior.feel()`.
 
-> Many abilities can be performed in the following directions: forward,
-> backward, left, and right. You have to pass a string with the direction as the
-> first argument, e.g. `warrior.walk('backward')`.
+> Many abilities can be performed in the following directions: "forward",
+> "backward", "left", and "right". You have to pass a string with the direction
+> as the first argument, e.g. `warrior.walk('backward')`.
