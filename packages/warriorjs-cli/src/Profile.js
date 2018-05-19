@@ -25,10 +25,10 @@ class Profile {
    * @returns {Profile} The loaded profile.
    */
   static async load(profileDirectoryPath) {
-    const isValidDirectory = await Profile.isProfileDirectory(
+    const isProfileDirectory = await Profile.isProfileDirectory(
       profileDirectoryPath,
     );
-    if (!isValidDirectory) {
+    if (!isProfileDirectory) {
       return null;
     }
 
@@ -61,12 +61,12 @@ class Profile {
    */
   static async isProfileDirectory(profileDirectoryPath) {
     const profileFilePath = path.join(profileDirectoryPath, profileFile);
-    const playerFilePath = path.join(profileDirectoryPath, playerCodeFile);
-
-    const playerFileExists = await pathType.file(playerFilePath);
     const profileFileExists = await pathType.file(profileFilePath);
 
-    return playerFileExists && profileFileExists;
+    const playerCodeFilePath = path.join(profileDirectoryPath, playerCodeFile);
+    const playerCodeFileExists = await pathType.file(playerCodeFilePath);
+
+    return playerCodeFileExists && profileFileExists;
   }
 
   /**
