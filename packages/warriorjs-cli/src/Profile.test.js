@@ -8,14 +8,17 @@ import Profile from './Profile';
 
 describe('Profile.load', () => {
   const originalRead = Profile.read;
+  const originalIsProfileDirectory = Profile.isProfileDirectory;
 
   afterEach(() => {
     Profile.read = originalRead;
+    Profile.isProfileDirectory = originalIsProfileDirectory;
   });
 
   test('instances Profile with contents of profile file', async () => {
     Profile.read = () =>
       'eyJ3YXJyaW9yTmFtZSI6ICJKb2UiLCAidG93ZXJOYW1lIjogImJlZ2lubmVyIiwgImZvbyI6IDQyfQ==';
+    Profile.isProfileDirectory = () => true;
     const profile = await Profile.load('/path/to/profile');
     expect(profile).toBeInstanceOf(Profile);
     expect(profile.warriorName).toBe('Joe');
@@ -29,6 +32,7 @@ describe('Profile.load', () => {
   test('updates the path to the directory from where the profile is being loaded', async () => {
     Profile.read = () =>
       'eyJ3YXJyaW9yTmFtZSI6ICJKb2UiLCAidG93ZXJOYW1lIjogImJlZ2lubmVyIiwgImRpcmVjdG9yeVBhdGgiOiAiL29sZC9wYXRoL3RvL3Byb2ZpbGUifQ==';
+    Profile.isProfileDirectory = () => true;
     const profile = await Profile.load('/new/path/to/profile');
     expect(profile.directoryPath).toBe('/new/path/to/profile');
   });
@@ -37,6 +41,33 @@ describe('Profile.load', () => {
     Profile.read = () => null;
     const profile = await Profile.load('/path/to/profile');
     expect(profile).toBeNull();
+  });
+});
+
+describe('Profile.isProfileDirectory', () => {
+  test('returns false if none of the files exists', async () => {
+    const isProfileDir = await Profile.isProfileDirectory('/path/to/profile');
+
+    expect(isProfileDir).toBeFalsy();
+  });
+
+  test('returns false if only one of the files exists', async () => {
+    mock({ '/path/to/profile/.profile': 'encoded profile' });
+
+    const isProfileDir = await Profile.isProfileDirectory('/path/to/profile');
+
+    expect(isProfileDir).toBeFalsy();
+  });
+
+  test('returns true if both files exists', async () => {
+    mock({
+      '/path/to/profile/Player.js': 'player file',
+      '/path/to/profile/.profile': 'encoded profile',
+    });
+
+    const isProfileDir = await Profile.isProfileDirectory('/path/to/profile');
+
+    expect(isProfileDir).toBeTruthy();
   });
 });
 

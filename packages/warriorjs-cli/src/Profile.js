@@ -3,6 +3,7 @@ import path from 'path';
 import { promisify } from 'util';
 
 import makeDir from 'make-dir';
+import pathType from 'path-type';
 
 import GameError from './GameError';
 import getGradeLetter from './utils/getGradeLetter';
@@ -24,6 +25,13 @@ class Profile {
    * @returns {Profile} The loaded profile.
    */
   static async load(profileDirectoryPath) {
+    const isValidDirectory = await Profile.isProfileDirectory(
+      profileDirectoryPath,
+    );
+    if (!isValidDirectory) {
+      return null;
+    }
+
     const profileFilePath = path.join(profileDirectoryPath, profileFile);
     const encodedProfile = await Profile.read(profileFilePath);
     if (!encodedProfile) {
@@ -39,6 +47,23 @@ class Profile {
     } = decodedProfile;
     const profile = new Profile(warriorName, towerName, profileDirectoryPath);
     return Object.assign(profile, profileData);
+  }
+
+  /**
+   * Verifies if a path is a valid profile directory.
+   *
+   * @param {string} profileDirectoryPath The path to validate.
+   *
+   * @returns {boolean} True if the path is a valid profile directory, false otherwise.
+   */
+  static async isProfileDirectory(profileDirectoryPath) {
+    const profileFilePath = path.join(profileDirectoryPath, profileFile);
+    const playerFilePath = path.join(profileDirectoryPath, playerCodeFile);
+
+    const playerFileExists = await pathType.file(playerFilePath);
+    const profileFileExists = await pathType.file(profileFilePath);
+
+    return playerFileExists && profileFileExists;
   }
 
   /**
