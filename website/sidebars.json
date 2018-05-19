@@ -2,7 +2,7 @@
   "docs": {
     "Intro": ["overview", "set-up"],
     "Game": ["object", "gameplay", "perspective", "scoring", "epic-mode"],
-    "Concepts": ["units", "warrior", "abilities", "effects", "spaces"],
+    "Concepts": ["units", "warrior", "abilities", "spaces"],
     "Player API": ["space-api", "unit-api", "turn-api"],
     "Tips & Tricks": ["general-tips", "js-tips", "cli-tips"],
     "Configuration": ["cli-options"]
