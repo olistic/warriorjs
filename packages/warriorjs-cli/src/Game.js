@@ -13,7 +13,7 @@ import getLevelConfig from './utils/getLevelConfig';
 import printFailureLine from './ui/printFailureLine';
 import printLevelReport from './ui/printLevelReport';
 import printLine from './ui/printLine';
-import printTurnHeader from './ui/printTurnHeader';
+import printWelcomeHeader from './ui/printWelcomeHeader';
 import printPlay from './ui/printPlay';
 import printSuccessLine from './ui/printSuccessLine';
 import printTowerReport from './ui/printTowerReport';
@@ -46,9 +46,7 @@ class Game {
    * Starts the game.
    */
   async start() {
-    printTurnHeader('#*~+--~.~--+~$#');
-    printTurnHeader('* Welcome to WarriorJS! *');
-    printTurnHeader('#$~+--~*~--+~*#');
+    printWelcomeHeader();
 
     try {
       this.profile = await this.loadProfile();
