@@ -63,4 +63,4 @@ Returns the location of this space.
 
 **Returns**
 
-_(number[])_: The location of this space as a pair of coordinates [x, y].
+_(number[])_: The location of this space as a pair of coordinates `[x, y]`.
