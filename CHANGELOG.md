@@ -12,8 +12,14 @@ and this project adheres to
 
 * Make warrior upset when losing points ([@skywalker212][] in [#107][])
 
+### Changed
+
+* Rename `unit.say()` to `unit.log()` ([@olistic][] in [#131][])
+* Improve profile directory detection ([@glneto][] in [#133][])
+
 ### Fixed
 
+* Line breaks on CLI output on Windows ([@olistic][] in [#120][])
 * Diamond symbol on Windows ([@glneto][] in [#121][])
 
 ## [0.3.0] - 2018-05-16
@@ -95,4 +101,7 @@ Initial version
 [#107]: https://github.com/olistic/warriorjs/pull/107
 [#113]: https://github.com/olistic/warriorjs/pull/113
 [#114]: https://github.com/olistic/warriorjs/pull/114
+[#120]: https://github.com/olistic/warriorjs/pull/120
 [#121]: https://github.com/olistic/warriorjs/pull/121
+[#131]: https://github.com/olistic/warriorjs/pull/131
+[#133]: https://github.com/olistic/warriorjs/pull/133
