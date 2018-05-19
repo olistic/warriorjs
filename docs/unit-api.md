@@ -3,17 +3,12 @@ id: unit-api
 title: Unit API
 ---
 
-After using one of your senses and getting a space, you can call `getUnit()` on
-it to retrieve the unit located there (if any). Continuing with the beginner
-tower example:
+You can call `getUnit()` on a space to retrieve the unit located there (but keep
+in mind that not all spaces have units on them):
 
 ```js
-const unit = warrior.feel().getUnit();
+const unit = space.getUnit();
 ```
-
-> Keep in mind that not all spaces have units on them, so you may want to check
-> that before calling any method on the unit (`getUnit()` will return
-> `undefined` if there's no unit).
 
 You can call methods on a unit to know more about it.
 
@@ -54,15 +49,3 @@ _`unit.isPlayer()`_
 **Returns**
 
 _(boolean)_: Whether this unit is the warrior or not.
-
-## `unit.isUnderEffect(effect)`:
-
-Determines if the unit is under the given effect.
-
-**Arguments**
-
-`effect` _(string)_: The name of the effect.
-
-**Returns**
-
-_(boolean)_: Whether this unit is under the given effect or not.
