@@ -63,7 +63,7 @@ const levelConfig = {
         feel: unit => ({
           description: `Return the adjacent space in the given direction (${FORWARD} by default).`,
           perform(direction = FORWARD) {
-            return unit.getSpaceAt(direction);
+            return unit.getSensedSpaceAt(direction);
           },
         }),
       },
@@ -97,7 +97,7 @@ const levelConfig = {
           feel: unit => ({
             description: `Return the adjacent space in the given direction (${FORWARD} by default).`,
             perform(direction = FORWARD) {
-              return unit.getSpaceAt(direction);
+              return unit.getSensedSpaceAt(direction);
             },
           }),
         },

@@ -1,3 +1,5 @@
+import { FORWARD, NORTH } from '@warriorjs/geography';
+
 import listenCreator from './listen';
 
 describe('listen', () => {
@@ -6,10 +8,15 @@ describe('listen', () => {
 
   beforeEach(() => {
     unit = {
+      position: {
+        location: [1, 1],
+        orientation: NORTH,
+      },
       getOtherUnits: () => [
-        { getSpace: () => ({ toPlayerObject: () => 'space1' }) },
-        { getSpace: () => ({ toPlayerObject: () => 'space2' }) },
+        { getSpace: () => ({ location: [0, 0] }) },
+        { getSpace: () => ({ location: [2, 3] }) },
       ],
+      getSensedSpaceAt: jest.fn(),
     };
     listen = listenCreator()(unit);
   });
@@ -26,7 +33,12 @@ describe('listen', () => {
 
   describe('performing', () => {
     test('returns all spaces which have units in them', () => {
+      unit.getSensedSpaceAt
+        .mockReturnValueOnce('space1')
+        .mockReturnValueOnce('space2');
       expect(listen.perform()).toEqual(['space1', 'space2']);
+      expect(unit.getSensedSpaceAt).toHaveBeenCalledWith(FORWARD, 1, -1);
+      expect(unit.getSensedSpaceAt).toHaveBeenCalledWith(FORWARD, -2, 1);
     });
   });
 });

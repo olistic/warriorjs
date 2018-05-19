@@ -1,4 +1,11 @@
-import { BACKWARD, FORWARD, LEFT, NORTH, RIGHT } from '@warriorjs/geography';
+import {
+  BACKWARD,
+  FORWARD,
+  LEFT,
+  NORTH,
+  RIGHT,
+  SOUTH,
+} from '@warriorjs/geography';
 
 import Floor from './Floor';
 import Unit from './Unit';
@@ -413,7 +420,15 @@ describe('Unit', () => {
 
   test("returns the space where it's located", () => {
     const space = unit.getSpace();
-    expect(space.getLocation()).toEqual(unit.position.location);
+    expect(space.location).toEqual(unit.position.location);
+  });
+
+  test('returns sensed space at a given direction and number of spaces', () => {
+    const space = { as: jest.fn() };
+    unit.getSpaceAt = jest.fn(() => space);
+    unit.getSensedSpaceAt(RIGHT, 2, 1);
+    expect(unit.getSpaceAt).toHaveBeenCalledWith(RIGHT, 2, 1);
+    expect(space.as).toHaveBeenCalledWith(unit);
   });
 
   test('returns space at a given direction and number of spaces', () => {
@@ -433,14 +448,18 @@ describe('Unit', () => {
   });
 
   test('returns the direction of a given space', () => {
-    expect(unit.getDirectionOf(floor.getSpaceAt([1, 1]))).toEqual(FORWARD);
-    expect(unit.getDirectionOf(floor.getSpaceAt([2, 2]))).toEqual(RIGHT);
-    expect(unit.getDirectionOf(floor.getSpaceAt([1, 3]))).toEqual(BACKWARD);
-    expect(unit.getDirectionOf(floor.getSpaceAt([0, 2]))).toEqual(LEFT);
+    expect(unit.getDirectionOf(unit.getSensedSpaceAt(FORWARD, 1))).toEqual(
+      FORWARD,
+    );
+    expect(unit.getDirectionOf(unit.getSensedSpaceAt(RIGHT, 1))).toEqual(RIGHT);
+    expect(unit.getDirectionOf(unit.getSensedSpaceAt(BACKWARD, 1))).toEqual(
+      BACKWARD,
+    );
+    expect(unit.getDirectionOf(unit.getSensedSpaceAt(LEFT, 1))).toEqual(LEFT);
   });
 
   test('returns the distance of a given space', () => {
-    expect(unit.getDistanceOf(floor.getSpaceAt([0, 0]))).toBe(3);
+    expect(unit.getDistanceOf(unit.getSensedSpaceAt(FORWARD, 2, -1))).toBe(3);
   });
 
   describe('when moving', () => {
@@ -493,57 +512,60 @@ describe('Unit', () => {
     });
   });
 
-  describe('player object', () => {
-    let playerObject;
+  describe('sensed unit', () => {
+    let sensingUnit;
+    let sensedUnit;
 
     beforeEach(() => {
-      playerObject = unit.toPlayerObject();
+      sensingUnit = new Unit();
+      floor.addUnit(sensingUnit, { x: 0, y: 1, facing: SOUTH });
+      sensedUnit = unit.as(sensingUnit);
     });
 
-    test('allows calling Player API methods', () => {
-      const playerApi = [
-        'isHostile',
-        'isFriendly',
-        'isPlayer',
-        'isWarrior',
+    test('allows calling sensed unit methods', () => {
+      const allowedApi = [
         'isBound',
+        'isFriendly',
+        'isHostile',
+        'isPlayer',
         'isUnderEffect',
+        'isWarrior',
       ];
-      playerApi.forEach(propertyName => {
-        playerObject[propertyName]();
+      allowedApi.forEach(propertyName => {
+        sensedUnit[propertyName]();
       });
     });
 
-    test("doesn't allow calling methods that don't belong to the Player API", () => {
+    test("doesn't allow calling other unit methods", () => {
       const forbiddenApi = [
         'addAbility',
         'addEffect',
-        'triggerEffect',
-        'getNextTurn',
-        'prepareTurn',
-        'performTurn',
-        'heal',
-        'takeDamage',
-        'damage',
-        'isAlive',
-        'unbind',
+        'as',
         'bind',
+        'damage',
         'earnPoints',
-        'losePoints',
+        'getDirectionOf',
+        'getDirectionOfStairs',
+        'getDistanceOf',
+        'getNextTurn',
         'getOtherUnits',
         'getSpace',
         'getSpaceAt',
-        'getDirectionOfStairs',
-        'getDirectionOf',
-        'getDistanceOf',
-        'move',
-        'rotate',
-        'vanish',
+        'heal',
+        'isAlive',
         'log',
-        'toPlayerObject',
+        'losePoints',
+        'move',
+        'performTurn',
+        'prepareTurn',
+        'rotate',
+        'takeDamage',
+        'triggerEffect',
+        'unbind',
+        'vanish',
       ];
       forbiddenApi.forEach(propertyName => {
-        expect(playerObject).not.toHaveProperty(propertyName);
+        expect(sensedUnit).not.toHaveProperty(propertyName);
       });
     });
   });

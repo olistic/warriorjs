@@ -52,7 +52,7 @@ const levelConfig = {
         }),
         feel: unit => ({
           perform(direction = FORWARD) {
-            return unit.getSpaceAt(direction);
+            return unit.getSensedSpaceAt(direction);
           },
         }),
       },
@@ -84,7 +84,7 @@ const levelConfig = {
           }),
           feel: unit => ({
             perform(direction = FORWARD) {
-              return unit.getSpaceAt(direction);
+              return unit.getSensedSpaceAt(direction);
             },
           }),
         },
@@ -112,7 +112,7 @@ test('passes level with a winner player code', () => {
     class Player {
       playTurn(warrior) {
         const spaceAhead = warrior.feel();
-        if (spaceAhead.isUnit() && spaceAhead.getUnit().isHostile()) {
+        if (spaceAhead.isUnit() && spaceAhead.getUnit().isEnemy()) {
           warrior.attack();
         } else {
           warrior.walk();

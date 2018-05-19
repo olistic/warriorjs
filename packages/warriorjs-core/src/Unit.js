@@ -1,4 +1,5 @@
 import Logger from './Logger';
+import Space from './Space';
 
 /** Class representing a unit. */
 class Unit {
@@ -315,6 +316,19 @@ class Unit {
   }
 
   /**
+   * Returns the sensed space located at the direction and number of spaces.
+   *
+   * @param {string} direction The direction.
+   * @param {number} forward The number of spaces forward.
+   * @param {number} right The number of spaces to the right.
+   *
+   * @returns {SensedSpace} The sensed space.
+   */
+  getSensedSpaceAt(direction, forward = 1, right = 0) {
+    return this.getSpaceAt(direction, forward, right).as(this);
+  }
+
+  /**
    * Returns the space located at the direction and number of spaces.
    *
    * @param {string} direction The direction.
@@ -333,28 +347,32 @@ class Unit {
    * @returns {string} The relative direction of the stairs.
    */
   getDirectionOfStairs() {
-    return this.getDirectionOf(this.position.floor.getStairsSpace());
+    return this.position.getRelativeDirectionOf(
+      this.position.floor.getStairsSpace(),
+    );
   }
 
   /**
-   * Returns the direction of the given space with reference to this unit.
+   * Returns the direction of the given space, with reference to this unit.
    *
-   * @param {Space} space The space to get the direction of.
+   * @param {SensedSpace} sensedSpace The space to get the direction of.
    *
    * @returns {string} The relative direction of the space.
    */
-  getDirectionOf(space) {
+  getDirectionOf(sensedSpace) {
+    const space = Space.from(sensedSpace, this);
     return this.position.getRelativeDirectionOf(space);
   }
 
   /**
    * Returns the distance between the given space and this unit.
    *
-   * @param {Space} space The space to calculate the distance of.
+   * @param {SensedSpace} sensedSpace The space to calculate the distance of.
    *
    * @returns {number} The distance of the space.
    */
-  getDistanceOf(space) {
+  getDistanceOf(sensedSpace) {
+    const space = Space.from(sensedSpace, this);
     return this.position.getDistanceOf(space);
   }
 
@@ -398,20 +416,19 @@ class Unit {
   }
 
   /**
-   * Returns the player object for this unit.
+   * Returns this unit as sensed by the given unit.
    *
-   * The player object has the subset of the unit methods that belong to the
-   * Player API.
+   * @param {Unit} unit The unit sensing this unit.
    *
-   * @returns {object} The player object.
+   * @returns {SensedUnit} The sensed unit.
    */
-  toPlayerObject() {
+  as() {
     return {
-      isHostile: this.isHostile.bind(this),
+      isBound: this.isBound.bind(this),
       isFriendly: this.isFriendly.bind(this),
+      isHostile: this.isHostile.bind(this),
       isPlayer: this.isPlayer.bind(this),
       isWarrior: this.isWarrior.bind(this),
-      isBound: this.isBound.bind(this),
       isUnderEffect: this.isUnderEffect.bind(this),
     };
   }

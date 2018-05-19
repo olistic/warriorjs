@@ -30,7 +30,7 @@ describe('Position', () => {
   });
 
   test('returns the space at its location', () => {
-    expect(position.getSpace().getLocation()).toEqual(position.location);
+    expect(position.getSpace().location).toEqual(position.location);
   });
 
   test('gets relative space in front', () => {
