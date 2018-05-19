@@ -1,5 +1,5 @@
-import { BACKWARD, FORWARD, RIGHT } from './relativeDirections';
 import verifyRelativeDirection from './verifyRelativeDirection';
+import { BACKWARD, FORWARD, RIGHT } from './relativeDirections';
 
 /**
  * Rotates the given relative offset in the given direction.

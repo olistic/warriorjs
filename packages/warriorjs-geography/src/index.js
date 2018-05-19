@@ -19,6 +19,7 @@ export { default as getRelativeDirection } from './getRelativeDirection';
 export { default as verifyRelativeDirection } from './verifyRelativeDirection';
 
 export { default as getAbsoluteOffset } from './getAbsoluteOffset';
+export { default as getRelativeOffset } from './getRelativeOffset';
 export { default as rotateRelativeOffset } from './rotateRelativeOffset';
 export { default as translateLocation } from './translateLocation';
 

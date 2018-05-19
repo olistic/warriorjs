@@ -1,3 +1,4 @@
+import verifyAbsoluteDirection from './verifyAbsoluteDirection';
 import {
   ABSOLUTE_DIRECTIONS,
   EAST,
@@ -5,7 +6,6 @@ import {
   SOUTH,
   WEST,
 } from './absoluteDirections';
-import verifyAbsoluteDirection from './verifyAbsoluteDirection';
 
 test("doesn't throw if direction is valid", () => {
   const validDirections = ABSOLUTE_DIRECTIONS;

@@ -1,8 +1,9 @@
 /**
- * Returns the Manhattan distance of a location from another location.
+ * Returns the Manhattan distance of a location from another location (reference
+ * location).
  *
  * @param {number[]} location The location as [x, y].
- * @param {number[]} fromLocation The other location as [x, y].
+ * @param {number[]} referenceLocation The reference location as [x, y].
  *
  * @returns {number} The distance between the locations.
  */

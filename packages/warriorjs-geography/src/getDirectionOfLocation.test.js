@@ -1,5 +1,5 @@
-import { EAST, NORTH, SOUTH, WEST } from './absoluteDirections';
 import getDirectionOfLocation from './getDirectionOfLocation';
+import { EAST, NORTH, SOUTH, WEST } from './absoluteDirections';
 
 test('returns the direction from a given location to another given location', () => {
   expect(getDirectionOfLocation([1, 1], [1, 2])).toEqual(NORTH);
