@@ -25,10 +25,10 @@ class Profile {
    * @returns {Profile} The loaded profile.
    */
   static async load(profileDirectoryPath) {
-    const isValidDirectory = await Profile.isProfileDirectory(
+    const isProfileDirectory = await Profile.isProfileDirectory(
       profileDirectoryPath,
     );
-    if (!isValidDirectory) {
+    if (!isProfileDirectory) {
       return null;
     }
 
@@ -50,20 +50,23 @@ class Profile {
   }
 
   /**
-   * Verifies if a path is a valid profile directory.
+   * Checks if the given path is a profile directory.
+   *
+   * For a directory to be considered a profile directory, it must contain two
+   * files: `.profile` and `Player.js`.
    *
    * @param {string} profileDirectoryPath The path to validate.
    *
-   * @returns {boolean} True if the path is a valid profile directory, false otherwise.
+   * @returns {boolean} Whether the path is a profile directory or not.
    */
   static async isProfileDirectory(profileDirectoryPath) {
     const profileFilePath = path.join(profileDirectoryPath, profileFile);
-    const playerFilePath = path.join(profileDirectoryPath, playerCodeFile);
-
-    const playerFileExists = await pathType.file(playerFilePath);
     const profileFileExists = await pathType.file(profileFilePath);
 
-    return playerFileExists && profileFileExists;
+    const playerCodeFilePath = path.join(profileDirectoryPath, playerCodeFile);
+    const playerCodeFileExists = await pathType.file(playerCodeFilePath);
+
+    return playerCodeFileExists && profileFileExists;
   }
 
   /**

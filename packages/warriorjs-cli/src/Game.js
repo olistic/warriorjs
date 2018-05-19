@@ -71,6 +71,8 @@ class Game {
    * loaded.
    *
    * If not, the player will be given the option to choose a profile.
+   *
+   * @returns {Profile} The loaded profile.
    */
   async loadProfile() {
     const profile = await Profile.load(this.runDirectoryPath);
@@ -95,6 +97,8 @@ class Game {
 
   /**
    * Checks if the game directory exists.
+   *
+   * @returns {boolean} Whether the game directory exists or not.
    */
   async gameDirectoryExists() {
     return pathType.dir(this.gameDirectoryPath);
@@ -132,6 +136,8 @@ class Game {
    *
    * If there are no profiles available in the game directory or the player
    * chooses to, creates a new profile.
+   *
+   * @returns {Profile} The chosen profile.
    */
   async chooseProfile() {
     const profiles = await this.getProfiles();
@@ -149,6 +155,8 @@ class Game {
 
   /**
    * Returns the profiles available in the game directory.
+   *
+   * @returns {Profile[]} The available profiles.
    */
   async getProfiles() {
     const profileDirectoriesPaths = await this.getProfileDirectoriesPaths();
@@ -161,6 +169,8 @@ class Game {
 
   /**
    * Creates a new profile.
+   *
+   * @returns {Profile} The created profile.
    */
   async createProfile() {
     const warriorName = await requestInput('Enter a name for your warrior:');
@@ -204,6 +214,8 @@ class Game {
    * Checks if the given profile exists in the game directory.
    *
    * @param {Profile} profile A profile to check existance for.
+   *
+   * @returns {boolean} Whether the profile exists or not..
    */
   async isExistingProfile(profile) {
     const profileDirectoriesPaths = await this.getProfileDirectoriesPaths();
@@ -214,6 +226,8 @@ class Game {
 
   /**
    * Returns the paths to the profiles available in the game directory.
+   *
+   * @returns {string[]} The paths to the available profiles.
    */
   async getProfileDirectoriesPaths() {
     const profileDirectoryPattern = path.join(this.gameDirectoryPath, '*');
