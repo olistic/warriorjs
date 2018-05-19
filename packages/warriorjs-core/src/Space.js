@@ -75,9 +75,7 @@ class Space {
    * @returns {boolean} Whether the stairs are located at this space or not.
    */
   isStairs() {
-    const [stairsX, stairsY] = this.floor.stairsLocation;
-    const [locationX, locationY] = this.getLocation();
-    return stairsX === locationX && stairsY === locationY;
+    return this.floor.isStairs(this.location);
   }
 
   /**
