@@ -316,6 +316,48 @@ describe('Unit', () => {
     expect(unit.isHostile()).toBe(false);
   });
 
+  describe('when releasing', () => {
+    let receiver;
+
+    beforeEach(() => {
+      receiver = new Unit();
+      receiver.reward = 10;
+      receiver.bound = true;
+      receiver.position = {};
+      receiver.log = jest.fn();
+    });
+
+    test('unbinds the unit', () => {
+      receiver.unbind = jest.fn();
+      unit.release(receiver);
+      expect(receiver.unbind).toHaveBeenCalled();
+    });
+
+    test("doesn't earn points", () => {
+      unit.earnPoints = jest.fn();
+      unit.release(receiver);
+      expect(unit.earnPoints).not.toHaveBeenCalled();
+    });
+
+    describe('friendly unit', () => {
+      beforeEach(() => {
+        receiver.hostile = false;
+      });
+
+      test('vanishes the unit', () => {
+        receiver.vanish = jest.fn();
+        unit.release(receiver);
+        expect(receiver.vanish).toHaveBeenCalled();
+      });
+
+      test('earns points equal to reward', () => {
+        unit.earnPoints = jest.fn();
+        unit.release(receiver);
+        expect(unit.earnPoints).toHaveBeenCalledWith(10);
+      });
+    });
+  });
+
   test('is bound after calling bind', () => {
     unit.bind();
     expect(unit.isBound()).toBe(true);

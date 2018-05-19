@@ -242,12 +242,16 @@ class Unit {
   }
 
   /**
-   * Checks if the unit is bound.
+   * Unbinds another unit.
    *
-   * @returns {boolean} Whether the unit is bound or not.
+   * @param {Unit} receiver The unit to unbind.
    */
-  isBound() {
-    return this.bound;
+  release(receiver) {
+    receiver.unbind();
+    if (receiver.isFriendly()) {
+      receiver.vanish();
+      this.earnPoints(receiver.reward);
+    }
   }
 
   /**
@@ -263,6 +267,15 @@ class Unit {
    */
   bind() {
     this.bound = true;
+  }
+
+  /**
+   * Checks if the unit is bound.
+   *
+   * @returns {boolean} Whether the unit is bound or not.
+   */
+  isBound() {
+    return this.bound;
   }
 
   /**
