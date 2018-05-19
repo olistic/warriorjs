@@ -48,6 +48,18 @@ class Floor {
   }
 
   /**
+   * Checks if the stairs are at the given location.
+   *
+   * @param {number[]} location The location as [x, y].
+   *
+   * @returns {boolean} Whether the stairs are at the given location or not.
+   */
+  isStairs([x, y]) {
+    const [stairsX, stairsY] = this.stairsLocation;
+    return x === stairsX && y === stairsY;
+  }
+
+  /**
    * Returns the space where the stairs are located.
    *
    * @returns {Space} The space the stairs are located at.

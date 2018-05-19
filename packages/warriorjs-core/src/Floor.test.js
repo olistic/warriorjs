@@ -35,6 +35,11 @@ describe('Floor', () => {
     expect(floor.isOutOfBounds([2, 0])).toBe(true);
   });
 
+  test('knows where the stairs are located', () => {
+    expect(floor.isStairs([0, 0])).toBe(false);
+    expect(floor.isStairs([1, 2])).toBe(true);
+  });
+
   test('returns the space at the stairs location', () => {
     const stairsSpace = floor.getStairsSpace();
     expect(stairsSpace.getLocation()).toEqual(floor.stairsLocation);
