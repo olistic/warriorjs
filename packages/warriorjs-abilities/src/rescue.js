@@ -10,11 +10,7 @@ function rescue() {
       const receiver = unit.getSpaceAt(direction).getUnit();
       if (receiver && receiver.isBound()) {
         unit.log(`unbinds ${direction} and rescues ${receiver}`);
-        receiver.unbind();
-        if (receiver.isFriendly()) {
-          receiver.vanish();
-          unit.earnPoints(receiver.reward);
-        }
+        unit.release(receiver);
       } else {
         unit.log(`unbinds ${direction} and rescues nothing`);
       }

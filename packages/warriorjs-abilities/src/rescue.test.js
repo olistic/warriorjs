@@ -8,7 +8,7 @@ describe('rescue', () => {
 
   beforeEach(() => {
     unit = {
-      earnPoints: jest.fn(),
+      release: jest.fn(),
       log: jest.fn(),
     };
     rescue = rescueCreator()(unit);
@@ -50,11 +50,7 @@ describe('rescue', () => {
 
       beforeEach(() => {
         receiver = {
-          reward: 20,
-          isFriendly: () => false,
           isBound: () => true,
-          unbind: jest.fn(),
-          vanish: jest.fn(),
           toString: () => 'receiver',
         };
         unit.getSpaceAt = () => ({ getUnit: () => receiver });
@@ -66,21 +62,15 @@ describe('rescue', () => {
         expect(unit.log).toHaveBeenCalledWith(
           `unbinds ${FORWARD} and rescues nothing`,
         );
+        expect(unit.release).not.toHaveBeenCalled();
       });
 
-      test('rescues receiver', () => {
+      test('releases receiver', () => {
         rescue.perform();
         expect(unit.log).toHaveBeenCalledWith(
           `unbinds ${FORWARD} and rescues receiver`,
         );
-        expect(receiver.unbind).toHaveBeenCalled();
-      });
-
-      test('earns points if rescuing a friendly unit', () => {
-        receiver.isFriendly = () => true;
-        rescue.perform();
-        expect(receiver.vanish).toHaveBeenCalled();
-        expect(unit.earnPoints).toHaveBeenCalledWith(20);
+        expect(unit.release).toHaveBeenCalledWith(receiver);
       });
     });
   });
