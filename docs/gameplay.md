@@ -25,22 +25,22 @@ do depending on the situation.
 See the README in your profile's directory for details on what's on the current
 level and what abilities your warrior has available to deal with it.
 
-Here is an example which will instruct the warrior to attack if there's a unit
-ahead, otherwise walk forward:
+Here is an example from the beginner tower which will instruct the warrior to
+walk if there's nothing ahead, otherwise attack:
 
 ```js
 class Player {
   playTurn(warrior) {
-    if (warrior.feel().isUnit()) {
-      warrior.attack();
-    } else {
+    if (warrior.feel().isEmpty()) {
       warrior.walk();
+    } else {
+      warrior.attack();
     }
   }
 }
 ```
 
-> This is assuming your warrior has `feel`, `attack`, and `walk` abilities
+> This is assuming your warrior has "attack", "feel", and "walk" abilities
 > available.
 
 ## Play
