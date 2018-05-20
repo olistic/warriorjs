@@ -1,15 +1,18 @@
 {
   "name": "@warriorjs/tower-intermediate",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "WarriorJS intermediate tower",
   "author": "Matias Olivera <moliverafreire@gmail.com>",
   "license": "MIT",
   "homepage": "https://warrior.js.org",
-  "repository":
-    "https://github.com/olistic/warriorjs/tree/master/packages/warriorjs-tower-intermediate",
+  "repository": "https://github.com/olistic/warriorjs/tree/master/packages/warriorjs-tower-intermediate",
   "main": "lib/index.js",
-  "keywords": ["warriorjs-tower"],
-  "files": ["lib"],
+  "keywords": [
+    "warriorjs-tower"
+  ],
+  "files": [
+    "lib"
+  ],
   "publishConfig": {
     "access": "public"
   },
@@ -20,9 +23,9 @@
     "@warriorjs/core": "^0.4.0"
   },
   "dependencies": {
-    "@warriorjs/abilities": "^0.3.0",
-    "@warriorjs/effects": "^0.1.0",
-    "@warriorjs/geography": "^0.1.0",
-    "@warriorjs/units": "^0.3.0"
+    "@warriorjs/abilities": "^0.4.0",
+    "@warriorjs/effects": "^0.4.0",
+    "@warriorjs/geography": "^0.4.0",
+    "@warriorjs/units": "^0.4.0"
   }
 }

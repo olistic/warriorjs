@@ -1,6 +1,6 @@
 {
   "name": "@warriorjs/abilities",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "WarriorJS base abilities",
   "author": "Matias Olivera <moliverafreire@gmail.com>",
   "license": "MIT",
@@ -17,6 +17,6 @@
     "build": "babel src --out-dir lib --ignore test.js"
   },
   "dependencies": {
-    "@warriorjs/geography": "^0.1.0"
+    "@warriorjs/geography": "^0.4.0"
   }
 }
