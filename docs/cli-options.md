@@ -18,6 +18,11 @@ directory is used.
 Practice a level. Use this option on levels you are having difficulty or want to
 fine-tune the scoring.
 
+## `--silent`
+
+Skip displaying game logs to speed up the game. By default, the game logs are
+shown.
+
 ## `--time <seconds>`
 
 Delay each turn by seconds. By default, each step of each turn is delayed by 0.6
