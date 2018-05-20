@@ -15,6 +15,7 @@ class Floor {
     this.height = height;
     this.stairsLocation = stairsLocation;
     this.units = [];
+    this.warrior = null;
   }
 
   /**
@@ -77,6 +78,17 @@ class Floor {
    */
   getSpaceAt(location) {
     return new Space(this, location);
+  }
+
+  /**
+   * Adds the warrior to the floor in the given position.
+   *
+   * @param {Warrior} warrior The warrior.
+   * @param {Object} position The position in which to add the warrior.
+   */
+  addWarrior(warrior, position) {
+    this.addUnit(warrior, position);
+    this.warrior = warrior;
   }
 
   /**
