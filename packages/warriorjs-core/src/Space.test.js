@@ -1,6 +1,7 @@
 import { NORTH } from '@warriorjs/geography';
 
 import Floor from './Floor';
+import Space from './Space';
 import Unit from './Unit';
 
 describe('Space', () => {
@@ -10,10 +11,6 @@ describe('Space', () => {
   beforeEach(() => {
     floor = new Floor(2, 3, [0, 2]);
     space = floor.getSpaceAt([0, 0]);
-  });
-
-  test('knows its location', () => {
-    expect(space.getLocation()).toEqual([0, 0]);
   });
 
   describe('out of bounds', () => {
@@ -217,7 +214,6 @@ describe('Space', () => {
     beforeEach(() => {
       unit = new Unit('Foo', 'f');
       floor.addUnit(unit, { x: 0, y: 0, facing: NORTH });
-      space = floor.getSpaceAt([0, 0]);
     });
 
     test('is not empty', () => {
@@ -249,15 +245,18 @@ describe('Space', () => {
     });
   });
 
-  describe('player object', () => {
-    let playerObject;
+  describe('sensed space', () => {
+    let sensingUnit;
+    let sensedSpace;
 
     beforeEach(() => {
-      playerObject = space.toPlayerObject();
+      sensingUnit = new Unit();
+      floor.addUnit(sensingUnit, { x: 1, y: 1, facing: NORTH });
+      sensedSpace = space.as(sensingUnit);
     });
 
-    test('allows calling Player API methods', () => {
-      const playerApi = [
+    test('allows calling sensed space methods', () => {
+      const allowedApi = [
         'getLocation',
         'getUnit',
         'isEmpty',
@@ -265,16 +264,27 @@ describe('Space', () => {
         'isUnit',
         'isWall',
       ];
-      playerApi.forEach(propertyName => {
-        playerObject[propertyName]();
+      allowedApi.forEach(propertyName => {
+        sensedSpace[propertyName]();
       });
     });
 
-    test("throws when calling methods that don't belong to the Player API", () => {
-      const forbiddenApi = ['getCharacter', 'toPlayerObject'];
+    test("doesn't allow calling other space methods", () => {
+      const forbiddenApi = ['as', 'getCharacter'];
       forbiddenApi.forEach(propertyName => {
-        expect(playerObject).not.toHaveProperty(propertyName);
+        expect(sensedSpace).not.toHaveProperty(propertyName);
       });
+    });
+
+    test('has a location relative to the sensing unit', () => {
+      expect(sensedSpace.getLocation()).toEqual([1, -1]);
+    });
+
+    test('can get full space back', () => {
+      const fullSpace = Space.from(sensedSpace, sensingUnit);
+      expect(fullSpace).toBeInstanceOf(Space);
+      expect(fullSpace.floor).toBe(space.floor);
+      expect(fullSpace.location).toEqual(space.location);
     });
   });
 });

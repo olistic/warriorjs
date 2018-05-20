@@ -74,7 +74,7 @@ class Position {
    * @returns {number} The distance of the space.
    */
   getDistanceOf(space) {
-    return getDistanceOfLocation(space.getLocation(), this.location);
+    return getDistanceOfLocation(space.location, this.location);
   }
 
   /**
@@ -87,7 +87,7 @@ class Position {
    */
   getRelativeDirectionOf(space) {
     return getRelativeDirection(
-      getDirectionOfLocation(space.getLocation(), this.location),
+      getDirectionOfLocation(space.location, this.location),
       this.orientation,
     );
   }

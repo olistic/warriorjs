@@ -1,10 +1,4 @@
-import {
-  BACKWARD,
-  EAST,
-  FORWARD,
-  RELATIVE_DIRECTIONS,
-  WEST,
-} from '@warriorjs/geography';
+import { EAST, FORWARD, RELATIVE_DIRECTIONS, WEST } from '@warriorjs/geography';
 
 import getLevel from './getLevel';
 
@@ -32,39 +26,16 @@ const levelConfig = {
       character: '@',
       maxHealth: 20,
       abilities: {
-        walk: unit => ({
+        walk: () => ({
           action: true,
           description: `Move one space in the given direction (${FORWARD} by default).`,
-          perform(direction = FORWARD) {
-            unit.log(`walks ${direction}`);
-            const space = unit.getSpaceAt(direction);
-            if (space.isEmpty()) {
-              unit.move(direction);
-            } else {
-              unit.log(`bumps into ${space}`);
-            }
-          },
         }),
-        attack: unit => ({
+        attack: () => ({
           action: true,
           description: `Attack a unit in the given direction (${FORWARD} by default) dealing 5 HP of damage.`,
-          perform(direction = FORWARD) {
-            const receiver = unit.getSpaceAt(direction).getUnit();
-            if (receiver) {
-              unit.log(`attacks ${direction} and hits ${receiver}`);
-              const attackingBackward = direction === BACKWARD;
-              const amount = attackingBackward ? 3 : 5;
-              unit.damage(receiver, amount);
-            } else {
-              unit.log(`attacks ${direction} and hits nothing`);
-            }
-          },
         }),
-        feel: unit => ({
+        feel: () => ({
           description: `Return the adjacent space in the given direction (${FORWARD} by default).`,
-          perform(direction = FORWARD) {
-            return unit.getSpaceAt(direction);
-          },
         }),
       },
       position: {
@@ -79,26 +50,12 @@ const levelConfig = {
         character: 's',
         maxHealth: 12,
         abilities: {
-          attack: unit => ({
+          attack: () => ({
             action: true,
             description: `Attack a unit in the given direction (${FORWARD} by default) dealing 3 HP of damage.`,
-            perform(direction = FORWARD) {
-              const receiver = unit.getSpaceAt(direction).getUnit();
-              if (receiver) {
-                unit.log(`attacks ${direction} and hits ${receiver}`);
-                const attackingBackward = direction === BACKWARD;
-                const amount = attackingBackward ? 2 : 3;
-                unit.damage(receiver, amount);
-              } else {
-                unit.log(`attacks ${direction} and hits nothing`);
-              }
-            },
           }),
-          feel: unit => ({
+          feel: () => ({
             description: `Return the adjacent space in the given direction (${FORWARD} by default).`,
-            perform(direction = FORWARD) {
-              return unit.getSpaceAt(direction);
-            },
           }),
         },
         playTurn(sludge) {

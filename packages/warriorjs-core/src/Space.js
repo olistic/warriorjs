@@ -1,3 +1,9 @@
+import {
+  getAbsoluteOffset,
+  getRelativeOffset,
+  translateLocation,
+} from '@warriorjs/geography';
+
 const upperLeftWallCharacter = '╔';
 const upperRightWallCharacter = '╗';
 const lowerLeftWallCharacter = '╚';
@@ -9,6 +15,21 @@ const stairsCharacter = '>';
 
 /** Class representing a space in the floor. */
 class Space {
+  /**
+   * Creates a space from a sensed space.
+   *
+   * @param {SensedSpace} sensedSpace The sensed space.
+   * @param {Unit} unit The unit that sensed the space.
+   *
+   * @returns {Space} The space.
+   */
+  static from(sensedSpace, unit) {
+    const { floor, location, orientation } = unit.position;
+    const offset = getAbsoluteOffset(sensedSpace.getLocation(), orientation);
+    const spaceLocation = translateLocation(location, offset);
+    return new Space(floor, spaceLocation);
+  }
+
   /**
    * Creates a space.
    *
@@ -31,7 +52,7 @@ class Space {
     }
 
     if (this.isWall()) {
-      const [locationX, locationY] = this.getLocation();
+      const [locationX, locationY] = this.location;
       if (locationX < 0) {
         if (locationY < 0) {
           return upperLeftWallCharacter;
@@ -102,32 +123,27 @@ class Space {
    * @returns {Unit} The unit.
    */
   getUnit() {
-    return this.floor.getUnitAt(this.getLocation());
+    return this.floor.getUnitAt(this.location);
   }
 
   /**
-   * Returns the location of this space.
+   * Returns this space as sensed by the given unit.
    *
-   * @returns {number[]} The location as a pair of coordinates [x, y].
+   * @param {Unit} unit The unit sensing this space.
+   *
+   * @returns {SensedSpace} The sensed space.
    */
-  getLocation() {
-    return this.location;
-  }
-
-  /**
-   * Returns the player object for this space.
-   *
-   * The player object has the subset of the Space methods that belong to the
-   * Player API.
-   *
-   * @returns {object} The player object.
-   */
-  toPlayerObject() {
+  as(unit) {
     return {
-      getLocation: this.getLocation.bind(this),
+      getLocation: () =>
+        getRelativeOffset(
+          this.location,
+          unit.position.location,
+          unit.position.orientation,
+        ),
       getUnit: () => {
-        const unit = this.getUnit.call(this);
-        return unit && unit.toPlayerObject();
+        const spaceUnit = this.getUnit.call(this);
+        return spaceUnit && spaceUnit.as(unit);
       },
       isEmpty: this.isEmpty.bind(this),
       isStairs: this.isStairs.bind(this),

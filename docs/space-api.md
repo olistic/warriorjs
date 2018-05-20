@@ -14,6 +14,16 @@ You can call methods on a space to gather information about what's there.
 
 Here are the various methods that are available to you:
 
+## `space.getLocation()`:
+
+Returns the location of this space as the number of spaces forward and to the
+right of your position.
+
+**Returns**
+
+_(number[])_: The relative location of this space as the offset
+`[forward, right]`.
+
 ## `space.isEmpty()`:
 
 Determines if nothing (except maybe stairs) is at this space.

@@ -1,4 +1,5 @@
 import Logger from './Logger';
+import Space from './Space';
 
 /** Class representing a unit. */
 class Unit {
@@ -9,7 +10,7 @@ class Unit {
    * @param {string} character The character of the unit.
    * @param {number} maxHealth The max health in HP.
    * @param {number} reward The number of points to reward when killed.
-   * @param {boolean} hostile Whether the unit is hostile or not.
+   * @param {boolean} enemy Whether the unit is an enemy or not.
    * @param {boolean} bound Whether the unit is bound or not.
    */
   constructor(
@@ -17,14 +18,14 @@ class Unit {
     character,
     maxHealth,
     reward = null,
-    hostile = true,
+    enemy = true,
     bound = false,
   ) {
     this.name = name;
     this.character = character;
     this.maxHealth = maxHealth;
     this.reward = reward === null ? maxHealth : reward;
-    this.hostile = hostile;
+    this.enemy = enemy;
     this.bound = bound;
     this.abilities = new Map();
     this.effects = new Map();
@@ -184,7 +185,7 @@ class Unit {
   damage(receiver, amount) {
     receiver.takeDamage(amount);
     if (!receiver.isAlive()) {
-      if (receiver.isHostile()) {
+      if (receiver.as(this).isEnemy()) {
         this.earnPoints(receiver.reward);
       } else {
         this.losePoints(receiver.reward);
@@ -204,51 +205,13 @@ class Unit {
   }
 
   /**
-   * Checks if the unit is hostile.
-   *
-   * A bound unit is not considered hostile.
-   *
-   * @returns {boolean} Whether the unit is hostile or not.
-   */
-  isHostile() {
-    return this.hostile && !this.bound;
-  }
-
-  /**
-   * Checks if the unit is friendly.
-   *
-   * @returns {boolean} Whether the unit is friendly or not.
-   */
-  isFriendly() {
-    return !this.hostile;
-  }
-
-  /**
-   * Checks if the unit is controlled by the player.
-   *
-   * @returns {boolean} Whether the unit is controlled by the player or not.
-   */
-  isPlayer() {
-    return this.isWarrior();
-  }
-
-  /**
-   * Checks if the unit is the warrior.
-   *
-   * @returns {boolean} Whether the unit is the warrior or not.
-   */
-  isWarrior() {
-    return this.constructor.name === 'Warrior';
-  }
-
-  /**
    * Unbinds another unit.
    *
    * @param {Unit} receiver The unit to unbind.
    */
   release(receiver) {
     receiver.unbind();
-    if (receiver.isFriendly()) {
+    if (!receiver.as(this).isEnemy()) {
       receiver.vanish();
       this.earnPoints(receiver.reward);
     }
@@ -315,6 +278,19 @@ class Unit {
   }
 
   /**
+   * Returns the sensed space located at the direction and number of spaces.
+   *
+   * @param {string} direction The direction.
+   * @param {number} forward The number of spaces forward.
+   * @param {number} right The number of spaces to the right.
+   *
+   * @returns {SensedSpace} The sensed space.
+   */
+  getSensedSpaceAt(direction, forward = 1, right = 0) {
+    return this.getSpaceAt(direction, forward, right).as(this);
+  }
+
+  /**
    * Returns the space located at the direction and number of spaces.
    *
    * @param {string} direction The direction.
@@ -333,28 +309,32 @@ class Unit {
    * @returns {string} The relative direction of the stairs.
    */
   getDirectionOfStairs() {
-    return this.getDirectionOf(this.position.floor.getStairsSpace());
+    return this.position.getRelativeDirectionOf(
+      this.position.floor.getStairsSpace(),
+    );
   }
 
   /**
-   * Returns the direction of the given space with reference to this unit.
+   * Returns the direction of the given space, with reference to this unit.
    *
-   * @param {Space} space The space to get the direction of.
+   * @param {SensedSpace} sensedSpace The space to get the direction of.
    *
    * @returns {string} The relative direction of the space.
    */
-  getDirectionOf(space) {
+  getDirectionOf(sensedSpace) {
+    const space = Space.from(sensedSpace, this);
     return this.position.getRelativeDirectionOf(space);
   }
 
   /**
    * Returns the distance between the given space and this unit.
    *
-   * @param {Space} space The space to calculate the distance of.
+   * @param {SensedSpace} sensedSpace The space to calculate the distance of.
    *
    * @returns {number} The distance of the space.
    */
-  getDistanceOf(space) {
+  getDistanceOf(sensedSpace) {
+    const space = Space.from(sensedSpace, this);
     return this.position.getDistanceOf(space);
   }
 
@@ -398,20 +378,16 @@ class Unit {
   }
 
   /**
-   * Returns the player object for this unit.
+   * Returns this unit as sensed by the given unit.
    *
-   * The player object has the subset of the unit methods that belong to the
-   * Player API.
+   * @param {Unit} unit The unit sensing this unit.
    *
-   * @returns {object} The player object.
+   * @returns {SensedUnit} The sensed unit.
    */
-  toPlayerObject() {
+  as(unit) {
     return {
-      isHostile: this.isHostile.bind(this),
-      isFriendly: this.isFriendly.bind(this),
-      isPlayer: this.isPlayer.bind(this),
-      isWarrior: this.isWarrior.bind(this),
       isBound: this.isBound.bind(this),
+      isEnemy: () => this.enemy !== unit.enemy,
       isUnderEffect: this.isUnderEffect.bind(this),
     };
   }
@@ -436,7 +412,7 @@ class Unit {
       character: this.character,
       maxHealth: this.maxHealth,
       health: this.health,
-      warrior: this.isWarrior(),
+      warrior: this.constructor.name === 'Warrior',
     };
   }
 }

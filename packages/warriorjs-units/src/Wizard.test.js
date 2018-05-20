@@ -54,7 +54,7 @@ describe('Wizard', () => {
         space,
         {
           isUnit: () => true,
-          getUnit: () => ({ isPlayer: () => false }),
+          getUnit: () => ({ isEnemy: () => false }),
         },
         anotherSpace,
       ]);
@@ -62,12 +62,15 @@ describe('Wizard', () => {
       expect(anotherSpace.isUnit).not.toHaveBeenCalled();
     });
 
-    test('stops looking if it finds player', () => {
+    test('stops looking if it finds threat', () => {
       turn.look.mockReturnValueOnce([space, space, space]).mockReturnValueOnce([
         space,
         {
           isUnit: () => true,
-          getUnit: () => ({ isPlayer: () => true }),
+          getUnit: () => ({
+            isBound: () => false,
+            isEnemy: () => true,
+          }),
         },
         space,
       ]);
@@ -79,13 +82,16 @@ describe('Wizard', () => {
       expect(turn.shoot).toHaveBeenCalledWith(RIGHT);
     });
 
-    test("does nothing if it doesn't find player", () => {
+    test("does nothing if it doesn't find threat", () => {
       turn.look.mockReturnValueOnce([
         space,
         space,
         {
           isUnit: () => true,
-          getUnit: () => ({ isPlayer: () => false }),
+          getUnit: () => ({
+            isBound: () => true,
+            isEnemy: () => true,
+          }),
         },
       ]);
       Wizard.playTurn(turn);

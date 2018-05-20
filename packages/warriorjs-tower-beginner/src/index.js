@@ -218,7 +218,7 @@ export default {
     {
       description: 'You hear cries for help. Captives must need rescuing.',
       tip:
-        "Once you find a unit, use `unit.isFriendly() && unit.isBound()` to see if there's a captive and `warrior.rescue()` to rescue him. Don't attack captives.",
+        "When you find a unit, use `!unit.isEnemy() && unit.isBound()` to see if he's a captive and `warrior.rescue()` to rescue him. Don't attack captives.",
       clue:
         "Don't forget to constantly check if you are being attacked. Rest until your health is full if you're not taking damage.",
       timeBonus: 45,

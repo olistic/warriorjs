@@ -22,30 +22,10 @@ Determines if the unit is bound.
 
 _(boolean)_: Whether this unit is bound or not.
 
-## `unit.isHostile()`:
+## `unit.isEnemy()`:
 
-Determines if the unit is hostile. A bound unit is not considered hostile.
-
-**Returns**
-
-_(boolean)_: Whether this is a hostile unit or not.
-
-## `unit.isFriendly()`:
-
-Determines if the unit is friendly.
+Determines if the unit is an enemy.
 
 **Returns**
 
-_(boolean)_: Whether this is a friendly unit or not.
-
-## `unit.isWarrior()`:
-
-Determines if the unit is the warrior.
-
-**Aliases**
-
-_`unit.isPlayer()`_
-
-**Returns**
-
-_(boolean)_: Whether this unit is the warrior or not.
+_(boolean)_: Whether this is an enemy unit or not.
