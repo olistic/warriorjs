@@ -11,6 +11,7 @@ class Warrior extends Unit {
    */
   constructor(name, character, maxHealth) {
     super(name, character, maxHealth, null, false);
+    this.player = null;
   }
 
   /**
@@ -42,6 +43,7 @@ class Warrior extends Unit {
   toJSON() {
     return {
       ...super.toJSON(),
+      warrior: true,
       score: this.score,
       abilities: {
         actions: [...this.abilities]

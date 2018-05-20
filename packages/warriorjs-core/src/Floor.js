@@ -1,5 +1,6 @@
 import Position from './Position';
 import Space from './Space';
+import Warrior from './Warrior';
 
 /** Class representing the floor of a level. */
 class Floor {
@@ -15,6 +16,7 @@ class Floor {
     this.height = height;
     this.stairsLocation = stairsLocation;
     this.units = [];
+    this.warrior = null;
   }
 
   /**
@@ -92,7 +94,12 @@ class Floor {
     const unitWithPosition = unit;
     const location = [x, y];
     unitWithPosition.position = new Position(this, location, facing);
+
     this.units.push(unitWithPosition);
+
+    if (unit instanceof Warrior) {
+      this.warrior = unit;
+    }
   }
 
   /**

@@ -185,7 +185,6 @@ test('returns level', () => {
               name: 'Sludge',
               character: 's',
               maxHealth: 12,
-              warrior: false,
               health: 12,
             },
           },

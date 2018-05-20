@@ -1,5 +1,3 @@
-import loadPlayer from '@warriorjs/player-loader';
-
 import LevelLoader from './LevelLoader';
 
 /**
@@ -11,8 +9,7 @@ import LevelLoader from './LevelLoader';
  * @returns {Object} The outcome of the play.
  */
 function runLevel(levelConfig, playerCode) {
-  const level = new LevelLoader().load(levelConfig);
-  level.floor.warrior.player = loadPlayer(playerCode);
+  const level = new LevelLoader().load(levelConfig, playerCode);
   return level.play();
 }
 
