@@ -25,7 +25,7 @@ describe('Warrior', () => {
     warrior.player = player;
     expect(() => {
       warrior.playTurn();
-    }).toThrow(new PlayerError('Invalid submitted code: foo'));
+    }).toThrow(new PlayerError('Invalid Player code: foo'));
   });
 
   test('is upset for not doing anything when no action', () => {

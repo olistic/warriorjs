@@ -23,7 +23,7 @@ class Warrior extends Unit {
     try {
       this.player.playTurn(turn);
     } catch (err) {
-      throw new PlayerError(`Invalid submitted code: ${err.message}`);
+      throw new PlayerError(`Invalid Player code: ${err.message}`);
     }
   }
 

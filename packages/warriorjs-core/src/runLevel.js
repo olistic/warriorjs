@@ -1,5 +1,7 @@
+import loadPlayer from '@warriorjs/player-loader';
+
 import LevelLoader from './LevelLoader';
-import PlayerLoader from './PlayerLoader';
+import PlayerError from './PlayerError';
 
 /**
  * Runs the given level config.
@@ -11,8 +13,11 @@ import PlayerLoader from './PlayerLoader';
  */
 function runLevel(levelConfig, playerCode) {
   const level = new LevelLoader().load(levelConfig);
-  const player = new PlayerLoader().load(playerCode);
-  level.floor.warrior.player = player;
+  try {
+    level.floor.warrior.player = loadPlayer(playerCode);
+  } catch (err) {
+    throw new PlayerError(err.message);
+  }
   return level.play();
 }
 
