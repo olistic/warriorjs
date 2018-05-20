@@ -3,7 +3,7 @@ import path from 'path';
 import globby from 'globby';
 import makeDir from 'make-dir';
 import pathType from 'path-type';
-import { PlayerError, getLevel, runLevel } from '@warriorjs/core';
+import { getLevel, runLevel } from '@warriorjs/core';
 
 import GameError from './GameError';
 import PlayerGenerator from './PlayerGenerator';
@@ -56,7 +56,10 @@ class Game {
         await this.playNormalMode();
       }
     } catch (err) {
-      if (err instanceof GameError) {
+      if (
+        err instanceof GameError ||
+        err.message.startsWith('Invalid Player code')
+      ) {
         printFailureLine(err.message);
       } else {
         throw err;
@@ -294,7 +297,8 @@ class Game {
   async playLevel(levelNumber) {
     const levelConfig = getLevelConfig(levelNumber, this.tower, this.profile);
 
-    const { events, passed, score } = await this.runLevel(levelConfig);
+    const playerCode = await this.profile.readPlayerCode();
+    const { events, passed, score } = await runLevel(levelConfig, playerCode);
 
     await printPlay(levelNumber, events, this.delay);
 
@@ -348,26 +352,6 @@ class Game {
     }
 
     return hasNextLevel;
-  }
-
-  /**
-   * Runs the level with the given config and the player code.
-   *
-   * @param {Object} levelConfig The config of the level.
-   *
-   * @returns {Object} The play.
-   */
-  async runLevel(levelConfig) {
-    const playerCode = await this.profile.readPlayerCode();
-    try {
-      return runLevel(levelConfig, playerCode);
-    } catch (err) {
-      if (err instanceof PlayerError) {
-        throw new GameError(err.message);
-      }
-
-      throw err;
-    }
   }
 
   /**

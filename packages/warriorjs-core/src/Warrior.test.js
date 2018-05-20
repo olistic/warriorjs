@@ -1,4 +1,3 @@
-import PlayerError from './PlayerError';
 import Warrior from './Warrior';
 
 describe('Warrior', () => {
@@ -10,22 +9,9 @@ describe('Warrior', () => {
   });
 
   test('delegates playTurn to the player', () => {
-    const player = { playTurn: jest.fn() };
-    warrior.player = player;
+    warrior.player = { playTurn: jest.fn() };
     warrior.playTurn('turn');
-    expect(player.playTurn).toHaveBeenCalledWith('turn');
-  });
-
-  test("throws when playing turn if there's something wrong", () => {
-    const player = {
-      playTurn: () => {
-        throw new Error('foo');
-      },
-    };
-    warrior.player = player;
-    expect(() => {
-      warrior.playTurn();
-    }).toThrow(new PlayerError('Invalid submitted code: foo'));
+    expect(warrior.player.playTurn).toHaveBeenCalledWith('turn');
   });
 
   test('is upset for not doing anything when no action', () => {

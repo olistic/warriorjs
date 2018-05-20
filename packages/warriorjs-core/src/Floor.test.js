@@ -3,6 +3,7 @@ import { NORTH } from '@warriorjs/geography';
 import Floor from './Floor';
 import Space from './Space';
 import Unit from './Unit';
+import Warrior from './Warrior';
 
 describe('Floor', () => {
   let floor;
@@ -55,6 +56,13 @@ describe('Floor', () => {
     const unit = new Unit();
     floor.addUnit(unit, { x: 0, y: 1, facing: NORTH });
     expect(floor.getUnitAt([0, 1])).toBe(unit);
+  });
+
+  test('knows which unit is the warrior after adding it', () => {
+    expect(floor.warrior).toBeNull();
+    const warrior = new Warrior();
+    floor.addUnit(warrior, { x: 0, y: 1, facing: NORTH });
+    expect(floor.warrior).toBe(warrior);
   });
 
   test("doesn't consider a unit to be on the floor if it's not alive", () => {

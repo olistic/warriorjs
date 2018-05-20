@@ -1,5 +1,4 @@
 import LevelLoader from './LevelLoader';
-import PlayerLoader from './PlayerLoader';
 
 /**
  * Runs the given level config.
@@ -10,9 +9,7 @@ import PlayerLoader from './PlayerLoader';
  * @returns {Object} The outcome of the play.
  */
 function runLevel(levelConfig, playerCode) {
-  const level = new LevelLoader().load(levelConfig);
-  const player = new PlayerLoader().load(playerCode);
-  level.floor.warrior.player = player;
+  const level = new LevelLoader().load(levelConfig, playerCode);
   return level.play();
 }
 
