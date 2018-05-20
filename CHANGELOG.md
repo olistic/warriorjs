@@ -11,11 +11,24 @@ and this project adheres to
 ### Added
 
 * Make warrior upset when losing points ([@skywalker212][] in [#107][])
+* `getRelativeOffset` function (`@warriorjs/geography`) ([@olistic][] in
+  [#138][])
+* `unit.release()` method ([@olistic][] in [#140][])
 
 ### Changed
 
 * Rename `unit.say()` to `unit.log()` ([@olistic][] in [#131][])
 * Improve profile directory detection ([@glneto][] in [#133][])
+* Rename `unit.isHostile()` to `unit.isEnemy()` ([@olistic][] in [#129][])
+* `space.getLocation()` returns the relative location of the space ([@olistic][]
+  in [#129][])
+* `unit.isEnemy()` returns whether the unit is considered an enemy by the unit
+  that sensed it ([@olistic][] in [#129][])
+
+### Removed
+
+* `unit.isFriendly()` ([@olistic][] in [#129][])
+* `unit.isWarrior()` and `unit.isPlayer()` ([@olistic][] in [#129][])
 
 ### Fixed
 
@@ -103,5 +116,8 @@ Initial version
 [#114]: https://github.com/olistic/warriorjs/pull/114
 [#120]: https://github.com/olistic/warriorjs/pull/120
 [#121]: https://github.com/olistic/warriorjs/pull/121
+[#129]: https://github.com/olistic/warriorjs/pull/129
 [#131]: https://github.com/olistic/warriorjs/pull/131
 [#133]: https://github.com/olistic/warriorjs/pull/133
+[#138]: https://github.com/olistic/warriorjs/pull/138
+[#140]: https://github.com/olistic/warriorjs/pull/140
