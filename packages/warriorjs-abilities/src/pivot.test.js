@@ -9,7 +9,7 @@ describe('pivot', () => {
   beforeEach(() => {
     unit = {
       rotate: jest.fn(),
-      say: jest.fn(),
+      log: jest.fn(),
     };
     pivot = pivotCreator()(unit);
   });
@@ -27,13 +27,13 @@ describe('pivot', () => {
   describe('performing', () => {
     test('flips around when not passing direction', () => {
       pivot.perform();
-      expect(unit.say).toHaveBeenCalledWith(`pivots ${BACKWARD}`);
+      expect(unit.log).toHaveBeenCalledWith(`pivots ${BACKWARD}`);
       expect(unit.rotate).toHaveBeenCalledWith(BACKWARD);
     });
 
     test('rotates in specified direction', () => {
       pivot.perform(RIGHT);
-      expect(unit.say).toHaveBeenCalledWith(`pivots ${RIGHT}`);
+      expect(unit.log).toHaveBeenCalledWith(`pivots ${RIGHT}`);
       expect(unit.rotate).toHaveBeenCalledWith(RIGHT);
     });
   });

@@ -24,14 +24,15 @@ class LevelLoader {
         name,
         character,
         maxHealth,
-        playTurn,
         reward,
-        captive,
+        enemy,
+        bound,
         position,
         abilities,
         effects,
+        playTurn,
       }) => {
-        const unit = new Unit(name, character, maxHealth, reward, captive);
+        const unit = new Unit(name, character, maxHealth, reward, enemy, bound);
         this.setUpUnit(unit, position, abilities, effects);
         unit.playTurn = playTurn;
       },

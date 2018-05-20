@@ -1,11 +1,12 @@
 {
   "name": "@warriorjs/core",
-  "version": "0.1.0",
+  "version": "0.4.0",
   "description": "WarriorJS core",
   "author": "Matias Olivera <moliverafreire@gmail.com>",
   "license": "MIT",
   "homepage": "https://warrior.js.org",
-  "repository": "https://github.com/olistic/warriorjs/tree/master/packages/warriorjs-core",
+  "repository":
+    "https://github.com/olistic/warriorjs/tree/master/packages/warriorjs-core",
   "main": "lib/index.js",
   "keywords": [
     "warriorjs",
@@ -25,9 +26,7 @@
     "artificial-intelligence",
     "skills"
   ],
-  "files": [
-    "lib"
-  ],
+  "files": ["lib"],
   "publishConfig": {
     "access": "public"
   },
@@ -35,6 +34,6 @@
     "build": "babel src --out-dir lib --ignore test.js"
   },
   "dependencies": {
-    "@warriorjs/geography": "^0.1.0"
+    "@warriorjs/geography": "^0.4.0"
   }
 }

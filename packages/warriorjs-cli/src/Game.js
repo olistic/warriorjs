@@ -30,23 +30,23 @@ class Game {
    *
    * @param {string} runDirectoryPath The directory under which to run the game.
    * @param {number} practiceLevel The level to practice.
-   * @param {boolean} skipInput Whether to skip user input or not.
    * @param {boolean} silentGameplay Whether to skip displaying game logs or not.
    * @param {number} delay The delay between each turn in seconds.
+   * @param {boolean} assumeYes Whether to answer yes to every question or not.
    */
   constructor(
     runDirectoryPath,
     practiceLevel,
-    skipInput,
     silentGameplay,
     delay,
+    assumeYes,
   ) {
     this.runDirectoryPath = runDirectoryPath;
     this.gameDirectoryPath = path.join(this.runDirectoryPath, gameDirectory);
     this.practiceLevel = practiceLevel;
-    this.skipInput = skipInput;
     this.silentGameplay = silentGameplay;
     this.delay = delay * 1000;
+    this.assumeYes = assumeYes;
   }
 
   /**
@@ -79,6 +79,8 @@ class Game {
    * loaded.
    *
    * If not, the player will be given the option to choose a profile.
+   *
+   * @returns {Profile} The loaded profile.
    */
   async loadProfile() {
     const profile = await Profile.load(this.runDirectoryPath);
@@ -103,6 +105,8 @@ class Game {
 
   /**
    * Checks if the game directory exists.
+   *
+   * @returns {boolean} Whether the game directory exists or not.
    */
   async gameDirectoryExists() {
     return pathType.dir(this.gameDirectoryPath);
@@ -112,10 +116,12 @@ class Game {
    * Creates the game directory.
    */
   async makeGameDirectory() {
-    const makeDirectory = await requestConfirmation(
-      'No warriorjs directory found, would you like to create one?',
-      true,
-    );
+    const makeDirectory =
+      this.assumeYes ||
+      (await requestConfirmation(
+        'No warriorjs directory found, would you like to create one?',
+        true,
+      ));
     if (!makeDirectory) {
       throw new GameError('Unable to continue without directory.');
     }
@@ -125,7 +131,7 @@ class Game {
     } catch (err) {
       if (err.code === 'EEXIST') {
         throw new GameError(
-          'A file warriorjs already exists at this location. Please change the directory under which you are running warriorjs.',
+          'A file named warriorjs exists at this location. Please change the directory under which you are running warriorjs.',
         );
       }
 
@@ -138,6 +144,8 @@ class Game {
    *
    * If there are no profiles available in the game directory or the player
    * chooses to, creates a new profile.
+   *
+   * @returns {Profile} The chosen profile.
    */
   async chooseProfile() {
     const profiles = await this.getProfiles();
@@ -155,6 +163,8 @@ class Game {
 
   /**
    * Returns the profiles available in the game directory.
+   *
+   * @returns {Profile[]} The available profiles.
    */
   async getProfiles() {
     const profileDirectoriesPaths = await this.getProfileDirectoriesPaths();
@@ -167,6 +177,8 @@ class Game {
 
   /**
    * Creates a new profile.
+   *
+   * @returns {Profile} The created profile.
    */
   async createProfile() {
     const warriorName = await requestInput('Enter a name for your warrior:');
@@ -210,6 +222,8 @@ class Game {
    * Checks if the given profile exists in the game directory.
    *
    * @param {Profile} profile A profile to check existance for.
+   *
+   * @returns {boolean} Whether the profile exists or not..
    */
   async isExistingProfile(profile) {
     const profileDirectoriesPaths = await this.getProfileDirectoriesPaths();
@@ -220,6 +234,8 @@ class Game {
 
   /**
    * Returns the paths to the profiles available in the game directory.
+   *
+   * @returns {string[]} The paths to the available profiles.
    */
   async getProfileDirectoriesPaths() {
     const profileDirectoryPattern = path.join(this.gameDirectoryPath, '*');
@@ -297,14 +313,12 @@ class Game {
         `Sorry, you failed level ${levelNumber}. Change your script and try again.`,
       );
 
-      if (
-        !this.skipInput &&
-        !this.profile.shouldShowClue() &&
-        levelConfig.clue
-      ) {
-        const showClue = await requestConfirmation(
-          'Would you like to read the additional clues for this level?',
-        );
+      if (levelConfig.clue && !this.profile.isShowingClue()) {
+        const showClue =
+          this.assumeYes ||
+          (await requestConfirmation(
+            'Would you like to read the additional clues for this level?',
+          ));
         if (showClue) {
           await this.profile.requestClue();
           await this.generatePlayer();
@@ -373,22 +387,30 @@ class Game {
    * continue on to epic mode.
    */
   async requestNextLevel() {
-    if (this.skipInput) {
-      printLine('Staying on current level. Try to earn more points next time.');
-    } else if (this.tower.hasLevel(this.profile.levelNumber + 1)) {
-      const continueToNextLevel = await requestConfirmation(
-        'Would you like to continue on to the next level?',
-      );
+    if (this.tower.hasLevel(this.profile.levelNumber + 1)) {
+      const continueToNextLevel =
+        this.assumeYes ||
+        (await requestConfirmation(
+          'Would you like to continue on to the next level?',
+          true,
+        ));
       if (continueToNextLevel) {
         await this.prepareNextLevel();
         printSuccessLine(
           `See ${this.profile.getReadmeFilePath()} for updated instructions.`,
         );
+      } else {
+        printLine(
+          'Staying on current level. Try to earn more points next time.',
+        );
       }
     } else {
-      const continueToEpicMode = await requestConfirmation(
-        'Would you like to continue on to epic mode?',
-      );
+      const continueToEpicMode =
+        this.assumeYes ||
+        (await requestConfirmation(
+          'Would you like to continue on to epic mode?',
+          true,
+        ));
       if (continueToEpicMode) {
         await this.prepareEpicMode();
         printSuccessLine('Run warriorjs again to play epic mode.');

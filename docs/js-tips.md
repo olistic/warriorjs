@@ -35,17 +35,31 @@ class Player {
 }
 ```
 
-* Some senses (like look and listen) return an array of spaces, so **you might
-  find many of the [Array prototype methods][] really useful**. Here is an
-  example of the [Array.prototype.find][] method:
+* You can call methods of the Space API directly after a sense. For example, the
+  "feel" sense in the beginner tower returns one space. You can call `isEmpty()`
+  on this to determine if the space is clear before walking there:
+
+```js
+class Player {
+  playTurn(warrior) {
+    if (warrior.feel().isEmpty()) {
+      warrior.walk();
+    }
+  }
+}
+```
+
+* Some senses (like "look" and "listen" in the beginner tower) return an array
+  of spaces instead, so **you might find many of the [Array prototype methods][]
+  really useful**. Here is an example of the [Array.prototype.find][] method:
 
 ```js
 class Player {
   // ...
 
   isEnemyInSight(warrior) {
-    const unit = warrior.look().find(space => !space.isEmpty());
-    return unit && unit.isEnemy();
+    const spaceWithUnit = warrior.look().find(space => space.isUnit());
+    return spaceWithUnit && spaceWithUnit.getUnit().isEnemy();
   }
 }
 ```

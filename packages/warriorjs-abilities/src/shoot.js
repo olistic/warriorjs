@@ -12,10 +12,10 @@ function shoot({ power, range }) {
         .map(offset => unit.getSpaceAt(direction, offset).getUnit())
         .find(unitInRange => unitInRange);
       if (receiver) {
-        unit.say(`shoots ${direction} and hits ${receiver}`);
+        unit.log(`shoots ${direction} and hits ${receiver}`);
         unit.damage(receiver, power);
       } else {
-        unit.say(`shoots ${direction} and hits nothing`);
+        unit.log(`shoots ${direction} and hits nothing`);
       }
     },
   });

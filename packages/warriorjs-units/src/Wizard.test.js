@@ -33,7 +33,7 @@ describe('Wizard', () => {
     let space;
 
     beforeEach(() => {
-      space = { isEmpty: () => true };
+      space = { isUnit: () => false };
       turn = {
         shoot: jest.fn(),
         look: jest.fn(() => [space, space, space]),
@@ -48,25 +48,32 @@ describe('Wizard', () => {
       expect(turn.look).toHaveBeenCalledWith(LEFT);
     });
 
-    test('stops looking in direction if it finds non-empty space', () => {
-      const anotherSpace = { isEmpty: jest.fn() };
+    test('stops looking in direction if it finds a space with a unit', () => {
+      const anotherSpace = { isUnit: jest.fn() };
       turn.look.mockReturnValue([
         space,
-        { isEmpty: () => false, isPlayer: () => false },
+        {
+          isUnit: () => true,
+          getUnit: () => ({ isEnemy: () => false }),
+        },
         anotherSpace,
       ]);
       Wizard.playTurn(turn);
-      expect(anotherSpace.isEmpty).not.toHaveBeenCalled();
+      expect(anotherSpace.isUnit).not.toHaveBeenCalled();
     });
 
-    test('stops looking if it finds player', () => {
-      turn.look
-        .mockReturnValueOnce([space, space, space])
-        .mockReturnValueOnce([
-          space,
-          { isEmpty: () => false, isPlayer: () => true },
-          space,
-        ]);
+    test('stops looking if it finds threat', () => {
+      turn.look.mockReturnValueOnce([space, space, space]).mockReturnValueOnce([
+        space,
+        {
+          isUnit: () => true,
+          getUnit: () => ({
+            isBound: () => false,
+            isEnemy: () => true,
+          }),
+        },
+        space,
+      ]);
       Wizard.playTurn(turn);
       expect(turn.look).toHaveBeenCalledWith(FORWARD);
       expect(turn.look).toHaveBeenCalledWith(RIGHT);
@@ -75,11 +82,17 @@ describe('Wizard', () => {
       expect(turn.shoot).toHaveBeenCalledWith(RIGHT);
     });
 
-    test("does nothing if it doesn't find player", () => {
+    test("does nothing if it doesn't find threat", () => {
       turn.look.mockReturnValueOnce([
         space,
         space,
-        { isEmpty: () => false, isPlayer: () => false },
+        {
+          isUnit: () => true,
+          getUnit: () => ({
+            isBound: () => true,
+            isEnemy: () => true,
+          }),
+        },
       ]);
       Wizard.playTurn(turn);
       expect(turn.shoot).not.toHaveBeenCalled();

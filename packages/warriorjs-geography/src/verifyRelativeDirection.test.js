@@ -1,3 +1,4 @@
+import verifyRelativeDirection from './verifyRelativeDirection';
 import {
   BACKWARD,
   FORWARD,
@@ -5,7 +6,6 @@ import {
   RELATIVE_DIRECTIONS,
   RIGHT,
 } from './relativeDirections';
-import verifyRelativeDirection from './verifyRelativeDirection';
 
 test("doesn't throw if direction is valid", () => {
   const validDirections = RELATIVE_DIRECTIONS;

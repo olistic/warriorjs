@@ -104,6 +104,15 @@ describe('Game', () => {
       mock.restore();
     });
 
+    test('creates game directory if assume yes', async () => {
+      game.assumeYes = true;
+      mock();
+      await game.makeGameDirectory();
+      expect(requestConfirmation).not.toHaveBeenCalled();
+      expect(fs.statSync('/path/to/game/warriorjs').isDirectory()).toBe(true);
+      mock.restore();
+    });
+
     test("throws if if player doesn't confirm", async () => {
       requestConfirmation.mockResolvedValue(false);
       await expect(game.makeGameDirectory()).rejects.toThrow(
@@ -116,7 +125,7 @@ describe('Game', () => {
       mock({ '/path/to/game/warriorjs': '' });
       await expect(game.makeGameDirectory()).rejects.toThrow(
         new GameError(
-          'A file warriorjs already exists at this location. Please change the directory under which you are running warriorjs.',
+          'A file named warriorjs exists at this location. Please change the directory under which you are running warriorjs.',
         ),
       );
       mock.restore();
@@ -258,16 +267,6 @@ describe('Game', () => {
       game.prepareEpicMode = jest.fn();
     });
 
-    test('stays in current level if skip input', async () => {
-      game.skipInput = true;
-      await game.requestNextLevel();
-      expect(printLine).toHaveBeenCalledWith(
-        'Staying on current level. Try to earn more points next time.',
-      );
-      expect(game.prepareNextLevel).not.toHaveBeenCalled();
-      expect(game.prepareEpicMode).not.toHaveBeenCalled();
-    });
-
     test('checks if tower has next level', async () => {
       game.tower = { hasLevel: jest.fn() };
       await game.requestNextLevel();
@@ -284,6 +283,7 @@ describe('Game', () => {
         await game.requestNextLevel();
         expect(requestConfirmation).toHaveBeenCalledWith(
           'Would you like to continue on to the next level?',
+          true,
         );
       });
 
@@ -294,6 +294,26 @@ describe('Game', () => {
         expect(printSuccessLine).toHaveBeenCalledWith(
           'See /path/to/profile/readme for updated instructions.',
         );
+      });
+
+      test('prepares next level if assume yes', async () => {
+        game.assumeYes = true;
+        await game.requestNextLevel();
+        expect(requestConfirmation).not.toHaveBeenCalled();
+        expect(game.prepareNextLevel).toHaveBeenCalled();
+        expect(printSuccessLine).toHaveBeenCalledWith(
+          'See /path/to/profile/readme for updated instructions.',
+        );
+      });
+
+      test("stays in current level if player doesn't confirm", async () => {
+        requestConfirmation.mockResolvedValue(false);
+        await game.requestNextLevel();
+        expect(printLine).toHaveBeenCalledWith(
+          'Staying on current level. Try to earn more points next time.',
+        );
+        expect(game.prepareNextLevel).not.toHaveBeenCalled();
+        expect(game.prepareEpicMode).not.toHaveBeenCalled();
       });
     });
 
@@ -307,12 +327,23 @@ describe('Game', () => {
         await game.requestNextLevel();
         expect(requestConfirmation).toHaveBeenCalledWith(
           'Would you like to continue on to epic mode?',
+          true,
         );
       });
 
-      test('prepares next level if player confirms', async () => {
+      test('prepares epic mode if player confirms', async () => {
         requestConfirmation.mockResolvedValue(true);
         await game.requestNextLevel();
+        expect(game.prepareEpicMode).toHaveBeenCalled();
+        expect(printSuccessLine).toHaveBeenCalledWith(
+          'Run warriorjs again to play epic mode.',
+        );
+      });
+
+      test('prepares epic mode if assume yes', async () => {
+        game.assumeYes = true;
+        await game.requestNextLevel();
+        expect(requestConfirmation).not.toHaveBeenCalled();
         expect(game.prepareEpicMode).toHaveBeenCalled();
         expect(printSuccessLine).toHaveBeenCalledWith(
           'Run warriorjs again to play epic mode.',

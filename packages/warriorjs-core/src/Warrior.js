@@ -1,7 +1,7 @@
 import PlayerError from './PlayerError';
 import Unit from './Unit';
 
-/** Class that represents a warrior. */
+/** Class representing a warrior. */
 class Warrior extends Unit {
   /**
    * Creates a warrior.
@@ -17,7 +17,7 @@ class Warrior extends Unit {
   /**
    * Delegates the turn to the player instance.
    *
-   * @param {Turn} turn The turn.
+   * @param {Object} turn The turn object.
    */
   playTurn(turn) {
     try {
@@ -30,20 +30,32 @@ class Warrior extends Unit {
   performTurn() {
     super.performTurn();
     if (!this.turn.action || this.isBound()) {
-      this.say('does nothing');
+      this.log('does nothing');
     }
   }
 
   earnPoints(points) {
     super.earnPoints(points);
-    this.say(`earns ${points} points`);
+    this.log(`earns ${points} points`);
+  }
+
+  losePoints(points) {
+    super.losePoints(points);
+    this.log(`loses ${points} points`);
   }
 
   toJSON() {
     return {
       ...super.toJSON(),
-      warrior: true,
       score: this.score,
+      abilities: {
+        actions: [...this.abilities]
+          .filter(([, ability]) => ability.action)
+          .map(([name, action]) => [name, action.description]),
+        senses: [...this.abilities]
+          .filter(([, ability]) => !ability.action)
+          .map(([name, sense]) => [name, sense.description]),
+      },
     };
   }
 }

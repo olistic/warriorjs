@@ -8,12 +8,15 @@ import Profile from './Profile';
 
 describe('Profile.load', () => {
   const originalRead = Profile.read;
+  const originalIsProfileDirectory = Profile.isProfileDirectory;
 
   afterEach(() => {
     Profile.read = originalRead;
+    Profile.isProfileDirectory = originalIsProfileDirectory;
   });
 
   test('instances Profile with contents of profile file', async () => {
+    Profile.isProfileDirectory = () => true;
     Profile.read = () =>
       'eyJ3YXJyaW9yTmFtZSI6ICJKb2UiLCAidG93ZXJOYW1lIjogImJlZ2lubmVyIiwgImZvbyI6IDQyfQ==';
     const profile = await Profile.load('/path/to/profile');
@@ -27,16 +30,63 @@ describe('Profile.load', () => {
   });
 
   test('updates the path to the directory from where the profile is being loaded', async () => {
+    Profile.isProfileDirectory = () => true;
     Profile.read = () =>
       'eyJ3YXJyaW9yTmFtZSI6ICJKb2UiLCAidG93ZXJOYW1lIjogImJlZ2lubmVyIiwgImRpcmVjdG9yeVBhdGgiOiAiL29sZC9wYXRoL3RvL3Byb2ZpbGUifQ==';
     const profile = await Profile.load('/new/path/to/profile');
     expect(profile.directoryPath).toBe('/new/path/to/profile');
   });
 
+  test('returns null if not a profile directory', async () => {
+    Profile.isProfileDirectory = () => false;
+    const profile = await Profile.load('/path/to/profile');
+    expect(profile).toBeNull();
+  });
+
   test('returns null if no encoded profile', async () => {
+    Profile.isProfileDirectory = () => true;
     Profile.read = () => null;
     const profile = await Profile.load('/path/to/profile');
     expect(profile).toBeNull();
+  });
+});
+
+describe('Profile.isProfileDirectory', () => {
+  test('returns false if only the profile file exists', async () => {
+    mock({ '/path/to/profile/.profile': 'encoded profile' });
+    const isProfileDirectory = await Profile.isProfileDirectory(
+      '/path/to/profile',
+    );
+    mock.restore();
+    expect(isProfileDirectory).toBe(false);
+  });
+
+  test('returns false if only the player code file exists', async () => {
+    mock({ '/path/to/profile/Player.js': 'player code' });
+    const isProfileDirectory = await Profile.isProfileDirectory(
+      '/path/to/profile',
+    );
+    mock.restore();
+    expect(isProfileDirectory).toBe(false);
+  });
+
+  test('returns false if neither file exists', async () => {
+    const isProfileDirectory = await Profile.isProfileDirectory(
+      '/path/to/profile',
+    );
+    expect(isProfileDirectory).toBe(false);
+  });
+
+  test('returns true if both files exist', async () => {
+    mock({
+      '/path/to/profile/.profile': 'encoded profile',
+      '/path/to/profile/Player.js': 'player code',
+    });
+    const isProfileDirectory = await Profile.isProfileDirectory(
+      '/path/to/profile',
+    );
+    mock.restore();
+    expect(isProfileDirectory).toBe(true);
   });
 });
 
@@ -185,10 +235,10 @@ describe('Profile', () => {
     });
   });
 
-  test('knows if it should show clue', () => {
-    expect(profile.shouldShowClue()).toBe(false);
+  test('knows if clue is being shown', () => {
+    expect(profile.isShowingClue()).toBe(false);
     profile.clue = true;
-    expect(profile.shouldShowClue()).toBe(true);
+    expect(profile.isShowingClue()).toBe(true);
   });
 
   describe('enabling epic mode', () => {

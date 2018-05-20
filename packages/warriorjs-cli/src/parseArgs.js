@@ -31,11 +31,6 @@ function parseArgs(args) {
         type: 'number',
       },
       s: {
-        alias: 'skip',
-        describe: 'Skip user input',
-        type: 'boolean',
-      },
-      m: {
         alias: 'silent',
         describe: 'Skip displaying game logs',
         type: 'boolean',
@@ -53,6 +48,11 @@ function parseArgs(args) {
         default: 0.6,
         describe: 'Delay each turn by seconds',
         type: 'number',
+      },
+      y: {
+        alias: 'yes',
+        describe: 'Assume yes in non-destructive confirmation dialogs',
+        type: 'boolean',
       },
     })
     .version()

@@ -8,8 +8,8 @@ describe('rescue', () => {
 
   beforeEach(() => {
     unit = {
-      earnPoints: jest.fn(),
-      say: jest.fn(),
+      release: jest.fn(),
+      log: jest.fn(),
     };
     rescue = rescueCreator()(unit);
   });
@@ -20,7 +20,7 @@ describe('rescue', () => {
 
   test('has a description', () => {
     expect(rescue.description).toBe(
-      `Rescue a captive from his chains (earning 20 points) in the given direction (${FORWARD} by default).`,
+      `Release a unit from his chains in the given direction (${FORWARD} by default).`,
     );
   });
 
@@ -40,7 +40,7 @@ describe('rescue', () => {
     test('misses if no receiver', () => {
       unit.getSpaceAt = () => ({ getUnit: () => null });
       rescue.perform();
-      expect(unit.say).toHaveBeenCalledWith(
+      expect(unit.log).toHaveBeenCalledWith(
         `unbinds ${FORWARD} and rescues nothing`,
       );
     });
@@ -51,9 +51,6 @@ describe('rescue', () => {
       beforeEach(() => {
         receiver = {
           isBound: () => true,
-          isCaptive: () => false,
-          unbind: jest.fn(),
-          vanish: jest.fn(),
           toString: () => 'receiver',
         };
         unit.getSpaceAt = () => ({ getUnit: () => receiver });
@@ -62,24 +59,18 @@ describe('rescue', () => {
       test("does nothing to receiver if it's not bound", () => {
         receiver.isBound = () => false;
         rescue.perform();
-        expect(unit.say).toHaveBeenCalledWith(
+        expect(unit.log).toHaveBeenCalledWith(
           `unbinds ${FORWARD} and rescues nothing`,
         );
+        expect(unit.release).not.toHaveBeenCalled();
       });
 
-      test('rescues receiver', () => {
+      test('releases receiver', () => {
         rescue.perform();
-        expect(unit.say).toHaveBeenCalledWith(
+        expect(unit.log).toHaveBeenCalledWith(
           `unbinds ${FORWARD} and rescues receiver`,
         );
-        expect(receiver.unbind).toHaveBeenCalled();
-      });
-
-      test('earns points if rescuing a captive', () => {
-        receiver.isCaptive = () => true;
-        rescue.perform();
-        expect(receiver.vanish).toHaveBeenCalled();
-        expect(unit.earnPoints).toHaveBeenCalledWith(20);
+        expect(unit.release).toHaveBeenCalledWith(receiver);
       });
     });
   });

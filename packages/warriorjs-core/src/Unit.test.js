@@ -1,4 +1,11 @@
-import { BACKWARD, FORWARD, LEFT, NORTH, RIGHT } from '@warriorjs/geography';
+import {
+  BACKWARD,
+  FORWARD,
+  LEFT,
+  NORTH,
+  RIGHT,
+  SOUTH,
+} from '@warriorjs/geography';
 
 import Floor from './Floor';
 import Unit from './Unit';
@@ -9,7 +16,7 @@ describe('Unit', () => {
 
   beforeEach(() => {
     unit = new Unit('Joe', '@', 20, 30);
-    unit.say = jest.fn();
+    unit.log = jest.fn();
     floor = new Floor(5, 6, [0, 0]);
     floor.addUnit(unit, { x: 1, y: 2, facing: NORTH });
   });
@@ -32,12 +39,16 @@ describe('Unit', () => {
     });
 
     test('which defaults to max health', () => {
-      expect(new Unit('Joe', '@', 20).reward).toBe(20);
+      expect(new Unit('Foo', 'f', 20).reward).toBe(20);
     });
   });
 
-  test('has a captive status which defaults to false', () => {
-    expect(unit.captive).toBe(false);
+  test('has an enemy status which defaults to true', () => {
+    expect(unit.enemy).toBe(true);
+  });
+
+  test('has a bound status which defaults to false', () => {
+    expect(unit.bound).toBe(false);
   });
 
   test('has a collection of abilities which starts empty', () => {
@@ -52,10 +63,6 @@ describe('Unit', () => {
 
   test('has a health which defaults to max health', () => {
     expect(unit.health).toBe(20);
-  });
-
-  test('has a bound status which defaults to captive status', () => {
-    expect(unit.bound).toBe(unit.captive);
   });
 
   test('starts with a score of zero', () => {
@@ -93,10 +100,66 @@ describe('Unit', () => {
     expect(itching.trigger).not.toHaveBeenCalled();
   });
 
-  test('knows if it is a captive', () => {
-    expect(unit.isCaptive()).toBe(false);
-    unit.captive = true;
-    expect(unit.isCaptive()).toBe(true);
+  describe('next turn', () => {
+    let turn;
+    let feel;
+    let walk;
+
+    beforeEach(() => {
+      feel = { perform: jest.fn() };
+      walk = {
+        action: true,
+        perform: jest.fn(),
+      };
+      unit.addAbility('feel', feel);
+      unit.addAbility('walk', walk);
+      turn = unit.getNextTurn();
+    });
+
+    test('defines a function for each ability of the unit', () => {
+      expect(turn.feel).toBeInstanceOf(Function);
+      expect(turn.walk).toBeInstanceOf(Function);
+    });
+
+    describe('with actions', () => {
+      test('has no action performed at first', () => {
+        expect(turn.action).toBeNull();
+      });
+
+      test('can call action and recall it', () => {
+        turn.walk();
+        expect(turn.action).toEqual(['walk', []]);
+      });
+
+      test('includes arguments passed to action', () => {
+        turn.walk('forward');
+        expect(turn.action).toEqual(['walk', ['forward']]);
+      });
+
+      test("can't call multiple actions per turn", () => {
+        turn.walk();
+        expect(() => {
+          turn.walk();
+        }).toThrow('Only one action can be performed per turn.');
+      });
+
+      test('defers execution when calling action', () => {
+        turn.walk();
+        expect(walk.perform).not.toHaveBeenCalled();
+      });
+    });
+
+    describe('with senses', () => {
+      test('can call multiple senses per turn', () => {
+        turn.feel();
+        turn.feel();
+      });
+
+      test('executes immediately when calling sense', () => {
+        turn.feel();
+        expect(feel.perform).toHaveBeenCalled();
+      });
+    });
   });
 
   test('prepares turn by calling playTurn with next turn object', () => {
@@ -132,7 +195,7 @@ describe('Unit', () => {
       unit.health = 5;
       unit.heal(3);
       expect(unit.health).toBe(8);
-      expect(unit.say).toHaveBeenCalledWith(
+      expect(unit.log).toHaveBeenCalledWith(
         'receives 3 health, up to 8 health',
       );
     });
@@ -141,7 +204,7 @@ describe('Unit', () => {
       unit.health = 19;
       unit.heal(2);
       expect(unit.health).toBe(20);
-      expect(unit.say).toHaveBeenCalledWith(
+      expect(unit.log).toHaveBeenCalledWith(
         'receives 2 health, up to 20 health',
       );
     });
@@ -149,7 +212,7 @@ describe('Unit', () => {
     test("doesn't add health when at max", () => {
       unit.heal(1);
       expect(unit.health).toBe(20);
-      expect(unit.say).toHaveBeenCalledWith(
+      expect(unit.log).toHaveBeenCalledWith(
         'receives 1 health, up to 20 health',
       );
     });
@@ -159,7 +222,7 @@ describe('Unit', () => {
     test('subtracts health', () => {
       unit.takeDamage(3);
       expect(unit.health).toBe(17);
-      expect(unit.say).toHaveBeenCalledWith(
+      expect(unit.log).toHaveBeenCalledWith(
         'takes 3 damage, 17 health power left',
       );
     });
@@ -167,7 +230,7 @@ describe('Unit', () => {
     test("doesn't go under zero health", () => {
       unit.takeDamage(21);
       expect(unit.health).toBe(0);
-      expect(unit.say).toHaveBeenCalledWith(
+      expect(unit.log).toHaveBeenCalledWith(
         'takes 21 damage, 0 health power left',
       );
     });
@@ -175,10 +238,10 @@ describe('Unit', () => {
     test('dies when running out of health', () => {
       unit.takeDamage(20);
       expect(unit.isAlive()).toBe(false);
-      expect(unit.say).toHaveBeenCalledWith(
+      expect(unit.log).toHaveBeenCalledWith(
         'takes 20 damage, 0 health power left',
       );
-      expect(unit.say).toHaveBeenCalledWith('dies');
+      expect(unit.log).toHaveBeenCalledWith('dies');
     });
   });
 
@@ -200,7 +263,7 @@ describe('Unit', () => {
     const receiver = new Unit();
     receiver.health = 10;
     receiver.position = {};
-    receiver.say = jest.fn();
+    receiver.log = jest.fn();
     unit.damage(receiver, 3);
     expect(receiver.health).toBe(7);
   });
@@ -214,7 +277,8 @@ describe('Unit', () => {
       receiver.reward = 10;
       receiver.health = 5;
       receiver.position = {};
-      receiver.say = jest.fn();
+      receiver.as = () => ({ isEnemy: () => true });
+      receiver.log = jest.fn();
     });
 
     test('earns points equal to reward when killing unit', () => {
@@ -228,6 +292,13 @@ describe('Unit', () => {
       unit.damage(receiver, 3);
       expect(unit.earnPoints).not.toHaveBeenCalled();
     });
+
+    test('lose points equal to reward when killing a friend', () => {
+      receiver.as = () => ({ isEnemy: () => false });
+      unit.losePoints = jest.fn();
+      unit.damage(receiver, 5);
+      expect(unit.losePoints).toHaveBeenCalledWith(10);
+    });
   });
 
   test('considers itself alive with position', () => {
@@ -237,6 +308,49 @@ describe('Unit', () => {
   test('considers itself dead when no position', () => {
     unit.position = null;
     expect(unit.isAlive()).toBe(false);
+  });
+
+  describe('when releasing', () => {
+    let receiver;
+
+    beforeEach(() => {
+      receiver = new Unit();
+      receiver.reward = 10;
+      receiver.bound = true;
+      receiver.position = {};
+      receiver.as = () => ({ isEnemy: () => true });
+      receiver.log = jest.fn();
+    });
+
+    test('unbinds the unit', () => {
+      receiver.unbind = jest.fn();
+      unit.release(receiver);
+      expect(receiver.unbind).toHaveBeenCalled();
+    });
+
+    test("doesn't earn points", () => {
+      unit.earnPoints = jest.fn();
+      unit.release(receiver);
+      expect(unit.earnPoints).not.toHaveBeenCalled();
+    });
+
+    describe('friendly unit', () => {
+      beforeEach(() => {
+        receiver.as = () => ({ isEnemy: () => false });
+      });
+
+      test('vanishes the unit', () => {
+        receiver.vanish = jest.fn();
+        unit.release(receiver);
+        expect(receiver.vanish).toHaveBeenCalled();
+      });
+
+      test('earns points equal to reward', () => {
+        unit.earnPoints = jest.fn();
+        unit.release(receiver);
+        expect(unit.earnPoints).toHaveBeenCalledWith(10);
+      });
+    });
   });
 
   test('is bound after calling bind', () => {
@@ -273,6 +387,18 @@ describe('Unit', () => {
     expect(unit.score).toBe(5);
   });
 
+  test('can lose points', () => {
+    unit.score = 10;
+    unit.losePoints(5);
+    expect(unit.score).toBe(5);
+  });
+
+  test('can lose points under zero', () => {
+    unit.score = 3;
+    unit.losePoints(5);
+    expect(unit.score).toBe(-2);
+  });
+
   test("doesn't fetch itself when fetching other units", () => {
     const anotherUnit = new Unit();
     floor.addUnit(anotherUnit, { x: 3, y: 4, facing: NORTH });
@@ -283,6 +409,14 @@ describe('Unit', () => {
   test("returns the space where it's located", () => {
     const space = unit.getSpace();
     expect(space.location).toEqual(unit.position.location);
+  });
+
+  test('returns sensed space at a given direction and number of spaces', () => {
+    const space = { as: jest.fn() };
+    unit.getSpaceAt = jest.fn(() => space);
+    unit.getSensedSpaceAt(RIGHT, 2, 1);
+    expect(unit.getSpaceAt).toHaveBeenCalledWith(RIGHT, 2, 1);
+    expect(space.as).toHaveBeenCalledWith(unit);
   });
 
   test('returns space at a given direction and number of spaces', () => {
@@ -302,14 +436,18 @@ describe('Unit', () => {
   });
 
   test('returns the direction of a given space', () => {
-    expect(unit.getDirectionOf(floor.getSpaceAt([1, 1]))).toEqual(FORWARD);
-    expect(unit.getDirectionOf(floor.getSpaceAt([2, 2]))).toEqual(RIGHT);
-    expect(unit.getDirectionOf(floor.getSpaceAt([1, 3]))).toEqual(BACKWARD);
-    expect(unit.getDirectionOf(floor.getSpaceAt([0, 2]))).toEqual(LEFT);
+    expect(unit.getDirectionOf(unit.getSensedSpaceAt(FORWARD, 1))).toEqual(
+      FORWARD,
+    );
+    expect(unit.getDirectionOf(unit.getSensedSpaceAt(RIGHT, 1))).toEqual(RIGHT);
+    expect(unit.getDirectionOf(unit.getSensedSpaceAt(BACKWARD, 1))).toEqual(
+      BACKWARD,
+    );
+    expect(unit.getDirectionOf(unit.getSensedSpaceAt(LEFT, 1))).toEqual(LEFT);
   });
 
   test('returns the distance of a given space', () => {
-    expect(unit.getDistanceOf(floor.getSpaceAt([0, 0]))).toBe(3);
+    expect(unit.getDistanceOf(unit.getSensedSpaceAt(FORWARD, 2, -1))).toBe(3);
   });
 
   describe('when moving', () => {
@@ -329,7 +467,7 @@ describe('Unit', () => {
 
     test('murmurs something', () => {
       unit.move(FORWARD);
-      expect(unit.say).toHaveBeenCalled();
+      expect(unit.log).toHaveBeenCalled();
     });
   });
 
@@ -345,7 +483,7 @@ describe('Unit', () => {
 
     test('murmurs something', () => {
       unit.rotate(BACKWARD);
-      expect(unit.say).toHaveBeenCalled();
+      expect(unit.log).toHaveBeenCalled();
     });
   });
 
@@ -358,7 +496,63 @@ describe('Unit', () => {
 
     test('murmurs something', () => {
       unit.vanish();
-      expect(unit.say).toHaveBeenCalled();
+      expect(unit.log).toHaveBeenCalled();
+    });
+  });
+
+  describe('sensed unit', () => {
+    let sensingUnit;
+    let sensedUnit;
+
+    beforeEach(() => {
+      sensingUnit = new Unit();
+      sensingUnit.enemy = false;
+      floor.addUnit(sensingUnit, { x: 0, y: 1, facing: SOUTH });
+      sensedUnit = unit.as(sensingUnit);
+    });
+
+    test('allows calling sensed unit methods', () => {
+      const allowedApi = ['isBound', 'isEnemy', 'isUnderEffect'];
+      allowedApi.forEach(propertyName => {
+        sensedUnit[propertyName]();
+      });
+    });
+
+    test("is considered enemy if it doesn't fight for the same side", () => {
+      expect(sensedUnit.isEnemy()).toBe(true);
+    });
+
+    test("doesn't allow calling other unit methods", () => {
+      const forbiddenApi = [
+        'addAbility',
+        'addEffect',
+        'as',
+        'bind',
+        'damage',
+        'earnPoints',
+        'getDirectionOf',
+        'getDirectionOfStairs',
+        'getDistanceOf',
+        'getNextTurn',
+        'getOtherUnits',
+        'getSpace',
+        'getSpaceAt',
+        'heal',
+        'isAlive',
+        'log',
+        'losePoints',
+        'move',
+        'performTurn',
+        'prepareTurn',
+        'rotate',
+        'takeDamage',
+        'triggerEffect',
+        'unbind',
+        'vanish',
+      ];
+      forbiddenApi.forEach(propertyName => {
+        expect(sensedUnit).not.toHaveProperty(propertyName);
+      });
     });
   });
 

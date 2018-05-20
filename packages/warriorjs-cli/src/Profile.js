@@ -3,6 +3,7 @@ import path from 'path';
 import { promisify } from 'util';
 
 import makeDir from 'make-dir';
+import pathType from 'path-type';
 
 import GameError from './GameError';
 import getGradeLetter from './utils/getGradeLetter';
@@ -24,6 +25,13 @@ class Profile {
    * @returns {Profile} The loaded profile.
    */
   static async load(profileDirectoryPath) {
+    const isProfileDirectory = await Profile.isProfileDirectory(
+      profileDirectoryPath,
+    );
+    if (!isProfileDirectory) {
+      return null;
+    }
+
     const profileFilePath = path.join(profileDirectoryPath, profileFile);
     const encodedProfile = await Profile.read(profileFilePath);
     if (!encodedProfile) {
@@ -39,6 +47,26 @@ class Profile {
     } = decodedProfile;
     const profile = new Profile(warriorName, towerName, profileDirectoryPath);
     return Object.assign(profile, profileData);
+  }
+
+  /**
+   * Checks if the given path is a profile directory.
+   *
+   * For a directory to be considered a profile directory, it must contain two
+   * files: `.profile` and `Player.js`.
+   *
+   * @param {string} profileDirectoryPath The path to validate.
+   *
+   * @returns {boolean} Whether the path is a profile directory or not.
+   */
+  static async isProfileDirectory(profileDirectoryPath) {
+    const profileFilePath = path.join(profileDirectoryPath, profileFile);
+    const profileFileExists = await pathType.file(profileFilePath);
+
+    const playerCodeFilePath = path.join(profileDirectoryPath, playerCodeFile);
+    const playerCodeFileExists = await pathType.file(playerCodeFilePath);
+
+    return playerCodeFileExists && profileFileExists;
   }
 
   /**
@@ -162,11 +190,11 @@ class Profile {
   }
 
   /**
-   * Check if the clue should be shown.
+   * Check if the clue is being shown.
    *
-   * @returns {boolean} Whether the clue should be shown or not.
+   * @returns {boolean} Whether the clue is being shown or not.
    */
-  shouldShowClue() {
+  isShowingClue() {
     return this.clue;
   }
 

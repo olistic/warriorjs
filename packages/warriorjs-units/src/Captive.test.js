@@ -9,7 +9,15 @@ describe('Captive', () => {
     expect(Captive.maxHealth).toBe(1);
   });
 
-  test('is a captive', () => {
-    expect(Captive.captive).toBe(true);
+  test('has a reward of 20 points', () => {
+    expect(Captive.reward).toBe(20);
+  });
+
+  test('is not an enemy', () => {
+    expect(Captive.enemy).toBe(false);
+  });
+
+  test('is bound', () => {
+    expect(Captive.bound).toBe(true);
   });
 });

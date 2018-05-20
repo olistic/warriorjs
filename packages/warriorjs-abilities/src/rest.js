@@ -5,11 +5,11 @@ function rest({ healthGain }) {
     description: `Gain ${healthGainPercentage}% of max health back, but do nothing more.`,
     perform() {
       if (unit.health < unit.maxHealth) {
-        unit.say('rests');
+        unit.log('rests');
         const amount = Math.round(unit.maxHealth * healthGain);
         unit.heal(amount);
       } else {
-        unit.say('is already fit as a fiddle');
+        unit.log('is already fit as a fiddle');
       }
     },
   });

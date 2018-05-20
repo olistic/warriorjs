@@ -16,6 +16,7 @@ issue:
 2. Do you think you found a bug?
 ================================
 
+* Make sure you're on the latest version of WarriorJS (`npm i -g @warriorjs/cli`)
 * Consider submitting a PR with a failing test instead.
 * Use the "BUG TEMPLATE" below to report a bug.
 * Don't forget to provide reproduction steps.
@@ -43,7 +44,7 @@ issue:
 Please run this command from the directory under which you're running warriorjs
 and paste its contents here:
 
-npx envinfo --system --binaries --npmPackages *warriorjs* --npmGlobalPackages *warriorjs* --markdown
+npx envinfo --system --binaries --npmPackages @warriorjs/* --npmGlobalPackages @warriorjs/* --markdown
 -->
 
 # Steps to reproduce

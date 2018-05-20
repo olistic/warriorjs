@@ -33,7 +33,7 @@ describe('ThickSludge', () => {
     let space;
 
     beforeEach(() => {
-      space = { isPlayer: () => false };
+      space = { getUnit: () => undefined };
       turn = {
         attack: jest.fn(),
         feel: jest.fn(() => space),
@@ -48,10 +48,15 @@ describe('ThickSludge', () => {
       expect(turn.feel).toHaveBeenCalledWith(LEFT);
     });
 
-    test('stops looking if it finds player', () => {
+    test('stops looking if it finds threat', () => {
       turn.feel
-        .mockReturnValueOnce({ isPlayer: () => false })
-        .mockReturnValueOnce({ isPlayer: () => true });
+        .mockReturnValueOnce({ getUnit: () => undefined })
+        .mockReturnValueOnce({
+          getUnit: () => ({
+            isBound: () => false,
+            isEnemy: () => true,
+          }),
+        });
       ThickSludge.playTurn(turn);
       expect(turn.feel).toHaveBeenCalledWith(FORWARD);
       expect(turn.feel).toHaveBeenCalledWith(RIGHT);
@@ -60,7 +65,7 @@ describe('ThickSludge', () => {
       expect(turn.attack).toHaveBeenCalledWith(RIGHT);
     });
 
-    test("does nothing if it doesn't find player", () => {
+    test("does nothing if it doesn't find threat", () => {
       ThickSludge.playTurn(turn);
       expect(turn.attack).not.toHaveBeenCalled();
     });

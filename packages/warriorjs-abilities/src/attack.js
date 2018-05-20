@@ -9,12 +9,12 @@ function attack({ power }) {
     perform(direction = defaultDirection) {
       const receiver = unit.getSpaceAt(direction).getUnit();
       if (receiver) {
-        unit.say(`attacks ${direction} and hits ${receiver}`);
+        unit.log(`attacks ${direction} and hits ${receiver}`);
         const attackingBackward = direction === BACKWARD;
         const amount = attackingBackward ? Math.ceil(power / 2.0) : power;
         unit.damage(receiver, amount);
       } else {
-        unit.say(`attacks ${direction} and hits nothing`);
+        unit.log(`attacks ${direction} and hits nothing`);
       }
     },
   });

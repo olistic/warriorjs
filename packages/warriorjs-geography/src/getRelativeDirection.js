@@ -1,23 +1,23 @@
+import verifyAbsoluteDirection from './verifyAbsoluteDirection';
 import { ABSOLUTE_DIRECTIONS } from './absoluteDirections';
 import { RELATIVE_DIRECTIONS } from './relativeDirections';
-import verifyAbsoluteDirection from './verifyAbsoluteDirection';
 
 /**
- * Returns the relative direction for a given absolute direction, with
- * reference to a given orientation.
+ * Returns the relative direction for a given direction, with reference to a
+ * another direction (reference direction).
  *
- * @param {string} direction The absolute direction.
- * @param {string} orientation The orientation (absolute direction).
+ * @param {string} direction The direction (absolute).
+ * @param {string} referenceDirection The reference direction (absolute).
  *
  * @returns {string} The relative direction.
  */
-function getRelativeDirection(direction, orientation) {
+function getRelativeDirection(direction, referenceDirection) {
   verifyAbsoluteDirection(direction);
-  verifyAbsoluteDirection(orientation);
+  verifyAbsoluteDirection(referenceDirection);
 
   const index =
     (ABSOLUTE_DIRECTIONS.indexOf(direction) -
-      ABSOLUTE_DIRECTIONS.indexOf(orientation) +
+      ABSOLUTE_DIRECTIONS.indexOf(referenceDirection) +
       RELATIVE_DIRECTIONS.length) %
     RELATIVE_DIRECTIONS.length;
   return RELATIVE_DIRECTIONS[index];

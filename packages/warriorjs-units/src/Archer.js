@@ -10,14 +10,18 @@ const Archer = {
     shoot: shoot({ range: 3, power: 3 }),
   },
   playTurn(archer) {
-    const playerDirection = RELATIVE_DIRECTIONS.find(direction => {
+    const threatDirection = RELATIVE_DIRECTIONS.find(direction => {
       const spaceWithUnit = archer
         .look(direction)
-        .find(space => !space.isEmpty());
-      return spaceWithUnit && spaceWithUnit.isPlayer();
+        .find(space => space.isUnit());
+      return (
+        spaceWithUnit &&
+        spaceWithUnit.getUnit().isEnemy() &&
+        !spaceWithUnit.getUnit().isBound()
+      );
     });
-    if (playerDirection) {
-      archer.shoot(playerDirection);
+    if (threatDirection) {
+      archer.shoot(threatDirection);
     }
   },
 };

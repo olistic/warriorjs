@@ -7,7 +7,7 @@ describe('feel', () => {
   let unit;
 
   beforeEach(() => {
-    unit = { getSpaceAt: jest.fn() };
+    unit = { getSensedSpaceAt: jest.fn() };
     feel = feelCreator()(unit);
   });
 
@@ -24,16 +24,16 @@ describe('feel', () => {
   describe('performing', () => {
     test('feels forward by default', () => {
       feel.perform();
-      expect(unit.getSpaceAt).toHaveBeenCalledWith(FORWARD);
+      expect(unit.getSensedSpaceAt).toHaveBeenCalledWith(FORWARD);
     });
 
     test('allows to specify direction', () => {
       feel.perform(LEFT);
-      expect(unit.getSpaceAt).toHaveBeenCalledWith(LEFT);
+      expect(unit.getSensedSpaceAt).toHaveBeenCalledWith(LEFT);
     });
 
     test('returns adjacent space in specified direction', () => {
-      unit.getSpaceAt.mockReturnValue('space');
+      unit.getSensedSpaceAt.mockReturnValue('space');
       expect(feel.perform()).toBe('space');
     });
   });

@@ -7,14 +7,14 @@ function ticking({ time }) {
         this.time -= 1;
       }
 
-      unit.say('is ticking');
+      unit.log('is ticking');
 
       if (!this.time) {
         this.trigger();
       }
     },
     trigger() {
-      unit.say('explodes, collapsing the ceiling and killing every unit');
+      unit.log('explodes, collapsing the ceiling and killing every unit');
       [...unit.getOtherUnits(), unit].forEach(anotherUnit =>
         anotherUnit.takeDamage(anotherUnit.health),
       );

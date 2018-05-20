@@ -1,23 +1,23 @@
-import { EAST, NORTH, SOUTH } from './absoluteDirections';
 import verifyAbsoluteDirection from './verifyAbsoluteDirection';
+import { EAST, NORTH, SOUTH } from './absoluteDirections';
 
 /**
  * Returns the absolute offset for a given relative offset with reference
- * to a given orientation.
+ * to a given direction (reference direction).
  *
  * @param {number[]} offset The relative offset as [forward, right].
- * @param {string} orientation The orientation (absolute direction).
+ * @param {string} referenceDirection The reference direction (absolute).
  *
  * @returns {number[]} The absolute offset as [deltaX, deltaY].
  */
-function getAbsoluteOffset([forward, right], orientation) {
-  verifyAbsoluteDirection(orientation);
+function getAbsoluteOffset([forward, right], referenceDirection) {
+  verifyAbsoluteDirection(referenceDirection);
 
-  if (orientation === NORTH) {
+  if (referenceDirection === NORTH) {
     return [right, -forward];
-  } else if (orientation === EAST) {
+  } else if (referenceDirection === EAST) {
     return [forward, right];
-  } else if (orientation === SOUTH) {
+  } else if (referenceDirection === SOUTH) {
     return [-right, forward];
   }
 

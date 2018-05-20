@@ -1,5 +1,5 @@
 import Logger from './Logger';
-import Turn from './Turn';
+import Space from './Space';
 
 /** Class representing a unit. */
 class Unit {
@@ -9,20 +9,28 @@ class Unit {
    * @param {string} name The name of the unit.
    * @param {string} character The character of the unit.
    * @param {number} maxHealth The max health in HP.
-   * @param {boolean} captive Whether the unit is a captive or not.
    * @param {number} reward The number of points to reward when killed.
+   * @param {boolean} enemy Whether the unit is an enemy or not.
+   * @param {boolean} bound Whether the unit is bound or not.
    */
-  constructor(name, character, maxHealth, reward = null, captive = false) {
+  constructor(
+    name,
+    character,
+    maxHealth,
+    reward = null,
+    enemy = true,
+    bound = false,
+  ) {
     this.name = name;
     this.character = character;
     this.maxHealth = maxHealth;
     this.reward = reward === null ? maxHealth : reward;
-    this.captive = captive;
+    this.enemy = enemy;
+    this.bound = bound;
     this.abilities = new Map();
     this.effects = new Map();
     this.health = maxHealth;
     this.position = null;
-    this.bound = captive;
     this.score = 0;
     this.turn = null;
   }
@@ -73,10 +81,37 @@ class Unit {
   /**
    * Returns the next turn to be played.
    *
-   * @returns {Turn} The next turn.
+   * @returns {Object} The next turn.
    */
   getNextTurn() {
-    return new Turn(this.abilities);
+    const turn = { action: null };
+    this.abilities.forEach((ability, name) => {
+      if (ability.action) {
+        // This defines a new method in the turn named after the action. When
+        // this new method is called on the turn, the `action` property of the
+        // turn is set to an array with the name of the action and the args
+        // passed to the action method.
+        Object.defineProperty(turn, name, {
+          value: (...args) => {
+            // If the action was already set, calling this other action will
+            // throw as only one action can be performed per turn.
+            if (turn.action) {
+              throw new Error('Only one action can be performed per turn.');
+            }
+
+            turn.action = [name, args];
+          },
+        });
+      } else {
+        // This defines a new method in the turn named after the sense. Whe
+        // this new method is called on the turn, the sense is performed
+        // immediately.
+        Object.defineProperty(turn, name, {
+          value: (...args) => ability.perform(...args),
+        });
+      }
+    });
+    return turn;
   }
 
   /**
@@ -106,15 +141,6 @@ class Unit {
   }
 
   /**
-   * Checks if the unit is a captive.
-   *
-   * @returns {boolean} Whether the unit is a captive or not.
-   */
-  isCaptive() {
-    return this.captive;
-  }
-
-  /**
    * Adds the given amount of health in HP.
    *
    * @param {number} amount The amount of HP to add.
@@ -126,7 +152,7 @@ class Unit {
         : amount;
     this.health += revisedAmount;
 
-    this.say(`receives ${amount} health, up to ${this.health} health`);
+    this.log(`receives ${amount} health, up to ${this.health} health`);
   }
 
   /**
@@ -142,10 +168,10 @@ class Unit {
     const revisedAmount = this.health - amount < 0 ? this.health : amount;
     this.health -= revisedAmount;
 
-    this.say(`takes ${amount} damage, ${this.health} health power left`);
+    this.log(`takes ${amount} damage, ${this.health} health power left`);
 
     if (!this.health) {
-      this.say('dies');
+      this.log('dies');
       this.vanish();
     }
   }
@@ -159,7 +185,11 @@ class Unit {
   damage(receiver, amount) {
     receiver.takeDamage(amount);
     if (!receiver.isAlive()) {
-      this.earnPoints(receiver.reward);
+      if (receiver.as(this).isEnemy()) {
+        this.earnPoints(receiver.reward);
+      } else {
+        this.losePoints(receiver.reward);
+      }
     }
   }
 
@@ -175,12 +205,16 @@ class Unit {
   }
 
   /**
-   * Checks if the unit is bound.
+   * Unbinds another unit.
    *
-   * @returns {boolean} Whether the unit is bound or not.
+   * @param {Unit} receiver The unit to unbind.
    */
-  isBound() {
-    return this.bound;
+  release(receiver) {
+    receiver.unbind();
+    if (!receiver.as(this).isEnemy()) {
+      receiver.vanish();
+      this.earnPoints(receiver.reward);
+    }
   }
 
   /**
@@ -188,7 +222,7 @@ class Unit {
    */
   unbind() {
     this.bound = false;
-    this.say('released from bonds');
+    this.log('released from bonds');
   }
 
   /**
@@ -199,12 +233,30 @@ class Unit {
   }
 
   /**
+   * Checks if the unit is bound.
+   *
+   * @returns {boolean} Whether the unit is bound or not.
+   */
+  isBound() {
+    return this.bound;
+  }
+
+  /**
    * Adds the given points to the score.
    *
    * @param {number} points The points to earn.
    */
   earnPoints(points) {
     this.score += points;
+  }
+
+  /**
+   * Subtract the given points from the score.
+   *
+   * @param {number} points The points to lose.
+   */
+  losePoints(points) {
+    this.score -= points;
   }
 
   /**
@@ -226,6 +278,19 @@ class Unit {
   }
 
   /**
+   * Returns the sensed space located at the direction and number of spaces.
+   *
+   * @param {string} direction The direction.
+   * @param {number} forward The number of spaces forward.
+   * @param {number} right The number of spaces to the right.
+   *
+   * @returns {SensedSpace} The sensed space.
+   */
+  getSensedSpaceAt(direction, forward = 1, right = 0) {
+    return this.getSpaceAt(direction, forward, right).as(this);
+  }
+
+  /**
    * Returns the space located at the direction and number of spaces.
    *
    * @param {string} direction The direction.
@@ -244,28 +309,32 @@ class Unit {
    * @returns {string} The relative direction of the stairs.
    */
   getDirectionOfStairs() {
-    return this.getDirectionOf(this.position.floor.getStairsSpace());
+    return this.position.getRelativeDirectionOf(
+      this.position.floor.getStairsSpace(),
+    );
   }
 
   /**
-   * Returns the direction of the given space with reference to this unit.
+   * Returns the direction of the given space, with reference to this unit.
    *
-   * @param {Space} space The space to get the direction of.
+   * @param {SensedSpace} sensedSpace The space to get the direction of.
    *
    * @returns {string} The relative direction of the space.
    */
-  getDirectionOf(space) {
+  getDirectionOf(sensedSpace) {
+    const space = Space.from(sensedSpace, this);
     return this.position.getRelativeDirectionOf(space);
   }
 
   /**
    * Returns the distance between the given space and this unit.
    *
-   * @param {Space} space The space to calculate the distance of.
+   * @param {SensedSpace} sensedSpace The space to calculate the distance of.
    *
    * @returns {number} The distance of the space.
    */
-  getDistanceOf(space) {
+  getDistanceOf(sensedSpace) {
+    const space = Space.from(sensedSpace, this);
     return this.position.getDistanceOf(space);
   }
 
@@ -278,7 +347,7 @@ class Unit {
    */
   move(direction, forward = 1, right = 0) {
     this.position.move(direction, [forward, right]);
-    this.say();
+    this.log();
   }
 
   /**
@@ -288,7 +357,7 @@ class Unit {
    */
   rotate(direction) {
     this.position.rotate(direction);
-    this.say();
+    this.log();
   }
 
   /**
@@ -296,7 +365,7 @@ class Unit {
    */
   vanish() {
     this.position = null;
-    this.say();
+    this.log();
   }
 
   /**
@@ -304,8 +373,23 @@ class Unit {
    *
    * @param {string} message The message to log.
    */
-  say(message) {
+  log(message) {
     Logger.unit(this, message);
+  }
+
+  /**
+   * Returns this unit as sensed by the given unit.
+   *
+   * @param {Unit} unit The unit sensing this unit.
+   *
+   * @returns {SensedUnit} The sensed unit.
+   */
+  as(unit) {
+    return {
+      isBound: this.isBound.bind(this),
+      isEnemy: () => this.enemy !== unit.enemy,
+      isUnderEffect: this.isUnderEffect.bind(this),
+    };
   }
 
   /**
@@ -328,14 +412,7 @@ class Unit {
       character: this.character,
       maxHealth: this.maxHealth,
       health: this.health,
-      abilities: {
-        actions: [...this.abilities]
-          .filter(([, ability]) => ability.action)
-          .map(([name, action]) => [name, action.description]),
-        senses: [...this.abilities]
-          .filter(([, ability]) => !ability.action)
-          .map(([name, sense]) => [name, sense.description]),
-      },
+      warrior: this.constructor.name === 'Warrior',
     };
   }
 }

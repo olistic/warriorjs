@@ -1,10 +1,4 @@
-import {
-  BACKWARD,
-  EAST,
-  FORWARD,
-  RELATIVE_DIRECTIONS,
-  WEST,
-} from '@warriorjs/geography';
+import { EAST, FORWARD, RELATIVE_DIRECTIONS, WEST } from '@warriorjs/geography';
 
 import getLevel from './getLevel';
 
@@ -28,42 +22,20 @@ const levelConfig = {
       y: 0,
     },
     warrior: {
+      name: 'Joe',
       character: '@',
       maxHealth: 20,
       abilities: {
-        walk: unit => ({
+        walk: () => ({
           action: true,
           description: `Move one space in the given direction (${FORWARD} by default).`,
-          perform(direction = FORWARD) {
-            unit.say(`walks ${direction}`);
-            const space = unit.getSpaceAt(direction);
-            if (space.isEmpty()) {
-              unit.move(direction);
-            } else {
-              unit.say(`bumps into ${space}`);
-            }
-          },
         }),
-        attack: unit => ({
+        attack: () => ({
           action: true,
           description: `Attack a unit in the given direction (${FORWARD} by default) dealing 5 HP of damage.`,
-          perform(direction = FORWARD) {
-            const receiver = unit.getSpaceAt(direction).getUnit();
-            if (receiver) {
-              unit.say(`attacks ${direction} and hits ${receiver}`);
-              const attackingBackward = direction === BACKWARD;
-              const amount = attackingBackward ? 3 : 5;
-              unit.damage(receiver, amount);
-            } else {
-              unit.say(`attacks ${direction} and hits nothing`);
-            }
-          },
         }),
-        feel: unit => ({
+        feel: () => ({
           description: `Return the adjacent space in the given direction (${FORWARD} by default).`,
-          perform(direction = FORWARD) {
-            return unit.getSpaceAt(direction);
-          },
         }),
       },
       position: {
@@ -78,32 +50,19 @@ const levelConfig = {
         character: 's',
         maxHealth: 12,
         abilities: {
-          attack: unit => ({
+          attack: () => ({
             action: true,
             description: `Attack a unit in the given direction (${FORWARD} by default) dealing 3 HP of damage.`,
-            perform(direction = FORWARD) {
-              const receiver = unit.getSpaceAt(direction).getUnit();
-              if (receiver) {
-                unit.say(`attacks ${direction} and hits ${receiver}`);
-                const attackingBackward = direction === BACKWARD;
-                const amount = attackingBackward ? 2 : 3;
-                unit.damage(receiver, amount);
-              } else {
-                unit.say(`attacks ${direction} and hits nothing`);
-              }
-            },
           }),
-          feel: unit => ({
+          feel: () => ({
             description: `Return the adjacent space in the given direction (${FORWARD} by default).`,
-            perform(direction = FORWARD) {
-              return unit.getSpaceAt(direction);
-            },
           }),
         },
         playTurn(sludge) {
-          const playerDirection = RELATIVE_DIRECTIONS.find(direction =>
-            sludge.feel(direction).isPlayer(),
-          );
+          const playerDirection = RELATIVE_DIRECTIONS.find(direction => {
+            const space = sludge.feel(direction);
+            return space.isUnit() && space.getUnit().isPlayer();
+          });
           if (playerDirection) {
             sludge.attack(playerDirection);
           }
@@ -181,11 +140,12 @@ test('returns level', () => {
             character: '@',
             stairs: false,
             unit: {
+              name: 'Joe',
               character: '@',
-              health: 20,
               maxHealth: 20,
-              score: 0,
               warrior: true,
+              health: 20,
+              score: 0,
               abilities: {
                 actions: [
                   [
@@ -224,22 +184,9 @@ test('returns level', () => {
             unit: {
               name: 'Sludge',
               character: 's',
-              health: 12,
               maxHealth: 12,
-              abilities: {
-                actions: [
-                  [
-                    'attack',
-                    'Attack a unit in the given direction (forward by default) dealing 3 HP of damage.',
-                  ],
-                ],
-                senses: [
-                  [
-                    'feel',
-                    'Return the adjacent space in the given direction (forward by default).',
-                  ],
-                ],
-              },
+              warrior: false,
+              health: 12,
             },
           },
           {
@@ -303,6 +250,10 @@ test('returns level', () => {
         ],
       ],
       warrior: {
+        name: 'Joe',
+        character: '@',
+        maxHealth: 20,
+        warrior: true,
         abilities: {
           actions: [
             [
@@ -321,11 +272,8 @@ test('returns level', () => {
             ],
           ],
         },
-        character: '@',
         health: 20,
-        maxHealth: 20,
         score: 0,
-        warrior: true,
       },
     },
   });

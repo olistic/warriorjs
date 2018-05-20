@@ -15,6 +15,7 @@ import {
   pivot,
   rescue,
   rest,
+  think,
   shoot,
   walk,
 } from '@warriorjs/abilities';
@@ -40,13 +41,14 @@ export default {
         },
         warrior: {
           ...Warrior,
+          abilities: {
+            think: think(),
+            walk: walk(),
+          },
           position: {
             x: 0,
             y: 0,
             facing: EAST,
-          },
-          abilities: {
-            walk: walk(),
           },
         },
         units: [],
@@ -56,9 +58,9 @@ export default {
       description:
         "It's too dark to see anything, but you smell sludge nearby.",
       tip:
-        "Use `warrior.feel().isEmpty()` to see if there's anything in front of you, and `warrior.attack()` to fight it. Remember, you can only do one action per turn.",
+        "Use `warrior.feel().isUnit()` to see if there's anything in front of you, and `warrior.attack()` to fight it. Remember, you can only do one action per turn.",
       clue:
-        'Add an if/else condition using `warrior.feel().isEmpty()` to decide whether to attack or walk.',
+        'Add an if/else condition using `warrior.feel().isUnit()` to decide whether to attack or walk.',
       timeBonus: 20,
       aceScore: 26,
       floor: {
@@ -216,7 +218,7 @@ export default {
     {
       description: 'You hear cries for help. Captives must need rescuing.',
       tip:
-        "Use `warrior.feel().isCaptive()` to see if there's a captive and `warrior.rescue()` to rescue him. Don't attack captives.",
+        "When you find a unit, use `!unit.isEnemy() && unit.isBound()` to see if he's a captive and `warrior.rescue()` to rescue him. Don't attack captives.",
       clue:
         "Don't forget to constantly check if you are being attacked. Rest until your health is full if you're not taking damage.",
       timeBonus: 45,

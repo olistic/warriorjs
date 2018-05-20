@@ -9,7 +9,7 @@ describe('rest', () => {
       maxHealth: 20,
       health: 10,
       heal: jest.fn(),
-      say: jest.fn(),
+      log: jest.fn(),
     };
     rest = restCreator({ healthGain: 0.1 })(unit);
   });
@@ -27,14 +27,14 @@ describe('rest', () => {
   describe('performing', () => {
     test('gives health back', () => {
       rest.perform();
-      expect(unit.say).toHaveBeenCalledWith('rests');
+      expect(unit.log).toHaveBeenCalledWith('rests');
       expect(unit.heal).toHaveBeenCalledWith(2);
     });
 
     test("doesn't add health when at max", () => {
       unit.health = 20;
       rest.perform();
-      expect(unit.say).toHaveBeenCalledWith('is already fit as a fiddle');
+      expect(unit.log).toHaveBeenCalledWith('is already fit as a fiddle');
       expect(unit.heal).not.toHaveBeenCalled();
     });
   });

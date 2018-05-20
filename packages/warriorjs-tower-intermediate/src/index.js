@@ -13,6 +13,7 @@ import {
   look,
   rescue,
   rest,
+  think,
   walk,
 } from '@warriorjs/abilities';
 import { ticking } from '@warriorjs/effects';
@@ -40,6 +41,7 @@ export default {
           ...Warrior,
           abilities: {
             directionOfStairs: directionOfStairs(),
+            think: think(),
             walk: walk(),
           },
           position: {
@@ -57,7 +59,7 @@ export default {
       tip:
         'Just like walking, you can attack and feel in multiple directions (forward, left, right, backward).',
       clue:
-        "Call `warrior.feel().isEnemy()` in each direction to make sure there isn't an enemy beside you (attack if there is). Call `warrior.rest()` if you're low in health when there are no enemies around.",
+        "Call `warrior.feel().isUnit()` and `unit.isEnemy()` in each direction to make sure there isn't an enemy beside you (attack if there is). Call `warrior.rest()` if you're low in health when there are no enemies around.",
       timeBonus: 40,
       aceScore: 84,
       floor: {
@@ -113,10 +115,9 @@ export default {
     },
     {
       description: 'You feel slime on all sides, you are surrounded!',
-      tip:
-        'Call `warrior.bind()` to bind an enemy to keep him from attacking. Bound enemies no longer look like enemies.',
+      tip: 'Call `warrior.bind()` to bind an enemy to keep him from attacking.',
       clue:
-        'Count the number of enemies around you. Bind an enemy if there are two or more.',
+        'Count the number of unbound enemies around you. Bind an enemy if there are two or more.',
       timeBonus: 50,
       aceScore: 101,
       floor: {
@@ -182,7 +183,7 @@ export default {
       tip:
         "Use `warrior.listen()` to find spaces with other units, and `warrior.directionOf()` to determine what direction they're in.",
       clue:
-        'Walk towards an enemy or captive with `warrior.walk(warrior.directionOf(warrior.listen()[0]))`. Once `warrior.listen().length === 0`, head for the stairs.',
+        'Walk towards a unit with `warrior.walk(warrior.directionOf(warrior.listen()[0]))`. Once `warrior.listen().length === 0`, head for the stairs.',
       timeBonus: 55,
       aceScore: 144,
       floor: {
@@ -308,9 +309,9 @@ export default {
       description:
         "What's that ticking? Some captives have a timed bomb at their feet!",
       tip:
-        "Hurry and rescue captives that have `space.isUnderEffect('ticking')` first, they'll soon go!",
+        "Hurry and rescue captives that have `unit.isUnderEffect('ticking')` first, they'll soon go!",
       clue:
-        "Avoid fighting enemies at first. Use `warrior.listen()` and `space.isUnderEffect('ticking')` and quickly rescue those captives.",
+        "Avoid fighting enemies at first. Use `warrior.listen()` and `unit.isUnderEffect('ticking')` and quickly rescue those captives.",
       timeBonus: 50,
       aceScore: 108,
       floor: {
@@ -448,7 +449,7 @@ export default {
       tip:
         'Detonate a bomb when you see a couple enemies ahead of you (`warrior.look()`). Watch out for your health too.',
       clue:
-        'Calling `warrior.look()` will return an array of Spaces. If the first two contain enemies, detonate a bomb with `warrior.detonate()`.',
+        'Calling `warrior.look()` will return an array of spaces. If the first two contain enemies, detonate a bomb with `warrior.detonate()`.',
       timeBonus: 30,
       aceScore: 91,
       floor: {

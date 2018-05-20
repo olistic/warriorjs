@@ -10,11 +10,12 @@ const Sludge = {
     feel: feel(),
   },
   playTurn(sludge) {
-    const playerDirection = RELATIVE_DIRECTIONS.find(direction =>
-      sludge.feel(direction).isPlayer(),
-    );
-    if (playerDirection) {
-      sludge.attack(playerDirection);
+    const threatDirection = RELATIVE_DIRECTIONS.find(direction => {
+      const unit = sludge.feel(direction).getUnit();
+      return unit && unit.isEnemy() && !unit.isBound();
+    });
+    if (threatDirection) {
+      sludge.attack(threatDirection);
     }
   },
 };

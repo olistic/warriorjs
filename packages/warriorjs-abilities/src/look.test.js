@@ -7,7 +7,7 @@ describe('look', () => {
   let unit;
 
   beforeEach(() => {
-    unit = { getSpaceAt: jest.fn() };
+    unit = { getSensedSpaceAt: jest.fn() };
     look = lookCreator({ range: 3 })(unit);
   });
 
@@ -24,20 +24,20 @@ describe('look', () => {
   describe('performing', () => {
     test('looks forward by default', () => {
       look.perform();
-      expect(unit.getSpaceAt).toHaveBeenCalledWith(FORWARD, 1);
-      expect(unit.getSpaceAt).toHaveBeenCalledWith(FORWARD, 2);
-      expect(unit.getSpaceAt).toHaveBeenCalledWith(FORWARD, 3);
+      expect(unit.getSensedSpaceAt).toHaveBeenCalledWith(FORWARD, 1);
+      expect(unit.getSensedSpaceAt).toHaveBeenCalledWith(FORWARD, 2);
+      expect(unit.getSensedSpaceAt).toHaveBeenCalledWith(FORWARD, 3);
     });
 
     test('allows to specify direction', () => {
       look.perform(LEFT);
-      expect(unit.getSpaceAt).toHaveBeenCalledWith(LEFT, 1);
-      expect(unit.getSpaceAt).toHaveBeenCalledWith(LEFT, 2);
-      expect(unit.getSpaceAt).toHaveBeenCalledWith(LEFT, 3);
+      expect(unit.getSensedSpaceAt).toHaveBeenCalledWith(LEFT, 1);
+      expect(unit.getSensedSpaceAt).toHaveBeenCalledWith(LEFT, 2);
+      expect(unit.getSensedSpaceAt).toHaveBeenCalledWith(LEFT, 3);
     });
 
     test('returns adjacent space in specified direction', () => {
-      unit.getSpaceAt
+      unit.getSensedSpaceAt
         .mockReturnValueOnce('space1')
         .mockReturnValueOnce('space2')
         .mockReturnValueOnce('space3')

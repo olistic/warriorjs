@@ -20,18 +20,19 @@ const levelConfig = {
       y: 0,
     },
     warrior: {
+      name: 'Joe',
       character: '@',
       maxHealth: 20,
       abilities: {
         walk: unit => ({
           action: true,
           perform(direction = FORWARD) {
-            unit.say(`walks ${direction}`);
+            unit.log(`walks ${direction}`);
             const space = unit.getSpaceAt(direction);
             if (space.isEmpty()) {
               unit.move(direction);
             } else {
-              unit.say(`bumps into ${space}`);
+              unit.log(`bumps into ${space}`);
             }
           },
         }),
@@ -40,18 +41,18 @@ const levelConfig = {
           perform(direction = FORWARD) {
             const receiver = unit.getSpaceAt(direction).getUnit();
             if (receiver) {
-              unit.say(`attacks ${direction} and hits ${receiver}`);
+              unit.log(`attacks ${direction} and hits ${receiver}`);
               const attackingBackward = direction === BACKWARD;
               const amount = attackingBackward ? 3 : 5;
               unit.damage(receiver, amount);
             } else {
-              unit.say(`attacks ${direction} and hits nothing`);
+              unit.log(`attacks ${direction} and hits nothing`);
             }
           },
         }),
         feel: unit => ({
           perform(direction = FORWARD) {
-            return unit.getSpaceAt(direction);
+            return unit.getSensedSpaceAt(direction);
           },
         }),
       },
@@ -72,27 +73,28 @@ const levelConfig = {
             perform(direction = FORWARD) {
               const receiver = unit.getSpaceAt(direction).getUnit();
               if (receiver) {
-                unit.say(`attacks ${direction} and hits ${receiver}`);
+                unit.log(`attacks ${direction} and hits ${receiver}`);
                 const attackingBackward = direction === BACKWARD;
                 const amount = attackingBackward ? 2 : 3;
                 unit.damage(receiver, amount);
               } else {
-                unit.say(`attacks ${direction} and hits nothing`);
+                unit.log(`attacks ${direction} and hits nothing`);
               }
             },
           }),
           feel: unit => ({
             perform(direction = FORWARD) {
-              return unit.getSpaceAt(direction);
+              return unit.getSensedSpaceAt(direction);
             },
           }),
         },
         playTurn(sludge) {
-          const playerDirection = RELATIVE_DIRECTIONS.find(direction =>
-            sludge.feel(direction).isPlayer(),
-          );
-          if (playerDirection) {
-            sludge.attack(playerDirection);
+          const threatDirection = RELATIVE_DIRECTIONS.find(direction => {
+            const unit = sludge.feel(direction).getUnit();
+            return unit && unit.isEnemy() && !unit.isBound();
+          });
+          if (threatDirection) {
+            sludge.attack(threatDirection);
           }
         },
         position: {
@@ -109,7 +111,8 @@ test('passes level with a winner player code', () => {
   const playerCode = `
     class Player {
       playTurn(warrior) {
-        if (warrior.feel().isEnemy()) {
+        const spaceAhead = warrior.feel();
+        if (spaceAhead.isUnit() && spaceAhead.getUnit().isEnemy()) {
           warrior.attack();
         } else {
           warrior.walk();

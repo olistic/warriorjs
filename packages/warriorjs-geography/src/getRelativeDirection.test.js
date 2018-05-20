@@ -1,6 +1,6 @@
+import getRelativeDirection from './getRelativeDirection';
 import { BACKWARD, FORWARD, LEFT, RIGHT } from './relativeDirections';
 import { EAST, NORTH, SOUTH, WEST } from './absoluteDirections';
-import getRelativeDirection from './getRelativeDirection';
 
 let direction;
 
