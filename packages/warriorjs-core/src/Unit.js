@@ -185,7 +185,7 @@ class Unit {
   damage(receiver, amount) {
     receiver.takeDamage(amount);
     if (!receiver.isAlive()) {
-      if (receiver.isHostile()) {
+      if (receiver.as(this).isHostile()) {
         this.earnPoints(receiver.reward);
       } else {
         this.losePoints(receiver.reward);
@@ -205,51 +205,13 @@ class Unit {
   }
 
   /**
-   * Checks if the unit is hostile.
-   *
-   * A bound unit is not considered hostile.
-   *
-   * @returns {boolean} Whether the unit is hostile or not.
-   */
-  isHostile() {
-    return this.hostile && !this.bound;
-  }
-
-  /**
-   * Checks if the unit is friendly.
-   *
-   * @returns {boolean} Whether the unit is friendly or not.
-   */
-  isFriendly() {
-    return !this.hostile;
-  }
-
-  /**
-   * Checks if the unit is controlled by the player.
-   *
-   * @returns {boolean} Whether the unit is controlled by the player or not.
-   */
-  isPlayer() {
-    return this.isWarrior();
-  }
-
-  /**
-   * Checks if the unit is the warrior.
-   *
-   * @returns {boolean} Whether the unit is the warrior or not.
-   */
-  isWarrior() {
-    return this.constructor.name === 'Warrior';
-  }
-
-  /**
    * Unbinds another unit.
    *
    * @param {Unit} receiver The unit to unbind.
    */
   release(receiver) {
     receiver.unbind();
-    if (receiver.isFriendly()) {
+    if (!receiver.as(this).isHostile()) {
       receiver.vanish();
       this.earnPoints(receiver.reward);
     }
@@ -422,13 +384,10 @@ class Unit {
    *
    * @returns {SensedUnit} The sensed unit.
    */
-  as() {
+  as(unit) {
     return {
       isBound: this.isBound.bind(this),
-      isFriendly: this.isFriendly.bind(this),
-      isHostile: this.isHostile.bind(this),
-      isPlayer: this.isPlayer.bind(this),
-      isWarrior: this.isWarrior.bind(this),
+      isHostile: () => this.hostile !== unit.hostile,
       isUnderEffect: this.isUnderEffect.bind(this),
     };
   }
@@ -453,7 +412,7 @@ class Unit {
       character: this.character,
       maxHealth: this.maxHealth,
       health: this.health,
-      warrior: this.isWarrior(),
+      warrior: this.constructor.name === 'Warrior',
     };
   }
 }

@@ -277,6 +277,7 @@ describe('Unit', () => {
       receiver.reward = 10;
       receiver.health = 5;
       receiver.position = {};
+      receiver.as = () => ({ isHostile: () => true });
       receiver.log = jest.fn();
     });
 
@@ -292,8 +293,8 @@ describe('Unit', () => {
       expect(unit.earnPoints).not.toHaveBeenCalled();
     });
 
-    test('lose points equal to reward when killing a friendly unit', () => {
-      receiver.hostile = false;
+    test('lose points equal to reward when killing a friend', () => {
+      receiver.as = () => ({ isHostile: () => false });
       unit.losePoints = jest.fn();
       unit.damage(receiver, 5);
       expect(unit.losePoints).toHaveBeenCalledWith(10);
@@ -309,20 +310,6 @@ describe('Unit', () => {
     expect(unit.isAlive()).toBe(false);
   });
 
-  test('knows if it is hostile or friendly', () => {
-    expect(unit.isHostile()).toBe(true);
-    expect(unit.isFriendly()).toBe(false);
-    unit.hostile = false;
-    expect(unit.isHostile()).toBe(false);
-    expect(unit.isFriendly()).toBe(true);
-  });
-
-  test("doesn't look like hostile when bound", () => {
-    expect(unit.isHostile()).toBe(true);
-    unit.bind();
-    expect(unit.isHostile()).toBe(false);
-  });
-
   describe('when releasing', () => {
     let receiver;
 
@@ -331,6 +318,7 @@ describe('Unit', () => {
       receiver.reward = 10;
       receiver.bound = true;
       receiver.position = {};
+      receiver.as = () => ({ isHostile: () => true });
       receiver.log = jest.fn();
     });
 
@@ -348,7 +336,7 @@ describe('Unit', () => {
 
     describe('friendly unit', () => {
       beforeEach(() => {
-        receiver.hostile = false;
+        receiver.as = () => ({ isHostile: () => false });
       });
 
       test('vanishes the unit', () => {
@@ -518,22 +506,20 @@ describe('Unit', () => {
 
     beforeEach(() => {
       sensingUnit = new Unit();
+      sensingUnit.hostile = false;
       floor.addUnit(sensingUnit, { x: 0, y: 1, facing: SOUTH });
       sensedUnit = unit.as(sensingUnit);
     });
 
     test('allows calling sensed unit methods', () => {
-      const allowedApi = [
-        'isBound',
-        'isFriendly',
-        'isHostile',
-        'isPlayer',
-        'isUnderEffect',
-        'isWarrior',
-      ];
+      const allowedApi = ['isBound', 'isHostile', 'isUnderEffect'];
       allowedApi.forEach(propertyName => {
         sensedUnit[propertyName]();
       });
+    });
+
+    test("is considered hostile if it doesn't fight for the same side", () => {
+      expect(sensedUnit.isHostile()).toBe(true);
     });
 
     test("doesn't allow calling other unit methods", () => {

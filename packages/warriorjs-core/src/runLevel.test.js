@@ -89,12 +89,12 @@ const levelConfig = {
           }),
         },
         playTurn(sludge) {
-          const playerDirection = RELATIVE_DIRECTIONS.find(direction => {
-            const space = sludge.feel(direction);
-            return space.isUnit() && space.getUnit().isPlayer();
+          const threatDirection = RELATIVE_DIRECTIONS.find(direction => {
+            const unit = sludge.feel(direction).getUnit();
+            return unit && unit.isHostile() && !unit.isBound();
           });
-          if (playerDirection) {
-            sludge.attack(playerDirection);
+          if (threatDirection) {
+            sludge.attack(threatDirection);
           }
         },
         position: {
@@ -112,7 +112,7 @@ test('passes level with a winner player code', () => {
     class Player {
       playTurn(warrior) {
         const spaceAhead = warrior.feel();
-        if (spaceAhead.isUnit() && spaceAhead.getUnit().isEnemy()) {
+        if (spaceAhead.isUnit() && spaceAhead.getUnit().isHostile()) {
           warrior.attack();
         } else {
           warrior.walk();

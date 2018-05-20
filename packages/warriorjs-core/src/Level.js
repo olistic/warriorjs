@@ -73,7 +73,7 @@ class Level {
    */
   wasPassed() {
     const stairsSpace = this.floor.getStairsSpace();
-    return stairsSpace.isUnit() && stairsSpace.getUnit().isWarrior();
+    return stairsSpace.getUnit() === this.floor.warrior;
   }
 
   /**

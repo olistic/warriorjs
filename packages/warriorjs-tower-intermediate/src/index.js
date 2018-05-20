@@ -115,10 +115,9 @@ export default {
     },
     {
       description: 'You feel slime on all sides, you are surrounded!',
-      tip:
-        'Call `warrior.bind()` to bind an enemy to keep him from attacking. Bound enemies no longer look like enemies.',
+      tip: 'Call `warrior.bind()` to bind an enemy to keep him from attacking.',
       clue:
-        'Count the number of enemies around you. Bind an enemy if there are two or more.',
+        'Count the number of unbound enemies around you. Bind an enemy if there are two or more.',
       timeBonus: 50,
       aceScore: 101,
       floor: {
@@ -184,7 +183,7 @@ export default {
       tip:
         "Use `warrior.listen()` to find spaces with other units, and `warrior.directionOf()` to determine what direction they're in.",
       clue:
-        'Walk towards an enemy or captive with `warrior.walk(warrior.directionOf(warrior.listen()[0]))`. Once `warrior.listen().length === 0`, head for the stairs.',
+        'Walk towards a unit with `warrior.walk(warrior.directionOf(warrior.listen()[0]))`. Once `warrior.listen().length === 0`, head for the stairs.',
       timeBonus: 55,
       aceScore: 144,
       floor: {
