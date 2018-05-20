@@ -74,7 +74,7 @@ really useful</strong>. Here is an example of the <a href="https://developer.moz
 
   isEnemyInSight(warrior) {
     <span class="hljs-keyword">const</span> spaceWithUnit = warrior.look().find(<span class="hljs-function"><span class="hljs-params">space</span> =&gt;</span> space.isUnit());
-    <span class="hljs-keyword">return</span> spaceWithUnit &amp;&amp; spaceWithUnit.getUnit().isHostile();
+    <span class="hljs-keyword">return</span> spaceWithUnit &amp;&amp; spaceWithUnit.getUnit().isEnemy();
   }
 }
 </code></pre>
