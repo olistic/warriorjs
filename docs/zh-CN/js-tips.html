@@ -50,7 +50,18 @@
 }
 </code></pre>
 <ul>
-<li>某些感官 (如外观和侦听) 会返回一个空间数组, 因此 <strong>你可能会发现许多 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/prototype#Methods">数组的原型方法</a> 真的非常有用</strong>。 下面是 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/find">Array.prototype.find</a> 方法的一个示例:</li>
+<li>You can call methods of the Space API directly after a sense. For example, the &quot;feel&quot; sense in the beginner tower returns one space. You can call <code>isEmpty()</code> on this to determine if the space is clear before walking there:</li>
+</ul>
+<pre><code class="hljs css js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Player</span> </span>{
+  playTurn(warrior) {
+    <span class="hljs-keyword">if</span> (warrior.feel().isEmpty()) {
+      warrior.walk();
+    }
+  }
+}
+</code></pre>
+<ul>
+<li>Some senses (like &quot;look&quot; and &quot;listen&quot; in the beginner tower) return an array of spaces instead, so <strong>you might find many of the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/prototype#Methods">Array prototype methods</a> really useful</strong>. Here is an example of the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find">Array.prototype.find</a> method:</li>
 </ul>
 <pre><code class="hljs css js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Player</span> </span>{
   <span class="hljs-comment">// ...</span>
