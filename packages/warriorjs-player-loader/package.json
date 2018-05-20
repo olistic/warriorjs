@@ -1,0 +1,18 @@
+{
+  "name": "@warriorjs/player-loader",
+  "version": "0.0.0",
+  "description": "WarriorJS Player loader",
+  "author": "Matias Olivera <moliverafreire@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://warrior.js.org",
+  "repository":
+    "https://github.com/olistic/warriorjs/tree/master/packages/warriorjs-player-loader",
+  "main": "lib/index.js",
+  "files": ["lib"],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "babel src --out-dir lib --ignore test.js"
+  }
+}
