@@ -32,7 +32,17 @@ function loadPlayer(playerCode) {
     const player = vm.runInContext('new Player();', sandbox, {
       timeout: playerCodeTimeout,
     });
-    assert(typeof player.playTurn === 'function', 'playTurn is not defined');
+
+    const playTurnFunc = player.playTurn;
+    assert(typeof playTurnFunc === 'function', 'playTurn is not defined');
+    player.playTurn = (...args) => {
+      try {
+        return playTurnFunc(...args);
+      } catch (err) {
+        throw new Error(`Invalid Player code: ${err.message}`);
+      }
+    };
+
     return player;
   } catch (err) {
     if (err.message === 'Player is not defined') {

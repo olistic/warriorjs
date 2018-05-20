@@ -1,4 +1,3 @@
-import PlayerError from './PlayerError';
 import Unit from './Unit';
 
 /** Class representing a warrior. */
@@ -20,11 +19,7 @@ class Warrior extends Unit {
    * @param {Object} turn The turn object.
    */
   playTurn(turn) {
-    try {
-      this.player.playTurn(turn);
-    } catch (err) {
-      throw new PlayerError(`Invalid Player code: ${err.message}`);
-    }
+    this.player.playTurn(turn);
   }
 
   performTurn() {

@@ -43,3 +43,17 @@ test('throws if playTurn method is not defined', async () => {
     ),
   );
 });
+
+test("throws when playing turn if there's something wrong", () => {
+  const playerCode = `
+    class Player {
+      playTurn() {
+        throw new Error('foo');
+      }
+    }
+  `;
+  const player = loadPlayer(playerCode);
+  expect(() => {
+    player.playTurn();
+  }).toThrow(new Error('Invalid Player code: foo'));
+});
