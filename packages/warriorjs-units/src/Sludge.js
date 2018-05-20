@@ -12,7 +12,7 @@ const Sludge = {
   playTurn(sludge) {
     const threatDirection = RELATIVE_DIRECTIONS.find(direction => {
       const unit = sludge.feel(direction).getUnit();
-      return unit && unit.isHostile() && !unit.isBound();
+      return unit && unit.isEnemy() && !unit.isBound();
     });
     if (threatDirection) {
       sludge.attack(threatDirection);

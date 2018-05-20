@@ -54,7 +54,7 @@ describe('ThickSludge', () => {
         .mockReturnValueOnce({
           getUnit: () => ({
             isBound: () => false,
-            isHostile: () => true,
+            isEnemy: () => true,
           }),
         });
       ThickSludge.playTurn(turn);

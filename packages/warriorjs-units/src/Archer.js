@@ -16,7 +16,7 @@ const Archer = {
         .find(space => space.isUnit());
       return (
         spaceWithUnit &&
-        spaceWithUnit.getUnit().isHostile() &&
+        spaceWithUnit.getUnit().isEnemy() &&
         !spaceWithUnit.getUnit().isBound()
       );
     });

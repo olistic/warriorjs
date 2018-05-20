@@ -91,7 +91,7 @@ const levelConfig = {
         playTurn(sludge) {
           const threatDirection = RELATIVE_DIRECTIONS.find(direction => {
             const unit = sludge.feel(direction).getUnit();
-            return unit && unit.isHostile() && !unit.isBound();
+            return unit && unit.isEnemy() && !unit.isBound();
           });
           if (threatDirection) {
             sludge.attack(threatDirection);
@@ -112,7 +112,7 @@ test('passes level with a winner player code', () => {
     class Player {
       playTurn(warrior) {
         const spaceAhead = warrior.feel();
-        if (spaceAhead.isUnit() && spaceAhead.getUnit().isHostile()) {
+        if (spaceAhead.isUnit() && spaceAhead.getUnit().isEnemy()) {
           warrior.attack();
         } else {
           warrior.walk();

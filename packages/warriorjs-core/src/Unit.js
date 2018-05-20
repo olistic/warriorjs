@@ -10,7 +10,7 @@ class Unit {
    * @param {string} character The character of the unit.
    * @param {number} maxHealth The max health in HP.
    * @param {number} reward The number of points to reward when killed.
-   * @param {boolean} hostile Whether the unit is hostile or not.
+   * @param {boolean} enemy Whether the unit is an enemy or not.
    * @param {boolean} bound Whether the unit is bound or not.
    */
   constructor(
@@ -18,14 +18,14 @@ class Unit {
     character,
     maxHealth,
     reward = null,
-    hostile = true,
+    enemy = true,
     bound = false,
   ) {
     this.name = name;
     this.character = character;
     this.maxHealth = maxHealth;
     this.reward = reward === null ? maxHealth : reward;
-    this.hostile = hostile;
+    this.enemy = enemy;
     this.bound = bound;
     this.abilities = new Map();
     this.effects = new Map();
@@ -185,7 +185,7 @@ class Unit {
   damage(receiver, amount) {
     receiver.takeDamage(amount);
     if (!receiver.isAlive()) {
-      if (receiver.as(this).isHostile()) {
+      if (receiver.as(this).isEnemy()) {
         this.earnPoints(receiver.reward);
       } else {
         this.losePoints(receiver.reward);
@@ -211,7 +211,7 @@ class Unit {
    */
   release(receiver) {
     receiver.unbind();
-    if (!receiver.as(this).isHostile()) {
+    if (!receiver.as(this).isEnemy()) {
       receiver.vanish();
       this.earnPoints(receiver.reward);
     }
@@ -387,7 +387,7 @@ class Unit {
   as(unit) {
     return {
       isBound: this.isBound.bind(this),
-      isHostile: () => this.hostile !== unit.hostile,
+      isEnemy: () => this.enemy !== unit.enemy,
       isUnderEffect: this.isUnderEffect.bind(this),
     };
   }

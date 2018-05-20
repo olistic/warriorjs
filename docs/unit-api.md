@@ -22,10 +22,10 @@ Determines if the unit is bound.
 
 _(boolean)_: Whether this unit is bound or not.
 
-## `unit.isHostile()`:
+## `unit.isEnemy()`:
 
-Determines if the unit is hostile.
+Determines if the unit is an enemy.
 
 **Returns**
 
-_(boolean)_: Whether this is a hostile unit or not.
+_(boolean)_: Whether this is an enemy unit or not.

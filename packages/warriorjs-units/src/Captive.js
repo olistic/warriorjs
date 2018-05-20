@@ -3,7 +3,7 @@ const Captive = {
   character: 'C',
   maxHealth: 1,
   reward: 20,
-  hostile: false,
+  enemy: false,
   bound: true,
   playTurn() {},
 };

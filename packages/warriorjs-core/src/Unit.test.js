@@ -43,8 +43,8 @@ describe('Unit', () => {
     });
   });
 
-  test('has a hostile status which defaults to true', () => {
-    expect(unit.hostile).toBe(true);
+  test('has an enemy status which defaults to true', () => {
+    expect(unit.enemy).toBe(true);
   });
 
   test('has a bound status which defaults to false', () => {
@@ -277,7 +277,7 @@ describe('Unit', () => {
       receiver.reward = 10;
       receiver.health = 5;
       receiver.position = {};
-      receiver.as = () => ({ isHostile: () => true });
+      receiver.as = () => ({ isEnemy: () => true });
       receiver.log = jest.fn();
     });
 
@@ -294,7 +294,7 @@ describe('Unit', () => {
     });
 
     test('lose points equal to reward when killing a friend', () => {
-      receiver.as = () => ({ isHostile: () => false });
+      receiver.as = () => ({ isEnemy: () => false });
       unit.losePoints = jest.fn();
       unit.damage(receiver, 5);
       expect(unit.losePoints).toHaveBeenCalledWith(10);
@@ -318,7 +318,7 @@ describe('Unit', () => {
       receiver.reward = 10;
       receiver.bound = true;
       receiver.position = {};
-      receiver.as = () => ({ isHostile: () => true });
+      receiver.as = () => ({ isEnemy: () => true });
       receiver.log = jest.fn();
     });
 
@@ -336,7 +336,7 @@ describe('Unit', () => {
 
     describe('friendly unit', () => {
       beforeEach(() => {
-        receiver.as = () => ({ isHostile: () => false });
+        receiver.as = () => ({ isEnemy: () => false });
       });
 
       test('vanishes the unit', () => {
@@ -506,20 +506,20 @@ describe('Unit', () => {
 
     beforeEach(() => {
       sensingUnit = new Unit();
-      sensingUnit.hostile = false;
+      sensingUnit.enemy = false;
       floor.addUnit(sensingUnit, { x: 0, y: 1, facing: SOUTH });
       sensedUnit = unit.as(sensingUnit);
     });
 
     test('allows calling sensed unit methods', () => {
-      const allowedApi = ['isBound', 'isHostile', 'isUnderEffect'];
+      const allowedApi = ['isBound', 'isEnemy', 'isUnderEffect'];
       allowedApi.forEach(propertyName => {
         sensedUnit[propertyName]();
       });
     });
 
-    test("is considered hostile if it doesn't fight for the same side", () => {
-      expect(sensedUnit.isHostile()).toBe(true);
+    test("is considered enemy if it doesn't fight for the same side", () => {
+      expect(sensedUnit.isEnemy()).toBe(true);
     });
 
     test("doesn't allow calling other unit methods", () => {

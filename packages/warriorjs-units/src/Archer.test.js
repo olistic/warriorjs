@@ -54,7 +54,7 @@ describe('Archer', () => {
         space,
         {
           isUnit: () => true,
-          getUnit: () => ({ isHostile: () => false }),
+          getUnit: () => ({ isEnemy: () => false }),
         },
         anotherSpace,
       ]);
@@ -69,7 +69,7 @@ describe('Archer', () => {
           isUnit: () => true,
           getUnit: () => ({
             isBound: () => false,
-            isHostile: () => true,
+            isEnemy: () => true,
           }),
         },
         space,
@@ -90,7 +90,7 @@ describe('Archer', () => {
           isUnit: () => true,
           getUnit: () => ({
             isBound: () => true,
-            isHostile: () => true,
+            isEnemy: () => true,
           }),
         },
       ]);

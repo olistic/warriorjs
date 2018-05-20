@@ -54,7 +54,7 @@ describe('Sludge', () => {
         .mockReturnValueOnce({
           getUnit: () => ({
             isBound: () => false,
-            isHostile: () => true,
+            isEnemy: () => true,
           }),
         });
       Sludge.playTurn(turn);

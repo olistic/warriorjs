@@ -59,7 +59,7 @@ export default {
       tip:
         'Just like walking, you can attack and feel in multiple directions (forward, left, right, backward).',
       clue:
-        "Call `warrior.feel().isUnit()` and `unit.isHostile()` in each direction to make sure there isn't an enemy beside you (attack if there is). Call `warrior.rest()` if you're low in health when there are no enemies around.",
+        "Call `warrior.feel().isUnit()` and `unit.isEnemy()` in each direction to make sure there isn't an enemy beside you (attack if there is). Call `warrior.rest()` if you're low in health when there are no enemies around.",
       timeBonus: 40,
       aceScore: 84,
       floor: {
