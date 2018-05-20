@@ -3,23 +3,20 @@ id: space-api
 title: Space API
 ---
 
-You can call methods on a space to gather information about what's there.
-
-You will often call these methods directly after a sense. For example, in the
-beginner tower, the "feel" sense returns one space. You can call `isStairs()` on
-this to determine if the stairs are in front of you:
+Whenever you sense an area, often one or multiple spaces (in an array) will be
+returned. For example, the "feel" sense in the beginner tower returns one space:
 
 ```js
-if (warrior.feel().isStairs()) {
-  // The stairs are right in front of you!
-}
+const space = warrior.feel();
 ```
+
+You can call methods on a space to gather information about what's there.
 
 Here are the various methods that are available to you:
 
 ## `space.isEmpty()`:
 
-Determines if nothing (except maybe stairs) is at this location.
+Determines if nothing (except maybe stairs) is at this space.
 
 **Returns**
 
@@ -27,7 +24,7 @@ _(boolean)_: Whether this space is empty or not.
 
 ## `space.isStairs()`:
 
-Determines if the stairs are at this location.
+Determines if the stairs are at this space.
 
 **Returns**
 
@@ -43,7 +40,7 @@ _(boolean)_: Whether this space is a wall or not.
 
 ## `space.isUnit()`:
 
-Determines if there's a unit at this location.
+Determines if there's a unit at this space.
 
 **Returns**
 
@@ -55,12 +52,4 @@ Returns the unit located at this space (if any).
 
 **Returns**
 
-_(Unit)_: The unit at this location.
-
-## `space.getLocation()`:
-
-Returns the location of this space.
-
-**Returns**
-
-_(number[])_: The location of this space as a pair of coordinates `[x, y]`.
+_(Unit)_: The unit at this location or `undefined` if there's none.
