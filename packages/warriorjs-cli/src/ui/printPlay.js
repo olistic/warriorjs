@@ -1,7 +1,6 @@
 import sleep from 'delay';
 
 import printBoard from './printBoard';
-import printLevelHeader from './printLevelHeader';
 import printTurnHeader from './printTurnHeader';
 import printLogMessage from './printLogMessage';
 
@@ -16,12 +15,6 @@ async function printPlay(levelNumber, events, delay) {
   let boardOffset = 0;
   // eslint-disable-next-line no-restricted-syntax
   for (const event of events) {
-    if (turnNumber === 0) {
-      printLevelHeader(levelNumber);
-      printBoard(event.floor, boardOffset);
-      await sleep(delay); // eslint-disable-line no-await-in-loop
-    }
-
     const { type } = event;
     switch (type) {
       case 'TURN':
