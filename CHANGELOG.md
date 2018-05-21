@@ -8,6 +8,10 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Added
+
+* `--silent` flag to CLI ([@xaviserrag][] in [#82][])
+
 ## [0.4.0] - 2018-05-19
 
 ### Added
@@ -101,10 +105,12 @@ Initial version
 [@xfloki]: https://github.com/xFloki
 [@skywalker212]: https://github.com/skywalker212
 [@glneto]: https://github.com/glneto
+[@xaviserrag]: https://github.com/xaviserrag
 [#67]: https://github.com/olistic/warriorjs/pull/67
 [#70]: https://github.com/olistic/warriorjs/pull/70
 [#77]: https://github.com/olistic/warriorjs/pull/77
 [#81]: https://github.com/olistic/warriorjs/pull/81
+[#82]: https://github.com/olistic/warriorjs/pull/82
 [#83]: https://github.com/olistic/warriorjs/pull/83
 [#86]: https://github.com/olistic/warriorjs/pull/86
 [#87]: https://github.com/olistic/warriorjs/pull/87
