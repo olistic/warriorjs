@@ -8,7 +8,10 @@ import printRow from './printRow';
  * @param {number} levelNumber The level number.
  */
 function printLevelHeader(levelNumber) {
-  printRow(` level ${levelNumber} `, 'center', chalk.gray('#'));
+  printRow(` level ${levelNumber} `, {
+    position: 'middle',
+    padding: chalk.gray('#'),
+  });
 }
 
 export default printLevelHeader;

@@ -7,9 +7,8 @@ jest.mock('./printRow');
 
 test('prints level header', () => {
   printLevelHeader(1);
-  expect(printRow).toHaveBeenCalledWith(
-    ' level 1 ',
-    'center',
-    `${style.gray.open}#${style.gray.close}`,
-  );
+  expect(printRow).toHaveBeenCalledWith(' level 1 ', {
+    position: 'middle',
+    padding: `${style.gray.open}#${style.gray.close}`,
+  });
 });
