@@ -1,3 +1,5 @@
+import stringWidth from 'string-width';
+
 import getScreenSize from './getScreenSize';
 import printLine from './printLine';
 
@@ -11,13 +13,11 @@ import printLine from './printLine';
  */
 function printRow(message, { position = 'start', padding = ' ' } = {}) {
   const [screenWidth] = getScreenSize();
-  const rowLength = screenWidth - 1; // Consider line break length.
-  const startPadding = padding.repeat(
-    Math.floor((rowLength - message.length) / 2),
-  );
-  const endPadding = padding.repeat(
-    Math.ceil((rowLength - message.length) / 2),
-  );
+  const rowWidth = screenWidth - 1; // Consider line break length.
+  const messageWidth = stringWidth(message);
+  const paddingWidth = (rowWidth - messageWidth) / 2;
+  const startPadding = padding.repeat(Math.floor(paddingWidth));
+  const endPadding = padding.repeat(Math.ceil(paddingWidth));
   if (position === 'start') {
     printLine(`${message}${startPadding}${endPadding}`);
   } else if (position === 'middle') {
