@@ -10,7 +10,7 @@ import printLine from './printLine';
  * @param {string} message The message to print.
  */
 function printLogMessage(unit, message) {
-  const prompt = chalk.gray('>');
+  const prompt = chalk.gray.dim('>');
   const style = getUnitStyle(unit);
   const logMessage = style(`${unit.name} ${message}`);
   printLine(`${prompt} ${logMessage}`);

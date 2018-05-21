@@ -8,9 +8,9 @@ import printRow from './printRow';
  * @param {number} levelNumber The level number.
  */
 function printLevelHeader(levelNumber) {
-  printRow(` level ${levelNumber} `, {
+  printRow(chalk.gray.dim(` level ${levelNumber} `), {
     position: 'middle',
-    padding: chalk.gray('#'),
+    padding: chalk.gray.dim('~'),
   });
 }
 
