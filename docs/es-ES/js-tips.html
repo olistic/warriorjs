@@ -50,7 +50,7 @@
 }
 </code></pre>
 <ul>
-<li>You can call methods of the Space API directly after a sense. For example, the &quot;feel&quot; sense in the beginner tower returns one space. You can call <code>isEmpty()</code> on this to determine if the space is clear before walking there:</li>
+<li>Puedes llamar métodos de la API del Espacio directamente tras un sentido. Por ejemplo, el sentido &quot;feel&quot; en la torre de principiante devuelve un espacio. Puedes llamar <code>isEmpty()</code> sobre él para determinar si el espacio esta despejado antes de caminar allí:</li>
 </ul>
 <pre><code class="hljs css js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Player</span> </span>{
   playTurn(warrior) {
@@ -61,7 +61,7 @@
 }
 </code></pre>
 <ul>
-<li>Some senses (like &quot;look&quot; and &quot;listen&quot; in the beginner tower) return an array of spaces instead, so <strong>you might find many of the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/prototype#Methods">Array prototype methods</a> really useful</strong>. Here is an example of the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find">Array.prototype.find</a> method:</li>
+<li>Algunos sentidos (como &quot;look&quot; y &quot;listen&quot; en la torre de principiante) devuelven una lista de espacios, por lo que <strong>puedes encontrar muchos de los <a href="https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/Array/prototype#Methods">métodos de Array</a> realmente útiles</strong>. Aquí hay un ejemplo del método <a href="https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/Array/find">Array.prototype.find</a>:</li>
 </ul>
 <pre><code class="hljs css js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Player</span> </span>{
   <span class="hljs-comment">// ...</span>
