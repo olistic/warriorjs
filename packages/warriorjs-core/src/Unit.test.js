@@ -15,7 +15,7 @@ describe('Unit', () => {
   let floor;
 
   beforeEach(() => {
-    unit = new Unit('Joe', '@', 20, 30);
+    unit = new Unit('Joe', '@', 20);
     unit.log = jest.fn();
     floor = new Floor(5, 6, [0, 0]);
     floor.addUnit(unit, { x: 1, y: 2, facing: NORTH });
@@ -33,22 +33,40 @@ describe('Unit', () => {
     expect(unit.maxHealth).toBe(20);
   });
 
-  describe('has a reward', () => {
-    test('which is as assigned', () => {
-      expect(unit.reward).toBe(30);
-    });
+  test('has a reward which defaults to max health', () => {
+    expect(unit.reward).toBe(20);
+  });
 
-    test('which defaults to max health', () => {
-      expect(new Unit('Foo', 'f', 20).reward).toBe(20);
-    });
+  test('allows to specify reward', () => {
+    expect(new Unit('Foo', 'f', 20, 30).reward).toBe(30);
   });
 
   test('has an enemy status which defaults to true', () => {
     expect(unit.enemy).toBe(true);
   });
 
+  test('allows to specify enemy status', () => {
+    expect(new Unit('Foo', 'f', 20, 30, false).enemy).toBe(false);
+  });
+
   test('has a bound status which defaults to false', () => {
     expect(unit.bound).toBe(false);
+  });
+
+  test('has a position which is null before adding the unit to the floor', () => {
+    expect(new Unit('Foo', 'f', 20).position).toBeNull();
+  });
+
+  test('allows to specify bound status', () => {
+    expect(new Unit('Foo', 'f', 20, 30, false, true).bound).toBe(true);
+  });
+
+  test('has a health which defaults to max health', () => {
+    expect(unit.health).toBe(20);
+  });
+
+  test('starts with a score of zero', () => {
+    expect(unit.score).toBe(0);
   });
 
   test('has a collection of abilities which starts empty', () => {
@@ -61,43 +79,8 @@ describe('Unit', () => {
     expect(unit.effects.size).toBe(0);
   });
 
-  test('has a health which defaults to max health', () => {
-    expect(unit.health).toBe(20);
-  });
-
-  test('starts with a score of zero', () => {
-    expect(unit.score).toBe(0);
-  });
-
-  test('has a turn which starts null', () => {
-    expect(unit.turn).toBeNull();
-  });
-
-  test('allows to add abilities', () => {
-    expect(unit.abilities.has('walk')).toBe(false);
-    unit.addAbility('walk', {});
-    expect(unit.abilities.has('walk')).toBe(true);
-  });
-
-  test('allows to add effects', () => {
-    expect(unit.effects.has('ticking')).toBe(false);
-    unit.addEffect('ticking', {});
-    expect(unit.effects.has('ticking')).toBe(true);
-  });
-
-  test('considers itself under an effect when it has such effect', () => {
-    unit.addEffect('ticking', {});
-    expect(unit.isUnderEffect('ticking')).toBe(true);
-  });
-
-  test('can trigger a given effect when it has such effect', () => {
-    const ticking = { trigger: jest.fn() };
-    unit.addEffect('ticking', ticking);
-    const itching = { trigger: jest.fn() };
-    unit.triggerEffect('ticking');
-    unit.triggerEffect('itching');
-    expect(ticking.trigger).toHaveBeenCalled();
-    expect(itching.trigger).not.toHaveBeenCalled();
+  test('has a turn which starts as an empty object', () => {
+    expect(unit.turn).toEqual({});
   });
 
   describe('next turn', () => {
@@ -397,6 +380,33 @@ describe('Unit', () => {
     unit.score = 3;
     unit.losePoints(5);
     expect(unit.score).toBe(-2);
+  });
+
+  test('allows to add abilities', () => {
+    expect(unit.abilities.has('walk')).toBe(false);
+    unit.addAbility('walk', {});
+    expect(unit.abilities.has('walk')).toBe(true);
+  });
+
+  test('allows to add effects', () => {
+    expect(unit.effects.has('ticking')).toBe(false);
+    unit.addEffect('ticking', {});
+    expect(unit.effects.has('ticking')).toBe(true);
+  });
+
+  test('can trigger a given effect when it has such effect', () => {
+    const ticking = { trigger: jest.fn() };
+    unit.addEffect('ticking', ticking);
+    const itching = { trigger: jest.fn() };
+    unit.triggerEffect('ticking');
+    unit.triggerEffect('itching');
+    expect(ticking.trigger).toHaveBeenCalled();
+    expect(itching.trigger).not.toHaveBeenCalled();
+  });
+
+  test('considers itself under an effect when it has such effect', () => {
+    unit.addEffect('ticking', {});
+    expect(unit.isUnderEffect('ticking')).toBe(true);
   });
 
   test("doesn't fetch itself when fetching other units", () => {

@@ -27,55 +27,12 @@ class Unit {
     this.reward = reward === null ? maxHealth : reward;
     this.enemy = enemy;
     this.bound = bound;
+    this.position = null;
+    this.health = maxHealth;
+    this.score = 0;
     this.abilities = new Map();
     this.effects = new Map();
-    this.health = maxHealth;
-    this.position = null;
-    this.score = 0;
-    this.turn = null;
-  }
-
-  /**
-   * Adds an ability to the unit.
-   *
-   * @param {string} name The name of the ability.
-   * @param {Object} ability The ability to add.
-   */
-  addAbility(name, ability) {
-    this.abilities.set(name, ability);
-  }
-
-  /**
-   * Adds an effect to the unit.
-   *
-   * @param {string} name The name of the effect.
-   * @param {Object} effect The effect to add.
-   */
-  addEffect(name, effect) {
-    this.effects.set(name, effect);
-  }
-
-  /**
-   * Checks if the unit is under the given effect.
-   *
-   * @param {string} name The name of the effect.
-   *
-   * @returns {boolean} Whether the unit is under the effect or not.
-   */
-  isUnderEffect(name) {
-    return this.effects.has(name);
-  }
-
-  /**
-   * Triggers the given effect.
-   *
-   * @param {string} name The name of the effect.
-   */
-  triggerEffect(name) {
-    const effect = this.effects.get(name);
-    if (effect) {
-      effect.trigger();
-    }
+    this.turn = {};
   }
 
   /**
@@ -257,6 +214,49 @@ class Unit {
    */
   losePoints(points) {
     this.score -= points;
+  }
+
+  /**
+   * Adds an ability to the unit.
+   *
+   * @param {string} name The name of the ability.
+   * @param {Object} ability The ability to add.
+   */
+  addAbility(name, ability) {
+    this.abilities.set(name, ability);
+  }
+
+  /**
+   * Adds an effect to the unit.
+   *
+   * @param {string} name The name of the effect.
+   * @param {Object} effect The effect to add.
+   */
+  addEffect(name, effect) {
+    this.effects.set(name, effect);
+  }
+
+  /**
+   * Triggers the given effect.
+   *
+   * @param {string} name The name of the effect.
+   */
+  triggerEffect(name) {
+    const effect = this.effects.get(name);
+    if (effect) {
+      effect.trigger();
+    }
+  }
+
+  /**
+   * Checks if the unit is under the given effect.
+   *
+   * @param {string} name The name of the effect.
+   *
+   * @returns {boolean} Whether the unit is under the effect or not.
+   */
+  isUnderEffect(name) {
+    return this.effects.has(name);
   }
 
   /**
