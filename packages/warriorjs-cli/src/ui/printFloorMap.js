@@ -4,7 +4,7 @@ import printLine from './printLine';
 /**
  * Prints the floor map.
  *
- * @param {Object} floor The map of the floor.
+ * @param {Object} map The map of the floor.
  */
 function printFloorMap(map) {
   const floorMap = map
