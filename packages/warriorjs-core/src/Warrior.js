@@ -1,4 +1,3 @@
-import PlayerError from './PlayerError';
 import Unit from './Unit';
 
 /** Class representing a warrior. */
@@ -12,19 +11,6 @@ class Warrior extends Unit {
    */
   constructor(name, character, maxHealth) {
     super(name, character, maxHealth, null, false);
-  }
-
-  /**
-   * Delegates the turn to the player instance.
-   *
-   * @param {Object} turn The turn object.
-   */
-  playTurn(turn) {
-    try {
-      this.player.playTurn(turn);
-    } catch (err) {
-      throw new PlayerError(`Invalid submitted code: ${err.message}`);
-    }
   }
 
   performTurn() {
@@ -47,6 +33,7 @@ class Warrior extends Unit {
   toJSON() {
     return {
       ...super.toJSON(),
+      warrior: true,
       score: this.score,
       abilities: {
         actions: [...this.abilities]

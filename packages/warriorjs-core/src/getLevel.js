@@ -1,4 +1,4 @@
-import LevelLoader from './LevelLoader';
+import loadLevel from './loadLevel';
 
 /**
  * Returns the level for the given level config.
@@ -8,7 +8,7 @@ import LevelLoader from './LevelLoader';
  * @returns {Object} The level.
  */
 function getLevel(levelConfig) {
-  const level = new LevelLoader().load(levelConfig);
+  const level = loadLevel(levelConfig);
   return JSON.parse(JSON.stringify(level));
 }
 

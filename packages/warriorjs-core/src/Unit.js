@@ -412,7 +412,6 @@ class Unit {
       character: this.character,
       maxHealth: this.maxHealth,
       health: this.health,
-      warrior: this.constructor.name === 'Warrior',
     };
   }
 }

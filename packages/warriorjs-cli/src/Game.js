@@ -3,11 +3,11 @@ import path from 'path';
 import globby from 'globby';
 import makeDir from 'make-dir';
 import pathType from 'path-type';
-import { PlayerError, getLevel, runLevel } from '@warriorjs/core';
+import { getLevel, runLevel } from '@warriorjs/core';
 
 import GameError from './GameError';
-import PlayerGenerator from './PlayerGenerator';
 import Profile from './Profile';
+import ProfileGenerator from './ProfileGenerator';
 import Tower from './Tower';
 import getLevelConfig from './utils/getLevelConfig';
 import printFailureLine from './ui/printFailureLine';
@@ -60,7 +60,10 @@ class Game {
         await this.playNormalMode();
       }
     } catch (err) {
-      if (err instanceof GameError) {
+      if (
+        err instanceof GameError ||
+        err.message.startsWith('Invalid Player code')
+      ) {
         printFailureLine(err.message);
       } else {
         throw err;
@@ -301,7 +304,8 @@ class Game {
     const level = getLevel(levelConfig);
     printLevel(level);
 
-    const { events, passed, score } = await this.runLevel(levelConfig);
+    const playerCode = await this.profile.readPlayerCode();
+    const { events, passed, score } = await runLevel(levelConfig, playerCode);
 
     if (!this.silencePlay) {
       await printPlay(levelNumber, events, this.delay);
@@ -322,7 +326,7 @@ class Game {
           ));
         if (showClue) {
           await this.profile.requestClue();
-          await this.generatePlayer();
+          await this.generateProfileFiles();
           printSuccessLine(
             `See ${this.profile.getReadmeFilePath()} for the clues.`,
           );
@@ -359,26 +363,6 @@ class Game {
     }
 
     return hasNextLevel;
-  }
-
-  /**
-   * Runs the level with the given config and the player code.
-   *
-   * @param {Object} levelConfig The config of the level.
-   *
-   * @returns {Object} The play.
-   */
-  async runLevel(levelConfig) {
-    const playerCode = await this.profile.readPlayerCode();
-    try {
-      return runLevel(levelConfig, playerCode);
-    } catch (err) {
-      if (err instanceof PlayerError) {
-        throw new GameError(err.message);
-      }
-
-      throw err;
-    }
   }
 
   /**
@@ -424,20 +408,20 @@ class Game {
    */
   async prepareNextLevel() {
     await this.profile.goToNextLevel();
-    await this.generatePlayer();
+    await this.generateProfileFiles();
   }
 
   /**
-   * Generates the player.
+   * Generates the profile files.
    */
-  async generatePlayer() {
+  async generateProfileFiles() {
     const levelConfig = getLevelConfig(
       this.profile.levelNumber,
       this.tower,
       this.profile,
     );
     const level = getLevel(levelConfig);
-    await new PlayerGenerator(this.profile, level).generate();
+    await new ProfileGenerator(this.profile, level).generate();
   }
 
   /**

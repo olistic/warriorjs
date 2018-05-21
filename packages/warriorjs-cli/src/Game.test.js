@@ -6,7 +6,7 @@ import { getLevel } from '@warriorjs/core';
 
 import Game from './Game';
 import GameError from './GameError';
-import PlayerGenerator from './PlayerGenerator';
+import ProfileGenerator from './ProfileGenerator';
 import Profile from './Profile';
 import getLevelConfig from './utils/getLevelConfig';
 import printLine from './ui/printLine';
@@ -14,7 +14,7 @@ import printSuccessLine from './ui/printSuccessLine';
 import requestConfirmation from './ui/requestConfirmation';
 
 jest.mock('@warriorjs/core');
-jest.mock('./PlayerGenerator');
+jest.mock('./ProfileGenerator');
 jest.mock('./utils/getLevelConfig');
 jest.mock('./ui/printLine');
 jest.mock('./ui/printSuccessLine');
@@ -354,10 +354,10 @@ describe('Game', () => {
 
   test('prepares next level', async () => {
     game.profile = { goToNextLevel: jest.fn() };
-    game.generatePlayer = jest.fn();
+    game.generateProfileFiles = jest.fn();
     await game.prepareNextLevel();
     expect(game.profile.goToNextLevel).toHaveBeenCalled();
-    expect(game.generatePlayer).toHaveBeenCalled();
+    expect(game.generateProfileFiles).toHaveBeenCalled();
   });
 
   test('generates player', async () => {
@@ -366,11 +366,11 @@ describe('Game', () => {
     getLevelConfig.mockReturnValue('config');
     getLevel.mockReturnValue('level');
     const mockGenerate = jest.fn();
-    PlayerGenerator.mockImplementation(() => ({ generate: mockGenerate }));
-    await game.generatePlayer();
+    ProfileGenerator.mockImplementation(() => ({ generate: mockGenerate }));
+    await game.generateProfileFiles();
     expect(getLevelConfig).toHaveBeenCalledWith(1, 'tower', game.profile);
     expect(getLevel).toHaveBeenCalledWith('config');
-    expect(PlayerGenerator).toHaveBeenCalledWith(game.profile, 'level');
+    expect(ProfileGenerator).toHaveBeenCalledWith(game.profile, 'level');
     expect(mockGenerate).toHaveBeenCalled();
   });
 
