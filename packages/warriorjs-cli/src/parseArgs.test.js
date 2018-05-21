@@ -46,6 +46,20 @@ describe('-l', () => {
   });
 });
 
+describe('-s', () => {
+  test('parses correctly', () => {
+    expect(parseArgs(['-s']).s).toBe(true);
+  });
+
+  test('has alias --silent', () => {
+    expect(parseArgs(['--silent']).silent).toBe(true);
+  });
+
+  test('defaults to false', () => {
+    expect(parseArgs([]).s).toBe(false);
+  });
+});
+
 describe('-t', () => {
   test('parses correctly', () => {
     expect(parseArgs(['-t', '0.3']).t).toBe(0.3);

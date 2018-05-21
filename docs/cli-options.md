@@ -20,8 +20,8 @@ fine-tune the scoring.
 
 ## `--silent`
 
-Skip displaying game logs to speed up the game. By default, the game logs are
-shown.
+Suppress play log. Use this option if you just care about the outcome of playing
+a level, and not each step of the play.
 
 ## `--time <seconds>`
 

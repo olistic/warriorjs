@@ -32,7 +32,7 @@ function parseArgs(args) {
       },
       s: {
         alias: 'silent',
-        describe: 'Skip displaying game logs',
+        describe: 'Suppress play log',
         type: 'boolean',
       },
       t: {
