@@ -58,6 +58,7 @@
     "lodash.merge": "^4.6.1",
     "make-dir": "^1.3.0",
     "path-type": "^3.0.0",
+    "string-width": "^2.1.1",
     "strip-ansi": "^4.0.0",
     "wrap-ansi": "^3.0.1",
     "yargs": "^11.0.0"
