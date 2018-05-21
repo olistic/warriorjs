@@ -18,6 +18,11 @@ directory is used.
 Practice a level. Use this option on levels you are having difficulty or want to
 fine-tune the scoring.
 
+## `--silent`
+
+Suppress play log. Use this option if you just care about the outcome of playing
+a level, and not each step of the play.
+
 ## `--time <seconds>`
 
 Delay each turn by seconds. By default, each step of each turn is delayed by 0.6

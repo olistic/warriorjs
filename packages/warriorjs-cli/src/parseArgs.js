@@ -30,6 +30,11 @@ function parseArgs(args) {
         describe: 'Practice level (epic mode only)',
         type: 'number',
       },
+      s: {
+        alias: 'silent',
+        describe: 'Suppress play log',
+        type: 'boolean',
+      },
       t: {
         alias: 'time',
         coerce: arg => {
