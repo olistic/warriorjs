@@ -1,5 +1,4 @@
 import printFloorMap from './printFloorMap';
-import printLevelDescription from './printLevelDescription';
 import printLevelHeader from './printLevelHeader';
 
 /**
@@ -7,12 +6,10 @@ import printLevelHeader from './printLevelHeader';
  *
  * @param {Object} level The level to print.
  * @param {number} level.number The number of the level.
- * @param {string} level.description The description of the level.
  * @param {Object} level.floor.map The map of the floor.
  */
-function printLevel({ number, description, floor: { map } }) {
+function printLevel({ number, floor: { map } }) {
   printLevelHeader(number);
-  printLevelDescription(description);
   printFloorMap(map);
 }
 
