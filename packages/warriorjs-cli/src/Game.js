@@ -15,6 +15,7 @@ import printLevelReport from './ui/printLevelReport';
 import printLevel from './ui/printLevel';
 import printLine from './ui/printLine';
 import printPlay from './ui/printPlay';
+import printSeparator from './ui/printSeparator';
 import printSuccessLine from './ui/printSuccessLine';
 import printTowerReport from './ui/printTowerReport';
 import printWarningLine from './ui/printWarningLine';
@@ -305,6 +306,8 @@ class Game {
     if (!this.silencePlay) {
       await printPlay(levelNumber, events, this.delay);
     }
+
+    printSeparator();
 
     if (!passed) {
       printFailureLine(
