@@ -1,6 +1,9 @@
 {
   "private": true,
-  "workspaces": ["packages/*", "website"],
+  "workspaces": [
+    "packages/*",
+    "website"
+  ],
   "homepage": "https://warrior.js.org",
   "repository": "https://github.com/olistic/warriorjs",
   "scripts": {
@@ -37,6 +40,9 @@
     "prettier": "1.12.1"
   },
   "lint-staged": {
-    "*.{js,json,css,md}": ["prettier --write", "git add"]
+    "*.{js,json,css,md}": [
+      "prettier --write",
+      "git add"
+    ]
   }
 }
