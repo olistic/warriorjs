@@ -8,7 +8,7 @@ import printRow from './printRow';
  * @param {number} turnNumber The turn number.
  */
 function printTurnHeader(turnNumber) {
-  printRow(` turn ${String(turnNumber).padStart(3, '0')} `, {
+  printRow(` ${String(turnNumber).padStart(3, '0')} `, {
     position: 'middle',
     padding: chalk.gray('-'),
   });
