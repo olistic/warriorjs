@@ -127,7 +127,7 @@ class Unit {
 
     this.log(`takes ${amount} damage, ${this.health} health power left`);
 
-    if (!this.health) {
+    if (this.health === 0) {
       this.log('dies');
       this.vanish();
     }
