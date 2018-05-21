@@ -6,8 +6,8 @@ import pathType from 'path-type';
 import { getLevel, runLevel } from '@warriorjs/core';
 
 import GameError from './GameError';
-import PlayerGenerator from './PlayerGenerator';
 import Profile from './Profile';
+import ProfileGenerator from './ProfileGenerator';
 import Tower from './Tower';
 import getLevelConfig from './utils/getLevelConfig';
 import printFailureLine from './ui/printFailureLine';
@@ -326,7 +326,7 @@ class Game {
           ));
         if (showClue) {
           await this.profile.requestClue();
-          await this.generatePlayer();
+          await this.generateProfileFiles();
           printSuccessLine(
             `See ${this.profile.getReadmeFilePath()} for the clues.`,
           );
@@ -408,20 +408,20 @@ class Game {
    */
   async prepareNextLevel() {
     await this.profile.goToNextLevel();
-    await this.generatePlayer();
+    await this.generateProfileFiles();
   }
 
   /**
-   * Generates the player.
+   * Generates the profile files.
    */
-  async generatePlayer() {
+  async generateProfileFiles() {
     const levelConfig = getLevelConfig(
       this.profile.levelNumber,
       this.tower,
       this.profile,
     );
     const level = getLevel(levelConfig);
-    await new PlayerGenerator(this.profile, level).generate();
+    await new ProfileGenerator(this.profile, level).generate();
   }
 
   /**

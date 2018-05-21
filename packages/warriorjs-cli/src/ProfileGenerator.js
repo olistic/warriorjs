@@ -15,9 +15,10 @@ const templatesPath = path.resolve(__dirname, '..', 'templates');
 const playerCodeTemplateFilePath = path.join(templatesPath, 'Player.js');
 const readmeTemplateFilePath = path.join(templatesPath, 'README.md.ejs');
 
-class PlayerGenerator {
+/** Class representing a profile generator. */
+class ProfileGenerator {
   /**
-   * Creates a player generator.
+   * Creates a profile generator.
    *
    * @param {Profile} profile The profile.
    * @param {Object} level The level.
@@ -28,7 +29,7 @@ class PlayerGenerator {
   }
 
   /**
-   * Generates the player files (README and, if first level, player code).
+   * Generates the profile files (README and, if first level, player code).
    */
   async generate() {
     await this.generateReadmeFile();
@@ -63,4 +64,4 @@ class PlayerGenerator {
   }
 }
 
-export default PlayerGenerator;
+export default ProfileGenerator;
