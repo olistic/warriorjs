@@ -1,7 +1,6 @@
 import delay from 'delay';
 
 import printBoard from './printBoard';
-import printLevelHeader from './printLevelHeader';
 import printLogMessage from './printLogMessage';
 import printPlay from './printPlay';
 import printTurnHeader from './printTurnHeader';
@@ -28,21 +27,9 @@ test('starts counting board offset from zero, increments on each UNIT event with
   ];
   await printPlay(1, events);
   expect(printBoard.mock.calls[0][1]).toBe(0);
-  expect(printBoard.mock.calls[1][1]).toBe(0);
+  expect(printBoard.mock.calls[1][1]).toBe(1);
   expect(printBoard.mock.calls[2][1]).toBe(1);
-  expect(printBoard.mock.calls[3][1]).toBe(1);
-  expect(printBoard.mock.calls[4][1]).toBe(0);
-});
-
-test('prints level header and board on first event', async () => {
-  const events = [
-    { type: 'TURN', floor: 'floor1' },
-    { type: 'UNIT', floor: 'floor2' },
-  ];
-  await printPlay(1, events);
-  expect(printLevelHeader).toHaveBeenCalledTimes(1);
-  expect(printLevelHeader).toHaveBeenCalledWith(1);
-  expect(printBoard).toHaveBeenCalledTimes(3);
+  expect(printBoard.mock.calls[3][1]).toBe(0);
 });
 
 test('prints turn header on each TURN event', async () => {
@@ -72,7 +59,7 @@ test('ignores events of unknown type', async () => {
   await printPlay(1, events);
 });
 
-test('sleeps the specified time once at the beginning and after each event', async () => {
+test('sleeps the specified time after each event', async () => {
   const events = [
     { type: 'TURN' },
     { type: 'UNIT' },
@@ -80,6 +67,6 @@ test('sleeps the specified time once at the beginning and after each event', asy
     { type: 'UNIT' },
   ];
   await printPlay(1, events, 42);
-  expect(delay).toHaveBeenCalledTimes(5);
+  expect(delay).toHaveBeenCalledTimes(4);
   expect(delay).toHaveBeenCalledWith(42);
 });
