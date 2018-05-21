@@ -4,7 +4,7 @@ describe('Warrior', () => {
   let warrior;
 
   beforeEach(() => {
-    warrior = new Warrior('Joe', '@', 20);
+    warrior = new Warrior('Joe', '@', '#8fbcbb', 20);
     warrior.addAbility('feel', { description: 'a description' });
     warrior.addAbility('walk', { action: true, description: 'a description' });
     warrior.log = jest.fn();

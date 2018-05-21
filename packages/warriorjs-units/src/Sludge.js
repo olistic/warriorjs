@@ -4,6 +4,7 @@ import { attack, feel } from '@warriorjs/abilities';
 const Sludge = {
   name: 'Sludge',
   character: 's',
+  color: '#d08770',
   maxHealth: 12,
   abilities: {
     attack: attack({ power: 3 }),

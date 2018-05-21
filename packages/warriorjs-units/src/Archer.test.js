@@ -14,6 +14,10 @@ describe('Archer', () => {
     expect(Archer.character).toBe('a');
   });
 
+  test('has #ebcb8b color', () => {
+    expect(Archer.color).toBe('#ebcb8b');
+  });
+
   test('has 7 max health', () => {
     expect(Archer.maxHealth).toBe(7);
   });

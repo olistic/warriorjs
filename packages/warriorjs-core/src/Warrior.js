@@ -7,10 +7,11 @@ class Warrior extends Unit {
    *
    * @param {string} name The name of the warrior.
    * @param {string} character The character of the warrior.
+   * @param {string} color The color of the warrior.
    * @param {number} maxHealth The max health in HP.
    */
-  constructor(name, character, maxHealth) {
-    super(name, character, maxHealth, null, false);
+  constructor(name, character, color, maxHealth) {
+    super(name, character, color, maxHealth, null, false);
   }
 
   performTurn() {

@@ -23,6 +23,7 @@ const levelConfig = {
     warrior: {
       name: 'Joe',
       character: '@',
+      color: '#8fbcbb',
       maxHealth: 20,
       abilities: {
         walk: () => ({
@@ -47,6 +48,7 @@ const levelConfig = {
       {
         name: 'Sludge',
         character: 's',
+        color: '#d08770',
         maxHealth: 12,
         abilities: {
           attack: () => ({
@@ -103,6 +105,7 @@ test('returns level', () => {
           character: '@',
           unit: {
             name: 'Joe',
+            color: '#8fbcbb',
             maxHealth: 20,
           },
         },
@@ -113,6 +116,7 @@ test('returns level', () => {
           character: 's',
           unit: {
             name: 'Sludge',
+            color: '#d08770',
             maxHealth: 12,
           },
         },

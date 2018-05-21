@@ -4,6 +4,7 @@ const ThickSludge = {
   ...Sludge,
   name: 'Thick Sludge',
   character: 'S',
+  color: '#bf616a',
   maxHealth: 24,
 };
 

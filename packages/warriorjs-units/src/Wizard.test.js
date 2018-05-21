@@ -14,6 +14,10 @@ describe('Wizard', () => {
     expect(Wizard.character).toBe('w');
   });
 
+  test('has #b48ead color', () => {
+    expect(Wizard.color).toBe('#b48ead');
+  });
+
   test('has 3 max health', () => {
     expect(Wizard.maxHealth).toBe(3);
   });

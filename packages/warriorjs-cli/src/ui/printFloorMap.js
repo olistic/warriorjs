@@ -13,8 +13,7 @@ function printFloorMap(floorMap) {
         row
           .map(({ character, unit }) => {
             if (unit) {
-              const style = getUnitStyle(unit.name);
-              return style(character);
+              return getUnitStyle(unit)(character);
             }
 
             return character;
