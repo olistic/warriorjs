@@ -1,7 +1,5 @@
 import inquirer from 'inquirer';
 
-const ANSWER_NAME = 'requestConfirmation';
-
 /**
  * Requests confirmation from the user.
  *
@@ -9,15 +7,16 @@ const ANSWER_NAME = 'requestConfirmation';
  * @param {boolean} defaultAnswer The default answer.
  */
 async function requestConfirmation(message, defaultAnswer = false) {
+  const answerName = 'requestConfirmation';
   const answers = await inquirer.prompt([
     {
       message,
-      name: ANSWER_NAME,
+      name: answerName,
       type: 'confirm',
       default: defaultAnswer,
     },
   ]);
-  return answers[ANSWER_NAME];
+  return answers[answerName];
 }
 
 export default requestConfirmation;
