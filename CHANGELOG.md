@@ -8,9 +8,18 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [0.4.1] - 2018-05-22
+
 ### Added
 
 * `--silent` flag to CLI ([@xaviserrag][] in [#82][])
+
+### Changed
+
+* Print level independently of play log ([@olistic][] in [#145][])
+* UI tweaks ([@olistic][] in [#147][])
+* Improve think ability description ([@olistic][] in [#149][])
+* Improve level tips ([@olistic][] in [#150][])
 
 ## [0.4.0] - 2018-05-19
 
@@ -46,7 +55,7 @@ and this project adheres to
 ### Added
 
 * Subtract reward points when killing a friendly unit ([@Terseus][] in [#87][])
-* Think ability (`console.log` alternative) ([@olistic][] in [#102][])
+* Think ability (`console.log` replacement) ([@olistic][] in [#102][])
 
 ### Changed
 
@@ -93,7 +102,8 @@ and this project adheres to
 
 Initial version
 
-[unreleased]: https://github.com/olistic/warriorjs/compare/v0.4.0...HEAD
+[unreleased]: https://github.com/olistic/warriorjs/compare/v0.4.1...HEAD
+[0.4.1]: https://github.com/olistic/warriorjs/compare/v0.4.0...v0.4.1
 [0.4.0]: https://github.com/olistic/warriorjs/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/olistic/warriorjs/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/olistic/warriorjs/compare/v0.1.1...v0.2.0
@@ -130,3 +140,7 @@ Initial version
 [#133]: https://github.com/olistic/warriorjs/pull/133
 [#138]: https://github.com/olistic/warriorjs/pull/138
 [#140]: https://github.com/olistic/warriorjs/pull/140
+[#145]: https://github.com/olistic/warriorjs/pull/145
+[#147]: https://github.com/olistic/warriorjs/pull/147
+[#149]: https://github.com/olistic/warriorjs/pull/149
+[#150]: https://github.com/olistic/warriorjs/pull/150
