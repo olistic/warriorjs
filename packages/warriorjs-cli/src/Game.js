@@ -197,7 +197,7 @@ class Game {
 
     const profileDirectoryPath = path.join(
       this.gameDirectoryPath,
-      `${warriorName}-${tower}`.toLowerCase().replace(/[^a-z0-9]+/, '-'),
+      `${warriorName}-${tower}`.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
     );
 
     const profile = new Profile(warriorName, tower.name, profileDirectoryPath);
