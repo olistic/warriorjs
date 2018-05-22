@@ -58,9 +58,9 @@ export default {
       description:
         "It's too dark to see anything, but you smell sludge nearby.",
       tip:
-        "Use `warrior.feel().isUnit()` to see if there's anything in front of you, and `warrior.attack()` to fight it. Remember, you can only do one action per turn.",
+        "Use `warrior.feel().isEmpty()` to see if there's anything in front of you, and `warrior.attack()` to fight it. Remember, you can only do one action per turn.",
       clue:
-        'Add an if/else condition using `warrior.feel().isUnit()` to decide whether to attack or walk.',
+        'Add an if/else condition using `warrior.feel().isEmpty()` to decide whether to attack or walk.',
       timeBonus: 20,
       aceScore: 26,
       floor: {
@@ -165,7 +165,7 @@ export default {
     {
       description: 'You can hear bow strings being stretched.',
       tip:
-        "No new abilities this time, but you must be careful not to rest while taking damage. Save a `health` variable and compare it on each turn to see if you're taking damage.",
+        "No new abilities this time, but you must be careful not to rest while taking damage. Save a `this.health` variable and compare it on each turn to see if you're taking damage.",
       clue:
         "Set `this.health` to your current health at the end of `playTurn`. If this is greater than your current health next turn, then you know you're taking damage and shouldn't rest.",
       timeBonus: 45,
@@ -218,7 +218,7 @@ export default {
     {
       description: 'You hear cries for help. Captives must need rescuing.',
       tip:
-        "When you find a unit, use `!unit.isEnemy() && unit.isBound()` to see if he's a captive and `warrior.rescue()` to rescue him. Don't attack captives.",
+        "Combine `warrior.feel().getUnit().isEnemy()` and `warrior.feel().getUnit().isBound()` to see if there's a captive, and `warrior.rescue()` to rescue him. Don't attack captives.",
       clue:
         "Don't forget to constantly check if you are being attacked. Rest until your health is full if you're not taking damage.",
       timeBonus: 45,
