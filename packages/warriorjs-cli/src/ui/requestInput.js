@@ -1,21 +1,24 @@
 import inquirer from 'inquirer';
 
-const ANSWER_NAME = 'requestInput';
+inquirer.registerPrompt('suggest', require('inquirer-prompt-suggest'));
 
 /**
  * Requests input from the user.
  *
  * @param {string} message The prompt message.
+ * @param {string[]} suggestions The input suggestions.
  */
-async function requestInput(message) {
+async function requestInput(message, suggestions = []) {
+  const answerName = 'requestInput';
   const answers = await inquirer.prompt([
     {
       message,
-      name: ANSWER_NAME,
-      type: 'input',
+      suggestions,
+      name: answerName,
+      type: suggestions.length ? 'suggest' : 'input',
     },
   ]);
-  return answers[ANSWER_NAME];
+  return answers[answerName];
 }
 
 export default requestInput;

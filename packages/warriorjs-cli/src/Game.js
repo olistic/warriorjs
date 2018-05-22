@@ -10,6 +10,7 @@ import Profile from './Profile';
 import ProfileGenerator from './ProfileGenerator';
 import Tower from './Tower';
 import getLevelConfig from './utils/getLevelConfig';
+import getWarriorNameSuggestions from './utils/getWarriorNameSuggestions';
 import printFailureLine from './ui/printFailureLine';
 import printLevelReport from './ui/printLevelReport';
 import printLevel from './ui/printLevel';
@@ -180,7 +181,11 @@ class Game {
    * @returns {Profile} The created profile.
    */
   async createProfile() {
-    const warriorName = await requestInput('Enter a name for your warrior:');
+    const warriorNameSuggestions = getWarriorNameSuggestions();
+    const warriorName = await requestInput(
+      'Enter a name for your warrior:',
+      warriorNameSuggestions,
+    );
     if (!warriorName) {
       throw new GameError(
         'Your warrior must have a name if you want him or her to become a legend!',
@@ -192,7 +197,7 @@ class Game {
 
     const profileDirectoryPath = path.join(
       this.gameDirectoryPath,
-      `${warriorName}-${tower}`.toLowerCase().replace(/[^a-z0-9]+/, '-'),
+      `${warriorName}-${tower}`.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
     );
 
     const profile = new Profile(warriorName, tower.name, profileDirectoryPath);

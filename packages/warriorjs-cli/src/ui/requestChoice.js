@@ -1,7 +1,5 @@
 import inquirer from 'inquirer';
 
-const ANSWER_NAME = 'requestChoice';
-
 export const SEPARATOR = '';
 
 function getChoices(items) {
@@ -25,15 +23,16 @@ function getChoices(items) {
  * @param {any[]} items The items to choose from.
  */
 async function requestChoice(message, items) {
+  const answerName = 'requestChoice';
   const answers = await inquirer.prompt([
     {
       message,
-      name: ANSWER_NAME,
+      name: answerName,
       type: 'list',
       choices: getChoices(items),
     },
   ]);
-  return answers[ANSWER_NAME];
+  return answers[answerName];
 }
 
 export default requestChoice;
