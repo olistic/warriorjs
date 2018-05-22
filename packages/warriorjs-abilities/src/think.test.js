@@ -15,7 +15,7 @@ describe('think', () => {
 
   test('has a description', () => {
     expect(think.description).toBe(
-      `Think about your options before choosing an action.`,
+      'Think about your options before choosing an action (`console.log` replacement).',
     );
   });
 
