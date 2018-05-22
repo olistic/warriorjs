@@ -1,6 +1,6 @@
 {
   "name": "@warriorjs/tower-intermediate",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "WarriorJS intermediate tower",
   "author": "Matias Olivera <moliverafreire@gmail.com>",
   "license": "MIT",
@@ -23,9 +23,9 @@
     "@warriorjs/core": "^0.4.0"
   },
   "dependencies": {
-    "@warriorjs/abilities": "^0.4.0",
+    "@warriorjs/abilities": "^0.4.1",
     "@warriorjs/effects": "^0.4.0",
     "@warriorjs/geography": "^0.4.0",
-    "@warriorjs/units": "^0.4.0"
+    "@warriorjs/units": "^0.4.1"
   }
 }
