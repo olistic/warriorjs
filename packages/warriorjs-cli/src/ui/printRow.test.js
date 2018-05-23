@@ -23,6 +23,11 @@ test('positions message in the middle if specified', () => {
   expect(printLine).toHaveBeenCalledWith('   foo    ');
 });
 
+test("doesn't print message if position is unknown", () => {
+  printRow('foo', { position: 'foo' });
+  expect(printLine).not.toHaveBeenCalled();
+});
+
 test('positions message at the end if specified', () => {
   getScreenSize.mockReturnValue([11, 0]);
   printRow('foo', { position: 'end' });
