@@ -8,6 +8,12 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [0.4.2] - 2018-05-23
+
+### Added
+
+* Warrior name suggestions ([@olistic][] in [#152][])
+
 ## [0.4.1] - 2018-05-22
 
 ### Added
@@ -144,3 +150,4 @@ Initial version
 [#147]: https://github.com/olistic/warriorjs/pull/147
 [#149]: https://github.com/olistic/warriorjs/pull/149
 [#150]: https://github.com/olistic/warriorjs/pull/150
+[#152]: https://github.com/olistic/warriorjs/pull/152
