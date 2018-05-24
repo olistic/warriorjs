@@ -13,7 +13,7 @@
     "crowdin-download": "crowdin download -b master"
   },
   "devDependencies": {
-    "docusaurus": "^1.1.2"
+    "docusaurus": "^1.1.3"
   },
   "dependencies": {
     "prop-types": "^15.6.1"
