@@ -1,12 +1,12 @@
 import chalk from 'chalk';
 
-import constructSeperator from '../constructors/constructSeperator';
+import constructSeperator from './constructSeperator';
 
 /**
  * Construct a seperator.
  */
 function seperator() {
-  const header = constructSeperator(this.screen.width);
+  const header = constructSeperator(this.screen.width - 1);
   return chalk.gray.dim(header);
 }
 

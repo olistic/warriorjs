@@ -366,11 +366,7 @@ class Game {
     const hasNextLevel = this.tower.hasLevel(levelNumber + 1);
 
     if (hasNextLevel) {
-      layout
-        .get('log')
-        .pushLine.success(
-          '{center}Success! You have found the stairs.{/center}',
-        );
+      layout.get('log').pushLine.success('Success! You have found the stairs.');
     } else {
       layout
         .get('log')
