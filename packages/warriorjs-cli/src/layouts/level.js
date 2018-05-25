@@ -64,10 +64,14 @@ export default class LevelLayout extends BaseLayout {
           totalScore,
           towerReport,
         },
+        afterNewLine(element) {
+          element.setScrollPerc(100);
+        },
       },
     };
 
     this.initBoxes();
     this.listenEscape();
+    this.elements.log.focus();
   }
 }

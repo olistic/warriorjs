@@ -306,7 +306,7 @@ class Game {
     const levelConfig = getLevelConfig(levelNumber, this.tower, this.profile);
     const level = getLevel(levelConfig);
 
-    layout.get('header').setContent.levelHeader(levelNumber);
+    layout.select('header').setContent.levelHeader(levelNumber);
 
     const playerCode = await this.profile.readPlayerCode();
     const { events, passed, score } = await runLevel(levelConfig, playerCode);
@@ -317,9 +317,9 @@ class Game {
 
       // eslint-disable-next-line no-restricted-syntax
       for (const event of events) {
-        layout.get('log').pushLine.eventMessage(event, turnNumber);
-        layout.get('floorMap').setContent.floorMap(event.floor.map);
-        layout.get('status').setContent.warriorStatus(event.floor.warrior);
+        layout.select('log').pushLine.eventMessage(event, turnNumber);
+        layout.select('floorMap').setContent.floorMap(event.floor.map);
+        layout.select('status').setContent.warriorStatus(event.floor.warrior);
         layout.render();
 
         switch (event.type) {
@@ -336,11 +336,11 @@ class Game {
       }
     }
 
-    layout.get('log').pushLine.seperator();
+    layout.select('log').pushLine.seperator();
 
     if (!passed) {
       layout
-        .get('log')
+        .select('log')
         .pushLine.failure(
           `Sorry, you failed level ${levelNumber}. Change your script and try again.`,
         );
@@ -366,10 +366,12 @@ class Game {
     const hasNextLevel = this.tower.hasLevel(levelNumber + 1);
 
     if (hasNextLevel) {
-      layout.get('log').pushLine.success('Success! You have found the stairs.');
+      layout
+        .select('log')
+        .pushLine.success('Success! You have found the stairs.');
     } else {
       layout
-        .get('log')
+        .select('log')
         .pushLine.success(
           'CONGRATULATIONS! You have climbed to the top of the tower.',
         );
@@ -377,22 +379,22 @@ class Game {
 
     const { aceScore } = levelConfig;
 
-    layout.get('log').pushLine.levelReport(this.profile, score, aceScore);
+    layout.select('log').pushLine.levelReport(this.profile, score, aceScore);
     layout.render();
 
     const { warriorScore, timeBonus, clearBonus } = score;
     const totalScore = warriorScore + timeBonus + clearBonus;
     this.profile.tallyPoints(levelNumber, totalScore, aceScore);
 
-    // if (this.profile.isEpic()) {
-    //   if (!hasNextLevel && !this.practiceLevel) {
-    //     layout.get('log').pushLine.towerReport(this.profile);
-    //   }
-    // } else {
-    //   await this.requestNextLevel();
-    // }
+    if (this.profile.isEpic()) {
+      if (!hasNextLevel && !this.practiceLevel) {
+        layout.select('log').pushLine.towerReport(this.profile);
+      }
+    } else {
+      await this.requestNextLevel();
+    }
 
-    // return hasNextLevel;
+    return hasNextLevel;
   }
 
   /**

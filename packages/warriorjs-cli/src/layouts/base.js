@@ -19,6 +19,12 @@ export default class BaseLayout {
     });
   }
 
+  async awaitKeyInput(keys) {
+    return new Promise(resolve => {
+      this.screen.key(keys, resolve);
+    });
+  }
+
   render() {
     this.screen.render();
   }
@@ -35,6 +41,10 @@ export default class BaseLayout {
   }
 
   get(box) {
+    return this.elements[box];
+  }
+
+  select(box) {
     if (!this.elements[box] || !this.boxes[box].methods) {
       return undefined;
     }
@@ -59,11 +69,17 @@ export default class BaseLayout {
                   return;
                 }
 
+                if (this.boxes[box].beforeNewLine)
+                  this.boxes[box].beforeNewLine(element);
+
                 if (!Array.isArray(res)) {
                   res = [res];
                 }
 
                 element[method](...res);
+
+                if (this.boxes[box].afterNewLine)
+                  this.boxes[box].afterNewLine(element);
               };
             },
           }),
