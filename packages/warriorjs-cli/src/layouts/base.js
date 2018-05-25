@@ -39,29 +39,35 @@ export default class BaseLayout {
       return undefined;
     }
 
+    const self = this;
     const element = this.elements[box];
 
-    const proxy = method =>
-      new Proxy(this.boxes[box].methods, {
-        get: (target, key) => {
-          if (!target[key]) {
-            return undefined;
-          }
+    return new Proxy(
+      {},
+      {
+        get: (m, method) =>
+          new Proxy(this.boxes[box].methods, {
+            get: (target, key) => {
+              if (!target[key]) {
+                return undefined;
+              }
 
-          return (...args) => {
-            let res = target[key].apply(this, args);
-            if (!Array.isArray(res)) {
-              res = [res];
-            }
+              return (...args) => {
+                let res = target[key].apply(self, args);
 
-            method.apply(element, res);
-          };
-        },
-      });
+                if (!res) {
+                  return;
+                }
 
-    return {
-      set: proxy(element.setContent),
-      push: proxy(element.pushLine),
-    };
+                if (!Array.isArray(res)) {
+                  res = [res];
+                }
+
+                element[method](...res);
+              };
+            },
+          }),
+      },
+    );
   }
 }

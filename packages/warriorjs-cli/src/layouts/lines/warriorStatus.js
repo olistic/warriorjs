@@ -1,14 +1,14 @@
 import chalk from 'chalk';
 
 /**
- * Construct a warrior status line.
+ * Construct the warrior status.
  *
  * @param {string} warrior The warrior.
  */
-function constructWarriorStatus(warrior) {
+function warriorStatus(warrior) {
   const warriorHealth = chalk.redBright(`♥ ${warrior.health}\n`);
   const warriorScore = chalk.yellowBright(`♦ ${warrior.score}`);
-  return warriorHealth + warriorScore;
+  return [warriorHealth, warriorScore].join('\n');
 }
 
-export default constructWarriorStatus;
+export default warriorStatus;

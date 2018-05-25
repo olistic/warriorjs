@@ -1,14 +1,15 @@
-import sleep from 'delay';
-import chalk from 'chalk';
-
 import BaseLayout from './base';
-import getGradeForScore from '../utils/getGradeForScore';
-import constructLevelHeader from '../ui/constructLevelHeader';
-import constructFloorMap from '../ui/constructFloorMap';
-import constructTurnHeader from '../ui/constructTurnHeader';
-import constructLogMessage from '../ui/constructLogMessage';
-import constructWarriorStatus from '../ui/constructWarriorStatus';
-import constructSeperator from '../ui/constructSeperator';
+
+import floorMap from './lines/floorMap';
+import levelHeader from './lines/levelHeader';
+import warriorStatus from './lines/warriorStatus';
+import seperator from './lines/seperator';
+import eventMessage from './lines/eventMessage';
+import success from './lines/success';
+import failure from './lines/failure';
+import totalScore from './lines/totalScore';
+import levelReport from './lines/levelReport';
+import towerReport from './lines/towerReport';
 
 export default class LevelLayout extends BaseLayout {
   constructor() {
@@ -20,18 +21,27 @@ export default class LevelLayout extends BaseLayout {
         left: 0,
         height: 1,
         tags: true,
+        methods: {
+          levelHeader,
+        },
       },
       status: {
         top: 1,
         left: 0,
         height: 2,
         tags: true,
+        methods: {
+          warriorStatus,
+        },
       },
       floorMap: {
         top: 3,
         left: 0,
         height: 3,
         tags: true,
+        methods: {
+          floorMap,
+        },
       },
       log: {
         bottom: 0,
@@ -45,122 +55,19 @@ export default class LevelLayout extends BaseLayout {
         scrollbar: {
           bg: 'gray',
         },
+        methods: {
+          seperator,
+          eventMessage,
+          success,
+          failure,
+          levelReport,
+          totalScore,
+          towerReport,
+        },
       },
     };
 
     this.initBoxes();
     this.listenEscape();
-  }
-
-  setHeader(levelNumber) {
-    const content = constructLevelHeader(this.screen.width, levelNumber);
-    const header = this.get('header');
-
-    header.setContent(content);
-  }
-
-  setFloorMap(map) {
-    const content = constructFloorMap(map);
-    const floorMap = this.get('floorMap');
-
-    floorMap.setContent(content);
-  }
-
-  setWarriorStatus(warrior) {
-    const content = constructWarriorStatus(warrior);
-    const status = this.get('status');
-
-    status.setContent(content);
-  }
-
-  async printEvents(events, delay) {
-    const log = this.get('log');
-    let turnNumber = 1;
-    log.focus();
-
-    // eslint-disable-next-line no-restricted-syntax
-    for (const event of events) {
-      let line = null;
-
-      const { type } = event;
-      switch (type) {
-        case 'TURN':
-          line = constructTurnHeader(this.screen.width, turnNumber);
-
-          turnNumber += 1;
-          break;
-        case 'UNIT': {
-          const { message } = event;
-          if (message) {
-            line = constructLogMessage(event.unit, message);
-          }
-
-          break;
-        }
-        default:
-          break;
-      }
-
-      this.setFloorMap(event.floor.map);
-      this.setWarriorStatus(event.floor.warrior);
-
-      if (line) {
-        log.pushLine(line);
-        log.setScrollPerc(100);
-      }
-
-      this.render();
-      await sleep(delay); // eslint-disable-line no-await-in-loop
-    }
-  }
-
-  pushLine(line) {
-    const log = this.get('log');
-    log.pushLine(line);
-  }
-
-  printSeparator() {
-    this.pushLine(chalk.grey.dim(constructSeperator(this.screen.width)));
-    this.render();
-  }
-
-  printFailure(message) {
-    this.pushLine(chalk.red(message));
-    this.render();
-  }
-
-  printSuccess(message) {
-    this.pushLine(chalk.green(message));
-    this.render();
-  }
-
-  printLevelReport(profile, { warriorScore, timeBonus, clearBonus }, aceScore) {
-    this.pushLine(`Warrior Score: ${warriorScore}`);
-    this.pushLine(`Time Bonus: ${timeBonus}`);
-    this.pushLine(`Clear Bonus: ${clearBonus}`);
-
-    const totalScore = warriorScore + timeBonus + clearBonus;
-    if (profile.isEpic()) {
-      if (aceScore) {
-        this.pushLine(`Level Grade: ${getGradeForScore(totalScore, aceScore)}`);
-      }
-
-      this.printTotalScore(profile.currentEpicScore, totalScore);
-    } else {
-      this.printTotalScore(profile.score, totalScore);
-    }
-
-    this.render();
-  }
-
-  printTotalScore(currentScore, addition) {
-    if (currentScore === 0) {
-      this.pushLine(`Total Score: ${addition.toString()}`);
-    } else {
-      this.pushLine(
-        `Total Score: ${currentScore} + ${addition} = ${currentScore +
-          addition}`,
-      );
-    }
   }
 }

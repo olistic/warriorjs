@@ -5,7 +5,7 @@ import constructSeperator from './constructSeperator';
 /**
  * Construct a turn header.
  *
- * @param {number} screenWidth  Width of the current screen
+ * @param {number} screenWidth  The screen width
  * @param {number} turnNumber   The turn number.
  */
 function constructTurnHeader(screenWidth, turnNumber) {

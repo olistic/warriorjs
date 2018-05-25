@@ -1,4 +1,5 @@
 import path from 'path';
+import sleep from 'delay';
 
 import globby from 'globby';
 import makeDir from 'make-dir';
@@ -12,15 +13,8 @@ import Tower from './Tower';
 import getLevelConfig from './utils/getLevelConfig';
 import getWarriorNameSuggestions from './utils/getWarriorNameSuggestions';
 import printFailureLine from './ui/printFailureLine';
-import printLevelReport from './ui/printLevelReport';
-// import printLevel from './ui/printLevel';
-import constructLevelHeader from './ui/constructLevelHeader';
-import constructFloorMap from './ui/constructFloorMap';
 import printLine from './ui/printLine';
-import printPlay from './ui/printPlay';
-import printSeparator from './ui/printSeparator';
 import printSuccessLine from './ui/printSuccessLine';
-import printTowerReport from './ui/printTowerReport';
 import printWarningLine from './ui/printWarningLine';
 import requestChoice, { SEPARATOR } from './ui/requestChoice';
 import requestConfirmation from './ui/requestConfirmation';
@@ -45,7 +39,7 @@ class Game {
     this.runDirectoryPath = runDirectoryPath;
     this.practiceLevel = practiceLevel;
     this.silencePlay = silencePlay;
-    this.delay = delay * 1000;
+    this.delay = delay * 500;
     this.assumeYes = assumeYes;
     this.gameDirectoryPath = path.join(this.runDirectoryPath, gameDirectory);
   }
@@ -312,22 +306,44 @@ class Game {
     const levelConfig = getLevelConfig(levelNumber, this.tower, this.profile);
     const level = getLevel(levelConfig);
 
-    layout.setHeader(level.number);
+    layout.get('header').setContent.levelHeader(levelNumber);
 
     const playerCode = await this.profile.readPlayerCode();
     const { events, passed, score } = await runLevel(levelConfig, playerCode);
 
     // FIXME: break for loop if player quits before end of events
     if (!this.silencePlay) {
-      await layout.printEvents(events, 100);
+      let turnNumber = 1;
+
+      // eslint-disable-next-line no-restricted-syntax
+      for (const event of events) {
+        layout.get('log').pushLine.eventMessage(event, turnNumber);
+        layout.get('floorMap').setContent.floorMap(event.floor.map);
+        layout.get('status').setContent.warriorStatus(event.floor.warrior);
+        layout.render();
+
+        switch (event.type) {
+          case 'TURN':
+            turnNumber += 1;
+            break;
+          case 'UNIT': {
+            await sleep(this.delay); // eslint-disable-line no-await-in-loop
+            break;
+          }
+          default:
+            break;
+        }
+      }
     }
 
-    layout.printSeparator();
+    layout.get('log').pushLine.seperator();
 
     if (!passed) {
-      layout.printFailure(
-        `Sorry, you failed level ${levelNumber}. Change your script and try again.`,
-      );
+      layout
+        .get('log')
+        .pushLine.failure(
+          `Sorry, you failed level ${levelNumber}. Change your script and try again.`,
+        );
 
       // if (levelConfig.clue && !this.profile.isShowingClue()) {
       //   const showClue =
@@ -350,24 +366,31 @@ class Game {
     const hasNextLevel = this.tower.hasLevel(levelNumber + 1);
 
     if (hasNextLevel) {
-      layout.printSuccess('Success! You have found the stairs.');
+      layout
+        .get('log')
+        .pushLine.success(
+          '{center}Success! You have found the stairs.{/center}',
+        );
     } else {
-      layout.printSuccessLine(
-        'CONGRATULATIONS! You have climbed to the top of the tower.',
-      );
+      layout
+        .get('log')
+        .pushLine.success(
+          'CONGRATULATIONS! You have climbed to the top of the tower.',
+        );
     }
 
     const { aceScore } = levelConfig;
 
-    layout.printLevelReport(this.profile, score, aceScore);
+    layout.get('log').pushLine.levelReport(this.profile, score, aceScore);
+    layout.render();
 
-    // const { warriorScore, timeBonus, clearBonus } = score;
-    // const totalScore = warriorScore + timeBonus + clearBonus;
-    // this.profile.tallyPoints(levelNumber, totalScore, aceScore);
+    const { warriorScore, timeBonus, clearBonus } = score;
+    const totalScore = warriorScore + timeBonus + clearBonus;
+    this.profile.tallyPoints(levelNumber, totalScore, aceScore);
 
     // if (this.profile.isEpic()) {
     //   if (!hasNextLevel && !this.practiceLevel) {
-    //     printTowerReport(this.profile);
+    //     layout.get('log').pushLine.towerReport(this.profile);
     //   }
     // } else {
     //   await this.requestNextLevel();

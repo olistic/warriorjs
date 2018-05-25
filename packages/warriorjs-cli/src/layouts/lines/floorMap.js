@@ -1,12 +1,12 @@
-import getUnitStyle from './getUnitStyle';
+import getUnitStyle from '../../ui/getUnitStyle';
 
 /**
  * Construct the floor map.
  *
  * @param {Object} map The map of the floor.
  */
-function constructFloorMap(map) {
-  const floorMap = map
+function floorMap(map) {
+  const content = map
     .map(row =>
       row
         .map(({ character, unit }) => {
@@ -20,7 +20,8 @@ function constructFloorMap(map) {
         .join(''),
     )
     .join('\n');
-  return floorMap;
+
+  return content;
 }
 
-export default constructFloorMap;
+export default floorMap;
