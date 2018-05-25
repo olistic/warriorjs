@@ -1,11 +1,14 @@
 import sleep from 'delay';
+import chalk from 'chalk';
 
 import BaseLayout from './base';
+import getGradeForScore from '../utils/getGradeForScore';
 import constructLevelHeader from '../ui/constructLevelHeader';
 import constructFloorMap from '../ui/constructFloorMap';
 import constructTurnHeader from '../ui/constructTurnHeader';
 import constructLogMessage from '../ui/constructLogMessage';
 import constructWarriorStatus from '../ui/constructWarriorStatus';
+import constructSeperator from '../ui/constructSeperator';
 
 export default class LevelLayout extends BaseLayout {
   constructor() {
@@ -107,8 +110,57 @@ export default class LevelLayout extends BaseLayout {
       }
 
       this.render();
-
       await sleep(delay); // eslint-disable-line no-await-in-loop
+    }
+  }
+
+  pushLine(line) {
+    const log = this.get('log');
+    log.pushLine(line);
+  }
+
+  printSeparator() {
+    this.pushLine(chalk.grey.dim(constructSeperator(this.screen.width)));
+    this.render();
+  }
+
+  printFailure(message) {
+    this.pushLine(chalk.red(message));
+    this.render();
+  }
+
+  printSuccess(message) {
+    this.pushLine(chalk.green(message));
+    this.render();
+  }
+
+  printLevelReport(profile, { warriorScore, timeBonus, clearBonus }, aceScore) {
+    this.pushLine(`Warrior Score: ${warriorScore}`);
+    this.pushLine(`Time Bonus: ${timeBonus}`);
+    this.pushLine(`Clear Bonus: ${clearBonus}`);
+
+    const totalScore = warriorScore + timeBonus + clearBonus;
+    if (profile.isEpic()) {
+      if (aceScore) {
+        this.pushLine(`Level Grade: ${getGradeForScore(totalScore, aceScore)}`);
+      }
+
+      this.printTotalScore(profile.currentEpicScore, totalScore);
+    } else {
+      this.printTotalScore(profile.score, totalScore);
+    }
+
+    this.render();
+  }
+
+  printTotalScore(currentScore, addition) {
+    if (currentScore === 0) {
+      this.pushLine(`Total Score: ${addition.toString()}`);
+    } else {
+      this.pushLine(
+        `Total Score: ${currentScore} + ${addition} = ${currentScore +
+          addition}`,
+      );
     }
   }
 }

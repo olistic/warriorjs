@@ -317,49 +317,49 @@ class Game {
     const playerCode = await this.profile.readPlayerCode();
     const { events, passed, score } = await runLevel(levelConfig, playerCode);
 
-    // TODO: fix exit (printEvents is not stopped)
+    // FIXME: break for loop if player quits before end of events
     if (!this.silencePlay) {
-      await layout.printEvents(events, this.delay);
+      await layout.printEvents(events, 100);
     }
 
-    // printSeparator();
+    layout.printSeparator();
 
-    // if (!passed) {
-    //   printFailureLine(
-    //     `Sorry, you failed level ${levelNumber}. Change your script and try again.`,
-    //   );
+    if (!passed) {
+      layout.printFailure(
+        `Sorry, you failed level ${levelNumber}. Change your script and try again.`,
+      );
 
-    //   if (levelConfig.clue && !this.profile.isShowingClue()) {
-    //     const showClue =
-    //       this.assumeYes ||
-    //       (await requestConfirmation(
-    //         'Would you like to read the additional clues for this level?',
-    //       ));
-    //     if (showClue) {
-    //       await this.profile.requestClue();
-    //       await this.generateProfileFiles();
-    //       printSuccessLine(
-    //         `See ${this.profile.getReadmeFilePath()} for the clues.`,
-    //       );
-    //     }
-    //   }
+      // if (levelConfig.clue && !this.profile.isShowingClue()) {
+      //   const showClue =
+      //     this.assumeYes ||
+      //     (await requestConfirmation(
+      //       'Would you like to read the additional clues for this level?',
+      //     ));
+      //   if (showClue) {
+      //     await this.profile.requestClue();
+      //     await this.generateProfileFiles();
+      //     printSuccessLine(
+      //       `See ${this.profile.getReadmeFilePath()} for the clues.`,
+      //     );
+      //   }
+      // }
 
-    //   return false;
-    // }
+      return false;
+    }
 
-    // const hasNextLevel = this.tower.hasLevel(levelNumber + 1);
+    const hasNextLevel = this.tower.hasLevel(levelNumber + 1);
 
-    // if (hasNextLevel) {
-    //   printSuccessLine('Success! You have found the stairs.');
-    // } else {
-    //   printSuccessLine(
-    //     'CONGRATULATIONS! You have climbed to the top of the tower.',
-    //   );
-    // }
+    if (hasNextLevel) {
+      layout.printSuccess('Success! You have found the stairs.');
+    } else {
+      layout.printSuccessLine(
+        'CONGRATULATIONS! You have climbed to the top of the tower.',
+      );
+    }
 
-    // const { aceScore } = levelConfig;
+    const { aceScore } = levelConfig;
 
-    // printLevelReport(this.profile, score, aceScore);
+    layout.printLevelReport(this.profile, score, aceScore);
 
     // const { warriorScore, timeBonus, clearBonus } = score;
     // const totalScore = warriorScore + timeBonus + clearBonus;
