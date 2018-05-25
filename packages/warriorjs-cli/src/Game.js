@@ -304,7 +304,6 @@ class Game {
   async playLevel(levelNumber) {
     const layout = new LevelLayout();
     const levelConfig = getLevelConfig(levelNumber, this.tower, this.profile);
-    const level = getLevel(levelConfig);
 
     layout.select('header').setContent.levelHeader(levelNumber);
 
@@ -344,6 +343,7 @@ class Game {
         .pushLine.failure(
           `Sorry, you failed level ${levelNumber}. Change your script and try again.`,
         );
+      layout.render();
 
       // if (levelConfig.clue && !this.profile.isShowingClue()) {
       //   const showClue =
