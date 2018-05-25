@@ -23,11 +23,11 @@ export default class BaseLayout {
     this.screen.render();
   }
 
-  append() {
+  initBoxes() {
     // eslint-disable-next-line no-restricted-syntax
     for (const box in this.boxes) {
       if (this.boxes[box]) {
-        const options = this.layout[box] || {};
+        const options = this.boxes[box] || {};
         this._boxes[box] = blessed.box(options);
         this.screen.append(this._boxes[box]);
       }

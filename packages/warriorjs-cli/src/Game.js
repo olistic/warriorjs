@@ -13,7 +13,9 @@ import getLevelConfig from './utils/getLevelConfig';
 import getWarriorNameSuggestions from './utils/getWarriorNameSuggestions';
 import printFailureLine from './ui/printFailureLine';
 import printLevelReport from './ui/printLevelReport';
-import printLevel from './ui/printLevel';
+// import printLevel from './ui/printLevel';
+import constructLevelHeader from './ui/constructLevelHeader';
+import constructFloorMap from './ui/constructFloorMap';
 import printLine from './ui/printLine';
 import printPlay from './ui/printPlay';
 import printSeparator from './ui/printSeparator';
@@ -306,71 +308,72 @@ class Game {
    * @returns {boolean} Whether playing can continue or not (for epic mode),
    */
   async playLevel(levelNumber) {
-    const levelLayout = new LevelLayout();
+    const layout = new LevelLayout();
     const levelConfig = getLevelConfig(levelNumber, this.tower, this.profile);
-
     const level = getLevel(levelConfig);
-    printLevel(level);
+
+    layout.setHeader(level.number);
 
     const playerCode = await this.profile.readPlayerCode();
     const { events, passed, score } = await runLevel(levelConfig, playerCode);
 
+    // TODO: fix exit (printEvents is not stopped)
     if (!this.silencePlay) {
-      await printPlay(levelNumber, events, this.delay);
+      await layout.printEvents(events, this.delay);
     }
 
-    printSeparator();
+    // printSeparator();
 
-    if (!passed) {
-      printFailureLine(
-        `Sorry, you failed level ${levelNumber}. Change your script and try again.`,
-      );
+    // if (!passed) {
+    //   printFailureLine(
+    //     `Sorry, you failed level ${levelNumber}. Change your script and try again.`,
+    //   );
 
-      if (levelConfig.clue && !this.profile.isShowingClue()) {
-        const showClue =
-          this.assumeYes ||
-          (await requestConfirmation(
-            'Would you like to read the additional clues for this level?',
-          ));
-        if (showClue) {
-          await this.profile.requestClue();
-          await this.generateProfileFiles();
-          printSuccessLine(
-            `See ${this.profile.getReadmeFilePath()} for the clues.`,
-          );
-        }
-      }
+    //   if (levelConfig.clue && !this.profile.isShowingClue()) {
+    //     const showClue =
+    //       this.assumeYes ||
+    //       (await requestConfirmation(
+    //         'Would you like to read the additional clues for this level?',
+    //       ));
+    //     if (showClue) {
+    //       await this.profile.requestClue();
+    //       await this.generateProfileFiles();
+    //       printSuccessLine(
+    //         `See ${this.profile.getReadmeFilePath()} for the clues.`,
+    //       );
+    //     }
+    //   }
 
-      return false;
-    }
+    //   return false;
+    // }
 
-    const hasNextLevel = this.tower.hasLevel(levelNumber + 1);
+    // const hasNextLevel = this.tower.hasLevel(levelNumber + 1);
 
-    if (hasNextLevel) {
-      printSuccessLine('Success! You have found the stairs.');
-    } else {
-      printSuccessLine(
-        'CONGRATULATIONS! You have climbed to the top of the tower.',
-      );
-    }
+    // if (hasNextLevel) {
+    //   printSuccessLine('Success! You have found the stairs.');
+    // } else {
+    //   printSuccessLine(
+    //     'CONGRATULATIONS! You have climbed to the top of the tower.',
+    //   );
+    // }
 
-    const { aceScore } = levelConfig;
+    // const { aceScore } = levelConfig;
 
-    printLevelReport(this.profile, score, aceScore);
+    // printLevelReport(this.profile, score, aceScore);
 
-    const { warriorScore, timeBonus, clearBonus } = score;
-    const totalScore = warriorScore + timeBonus + clearBonus;
-    this.profile.tallyPoints(levelNumber, totalScore, aceScore);
+    // const { warriorScore, timeBonus, clearBonus } = score;
+    // const totalScore = warriorScore + timeBonus + clearBonus;
+    // this.profile.tallyPoints(levelNumber, totalScore, aceScore);
 
-    if (this.profile.isEpic()) {
-      if (!hasNextLevel && !this.practiceLevel) {
-        printTowerReport(this.profile);
-      }
-    } else {
-      await this.requestNextLevel();
-    }
+    // if (this.profile.isEpic()) {
+    //   if (!hasNextLevel && !this.practiceLevel) {
+    //     printTowerReport(this.profile);
+    //   }
+    // } else {
+    //   await this.requestNextLevel();
+    // }
 
-    return hasNextLevel;
+    // return hasNextLevel;
   }
 
   /**
