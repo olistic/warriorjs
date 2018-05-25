@@ -53,7 +53,10 @@ export default class LevelLayout extends BaseLayout {
         alwaysScroll: true,
         scrollable: true,
         scrollbar: {
-          bg: 'gray',
+          bg: 'white',
+          track: {
+            bg: 'grey',
+          },
         },
         methods: {
           seperator,
