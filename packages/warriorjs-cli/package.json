@@ -50,6 +50,7 @@
     "@warriorjs/tower-beginner": "^0.4.1",
     "ansi-escapes": "^3.0.0",
     "array-shuffle": "^1.0.1",
+    "blessed": "^0.1.81",
     "chalk": "^2.4.1",
     "cp-file": "^6.0.0",
     "delay": "^2.0.0",

@@ -24,6 +24,8 @@ import requestChoice, { SEPARATOR } from './ui/requestChoice';
 import requestConfirmation from './ui/requestConfirmation';
 import requestInput from './ui/requestInput';
 
+import LevelLayout from './layouts/level';
+
 const gameDirectory = 'warriorjs';
 
 /** Class representing a game. */
@@ -304,6 +306,7 @@ class Game {
    * @returns {boolean} Whether playing can continue or not (for epic mode),
    */
   async playLevel(levelNumber) {
+    const levelLayout = new LevelLayout();
     const levelConfig = getLevelConfig(levelNumber, this.tower, this.profile);
 
     const level = getLevel(levelConfig);
