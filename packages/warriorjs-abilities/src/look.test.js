@@ -44,5 +44,16 @@ describe('look', () => {
         .mockReturnValueOnce('space4');
       expect(look.perform()).toEqual(['space1', 'space2', 'space3']);
     });
+
+    test('cant see though walls', () => {
+      const wall = { isWall: () => true };
+      unit.getSensedSpaceAt
+        .mockReturnValueOnce('space1')
+        .mockReturnValueOnce(wall)
+        .mockReturnValueOnce('space3')
+        .mockReturnValueOnce('space4');
+
+      expect(look.perform()).toEqual(['space1', wall]);
+    });
   });
 });
