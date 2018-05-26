@@ -10,9 +10,7 @@ function look({ range }) {
       const spaces = offsets.map(offset =>
         unit.getSensedSpaceAt(direction, offset),
       );
-      const firstWallIndex = spaces.findIndex(
-        space => space && space.isWall && space.isWall(),
-      );
+      const firstWallIndex = spaces.findIndex(space => space && space.isWall());
       return firstWallIndex === -1
         ? spaces
         : spaces.slice(0, firstWallIndex + 1);
