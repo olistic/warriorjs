@@ -1,15 +1,15 @@
 import BaseLayout from './base';
 
-import floorMap from './lines/floorMap';
-import levelHeader from './lines/levelHeader';
-import warriorStatus from './lines/warriorStatus';
-import seperator from './lines/seperator';
-import eventMessage from './lines/eventMessage';
-import success from './lines/success';
-import failure from './lines/failure';
-import totalScore from './lines/totalScore';
-import levelReport from './lines/levelReport';
-import towerReport from './lines/towerReport';
+import floorMap from './modify/floorMap';
+import levelHeader from './modify/levelHeader';
+import warriorStatus from './modify/warriorStatus';
+import seperator from './modify/seperator';
+import eventMessage from './modify/eventMessage';
+import success from './modify/success';
+import failure from './modify/failure';
+import totalScore from './modify/totalScore';
+import levelReport from './modify/levelReport';
+import towerReport from './modify/towerReport';
 
 export default class LevelLayout extends BaseLayout {
   constructor() {
@@ -21,7 +21,7 @@ export default class LevelLayout extends BaseLayout {
         left: 0,
         height: 1,
         tags: true,
-        methods: {
+        modify: {
           levelHeader,
         },
       },
@@ -30,7 +30,7 @@ export default class LevelLayout extends BaseLayout {
         left: 0,
         height: 2,
         tags: true,
-        methods: {
+        modify: {
           warriorStatus,
         },
       },
@@ -39,7 +39,7 @@ export default class LevelLayout extends BaseLayout {
         left: 0,
         height: 3,
         tags: true,
-        methods: {
+        modify: {
           floorMap,
         },
       },
@@ -58,7 +58,7 @@ export default class LevelLayout extends BaseLayout {
             bg: 'grey',
           },
         },
-        methods: {
+        modify: {
           seperator,
           eventMessage,
           success,
@@ -67,6 +67,7 @@ export default class LevelLayout extends BaseLayout {
           totalScore,
           towerReport,
         },
+        preform: {},
         afterNewLine(element) {
           element.setScrollPerc(100);
         },

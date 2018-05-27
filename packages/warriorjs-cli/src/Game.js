@@ -1,5 +1,6 @@
 import path from 'path';
 import sleep from 'delay';
+import blessed from 'blessed';
 
 import globby from 'globby';
 import makeDir from 'make-dir';
@@ -39,7 +40,7 @@ class Game {
     this.runDirectoryPath = runDirectoryPath;
     this.practiceLevel = practiceLevel;
     this.silencePlay = silencePlay;
-    this.delay = delay * 500;
+    this.delay = delay * 100;
     this.assumeYes = assumeYes;
     this.gameDirectoryPath = path.join(this.runDirectoryPath, gameDirectory);
   }
@@ -305,7 +306,7 @@ class Game {
     const layout = new LevelLayout();
     const levelConfig = getLevelConfig(levelNumber, this.tower, this.profile);
 
-    layout.select('header').setContent.levelHeader(levelNumber);
+    layout.select('header').set.levelHeader(levelNumber);
 
     const playerCode = await this.profile.readPlayerCode();
     const { events, passed, score } = await runLevel(levelConfig, playerCode);
@@ -316,9 +317,9 @@ class Game {
 
       // eslint-disable-next-line no-restricted-syntax
       for (const event of events) {
-        layout.select('log').pushLine.eventMessage(event, turnNumber);
-        layout.select('floorMap').setContent.floorMap(event.floor.map);
-        layout.select('status').setContent.warriorStatus(event.floor.warrior);
+        layout.select('log').push.eventMessage(event, turnNumber);
+        layout.select('floorMap').set.floorMap(event.floor.map);
+        layout.select('status').set.warriorStatus(event.floor.warrior);
         layout.render();
 
         switch (event.type) {
@@ -335,15 +336,16 @@ class Game {
       }
     }
 
-    layout.select('log').pushLine.seperator();
+    layout.select('log').push.seperator();
+    layout.render();
 
     if (!passed) {
-      layout
-        .select('log')
-        .pushLine.failure(
-          `Sorry, you failed level ${levelNumber}. Change your script and try again.`,
-        );
-      layout.render();
+      // layout
+      //   .select('log')
+      //   .pushLine.failure(
+      //     `Sorry, you failed level ${levelNumber}. Change your script and try again.`,
+      //   );
+      // layout.render();
 
       // if (levelConfig.clue && !this.profile.isShowingClue()) {
       //   const showClue =
@@ -366,20 +368,18 @@ class Game {
     const hasNextLevel = this.tower.hasLevel(levelNumber + 1);
 
     if (hasNextLevel) {
-      layout
-        .select('log')
-        .pushLine.success('Success! You have found the stairs.');
+      layout.select('log').push.success('Success! You have found the stairs.');
     } else {
       layout
         .select('log')
-        .pushLine.success(
+        .push.success(
           'CONGRATULATIONS! You have climbed to the top of the tower.',
         );
     }
 
     const { aceScore } = levelConfig;
 
-    layout.select('log').pushLine.levelReport(this.profile, score, aceScore);
+    layout.select('log').push.levelReport(this.profile, score, aceScore);
     layout.render();
 
     const { warriorScore, timeBonus, clearBonus } = score;
@@ -388,7 +388,7 @@ class Game {
 
     if (this.profile.isEpic()) {
       if (!hasNextLevel && !this.practiceLevel) {
-        layout.select('log').pushLine.towerReport(this.profile);
+        layout.select('log').push.towerReport(this.profile);
       }
     } else {
       await this.requestNextLevel();
