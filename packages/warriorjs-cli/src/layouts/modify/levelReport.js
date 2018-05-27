@@ -1,3 +1,5 @@
+import chalk from 'chalk';
+
 import getGradeForScore from '../../utils/getGradeForScore';
 import totalScore from './totalScore';
 
@@ -18,19 +20,26 @@ function levelReport(
 ) {
   const lines = [];
 
-  lines.push(`Warrior Score: ${warriorScore}`);
-  lines.push(`Time Bonus: ${timeBonus}`);
-  lines.push(`Clear Bonus: ${clearBonus}`);
+  lines.push(`${chalk.gray.dim('>')} Warrior Score: ${warriorScore}`);
+  lines.push(`${chalk.gray.dim('>')} Time Bonus: ${timeBonus}`);
+  lines.push(`${chalk.gray.dim('>')} Clear Bonus: ${clearBonus}`);
 
   const score = warriorScore + timeBonus + clearBonus;
   if (profile.isEpic()) {
     if (aceScore) {
-      lines.push(`Level Grade: ${getGradeForScore(score, aceScore)}`);
+      lines.push(
+        `${chalk.gray.dim('>')} Level Grade: ${getGradeForScore(
+          score,
+          aceScore,
+        )}`,
+      );
     }
 
-    lines.push(totalScore(profile.currentEpicScore, score));
+    lines.push(
+      `${chalk.gray.dim('>')} ${totalScore(profile.currentEpicScore, score)}`,
+    );
   } else {
-    lines.push(totalScore(profile.score, score));
+    lines.push(`${chalk.gray.dim('>')} ${totalScore(profile.score, score)}`);
   }
 
   return lines.join('\n');

@@ -1,4 +1,4 @@
-import getUnitStyle from '../../ui/getUnitStyle';
+import getUnitStyle from './getUnitStyle';
 
 /**
  * Construct the floor map.

@@ -11,6 +11,9 @@ import totalScore from './modify/totalScore';
 import levelReport from './modify/levelReport';
 import towerReport from './modify/towerReport';
 
+import confirmation from './preform/confirmation';
+import wait from './preform/wait';
+
 export default class LevelLayout extends BaseLayout {
   constructor() {
     super();
@@ -67,7 +70,10 @@ export default class LevelLayout extends BaseLayout {
           totalScore,
           towerReport,
         },
-        preform: {},
+        preform: {
+          confirmation,
+          wait,
+        },
         afterNewLine(element) {
           element.setScrollPerc(100);
         },

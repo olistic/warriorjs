@@ -1,12 +1,12 @@
 import path from 'path';
 import sleep from 'delay';
-import blessed from 'blessed';
 
 import globby from 'globby';
 import makeDir from 'make-dir';
 import pathType from 'path-type';
-import { getLevel, runLevel } from '@warriorjs/core';
+import { getLevel } from '@warriorjs/core';
 
+import Level from './Level';
 import GameError from './GameError';
 import Profile from './Profile';
 import ProfileGenerator from './ProfileGenerator';
@@ -20,8 +20,6 @@ import printWarningLine from './ui/printWarningLine';
 import requestChoice, { SEPARATOR } from './ui/requestChoice';
 import requestConfirmation from './ui/requestConfirmation';
 import requestInput from './ui/requestInput';
-
-import LevelLayout from './layouts/level';
 
 const gameDirectory = 'warriorjs';
 
@@ -303,98 +301,51 @@ class Game {
    * @returns {boolean} Whether playing can continue or not (for epic mode),
    */
   async playLevel(levelNumber) {
-    const layout = new LevelLayout();
-    const levelConfig = getLevelConfig(levelNumber, this.tower, this.profile);
-
-    layout.select('header').set.levelHeader(levelNumber);
-
-    const playerCode = await this.profile.readPlayerCode();
-    const { events, passed, score } = await runLevel(levelConfig, playerCode);
-
-    // FIXME: break for loop if player quits before end of events
-    if (!this.silencePlay) {
-      let turnNumber = 1;
-
-      // eslint-disable-next-line no-restricted-syntax
-      for (const event of events) {
-        layout.select('log').push.eventMessage(event, turnNumber);
-        layout.select('floorMap').set.floorMap(event.floor.map);
-        layout.select('status').set.warriorStatus(event.floor.warrior);
-        layout.render();
-
-        switch (event.type) {
-          case 'TURN':
-            turnNumber += 1;
-            break;
-          case 'UNIT': {
-            await sleep(this.delay); // eslint-disable-line no-await-in-loop
-            break;
-          }
-          default:
-            break;
-        }
-      }
-    }
-
-    layout.select('log').push.seperator();
-    layout.render();
+    const level = new Level(levelNumber, this.profile, this.tower, this.delay);
+    const passed = await level.run();
+    await level.printResult();
 
     if (!passed) {
-      // layout
-      //   .select('log')
-      //   .pushLine.failure(
-      //     `Sorry, you failed level ${levelNumber}. Change your script and try again.`,
-      //   );
-      // layout.render();
+      const wantsClue = level.giveClue();
 
-      // if (levelConfig.clue && !this.profile.isShowingClue()) {
-      //   const showClue =
-      //     this.assumeYes ||
-      //     (await requestConfirmation(
-      //       'Would you like to read the additional clues for this level?',
-      //     ));
-      //   if (showClue) {
-      //     await this.profile.requestClue();
-      //     await this.generateProfileFiles();
-      //     printSuccessLine(
-      //       `See ${this.profile.getReadmeFilePath()} for the clues.`,
-      //     );
-      //   }
-      // }
+      if (wantsClue) {
+        await this.profile.requestClue();
+        await this.generateProfileFiles();
+      }
 
-      return false;
+      await level.requestReplay();
+      level.destroy();
+      this.playLevel(levelNumber);
+      return;
     }
 
-    const hasNextLevel = this.tower.hasLevel(levelNumber + 1);
+    const nextLevel = levelNumber + 1;
+    const hasNextLevel = this.tower.hasLevel(nextLevel);
 
     if (hasNextLevel) {
-      layout.select('log').push.success('Success! You have found the stairs.');
-    } else {
-      layout
-        .select('log')
-        .push.success(
-          'CONGRATULATIONS! You have climbed to the top of the tower.',
-        );
-    }
+      const wantsToContinue = await level.requestNextLevel();
 
-    const { aceScore } = levelConfig;
-
-    layout.select('log').push.levelReport(this.profile, score, aceScore);
-    layout.render();
-
-    const { warriorScore, timeBonus, clearBonus } = score;
-    const totalScore = warriorScore + timeBonus + clearBonus;
-    this.profile.tallyPoints(levelNumber, totalScore, aceScore);
-
-    if (this.profile.isEpic()) {
-      if (!hasNextLevel && !this.practiceLevel) {
-        layout.select('log').push.towerReport(this.profile);
+      if (wantsToContinue) {
+        await this.prepareNextLevel();
+        level.destroy();
+        this.playLevel(nextLevel);
+        return;
       }
-    } else {
-      await this.requestNextLevel();
-    }
 
-    return hasNextLevel;
+      if (this.profile.isEpic()) {
+        const nextLevelDelay = 5000;
+        await level.notifyEpicNextLevel(nextLevelDelay);
+        await sleep(nextLevelDelay);
+
+        level.destroy();
+        this.playLevel(nextLevel);
+        return;
+      }
+
+      await level.requestReplay();
+      level.destroy();
+      this.playLevel(levelNumber);
+    }
   }
 
   /**

@@ -1,6 +1,6 @@
 import blessed from 'blessed';
+import handleFunction from '../utils/handleFunction';
 
-/* eslint-disable no-underscore-dangle */
 export default class BaseLayout {
   constructor() {
     this.elements = {};
@@ -11,10 +11,13 @@ export default class BaseLayout {
     this.screen = blessed.screen({
       smartCSR: true,
       tput: true,
-      dump: `${__dirname}/logs/prompt.log`,
       autoPadding: true,
       warnings: true,
     });
+  }
+
+  destroy() {
+    if (this.screen) this.screen.destroy();
   }
 
   listenEscape(keys = ['escape', 'C-c']) {
@@ -25,7 +28,7 @@ export default class BaseLayout {
 
   async awaitKeyInput(keys) {
     return new Promise(resolve => {
-      this.screen.key(keys, resolve);
+      this.screen.onceKey(keys, resolve);
     });
   }
 
@@ -62,26 +65,28 @@ export default class BaseLayout {
             return undefined;
           }
 
-          return (...args) => {
-            let res = target[key].apply(scope, args);
-
-            if (!res) {
-              return;
-            }
-
+          return async (...args) => {
             if (this.boxes[box].beforeNewLine)
               this.boxes[box].beforeNewLine(element);
 
-            if (!Array.isArray(res)) {
-              res = [res];
-            }
+            const response = await handleFunction(target[key], scope, args);
 
-            if (modifier) {
-              element[modifier](...res);
+            if (response) {
+              let payload = response;
+              if (!Array.isArray(payload)) {
+                payload = [payload];
+              }
+
+              if (modifier) {
+                element[modifier](...payload);
+              }
             }
 
             if (this.boxes[box].afterNewLine)
               this.boxes[box].afterNewLine(element);
+
+            this.render();
+            return response;
           };
         },
       });
@@ -89,10 +94,12 @@ export default class BaseLayout {
     return {
       set: handle(this.boxes[box].modify, this, 'setContent'),
       push: handle(this.boxes[box].modify, this, 'pushLine'),
-      preform: handle(this.boxes[box].preform, {
-        ...this,
-        box: this.boxes[box],
-      }),
+      preform: handle(
+        this.boxes[box].preform,
+        Object.assign(this, {
+          element: this.elements[box],
+        }),
+      ),
     };
   }
 }

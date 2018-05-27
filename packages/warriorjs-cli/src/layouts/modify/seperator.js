@@ -6,7 +6,7 @@ import constructSeperator from './constructSeperator';
  * Construct a seperator.
  */
 function seperator() {
-  const header = constructSeperator(this.screen.width - 1);
+  const header = constructSeperator(this.screen.width);
   return chalk.gray.dim(header);
 }
 

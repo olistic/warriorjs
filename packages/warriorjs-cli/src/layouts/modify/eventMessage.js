@@ -1,5 +1,5 @@
-import constructTurnHeader from '../constructors/constructTurnHeader';
-import constructLogMessage from '../constructors/constructLogMessage';
+import constructTurnHeader from './constructTurnHeader';
+import logMessage from './logMessage';
 
 function eventMessage(event, turnNumber) {
   let line = null;
@@ -12,7 +12,7 @@ function eventMessage(event, turnNumber) {
     case 'UNIT': {
       const { message } = event;
       if (message) {
-        line = constructLogMessage(event.unit, message);
+        line = logMessage(event.unit, message);
       }
       break;
     }
