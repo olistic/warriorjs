@@ -16,7 +16,7 @@ function ticking({ time }) {
     trigger() {
       unit.log('explodes, collapsing the ceiling and killing every unit');
       [...unit.getOtherUnits(), unit].forEach(anotherUnit =>
-        anotherUnit.takeDamage(anotherUnit.health),
+        anotherUnit.takeDamage(unit, anotherUnit.health),
       );
     },
   });

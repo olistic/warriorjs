@@ -18,6 +18,7 @@ import {
   think,
   shoot,
   walk,
+  wounds,
 } from '@warriorjs/abilities';
 
 export default {
@@ -119,6 +120,7 @@ export default {
           abilities: {
             health: health(),
             rest: rest({ healthGain: 0.1 }),
+            wounds: wounds(),
           },
           position: {
             x: 0,

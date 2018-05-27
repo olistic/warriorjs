@@ -33,6 +33,7 @@ class Unit {
     this.abilities = new Map();
     this.effects = new Map();
     this.turn = {};
+    this.wounds = [];
   }
 
   /**
@@ -82,6 +83,7 @@ class Unit {
   prepareTurn() {
     this.turn = this.getNextTurn();
     this.playTurn(this.turn);
+    this.forgetWounds();
   }
 
   /**
@@ -95,6 +97,23 @@ class Unit {
         this.abilities.get(name).perform(...args);
       }
     }
+  }
+
+  /**
+   * Forgets the acquired wounds.
+   */
+  forgetWounds() {
+    this.wounds = [];
+  }
+
+  /**
+   * Acquires a wound.
+   *
+   * @param {string} direction The direction of the wound.
+   * @param {number} size The size of the wound.
+   */
+  acquireWound(direction, size) {
+    this.wounds.push([direction, size]);
   }
 
   /**
@@ -115,12 +134,18 @@ class Unit {
   /**
    * Subtracts the given amount of health in HP.
    *
+   * @param {Unit} inflictor The unit dealing the damage.
    * @param {number} amount The amount of HP to subtract.
    */
-  takeDamage(amount) {
+  takeDamage(inflictor, amount) {
     if (this.isBound()) {
       this.unbind();
     }
+
+    const damageDirection = this.position.getRelativeDirectionOf(
+      inflictor.getSpace(),
+    );
+    this.acquireWound(damageDirection, amount);
 
     const revisedAmount = this.health - amount < 0 ? this.health : amount;
     this.health -= revisedAmount;
@@ -140,7 +165,7 @@ class Unit {
    * @param {number} amount The amount of HP to inflict.
    */
   damage(receiver, amount) {
-    receiver.takeDamage(amount);
+    receiver.takeDamage(this, amount);
     if (!receiver.isAlive()) {
       if (receiver.as(this).isEnemy()) {
         this.earnPoints(receiver.reward);

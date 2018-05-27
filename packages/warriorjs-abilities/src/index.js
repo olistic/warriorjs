@@ -14,3 +14,4 @@ export { default as rest } from './rest';
 export { default as shoot } from './shoot';
 export { default as think } from './think';
 export { default as walk } from './walk';
+export { default as wounds } from './wounds';
