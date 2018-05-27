@@ -306,7 +306,7 @@ class Game {
     await level.printResult();
 
     if (!passed) {
-      const wantsClue = level.giveClue();
+      const wantsClue = await level.giveClue();
 
       if (wantsClue) {
         await this.profile.requestClue();
@@ -327,6 +327,8 @@ class Game {
 
       if (wantsToContinue) {
         await this.prepareNextLevel();
+        await level.requestNextLevelKey();
+
         level.destroy();
         this.playLevel(nextLevel);
       }

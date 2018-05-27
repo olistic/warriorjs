@@ -74,6 +74,7 @@ export default class Level {
         }. Change your script and try again.`,
       );
 
+      await log.push.seperator();
       return;
     }
 
@@ -100,6 +101,8 @@ export default class Level {
         await log.push.towerReport(this.profile);
       }
     }
+
+    await log.push.seperator();
   }
 
   async giveClue() {
@@ -125,7 +128,7 @@ export default class Level {
 
   async requestReplay() {
     const log = this.ui.select('log');
-    await log.preform.wait(`Press enter to replay the level.`, ['enter']);
+    await log.preform.wait(`Press enter to replay the level.`);
   }
 
   async notifyEpicNextLevel(delay) {
@@ -133,6 +136,11 @@ export default class Level {
     await log.push.success(
       `Continuing to next level in ${delay / 1000} seconds.`,
     );
+  }
+
+  async requestNextLevelKey() {
+    const log = this.ui.select('log');
+    await log.preform.wait('Press enter to start the next level.');
   }
 
   async requestNextLevel() {
@@ -157,11 +165,6 @@ export default class Level {
 
     await log.push.success(
       `See ${this.profile.getReadmeFilePath()} for updated instructions.`,
-    );
-
-    await log.preform.confirmation(
-      'Press enter to start the next level.',
-      true,
     );
 
     return true;

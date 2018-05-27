@@ -5,6 +5,7 @@ async function wait(message, keys = ['enter']) {
 
   const line = `${prompt} ${chalk.green(message)}`;
   this.element.pushLine(line);
+  this.element.setScrollPerc(100);
   this.render();
 
   await this.awaitKeyInput(keys);
