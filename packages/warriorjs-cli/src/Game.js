@@ -329,7 +329,6 @@ class Game {
         await this.prepareNextLevel();
         level.destroy();
         this.playLevel(nextLevel);
-        return;
       }
 
       if (this.profile.isEpic()) {

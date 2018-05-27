@@ -128,6 +128,13 @@ export default class Level {
     await log.preform.wait(`Press enter to replay the level.`, ['enter']);
   }
 
+  async notifyEpicNextLevel(delay) {
+    const log = this.ui.select('log');
+    await log.push.success(
+      `Continuing to next level in ${delay / 1000} seconds.`,
+    );
+  }
+
   async requestNextLevel() {
     const log = this.ui.select('log');
 
@@ -152,14 +159,12 @@ export default class Level {
       `See ${this.profile.getReadmeFilePath()} for updated instructions.`,
     );
 
-    return true;
-  }
-
-  async notifyEpicNextLevel(delay) {
-    const log = this.ui.select('log');
-    await log.push.success(
-      `Continuing to next level in ${delay / 1000} seconds.`,
+    await log.preform.confirmation(
+      'Press enter to start the next level.',
+      true,
     );
+
+    return true;
   }
 
   destroy() {
