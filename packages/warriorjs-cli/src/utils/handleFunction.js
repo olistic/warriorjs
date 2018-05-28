@@ -4,13 +4,22 @@ export const constructors = {
   GeneratorFunction: function*() {}.constructor,
 };
 
-export default async function(callback, scope = {}, args = []) {
+/**
+ * This handle is used to call a unknown function.
+ * Async functions are awaited, Generator functions are completed
+ * and sync functions are called.
+ * @param  {Function} fn       Function that needs to be called
+ * @param  {Object}   scope    Scope that need to be given to the function
+ * @param  {Array}    args     Args that need to be given to the function
+ * @return {Promise<any>}      This promise is resolved once the function is completed. The return value of the function is returned.
+ */
+export default async function(fn, scope = {}, args = []) {
   const { AsyncFunction, GeneratorFunction } = constructors;
 
-  switch (callback.constructor) {
+  switch (fn.constructor) {
     case GeneratorFunction:
       let res = [];
-      const generator = callback.apply(scope, args);
+      const generator = fn.apply(scope, args);
       for (let promise of generator) {
         if (promise instanceof Promise) {
           const resolved = await promise;
@@ -24,9 +33,9 @@ export default async function(callback, scope = {}, args = []) {
       return res;
       break;
     case AsyncFunction:
-      return await callback.apply(scope, args);
+      return await fn.apply(scope, args);
       break;
     default:
-      return callback.apply(scope, args);
+      return fn.apply(scope, args);
   }
 }
