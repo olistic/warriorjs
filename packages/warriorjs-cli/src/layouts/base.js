@@ -120,7 +120,7 @@ export default class BaseLayout {
             const response = await handleFunction(target[key], scope, args);
 
             if (callback) {
-              callback(!Array.isArray(response) ? [response] : response);
+              callback(response);
             }
 
             if (this.DOM[name].afterNewLine)
@@ -133,12 +133,12 @@ export default class BaseLayout {
       });
 
     return {
-      set: handle(this.DOM[name].components, this, response =>
-        element.setContent(...response),
-      ),
-      push: handle(this.DOM[name].components, this, response =>
-        element.pushLine(...response),
-      ),
+      set: handle(this.DOM[name].components, this, response => {
+        if (response) element.setContent(response);
+      }),
+      push: handle(this.DOM[name].components, this, response => {
+        if (response) element.pushLine(response);
+      }),
       preform: handle(
         this.DOM[name].preform,
         Object.assign(this, {
