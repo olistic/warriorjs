@@ -1,5 +1,5 @@
 import blessed from 'blessed';
-import handleFunction from '../utils/handleFunction';
+import handleFunction from '../../utils/handleFunction';
 
 export default class BaseLayout {
   constructor() {
