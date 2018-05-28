@@ -1,7 +1,7 @@
 import chalk from 'chalk';
 
 /**
- * Construct a seperator.
+ * Construct a success seperator.
  */
 function success(message) {
   return `${chalk.gray.dim('>')} ${chalk.green(message)}`;

@@ -1,10 +1,10 @@
 import chalk from 'chalk';
 
 /**
- * Construct a seperator.
+ * Construct a failure seperator.
  */
-function success(message) {
+function failure(message) {
   return `${chalk.gray.dim('>')} ${chalk.red(message)}`;
 }
 
-export default success;
+export default failure;

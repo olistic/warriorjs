@@ -4,7 +4,7 @@ import getGradeForScore from '../../utils/getGradeForScore';
 import totalScore from './totalScore';
 
 /**
- * Constructs the level report.
+ * Constructs a level report.
  *
  * @param {Profile} profile The profile.
  * @param {Object} playScore The score of the play.
