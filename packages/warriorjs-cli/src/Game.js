@@ -6,7 +6,7 @@ import makeDir from 'make-dir';
 import pathType from 'path-type';
 import { getLevel } from '@warriorjs/core';
 
-import Level from './Level';
+import Level from './level';
 import GameError from './GameError';
 import Profile from './Profile';
 import ProfileGenerator from './ProfileGenerator';

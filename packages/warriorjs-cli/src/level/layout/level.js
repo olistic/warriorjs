@@ -1,18 +1,18 @@
 import BaseLayout from './base';
 
-import floorMap from './components/floorMap';
-import levelHeader from './components/levelHeader';
-import warriorStatus from './components/warriorStatus';
-import seperator from './components/seperator';
-import eventMessage from './components/eventMessage';
-import success from './components/success';
-import failure from './components/failure';
-import totalScore from './components/totalScore';
-import levelReport from './components/levelReport';
-import towerReport from './components/towerReport';
+import floorMap from '../components/floorMap';
+import levelHeader from '../components/levelHeader';
+import warriorStatus from '../components/warriorStatus';
+import seperator from '../components/seperator';
+import eventMessage from '../components/eventMessage';
+import success from '../components/success';
+import failure from '../components/failure';
+import totalScore from '../components/totalScore';
+import levelReport from '../components/levelReport';
+import towerReport from '../components/towerReport';
 
-import confirmation from './preform/confirmation';
-import wait from './preform/wait';
+import confirmation from '../preform/confirmation';
+import wait from '../preform/wait';
 
 /**
  * Level layout that is used when running a level.

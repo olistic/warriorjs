@@ -1,8 +1,8 @@
 import sleep from 'delay';
 import { runLevel } from '@warriorjs/core';
 
-import LevelUI from './layouts/level';
-import getLevelConfig from './utils/getLevelConfig';
+import LevelUI from './layout/level';
+import getLevelConfig from '../utils/getLevelConfig';
 
 export default class Level {
   /**
