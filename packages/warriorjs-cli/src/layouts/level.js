@@ -14,6 +14,9 @@ import towerReport from './components/towerReport';
 import confirmation from './preform/confirmation';
 import wait from './preform/wait';
 
+/**
+ * Level layout that is used when running a level.
+ */
 export default class LevelLayout extends BaseLayout {
   constructor() {
     super();
