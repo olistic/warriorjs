@@ -1,5 +1,11 @@
 import chalk from 'chalk';
 
+/**
+ * Ask the user a message and expect a Y/n answer.
+ * @param  {String}  message        Message displayed to the user
+ * @param  {Boolean} standartAnswer If the user presses enter is this standart answer used
+ * @return {Promise<Boolean>}       This promise is resolved once replied to the confirmation (Y: true, N: false)
+ */
 async function confirmation(message, standartAnswer = true) {
   const prompt = chalk.gray.dim('>');
   const question = chalk.green(message);
