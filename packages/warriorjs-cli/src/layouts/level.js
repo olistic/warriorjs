@@ -1,15 +1,15 @@
 import BaseLayout from './base';
 
-import floorMap from './modify/floorMap';
-import levelHeader from './modify/levelHeader';
-import warriorStatus from './modify/warriorStatus';
-import seperator from './modify/seperator';
-import eventMessage from './modify/eventMessage';
-import success from './modify/success';
-import failure from './modify/failure';
-import totalScore from './modify/totalScore';
-import levelReport from './modify/levelReport';
-import towerReport from './modify/towerReport';
+import floorMap from './components/floorMap';
+import levelHeader from './components/levelHeader';
+import warriorStatus from './components/warriorStatus';
+import seperator from './components/seperator';
+import eventMessage from './components/eventMessage';
+import success from './components/success';
+import failure from './components/failure';
+import totalScore from './components/totalScore';
+import levelReport from './components/levelReport';
+import towerReport from './components/towerReport';
 
 import confirmation from './preform/confirmation';
 import wait from './preform/wait';
@@ -24,7 +24,7 @@ export default class LevelLayout extends BaseLayout {
         left: 0,
         height: 1,
         tags: true,
-        modify: {
+        components: {
           levelHeader,
         },
       },
@@ -33,7 +33,7 @@ export default class LevelLayout extends BaseLayout {
         left: 0,
         height: 2,
         tags: true,
-        modify: {
+        components: {
           warriorStatus,
         },
       },
@@ -42,7 +42,7 @@ export default class LevelLayout extends BaseLayout {
         left: 0,
         height: 3,
         tags: true,
-        modify: {
+        components: {
           floorMap,
         },
       },
@@ -61,7 +61,7 @@ export default class LevelLayout extends BaseLayout {
             bg: 'grey',
           },
         },
-        methods: {
+        components: {
           seperator,
           eventMessage,
           success,

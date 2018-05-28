@@ -17,6 +17,7 @@ export default class Level {
 
   async run() {
     const header = this.ui.select('header');
+    console.log(header);
     await header.set.levelHeader(this.levelNumber);
 
     const playerCode = await this.profile.readPlayerCode();

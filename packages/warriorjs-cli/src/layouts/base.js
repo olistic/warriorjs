@@ -47,16 +47,16 @@ export default class BaseLayout {
     }
   }
 
-  get(box) {
-    return this.elements[box];
+  get(name) {
+    return this.elements[name];
   }
 
-  select(box) {
-    if (!this.elements[box]) {
+  select(name) {
+    if (!this.elements[name]) {
       return undefined;
     }
 
-    const element = this.elements[box];
+    const element = this.elements[name];
 
     const handle = (source = {}, scope, modifier) =>
       new Proxy(source, {
@@ -66,8 +66,8 @@ export default class BaseLayout {
           }
 
           return async (...args) => {
-            if (this.boxes[box].beforeNewLine)
-              this.boxes[box].beforeNewLine(element);
+            if (this.DOM[name].beforeNewLine)
+              this.DOM[name].beforeNewLine(element);
 
             const response = await handleFunction(target[key], scope, args);
 
@@ -82,8 +82,8 @@ export default class BaseLayout {
               }
             }
 
-            if (this.boxes[box].afterNewLine)
-              this.boxes[box].afterNewLine(element);
+            if (this.DOM[name].afterNewLine)
+              this.DOM[name].afterNewLine(element);
 
             this.render();
             return response;
@@ -92,12 +92,12 @@ export default class BaseLayout {
       });
 
     return {
-      set: handle(this.boxes[box].modify, this, 'setContent'),
-      push: handle(this.boxes[box].modify, this, 'pushLine'),
+      set: handle(this.DOM[name].components, this, 'setContent'),
+      push: handle(this.DOM[name].components, this, 'pushLine'),
       preform: handle(
-        this.boxes[box].preform,
+        this.DOM[name].preform,
         Object.assign(this, {
-          element: this.elements[box],
+          element: this.elements[name],
         }),
       ),
     };
