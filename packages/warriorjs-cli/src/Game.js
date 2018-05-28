@@ -301,12 +301,18 @@ class Game {
    * @returns {boolean} Whether playing can continue or not (for epic mode),
    */
   async playLevel(levelNumber) {
-    const level = new Level(levelNumber, this.profile, this.tower, this.delay);
+    const level = new Level(
+      levelNumber,
+      this.profile,
+      this.tower,
+      this.silencePlay,
+      this.delay,
+    );
     const passed = await level.run();
     await level.printResult();
 
     if (!passed) {
-      const wantsClue = await level.giveClue();
+      const wantsClue = await level.requestToGiveClue();
 
       if (wantsClue) {
         await this.profile.requestClue();
