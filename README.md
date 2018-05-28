@@ -14,7 +14,7 @@
 
 <div align="center">
   <a href="https://circleci.com/gh/olistic/warriorjs">
-    <img alt="CircleCI" src="https://img.shields.io/circleci/project/github/olistic/warriorjs.svg?style=flat-square">
+    <img alt="CircleCI" src="https://img.shields.io/circleci/project/github/olistic/warriorjs/master.svg?style=flat-square">
   </a>
   <a href="https://codecov.io/gh/olistic/warriorjs">
     <img alt="Codecov" src="https://img.shields.io/codecov/c/github/olistic/warriorjs.svg?style=flat-square">
