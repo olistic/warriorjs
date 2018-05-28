@@ -7,7 +7,13 @@ function look({ range }) {
     description: `Returns an array of up to ${range} spaces in the given direction (${defaultDirection} by default).`,
     perform(direction = defaultDirection) {
       const offsets = Array.from(new Array(range), (_, index) => index + 1);
-      return offsets.map(offset => unit.getSensedSpaceAt(direction, offset));
+      const spaces = offsets.map(offset =>
+        unit.getSensedSpaceAt(direction, offset),
+      );
+      const firstWallIndex = spaces.findIndex(space => space && space.isWall());
+      return firstWallIndex === -1
+        ? spaces
+        : spaces.slice(0, firstWallIndex + 1);
     },
   });
 }

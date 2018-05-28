@@ -37,12 +37,32 @@ describe('look', () => {
     });
 
     test('returns adjacent space in specified direction', () => {
+      const space1 = { isWall: () => false };
+      const space2 = { isWall: () => false };
+      const space3 = { isWall: () => false };
+      const space4 = { isWall: () => false };
+
       unit.getSensedSpaceAt
-        .mockReturnValueOnce('space1')
-        .mockReturnValueOnce('space2')
-        .mockReturnValueOnce('space3')
-        .mockReturnValueOnce('space4');
-      expect(look.perform()).toEqual(['space1', 'space2', 'space3']);
+        .mockReturnValueOnce(space1)
+        .mockReturnValueOnce(space2)
+        .mockReturnValueOnce(space3)
+        .mockReturnValueOnce(space4);
+      expect(look.perform()).toEqual([space1, space2, space3]);
+    });
+
+    test('cant see though walls', () => {
+      const space1 = { isWall: () => false };
+      const space2 = { isWall: () => true };
+      const space3 = { isWall: () => false };
+      const space4 = { isWall: () => false };
+
+      unit.getSensedSpaceAt
+        .mockReturnValueOnce(space1)
+        .mockReturnValueOnce(space2)
+        .mockReturnValueOnce(space3)
+        .mockReturnValueOnce(space4);
+
+      expect(look.perform()).toEqual([space1, space2]);
     });
   });
 });
