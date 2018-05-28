@@ -4,6 +4,7 @@ import constructSeperator from './constructSeperator';
 
 /**
  * Construct a seperator.
+ * @return {String}         Constructed seperator
  */
 function seperator() {
   const header = constructSeperator(this.screen.width);
