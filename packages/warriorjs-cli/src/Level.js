@@ -5,7 +5,15 @@ import LevelUI from './layouts/level';
 import getLevelConfig from './utils/getLevelConfig';
 
 export default class Level {
-  constructor(levelNumber, profile, tower, delay) {
+  /**
+   * Initialize a new level ui. This ui can be used to communicate with the user.
+   * @param  {Number}  levelNumber Current level
+   * @param  {Object}  profile     Players profile
+   * @param  {Object}  tower       Current tower
+   * @param  {Boolean} silencePlay Print the level events to the ui
+   * @param  {Number}  delay       Delay between each event
+   */
+  constructor(levelNumber, profile, tower, silencePlay, delay) {
     this.ui = new LevelUI();
     this.profile = profile;
     this.tower = tower;
@@ -13,11 +21,17 @@ export default class Level {
     this.result = null;
     this.levelNumber = levelNumber;
     this.levelConfig = getLevelConfig(levelNumber, tower, profile);
+    this.silencePlay = silencePlay;
   }
 
+  /**
+   * Run the given level. If silecePlay is set to true will the level events
+   * not be printed and is only the result shown.
+   * @return {Boolean} Returns if the player has passed the level
+   * @return {Promise} This promise is resolved once level is complete
+   */
   async run() {
     const header = this.ui.select('header');
-    console.log(header);
     await header.set.levelHeader(this.levelNumber);
 
     const playerCode = await this.profile.readPlayerCode();
@@ -33,6 +47,12 @@ export default class Level {
     return result.passed;
   }
 
+  /**
+   * Print the level events with a delay inbetwean each one of them.
+   * The delay is set when creating this class.
+   * @param  {Array<event>} events A array containing all events
+   * @return {Promise} This promise is resolved once the events are printed
+   */
   async printEvents(events) {
     const status = this.ui.select('status');
     const floorMap = this.ui.select('floorMap');
@@ -62,6 +82,10 @@ export default class Level {
     }
   }
 
+  /**
+   * Print the level result
+   * @return {Promise} This promise is resolved once the result is printed
+   */
   async printResult() {
     const log = this.ui.select('log');
     const { passed, score } = this.result;
@@ -106,7 +130,11 @@ export default class Level {
     await log.push.seperator();
   }
 
-  async giveClue() {
+  /**
+   * Request to give a clue about the given level
+   * @return {Promise<Boolean>} Returns if the player wants a clue or not
+   */
+  async requestToGiveClue() {
     const log = this.ui.select('log');
 
     if (this.levelConfig.clue && !this.profile.isShowingClue()) {
@@ -127,11 +155,20 @@ export default class Level {
     return false;
   }
 
+  /**
+   * Await untill enter is pressed to replay the current level
+   * @return {Promise} This promise is resolved once the enter key is pressed
+   */
   async requestReplay() {
     const log = this.ui.select('log');
     await log.preform.wait(`Press enter to replay the level.`);
   }
 
+  /**
+   * Notify the user that the game will continue to the next level in ... seconds.
+   * @param  {Number} delay time till next level in miliseconds
+   * @return {Promise}      This promise is resolved once the messages are printed
+   */
   async notifyEpicNextLevel(delay) {
     const log = this.ui.select('log');
     await log.push.success(
@@ -139,11 +176,20 @@ export default class Level {
     );
   }
 
+  /**
+   * Request the enter key to be pressed in order to continue to the next level.
+   * @return {Promise} This promise is resolved once the enter key is pressed
+   */
   async requestNextLevelKey() {
     const log = this.ui.select('log');
     await log.preform.wait('Press enter to start the next level.');
   }
 
+  /**
+   * Request the user if he or she wants to continue to the next level.
+   * If true does the user expect the README file to be updated with the new instructions.
+   * @return {Promise<Boolean>} This promise is resolved once the user replies to the confirmation.
+   */
   async requestNextLevel() {
     const log = this.ui.select('log');
 
