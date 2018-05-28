@@ -18,7 +18,7 @@ export default class LevelLayout extends BaseLayout {
   constructor() {
     super();
 
-    this.boxes = {
+    this.DOM = {
       header: {
         top: 0,
         left: 0,
@@ -61,7 +61,7 @@ export default class LevelLayout extends BaseLayout {
             bg: 'grey',
           },
         },
-        modify: {
+        methods: {
           seperator,
           eventMessage,
           success,
@@ -80,7 +80,7 @@ export default class LevelLayout extends BaseLayout {
       },
     };
 
-    this.initBoxes();
+    this.initDOM();
     this.listenEscape();
     this.elements.log.focus();
   }

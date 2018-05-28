@@ -36,13 +36,13 @@ export default class BaseLayout {
     this.screen.render();
   }
 
-  initBoxes() {
+  initDOM() {
     // eslint-disable-next-line no-restricted-syntax
-    for (const box in this.boxes) {
-      if (this.boxes[box]) {
-        const options = this.boxes[box] || {};
-        this.elements[box] = blessed.box(options);
-        this.screen.append(this.elements[box]);
+    for (const element in this.DOM) {
+      if (this.DOM[element]) {
+        const options = this.DOM[element] || {};
+        this.elements[element] = blessed.box(options);
+        this.screen.append(this.elements[element]);
       }
     }
   }
