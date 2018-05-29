@@ -3,19 +3,21 @@ import getWarriorAbilities from './getWarriorAbilities';
 
 jest.mock('./getWarriorAbilities');
 
-const tower = {
-  levels: ['level1', 'level2'],
-  getLevel: () => ({ floor: { foo: 42, warrior: { bar: 'baz' } } }),
-};
 const profile = {
+  tower: {
+    name: 'foo',
+    levels: ['level1', 'level2'],
+    getLevel: () => ({ floor: { foo: 42, warrior: { bar: 'baz' } } }),
+  },
   warriorName: 'Joe',
   isEpic: () => false,
 };
 getWarriorAbilities.mockReturnValue('abilities');
 
 test('returns level config', () => {
-  const levelConfig = getLevelConfig(1, tower, profile);
+  const levelConfig = getLevelConfig(1, profile);
   expect(levelConfig).toEqual({
+    towerName: 'foo',
     number: 1,
     floor: {
       foo: 42,
@@ -31,6 +33,6 @@ test('returns level config', () => {
 
 test('gets abilities from all levels if epic', () => {
   profile.isEpic = () => true;
-  getLevelConfig(1, tower, profile);
+  getLevelConfig(1, profile);
   expect(getWarriorAbilities).toHaveBeenCalledWith(['level1', 'level2']);
 });

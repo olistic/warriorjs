@@ -1,21 +1,5 @@
 import Tower from './Tower';
 
-describe('Tower.getTowerByName', () => {
-  test('returns tower by name', () => {
-    const originalGetTowers = Tower.getTowers;
-    const tower = new Tower('foo');
-    Tower.getTowers = () => [tower];
-    expect(Tower.getTowerByName('foo')).toBe(tower);
-    Tower.getTowers = originalGetTowers;
-  });
-});
-
-describe('Tower.getTowers', () => {
-  test('returns available towers', () => {
-    expect(Tower.getTowers().map(tower => tower.name)).toEqual(['beginner']);
-  });
-});
-
 describe('Tower', () => {
   let tower;
 

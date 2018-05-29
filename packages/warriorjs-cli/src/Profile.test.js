@@ -142,6 +142,10 @@ describe('Profile', () => {
     expect(profile.clue).toBe(false);
   });
 
+  test('has a tower which is null before loading the profile into the game', () => {
+    expect(profile.tower).toBeNull();
+  });
+
   test('makes directory', () => {
     mock({ '/path/to': {} });
     profile.makeProfileDirectory();
@@ -269,7 +273,9 @@ describe('Profile', () => {
     );
   });
 
-  test('encodes with JSON + base64', () => {
+  test('encodes with JSON + base64 ignoring properties', () => {
+    profile.directoryPath = 'ignored';
+    profile.tower = 'ignored';
     expect(profile.encode()).toBe(
       'eyJ3YXJyaW9yTmFtZSI6IkpvZSIsInRvd2VyTmFtZSI6ImJlZ2lubmVyIiwibGV2ZWxOdW1iZXIiOjAsInNjb3JlIjowLCJjbHVlIjpmYWxzZSwiZXBpYyI6ZmFsc2UsImVwaWNTY29yZSI6MCwiYXZlcmFnZUdyYWRlIjpudWxsLCJjdXJyZW50RXBpY1Njb3JlIjowLCJjdXJyZW50RXBpY0dyYWRlcyI6e319',
     );

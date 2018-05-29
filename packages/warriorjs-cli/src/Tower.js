@@ -1,28 +1,4 @@
-import beginner from '@warriorjs/tower-beginner';
-
-const towers = [beginner];
-
 class Tower {
-  /**
-   * Returns the tower with the given name.
-   *
-   * @param {string} towerName The name of the tower.
-   *
-   * @returns {Tower} The tower.
-   */
-  static getTowerByName(towerName) {
-    return Tower.getTowers().find(tower => tower.name === towerName);
-  }
-
-  /**
-   * Returns the available towers.
-   *
-   * @returns {Tower[]} The towers.
-   */
-  static getTowers() {
-    return towers.map(({ name, levels }) => new Tower(name, levels));
-  }
-
   /**
    * Creates a tower.
    *
