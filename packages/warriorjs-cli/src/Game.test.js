@@ -42,7 +42,6 @@ describe('Game', () => {
 
     beforeEach(() => {
       Profile.load = jest.fn();
-      game.ensureGameDirectory = jest.fn();
       game.chooseProfile = jest.fn();
     });
 
@@ -61,9 +60,55 @@ describe('Game', () => {
       game.chooseProfile.mockReturnValue('chosenProfile');
       const profile = await game.loadProfile();
       expect(profile).toBe('chosenProfile');
-      expect(game.ensureGameDirectory).toHaveBeenCalled();
       expect(game.chooseProfile).toHaveBeenCalled();
     });
+  });
+
+  test('returns profiles', async () => {
+    const originalLoad = Profile.load;
+    game.getProfileDirectoriesPaths = () => [
+      '/path/to/game/warriorjs/profile1',
+      '/path/to/game/warriorjs/profile2',
+    ];
+    Profile.load = jest.fn();
+    await game.getProfiles();
+    expect(Profile.load).toHaveBeenCalledWith(
+      '/path/to/game/warriorjs/profile1',
+    );
+    expect(Profile.load).toHaveBeenCalledWith(
+      '/path/to/game/warriorjs/profile2',
+    );
+    Profile.load = originalLoad;
+  });
+
+  test('knows if profile exists', async () => {
+    const nonExistingProfile = {
+      directoryPath: '/path/to/nonexisting-profile',
+    };
+    const existentProfile = { directoryPath: '/path/to/profile' };
+    game.getProfileDirectoriesPaths = () => ['/path/to/profile'];
+    await expect(game.isExistingProfile(nonExistingProfile)).resolves.toBe(
+      false,
+    );
+    await expect(game.isExistingProfile(existentProfile)).resolves.toBe(true);
+  });
+
+  test('returns paths to profile directories', async () => {
+    game.ensureGameDirectory = jest.fn();
+    mock({
+      '/path/to/game/warriorjs': {
+        profile1: {},
+        profile2: {},
+        'other-file': '',
+      },
+    });
+    const profileDirectoriesPaths = await game.getProfileDirectoriesPaths();
+    mock.restore();
+    expect(profileDirectoriesPaths).toEqual([
+      '/path/to/game/warriorjs/profile1',
+      '/path/to/game/warriorjs/profile2',
+    ]);
+    expect(game.ensureGameDirectory).toHaveBeenCalled();
   });
 
   test('ensures game directory', async () => {
@@ -130,51 +175,6 @@ describe('Game', () => {
       );
       mock.restore();
     });
-  });
-
-  test('returns profiles', async () => {
-    const originalLoad = Profile.load;
-    game.getProfileDirectoriesPaths = () => [
-      '/path/to/game/warriorjs/profile1',
-      '/path/to/game/warriorjs/profile2',
-    ];
-    Profile.load = jest.fn();
-    await game.getProfiles();
-    expect(Profile.load).toHaveBeenCalledWith(
-      '/path/to/game/warriorjs/profile1',
-    );
-    expect(Profile.load).toHaveBeenCalledWith(
-      '/path/to/game/warriorjs/profile2',
-    );
-    Profile.load = originalLoad;
-  });
-
-  test('knows if profile exists', async () => {
-    const nonExistingProfile = {
-      directoryPath: '/path/to/nonexisting-profile',
-    };
-    const existentProfile = { directoryPath: '/path/to/profile' };
-    game.getProfileDirectoriesPaths = () => ['/path/to/profile'];
-    await expect(game.isExistingProfile(nonExistingProfile)).resolves.toBe(
-      false,
-    );
-    await expect(game.isExistingProfile(existentProfile)).resolves.toBe(true);
-  });
-
-  test('returns paths to profile directories', async () => {
-    mock({
-      '/path/to/game/warriorjs': {
-        profile1: {},
-        profile2: {},
-        'other-file': '',
-      },
-    });
-    const profileDirectoriesPaths = await game.getProfileDirectoriesPaths();
-    expect(profileDirectoriesPaths).toEqual([
-      '/path/to/game/warriorjs/profile1',
-      '/path/to/game/warriorjs/profile2',
-    ]);
-    mock.restore();
   });
 
   describe('when playing', () => {
