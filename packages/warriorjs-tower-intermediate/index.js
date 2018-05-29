@@ -1,6 +1,6 @@
-import { EAST, NORTH, SOUTH, WEST } from '@warriorjs/geography';
-import { Captive, Sludge, ThickSludge, Warrior } from '@warriorjs/units';
-import {
+const { EAST, NORTH, SOUTH, WEST } = require('@warriorjs/geography');
+const { Captive, Sludge, ThickSludge, Warrior } = require('@warriorjs/units');
+const {
   attack,
   bind,
   detonate,
@@ -15,10 +15,10 @@ import {
   rest,
   think,
   walk,
-} from '@warriorjs/abilities';
-import { ticking } from '@warriorjs/effects';
+} = require('@warriorjs/abilities');
+const { ticking } = require('@warriorjs/effects');
 
-export default {
+module.exports = {
   name: 'intermediate',
   levels: [
     {

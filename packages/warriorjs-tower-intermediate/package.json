@@ -6,18 +6,12 @@
   "license": "MIT",
   "homepage": "https://warrior.js.org",
   "repository": "https://github.com/olistic/warriorjs/tree/master/packages/warriorjs-tower-intermediate",
-  "main": "lib/index.js",
+  "main": "index.js",
   "keywords": [
     "warriorjs-tower"
   ],
-  "files": [
-    "lib"
-  ],
   "publishConfig": {
     "access": "public"
-  },
-  "scripts": {
-    "build": "babel src --out-dir lib"
   },
   "peerDependencies": {
     "@warriorjs/core": "^0.4.0"
