@@ -1,15 +1,8 @@
 import fs from 'fs';
 import path from 'path';
-import { promisify } from 'util';
-
-import makeDir from 'make-dir';
-import pathType from 'path-type';
 
 import GameError from './GameError';
 import getGradeLetter from './utils/getGradeLetter';
-
-const readFileAsync = promisify(fs.readFile);
-const writeFileAsync = promisify(fs.writeFile);
 
 const profileFile = '.profile';
 const playerCodeFile = 'Player.js';
@@ -27,16 +20,13 @@ class Profile {
    *
    * @returns {Profile} The loaded profile.
    */
-  static async load(profileDirectoryPath) {
-    const isProfileDirectory = await Profile.isProfileDirectory(
-      profileDirectoryPath,
-    );
-    if (!isProfileDirectory) {
+  static load(profileDirectoryPath) {
+    if (!Profile.isProfileDirectory(profileDirectoryPath)) {
       return null;
     }
 
     const profileFilePath = path.join(profileDirectoryPath, profileFile);
-    const encodedProfile = await Profile.read(profileFilePath);
+    const encodedProfile = Profile.read(profileFilePath);
     if (!encodedProfile) {
       return null;
     }
@@ -62,14 +52,21 @@ class Profile {
    *
    * @returns {boolean} Whether the path is a profile directory or not.
    */
-  static async isProfileDirectory(profileDirectoryPath) {
+  static isProfileDirectory(profileDirectoryPath) {
     const profileFilePath = path.join(profileDirectoryPath, profileFile);
-    const profileFileExists = await pathType.file(profileFilePath);
-
     const playerCodeFilePath = path.join(profileDirectoryPath, playerCodeFile);
-    const playerCodeFileExists = await pathType.file(playerCodeFilePath);
+    try {
+      return (
+        fs.statSync(profileFilePath).isFile() &&
+        fs.statSync(playerCodeFilePath).isFile()
+      );
+    } catch (err) {
+      if (err.code === 'ENOENT') {
+        return false;
+      }
 
-    return playerCodeFileExists && profileFileExists;
+      throw err;
+    }
   }
 
   /**
@@ -79,9 +76,9 @@ class Profile {
    *
    * @returns {string} The contents of the profile file.
    */
-  static async read(profileFilePath) {
+  static read(profileFilePath) {
     try {
-      return await readFileAsync(profileFilePath, 'utf8');
+      return fs.readFileSync(profileFilePath, 'utf8');
     } catch (err) {
       if (err.code === 'ENOENT') {
         return null;
@@ -136,8 +133,8 @@ class Profile {
   /**
    * Ensures the profile directory exists.
    */
-  async ensureProfileDirectory() {
-    await makeDir(this.directoryPath);
+  ensureProfileDirectory() {
+    fs.mkdirSync(this.directoryPath);
   }
 
   /**
@@ -145,9 +142,9 @@ class Profile {
    *
    * @returns {string} The player code.
    */
-  async readPlayerCode() {
+  readPlayerCode() {
     try {
-      return await readFileAsync(this.getPlayerCodeFilePath(), 'utf8');
+      return fs.readFileSync(this.getPlayerCodeFilePath(), 'utf8');
     } catch (err) {
       if (err.code === 'ENOENT') {
         return null;
@@ -178,18 +175,18 @@ class Profile {
   /**
    * Increments the level by one and saves the profile.
    */
-  async goToNextLevel() {
+  goToNextLevel() {
     this.levelNumber += 1;
     this.clue = false;
-    await this.save();
+    this.save();
   }
 
   /**
    * Request the clue to be shown.
    */
-  async requestClue() {
+  requestClue() {
     this.clue = true;
-    await this.save();
+    this.save();
   }
 
   /**
@@ -204,9 +201,9 @@ class Profile {
   /**
    * Enables epic mode and saves the profile.
    */
-  async enableEpicMode() {
+  enableEpicMode() {
     this.epic = true;
-    await this.save();
+    this.save();
   }
 
   /**
@@ -255,13 +252,13 @@ class Profile {
   /**
    * Updates the epic score and saves the profile.
    */
-  async updateEpicScore() {
+  updateEpicScore() {
     if (this.currentEpicScore > this.epicScore) {
       this.epicScore = this.currentEpicScore;
       this.averageGrade = this.calculateAverageGrade();
     }
 
-    await this.save();
+    this.save();
   }
 
   /**
@@ -281,8 +278,8 @@ class Profile {
   /**
    * Saves the profile to the profile file.
    */
-  async save() {
-    await writeFileAsync(this.getProfileFilePath(), this.encode());
+  save() {
+    fs.writeFileSync(this.getProfileFilePath(), this.encode());
   }
 
   /**

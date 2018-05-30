@@ -1,6 +1,6 @@
 import loadPlayer from './loadPlayer';
 
-test('runs player code and returns playTurn function', async () => {
+test('runs player code and returns playTurn function', () => {
   const playerCode = `
     class Player {
       playTurn(warrior) {
@@ -14,7 +14,7 @@ test('runs player code and returns playTurn function', async () => {
   expect(warrior.walk).toHaveBeenCalled();
 });
 
-test('throws if invalid syntax', async () => {
+test('throws if invalid syntax', () => {
   const playerCode = `
     class Player {
       playTurn() {}
@@ -28,16 +28,16 @@ test('throws if invalid syntax', async () => {
   );
 });
 
-test('throws if Player class is not defined', async () => {
+test('throws if Player class is not defined', () => {
   const playerCode = 'function playTurn() {}';
-  await expect(() => {
+  expect(() => {
     loadPlayer(playerCode);
   }).toThrow(new Error('Invalid Player code. You must define a Player class!'));
 });
 
-test('throws if playTurn method is not defined', async () => {
+test('throws if playTurn method is not defined', () => {
   const playerCode = 'class Player {}';
-  await expect(() => {
+  expect(() => {
     loadPlayer(playerCode);
   }).toThrow(
     new Error(

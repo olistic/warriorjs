@@ -1,8 +1,7 @@
+import fs from 'fs';
 import path from 'path';
 
 import globby from 'globby';
-import makeDir from 'make-dir';
-import pathType from 'path-type';
 import { getLevel, runLevel } from '@warriorjs/core';
 
 import GameError from './GameError';
@@ -83,7 +82,7 @@ class Game {
    * @returns {Profile} The loaded profile.
    */
   async loadProfile() {
-    const profile = await Profile.load(this.runDirectoryPath);
+    const profile = Profile.load(this.runDirectoryPath);
     if (profile) {
       return profile;
     }
@@ -120,10 +119,8 @@ class Game {
    */
   async getProfiles() {
     const profileDirectoriesPaths = await this.getProfileDirectoriesPaths();
-    return Promise.all(
-      profileDirectoriesPaths.map(profileDirectoryPath =>
-        Profile.load(profileDirectoryPath),
-      ),
+    return profileDirectoriesPaths.map(profileDirectoryPath =>
+      Profile.load(profileDirectoryPath),
     );
   }
 
@@ -168,7 +165,7 @@ class Game {
 
       printLine('Replacing existing profile...');
     } else {
-      await profile.ensureProfileDirectory();
+      profile.ensureProfileDirectory();
     }
 
     return profile;
@@ -196,14 +193,14 @@ class Game {
   async getProfileDirectoriesPaths() {
     await this.ensureGameDirectory();
     const profileDirectoryPattern = path.join(this.gameDirectoryPath, '*');
-    return globby(profileDirectoryPattern, { onlyDirectories: true });
+    return globby.sync(profileDirectoryPattern, { onlyDirectories: true });
   }
 
   /**
    * Ensures the game directory exists.
    */
   async ensureGameDirectory() {
-    const directoryExists = await this.gameDirectoryExists();
+    const directoryExists = this.gameDirectoryExists();
     if (!directoryExists) {
       await this.makeGameDirectory();
     }
@@ -214,8 +211,11 @@ class Game {
    *
    * @returns {boolean} Whether the game directory exists or not.
    */
-  async gameDirectoryExists() {
-    return pathType.dir(this.gameDirectoryPath);
+  gameDirectoryExists() {
+    return (
+      fs.existsSync(this.gameDirectoryPath) &&
+      fs.statSync(this.gameDirectoryPath).isDirectory()
+    );
   }
 
   /**
@@ -233,7 +233,7 @@ class Game {
     }
 
     try {
-      await makeDir(this.gameDirectoryPath);
+      fs.mkdirSync(this.gameDirectoryPath);
     } catch (err) {
       if (err.code === 'EEXIST') {
         throw new GameError(
@@ -271,7 +271,7 @@ class Game {
         playing = await this.playLevel(levelNumber); // eslint-disable-line no-await-in-loop
       }
 
-      await this.profile.updateEpicScore();
+      this.profile.updateEpicScore();
     }
   }
 
@@ -286,7 +286,7 @@ class Game {
     }
 
     if (this.profile.levelNumber === 0) {
-      await this.prepareNextLevel();
+      this.prepareNextLevel();
       printSuccessLine(
         `First level has been generated. See ${this.profile.getReadmeFilePath()} for instructions.`,
       );
@@ -308,8 +308,8 @@ class Game {
     const level = getLevel(levelConfig);
     printLevel(level);
 
-    const playerCode = await this.profile.readPlayerCode();
-    const { events, passed, score } = await runLevel(levelConfig, playerCode);
+    const playerCode = this.profile.readPlayerCode();
+    const { events, passed, score } = runLevel(levelConfig, playerCode);
 
     if (!this.silencePlay) {
       await printPlay(levelNumber, events, this.delay);
@@ -329,8 +329,8 @@ class Game {
             'Would you like to read the additional clues for this level?',
           ));
         if (showClue) {
-          await this.profile.requestClue();
-          await this.generateProfileFiles();
+          this.profile.requestClue();
+          this.generateProfileFiles();
           printSuccessLine(
             `See ${this.profile.getReadmeFilePath()} for the clues.`,
           );
@@ -384,7 +384,7 @@ class Game {
           true,
         ));
       if (continueToNextLevel) {
-        await this.prepareNextLevel();
+        this.prepareNextLevel();
         printSuccessLine(
           `See ${this.profile.getReadmeFilePath()} for updated instructions.`,
         );
@@ -401,7 +401,7 @@ class Game {
           true,
         ));
       if (continueToEpicMode) {
-        await this.prepareEpicMode();
+        this.prepareEpicMode();
         printSuccessLine('Run warriorjs again to play epic mode.');
       }
     }
@@ -410,29 +410,29 @@ class Game {
   /**
    * Prepares the next level.
    */
-  async prepareNextLevel() {
-    await this.profile.goToNextLevel();
-    await this.generateProfileFiles();
+  prepareNextLevel() {
+    this.profile.goToNextLevel();
+    this.generateProfileFiles();
   }
 
   /**
    * Generates the profile files.
    */
-  async generateProfileFiles() {
+  generateProfileFiles() {
     const levelConfig = getLevelConfig(
       this.profile.levelNumber,
       this.tower,
       this.profile,
     );
     const level = getLevel(levelConfig);
-    await new ProfileGenerator(this.profile, level).generate();
+    new ProfileGenerator(this.profile, level).generate();
   }
 
   /**
    * Prepares the epic mode.
    */
-  async prepareEpicMode() {
-    await this.profile.enableEpicMode();
+  prepareEpicMode() {
+    this.profile.enableEpicMode();
   }
 }
 

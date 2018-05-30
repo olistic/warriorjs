@@ -1,19 +1,20 @@
 import fs from 'fs';
 import path from 'path';
-import { promisify } from 'util';
 
-import cpFile from 'cp-file';
 import ejs from 'ejs';
 
 import getFloorMap from './utils/getFloorMap';
 import getFloorMapKey from './utils/getFloorMapKey';
 
-const readFileAsync = promisify(fs.readFile);
-const writeFileAsync = promisify(fs.writeFile);
-
 const templatesPath = path.resolve(__dirname, '..', 'templates');
-const playerCodeTemplateFilePath = path.join(templatesPath, 'Player.js');
-const readmeTemplateFilePath = path.join(templatesPath, 'README.md.ejs');
+export const PLAYER_CODE_TEMPLATE_FILE_PATH = path.join(
+  templatesPath,
+  'Player.js',
+);
+export const README_TEMPLATE_FILE_PATH = path.join(
+  templatesPath,
+  'README.md.ejs',
+);
 
 /** Class representing a profile generator. */
 class ProfileGenerator {
@@ -31,18 +32,18 @@ class ProfileGenerator {
   /**
    * Generates the profile files (README and, if first level, player code).
    */
-  async generate() {
-    await this.generateReadmeFile();
+  generate() {
+    this.generateReadmeFile();
     if (this.profile.levelNumber === 1) {
-      await this.generatePlayerCodeFile();
+      this.generatePlayerCodeFile();
     }
   }
 
   /**
    * Generates the README file (README.md).
    */
-  async generateReadmeFile() {
-    const template = await readFileAsync(readmeTemplateFilePath, 'utf8');
+  generateReadmeFile() {
+    const template = fs.readFileSync(README_TEMPLATE_FILE_PATH, 'utf8');
     const data = {
       profile: this.profile,
       level: this.level,
@@ -50,15 +51,15 @@ class ProfileGenerator {
       floorMapKey: getFloorMapKey(this.level.floor.map),
     };
     const renderedReadme = ejs.render(template, data);
-    await writeFileAsync(this.profile.getReadmeFilePath(), renderedReadme);
+    fs.writeFileSync(this.profile.getReadmeFilePath(), renderedReadme);
   }
 
   /**
    * Generates the player code file (Player.js).
    */
-  async generatePlayerCodeFile() {
-    await cpFile(
-      playerCodeTemplateFilePath,
+  generatePlayerCodeFile() {
+    fs.copyFileSync(
+      PLAYER_CODE_TEMPLATE_FILE_PATH,
       this.profile.getPlayerCodeFilePath(),
     );
   }

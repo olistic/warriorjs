@@ -15,11 +15,11 @@ describe('Profile.load', () => {
     Profile.isProfileDirectory = originalIsProfileDirectory;
   });
 
-  test('instances Profile with contents of profile file', async () => {
+  test('instances Profile with contents of profile file', () => {
     Profile.isProfileDirectory = () => true;
     Profile.read = () =>
       'eyJ3YXJyaW9yTmFtZSI6ICJKb2UiLCAidG93ZXJOYW1lIjogImJlZ2lubmVyIiwgImZvbyI6IDQyfQ==';
-    const profile = await Profile.load('/path/to/profile');
+    const profile = Profile.load('/path/to/profile');
     expect(profile).toBeInstanceOf(Profile);
     expect(profile.warriorName).toBe('Joe');
     expect(profile.towerName).toBe('beginner');
@@ -29,80 +29,66 @@ describe('Profile.load', () => {
     expect(profile.foo).toBe(42);
   });
 
-  test('updates the path to the directory from where the profile is being loaded', async () => {
+  test('updates the path to the directory from where the profile is being loaded', () => {
     Profile.isProfileDirectory = () => true;
     Profile.read = () =>
       'eyJ3YXJyaW9yTmFtZSI6ICJKb2UiLCAidG93ZXJOYW1lIjogImJlZ2lubmVyIiwgImRpcmVjdG9yeVBhdGgiOiAiL29sZC9wYXRoL3RvL3Byb2ZpbGUifQ==';
-    const profile = await Profile.load('/new/path/to/profile');
+    const profile = Profile.load('/new/path/to/profile');
     expect(profile.directoryPath).toBe('/new/path/to/profile');
   });
 
-  test('returns null if not a profile directory', async () => {
+  test('returns null if not a profile directory', () => {
     Profile.isProfileDirectory = () => false;
-    const profile = await Profile.load('/path/to/profile');
+    const profile = Profile.load('/path/to/profile');
     expect(profile).toBeNull();
   });
 
-  test('returns null if no encoded profile', async () => {
+  test('returns null if no encoded profile', () => {
     Profile.isProfileDirectory = () => true;
     Profile.read = () => null;
-    const profile = await Profile.load('/path/to/profile');
+    const profile = Profile.load('/path/to/profile');
     expect(profile).toBeNull();
   });
 });
 
 describe('Profile.isProfileDirectory', () => {
-  test('returns false if only the profile file exists', async () => {
+  test('returns false if only the profile file exists', () => {
     mock({ '/path/to/profile/.profile': 'encoded profile' });
-    const isProfileDirectory = await Profile.isProfileDirectory(
-      '/path/to/profile',
-    );
+    expect(Profile.isProfileDirectory('/path/to/profile')).toBe(false);
     mock.restore();
-    expect(isProfileDirectory).toBe(false);
   });
 
-  test('returns false if only the player code file exists', async () => {
+  test('returns false if only the player code file exists', () => {
     mock({ '/path/to/profile/Player.js': 'player code' });
-    const isProfileDirectory = await Profile.isProfileDirectory(
-      '/path/to/profile',
-    );
+    expect(Profile.isProfileDirectory('/path/to/profile')).toBe(false);
     mock.restore();
-    expect(isProfileDirectory).toBe(false);
   });
 
-  test('returns false if neither file exists', async () => {
-    const isProfileDirectory = await Profile.isProfileDirectory(
-      '/path/to/profile',
-    );
-    expect(isProfileDirectory).toBe(false);
+  test('returns false if neither file exists', () => {
+    expect(Profile.isProfileDirectory('/path/to/profile')).toBe(false);
   });
 
-  test('returns true if both files exist', async () => {
+  test('returns true if both files exist', () => {
     mock({
       '/path/to/profile/.profile': 'encoded profile',
       '/path/to/profile/Player.js': 'player code',
     });
-    const isProfileDirectory = await Profile.isProfileDirectory(
-      '/path/to/profile',
-    );
+    expect(Profile.isProfileDirectory('/path/to/profile')).toBe(true);
     mock.restore();
-    expect(isProfileDirectory).toBe(true);
   });
 });
 
 describe('Profile.read', () => {
-  test('returns contents of profile file', async () => {
+  test('returns contents of profile file', () => {
     mock({ '/path/to/profile/file': 'encoded profile' });
-    const encodedProfile = await Profile.read('/path/to/profile/file');
+    expect(Profile.read('/path/to/profile/file')).toBe('encoded profile');
     mock.restore();
-    expect(encodedProfile).toBe('encoded profile');
   });
 
-  test("returns null if profile file doesn't exist", async () => {
+  test("returns null if profile file doesn't exist", () => {
     mock({ '/path/to/profile': {} });
-    const encodedProfile = await Profile.read('/path/to/profile/file');
+    expect(Profile.read('/path/to/profile/file')).toBeNull();
     mock.restore();
-    expect(encodedProfile).toBeNull();
   });
 });
 
@@ -111,7 +97,7 @@ describe('Profile.decode', () => {
     expect(Profile.decode('eyJmb28iOiA0Mn0=')).toEqual({ foo: 42 });
   });
 
-  test('throws if invalid encoded profile', async () => {
+  test('throws if invalid encoded profile', () => {
     expect(() => {
       Profile.decode('invalid encoded profile');
     }).toThrow(GameError);
@@ -156,9 +142,9 @@ describe('Profile', () => {
     expect(profile.clue).toBe(false);
   });
 
-  test('ensures directory', async () => {
-    mock();
-    await profile.ensureProfileDirectory();
+  test('ensures directory', () => {
+    mock({ '/path/to': {} });
+    profile.ensureProfileDirectory();
     expect(fs.statSync('/path/to/profile').isDirectory()).toBe(true);
     mock.restore();
   });
@@ -168,18 +154,16 @@ describe('Profile', () => {
       profile.getPlayerCodeFilePath = () => '/path/to/profile/player-code';
     });
 
-    test('returns contents of player code file', async () => {
+    test('returns contents of player code file', () => {
       mock({ '/path/to/profile/player-code': 'class Player {}' });
-      const playerCode = await profile.readPlayerCode();
+      expect(profile.readPlayerCode()).toBe('class Player {}');
       mock.restore();
-      expect(playerCode).toBe('class Player {}');
     });
 
-    test("returns null if player code file doesn't exist", async () => {
+    test("returns null if player code file doesn't exist", () => {
       mock({ '/path/to/profile': {} });
-      const playerCode = await profile.readPlayerCode();
+      expect(profile.readPlayerCode()).toBeNull();
       mock.restore();
-      expect(playerCode).toBeNull();
     });
   });
 
@@ -200,20 +184,20 @@ describe('Profile', () => {
       profile.save = jest.fn();
     });
 
-    test('increments the level number', async () => {
+    test('increments the level number', () => {
       profile.levelNumber = 0;
-      await profile.goToNextLevel();
+      profile.goToNextLevel();
       expect(profile.levelNumber).toBe(1);
     });
 
-    test('resets the clue status', async () => {
+    test('resets the clue status', () => {
       profile.clue = true;
-      await profile.goToNextLevel();
+      profile.goToNextLevel();
       expect(profile.clue).toBe(false);
     });
 
-    test('saves the profile', async () => {
-      await profile.goToNextLevel();
+    test('saves the profile', () => {
+      profile.goToNextLevel();
       expect(profile.save).toHaveBeenCalled();
     });
   });
@@ -223,14 +207,14 @@ describe('Profile', () => {
       profile.save = jest.fn();
     });
 
-    test('sets the clue status', async () => {
+    test('sets the clue status', () => {
       profile.clue = false;
-      await profile.requestClue();
+      profile.requestClue();
       expect(profile.clue).toBe(true);
     });
 
-    test('saves the profile', async () => {
-      await profile.requestClue();
+    test('saves the profile', () => {
+      profile.requestClue();
       expect(profile.save).toHaveBeenCalled();
     });
   });
@@ -246,14 +230,14 @@ describe('Profile', () => {
       profile.save = jest.fn();
     });
 
-    test('sets the epic status', async () => {
+    test('sets the epic status', () => {
       profile.epic = false;
-      await profile.enableEpicMode();
+      profile.enableEpicMode();
       expect(profile.epic).toBe(true);
     });
 
-    test('saves the profile', async () => {
-      await profile.enableEpicMode();
+    test('saves the profile', () => {
+      profile.enableEpicMode();
       expect(profile.save).toHaveBeenCalled();
     });
   });
@@ -270,11 +254,11 @@ describe('Profile', () => {
     expect(profile.score).toBe(123);
   });
 
-  test('writes the encoded profile to the profile file when saving', async () => {
+  test('writes the encoded profile to the profile file when saving', () => {
     profile.getProfileFilePath = () => '/path/to/profile/file';
     profile.encode = () => 'encoded';
     mock({ '/path/to/profile': {} });
-    await profile.save();
+    profile.save();
     expect(fs.readFileSync('/path/to/profile/file', 'utf8')).toBe('encoded');
     mock.restore();
   });
@@ -338,26 +322,26 @@ describe('Profile', () => {
         profile.save = jest.fn();
       });
 
-      test('should override epic score and average grade with current ones if current epic score is higher', async () => {
+      test('should override epic score and average grade with current ones if current epic score is higher', () => {
         profile.currentEpicScore = 123;
         profile.currentEpicGrades = { 1: 0.7, 2: 0.9 };
-        await profile.updateEpicScore();
+        profile.updateEpicScore();
         expect(profile.epicScore).toBe(123);
         expect(profile.averageGrade).toBe(0.8);
       });
 
-      test('should not override epic score and average grade if it is lower', async () => {
+      test('should not override epic score and average grade if it is lower', () => {
         profile.epicScore = 124;
         profile.averageGrade = 0.9;
         profile.currentEpicScore = 123;
         profile.currentEpicGrades = { 1: 0.7, 2: 0.9 };
-        await profile.updateEpicScore();
+        profile.updateEpicScore();
         expect(profile.epicScore).toBe(124);
         expect(profile.averageGrade).toBe(0.9);
       });
 
-      test('saves the profile', async () => {
-        await profile.updateEpicScore();
+      test('saves the profile', () => {
+        profile.updateEpicScore();
         expect(profile.save).toHaveBeenCalled();
       });
     });
