@@ -131,9 +131,9 @@ class Profile {
   }
 
   /**
-   * Ensures the profile directory exists.
+   * Creates the profile directory.
    */
-  ensureProfileDirectory() {
+  makeProfileDirectory() {
     fs.mkdirSync(this.directoryPath);
   }
 

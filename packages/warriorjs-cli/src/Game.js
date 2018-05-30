@@ -164,7 +164,7 @@ class Game {
 
       printLine('Replacing existing profile...');
     } else {
-      profile.ensureProfileDirectory();
+      profile.makeProfileDirectory();
     }
 
     return profile;

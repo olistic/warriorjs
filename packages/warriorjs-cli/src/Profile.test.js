@@ -142,9 +142,9 @@ describe('Profile', () => {
     expect(profile.clue).toBe(false);
   });
 
-  test('ensures directory', () => {
+  test('makes directory', () => {
     mock({ '/path/to': {} });
-    profile.ensureProfileDirectory();
+    profile.makeProfileDirectory();
     expect(fs.statSync('/path/to/profile').isDirectory()).toBe(true);
     mock.restore();
   });
