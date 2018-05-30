@@ -63,7 +63,6 @@
     "string-width": "^2.1.1",
     "strip-ansi": "^4.0.0",
     "superheroes": "^1.0.0",
-    "wrap-ansi": "^3.0.1",
     "yargs": "^11.0.0"
   }
 }
