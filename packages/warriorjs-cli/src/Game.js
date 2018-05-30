@@ -99,7 +99,7 @@ class Game {
    * @returns {Profile} The chosen profile.
    */
   async chooseProfile() {
-    const profiles = await this.getProfiles();
+    const profiles = this.getProfiles();
     if (profiles.length) {
       const newProfileChoice = 'New profile';
       const profileChoices = [...profiles, SEPARATOR, newProfileChoice];
@@ -117,8 +117,8 @@ class Game {
    *
    * @returns {Profile[]} The available profiles.
    */
-  async getProfiles() {
-    const profileDirectoriesPaths = await this.getProfileDirectoriesPaths();
+  getProfiles() {
+    const profileDirectoriesPaths = this.getProfileDirectoriesPaths();
     return profileDirectoriesPaths.map(profileDirectoryPath =>
       Profile.load(profileDirectoryPath),
     );
@@ -151,8 +151,7 @@ class Game {
 
     const profile = new Profile(warriorName, tower.name, profileDirectoryPath);
 
-    const profileExists = await this.isExistingProfile(profile);
-    if (profileExists) {
+    if (this.isExistingProfile(profile)) {
       printWarningLine(
         `There's already a warrior named ${warriorName} climbing the ${tower} tower.`,
       );
@@ -165,7 +164,7 @@ class Game {
 
       printLine('Replacing existing profile...');
     } else {
-      profile.ensureProfileDirectory();
+      profile.makeProfileDirectory();
     }
 
     return profile;
@@ -178,8 +177,8 @@ class Game {
    *
    * @returns {boolean} Whether the profile exists or not..
    */
-  async isExistingProfile(profile) {
-    const profileDirectoriesPaths = await this.getProfileDirectoriesPaths();
+  isExistingProfile(profile) {
+    const profileDirectoriesPaths = this.getProfileDirectoriesPaths();
     return profileDirectoriesPaths.some(
       profileDirectoryPath => profileDirectoryPath === profile.directoryPath,
     );
@@ -190,8 +189,8 @@ class Game {
    *
    * @returns {string[]} The paths to the available profiles.
    */
-  async getProfileDirectoriesPaths() {
-    await this.ensureGameDirectory();
+  getProfileDirectoriesPaths() {
+    this.ensureGameDirectory();
     const profileDirectoryPattern = path.join(this.gameDirectoryPath, '*');
     return globby.sync(profileDirectoryPattern, { onlyDirectories: true });
   }
@@ -199,49 +198,19 @@ class Game {
   /**
    * Ensures the game directory exists.
    */
-  async ensureGameDirectory() {
-    const directoryExists = this.gameDirectoryExists();
-    if (!directoryExists) {
-      await this.makeGameDirectory();
-    }
-  }
-
-  /**
-   * Checks if the game directory exists.
-   *
-   * @returns {boolean} Whether the game directory exists or not.
-   */
-  gameDirectoryExists() {
-    return (
-      fs.existsSync(this.gameDirectoryPath) &&
-      fs.statSync(this.gameDirectoryPath).isDirectory()
-    );
-  }
-
-  /**
-   * Creates the game directory.
-   */
-  async makeGameDirectory() {
-    const makeDirectory =
-      this.assumeYes ||
-      (await requestConfirmation(
-        'No warriorjs directory found, would you like to create one?',
-        true,
-      ));
-    if (!makeDirectory) {
-      throw new GameError('Unable to continue without directory.');
-    }
-
+  ensureGameDirectory() {
     try {
-      fs.mkdirSync(this.gameDirectoryPath);
-    } catch (err) {
-      if (err.code === 'EEXIST') {
+      if (!fs.statSync(this.gameDirectoryPath).isDirectory()) {
         throw new GameError(
           'A file named warriorjs exists at this location. Please change the directory under which you are running warriorjs.',
         );
       }
+    } catch (err) {
+      if (err.code !== 'ENOENT') {
+        throw err;
+      }
 
-      throw err;
+      fs.mkdirSync(this.gameDirectoryPath);
     }
   }
 

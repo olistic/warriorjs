@@ -64,14 +64,14 @@ describe('Game', () => {
     });
   });
 
-  test('returns profiles', async () => {
+  test('returns profiles', () => {
     const originalLoad = Profile.load;
     game.getProfileDirectoriesPaths = () => [
       '/path/to/game/warriorjs/profile1',
       '/path/to/game/warriorjs/profile2',
     ];
     Profile.load = jest.fn();
-    await game.getProfiles();
+    game.getProfiles();
     expect(Profile.load).toHaveBeenCalledWith(
       '/path/to/game/warriorjs/profile1',
     );
@@ -81,16 +81,14 @@ describe('Game', () => {
     Profile.load = originalLoad;
   });
 
-  test('knows if profile exists', async () => {
+  test('knows if profile exists', () => {
     const nonExistingProfile = {
       directoryPath: '/path/to/nonexisting-profile',
     };
     const existentProfile = { directoryPath: '/path/to/profile' };
     game.getProfileDirectoriesPaths = () => ['/path/to/profile'];
-    await expect(game.isExistingProfile(nonExistingProfile)).resolves.toBe(
-      false,
-    );
-    await expect(game.isExistingProfile(existentProfile)).resolves.toBe(true);
+    expect(game.isExistingProfile(nonExistingProfile)).toBe(false);
+    expect(game.isExistingProfile(existentProfile)).toBe(true);
   });
 
   test('returns paths to profile directories', async () => {
@@ -111,64 +109,27 @@ describe('Game', () => {
     expect(game.ensureGameDirectory).toHaveBeenCalled();
   });
 
-  test('ensures game directory', async () => {
-    game.makeGameDirectory = jest.fn();
-    game.gameDirectoryExists = () => true;
-    await game.ensureGameDirectory();
-    expect(game.makeGameDirectory).not.toHaveBeenCalled();
-    game.gameDirectoryExists = () => false;
-    await game.ensureGameDirectory();
-    expect(game.makeGameDirectory).toHaveBeenCalled();
-  });
-
-  test('knows if game directory exists', () => {
-    mock({ '/path/to/game': {} });
-    expect(game.gameDirectoryExists()).toBe(false);
-    mock({ '/path/to/game/warriorjs': {} });
-    expect(game.gameDirectoryExists()).toBe(true);
-    mock.restore();
-  });
-
-  describe('when making game directory', () => {
-    test('requests confirmation from the player', async () => {
-      requestConfirmation.mockResolvedValue(false);
-      try {
-        await game.makeGameDirectory();
-      } catch (err) {} // eslint-disable-line no-empty
-      expect(requestConfirmation).toHaveBeenCalledWith(
-        'No warriorjs directory found, would you like to create one?',
-        true,
-      );
-    });
-
-    test('creates game directory if player confirms', async () => {
-      requestConfirmation.mockResolvedValue(true);
+  describe('ensuring game directory', () => {
+    test("creates directory if it doesn't exist", () => {
       mock({ '/path/to/game': {} });
-      await game.makeGameDirectory();
+      game.ensureGameDirectory();
       expect(fs.statSync('/path/to/game/warriorjs').isDirectory()).toBe(true);
       mock.restore();
     });
 
-    test('creates game directory if assume yes', async () => {
-      game.assumeYes = true;
-      mock({ '/path/to/game': {} });
-      await game.makeGameDirectory();
-      expect(requestConfirmation).not.toHaveBeenCalled();
+    test('does nothing if directory already exists', () => {
+      mock({ '/path/to/game/warriorjs': {} });
+      expect(fs.statSync('/path/to/game/warriorjs').isDirectory()).toBe(true);
+      game.ensureGameDirectory();
       expect(fs.statSync('/path/to/game/warriorjs').isDirectory()).toBe(true);
       mock.restore();
     });
 
-    test("throws if if player doesn't confirm", async () => {
-      requestConfirmation.mockResolvedValue(false);
-      await expect(game.makeGameDirectory()).rejects.toThrow(
-        new GameError('Unable to continue without directory.'),
-      );
-    });
-
-    test('throws if a warriorjs file exists', async () => {
-      requestConfirmation.mockResolvedValue(true);
+    test('throws if a warriorjs file exists', () => {
       mock({ '/path/to/game/warriorjs': '' });
-      await expect(game.makeGameDirectory()).rejects.toThrow(
+      expect(() => {
+        game.ensureGameDirectory();
+      }).toThrow(
         new GameError(
           'A file named warriorjs exists at this location. Please change the directory under which you are running warriorjs.',
         ),
