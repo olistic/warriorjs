@@ -16,7 +16,7 @@ test('loads internal towers', () => {
   mock({ '/path/to/node_modules/@warriorjs/cli': {} });
   loadTowers();
   mock.restore();
-  expect(Tower).toHaveBeenCalledWith('beginner', []);
+  expect(Tower).toHaveBeenCalledWith('beginner', 'beginner', []);
 });
 
 test('loads official towers', () => {
@@ -26,14 +26,14 @@ test('loads official towers', () => {
         cli: {},
         'tower-foo': {
           'package.json': '',
-          'index.js': "module.exports = { name: 'foo', levels: [] }",
+          'index.js': "module.exports = { name: 'Foo', levels: [] }",
         },
       },
     },
   });
   loadTowers();
   mock.restore();
-  expect(Tower).toHaveBeenCalledWith('foo', []);
+  expect(Tower).toHaveBeenCalledWith('foo', 'Foo', []);
 });
 
 test('loads community towers', () => {
@@ -44,13 +44,13 @@ test('loads community towers', () => {
       },
       'warriorjs-tower-foo': {
         'package.json': '',
-        'index.js': "module.exports = { name: 'foo', levels: [] }",
+        'index.js': "module.exports = { name: 'Foo', levels: [] }",
       },
     },
   });
   loadTowers();
   mock.restore();
-  expect(Tower).toHaveBeenCalledWith('foo', []);
+  expect(Tower).toHaveBeenCalledWith('foo', 'Foo', []);
 });
 
 test("ignores directories that are seemingly towers but don't have a package.json", () => {
@@ -59,16 +59,16 @@ test("ignores directories that are seemingly towers but don't have a package.jso
       '@warriorjs': {
         cli: {},
         'tower-foo': {
-          'index.js': "module.exports = { name: 'foo', levels: [] }",
+          'index.js': "module.exports = { name: 'Foo', levels: [] }",
         },
       },
       'warriorjs-tower-bar': {
-        'index.js': "module.exports = { name: 'bar', levels: [] }",
+        'index.js': "module.exports = { name: 'Bar', levels: [] }",
       },
     },
   });
   loadTowers();
   mock.restore();
-  expect(Tower).not.toHaveBeenCalledWith('foo', []);
-  expect(Tower).not.toHaveBeenCalledWith('bar', []);
+  expect(Tower).not.toHaveBeenCalledWith('foo', 'Foo', []);
+  expect(Tower).not.toHaveBeenCalledWith('bar', 'Bar', []);
 });

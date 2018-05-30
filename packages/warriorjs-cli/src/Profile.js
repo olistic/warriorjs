@@ -34,11 +34,11 @@ class Profile {
     const decodedProfile = Profile.decode(encodedProfile);
     const {
       warriorName,
-      towerName,
+      towerId,
       directoryPath, // TODO: Remove before v1.0.0.
       ...profileData
     } = decodedProfile;
-    const profile = new Profile(warriorName, towerName, profileDirectoryPath);
+    const profile = new Profile(warriorName, towerId, profileDirectoryPath);
     return Object.assign(profile, profileData);
   }
 
@@ -113,12 +113,12 @@ class Profile {
    * Creates a profile.
    *
    * @param {string} warriorName The name of the warrior.
-   * @param {string} towerName The name of the tower.
+   * @param {string} towerId The identifier of the tower.
    * @param {string} directoryPath The path to the directory of the profile.
    */
-  constructor(warriorName, towerName, directoryPath) {
+  constructor(warriorName, towerId, directoryPath) {
     this.warriorName = warriorName;
-    this.towerName = towerName;
+    this.towerId = towerId;
     this.directoryPath = directoryPath;
     this.levelNumber = 0;
     this.score = 0;
@@ -312,7 +312,7 @@ class Profile {
    * @returns {string} The string representation.
    */
   toString() {
-    let result = `${this.warriorName} - ${this.towerName}`;
+    let result = `${this.warriorName} - ${this.towerId}`;
     if (this.isEpic()) {
       result += ` - first score ${
         this.score

@@ -4,7 +4,11 @@ describe('Tower', () => {
   let tower;
 
   beforeEach(() => {
-    tower = new Tower('beginner', ['level1', 'level2']);
+    tower = new Tower('beginner', 'beginner', ['level1', 'level2']);
+  });
+
+  test('has an id', () => {
+    expect(tower.id).toBe('beginner');
   });
 
   test('has a name', () => {

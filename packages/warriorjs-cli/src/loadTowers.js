@@ -5,6 +5,7 @@ import globby from 'globby';
 import resolve from 'resolve';
 
 import Tower from './Tower';
+import getTowerId from './utils/getTowerId';
 
 const officialTowerPackageJsonPattern = '@warriorjs/tower-*/package.json';
 const communityTowerPackageJsonPattern = 'warriorjs-tower-*/package.json';
@@ -18,7 +19,13 @@ const communityTowerPackageJsonPattern = 'warriorjs-tower-*/package.json';
  * @returns {Tower[]} The loaded towers.
  */
 function loadTowers() {
-  const internalTowers = [require('@warriorjs/tower-beginner')]; // eslint-disable-line global-require
+  const internalTowerPackageNames = ['@warriorjs/tower-beginner'];
+  const internalTowersInfo = internalTowerPackageNames.map(
+    towerPackageName => ({
+      id: getTowerId(towerPackageName),
+      requirePath: towerPackageName,
+    }),
+  );
 
   const warriorjsCliDir = findUp.sync('@warriorjs/cli', { cwd: __dirname });
   const towerSearchDir = findUp.sync('node_modules', { cwd: warriorjsCliDir });
@@ -26,16 +33,20 @@ function loadTowers() {
     [officialTowerPackageJsonPattern, communityTowerPackageJsonPattern],
     { cwd: towerSearchDir },
   );
-  const towerPackageNames = towerPackageJsonPaths.map(path.dirname);
-  const towerRequirePaths = towerPackageNames.map(towerPackageName =>
-    resolve.sync(towerPackageName, { basedir: towerSearchDir }),
+  const externalTowerPackageNames = towerPackageJsonPaths.map(path.dirname);
+  const externalTowersInfo = externalTowerPackageNames.map(
+    towerPackageName => ({
+      id: getTowerId(towerPackageName),
+      requirePath: resolve.sync(towerPackageName, { basedir: towerSearchDir }),
+    }),
   );
-  const externalTowers = towerRequirePaths.map(
-    towerRequirePath => require(towerRequirePath), // eslint-disable-line global-require, import/no-dynamic-require
-  );
-  return internalTowers
-    .concat(externalTowers)
-    .map(({ name, levels }) => new Tower(name, levels));
+
+  return internalTowersInfo
+    .concat(externalTowersInfo)
+    .map(({ id, requirePath }) => {
+      const { name, levels } = require(requirePath); // eslint-disable-line global-require, import/no-dynamic-require
+      return new Tower(id, name, levels);
+    });
 }
 
 export default loadTowers;

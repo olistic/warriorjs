@@ -52,7 +52,7 @@ class Game {
     printLine('Welcome to WarriorJS');
 
     try {
-      this.towers = new Map(loadTowers().map(tower => [tower.name, tower]));
+      this.towers = new Map(loadTowers().map(tower => [tower.id, tower]));
 
       this.profile = await this.loadProfile();
 
@@ -87,11 +87,11 @@ class Game {
       profile = await this.chooseProfile();
     }
 
-    const { towerName } = profile;
-    profile.tower = this.towers.get(towerName);
+    const { towerId } = profile;
+    profile.tower = this.towers.get(towerId);
     if (!profile.tower) {
       throw new GameError(
-        `Unable to find tower '${towerName}', make sure it is available.`,
+        `Unable to find tower '${towerId}', make sure it is available.`,
       );
     }
 
@@ -154,10 +154,10 @@ class Game {
 
     const profileDirectoryPath = path.join(
       this.gameDirectoryPath,
-      `${warriorName}-${tower}`.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
+      `${warriorName}-${tower.id}`.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
     );
 
-    const profile = new Profile(warriorName, tower.name, profileDirectoryPath);
+    const profile = new Profile(warriorName, tower.id, profileDirectoryPath);
 
     if (this.isExistingProfile(profile)) {
       printWarningLine(

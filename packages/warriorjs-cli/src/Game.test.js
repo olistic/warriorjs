@@ -39,13 +39,13 @@ describe('Game', () => {
 
   describe('when loading profile', () => {
     const originalLoad = Profile.load;
-    const profile = { towerName: 'foo' };
-    const tower = { name: 'foo' };
+    const profile = { towerId: 'foo' };
+    const tower = { id: 'foo', name: 'Foo' };
 
     beforeEach(() => {
       Profile.load = jest.fn();
       game.chooseProfile = jest.fn();
-      game.towers = new Map([[tower.name, tower]]);
+      game.towers = new Map([[tower.id, tower]]);
     });
 
     afterEach(() => {
@@ -69,7 +69,7 @@ describe('Game', () => {
     });
 
     test('throws if tower is not available', async () => {
-      profile.towerName = 'bar';
+      profile.towerId = 'bar';
       Profile.load.mockReturnValue(profile);
       await expect(game.loadProfile()).rejects.toThrow(
         new GameError(`Unable to find tower 'bar', make sure it is available.`),

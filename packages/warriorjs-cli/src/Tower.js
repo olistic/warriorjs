@@ -2,10 +2,12 @@ class Tower {
   /**
    * Creates a tower.
    *
+   * @param {string} id The identifier of the tower.
    * @param {string} name The name of the tower.
    * @param {Object[]} levels The levels of the tower.
    */
-  constructor(name, levels) {
+  constructor(id, name, levels) {
+    this.id = id;
     this.name = name;
     this.levels = levels;
   }
