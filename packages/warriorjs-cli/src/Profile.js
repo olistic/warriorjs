@@ -15,6 +15,9 @@ const profileFile = '.profile';
 const playerCodeFile = 'Player.js';
 const readmeFile = 'README.md';
 
+// Properties ignored when saving the profile.
+const ignoredProperties = ['directoryPath'];
+
 /** Class representing a profile. */
 class Profile {
   /**
@@ -42,7 +45,7 @@ class Profile {
     const {
       warriorName,
       towerName,
-      directoryPath,
+      directoryPath, // TODO: Remove before v1.0.0.
       ...profileData
     } = decodedProfile;
     const profile = new Profile(warriorName, towerName, profileDirectoryPath);
@@ -297,7 +300,12 @@ class Profile {
    * @returns {string} The encoded profile.
    */
   encode() {
-    return Buffer.from(JSON.stringify(this)).toString('base64');
+    return Buffer.from(
+      JSON.stringify(
+        this,
+        (key, value) => (ignoredProperties.includes(key) ? undefined : value),
+      ),
+    ).toString('base64');
   }
 
   /**
