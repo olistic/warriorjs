@@ -287,7 +287,7 @@ describe('Profile', () => {
 
   test('encodes with JSON + base64', () => {
     expect(profile.encode()).toBe(
-      'eyJ3YXJyaW9yTmFtZSI6IkpvZSIsInRvd2VyTmFtZSI6ImJlZ2lubmVyIiwiZGlyZWN0b3J5UGF0aCI6Ii9wYXRoL3RvL3Byb2ZpbGUiLCJsZXZlbE51bWJlciI6MCwic2NvcmUiOjAsImNsdWUiOmZhbHNlLCJlcGljIjpmYWxzZSwiZXBpY1Njb3JlIjowLCJhdmVyYWdlR3JhZGUiOm51bGwsImN1cnJlbnRFcGljU2NvcmUiOjAsImN1cnJlbnRFcGljR3JhZGVzIjp7fX0=',
+      'eyJ3YXJyaW9yTmFtZSI6IkpvZSIsInRvd2VyTmFtZSI6ImJlZ2lubmVyIiwibGV2ZWxOdW1iZXIiOjAsInNjb3JlIjowLCJjbHVlIjpmYWxzZSwiZXBpYyI6ZmFsc2UsImVwaWNTY29yZSI6MCwiYXZlcmFnZUdyYWRlIjpudWxsLCJjdXJyZW50RXBpY1Njb3JlIjowLCJjdXJyZW50RXBpY0dyYWRlcyI6e319',
     );
   });
 
