@@ -121,11 +121,11 @@ describe('Game', () => {
     expect(game.makeGameDirectory).toHaveBeenCalled();
   });
 
-  test('knows if game directory exists', async () => {
+  test('knows if game directory exists', () => {
     mock({ '/path/to/game': {} });
-    await expect(game.gameDirectoryExists()).resolves.toBe(false);
+    expect(game.gameDirectoryExists()).toBe(false);
     mock({ '/path/to/game/warriorjs': {} });
-    await expect(game.gameDirectoryExists()).resolves.toBe(true);
+    expect(game.gameDirectoryExists()).toBe(true);
     mock.restore();
   });
 
@@ -352,31 +352,31 @@ describe('Game', () => {
     });
   });
 
-  test('prepares next level', async () => {
+  test('prepares next level', () => {
     game.profile = { goToNextLevel: jest.fn() };
     game.generateProfileFiles = jest.fn();
-    await game.prepareNextLevel();
+    game.prepareNextLevel();
     expect(game.profile.goToNextLevel).toHaveBeenCalled();
     expect(game.generateProfileFiles).toHaveBeenCalled();
   });
 
-  test('generates player', async () => {
+  test('generates player', () => {
     game.profile = { levelNumber: 1 };
     game.tower = 'tower';
     getLevelConfig.mockReturnValue('config');
     getLevel.mockReturnValue('level');
     const mockGenerate = jest.fn();
     ProfileGenerator.mockImplementation(() => ({ generate: mockGenerate }));
-    await game.generateProfileFiles();
+    game.generateProfileFiles();
     expect(getLevelConfig).toHaveBeenCalledWith(1, 'tower', game.profile);
     expect(getLevel).toHaveBeenCalledWith('config');
     expect(ProfileGenerator).toHaveBeenCalledWith(game.profile, 'level');
     expect(mockGenerate).toHaveBeenCalled();
   });
 
-  test('prepares epic mode', async () => {
+  test('prepares epic mode', () => {
     game.profile = { enableEpicMode: jest.fn() };
-    await game.prepareEpicMode();
+    game.prepareEpicMode();
     expect(game.profile.enableEpicMode).toHaveBeenCalled();
   });
 });
