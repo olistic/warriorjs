@@ -35,10 +35,15 @@ class Profile {
     const {
       warriorName,
       towerId,
+      towerName, // TODO: Remove before v1.0.0.
       directoryPath, // TODO: Remove before v1.0.0.
       ...profileData
     } = decodedProfile;
-    const profile = new Profile(warriorName, towerId, profileDirectoryPath);
+    const profile = new Profile(
+      warriorName,
+      towerId || towerName,
+      profileDirectoryPath,
+    );
     return Object.assign(profile, profileData);
   }
 
