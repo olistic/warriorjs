@@ -13,8 +13,8 @@ const profile = {
 };
 getWarriorAbilities.mockReturnValue('abilities');
 
-test('returns level config', async () => {
-  const levelConfig = await getLevelConfig(1, tower, profile);
+test('returns level config', () => {
+  const levelConfig = getLevelConfig(1, tower, profile);
   expect(levelConfig).toEqual({
     number: 1,
     floor: {
@@ -29,8 +29,8 @@ test('returns level config', async () => {
   expect(getWarriorAbilities).toHaveBeenCalledWith(['level1']);
 });
 
-test('gets abilities from all levels if epic', async () => {
+test('gets abilities from all levels if epic', () => {
   profile.isEpic = () => true;
-  await getLevelConfig(1, tower, profile);
+  getLevelConfig(1, tower, profile);
   expect(getWarriorAbilities).toHaveBeenCalledWith(['level1', 'level2']);
 });

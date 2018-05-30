@@ -111,7 +111,7 @@ describe('Profile.decode', () => {
     expect(Profile.decode('eyJmb28iOiA0Mn0=')).toEqual({ foo: 42 });
   });
 
-  test('throws if invalid encoded profile', async () => {
+  test('throws if invalid encoded profile', () => {
     expect(() => {
       Profile.decode('invalid encoded profile');
     }).toThrow(GameError);
