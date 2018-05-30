@@ -1,8 +1,7 @@
+import fs from 'fs';
 import path from 'path';
 
 import globby from 'globby';
-import makeDir from 'make-dir';
-import pathType from 'path-type';
 import { getLevel, runLevel } from '@warriorjs/core';
 
 import GameError from './GameError';
@@ -213,7 +212,10 @@ class Game {
    * @returns {boolean} Whether the game directory exists or not.
    */
   gameDirectoryExists() {
-    return pathType.dirSync(this.gameDirectoryPath);
+    return (
+      fs.existsSync(this.gameDirectoryPath) &&
+      fs.statSync(this.gameDirectoryPath).isDirectory()
+    );
   }
 
   /**
@@ -231,7 +233,7 @@ class Game {
     }
 
     try {
-      makeDir.sync(this.gameDirectoryPath);
+      fs.mkdirSync(this.gameDirectoryPath);
     } catch (err) {
       if (err.code === 'EEXIST') {
         throw new GameError(

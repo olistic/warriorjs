@@ -143,7 +143,7 @@ describe('Game', () => {
 
     test('creates game directory if player confirms', async () => {
       requestConfirmation.mockResolvedValue(true);
-      mock();
+      mock({ '/path/to/game': {} });
       await game.makeGameDirectory();
       expect(fs.statSync('/path/to/game/warriorjs').isDirectory()).toBe(true);
       mock.restore();
@@ -151,7 +151,7 @@ describe('Game', () => {
 
     test('creates game directory if assume yes', async () => {
       game.assumeYes = true;
-      mock();
+      mock({ '/path/to/game': {} });
       await game.makeGameDirectory();
       expect(requestConfirmation).not.toHaveBeenCalled();
       expect(fs.statSync('/path/to/game/warriorjs').isDirectory()).toBe(true);

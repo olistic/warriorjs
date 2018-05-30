@@ -1,7 +1,6 @@
 import fs from 'fs';
 import path from 'path';
 
-import cpFile from 'cp-file';
 import ejs from 'ejs';
 
 import getFloorMap from './utils/getFloorMap';
@@ -59,7 +58,7 @@ class ProfileGenerator {
    * Generates the player code file (Player.js).
    */
   generatePlayerCodeFile() {
-    cpFile.sync(
+    fs.copyFileSync(
       PLAYER_CODE_TEMPLATE_FILE_PATH,
       this.profile.getPlayerCodeFilePath(),
     );

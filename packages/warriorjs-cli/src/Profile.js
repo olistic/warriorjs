@@ -1,9 +1,6 @@
 import fs from 'fs';
 import path from 'path';
 
-import makeDir from 'make-dir';
-import pathType from 'path-type';
-
 import GameError from './GameError';
 import getGradeLetter from './utils/getGradeLetter';
 
@@ -57,10 +54,19 @@ class Profile {
    */
   static isProfileDirectory(profileDirectoryPath) {
     const profileFilePath = path.join(profileDirectoryPath, profileFile);
-    const profileFileExists = pathType.fileSync(profileFilePath);
     const playerCodeFilePath = path.join(profileDirectoryPath, playerCodeFile);
-    const playerCodeFileExists = pathType.fileSync(playerCodeFilePath);
-    return playerCodeFileExists && profileFileExists;
+    try {
+      return (
+        fs.statSync(profileFilePath).isFile() &&
+        fs.statSync(playerCodeFilePath).isFile()
+      );
+    } catch (err) {
+      if (err.code === 'ENOENT') {
+        return false;
+      }
+
+      throw err;
+    }
   }
 
   /**
@@ -128,7 +134,7 @@ class Profile {
    * Ensures the profile directory exists.
    */
   ensureProfileDirectory() {
-    makeDir.sync(this.directoryPath);
+    fs.mkdirSync(this.directoryPath);
   }
 
   /**
