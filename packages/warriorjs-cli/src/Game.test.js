@@ -39,13 +39,10 @@ describe('Game', () => {
 
   describe('when loading profile', () => {
     const originalLoad = Profile.load;
-    const profile = { towerId: 'foo' };
-    const tower = { id: 'foo', name: 'Foo' };
 
     beforeEach(() => {
       Profile.load = jest.fn();
       game.chooseProfile = jest.fn();
-      game.towers = new Map([[tower.id, tower]]);
     });
 
     afterEach(() => {
@@ -53,32 +50,23 @@ describe('Game', () => {
     });
 
     test('returns profile if in profile directory', async () => {
-      Profile.load.mockReturnValue(profile);
-      const loadedProfile = await game.loadProfile();
-      expect(loadedProfile).toBe(profile);
-      expect(loadedProfile.tower).toBe(tower);
+      Profile.load.mockReturnValue('profile');
+      const profile = await game.loadProfile();
+      expect(profile).toBe('profile');
     });
 
     test('gives the option to choose a profile', async () => {
       Profile.load.mockReturnValue(null);
-      game.chooseProfile.mockReturnValue(profile);
-      const loadedProfile = await game.loadProfile();
-      expect(loadedProfile).toBe(profile);
-      expect(loadedProfile.tower).toBe(tower);
+      game.chooseProfile.mockReturnValue('profile');
+      const profile = await game.loadProfile();
+      expect(profile).toBe('profile');
       expect(game.chooseProfile).toHaveBeenCalled();
-    });
-
-    test('throws if tower is not available', async () => {
-      profile.towerId = 'bar';
-      Profile.load.mockReturnValue(profile);
-      await expect(game.loadProfile()).rejects.toThrow(
-        new GameError(`Unable to find tower 'bar', make sure it is available.`),
-      );
     });
   });
 
   test('returns profiles', () => {
     const originalLoad = Profile.load;
+    game.towers = ['tower1', 'tower2'];
     game.getProfileDirectoriesPaths = () => [
       '/path/to/game/warriorjs/profile1',
       '/path/to/game/warriorjs/profile2',
@@ -87,9 +75,11 @@ describe('Game', () => {
     game.getProfiles();
     expect(Profile.load).toHaveBeenCalledWith(
       '/path/to/game/warriorjs/profile1',
+      ['tower1', 'tower2'],
     );
     expect(Profile.load).toHaveBeenCalledWith(
       '/path/to/game/warriorjs/profile2',
+      ['tower1', 'tower2'],
     );
     Profile.load = originalLoad;
   });

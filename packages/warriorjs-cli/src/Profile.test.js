@@ -9,6 +9,8 @@ import Profile from './Profile';
 describe('Profile.load', () => {
   const originalRead = Profile.read;
   const originalIsProfileDirectory = Profile.isProfileDirectory;
+  const profileTower = { id: 'foo', name: 'Foo' };
+  const towers = [profileTower, { id: 'bar', name: 'Bar' }];
 
   afterEach(() => {
     Profile.read = originalRead;
@@ -18,38 +20,55 @@ describe('Profile.load', () => {
   test('instances Profile with contents of profile file', () => {
     Profile.isProfileDirectory = () => true;
     Profile.read = () =>
-      'eyJ3YXJyaW9yTmFtZSI6ICJKb2UiLCAidG93ZXJJZCI6ICJiZWdpbm5lciIsICJmb28iOiA0Mn0=';
-    const profile = Profile.load('/path/to/profile');
+      'eyJ3YXJyaW9yTmFtZSI6ICJKb2UiLCAidG93ZXJJZCI6ICJmb28iLCAiYW5vdGhlcktleSI6IDQyfQ==';
+    const profile = Profile.load('/path/to/profile', towers);
     expect(profile).toBeInstanceOf(Profile);
     expect(profile.warriorName).toBe('Joe');
-    expect(profile.towerId).toBe('beginner');
-    expect(path.normalize(profile.directoryPath)).toBe(
-      path.normalize('/path/to/profile'),
-    );
-    expect(profile.currentEpicScore).toBe(0);
-    expect(profile.currentEpicGrades).toEqual({});
-    expect(profile.foo).toBe(42);
+    expect(profile.tower).toBe(profileTower);
+    expect(profile.anotherKey).toBe(42);
   });
 
-  test('updates the path to the directory from where the profile is being loaded', () => {
+  test('sets the directory path to the path from where the profile is being loaded', () => {
     Profile.isProfileDirectory = () => true;
     Profile.read = () =>
-      'eyJ3YXJyaW9yTmFtZSI6ICJKb2UiLCAidG93ZXJJZCI6ICJiZWdpbm5lciJ9';
-    const profile = Profile.load('/new/path/to/profile');
-    expect(profile.directoryPath).toBe('/new/path/to/profile');
+      'eyJ3YXJyaW9yTmFtZSI6ICJKb2UiLCAidG93ZXJJZCI6ICJmb28ifQ==';
+    const profile = Profile.load('/path/to/profile', towers);
+    expect(profile.directoryPath).toBe('/path/to/profile');
+  });
+
+  test('ignores keys that were once part of the encoded profile', () => {
+    Profile.isProfileDirectory = () => true;
+    Profile.read = () =>
+      'eyJ3YXJyaW9yTmFtZSI6ICJKb2UiLCAidG93ZXJJZCI6ICJmb28iLCAiZGlyZWN0b3J5UGF0aCI6ICJsZWdhY3kiLCAidG93ZXJOYW1lIjogImxlZ2FjeSIsICJjdXJyZW50RXBpY1Njb3JlIjogImxlZ2FjeSIsICJjdXJyZW50RXBpY0dyYWRlcyI6ICJsZWdhY3kifQ==';
+    const profile = Profile.load('/path/to/profile', towers);
+    expect(profile).not.toHaveProperty('towerName');
+    expect(profile.directoryPath).toBe('/path/to/profile');
+    expect(profile.currentEpicScore).toBe(0);
+    expect(profile.currentEpicGrades).toEqual({});
   });
 
   test('returns null if not a profile directory', () => {
     Profile.isProfileDirectory = () => false;
-    const profile = Profile.load('/path/to/profile');
+    const profile = Profile.load('/path/to/profile', towers);
     expect(profile).toBeNull();
   });
 
   test('returns null if no encoded profile', () => {
     Profile.isProfileDirectory = () => true;
     Profile.read = () => null;
-    const profile = Profile.load('/path/to/profile');
+    const profile = Profile.load('/path/to/profile', towers);
     expect(profile).toBeNull();
+  });
+
+  test('throws if profile tower is not available', () => {
+    Profile.isProfileDirectory = () => true;
+    Profile.read = () =>
+      'eyJ3YXJyaW9yTmFtZSI6ICJKb2UiLCAidG93ZXJJZCI6ICJmb28iLCAiYW5vdGhlcktleSI6IDQyfQ==';
+    expect(() => {
+      Profile.load('/path/to/profile', []);
+    }).toThrow(
+      new GameError(`Unable to find tower 'foo', make sure it is available.`),
+    );
   });
 });
 
@@ -96,29 +115,48 @@ describe('Profile.read', () => {
 
 describe('Profile.decode', () => {
   test('decodes from JSON + base64', () => {
-    expect(Profile.decode('eyJmb28iOiA0Mn0=')).toEqual({ foo: 42 });
+    expect(
+      Profile.decode(
+        'eyJ3YXJyaW9yTmFtZSI6IkpvZSIsInRvd2VySWQiOiJmb28iLCJsZXZlbE51bWJlciI6MCwiY2x1ZSI6ZmFsc2UsImVwaWMiOmZhbHNlLCJzY29yZSI6MCwiZXBpY1Njb3JlIjowLCJhdmVyYWdlR3JhZGUiOm51bGx9',
+      ),
+    ).toEqual({
+      warriorName: 'Joe',
+      towerId: 'foo',
+      levelNumber: 0,
+      clue: false,
+      epic: false,
+      score: 0,
+      epicScore: 0,
+      averageGrade: null,
+    });
   });
 
   test('throws if invalid encoded profile', () => {
     expect(() => {
       Profile.decode('invalid encoded profile');
-    }).toThrow(GameError);
+    }).toThrow(
+      new GameError(
+        'Invalid .profile file. Try changing the directory under which you are running warriorjs.',
+      ),
+    );
   });
 });
 
 describe('Profile', () => {
   let profile;
+  let tower;
 
   beforeEach(() => {
-    profile = new Profile('Joe', 'beginner', '/path/to/profile');
+    tower = { id: 'foo', name: 'Foo' };
+    profile = new Profile('Joe', tower, '/path/to/profile');
   });
 
   test('has a warrior name', () => {
     expect(profile.warriorName).toBe('Joe');
   });
 
-  test('has a tower identifier', () => {
-    expect(profile.towerId).toBe('beginner');
+  test('has a tower', () => {
+    expect(profile.tower).toBe(tower);
   });
 
   test('has a directory path', () => {
@@ -142,10 +180,6 @@ describe('Profile', () => {
 
   test("doesn't show clue at the beginning", () => {
     expect(profile.clue).toBe(false);
-  });
-
-  test('has a tower which is null before loading the profile into the game', () => {
-    expect(profile.tower).toBeNull();
   });
 
   test('makes directory', () => {
@@ -277,7 +311,7 @@ describe('Profile', () => {
 
   test('encodes with JSON + base64', () => {
     expect(profile.encode()).toBe(
-      'eyJ3YXJyaW9yTmFtZSI6IkpvZSIsInRvd2VySWQiOiJiZWdpbm5lciIsImxldmVsTnVtYmVyIjowLCJjbHVlIjpmYWxzZSwiZXBpYyI6ZmFsc2UsInNjb3JlIjowLCJlcGljU2NvcmUiOjAsImF2ZXJhZ2VHcmFkZSI6bnVsbH0=',
+      'eyJ3YXJyaW9yTmFtZSI6IkpvZSIsInRvd2VySWQiOiJmb28iLCJsZXZlbE51bWJlciI6MCwiY2x1ZSI6ZmFsc2UsImVwaWMiOmZhbHNlLCJzY29yZSI6MCwiZXBpY1Njb3JlIjowLCJhdmVyYWdlR3JhZGUiOm51bGx9',
     );
   });
 
@@ -296,7 +330,7 @@ describe('Profile', () => {
   test('has a nice string representation', () => {
     profile.levelNumber = 4;
     profile.score = 123;
-    expect(profile.toString()).toBe('Joe - beginner - level 4 - score 123');
+    expect(profile.toString()).toBe('Joe - Foo - level 4 - score 123');
   });
 
   describe('epic mode', () => {
@@ -368,7 +402,7 @@ describe('Profile', () => {
       profile.score = 123;
       profile.getEpicScoreWithGrade = () => '124 (C)';
       expect(profile.toString()).toBe(
-        'Joe - beginner - first score 123 - epic score 124 (C)',
+        'Joe - Foo - first score 123 - epic score 124 (C)',
       );
     });
   });

@@ -14,10 +14,11 @@ class Profile {
    * Loads a profile from a profile directory.
    *
    * @param {string} profileDirectoryPath The path to the profile directory.
+   * @param {Tower[]} towers The available towers.
    *
    * @returns {Profile} The loaded profile.
    */
-  static load(profileDirectoryPath) {
+  static load(profileDirectoryPath, towers) {
     if (!Profile.isProfileDirectory(profileDirectoryPath)) {
       return null;
     }
@@ -38,9 +39,18 @@ class Profile {
       currentEpicGrades, // TODO: Remove before v1.0.0.
       ...profileData
     } = decodedProfile;
+
+    const towerKey = towerId || towerName; // Support legacy profiles.
+    const profileTower = towers.find(tower => tower.id === towerKey);
+    if (!profileTower) {
+      throw new GameError(
+        `Unable to find tower '${towerKey}', make sure it is available.`,
+      );
+    }
+
     const profile = new Profile(
       warriorName,
-      towerId || towerName,
+      profileTower,
       profileDirectoryPath,
     );
     return Object.assign(profile, profileData);
@@ -117,12 +127,12 @@ class Profile {
    * Creates a profile.
    *
    * @param {string} warriorName The name of the warrior.
-   * @param {string} towerId The identifier of the tower.
+   * @param {Tower} tower The tower.
    * @param {string} directoryPath The path to the directory of the profile.
    */
-  constructor(warriorName, towerId, directoryPath) {
+  constructor(warriorName, tower, directoryPath) {
     this.warriorName = warriorName;
-    this.towerId = towerId;
+    this.tower = tower;
     this.directoryPath = directoryPath;
     this.levelNumber = 0;
     this.score = 0;
@@ -132,7 +142,6 @@ class Profile {
     this.averageGrade = null;
     this.currentEpicScore = 0;
     this.currentEpicGrades = {};
-    this.tower = null;
   }
 
   /**
@@ -313,7 +322,7 @@ class Profile {
   toJSON() {
     return {
       warriorName: this.warriorName,
-      towerId: this.towerId,
+      towerId: this.tower.id,
       levelNumber: this.levelNumber,
       clue: this.clue,
       epic: this.epic,
@@ -329,7 +338,7 @@ class Profile {
    * @returns {string} The string representation.
    */
   toString() {
-    let result = `${this.warriorName} - ${this.towerId}`;
+    let result = `${this.warriorName} - ${this.tower.name}`;
     if (this.isEpic()) {
       result += ` - first score ${
         this.score
