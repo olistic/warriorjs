@@ -228,9 +228,6 @@ class Game {
   async playEpicMode() {
     this.delay /= 2;
 
-    this.profile.currentEpicScore = 0;
-    this.profile.currentEpicGrades = {};
-
     if (this.practiceLevel) {
       const hasPracticeLevel = this.profile.tower.hasLevel(this.practiceLevel);
       if (!hasPracticeLevel) {

@@ -34,6 +34,8 @@ class Profile {
       towerId,
       towerName, // TODO: Remove before v1.0.0.
       directoryPath, // TODO: Remove before v1.0.0.
+      currentEpicScore, // TODO: Remove before v1.0.0.
+      currentEpicGrades, // TODO: Remove before v1.0.0.
       ...profileData
     } = decodedProfile;
     const profile = new Profile(
@@ -185,7 +187,7 @@ class Profile {
   }
 
   /**
-   * Request the clue to be shown.
+   * Requests the clue to be shown.
    */
   requestClue() {
     this.clue = true;
@@ -193,7 +195,7 @@ class Profile {
   }
 
   /**
-   * Check if the clue is being shown.
+   * Checks if the clue is being shown.
    *
    * @returns {boolean} Whether the clue is being shown or not.
    */
@@ -318,8 +320,6 @@ class Profile {
       score: this.score,
       epicScore: this.epicScore,
       averageGrade: this.averageGrade,
-      currentEpicScore: this.currentEpicScore,
-      currentEpicGrades: this.currentEpicGrades,
     };
   }
 
