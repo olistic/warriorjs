@@ -58,6 +58,7 @@
     "inquirer": "^5.1.0",
     "inquirer-prompt-suggest": "^0.1.0",
     "lodash.merge": "^4.6.1",
+    "lodash.uniqby": "^4.7.0",
     "resolve": "^1.7.1",
     "string-width": "^2.1.1",
     "superheroes": "^1.0.0",
