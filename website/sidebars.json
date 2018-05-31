@@ -11,7 +11,7 @@
     ],
     "Concepts": ["units", "warrior", "abilities", "spaces"],
     "Player API": ["sensed-space-api", "sensed-unit-api", "turn-api"],
-    "Tips & Tricks": ["general-tips", "js-tips", "cli-tips"],
+    "Tips & Tricks": ["general-tips", "js-tips", "ai-tips", "cli-tips"],
     "Configuration": ["cli-options"]
   },
   "make": {
