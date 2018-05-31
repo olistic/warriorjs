@@ -93,7 +93,7 @@ function loadLevel(
     tip,
     clue,
     timeBonus,
-    floor: { size, stairs, warrior, units },
+    floor: { size, stairs, warrior, units = [] },
   },
   playerCode,
 ) {
