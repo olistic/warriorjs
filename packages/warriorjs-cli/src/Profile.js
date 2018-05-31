@@ -8,9 +8,6 @@ const profileFile = '.profile';
 const playerCodeFile = 'Player.js';
 const readmeFile = 'README.md';
 
-// Properties ignored when saving the profile.
-const ignoredProperties = ['directoryPath', 'tower'];
-
 /** Class representing a profile. */
 class Profile {
   /**
@@ -303,12 +300,27 @@ class Profile {
    * @returns {string} The encoded profile.
    */
   encode() {
-    return Buffer.from(
-      JSON.stringify(
-        this,
-        (key, value) => (ignoredProperties.includes(key) ? undefined : value),
-      ),
-    ).toString('base64');
+    return Buffer.from(JSON.stringify(this)).toString('base64');
+  }
+
+  /**
+   * Customizes the JSON stringification behavior of the profile.
+   *
+   * @returns {Object} The value to be serialized.
+   */
+  toJSON() {
+    return {
+      warriorName: this.warriorName,
+      towerId: this.towerId,
+      levelNumber: this.levelNumber,
+      clue: this.clue,
+      epic: this.epic,
+      score: this.score,
+      epicScore: this.epicScore,
+      averageGrade: this.averageGrade,
+      currentEpicScore: this.currentEpicScore,
+      currentEpicGrades: this.currentEpicGrades,
+    };
   }
 
   /**

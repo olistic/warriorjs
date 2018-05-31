@@ -273,12 +273,18 @@ describe('Profile', () => {
     );
   });
 
-  test('encodes with JSON + base64 ignoring properties', () => {
-    profile.directoryPath = 'ignored';
-    profile.tower = 'ignored';
+  test('encodes with JSON + base64', () => {
     expect(profile.encode()).toBe(
       'eyJ3YXJyaW9yTmFtZSI6IkpvZSIsInRvd2VySWQiOiJiZWdpbm5lciIsImxldmVsTnVtYmVyIjowLCJzY29yZSI6MCwiY2x1ZSI6ZmFsc2UsImVwaWMiOmZhbHNlLCJlcGljU2NvcmUiOjAsImF2ZXJhZ2VHcmFkZSI6bnVsbCwiY3VycmVudEVwaWNTY29yZSI6MCwiY3VycmVudEVwaWNHcmFkZXMiOnt9fQ==',
     );
+  });
+
+  test('serializes to JSON ignoring properties', () => {
+    profile.directoryPath = 'ignored';
+    profile.tower = 'ignored';
+    const serializedProfile = JSON.parse(JSON.stringify(profile));
+    expect(serializedProfile).not.toHaveProperty('directoryPath');
+    expect(serializedProfile).not.toHaveProperty('tower');
   });
 
   test('has a nice string representation', () => {
