@@ -7,7 +7,7 @@
 <br />
 
 <div align="center">
-  <strong>An exciting game of programming and Artificial Intelligence<a href="#ai-footnote">*</a></strong>
+  <strong>An exciting game of programming and Artificial Intelligence</strong>
 </div>
 
 <br />
@@ -132,9 +132,3 @@ wonderful [logo](logo).
 ## License
 
 WarriorJS is licensed under a [MIT License](LICENSE).
-
----
-
-<a name="ai-footnote">(\*)</a>: _The Artificial Intelligence components of
-WarriorJS are pretty basic. If you're looking to learn more advanced AI
-concepts, this project will not provide you that._
