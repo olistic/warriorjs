@@ -44,8 +44,8 @@ function loadTowers() {
 
   return uniqBy(internalTowersInfo.concat(externalTowersInfo), 'id').map(
     ({ id, requirePath }) => {
-      const { name, levels } = require(requirePath); // eslint-disable-line global-require, import/no-dynamic-require
-      return new Tower(id, name, levels);
+      const { name, description, levels } = require(requirePath); // eslint-disable-line global-require, import/no-dynamic-require
+      return new Tower(id, name, description, levels);
     },
   );
 }
