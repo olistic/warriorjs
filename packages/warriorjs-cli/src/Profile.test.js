@@ -26,6 +26,8 @@ describe('Profile.load', () => {
     expect(path.normalize(profile.directoryPath)).toBe(
       path.normalize('/path/to/profile'),
     );
+    expect(profile.currentEpicScore).toBe(0);
+    expect(profile.currentEpicGrades).toEqual({});
     expect(profile.foo).toBe(42);
   });
 
@@ -273,12 +275,22 @@ describe('Profile', () => {
     );
   });
 
-  test('encodes with JSON + base64 ignoring properties', () => {
+  test('encodes with JSON + base64', () => {
+    expect(profile.encode()).toBe(
+      'eyJ3YXJyaW9yTmFtZSI6IkpvZSIsInRvd2VySWQiOiJiZWdpbm5lciIsImxldmVsTnVtYmVyIjowLCJjbHVlIjpmYWxzZSwiZXBpYyI6ZmFsc2UsInNjb3JlIjowLCJlcGljU2NvcmUiOjAsImF2ZXJhZ2VHcmFkZSI6bnVsbH0=',
+    );
+  });
+
+  test('serializes to JSON ignoring properties', () => {
+    profile.currentEpicScore = 'ignored';
+    profile.currentEpicGrades = 'ignored';
     profile.directoryPath = 'ignored';
     profile.tower = 'ignored';
-    expect(profile.encode()).toBe(
-      'eyJ3YXJyaW9yTmFtZSI6IkpvZSIsInRvd2VySWQiOiJiZWdpbm5lciIsImxldmVsTnVtYmVyIjowLCJzY29yZSI6MCwiY2x1ZSI6ZmFsc2UsImVwaWMiOmZhbHNlLCJlcGljU2NvcmUiOjAsImF2ZXJhZ2VHcmFkZSI6bnVsbCwiY3VycmVudEVwaWNTY29yZSI6MCwiY3VycmVudEVwaWNHcmFkZXMiOnt9fQ==',
-    );
+    const serializedProfile = JSON.parse(JSON.stringify(profile));
+    expect(serializedProfile).not.toHaveProperty('currentEpicScore');
+    expect(serializedProfile).not.toHaveProperty('currentEpicGrades');
+    expect(serializedProfile).not.toHaveProperty('directoryPath');
+    expect(serializedProfile).not.toHaveProperty('tower');
   });
 
   test('has a nice string representation', () => {
