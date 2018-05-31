@@ -4,15 +4,19 @@ describe('Tower', () => {
   let tower;
 
   beforeEach(() => {
-    tower = new Tower('beginner', 'beginner', ['level1', 'level2']);
+    tower = new Tower('foo', 'Foo', 'bar baz', ['level1', 'level2']);
   });
 
   test('has an id', () => {
-    expect(tower.id).toBe('beginner');
+    expect(tower.id).toBe('foo');
   });
 
   test('has a name', () => {
-    expect(tower.name).toBe('beginner');
+    expect(tower.name).toBe('Foo');
+  });
+
+  test('has a description', () => {
+    expect(tower.description).toBe('bar baz');
   });
 
   test('has some levels', () => {
@@ -29,6 +33,6 @@ describe('Tower', () => {
   });
 
   test('has a nice string representation', () => {
-    expect(tower.toString()).toBe('beginner');
+    expect(tower.toString()).toBe('Foo');
   });
 });

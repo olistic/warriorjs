@@ -1,5 +1,9 @@
 # <%- profile.warriorName %> - <%- profile.tower.name %>
 
+<% if (profile.tower.description) { -%>
+### _<%- profile.tower.description %>_
+<% } -%>
+
 ## Level <%- level.number %>
 
 ### _<%- level.description %>_

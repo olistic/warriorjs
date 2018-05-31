@@ -338,7 +338,7 @@ class Profile {
    * @returns {string} The string representation.
    */
   toString() {
-    let result = `${this.warriorName} - ${this.tower.name}`;
+    let result = `${this.warriorName} - ${this.tower}`;
     if (this.isEpic()) {
       result += ` - first score ${
         this.score
