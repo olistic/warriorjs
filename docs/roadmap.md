@@ -18,7 +18,7 @@ These are the many ways you can help:
 * Report bugs
 * Follow us on [Twitter](https://twitter.com/warrior_js)
 * Participate in the [Spectrum community](https://spectrum.chat/warriorjs)
-* And [donate financially](https://opencollective.com/warriorjs)
+* And [donate financially](https://opencollective.com/warriorjs)!
 
 Please read our
 [contribution guide](https://github.com/olistic/warriorjs/blob/master/CONTRIBUTING.md)

@@ -1,7 +1,7 @@
 ---
 id: js-tips
-title: JavaScript Tips
 sidebar_label: JavaScript
+title: JavaScript Tips
 ---
 
 * Don't simply fill up the `playTurn` method with a lot of code, **organize your

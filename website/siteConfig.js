@@ -20,6 +20,7 @@ const siteConfig = {
   translationRecruitingLink: 'https://crowdin.com/project/warriorjs',
   headerLinks: [
     { doc: 'overview', label: 'Play' },
+    { doc: 'introduction', label: 'Make' },
     { doc: 'socialize', label: 'Community' },
     { languages: true },
     { search: true },

@@ -1,6 +1,6 @@
 {
-  "docs": {
-    "Intro": ["overview", "set-up"],
+  "play": {
+    "Introduction": ["overview", "set-up"],
     "Game": [
       "object",
       "gameplay",
@@ -10,9 +10,22 @@
       "towers"
     ],
     "Concepts": ["units", "warrior", "abilities", "spaces"],
-    "Player API": ["space-api", "unit-api", "turn-api"],
+    "Player API": ["sensed-space-api", "sensed-unit-api", "turn-api"],
     "Tips & Tricks": ["general-tips", "js-tips", "cli-tips"],
     "Configuration": ["cli-options"]
+  },
+  "make": {
+    "Guide": [
+      "introduction",
+      "creating-tower",
+      "adding-levels",
+      "defining-abilities",
+      "defining-units",
+      "refactoring",
+      "testing",
+      "publishing"
+    ],
+    "Maker API": ["space-api", "unit-api"]
   },
   "community": {
     "Community": ["socialize", "ecosystem", "roadmap"]

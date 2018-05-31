@@ -21,7 +21,7 @@ Here is an example of a floor map and key:
 ╚════╝
 
 > = stairs
-@ = Spartacus (20 HP)
+@ = Jon Snow (20 HP)
 s = Sludge (12 HP)
 S = Thick Sludge (24 HP)
 C = Captive (1 HP)
