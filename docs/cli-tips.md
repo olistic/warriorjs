@@ -1,7 +1,7 @@
 ---
 id: cli-tips
-title: CLI Tips
 sidebar_label: CLI
+title: CLI Tips
 ---
 
 * Running `warriorjs` while you are in your profile's directory will auto-select

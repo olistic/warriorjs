@@ -1,7 +1,7 @@
 ---
 id: general-tips
-title: General Tips
 sidebar_label: General
+title: General Tips
 ---
 
 * **If you ever get stuck on a level, review the README** and be sure you're

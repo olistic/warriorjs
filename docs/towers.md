@@ -6,8 +6,8 @@ title: Towers
 A **tower** is a WarriorJS world. In addition to defining levels, towers can
 also add new abilities, effects, and units to the game.
 
-The `@warriorjs/cli` package ships with a beginner tower built-in. You'll need
-to install any additional tower you want to play.
+WarriorJS CLI ships with a beginner tower built-in. You'll need to install any
+additional tower you want to play.
 
 ## Installing Towers
 
@@ -17,8 +17,8 @@ you have installed the game globally, you'll need to install additional towers
 globally. If, on the other hand, you're running the game from a local
 installation, you'll need to install additional towers locally.
 
-Tower package names must start with `@warriorjs/tower-` or `warriorjs-tower-` to
-be registered.
+Tower package names start with `@warriorjs/tower-` for official towers, or
+`warriorjs-tower-` for community towers.
 
 ### Official Towers
 
@@ -31,8 +31,8 @@ Have you made a tower? [Add it][add-community-tower] to the list!
 
 ## Making Towers
 
-_Coming soon._
+Follow this [guide](introduction.md).
 
-[warriorjs-tower-beginner]: /packages/warriorjs-tower-beginner
-[warriorjs-tower-intermediate]: /packages/warriorjs-tower-intermediate
+[warriorjs-tower-beginner]: https://github.com/olistic/warriorjs/tree/master/packages/warriorjs-tower-beginner
+[warriorjs-tower-intermediate]: https://github.com/olistic/warriorjs/tree/master/packages/warriorjs-tower-intermediate
 [add-community-tower]: https://github.com/olistic/warriorjs/edit/master/docs/towers.md

@@ -162,9 +162,9 @@ class Unit {
   }
 
   /**
-   * Unbinds another unit.
+   * Releases (unbinds) another unit.
    *
-   * @param {Unit} receiver The unit to unbind.
+   * @param {Unit} receiver The unit to release.
    */
   release(receiver) {
     receiver.unbind();

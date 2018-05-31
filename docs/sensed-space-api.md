@@ -1,14 +1,30 @@
 ---
-id: space-api
+id: sensed-space-api
 title: Space API
 ---
 
-As a maker, you call the same methods the player call on a sensed space, but on
-a regular space.
+Whenever you sense an area, often one or multiple spaces (in an array) will be
+returned. For example, the "feel" sense in the beginner tower returns one space:
+
+```js
+const space = warrior.feel();
+```
+
+You can call methods on a space to gather information about what's there.
 
 ## Class Methods
 
 Here are the various methods that are available to you:
+
+### `space.getLocation()`:
+
+Returns the relative location of this space as the number of spaces forward and
+to the right of your position.
+
+**Returns**
+
+_(number[])_: The relative location of this space as the offset
+`[forward, right]`.
 
 ### `space.isEmpty()`:
 
@@ -46,14 +62,6 @@ _(boolean)_: Whether a unit is at this space or not.
 
 Returns the unit located at this space (if any).
 
-**This unit will be a regular unit, not a sensed unit.**
-
 **Returns**
 
 _(Unit)_: The unit at this location or `undefined` if there's none.
-
-## Instance Properties
-
-### `location` _(number[])_
-
-The absolute location of this space as the pair of coordinates `[x, y]`.
