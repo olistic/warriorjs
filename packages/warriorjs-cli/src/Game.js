@@ -52,7 +52,7 @@ class Game {
     printLine('Welcome to WarriorJS');
 
     try {
-      this.towers = new Map(loadTowers().map(tower => [tower.id, tower]));
+      this.towers = loadTowers();
 
       this.profile = await this.loadProfile();
 
@@ -82,20 +82,12 @@ class Game {
    * @returns {Profile} The loaded profile.
    */
   async loadProfile() {
-    let profile = await Profile.load(this.runDirectoryPath);
-    if (!profile) {
-      profile = await this.chooseProfile();
+    const profile = Profile.load(this.runDirectoryPath, this.towers);
+    if (profile) {
+      return profile;
     }
 
-    const { towerId } = profile;
-    profile.tower = this.towers.get(towerId);
-    if (!profile.tower) {
-      throw new GameError(
-        `Unable to find tower '${towerId}', make sure it is available.`,
-      );
-    }
-
-    return profile;
+    return this.chooseProfile();
   }
 
   /**
@@ -128,7 +120,7 @@ class Game {
   getProfiles() {
     const profileDirectoriesPaths = this.getProfileDirectoriesPaths();
     return profileDirectoriesPaths.map(profileDirectoryPath =>
-      Profile.load(profileDirectoryPath),
+      Profile.load(profileDirectoryPath, this.towers),
     );
   }
 
@@ -149,7 +141,7 @@ class Game {
       );
     }
 
-    const towerChoices = Array.from(this.towers.values());
+    const towerChoices = this.towers;
     const tower = await requestChoice('Choose a tower:', towerChoices);
 
     const profileDirectoryPath = path.join(
@@ -157,7 +149,7 @@ class Game {
       `${warriorName}-${tower.id}`.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
     );
 
-    const profile = new Profile(warriorName, tower.id, profileDirectoryPath);
+    const profile = new Profile(warriorName, tower, profileDirectoryPath);
 
     if (this.isExistingProfile(profile)) {
       printWarningLine(
