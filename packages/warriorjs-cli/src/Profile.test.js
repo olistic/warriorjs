@@ -18,11 +18,11 @@ describe('Profile.load', () => {
   test('instances Profile with contents of profile file', () => {
     Profile.isProfileDirectory = () => true;
     Profile.read = () =>
-      'eyJ3YXJyaW9yTmFtZSI6ICJKb2UiLCAidG93ZXJOYW1lIjogImJlZ2lubmVyIiwgImZvbyI6IDQyfQ==';
+      'eyJ3YXJyaW9yTmFtZSI6ICJKb2UiLCAidG93ZXJJZCI6ICJiZWdpbm5lciIsICJmb28iOiA0Mn0=';
     const profile = Profile.load('/path/to/profile');
     expect(profile).toBeInstanceOf(Profile);
     expect(profile.warriorName).toBe('Joe');
-    expect(profile.towerName).toBe('beginner');
+    expect(profile.towerId).toBe('beginner');
     expect(path.normalize(profile.directoryPath)).toBe(
       path.normalize('/path/to/profile'),
     );
@@ -32,7 +32,7 @@ describe('Profile.load', () => {
   test('updates the path to the directory from where the profile is being loaded', () => {
     Profile.isProfileDirectory = () => true;
     Profile.read = () =>
-      'eyJ3YXJyaW9yTmFtZSI6ICJKb2UiLCAidG93ZXJOYW1lIjogImJlZ2lubmVyIiwgImRpcmVjdG9yeVBhdGgiOiAiL29sZC9wYXRoL3RvL3Byb2ZpbGUifQ==';
+      'eyJ3YXJyaW9yTmFtZSI6ICJKb2UiLCAidG93ZXJJZCI6ICJiZWdpbm5lciJ9';
     const profile = Profile.load('/new/path/to/profile');
     expect(profile.directoryPath).toBe('/new/path/to/profile');
   });
@@ -115,8 +115,8 @@ describe('Profile', () => {
     expect(profile.warriorName).toBe('Joe');
   });
 
-  test('has a tower name', () => {
-    expect(profile.towerName).toBe('beginner');
+  test('has a tower identifier', () => {
+    expect(profile.towerId).toBe('beginner');
   });
 
   test('has a directory path', () => {
@@ -140,6 +140,10 @@ describe('Profile', () => {
 
   test("doesn't show clue at the beginning", () => {
     expect(profile.clue).toBe(false);
+  });
+
+  test('has a tower which is null before loading the profile into the game', () => {
+    expect(profile.tower).toBeNull();
   });
 
   test('makes directory', () => {
@@ -269,9 +273,11 @@ describe('Profile', () => {
     );
   });
 
-  test('encodes with JSON + base64', () => {
+  test('encodes with JSON + base64 ignoring properties', () => {
+    profile.directoryPath = 'ignored';
+    profile.tower = 'ignored';
     expect(profile.encode()).toBe(
-      'eyJ3YXJyaW9yTmFtZSI6IkpvZSIsInRvd2VyTmFtZSI6ImJlZ2lubmVyIiwibGV2ZWxOdW1iZXIiOjAsInNjb3JlIjowLCJjbHVlIjpmYWxzZSwiZXBpYyI6ZmFsc2UsImVwaWNTY29yZSI6MCwiYXZlcmFnZUdyYWRlIjpudWxsLCJjdXJyZW50RXBpY1Njb3JlIjowLCJjdXJyZW50RXBpY0dyYWRlcyI6e319',
+      'eyJ3YXJyaW9yTmFtZSI6IkpvZSIsInRvd2VySWQiOiJiZWdpbm5lciIsImxldmVsTnVtYmVyIjowLCJzY29yZSI6MCwiY2x1ZSI6ZmFsc2UsImVwaWMiOmZhbHNlLCJlcGljU2NvcmUiOjAsImF2ZXJhZ2VHcmFkZSI6bnVsbCwiY3VycmVudEVwaWNTY29yZSI6MCwiY3VycmVudEVwaWNHcmFkZXMiOnt9fQ==',
     );
   });
 

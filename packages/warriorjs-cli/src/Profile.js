@@ -9,7 +9,7 @@ const playerCodeFile = 'Player.js';
 const readmeFile = 'README.md';
 
 // Properties ignored when saving the profile.
-const ignoredProperties = ['directoryPath'];
+const ignoredProperties = ['directoryPath', 'tower'];
 
 /** Class representing a profile. */
 class Profile {
@@ -34,11 +34,16 @@ class Profile {
     const decodedProfile = Profile.decode(encodedProfile);
     const {
       warriorName,
-      towerName,
+      towerId,
+      towerName, // TODO: Remove before v1.0.0.
       directoryPath, // TODO: Remove before v1.0.0.
       ...profileData
     } = decodedProfile;
-    const profile = new Profile(warriorName, towerName, profileDirectoryPath);
+    const profile = new Profile(
+      warriorName,
+      towerId || towerName,
+      profileDirectoryPath,
+    );
     return Object.assign(profile, profileData);
   }
 
@@ -113,12 +118,12 @@ class Profile {
    * Creates a profile.
    *
    * @param {string} warriorName The name of the warrior.
-   * @param {string} towerName The name of the tower.
+   * @param {string} towerId The identifier of the tower.
    * @param {string} directoryPath The path to the directory of the profile.
    */
-  constructor(warriorName, towerName, directoryPath) {
+  constructor(warriorName, towerId, directoryPath) {
     this.warriorName = warriorName;
-    this.towerName = towerName;
+    this.towerId = towerId;
     this.directoryPath = directoryPath;
     this.levelNumber = 0;
     this.score = 0;
@@ -128,6 +133,7 @@ class Profile {
     this.averageGrade = null;
     this.currentEpicScore = 0;
     this.currentEpicGrades = {};
+    this.tower = null;
   }
 
   /**
@@ -311,7 +317,7 @@ class Profile {
    * @returns {string} The string representation.
    */
   toString() {
-    let result = `${this.warriorName} - ${this.towerName}`;
+    let result = `${this.warriorName} - ${this.towerId}`;
     if (this.isEpic()) {
       result += ` - first score ${
         this.score
