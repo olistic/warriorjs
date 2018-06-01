@@ -16,12 +16,12 @@ tower:
 
 #### Actions
 
-* `warrior.attack()`
-* `warrior.walk()`
+- `warrior.attack()`
+- `warrior.walk()`
 
 #### Senses
 
-* `warrior.feel()`
+- `warrior.feel()`
 ```
 
 In this level, your warrior has the abilities "attack", "feel", and "walk",

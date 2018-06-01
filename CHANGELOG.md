@@ -12,118 +12,118 @@ and this project adheres to
 
 ### Fixed
 
-* External towers discovery ([@olistic][] in [#188][])
+- External towers discovery ([@olistic][] in [#188][])
 
 ## [0.5.0] - 2018-06-01
 
 ### Added
 
-* Load towers dynamically (support for external towers) ([@olistic][] in
+- Load towers dynamically (support for external towers) ([@olistic][] in
   [#169][])
-* Add tower description to README if available ([@olistic][] in [#185][])
+- Add tower description to README if available ([@olistic][] in [#185][])
 
 ### Changed
 
-* Prevent seeing through walls with "look" ability ([@pigalot][] in [#162][])
-* Optimize profile file ([@olistic][] in [#170][] and [#180][])
-* No longer ask for confirmation before creating game directory ([@olistic][] in
+- Prevent seeing through walls with "look" ability ([@pigalot][] in [#162][])
+- Optimize profile file ([@olistic][] in [#170][] and [#180][])
+- No longer ask for confirmation before creating game directory ([@olistic][] in
   [#177][])
 
 ## [0.4.2] - 2018-05-23
 
 ### Added
 
-* Warrior name suggestions ([@olistic][] in [#152][])
+- Warrior name suggestions ([@olistic][] in [#152][])
 
 ## [0.4.1] - 2018-05-22
 
 ### Added
 
-* `--silent` flag to CLI ([@xaviserrag][] in [#82][])
+- `--silent` flag to CLI ([@xaviserrag][] in [#82][])
 
 ### Changed
 
-* Print level independently of play log ([@olistic][] in [#145][])
-* UI tweaks ([@olistic][] in [#147][])
-* Improve think ability description ([@olistic][] in [#149][])
-* Improve level tips ([@olistic][] in [#150][])
+- Print level independently of play log ([@olistic][] in [#145][])
+- UI tweaks ([@olistic][] in [#147][])
+- Improve think ability description ([@olistic][] in [#149][])
+- Improve level tips ([@olistic][] in [#150][])
 
 ## [0.4.0] - 2018-05-19
 
 ### Added
 
-* Make warrior upset when losing points ([@skywalker212][] in [#107][])
-* `getRelativeOffset` function (`@warriorjs/geography`) ([@olistic][] in
+- Make warrior upset when losing points ([@skywalker212][] in [#107][])
+- `getRelativeOffset` function (`@warriorjs/geography`) ([@olistic][] in
   [#138][])
-* `unit.release()` method ([@olistic][] in [#140][])
+- `unit.release()` method ([@olistic][] in [#140][])
 
 ### Changed
 
-* Rename `unit.say()` to `unit.log()` ([@olistic][] in [#131][])
-* Improve profile directory detection ([@glneto][] in [#133][])
-* Rename `unit.isHostile()` to `unit.isEnemy()` ([@olistic][] in [#129][])
-* `space.getLocation()` returns the relative location of the space ([@olistic][]
+- Rename `unit.say()` to `unit.log()` ([@olistic][] in [#131][])
+- Improve profile directory detection ([@glneto][] in [#133][])
+- Rename `unit.isHostile()` to `unit.isEnemy()` ([@olistic][] in [#129][])
+- `space.getLocation()` returns the relative location of the space ([@olistic][]
   in [#129][])
-* `unit.isEnemy()` returns whether the unit is considered an enemy by the unit
+- `unit.isEnemy()` returns whether the unit is considered an enemy by the unit
   that sensed it ([@olistic][] in [#129][])
 
 ### Removed
 
-* `unit.isFriendly()` ([@olistic][] in [#129][])
-* `unit.isWarrior()` and `unit.isPlayer()` ([@olistic][] in [#129][])
+- `unit.isFriendly()` ([@olistic][] in [#129][])
+- `unit.isWarrior()` and `unit.isPlayer()` ([@olistic][] in [#129][])
 
 ### Fixed
 
-* Line breaks on CLI output on Windows ([@olistic][] in [#120][])
-* Diamond symbol on Windows ([@glneto][] in [#121][])
+- Line breaks on CLI output on Windows ([@olistic][] in [#120][])
+- Diamond symbol on Windows ([@glneto][] in [#121][])
 
 ## [0.3.0] - 2018-05-16
 
 ### Added
 
-* Subtract reward points when killing a friendly unit ([@Terseus][] in [#87][])
-* Think ability (`console.log` replacement) ([@olistic][] in [#102][])
+- Subtract reward points when killing a friendly unit ([@Terseus][] in [#87][])
+- Think ability (`console.log` replacement) ([@olistic][] in [#102][])
 
 ### Changed
 
-* Distinguish between hostile and friendly units ([@xFloki][] in [#101][])
-* Move unit methods out of the Space API and to the Unit API ([@olistic][] in
+- Distinguish between hostile and friendly units ([@xFloki][] in [#101][])
+- Move unit methods out of the Space API and to the Unit API ([@olistic][] in
   [#113][])
 
 ### Fixed
 
-* Enforce [Player API](https://warrior.js.org/docs/space-api) ([@olistic][] in
+- Enforce [Player API](https://warrior.js.org/docs/space-api) ([@olistic][] in
   [#114][])
 
 ## [0.2.0] - 2018-05-14
 
 ### Added
 
-* Reward property to Unit class ([@RascalTwo][] in [#67][])
-* Warrior score next to health in play log ([@RascalTwo][] in [#70][])
-* Support for Node 9 and 10 ([@olistic][] in [#81][])
-* `--yes` flag to CLI ([@olistic][] in [#93][] and [#98][])
+- Reward property to Unit class ([@RascalTwo][] in [#67][])
+- Warrior score next to health in play log ([@RascalTwo][] in [#70][])
+- Support for Node 9 and 10 ([@olistic][] in [#81][])
+- `--yes` flag to CLI ([@olistic][] in [#93][] and [#98][])
 
 ### Changed
 
-* Exclude abilities from play log except warrior's ([@olistic][] in [#83][])
-* Rescue ability awards Unit's reward ([@RascalTwo][] in [#86][], [@olistic][]
+- Exclude abilities from play log except warrior's ([@olistic][] in [#83][])
+- Rescue ability awards Unit's reward ([@RascalTwo][] in [#86][], [@olistic][]
   in [#90][])
-* CLI default answers ([@olistic][] in [#97][])
+- CLI default answers ([@olistic][] in [#97][])
 
 ### Removed
 
-* `--skip` flag from CLI ([@olistic][] in [#93][])
+- `--skip` flag from CLI ([@olistic][] in [#93][])
 
 ### Fixed
 
-* Path normalization in tests ([@jakehamilton][] in [#77][])
+- Path normalization in tests ([@jakehamilton][] in [#77][])
 
 ## [0.1.1] - 2018-05-03
 
 ### Fixed
 
-* Missing `bin` directory in `@warriorjs/cli` package files
+- Missing `bin` directory in `@warriorjs/cli` package files
 
 ## 0.1.0 - 2018-05-03 [YANKED]
 

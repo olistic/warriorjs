@@ -64,10 +64,10 @@ Learn how to play WarriorJS on the [official site](https://warrior.js.org)!
 
 Jump straight to some of the most-visited pages:
 
-* [**Set Up**](https://warrior.js.org/docs/set-up)
-* [Gameplay](https://warrior.js.org/docs/gameplay)
-* [Player API](https://warrior.js.org/docs/space-api)
-* [CLI Options](https://warrior.js.org/docs/cli-options)
+- [**Set Up**](https://warrior.js.org/docs/set-up)
+- [Gameplay](https://warrior.js.org/docs/gameplay)
+- [Player API](https://warrior.js.org/docs/space-api)
+- [CLI Options](https://warrior.js.org/docs/cli-options)
 
 ## Preview
 
@@ -84,14 +84,14 @@ Jump straight to some of the most-visited pages:
 
 We welcome contributions to WarriorJS! These are the many ways you can help:
 
-* Submit patches and features
-* Make [towers](https://warrior.js.org/docs/towers.html) (new levels for the
+- Submit patches and features
+- Make [towers](https://warrior.js.org/docs/towers.html) (new levels for the
   game)
-* Improve the [documentation and website](https://warrior.js.org)
-* Report bugs
-* Follow us on [Twitter](https://twitter.com/warrior_js)
-* Participate in the [Spectrum community](https://spectrum.chat/warriorjs)
-* And [donate financially](https://opencollective.com/warriorjs)!
+- Improve the [documentation and website](https://warrior.js.org)
+- Report bugs
+- Follow us on [Twitter](https://twitter.com/warrior_js)
+- Participate in the [Spectrum community](https://spectrum.chat/warriorjs)
+- And [donate financially](https://opencollective.com/warriorjs)!
 
 Please read our [contribution guide](CONTRIBUTING.md) to get started. Also note
 that this project is released with a

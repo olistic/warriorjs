@@ -239,7 +239,7 @@ class Profile {
   tallyPoints(levelNumber, score, aceScore) {
     if (this.isEpic()) {
       if (aceScore) {
-        this.currentEpicGrades[levelNumber] = score * 1.0 / aceScore;
+        this.currentEpicGrades[levelNumber] = (score * 1.0) / aceScore;
       }
 
       this.currentEpicScore += score;
