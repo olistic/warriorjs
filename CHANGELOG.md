@@ -8,6 +8,12 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [0.5.1] - 2018-06-01
+
+### Fixed
+
+* External towers discovery ([@olistic][] in [#188][])
+
 ## [0.5.0] - 2018-06-01
 
 ### Added
@@ -123,7 +129,8 @@ and this project adheres to
 
 Initial version.
 
-[unreleased]: https://github.com/olistic/warriorjs/compare/v0.5.0...HEAD
+[unreleased]: https://github.com/olistic/warriorjs/compare/v0.5.1...HEAD
+[0.5.1]: https://github.com/olistic/warriorjs/compare/v0.5.0...v0.5.1
 [0.5.0]: https://github.com/olistic/warriorjs/compare/v0.4.2...v0.5.0
 [0.4.2]: https://github.com/olistic/warriorjs/compare/v0.4.1...v0.4.2
 [0.4.1]: https://github.com/olistic/warriorjs/compare/v0.4.0...v0.4.1
@@ -174,3 +181,4 @@ Initial version.
 [#170]: https://github.com/olistic/warriorjs/pull/170
 [#180]: https://github.com/olistic/warriorjs/pull/180
 [#185]: https://github.com/olistic/warriorjs/pull/185
+[#188]: https://github.com/olistic/warriorjs/pull/188
