@@ -179,6 +179,7 @@ Initial version.
 [#162]: https://github.com/olistic/warriorjs/pull/162
 [#169]: https://github.com/olistic/warriorjs/pull/169
 [#170]: https://github.com/olistic/warriorjs/pull/170
+[#177]: https://github.com/olistic/warriorjs/pull/177
 [#180]: https://github.com/olistic/warriorjs/pull/180
 [#185]: https://github.com/olistic/warriorjs/pull/185
 [#188]: https://github.com/olistic/warriorjs/pull/188
