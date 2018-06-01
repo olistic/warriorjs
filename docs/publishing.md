@@ -30,9 +30,9 @@ and `package.json` the npm package info:
 
 Some special considerations:
 
-* The package name must start with `warriorjs-tower-` for the tower to be
+- The package name must start with `warriorjs-tower-` for the tower to be
   automatically loaded by WarriorJS.
-* `warriorjs-tower` should be in the "keywords" field for better discoverability
+- `warriorjs-tower` should be in the "keywords" field for better discoverability
   of your tower.
 
 When working on a tower, you can use

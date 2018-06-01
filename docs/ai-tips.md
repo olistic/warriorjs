@@ -4,7 +4,7 @@ sidebar_label: Artificial Intelligence
 title: AI Tips
 ---
 
-* Once you've made some progress in the tower, your code may have turned into a
+- Once you've made some progress in the tower, your code may have turned into a
   bunch of nested if/else statements. If that's the case, you may want to apply
   some AI concepts like
   [FSMs and the State pattern](http://gameprogrammingpatterns.com/state.html),

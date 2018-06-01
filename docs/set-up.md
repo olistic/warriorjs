@@ -35,8 +35,8 @@ warriorjs
     └── README.md
 ```
 
-* `jon-snow-beginner` is your profile's directory.
-* `Player.js` is your warrior's brain, you'll be editing this file often.
-* `README.md` contains the instructions for the current level.
+- `jon-snow-beginner` is your profile's directory.
+- `Player.js` is your warrior's brain, you'll be editing this file often.
+- `README.md` contains the instructions for the current level.
 
 Go ahead and open `README.md` to find the instructions for the first level.

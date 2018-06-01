@@ -9,7 +9,7 @@ import getGradeLetter from './getGradeLetter';
  * @returns {string} The grade letter.
  */
 function getGradeForScore(score, aceScore) {
-  const percentage = score * 1.0 / aceScore;
+  const percentage = (score * 1.0) / aceScore;
   return getGradeLetter(percentage);
 }
 

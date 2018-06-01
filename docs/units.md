@@ -10,9 +10,9 @@ your warrior.
 
 A unit has the following attributes:
 
-* **Health**: the total damage the unit may take before dying, measured in
+- **Health**: the total damage the unit may take before dying, measured in
   Health Points (HP).
-* **Max Health**: the starting Health value.
+- **Max Health**: the starting Health value.
 
 ## Abilities & Effects
 
