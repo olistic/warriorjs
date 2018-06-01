@@ -13,9 +13,6 @@
   "publishConfig": {
     "access": "public"
   },
-  "peerDependencies": {
-    "@warriorjs/core": "^0.4.0"
-  },
   "dependencies": {
     "@warriorjs/abilities": "^0.4.1",
     "@warriorjs/geography": "^0.4.0",
