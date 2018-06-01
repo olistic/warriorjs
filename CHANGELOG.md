@@ -8,6 +8,21 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [0.5.0] - 2018-06-01
+
+### Added
+
+* Load towers dynamically (support for external towers) ([@olistic][] in
+  [#169][])
+* Add tower description to README if available ([@olistic][] in [#185][])
+
+### Changed
+
+* Prevent seeing through walls with "look" ability ([@pigalot][] in [#162][])
+* Optimize profile file ([@olistic][] in [#170][] and [#180][])
+* No longer ask for confirmation before creating game directory ([@olistic][] in
+  [#177][])
+
 ## [0.4.2] - 2018-05-23
 
 ### Added
@@ -106,9 +121,10 @@ and this project adheres to
 
 ## 0.1.0 - 2018-05-03 [YANKED]
 
-Initial version
+Initial version.
 
-[unreleased]: https://github.com/olistic/warriorjs/compare/v0.4.2...HEAD
+[unreleased]: https://github.com/olistic/warriorjs/compare/v0.5.0...HEAD
+[0.5.0]: https://github.com/olistic/warriorjs/compare/v0.4.2...v0.5.0
 [0.4.2]: https://github.com/olistic/warriorjs/compare/v0.4.1...v0.4.2
 [0.4.1]: https://github.com/olistic/warriorjs/compare/v0.4.0...v0.4.1
 [0.4.0]: https://github.com/olistic/warriorjs/compare/v0.3.0...v0.4.0
@@ -123,6 +139,7 @@ Initial version
 [@skywalker212]: https://github.com/skywalker212
 [@glneto]: https://github.com/glneto
 [@xaviserrag]: https://github.com/xaviserrag
+[@pigalot]: https://github.com/pigalot
 [#67]: https://github.com/olistic/warriorjs/pull/67
 [#70]: https://github.com/olistic/warriorjs/pull/70
 [#77]: https://github.com/olistic/warriorjs/pull/77
@@ -152,3 +169,8 @@ Initial version
 [#149]: https://github.com/olistic/warriorjs/pull/149
 [#150]: https://github.com/olistic/warriorjs/pull/150
 [#152]: https://github.com/olistic/warriorjs/pull/152
+[#162]: https://github.com/olistic/warriorjs/pull/162
+[#169]: https://github.com/olistic/warriorjs/pull/169
+[#170]: https://github.com/olistic/warriorjs/pull/170
+[#180]: https://github.com/olistic/warriorjs/pull/180
+[#185]: https://github.com/olistic/warriorjs/pull/185
