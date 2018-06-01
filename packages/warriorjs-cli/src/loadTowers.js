@@ -28,8 +28,9 @@ function loadTowers() {
     }),
   );
 
-  const warriorjsCliDir = findUp.sync('@warriorjs/cli', { cwd: __dirname });
-  const towerSearchDir = findUp.sync('node_modules', { cwd: warriorjsCliDir });
+  const cliDir = findUp.sync('@warriorjs/cli', { cwd: __dirname });
+  const cliParentDir = path.resolve(cliDir, '..');
+  const towerSearchDir = findUp.sync('node_modules', { cwd: cliParentDir });
   const towerPackageJsonPaths = globby.sync(
     [officialTowerPackageJsonPattern, communityTowerPackageJsonPattern],
     { cwd: towerSearchDir },
