@@ -7,9 +7,9 @@ import {
 } from './absoluteDirections';
 
 /**
- * Check if the given direction is a valid cardinal direction.
+ * Checks if the given direction is a valid absolute direction.
  *
- * @param {string} direction A cardinal direction.
+ * @param {string} direction The direction.
  *
  * @throws Will throw if the direction is not valid.
  */

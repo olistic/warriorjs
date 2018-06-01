@@ -1,6 +1,6 @@
 # @warriorjs/abilities
 
-> WarriorJS base abilities.
+> WarriorJS official abilities.
 
 ## [Actions][actions]
 

@@ -1,6 +1,6 @@
 # @warriorjs/effects
 
-> WarriorJS base effects.
+> WarriorJS official effects.
 
 ## [Effects](https://warrior.js.org/docs/effects)
 

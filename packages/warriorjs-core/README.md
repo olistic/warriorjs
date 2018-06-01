@@ -21,3 +21,7 @@ import * as warriorjs from '@warriorjs/core';
 ### warriorjs.runLevel(levelConfig: Object, playerCode: string)
 
 Runs the given level config with the given player code.
+
+### warriorjs.getLevel(levelConfig: Object)
+
+Returns the level for the given level config.
