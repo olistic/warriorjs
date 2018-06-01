@@ -14,6 +14,7 @@ import printFailureLine from './ui/printFailureLine';
 import printLevelReport from './ui/printLevelReport';
 import printLevel from './ui/printLevel';
 import printLine from './ui/printLine';
+import printWelcomeHeader from './ui/printWelcomeHeader';
 import printPlay from './ui/printPlay';
 import printSeparator from './ui/printSeparator';
 import printSuccessLine from './ui/printSuccessLine';
@@ -49,7 +50,7 @@ class Game {
    * Starts the game.
    */
   async start() {
-    printLine('Welcome to WarriorJS');
+    printWelcomeHeader();
 
     try {
       this.towers = loadTowers();
