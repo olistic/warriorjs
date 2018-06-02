@@ -1,12 +1,12 @@
 # <%- profile.warriorName %> - <%- profile.tower.name %>
-
 <% if (profile.tower.description) { -%>
+
 ### _<%- profile.tower.description %>_
 <% } -%>
 
 ## Level <%- level.number %>
 
-<%- include('readme/level', { getFloorMap, getFloorMapKey, level }); %>
+<%- include('readme/level', { getFloorMap, getFloorMapKey, level }); -%>
 
 ## Abilities
 
@@ -14,7 +14,7 @@
   include('readme/abilities', {
     abilities: level.floor.warrior.abilities,
   });
-%>
+-%>
 
 ## Next Steps
 

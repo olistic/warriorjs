@@ -1,15 +1,14 @@
-<%
+<%_
   const actions = abilities.filter(ability => ability.action);
   const senses = abilities.filter(ability => !ability.action);
-%>
-
+_%>
 ### Actions (only one per turn)
 
 <% actions.forEach(ability => { -%>
 <%- include('ability', { ability }); %>
 <% }); -%>
-
 <% if (senses.length) { -%>
+
 ### Senses
 
 <% senses.forEach(ability => { -%>
