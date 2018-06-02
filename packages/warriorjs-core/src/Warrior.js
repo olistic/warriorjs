@@ -35,14 +35,11 @@ class Warrior extends Unit {
       ...super.toJSON(),
       warrior: true,
       score: this.score,
-      abilities: {
-        actions: [...this.abilities]
-          .filter(([, ability]) => ability.action)
-          .map(([name, action]) => [name, action.description]),
-        senses: [...this.abilities]
-          .filter(([, ability]) => !ability.action)
-          .map(([name, sense]) => [name, sense.description]),
-      },
+      abilities: [...this.abilities].map(([name, { action, description }]) => ({
+        name,
+        action,
+        description,
+      })),
     };
   }
 }

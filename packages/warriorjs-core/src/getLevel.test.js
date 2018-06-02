@@ -146,24 +146,25 @@ test('returns level', () => {
               warrior: true,
               health: 20,
               score: 0,
-              abilities: {
-                actions: [
-                  [
-                    'walk',
+              abilities: [
+                {
+                  name: 'walk',
+                  action: true,
+                  description:
                     'Move one space in the given direction (forward by default).',
-                  ],
-                  [
-                    'attack',
+                },
+                {
+                  name: 'attack',
+                  action: true,
+                  description:
                     'Attack a unit in the given direction (forward by default) dealing 5 HP of damage.',
-                  ],
-                ],
-                senses: [
-                  [
-                    'feel',
+                },
+                {
+                  name: 'feel',
+                  description:
                     'Return the adjacent space in the given direction (forward by default).',
-                  ],
-                ],
-              },
+                },
+              ],
             },
           },
           {
@@ -253,24 +254,25 @@ test('returns level', () => {
         character: '@',
         maxHealth: 20,
         warrior: true,
-        abilities: {
-          actions: [
-            [
-              'walk',
+        abilities: [
+          {
+            name: 'walk',
+            action: true,
+            description:
               'Move one space in the given direction (forward by default).',
-            ],
-            [
-              'attack',
+          },
+          {
+            name: 'attack',
+            action: true,
+            description:
               'Attack a unit in the given direction (forward by default) dealing 5 HP of damage.',
-            ],
-          ],
-          senses: [
-            [
-              'feel',
+          },
+          {
+            name: 'feel',
+            description:
               'Return the adjacent space in the given direction (forward by default).',
-            ],
-          ],
-        },
+          },
+        ],
         health: 20,
         score: 0,
       },

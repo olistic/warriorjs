@@ -1,0 +1,15 @@
+_<%- level.description %>_
+
+> **TIP:** <%- level.tip %>
+<% if (profile.isShowingClue()) { -%>
+
+> **CLUE:** <%- level.clue %>
+<% } -%>
+
+### Floor Map
+
+```
+<%- getFloorMap(level.floor.map) %>
+
+<%- getFloorMapKey(level.floor.map) %>
+```
