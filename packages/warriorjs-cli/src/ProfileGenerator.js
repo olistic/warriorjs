@@ -45,12 +45,13 @@ class ProfileGenerator {
   generateReadmeFile() {
     const template = fs.readFileSync(README_TEMPLATE_FILE_PATH, 'utf8');
     const data = {
+      getFloorMap,
+      getFloorMapKey,
       profile: this.profile,
       level: this.level,
-      floorMap: getFloorMap(this.level.floor.map),
-      floorMapKey: getFloorMapKey(this.level.floor.map),
     };
-    const renderedReadme = ejs.render(template, data);
+    const options = { filename: README_TEMPLATE_FILE_PATH };
+    const renderedReadme = ejs.render(template, data, options);
     fs.writeFileSync(this.profile.getReadmeFilePath(), renderedReadme);
   }
 

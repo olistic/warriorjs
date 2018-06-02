@@ -11,8 +11,6 @@ import getFloorMap from './utils/getFloorMap';
 import getFloorMapKey from './utils/getFloorMapKey';
 
 jest.mock('ejs');
-jest.mock('./utils/getFloorMap');
-jest.mock('./utils/getFloorMapKey');
 
 describe('ProfileGenerator', () => {
   let profileGenerator;
@@ -65,15 +63,19 @@ describe('ProfileGenerator', () => {
       '/path/to/profile': {},
     });
     ejs.render = jest.fn().mockReturnValue('readme');
-    getFloorMap.mockReturnValue('floorMap');
-    getFloorMapKey.mockReturnValue('floorMapKey');
     profileGenerator.generateReadmeFile();
-    expect(ejs.render).toHaveBeenCalledWith('template', {
-      profile,
-      level,
-      floorMap: 'floorMap',
-      floorMapKey: 'floorMapKey',
-    });
+    expect(ejs.render).toHaveBeenCalledWith(
+      'template',
+      {
+        profile,
+        level,
+        getFloorMap,
+        getFloorMapKey,
+      },
+      {
+        filename: README_TEMPLATE_FILE_PATH,
+      },
+    );
     expect(fs.readFileSync('/path/to/profile/readme', 'utf8')).toBe('readme');
     mock.restore();
   });
