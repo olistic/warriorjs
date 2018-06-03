@@ -1,6 +1,6 @@
 <%_
-  const actions = abilities.filter(ability => ability.action);
-  const senses = abilities.filter(ability => !ability.action);
+  const actions = abilities.filter(ability => ability.action).sort((a, b) => a.name > b.name);
+  const senses = abilities.filter(ability => !ability.action).sort((a, b) => a.name > b.name);
 _%>
 ### Actions (only one per turn)
 
