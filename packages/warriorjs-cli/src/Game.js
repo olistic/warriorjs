@@ -386,9 +386,7 @@ class Game {
    * Generates the profile files.
    */
   generateProfileFiles() {
-    const levelConfig = getLevelConfig(this.profile.levelNumber, this.profile);
-    const level = getLevel(levelConfig);
-    new ProfileGenerator(this.profile, level).generate();
+    new ProfileGenerator(this.profile).generate();
   }
 
   /**

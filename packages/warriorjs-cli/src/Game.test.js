@@ -2,13 +2,11 @@ import fs from 'fs';
 import path from 'path';
 
 import mock from 'mock-fs';
-import { getLevel } from '@warriorjs/core';
 
 import Game from './Game';
 import GameError from './GameError';
 import ProfileGenerator from './ProfileGenerator';
 import Profile from './Profile';
-import getLevelConfig from './utils/getLevelConfig';
 import printLine from './ui/printLine';
 import printSuccessLine from './ui/printSuccessLine';
 import requestConfirmation from './ui/requestConfirmation';
@@ -325,16 +323,12 @@ describe('Game', () => {
     expect(game.generateProfileFiles).toHaveBeenCalled();
   });
 
-  test('generates player', () => {
+  test('generates profile files', () => {
     game.profile = { levelNumber: 1 };
-    getLevelConfig.mockReturnValue('config');
-    getLevel.mockReturnValue('level');
     const mockGenerate = jest.fn();
     ProfileGenerator.mockImplementation(() => ({ generate: mockGenerate }));
     game.generateProfileFiles();
-    expect(getLevelConfig).toHaveBeenCalledWith(1, game.profile);
-    expect(getLevel).toHaveBeenCalledWith('config');
-    expect(ProfileGenerator).toHaveBeenCalledWith(game.profile, 'level');
+    expect(ProfileGenerator).toHaveBeenCalledWith(game.profile);
     expect(mockGenerate).toHaveBeenCalled();
   });
 
