@@ -8,6 +8,11 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Changed
+
+- Enhance CLI welcome message ([@olistic][] in [#191][])
+- Sort actions and senses alphabetically in README ([@djohalo2][] in [#194][])
+
 ## [0.5.1] - 2018-06-01
 
 ### Fixed
@@ -147,6 +152,7 @@ Initial version.
 [@glneto]: https://github.com/glneto
 [@xaviserrag]: https://github.com/xaviserrag
 [@pigalot]: https://github.com/pigalot
+[@djohalo2]: https://github.com/djohalo2
 [#67]: https://github.com/olistic/warriorjs/pull/67
 [#70]: https://github.com/olistic/warriorjs/pull/70
 [#77]: https://github.com/olistic/warriorjs/pull/77
@@ -183,3 +189,5 @@ Initial version.
 [#180]: https://github.com/olistic/warriorjs/pull/180
 [#185]: https://github.com/olistic/warriorjs/pull/185
 [#188]: https://github.com/olistic/warriorjs/pull/188
+[#191]: https://github.com/olistic/warriorjs/pull/191
+[#194]: https://github.com/olistic/warriorjs/pull/194
