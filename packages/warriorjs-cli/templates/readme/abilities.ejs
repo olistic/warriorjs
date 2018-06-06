@@ -5,14 +5,14 @@
 _%>
 ### Actions (only one per turn)
 
-<% sortedActions.forEach(ability => { -%>
+<% actions.forEach(ability => { -%>
 <%- include('ability', { ability }); %>
 <% }); -%>
 <% if (senses.length) { -%>
 
 ### Senses
 
-<% sortedSenses.forEach(ability => { -%>
+<% senses.forEach(ability => { -%>
 <%- include('ability', { ability }); %>
 <% }); -%>
 <% } -%>
