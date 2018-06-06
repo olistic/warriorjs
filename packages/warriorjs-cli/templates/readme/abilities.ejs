@@ -1,17 +1,20 @@
 <%_
-  const actions = abilities.filter(ability => ability.action).sort((a, b) => a.name > b.name);
-  const senses = abilities.filter(ability => !ability.action).sort((a, b) => a.name > b.name);
+  const actions = abilities.filter(ability => ability.action);
+  const senses = abilities.filter(ability => !ability.action);
+
+  const sortedActions = actions.sort((a, b) => a.name > b.name);
+  const sortedSenses = senses.sort((a, b) => a.name > b.name);
 _%>
 ### Actions (only one per turn)
 
-<% actions.forEach(ability => { -%>
+<% sortedActions.forEach(ability => { -%>
 <%- include('ability', { ability }); %>
 <% }); -%>
 <% if (senses.length) { -%>
 
 ### Senses
 
-<% senses.forEach(ability => { -%>
+<% sortedSenses.forEach(ability => { -%>
 <%- include('ability', { ability }); %>
 <% }); -%>
 <% } -%>
