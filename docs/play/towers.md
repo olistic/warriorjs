@@ -31,7 +31,7 @@ Have you made a tower? [Add it][add-community-tower] to the list!
 
 ## Making Towers
 
-Follow this [guide](introduction.md).
+Follow this [guide](make/introduction.md).
 
 [warriorjs-tower-beginner]:
   https://github.com/olistic/warriorjs/tree/master/packages/warriorjs-tower-beginner

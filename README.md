@@ -85,7 +85,7 @@ Jump straight to some of the most-visited pages:
 We welcome contributions to WarriorJS! These are the many ways you can help:
 
 - Submit patches and features
-- Make [towers](https://warrior.js.org/docs/towers.html) (new levels for the
+- Make [towers](https://warrior.js.org/docs/play/towers) (new levels for the
   game)
 - Improve the [documentation and website](https://warrior.js.org)
 - Report bugs
