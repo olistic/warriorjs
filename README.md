@@ -64,10 +64,11 @@ Learn how to play WarriorJS on the [official site](https://warrior.js.org)!
 
 Jump straight to some of the most-visited pages:
 
-- [**Set Up**](https://warrior.js.org/docs/set-up)
-- [Gameplay](https://warrior.js.org/docs/gameplay)
-- [Player API](https://warrior.js.org/docs/space-api)
-- [CLI Options](https://warrior.js.org/docs/cli-options)
+- [**Set Up**](https://warrior.js.org/docs/play/set-up)
+- [Gameplay](https://warrior.js.org/docs/play/gameplay)
+- [Towers](https://warrior.js.org/docs/play/towers)
+- [Player API](https://warrior.js.org/docs/play/space-api)
+- [CLI Options](https://warrior.js.org/docs/play/cli-options)
 
 ## Preview
 
