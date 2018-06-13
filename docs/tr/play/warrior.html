@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="tr"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Savaşçı · WarriorJS</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="The **warrior** is the player-character in WarriorJS, which means it&#x27;s controlled by you. To create a warrior, you&#x27;ll be guided through a two-step process where you&#x27;ll determine your warrior&#x27;s name and the tower you want to climb. Once created, you&#x27;ll use the warrior to progress through that tower."/><meta property="og:title" content="Savaşçı · WarriorJS"/><meta property="og:type" content="website"/><meta property="og:url" content="https://warrior.js.org/index.html"/><meta property="og:description" content="The **warrior** is the player-character in WarriorJS, which means it&#x27;s controlled by you. To create a warrior, you&#x27;ll be guided through a two-step process where you&#x27;ll determine your warrior&#x27;s name and the tower you want to climb. Once created, you&#x27;ll use the warrior to progress through that tower."/><meta property="og:image" content="https://warrior.js.org/img/warriorjs.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://warrior.js.org/img/warriorjs.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-118632697-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible doc separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/tr"><img class="logo" src="/img/warriorjs-text.svg" alt="WarriorJS"/></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/tr/play/overview" target="_self">Oyun</a></li><li class=""><a href="/docs/tr/make/introduction" target="_self">Make</a></li><li class=""><a href="/docs/tr/community/socialize" target="_self">Topluluk</a></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg"/>Türkçe</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/en/play/warrior">English</a></li><li><a href="/docs/es-ES/play/warrior">Español</a></li><li><a href="/docs/ru/play/warrior">Русский</a></li><li><a href="/docs/sv-SE/play/warrior">Svenska</a></li><li><a href="/docs/zh-CN/play/warrior">中文</a></li><li><a href="/docs/zh-TW/play/warrior">繁體中文</a></li><li><a href="https://crowdin.com/project/warriorjs" target="_blank" rel="noreferrer noopener">Çeviriye Yardım Edin</a></li></ul></div></li><script>
+        const languagesMenuItem = document.getElementById("languages-menu");
+        const languagesDropDown = document.getElementById("languages-dropdown");
+        languagesMenuItem.addEventListener("click", function(){
+          if(languagesDropDown.className == "hide") {
+            languagesDropDown.className = "visible";
+          } else {
+            languagesDropDown.className = "hide";
+          }
+        });
+      </script></span><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><li class=""><a href="https://github.com/olistic/warriorjs" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>Concepts</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup navGroupActive"><h3>Introduction</h3><ul><li class="navListItem"><a class="navItem" href="/docs/tr/play/overview">Genel Bakış</a></li><li class="navListItem"><a class="navItem" href="/docs/tr/play/set-up">Kurulum</a></li></ul></div><div class="navGroup navGroupActive"><h3>Oyun</h3><ul><li class="navListItem"><a class="navItem" href="/docs/tr/play/object">Nesne</a></li><li class="navListItem"><a class="navItem" href="/docs/tr/play/gameplay">Oynanış</a></li><li class="navListItem"><a class="navItem" href="/docs/tr/play/perspective">Perspektif</a></li><li class="navListItem"><a class="navItem" href="/docs/tr/play/scoring">Puanlama</a></li><li class="navListItem"><a class="navItem" href="/docs/tr/play/epic-mode">Destansı Mod</a></li><li class="navListItem"><a class="navItem" href="/docs/tr/play/towers">Towers</a></li></ul></div><div class="navGroup navGroupActive"><h3>Concepts</h3><ul><li class="navListItem"><a class="navItem" href="/docs/tr/play/units">Units</a></li><li class="navListItem navListItemActive"><a class="navItem navItemActive" href="/docs/tr/play/warrior">Savaşçı</a></li><li class="navListItem"><a class="navItem" href="/docs/tr/play/abilities">Yetenekler</a></li><li class="navListItem"><a class="navItem" href="/docs/tr/play/spaces">Alanlar</a></li></ul></div><div class="navGroup navGroupActive"><h3>Player API</h3><ul><li class="navListItem"><a class="navItem" href="/docs/tr/play/space-api">Alan API&#x27;ı</a></li><li class="navListItem"><a class="navItem" href="/docs/tr/play/unit-api">Unit API</a></li><li class="navListItem"><a class="navItem" href="/docs/tr/play/turn-api">Turn API</a></li></ul></div><div class="navGroup navGroupActive"><h3>İpuçları &amp; Püf Noktaları</h3><ul><li class="navListItem"><a class="navItem" href="/docs/tr/play/general-tips">Genel</a></li><li class="navListItem"><a class="navItem" href="/docs/tr/play/js-tips">JavaScript</a></li><li class="navListItem"><a class="navItem" href="/docs/tr/play/ai-tips">Artificial Intelligence</a></li><li class="navListItem"><a class="navItem" href="/docs/tr/play/cli-tips">CLI</a></li></ul></div><div class="navGroup navGroupActive"><h3>Configuration</h3><ul><li class="navListItem"><a class="navItem" href="/docs/tr/play/cli-options">CLI Options</a></li></ul></div></div></section></div><script>
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/warriorjs/tr" target="_blank" rel="noreferrer noopener">Translate</a><h1>Savaşçı</h1></header><article><div><span><p>The <strong>warrior</strong> is the player-character in WarriorJS, which means it's controlled by you. To create a warrior, you'll be guided through a two-step process where you'll determine your warrior's name and the tower you want to climb. Once created, you'll use the warrior to progress through that tower.</p>
+<blockquote>
+<p>Savaşçı ve kulenin birleşimi genellikle <strong>profil</strong> olarak isimlendirilir. Kullanabileceğin profil sayısı sınırsızdır, ancak aynı savaşçı/kule kombinasyonunu sadece bir kez kullanabilirsin.</p>
+</blockquote>
+<p>A warrior has the same attributes that any other unit. It also has abilities and can be under effects.</p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="units">← Units</a><a class="docs-next button" href="abilities">Yetenekler →</a></div></div></div><nav class="onPageNav"></nav></div><footer class="footerSection nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/warriorjs-sword.svg" alt="WarriorJS"/></a><div><h5>Docs</h5><a href="/docs/tr/play/overview">Play</a><a href="/docs/tr/make/introduction">Make</a></div><div><h5>Community</h5><a href="https://spectrum.chat/warriorjs" target="_blank" rel="noopener noreferrer">Spectrum</a><a href="https://twitter.com/warrior_js" target="_blank" rel="noopener noreferrer">Twitter</a><a href="https://twitter.com/warrior_js" target="_blank" rel="noopener noreferrer"><img alt="Follow WarriorJS on Twitter" src="https://img.shields.io/twitter/follow/warrior_js.svg?label=Follow+WarriorJS&amp;style=social"/></a></div><div><h5>More</h5><a href="https://opencollective.com/warriorjs" target="_blank" rel="noopener noreferrer">Donate</a><a href="https://github.com/olistic/warriorjs" target="_blank" rel="noopener noreferrer">GitHub</a><a class="github-button" href="https://github.com/olistic/warriorjs" data-icon="octicon-star" data-show-count="true" aria-label="Star this project on GitHub">Star</a></div></section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script><script>
+              var search = docsearch({
+                
+                apiKey: 'af0d3f56837aacc96ccd573d9208966c',
+                indexName: 'warriorjs',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>
