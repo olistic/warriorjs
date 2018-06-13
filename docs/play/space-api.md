@@ -1,5 +1,5 @@
 ---
-id: sensed-space-api
+id: space-api
 title: Space API
 ---
 

@@ -19,9 +19,9 @@ const siteConfig = {
   editUrl: `${gitHubUrl}/edit/master/docs/`,
   translationRecruitingLink: 'https://crowdin.com/project/warriorjs',
   headerLinks: [
-    { doc: 'overview', label: 'Play' },
-    { doc: 'introduction', label: 'Make' },
-    { doc: 'socialize', label: 'Community' },
+    { doc: 'play/overview', label: 'Play' },
+    { doc: 'make/introduction', label: 'Make' },
+    { doc: 'community/socialize', label: 'Community' },
     { languages: true },
     { search: true },
     { href: gitHubUrl, label: 'GitHub' },
