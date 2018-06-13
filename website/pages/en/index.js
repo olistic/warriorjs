@@ -152,7 +152,7 @@ const QuickStart = () => (
 );
 
 const Sponsors = () => {
-  if (!siteConfig.sponsors) {
+  if (!siteConfig.sponsors.length) {
     return null;
   }
 
