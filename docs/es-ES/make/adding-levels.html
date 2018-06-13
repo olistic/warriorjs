@@ -52,7 +52,7 @@
     <span class="hljs-string">"Call `warrior.walk()` to walk forward in the Player's `playTurn` method."</span>,
 };
 </code></pre>
-<p>We also need to define two numbers: the time bonus and the ace score. The time bonus is earned by the player depending on how fast they complete the level (it is decremented turn by turn until it reaches zero). The ace score, on the other hand, is used to calculate the level grade (in epic mode only). Any score greater or equal to the ace score will get an S. Let's add those numbers:</p>
+<p>También necesitamos definir dos números: el bonus de tiempo y el puntaje experto. El bonus de tiempo es otorgado al jugador dependiendo de qué tan rápido complete el nivel (disminuye turno tras turno hasta alcanzar el cero). El puntaje experto, por otro lado, es utilizado para calcular la calificación del nivel (solo en modo épico). Cualquier puntaje superior o igual al puntaje experto obtendrá una calificación de S. Agreguemos esos números:</p>
 <pre><code class="hljs css languages- js"><span class="hljs-keyword">const</span> Level1 = {
   <span class="hljs-attr">description</span>:
     <span class="hljs-string">"You've entered the ancient castle of Eastwatch to escape from a blizzard. But it's deadly cold inside too."</span>,
@@ -63,9 +63,9 @@
 };
 </code></pre>
 <blockquote>
-<p>These two numbers will need to be fine-tuned when play testing the tower. For this guide, we've already done that.</p>
+<p>Estos dos números deberán ser afinados al probar la torre. Para esta guía, ya hemos hecho eso por ti.</p>
 </blockquote>
-<p>The next thing to do is to define the floor of the level, starting by its size:</p>
+<p>Lo siguiente por hacer es definir el piso del nivel, comenzando por su tamaño:</p>
 <pre><code class="hljs css languages- js"><span class="hljs-keyword">const</span> Level1 = {
   <span class="hljs-attr">description</span>:
     <span class="hljs-string">"You've entered the ancient castle of Eastwatch to escape from a blizzard. But it's deadly cold inside too."</span>,
@@ -81,7 +81,7 @@
   },
 };
 </code></pre>
-<p>Then, we need to position the stairs so that the Warrior can move to the next level:</p>
+<p>Luego, necesitamos posicionar las escaleras para que el Guerrero pueda moverse al siguiente nivel:</p>
 <pre><code class="hljs css languages- js"><span class="hljs-keyword">const</span> Level1 = {
   <span class="hljs-attr">description</span>:
     <span class="hljs-string">"You've entered the ancient castle of Eastwatch to escape from a blizzard. But it's deadly cold inside too."</span>,
@@ -101,7 +101,7 @@
   },
 };
 </code></pre>
-<p>Speaking of warrior, let's define the Warrior for this level:</p>
+<p>Hablando de guerreros, definamos el Guerrero para este nivel:</p>
 <pre><code class="hljs css languages- js"><span class="hljs-keyword">const</span> Level1 = {
   <span class="hljs-attr">description</span>:
     <span class="hljs-string">"You've entered the ancient castle of Eastwatch to escape from a blizzard. But it's deadly cold inside too."</span>,
@@ -130,7 +130,7 @@
   },
 };
 </code></pre>
-<p>With that, the level is complete. But before continuing, let's define another level:</p>
+<p>Con esto, el nivel está completo. Pero antes de continuar, definamos otro nivel:</p>
 <pre><code class="hljs css languages- js"><span class="hljs-keyword">const</span> Level2 = {
   <span class="hljs-attr">description</span>:
     <span class="hljs-string">'The cold became more intense. In the distance, you see a pair of deep and blue eyes, a blue that burns like ice.'</span>,
@@ -162,9 +162,9 @@
 };
 </code></pre>
 <blockquote>
-<p>As things started to get more challenging for the player, this time we added a clue. Clues are optional and will only be shown upon demand.</p>
+<p>Como las cosas comenzaron a ser más desafiantes para el jugador, esta vez hemos agregado una pista. Las pistas son opcionales y solo serán mostradas si el jugador lo solicita.</p>
 </blockquote>
-<p>Now we need to add these two levels to the tower. Levels are added to the <code>levels</code> array of the tower:</p>
+<p>Ahora debemos agregar estos dos niveles a la torre. Los niveles son agregados al array <code>levels</code> de la torre:</p>
 <pre><code class="hljs css languages- js"><span class="hljs-built_in">module</span>.exports = {
   <span class="hljs-attr">name</span>: <span class="hljs-string">'Game of Thrones'</span>,
   <span class="hljs-attr">description</span>:
@@ -172,7 +172,7 @@
   <span class="hljs-attr">levels</span>: [Level1, Level2],
 };
 </code></pre>
-<p>Superb! But as you could have noticed, we instruct the player to call <code>warrior.attack()</code>, <code>warrior.feel()</code>, and <code>warrior.walk()</code> but we haven't taught the Warrior how to do any of that. Let's do that next!</p>
+<p>¡Magnífico! Pero como puedes haber notado, le pedimos al jugador que llame <code>warrior.attack()</code>, <code>warrior.feel()</code> y <code>warrior.walk()</code> pero no le hemos enseñado al Guerrero a hacer nada de esto. ¡Hagámoslo a continuación!</p>
 </span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="creating-tower">← Creando Tu Torre</a><a class="docs-next button" href="defining-abilities">Definiendo Abilidades →</a></div></div></div><nav class="onPageNav"></nav></div><footer class="footerSection nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/warriorjs-sword.svg" alt="WarriorJS"/></a><div><h5>Docs</h5><a href="/docs/es-ES/play/overview">Play</a><a href="/docs/es-ES/make/introduction">Make</a></div><div><h5>Community</h5><a href="https://spectrum.chat/warriorjs" target="_blank" rel="noopener noreferrer">Spectrum</a><a href="https://twitter.com/warrior_js" target="_blank" rel="noopener noreferrer">Twitter</a><a href="https://twitter.com/warrior_js" target="_blank" rel="noopener noreferrer"><img alt="Follow WarriorJS on Twitter" src="https://img.shields.io/twitter/follow/warrior_js.svg?label=Follow+WarriorJS&amp;style=social"/></a></div><div><h5>More</h5><a href="https://opencollective.com/warriorjs" target="_blank" rel="noopener noreferrer">Donate</a><a href="https://github.com/olistic/warriorjs" target="_blank" rel="noopener noreferrer">GitHub</a><a class="github-button" href="https://github.com/olistic/warriorjs" data-icon="octicon-star" data-show-count="true" aria-label="Star this project on GitHub">Star</a></div></section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script><script>
               var search = docsearch({
                 
