@@ -63,7 +63,7 @@ const HomeSplash = ({ language }) => (
             <small>{translation[language]['localized-strings'].tagline}</small>
           </h2>
           <PromoSection>
-            <Button href={getDocUrl('play/overview.html', language)} primary>
+            <Button href={getDocUrl('play/overview', language)} primary>
               <translate>Get Started</translate>
             </Button>
             <Button href={siteConfig.gitHubUrl}>GitHub</Button>

@@ -16,6 +16,7 @@ const siteConfig = {
   organizationName: 'olistic',
   cname: 'warrior.js.org',
   noIndex: false,
+  cleanUrl: true,
   editUrl: `${gitHubUrl}/edit/master/docs/`,
   translationRecruitingLink: 'https://crowdin.com/project/warriorjs',
   headerLinks: [
