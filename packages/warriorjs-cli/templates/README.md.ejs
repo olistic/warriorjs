@@ -5,6 +5,9 @@
 <% } -%>
 
 ## Level <%- level.number %>
+<% levels.forEach(level => { -%>
+<%- include('levels', { level }); %>
+<% }); -%>
 
 <%- include('readme/level', { getFloorMap, getFloorMapKey, level }); -%>
 
