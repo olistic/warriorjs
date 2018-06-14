@@ -1,0 +1,183 @@
+<!DOCTYPE html><html lang="ca"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Adding Levels · WarriorJS</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="A level is another JavaScript object:"/><meta property="og:title" content="Adding Levels · WarriorJS"/><meta property="og:type" content="website"/><meta property="og:url" content="https://warrior.js.org/index.html"/><meta property="og:description" content="A level is another JavaScript object:"/><meta property="og:image" content="https://warrior.js.org/img/warriorjs.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://warrior.js.org/img/warriorjs.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-118632697-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible doc separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/ca"><img class="logo" src="/img/warriorjs-text.svg" alt="WarriorJS"/></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/ca/play/overview" target="_self">Jugar</a></li><li class="siteNavGroupActive"><a href="/docs/ca/make/introduction" target="_self">Crear</a></li><li class=""><a href="/docs/ca/community/socialize" target="_self">Comunitat</a></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg"/>Català</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/en/make/adding-levels">English</a></li><li><a href="/docs/cs/make/adding-levels">Čeština</a></li><li><a href="/docs/es-ES/make/adding-levels">Español</a></li><li><a href="/docs/fr/make/adding-levels">Français</a></li><li><a href="/docs/ru/make/adding-levels">Русский</a></li><li><a href="/docs/sv-SE/make/adding-levels">Svenska</a></li><li><a href="/docs/tr/make/adding-levels">Türkçe</a></li><li><a href="/docs/zh-CN/make/adding-levels">中文</a></li><li><a href="/docs/zh-TW/make/adding-levels">繁體中文</a></li><li><a href="https://crowdin.com/project/warriorjs" target="_blank" rel="noreferrer noopener">Ajuda Traduir</a></li></ul></div></li><script>
+        const languagesMenuItem = document.getElementById("languages-menu");
+        const languagesDropDown = document.getElementById("languages-dropdown");
+        languagesMenuItem.addEventListener("click", function(){
+          if(languagesDropDown.className == "hide") {
+            languagesDropDown.className = "visible";
+          } else {
+            languagesDropDown.className = "hide";
+          }
+        });
+      </script></span><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><li class=""><a href="https://github.com/olistic/warriorjs" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>Guide</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup navGroupActive"><h3>Guide</h3><ul><li class="navListItem"><a class="navItem" href="/docs/ca/make/introduction">Introducció</a></li><li class="navListItem"><a class="navItem" href="/docs/ca/make/creating-tower">Creating Your Tower</a></li><li class="navListItem navListItemActive"><a class="navItem navItemActive" href="/docs/ca/make/adding-levels">Adding Levels</a></li><li class="navListItem"><a class="navItem" href="/docs/ca/make/defining-abilities">Defining Abilities</a></li><li class="navListItem"><a class="navItem" href="/docs/ca/make/defining-units">Defining Units</a></li><li class="navListItem"><a class="navItem" href="/docs/ca/make/refactoring">Refactoring</a></li><li class="navListItem"><a class="navItem" href="/docs/ca/make/testing">Testing</a></li><li class="navListItem"><a class="navItem" href="/docs/ca/make/publishing">Publishing</a></li></ul></div><div class="navGroup navGroupActive"><h3>Maker API</h3><ul><li class="navListItem"><a class="navItem" href="/docs/ca/make/space-api">API espacial</a></li><li class="navListItem"><a class="navItem" href="/docs/ca/make/unit-api">API de la unitat</a></li></ul></div></div></section></div><script>
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/warriorjs/ca" target="_blank" rel="noreferrer noopener">Translate</a><h1>Adding Levels</h1></header><article><div><span><p>A level is another JavaScript object:</p>
+<pre><code class="hljs css languages- js"><span class="hljs-keyword">const</span> Level1 = {
+  <span class="hljs-comment">// Level definition.</span>
+};
+</code></pre>
+<p>Let's start off by writing a description and a tip for our level:</p>
+<pre><code class="hljs css languages- js"><span class="hljs-keyword">const</span> Level1 = {
+  <span class="hljs-attr">description</span>:
+    <span class="hljs-string">"You've entered the ancient castle of Eastwatch to escape from a blizzard. But it's deadly cold inside too."</span>,
+  <span class="hljs-attr">tip</span>:
+    <span class="hljs-string">"Call `warrior.walk()` to walk forward in the Player's `playTurn` method."</span>,
+};
+</code></pre>
+<p>We also need to define two numbers: the time bonus and the ace score. The time bonus is earned by the player depending on how fast they complete the level (it is decremented turn by turn until it reaches zero). The ace score, on the other hand, is used to calculate the level grade (in epic mode only). Any score greater or equal to the ace score will get an S. Let's add those numbers:</p>
+<pre><code class="hljs css languages- js"><span class="hljs-keyword">const</span> Level1 = {
+  <span class="hljs-attr">description</span>:
+    <span class="hljs-string">"You've entered the ancient castle of Eastwatch to escape from a blizzard. But it's deadly cold inside too."</span>,
+  <span class="hljs-attr">tip</span>:
+    <span class="hljs-string">"Call `warrior.walk()` to walk forward in the Player's `playTurn` method."</span>,
+  <span class="hljs-attr">timeBonus</span>: <span class="hljs-number">15</span>,
+  <span class="hljs-attr">aceScore</span>: <span class="hljs-number">10</span>,
+};
+</code></pre>
+<blockquote>
+<p>These two numbers will need to be fine-tuned when play testing the tower. For this guide, we've already done that.</p>
+</blockquote>
+<p>The next thing to do is to define the floor of the level, starting by its size:</p>
+<pre><code class="hljs css languages- js"><span class="hljs-keyword">const</span> Level1 = {
+  <span class="hljs-attr">description</span>:
+    <span class="hljs-string">"You've entered the ancient castle of Eastwatch to escape from a blizzard. But it's deadly cold inside too."</span>,
+  <span class="hljs-attr">tip</span>:
+    <span class="hljs-string">"Call `warrior.walk()` to walk forward in the Player's `playTurn` method."</span>,
+  <span class="hljs-attr">timeBonus</span>: <span class="hljs-number">15</span>,
+  <span class="hljs-attr">aceScore</span>: <span class="hljs-number">10</span>,
+  <span class="hljs-attr">floor</span>: {
+    <span class="hljs-attr">size</span>: {
+      <span class="hljs-attr">width</span>: <span class="hljs-number">8</span>,
+      <span class="hljs-attr">height</span>: <span class="hljs-number">1</span>,
+    },
+  },
+};
+</code></pre>
+<p>Then, we need to position the stairs so that the Warrior can move to the next level:</p>
+<pre><code class="hljs css languages- js"><span class="hljs-keyword">const</span> Level1 = {
+  <span class="hljs-attr">description</span>:
+    <span class="hljs-string">"You've entered the ancient castle of Eastwatch to escape from a blizzard. But it's deadly cold inside too."</span>,
+  <span class="hljs-attr">tip</span>:
+    <span class="hljs-string">"Call `warrior.walk()` to walk forward in the Player's `playTurn` method."</span>,
+  <span class="hljs-attr">timeBonus</span>: <span class="hljs-number">15</span>,
+  <span class="hljs-attr">aceScore</span>: <span class="hljs-number">10</span>,
+  <span class="hljs-attr">floor</span>: {
+    <span class="hljs-attr">size</span>: {
+      <span class="hljs-attr">width</span>: <span class="hljs-number">8</span>,
+      <span class="hljs-attr">height</span>: <span class="hljs-number">1</span>,
+    },
+    <span class="hljs-attr">stairs</span>: {
+      <span class="hljs-attr">x</span>: <span class="hljs-number">7</span>,
+      <span class="hljs-attr">y</span>: <span class="hljs-number">0</span>,
+    },
+  },
+};
+</code></pre>
+<p>Speaking of warrior, let's define the Warrior for this level:</p>
+<pre><code class="hljs css languages- js"><span class="hljs-keyword">const</span> Level1 = {
+  <span class="hljs-attr">description</span>:
+    <span class="hljs-string">"You've entered the ancient castle of Eastwatch to escape from a blizzard. But it's deadly cold inside too."</span>,
+  <span class="hljs-attr">tip</span>:
+    <span class="hljs-string">"Call `warrior.walk()` to walk forward in the Player's `playTurn` method."</span>,
+  <span class="hljs-attr">timeBonus</span>: <span class="hljs-number">15</span>,
+  <span class="hljs-attr">aceScore</span>: <span class="hljs-number">10</span>,
+  <span class="hljs-attr">floor</span>: {
+    <span class="hljs-attr">size</span>: {
+      <span class="hljs-attr">width</span>: <span class="hljs-number">8</span>,
+      <span class="hljs-attr">height</span>: <span class="hljs-number">1</span>,
+    },
+    <span class="hljs-attr">stairs</span>: {
+      <span class="hljs-attr">x</span>: <span class="hljs-number">7</span>,
+      <span class="hljs-attr">y</span>: <span class="hljs-number">0</span>,
+    },
+    <span class="hljs-attr">warrior</span>: {
+      <span class="hljs-attr">character</span>: <span class="hljs-string">'@'</span>,
+      <span class="hljs-attr">maxHealth</span>: <span class="hljs-number">20</span>,
+      <span class="hljs-attr">position</span>: {
+        <span class="hljs-attr">x</span>: <span class="hljs-number">0</span>,
+        <span class="hljs-attr">y</span>: <span class="hljs-number">0</span>,
+        <span class="hljs-attr">facing</span>: <span class="hljs-string">'east'</span>,
+      },
+    },
+  },
+};
+</code></pre>
+<p>With that, the level is complete. But before continuing, let's define another level:</p>
+<pre><code class="hljs css languages- js"><span class="hljs-keyword">const</span> Level2 = {
+  <span class="hljs-attr">description</span>:
+    <span class="hljs-string">'The cold became more intense. In the distance, you see a pair of deep and blue eyes, a blue that burns like ice.'</span>,
+  <span class="hljs-attr">tip</span>:
+    <span class="hljs-string">"Use `warrior.feel().isEmpty()` to see if there's anything in front of you, and `warrior.attack()` to fight it. Remember, you can only do one action per turn."</span>,
+  <span class="hljs-attr">clue</span>:
+    <span class="hljs-string">'Add an if/else condition using `warrior.feel().isEmpty()` to decide whether to attack or walk.'</span>,
+  <span class="hljs-attr">timeBonus</span>: <span class="hljs-number">20</span>,
+  <span class="hljs-attr">aceScore</span>: <span class="hljs-number">26</span>,
+  <span class="hljs-attr">floor</span>: {
+    <span class="hljs-attr">size</span>: {
+      <span class="hljs-attr">width</span>: <span class="hljs-number">8</span>,
+      <span class="hljs-attr">height</span>: <span class="hljs-number">1</span>,
+    },
+    <span class="hljs-attr">stairs</span>: {
+      <span class="hljs-attr">x</span>: <span class="hljs-number">7</span>,
+      <span class="hljs-attr">y</span>: <span class="hljs-number">0</span>,
+    },
+    <span class="hljs-attr">warrior</span>: {
+      <span class="hljs-attr">character</span>: <span class="hljs-string">'@'</span>,
+      <span class="hljs-attr">maxHealth</span>: <span class="hljs-number">20</span>,
+      <span class="hljs-attr">position</span>: {
+        <span class="hljs-attr">x</span>: <span class="hljs-number">0</span>,
+        <span class="hljs-attr">y</span>: <span class="hljs-number">0</span>,
+        <span class="hljs-attr">facing</span>: <span class="hljs-string">'east'</span>,
+      },
+    },
+  },
+};
+</code></pre>
+<blockquote>
+<p>As things started to get more challenging for the player, this time we added a clue. Clues are optional and will only be shown upon demand.</p>
+</blockquote>
+<p>Now we need to add these two levels to the tower. Levels are added to the <code>levels</code> array of the tower:</p>
+<pre><code class="hljs css languages- js"><span class="hljs-built_in">module</span>.exports = {
+  <span class="hljs-attr">name</span>: <span class="hljs-string">'Game of Thrones'</span>,
+  <span class="hljs-attr">description</span>:
+    <span class="hljs-string">'There is only one war that matters: the Great War. And it is here.'</span>,
+  <span class="hljs-attr">levels</span>: [Level1, Level2],
+};
+</code></pre>
+<p>Superb! But as you could have noticed, we instruct the player to call <code>warrior.attack()</code>, <code>warrior.feel()</code>, and <code>warrior.walk()</code> but we haven't taught the Warrior how to do any of that. Let's do that next!</p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="creating-tower">← Creating Your Tower</a><a class="docs-next button" href="defining-abilities">Defining Abilities →</a></div></div></div><nav class="onPageNav"></nav></div><footer class="footerSection nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/warriorjs-sword.svg" alt="WarriorJS"/></a><div><h5>Docs</h5><a href="/docs/ca/play/overview">Play</a><a href="/docs/ca/make/introduction">Make</a></div><div><h5>Community</h5><a href="https://spectrum.chat/warriorjs" target="_blank" rel="noopener noreferrer">Spectrum</a><a href="https://twitter.com/warrior_js" target="_blank" rel="noopener noreferrer">Twitter</a><a href="https://twitter.com/warrior_js" target="_blank" rel="noopener noreferrer"><img alt="Follow WarriorJS on Twitter" src="https://img.shields.io/twitter/follow/warrior_js.svg?label=Follow+WarriorJS&amp;style=social"/></a></div><div><h5>More</h5><a href="https://opencollective.com/warriorjs" target="_blank" rel="noopener noreferrer">Donate</a><a href="https://github.com/olistic/warriorjs" target="_blank" rel="noopener noreferrer">GitHub</a><a class="github-button" href="https://github.com/olistic/warriorjs" data-icon="octicon-star" data-show-count="true" aria-label="Star this project on GitHub">Star</a></div></section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script><script>
+              var search = docsearch({
+                
+                apiKey: 'af0d3f56837aacc96ccd573d9208966c',
+                indexName: 'warriorjs',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>
