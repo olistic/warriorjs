@@ -20,7 +20,7 @@ const languages = [
     tag: 'bs-BA',
   },
   {
-    enabled: false,
+    enabled: true,
     name: 'Català',
     tag: 'ca',
   },
