@@ -25,7 +25,7 @@ const languages = [
     tag: 'ca',
   },
   {
-    enabled: false,
+    enabled: true,
     name: 'Čeština',
     tag: 'cs',
   },
