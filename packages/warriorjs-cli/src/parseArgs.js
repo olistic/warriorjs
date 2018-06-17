@@ -54,6 +54,12 @@ function parseArgs(args) {
         describe: 'Assume yes in non-destructive confirmation dialogs',
         type: 'boolean',
       },
+      n: {
+        alias: 'noMarkdown',
+        describe: 'Returns a txt file if no markdown parser is present.',
+        type: 'boolean',
+        default: 'false',
+      },
     })
     .version()
     .help()

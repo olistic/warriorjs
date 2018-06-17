@@ -4,6 +4,8 @@ import path from 'path';
 import GameError from './GameError';
 import getGradeLetter from './utils/getGradeLetter';
 
+import parseArgs from './parseArgs';
+
 const profileFile = '.profile';
 const playerCodeFile = 'Player.js';
 const readmeFile = 'README.md';

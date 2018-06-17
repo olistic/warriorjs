@@ -1,0 +1,29 @@
+<%- profile.warriorName %> - <%- profile.tower.name %>
+<% if (profile.tower.description) { -%>
+
+------------------------------------------------------------
+
+_<%- profile.tower.description %>_
+<% } -%>
+
+------------------------------------------------------------
+
+Level <%- level.number %>
+
+<%- include('readme/level', { getFloorMap, getFloorMapKey, level }); -%>
+
+------------------------------------------------------------
+
+ Abilities
+
+<%-
+  include('readme/abilities', {
+    abilities: level.floor.warrior.abilities,
+  });
+-%>
+
+------------------------------------------------------------
+
+Next Steps
+
+When you're done editing `Player.js`, run the `warriorjs` command again.

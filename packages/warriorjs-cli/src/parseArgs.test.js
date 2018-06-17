@@ -103,3 +103,17 @@ describe('-t', () => {
     });
   });
 });
+
+describe('-n', () => {
+  test('parses correctly', () => {
+    expect(parseArgs(['-n']).n).toBe(true);
+  });
+
+  test('has alias --noMarkdown', () => {
+    expect(parseArgs(['--noMarkdown']).noMarkdown).toBe(true);
+  });
+
+  test('defaults to false', () => {
+    expect(parseArgs([]).n).toBe(false);
+  });
+});
