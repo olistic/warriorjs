@@ -8,10 +8,13 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [0.6.0] - 2018-06-17
+
 ### Changed
 
 - Enhance CLI welcome message ([@olistic][] in [#191][])
 - Sort actions and senses alphabetically in README ([@djohalo2][] in [#194][])
+- Reference tower by ID in levels ([@olistic][] in [#202][])
 
 ## [0.5.1] - 2018-06-01
 
@@ -134,7 +137,8 @@ and this project adheres to
 
 Initial version.
 
-[unreleased]: https://github.com/olistic/warriorjs/compare/v0.5.1...HEAD
+[unreleased]: https://github.com/olistic/warriorjs/compare/v0.6.0...HEAD
+[0.6.0]: https://github.com/olistic/warriorjs/compare/v0.5.1...v0.6.0
 [0.5.1]: https://github.com/olistic/warriorjs/compare/v0.5.0...v0.5.1
 [0.5.0]: https://github.com/olistic/warriorjs/compare/v0.4.2...v0.5.0
 [0.4.2]: https://github.com/olistic/warriorjs/compare/v0.4.1...v0.4.2
@@ -191,3 +195,4 @@ Initial version.
 [#188]: https://github.com/olistic/warriorjs/pull/188
 [#191]: https://github.com/olistic/warriorjs/pull/191
 [#194]: https://github.com/olistic/warriorjs/pull/194
+[#202]: https://github.com/olistic/warriorjs/pull/202
