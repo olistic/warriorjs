@@ -7,7 +7,7 @@ class Level {
   /**
    * Creates a level.
    *
-   * @param {string} towerName The name of the tower.
+   * @param {string} towerId The identifier of the tower.
    * @param {number} number The number of the level.
    * @param {string} description The description of the level.
    * @param {string} tip A tip for the level.
@@ -15,8 +15,8 @@ class Level {
    * @param {number} timeBonus The bonus for completing the level fast.
    * @param {Floor} floor The floor of the level.
    */
-  constructor(towerName, number, description, tip, clue, timeBonus, floor) {
-    this.towerName = towerName;
+  constructor(towerId, number, description, tip, clue, timeBonus, floor) {
+    this.towerId = towerId;
     this.number = number;
     this.description = description;
     this.tip = tip;
