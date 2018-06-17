@@ -1,6 +1,6 @@
 {
   "name": "@warriorjs/tower-beginner",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "WarriorJS beginner tower",
   "author": "Matias Olivera <moliverafreire@gmail.com>",
   "license": "MIT",
@@ -14,8 +14,8 @@
     "access": "public"
   },
   "dependencies": {
-    "@warriorjs/abilities": "^0.5.0",
-    "@warriorjs/geography": "^0.4.0",
-    "@warriorjs/units": "^0.5.0"
+    "@warriorjs/abilities": "^0.6.0",
+    "@warriorjs/geography": "^0.6.0",
+    "@warriorjs/units": "^0.6.0"
   }
 }
