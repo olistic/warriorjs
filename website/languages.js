@@ -35,7 +35,7 @@ const languages = [
     tag: 'da',
   },
   {
-    enabled: false,
+    enabled: true,
     name: 'Deutsch',
     tag: 'de',
   },
