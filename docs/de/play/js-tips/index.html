@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="de"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>JavaScript-Tipps · WarriorJS</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="- Don&#x27;t simply fill up the `playTurn` method with a lot of code, **organize your code with methods and classes**. For example:"/><meta property="og:title" content="JavaScript-Tipps · WarriorJS"/><meta property="og:type" content="website"/><meta property="og:url" content="https://warrior.js.org/index.html"/><meta property="og:description" content="- Don&#x27;t simply fill up the `playTurn` method with a lot of code, **organize your code with methods and classes**. For example:"/><meta property="og:image" content="https://warrior.js.org/img/warriorjs.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://warrior.js.org/img/warriorjs.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script>
+<!DOCTYPE html><html lang="de"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>JavaScript-Tipps · WarriorJS</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="- Schreibe deinen Code nicht komplett in die `playTurn`-Methode, sondern **nutze Methoden und Klassen, um deinen Code zu organisieren**. Als Beispiel:"/><meta property="og:title" content="JavaScript-Tipps · WarriorJS"/><meta property="og:type" content="website"/><meta property="og:url" content="https://warrior.js.org/index.html"/><meta property="og:description" content="- Schreibe deinen Code nicht komplett in die `playTurn`-Methode, sondern **nutze Methoden und Klassen, um deinen Code zu organisieren**. Als Beispiel:"/><meta property="og:image" content="https://warrior.js.org/img/warriorjs.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://warrior.js.org/img/warriorjs.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script>
               (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
               (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
               m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -40,7 +40,7 @@
               }
             });
         </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/warriorjs/de" target="_blank" rel="noreferrer noopener">Translate</a><h1>JavaScript-Tipps</h1></header><article><div><span><ul>
-<li>Don't simply fill up the <code>playTurn</code> method with a lot of code, <strong>organize your code with methods and classes</strong>. For example:</li>
+<li>Schreibe deinen Code nicht komplett in die <code>playTurn</code>-Methode, sondern <strong>nutze Methoden und Klassen, um deinen Code zu organisieren</strong>. Als Beispiel:</li>
 </ul>
 <pre><code class="hljs css languages- js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Player</span> </span>{
   playTurn(warrior) {
@@ -55,7 +55,7 @@
 }
 </code></pre>
 <ul>
-<li>If you want some code to be executed at the beginning of each level, <strong>define a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/constructor">constructor</a> in the <code>Player</code> class</strong>, like this:</li>
+<li>Falls du möchstest, dass bestimmer Code zu Beginn des Levels ausgeführt wird, <strong>erstelle einen <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/constructor">Konstruktor</a> in der <code>Player</code>-Klasse</strong>:</li>
 </ul>
 <pre><code class="hljs css languages- js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Player</span> </span>{
   <span class="hljs-keyword">constructor</span>() {
@@ -67,7 +67,7 @@
 }
 </code></pre>
 <ul>
-<li>You can call methods of the Space API directly after a sense. For example, the &quot;feel&quot; sense in the beginner tower returns one space. You can call <code>isEmpty()</code> on this to determine if the space is clear before walking there:</li>
+<li>Du kannst Methoden der Space-API aufrufen sobald du einen Bereich (Space) wahrgenommen hast. Zum Beispiel gibt die &quot;feel&quot;-Methode im Einsteiger-Turm einen einzelnen Bereich zurück. Dann kannst du <code>isEmpty()</code> aufrufen, um zu bestimmen, ob der Bereich vor dir frei ist:</li>
 </ul>
 <pre><code class="hljs css languages- js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Player</span> </span>{
   playTurn(warrior) {
@@ -78,7 +78,7 @@
 }
 </code></pre>
 <ul>
-<li>Some senses (like &quot;look&quot; and &quot;listen&quot; in the beginner tower) return an array of spaces instead, so <strong>you might find many of the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/prototype#Methods">Array prototype methods</a> really useful</strong>. Here is an example of the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find">Array.prototype.find</a> method:</li>
+<li>Einige Wahrnehmungs-Funktionen (wie &quot;look&quot; und &quot;listen&quot; im Einsteiger-Turm) geben ein Array von Bereichen zurück, sodass sich <strong>viele der <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/prototype#Methods">Array-Prototyp-Methoden</a> als nützlich erweisen sollten</strong>. Hier ist ein Beispiel der <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find">Array.prototype.find</a>-Methode:</li>
 </ul>
 <pre><code class="hljs css languages- js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Player</span> </span>{
   <span class="hljs-comment">// ...</span>
