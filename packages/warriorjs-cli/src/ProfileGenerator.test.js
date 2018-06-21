@@ -6,6 +6,7 @@ import mock from 'mock-fs';
 import ProfileGenerator, {
   PLAYER_CODE_TEMPLATE_FILE_PATH,
   README_TEMPLATE_FILE_PATH,
+  README_TXT_TEMPLATE_FILE_PATH,
 } from './ProfileGenerator';
 import getFloorMap from './utils/getFloorMap';
 import getFloorMapKey from './utils/getFloorMapKey';
@@ -21,6 +22,7 @@ describe('ProfileGenerator', () => {
     profile = {
       getPlayerCodeFilePath: () => '/path/to/profile/player-code',
       getReadmeFilePath: () => '/path/to/profile/readme',
+      getReadmeTxtFilePath: () => '/path/to/profile/readme',
     };
     level = {
       floor: {
@@ -47,6 +49,12 @@ describe('ProfileGenerator', () => {
     test('generates readme file', () => {
       profileGenerator.generate();
       expect(profileGenerator.generateReadmeFile).toHaveBeenCalled();
+      expect(profileGenerator.generatePlayerCodeFile).not.toHaveBeenCalled();
+    });
+
+    test('generates readme Txt file', () => {
+      profileGenerator.generate();
+      expect(profileGenerator.generateReadmeTxtFile).toHaveBeenCalled();
       expect(profileGenerator.generatePlayerCodeFile).not.toHaveBeenCalled();
     });
 
@@ -77,6 +85,31 @@ describe('ProfileGenerator', () => {
       },
     );
     expect(fs.readFileSync('/path/to/profile/readme', 'utf8')).toBe('readme');
+    mock.restore();
+  });
+
+  test('generates readme Txt file', () => {
+    mock({
+      [README_TXT_TEMPLATE_FILE_PATH]: 'template',
+      '/path/to/profile': {},
+    });
+    ejs.render = jest.fn().mockReturnValue('readme-txt');
+    profileGenerator.generateReadmeTxtFile();
+    expect(ejs.render).toHaveBeenCalledWith(
+      'template',
+      {
+        profile,
+        level,
+        getFloorMap,
+        getFloorMapKey,
+      },
+      {
+        filename: README_TXT_TEMPLATE_FILE_PATH,
+      },
+    );
+    expect(fs.readFileSync('/path/to/profile/readme.txt', 'utf8')).toBe(
+      'readme.txt',
+    );
     mock.restore();
   });
 

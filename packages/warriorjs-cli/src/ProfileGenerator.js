@@ -15,6 +15,10 @@ export const README_TEMPLATE_FILE_PATH = path.join(
   templatesPath,
   'README.md.ejs',
 );
+export const README_TXT_TEMPLATE_FILE_PATH = path.join(
+  templatesPath,
+  'README.txt.ejs',
+);
 
 /** Class representing a profile generator. */
 class ProfileGenerator {
@@ -53,6 +57,22 @@ class ProfileGenerator {
     const options = { filename: README_TEMPLATE_FILE_PATH };
     const renderedReadme = ejs.render(template, data, options);
     fs.writeFileSync(this.profile.getReadmeFilePath(), renderedReadme);
+  }
+
+  /**
+   * Generates the README file (README.txt).
+   */
+  generateReadmeTxtFile() {
+    const template = fs.readFileSync(README_TXT_TEMPLATE_FILE_PATH, 'utf8');
+    const data = {
+      getFloorMap,
+      getFloorMapKey,
+      profile: this.profile,
+      level: this.level,
+    };
+    const options = { filename: README_TXT_TEMPLATE_FILE_PATH };
+    const renderedReadme = ejs.render(template, data, options);
+    fs.writeFileSync(this.profile.getReadmeTxtFilePath(), renderedReadme);
   }
 
   /**

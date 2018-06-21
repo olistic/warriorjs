@@ -36,13 +36,22 @@ class Game {
    * @param {boolean} silencePlay Whether to suppress play log or not.
    * @param {number} delay The delay between each turn in seconds.
    * @param {boolean} assumeYes Whether to answer yes to every question or not.
+   * @param {booelan} assumeMarkdown Whether a markdown parser is present or not .
    */
-  constructor(runDirectoryPath, practiceLevel, silencePlay, delay, assumeYes) {
+  constructor(
+    runDirectoryPath,
+    practiceLevel,
+    silencePlay,
+    delay,
+    assumeYes,
+    assumeMarkdown,
+  ) {
     this.runDirectoryPath = runDirectoryPath;
     this.practiceLevel = practiceLevel;
     this.silencePlay = silencePlay;
     this.delay = delay * 1000;
     this.assumeYes = assumeYes;
+    this.assumeMarkdown = assumeMarkdown;
     this.gameDirectoryPath = path.join(this.runDirectoryPath, gameDirectory);
   }
 

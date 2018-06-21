@@ -219,6 +219,12 @@ describe('Profile', () => {
     );
   });
 
+  test('knows the path to the README.Txt file', () => {
+    expect(profile.getReadmeTxtFilePath()).toBe(
+      path.normalize('/path/to/profile/README.txt'),
+    );
+  });
+
   describe('when going to the next level', () => {
     beforeEach(() => {
       profile.save = jest.fn();
