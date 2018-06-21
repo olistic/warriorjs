@@ -62,7 +62,7 @@ class ProfileGenerator {
   /**
    * Generates the README file (README.txt).
    */
-  generateReadmeFile() {
+  generateReadmeTxtFile() {
     const template = fs.readFileSync(README_TXT_TEMPLATE_FILE_PATH, 'utf8');
     const data = {
       getFloorMap,
@@ -72,7 +72,7 @@ class ProfileGenerator {
     };
     const options = { filename: README_TXT_TEMPLATE_FILE_PATH };
     const renderedReadme = ejs.render(template, data, options);
-    fs.writeFileSync(this.profile.getReadmeFilePath(), renderedReadme);
+    fs.writeFileSync(this.profile.getReadmeTxtFilePath(), renderedReadme);
   }
 
   /**

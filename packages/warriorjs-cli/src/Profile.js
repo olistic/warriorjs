@@ -9,6 +9,7 @@ import parseArgs from './parseArgs';
 const profileFile = '.profile';
 const playerCodeFile = 'Player.js';
 const readmeFile = 'README.md';
+const readmeTxtFile = 'README.txt';
 
 /** Class representing a profile. */
 class Profile {
@@ -186,6 +187,15 @@ class Profile {
    */
   getReadmeFilePath() {
     return path.join(this.directoryPath, readmeFile);
+  }
+
+  /**
+   * Returns the path to the README TXT file.
+   *
+   * @returns {string} The path to the README file.
+   */
+  getReadmeTxtFilePath() {
+    return path.join(this.directoryPath, readmeTxtFile);
   }
 
   /**
