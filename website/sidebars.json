@@ -1,33 +1,42 @@
 {
   "play": {
-    "Introduction": ["overview", "set-up"],
+    "Introduction": ["play/overview", "play/set-up"],
     "Game": [
-      "object",
-      "gameplay",
-      "perspective",
-      "scoring",
-      "epic-mode",
-      "towers"
+      "play/object",
+      "play/gameplay",
+      "play/perspective",
+      "play/scoring",
+      "play/epic-mode",
+      "play/towers"
     ],
-    "Concepts": ["units", "warrior", "abilities", "spaces"],
-    "Player API": ["sensed-space-api", "sensed-unit-api", "turn-api"],
-    "Tips & Tricks": ["general-tips", "js-tips", "ai-tips", "cli-tips"],
-    "Configuration": ["cli-options"]
+    "Concepts": ["play/units", "play/warrior", "play/abilities", "play/spaces"],
+    "Player API": ["play/space-api", "play/unit-api", "play/turn-api"],
+    "Tips & Tricks": [
+      "play/general-tips",
+      "play/js-tips",
+      "play/ai-tips",
+      "play/cli-tips"
+    ],
+    "Configuration": ["play/cli-options"]
   },
   "make": {
     "Guide": [
-      "introduction",
-      "creating-tower",
-      "adding-levels",
-      "defining-abilities",
-      "defining-units",
-      "refactoring",
-      "testing",
-      "publishing"
+      "make/introduction",
+      "make/creating-tower",
+      "make/adding-levels",
+      "make/defining-abilities",
+      "make/defining-units",
+      "make/refactoring",
+      "make/testing",
+      "make/publishing"
     ],
-    "Maker API": ["space-api", "unit-api"]
+    "Maker API": ["make/space-api", "make/unit-api"]
   },
   "community": {
-    "Community": ["socialize", "ecosystem", "roadmap"]
+    "Community": [
+      "community/socialize",
+      "community/ecosystem",
+      "community/roadmap"
+    ]
   }
 }

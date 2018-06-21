@@ -1,5 +1,5 @@
 ---
-id: sensed-unit-api
+id: unit-api
 title: Unit API
 ---
 

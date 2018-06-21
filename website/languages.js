@@ -20,12 +20,12 @@ const languages = [
     tag: 'bs-BA',
   },
   {
-    enabled: false,
+    enabled: true,
     name: 'Català',
     tag: 'ca',
   },
   {
-    enabled: false,
+    enabled: true,
     name: 'Čeština',
     tag: 'cs',
   },
@@ -35,7 +35,7 @@ const languages = [
     tag: 'da',
   },
   {
-    enabled: false,
+    enabled: true,
     name: 'Deutsch',
     tag: 'de',
   },
@@ -60,7 +60,7 @@ const languages = [
     tag: 'fi',
   },
   {
-    enabled: false,
+    enabled: true,
     name: 'Français',
     tag: 'fr',
   },
