@@ -107,7 +107,9 @@ describe('ProfileGenerator', () => {
         filename: README_TXT_TEMPLATE_FILE_PATH,
       },
     );
-    expect(fs.readFileSync('/path/to/profile/readme', 'utf8')).toBe('readme');
+    expect(fs.readFileSync('/path/to/profile/readme.txt', 'utf8')).toBe(
+      'readme.txt',
+    );
     mock.restore();
   });
 
