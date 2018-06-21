@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="de"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Refactoring · WarriorJS</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="At this point, you should have the following code:"/><meta property="og:title" content="Refactoring · WarriorJS"/><meta property="og:type" content="website"/><meta property="og:url" content="https://warrior.js.org/index.html"/><meta property="og:description" content="At this point, you should have the following code:"/><meta property="og:image" content="https://warrior.js.org/img/warriorjs.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://warrior.js.org/img/warriorjs.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script>
+<!DOCTYPE html><html lang="de"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Refactoring · WarriorJS</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="An dieser Stelle sollte dein Code wie folgt aussehen:"/><meta property="og:title" content="Refactoring · WarriorJS"/><meta property="og:type" content="website"/><meta property="og:url" content="https://warrior.js.org/index.html"/><meta property="og:description" content="An dieser Stelle sollte dein Code wie folgt aussehen:"/><meta property="og:image" content="https://warrior.js.org/img/warriorjs.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://warrior.js.org/img/warriorjs.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script>
               (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
               (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
               m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -39,7 +39,7 @@
                 };
               }
             });
-        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/warriorjs/de" target="_blank" rel="noreferrer noopener">Translate</a><h1>Refactoring</h1></header><article><div><span><p>At this point, you should have the following code:</p>
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/warriorjs/de" target="_blank" rel="noreferrer noopener">Translate</a><h1>Refactoring</h1></header><article><div><span><p>An dieser Stelle sollte dein Code wie folgt aussehen:</p>
 <pre><code class="hljs css languages- js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">valyrianSteelSwordAttack</span>(<span class="hljs-params">unit</span>) </span>{
   <span class="hljs-keyword">return</span> {
     <span class="hljs-attr">action</span>: <span class="hljs-literal">true</span>,
@@ -203,7 +203,7 @@
   <span class="hljs-attr">levels</span>: [Level1, Level2],
 };
 </code></pre>
-<p>Just like what we did with the White Walker definition, we can extract the common fields of the Warrior to an object and then use spread properties to add it to every level:</p>
+<p>Wie bei der Definierung des Weißen Wanderers können wir die gemeinsamen Felder des Kämpfers in ein Objekt auslagern und dann Spread-Properties verwenden, um sie jedem Level hinzuzufügen:</p>
 <pre><code class="hljs css languages- js"><span class="hljs-keyword">const</span> Warrior = {
   <span class="hljs-attr">character</span>: <span class="hljs-string">'@'</span>,
   <span class="hljs-attr">maxHealth</span>: <span class="hljs-number">20</span>,
@@ -282,7 +282,7 @@
   },
 };
 </code></pre>
-<p>With regard to the abilities, we can see that both attack abilities are very similar. Let's do something about that:</p>
+<p>In Bezug auf die Fähigkeiten können wir feststellen, dass beide Angriff-Fähigkeiten sehr ähnlich sind. Da können wir etwas gegen tun:</p>
 <pre><code class="hljs css languages- js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">attackCreator</span>(<span class="hljs-params">{ power, weapon }</span>) </span>{
   <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">unit</span> =&gt;</span> ({
     <span class="hljs-attr">action</span>: <span class="hljs-literal">true</span>,
@@ -310,9 +310,9 @@
 });
 </code></pre>
 <blockquote>
-<p>We can call this the &quot;ability creator&quot; pattern, where we define a function (the ability creator) which returns another function (the ability) customized with the parameters we passed to the creator.</p>
+<p>Wir nennen dies das &quot;Ability Creator&quot;-Muster, bei dem wir eine Funktion (den Ability-Creator) definieren, die eine andere Funktion angepasst anhand der übergebenen Paramater zurückgibt (die Fähigkeit).</p>
 </blockquote>
-<p>To end with the refactor, let's get rid of all those magic strings representing directions. There's an official package called <a href="https://github.com/olistic/warriorjs/tree/master/packages/warriorjs-geography"><code>@warriorjs/geography</code></a> that exposes a bunch of constants and methods related to directioning. Let's use it:</p>
+<p>Um das Refactoring abzuschließen, lass uns alle Magic-Strings loswerden, die Richtungen angeben. Es gibt ein offizielles Package namens <a href="https://github.com/olistic/warriorjs/tree/master/packages/warriorjs-geography"><code>@warriorjs/geography</code></a>, das eine Reihe von Konstanten und Methoden in Bezug auf Richtungen bereit stellt. Lass uns das nutzen:</p>
 <pre><code class="hljs css languages- js"><span class="hljs-keyword">const</span> {
   EAST,
   FORWARD,
@@ -476,7 +476,7 @@
   <span class="hljs-attr">levels</span>: [Level1, Level2],
 };
 </code></pre>
-<p>Much better! Keep reading to learn how to test and publish your tower so that other players can play!</p>
+<p>Viel besser! Lese weiter, um zu lernen deinen Turm zu testen und zu veröffentlichen, sodass auch andere Spieler ihn spielen können!</p>
 </span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="defining-units">← Definition von Einheiten</a><a class="docs-next button" href="testing">Testen →</a></div></div></div><nav class="onPageNav"></nav></div><footer class="footerSection nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/warriorjs-sword.svg" alt="WarriorJS"/></a><div><h5>Docs</h5><a href="/docs/de/play/overview">Play</a><a href="/docs/de/make/introduction">Make</a></div><div><h5>Community</h5><a href="https://spectrum.chat/warriorjs" target="_blank" rel="noopener noreferrer">Spectrum</a><a href="https://twitter.com/warrior_js" target="_blank" rel="noopener noreferrer">Twitter</a><a href="https://twitter.com/warrior_js" target="_blank" rel="noopener noreferrer"><img alt="Follow WarriorJS on Twitter" src="https://img.shields.io/twitter/follow/warrior_js.svg?label=Follow+WarriorJS&amp;style=social"/></a></div><div><h5>More</h5><a href="https://opencollective.com/warriorjs" target="_blank" rel="noopener noreferrer">Donate</a><a href="https://github.com/olistic/warriorjs" target="_blank" rel="noopener noreferrer">GitHub</a><a class="github-button" href="https://github.com/olistic/warriorjs" data-icon="octicon-star" data-show-count="true" aria-label="Star this project on GitHub">Star</a></div></section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script><script>
               var search = docsearch({
                 
