@@ -15,9 +15,13 @@ function getAbsoluteOffset([forward, right], referenceDirection) {
 
   if (referenceDirection === NORTH) {
     return [right, -forward];
-  } else if (referenceDirection === EAST) {
+  }
+
+  if (referenceDirection === EAST) {
     return [forward, right];
-  } else if (referenceDirection === SOUTH) {
+  }
+
+  if (referenceDirection === SOUTH) {
     return [-right, forward];
   }
 

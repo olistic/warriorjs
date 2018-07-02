@@ -32,6 +32,7 @@ function parseArgs(args) {
       },
       s: {
         alias: 'silent',
+        default: false,
         describe: 'Suppress play log',
         type: 'boolean',
       },
@@ -51,6 +52,7 @@ function parseArgs(args) {
       },
       y: {
         alias: 'yes',
+        default: false,
         describe: 'Assume yes in non-destructive confirmation dialogs',
         type: 'boolean',
       },

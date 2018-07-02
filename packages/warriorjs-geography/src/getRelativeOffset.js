@@ -18,9 +18,13 @@ function getRelativeOffset([x1, y1], [x2, y2], referenceDirection) {
 
   if (referenceDirection === NORTH) {
     return [-deltaY, deltaX];
-  } else if (referenceDirection === EAST) {
+  }
+
+  if (referenceDirection === EAST) {
     return [deltaX, deltaY];
-  } else if (referenceDirection === SOUTH) {
+  }
+
+  if (referenceDirection === SOUTH) {
     return [deltaY, -deltaX];
   }
 
