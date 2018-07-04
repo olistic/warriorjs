@@ -7,8 +7,8 @@ function pivot() {
     action: true,
     description: `Rotate in the given direction (${defaultDirection} by default).`,
     perform(direction = defaultDirection) {
-      unit.log(`pivots ${direction}`);
       unit.rotate(direction);
+      unit.log(`pivots ${direction}`);
     },
   });
 }

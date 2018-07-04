@@ -108,7 +108,6 @@ class Unit {
         ? this.maxHealth - this.health
         : amount;
     this.health += revisedAmount;
-
     this.log(`receives ${amount} health, up to ${this.health} health`);
   }
 
@@ -124,12 +123,11 @@ class Unit {
 
     const revisedAmount = this.health - amount < 0 ? this.health : amount;
     this.health -= revisedAmount;
-
     this.log(`takes ${amount} damage, ${this.health} health power left`);
 
     if (this.health === 0) {
-      this.log('dies');
       this.vanish();
+      this.log('dies');
     }
   }
 
@@ -167,11 +165,12 @@ class Unit {
    * @param {Unit} receiver The unit to release.
    */
   release(receiver) {
-    receiver.unbind();
     if (!receiver.as(this).isEnemy()) {
-      receiver.vanish();
       this.earnPoints(receiver.reward);
+      receiver.vanish();
     }
+
+    receiver.unbind();
   }
 
   /**
@@ -347,7 +346,6 @@ class Unit {
    */
   move(direction, forward = 1, right = 0) {
     this.position.move(direction, [forward, right]);
-    this.log();
   }
 
   /**
@@ -357,7 +355,6 @@ class Unit {
    */
   rotate(direction) {
     this.position.rotate(direction);
-    this.log();
   }
 
   /**
@@ -365,7 +362,6 @@ class Unit {
    */
   vanish() {
     this.position = null;
-    this.log();
   }
 
   /**

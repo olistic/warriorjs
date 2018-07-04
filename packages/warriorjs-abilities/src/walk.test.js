@@ -43,8 +43,9 @@ describe('walk', () => {
         toString: () => 'space',
       });
       walk.perform();
-      expect(unit.log).toHaveBeenCalledWith(`walks ${FORWARD}`);
-      expect(unit.log).toHaveBeenLastCalledWith('bumps into space');
+      expect(unit.log).toHaveBeenCalledWith(
+        `walks ${FORWARD} and bumps into space`,
+      );
       expect(unit.move).not.toHaveBeenCalled();
     });
 
