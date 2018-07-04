@@ -14,9 +14,13 @@ function rotateRelativeOffset([forward, right], direction) {
 
   if (direction === FORWARD) {
     return [forward, right];
-  } else if (direction === RIGHT) {
+  }
+
+  if (direction === RIGHT) {
     return [-right, forward];
-  } else if (direction === BACKWARD) {
+  }
+
+  if (direction === BACKWARD) {
     return [-forward, -right];
   }
 

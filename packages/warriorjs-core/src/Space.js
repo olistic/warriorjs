@@ -56,15 +56,21 @@ class Space {
       if (locationX < 0) {
         if (locationY < 0) {
           return upperLeftWallCharacter;
-        } else if (locationY > this.floor.height - 1) {
+        }
+
+        if (locationY > this.floor.height - 1) {
           return lowerLeftWallCharacter;
         }
 
         return verticalWallCharacter;
-      } else if (locationX > this.floor.width - 1) {
+      }
+
+      if (locationX > this.floor.width - 1) {
         if (locationY < 0) {
           return upperRightWallCharacter;
-        } else if (locationY > this.floor.height - 1) {
+        }
+
+        if (locationY > this.floor.height - 1) {
           return lowerRightWallCharacter;
         }
 

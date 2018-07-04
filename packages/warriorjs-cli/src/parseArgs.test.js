@@ -88,18 +88,18 @@ describe('-t', () => {
     console.error = originalError;
     /* eslint-enable no-console */
   });
+});
 
-  describe('-y', () => {
-    test('parses correctly', () => {
-      expect(parseArgs(['-y']).y).toBe(true);
-    });
+describe('-y', () => {
+  test('parses correctly', () => {
+    expect(parseArgs(['-y']).y).toBe(true);
+  });
 
-    test('has alias --yes', () => {
-      expect(parseArgs(['--yes']).yes).toBe(true);
-    });
+  test('has alias --yes', () => {
+    expect(parseArgs(['--yes']).yes).toBe(true);
+  });
 
-    test('defaults to false', () => {
-      expect(parseArgs([]).y).toBe(false);
-    });
+  test('defaults to false', () => {
+    expect(parseArgs([]).y).toBe(false);
   });
 });
