@@ -6,20 +6,20 @@ import printWarriorStatus from './printWarriorStatus';
 jest.mock('./printRow');
 
 test('prints warrior health in bright red', () => {
-  const warrior = {
+  const warriorStatus = {
     health: 20,
   };
-  printWarriorStatus(warrior);
+  printWarriorStatus(warriorStatus);
   expect(printRow).toHaveBeenCalledWith(
     `${style.redBright.open}♥ 20${style.redBright.close}`,
   );
 });
 
 test('prints warrior score in bright yellow', () => {
-  const warrior = {
+  const warriorStatus = {
     score: 10,
   };
-  printWarriorStatus(warrior);
+  printWarriorStatus(warriorStatus);
   expect(printRow).toHaveBeenCalledWith(
     `${style.yellowBright.open}♦ 10${style.yellowBright.close}`,
   );

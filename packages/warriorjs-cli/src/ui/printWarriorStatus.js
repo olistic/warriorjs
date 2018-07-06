@@ -5,13 +5,13 @@ import printRow from './printRow';
 /**
  * Prints the warrior status line.
  *
- * @param {Object} warrior The warrior.
+ * @param {Object} warriorStatus The status of the warrior.
+ * @param {number} warriorStatus.health The health of the warrior.
+ * @param {number} warriorStatus.score The score of the warrior.
  */
-function printWarriorStatus(warrior) {
-  const warriorHealth = chalk.redBright(`♥ ${warrior.health}`);
-  printRow(warriorHealth);
-  const warriorScore = chalk.yellowBright(`♦ ${warrior.score}`);
-  printRow(warriorScore);
+function printWarriorStatus({ health, score }) {
+  printRow(chalk.redBright(`♥ ${health}`));
+  printRow(chalk.yellowBright(`♦ ${score}`));
 }
 
 export default printWarriorStatus;

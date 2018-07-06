@@ -24,7 +24,7 @@ async function printPlay(events, delay) {
 
     // eslint-disable-next-line no-restricted-syntax
     for (const event of turnEvents) {
-      printBoard(event.floor, boardOffset);
+      printBoard(event.floorMap, event.warriorStatus, boardOffset);
       printLogMessage(event.unit, event.message);
       boardOffset += 1;
 

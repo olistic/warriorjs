@@ -4,24 +4,25 @@ import printLine from './printLine';
 /**
  * Prints the floor map.
  *
- * @param {Object} map The map of the floor.
+ * @param {Object[][]} floorMap The map of the floor.
  */
-function printFloorMap(map) {
-  const floorMap = map
-    .map(row =>
-      row
-        .map(({ character, unit }) => {
-          if (unit) {
-            const style = getUnitStyle(unit);
-            return style(character);
-          }
+function printFloorMap(floorMap) {
+  printLine(
+    floorMap
+      .map(row =>
+        row
+          .map(({ character, unit }) => {
+            if (unit) {
+              const style = getUnitStyle(unit.name);
+              return style(character);
+            }
 
-          return character;
-        })
-        .join(''),
-    )
-    .join('\n');
-  printLine(floorMap);
+            return character;
+          })
+          .join(''),
+      )
+      .join('\n'),
+  );
 }
 
 export default printFloorMap;
