@@ -166,11 +166,13 @@ class Unit {
    */
   release(receiver) {
     if (!receiver.as(this).isEnemy()) {
-      this.earnPoints(receiver.reward);
       receiver.vanish();
     }
 
     receiver.unbind();
+    if (!receiver.isAlive()) {
+      this.earnPoints(receiver.reward);
+    }
   }
 
   /**
