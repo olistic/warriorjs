@@ -3,7 +3,6 @@ import { EAST, FORWARD, RELATIVE_DIRECTIONS, WEST } from '@warriorjs/geography';
 import getLevel from './getLevel';
 
 const levelConfig = {
-  towerId: 'beginner',
   number: 2,
   description: "It's too dark to see anything, but you smell sludge nearby.",
   tip:
@@ -79,7 +78,6 @@ const levelConfig = {
 
 test('returns level', () => {
   expect(getLevel(levelConfig)).toEqual({
-    towerId: 'beginner',
     number: 2,
     description: "It's too dark to see anything, but you smell sludge nearby.",
     tip:
