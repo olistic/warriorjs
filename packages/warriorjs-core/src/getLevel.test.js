@@ -104,27 +104,6 @@ test('returns level', () => {
           unit: {
             name: 'Joe',
             maxHealth: 20,
-            warrior: true,
-            score: 0,
-            abilities: [
-              {
-                name: 'walk',
-                action: true,
-                description:
-                  'Move one space in the given direction (forward by default).',
-              },
-              {
-                name: 'attack',
-                action: true,
-                description:
-                  'Attack a unit in the given direction (forward by default) dealing 5 HP of damage.',
-              },
-              {
-                name: 'feel',
-                description:
-                  'Return the adjacent space in the given direction (forward by default).',
-              },
-            ],
           },
         },
         { character: ' ' },

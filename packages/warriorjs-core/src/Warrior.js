@@ -69,19 +69,6 @@ class Warrior extends Unit {
       score: this.score,
     };
   }
-
-  toJSON() {
-    return {
-      ...super.toJSON(),
-      warrior: true,
-      score: this.score,
-      abilities: [...this.abilities].map(([name, { action, description }]) => ({
-        name,
-        action,
-        description,
-      })),
-    };
-  }
 }
 
 export default Warrior;

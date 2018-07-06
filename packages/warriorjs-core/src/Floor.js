@@ -124,18 +124,6 @@ class Floor {
   getUnits() {
     return this.units.filter(unit => unit.isAlive());
   }
-
-  /**
-   * Customizes the JSON stringification behavior of the floor.
-   *
-   * @returns {Object} The value to be serialized.
-   */
-  toJSON() {
-    return {
-      map: this.getMap(),
-      warrior: this.warrior,
-    };
-  }
 }
 
 export default Floor;
