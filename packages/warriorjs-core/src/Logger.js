@@ -1,20 +1,32 @@
 const Logger = {
-  initialize(floor) {
-    Logger.events = [];
+  /**
+   * Prepares logger for a play.
+   *
+   * @param {Floor} floor The floor of the level.
+   */
+  play(floor) {
     Logger.floor = floor;
+    Logger.events = [];
+    Logger.lastTurn = null;
   },
+  /**
+   * Prepares logger for a turn.
+   */
   turn() {
-    Logger.events.push({
-      floor: JSON.parse(JSON.stringify(Logger.floor)),
-      type: 'TURN',
-    });
+    Logger.lastTurn = [];
+    Logger.events.push(Logger.lastTurn);
   },
+  /**
+   * Logs a message with the accompanying unit.
+   *
+   * @param {Unit} unit The owner of the message.
+   * @param {string} message The message.
+   */
   unit(unit, message) {
-    Logger.events.push({
+    Logger.lastTurn.push({
       message,
       unit: JSON.parse(JSON.stringify(unit)),
       floor: JSON.parse(JSON.stringify(Logger.floor)),
-      type: 'UNIT',
     });
   },
 };

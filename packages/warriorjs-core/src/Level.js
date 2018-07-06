@@ -35,7 +35,7 @@ class Level {
    * @returns {Object} The play.
    */
   play(turns = maxTurns) {
-    Logger.initialize(this.floor);
+    Logger.play(this.floor);
 
     for (let n = 0; n < turns; n += 1) {
       if (this.wasPassed() || this.wasFailed()) {
