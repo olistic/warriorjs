@@ -554,4 +554,11 @@ describe('Unit', () => {
   test('has a nice string representation', () => {
     expect(unit.toString()).toBe(unit.name);
   });
+
+  test('has a minimal JSON representation', () => {
+    expect(unit.toJSON()).toEqual({
+      name: 'Joe',
+      maxHealth: 20,
+    });
+  });
 });

@@ -39,4 +39,11 @@ describe('Warrior', () => {
       senses: [{ name: 'feel', description: 'a description' }],
     });
   });
+
+  test('has a status', () => {
+    expect(warrior.getStatus()).toEqual({
+      health: 20,
+      score: 0,
+    });
+  });
 });

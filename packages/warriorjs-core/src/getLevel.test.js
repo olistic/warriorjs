@@ -137,10 +137,8 @@ test('returns level', () => {
           stairs: false,
           unit: {
             name: 'Joe',
-            character: '@',
             maxHealth: 20,
             warrior: true,
-            health: 20,
             score: 0,
             abilities: [
               {
@@ -180,9 +178,7 @@ test('returns level', () => {
           stairs: false,
           unit: {
             name: 'Sludge',
-            character: 's',
             maxHealth: 12,
-            health: 12,
           },
         },
         {

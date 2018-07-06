@@ -56,6 +56,20 @@ class Warrior extends Unit {
     };
   }
 
+  /**
+   * Returns the status of the warrior.
+   *
+   * The status includes the current health and score values.
+   *
+   * @returns {Object} The status of the warrior.
+   */
+  getStatus() {
+    return {
+      health: this.health,
+      score: this.score,
+    };
+  }
+
   toJSON() {
     return {
       ...super.toJSON(),

@@ -407,9 +407,7 @@ class Unit {
   toJSON() {
     return {
       name: this.name,
-      character: this.character,
       maxHealth: this.maxHealth,
-      health: this.health,
     };
   }
 }
