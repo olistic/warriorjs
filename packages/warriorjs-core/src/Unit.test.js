@@ -474,11 +474,6 @@ describe('Unit', () => {
       unit.move(LEFT);
       expect(unit.position.move).toHaveBeenCalledWith(LEFT, [1, 0]);
     });
-
-    test('murmurs something', () => {
-      unit.move(FORWARD);
-      expect(unit.log).toHaveBeenCalled();
-    });
   });
 
   describe('when rotating', () => {
@@ -490,11 +485,6 @@ describe('Unit', () => {
       unit.rotate(RIGHT);
       expect(unit.position.rotate).toHaveBeenCalledWith(RIGHT);
     });
-
-    test('murmurs something', () => {
-      unit.rotate(BACKWARD);
-      expect(unit.log).toHaveBeenCalled();
-    });
   });
 
   describe('when vanishing', () => {
@@ -502,11 +492,6 @@ describe('Unit', () => {
       expect(unit.position).not.toBeNull();
       unit.vanish();
       expect(unit.position).toBeNull();
-    });
-
-    test('murmurs something', () => {
-      unit.vanish();
-      expect(unit.log).toHaveBeenCalled();
     });
   });
 

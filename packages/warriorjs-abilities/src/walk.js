@@ -7,12 +7,12 @@ function walk() {
     action: true,
     description: `Move one space in the given direction (${defaultDirection} by default).`,
     perform(direction = defaultDirection) {
-      unit.log(`walks ${direction}`);
       const space = unit.getSpaceAt(direction);
       if (space.isEmpty()) {
         unit.move(direction);
+        unit.log(`walks ${direction}`);
       } else {
-        unit.log(`bumps into ${space}`);
+        unit.log(`walks ${direction} and bumps into ${space}`);
       }
     },
   });
