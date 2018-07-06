@@ -8,6 +8,14 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [0.7.0] - 2018-07-06
+
+### Changed
+
+- Reduce `unit.log()` calls making play reproduction ~50% faster ([@olistic][]
+  in [#208][])
+- Improve play log ([@olistic][] in [#209][])
+
 ## [0.6.0] - 2018-06-17
 
 ### Changed
@@ -137,7 +145,8 @@ and this project adheres to
 
 Initial version.
 
-[unreleased]: https://github.com/olistic/warriorjs/compare/v0.6.0...HEAD
+[unreleased]: https://github.com/olistic/warriorjs/compare/v0.7.0...HEAD
+[0.7.0]: https://github.com/olistic/warriorjs/compare/v0.6.0...v0.7.0
 [0.6.0]: https://github.com/olistic/warriorjs/compare/v0.5.1...v0.6.0
 [0.5.1]: https://github.com/olistic/warriorjs/compare/v0.5.0...v0.5.1
 [0.5.0]: https://github.com/olistic/warriorjs/compare/v0.4.2...v0.5.0
@@ -196,3 +205,5 @@ Initial version.
 [#191]: https://github.com/olistic/warriorjs/pull/191
 [#194]: https://github.com/olistic/warriorjs/pull/194
 [#202]: https://github.com/olistic/warriorjs/pull/202
+[#208]: https://github.com/olistic/warriorjs/pull/208
+[#209]: https://github.com/olistic/warriorjs/pull/209
