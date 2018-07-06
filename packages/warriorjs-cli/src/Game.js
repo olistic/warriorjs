@@ -279,7 +279,7 @@ class Game {
     const { events, passed, score } = runLevel(levelConfig, playerCode);
 
     if (!this.silencePlay) {
-      await printPlay(levelNumber, events, this.delay);
+      await printPlay(events, this.delay);
     }
 
     printSeparator();
