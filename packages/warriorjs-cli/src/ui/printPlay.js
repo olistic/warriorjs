@@ -10,33 +10,26 @@ import printLogMessage from './printLogMessage';
  * @param {Object[]} events The events that happened during the play.
  * @param {nunber} delay The delay between each turn in ms.
  */
-async function printPlay(levelNumber, events, delay) {
+async function printPlay(events, delay) {
   let turnNumber = 0;
   let boardOffset = 0;
-  // eslint-disable-next-line no-restricted-syntax
-  for (const event of events) {
-    const { type } = event;
-    switch (type) {
-      case 'TURN':
-        turnNumber += 1;
-        printTurnHeader(turnNumber);
-        boardOffset = 0;
-        printBoard(event.floor, boardOffset);
-        break;
-      case 'UNIT': {
-        const { message } = event;
-        if (message) {
-          printLogMessage(event.unit, message);
-          boardOffset += 1;
-        }
-        printBoard(event.floor, boardOffset);
-        break;
-      }
-      default:
-        break;
-    }
 
-    await sleep(delay); // eslint-disable-line no-await-in-loop
+  await sleep(delay);
+
+  // eslint-disable-next-line no-restricted-syntax
+  for (const turnEvents of events) {
+    turnNumber += 1;
+    boardOffset = 0;
+    printTurnHeader(turnNumber);
+
+    // eslint-disable-next-line no-restricted-syntax
+    for (const event of turnEvents) {
+      printBoard(event.floor, boardOffset);
+      printLogMessage(event.unit, event.message);
+      boardOffset += 1;
+
+      await sleep(delay); // eslint-disable-line no-await-in-loop
+    }
   }
 }
 
