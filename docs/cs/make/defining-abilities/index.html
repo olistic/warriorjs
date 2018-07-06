@@ -67,12 +67,12 @@
     <span class="hljs-attr">action</span>: <span class="hljs-literal">true</span>,
     <span class="hljs-attr">description</span>: <span class="hljs-string">'Move one space in the given direction (forward by default).'</span>,
     perform(direction = <span class="hljs-string">'forward'</span>) {
-      unit.log(<span class="hljs-string">`walks <span class="hljs-subst">${direction}</span>`</span>);
       <span class="hljs-keyword">const</span> space = unit.getSpaceAt(direction);
       <span class="hljs-keyword">if</span> (space.isEmpty()) {
         unit.move(direction);
+        unit.log(<span class="hljs-string">`walks <span class="hljs-subst">${direction}</span>`</span>);
       } <span class="hljs-keyword">else</span> {
-        unit.log(<span class="hljs-string">`bumps into <span class="hljs-subst">${space}</span>`</span>);
+        unit.log(<span class="hljs-string">`walks <span class="hljs-subst">${direction}</span> and bumps into <span class="hljs-subst">${space}</span>`</span>);
       }
     },
   };
