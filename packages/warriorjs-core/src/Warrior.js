@@ -30,6 +30,32 @@ class Warrior extends Unit {
     this.log(`loses ${points} points`);
   }
 
+  /**
+   * Returns a grouped collection of abilities.
+   *
+   * @returns {Object} The collection of abilities.
+   */
+  getAbilities() {
+    const abilities = [...this.abilities].map(
+      ([name, { action, description }]) => ({
+        name,
+        action,
+        description,
+      }),
+    );
+    const sortedAbilities = abilities.sort((a, b) => a.name > b.name);
+    const actions = sortedAbilities
+      .filter(ability => ability.action)
+      .map(({ action, ...rest }) => rest);
+    const senses = sortedAbilities
+      .filter(ability => !ability.action)
+      .map(({ action, ...rest }) => rest);
+    return {
+      actions,
+      senses,
+    };
+  }
+
   toJSON() {
     return {
       ...super.toJSON(),

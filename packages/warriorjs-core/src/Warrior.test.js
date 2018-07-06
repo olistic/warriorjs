@@ -5,6 +5,8 @@ describe('Warrior', () => {
 
   beforeEach(() => {
     warrior = new Warrior('Joe', '@', 20);
+    warrior.addAbility('feel', { description: 'a description' });
+    warrior.addAbility('walk', { action: true, description: 'a description' });
     warrior.log = jest.fn();
   });
 
@@ -29,5 +31,12 @@ describe('Warrior', () => {
   test('is upset for losing points', () => {
     warrior.losePoints(5);
     expect(warrior.log).toHaveBeenCalledWith('loses 5 points');
+  });
+
+  test('has a grouped collection of abilities', () => {
+    expect(warrior.getAbilities()).toEqual({
+      actions: [{ name: 'walk', description: 'a description' }],
+      senses: [{ name: 'feel', description: 'a description' }],
+    });
   });
 });

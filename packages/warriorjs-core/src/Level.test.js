@@ -16,9 +16,7 @@ describe('Level', () => {
     floor = new Floor(2, 1, [1, 0]);
     floor.addUnit(warrior, { x: 0, y: 0, facing: EAST });
     floor.warrior = warrior;
-    level = new Level();
-    level.timeBonus = 10;
-    level.floor = floor;
+    level = new Level(1, 'a description', 'a tip', 'a clue', 10, floor);
   });
 
   describe('playing', () => {
@@ -91,6 +89,17 @@ describe('Level', () => {
     test("doesn't have clear bonus when not clearing the level", () => {
       warrior.getOtherUnits = () => [new Unit()];
       expect(level.getScore().clearBonus).toBe(0);
+    });
+  });
+
+  test('has a minimal JSON representation', () => {
+    expect(level.toJSON()).toEqual({
+      number: 1,
+      description: 'a description',
+      tip: 'a tip',
+      clue: 'a clue',
+      floorMap: level.floor.getMap(),
+      warriorAbilities: level.floor.warrior.getAbilities(),
     });
   });
 });

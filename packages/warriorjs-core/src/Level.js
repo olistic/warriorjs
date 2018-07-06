@@ -104,6 +104,22 @@ class Level {
       warriorScore,
     };
   }
+
+  /**
+   * Customizes the JSON stringification behavior of the level.
+   *
+   * @returns {Object} The value to be serialized.
+   */
+  toJSON() {
+    return {
+      number: this.number,
+      description: this.description,
+      tip: this.tip,
+      clue: this.clue,
+      floorMap: this.floor.getMap(),
+      warriorAbilities: this.floor.warrior.getAbilities(),
+    };
+  }
 }
 
 export default Level;
