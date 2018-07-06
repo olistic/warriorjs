@@ -6,7 +6,7 @@ test('returns the floor map key', () => {
       { character: '@', unit: { name: 'Joe', maxHealth: 20 } },
       { character: 'b' },
     ],
-    [{ character: 'c' }, { character: '>', stairs: true }],
+    [{ character: 'c' }],
   ];
   expect(getFloorMapKey(map)).toBe('@ = Joe (20 HP)\n> = stairs');
 });

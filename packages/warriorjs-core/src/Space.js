@@ -183,7 +183,6 @@ class Space {
   toJSON() {
     return {
       character: this.getCharacter(),
-      stairs: this.isStairs(),
       unit: this.getUnit(),
     };
   }

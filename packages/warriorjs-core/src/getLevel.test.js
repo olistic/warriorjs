@@ -86,55 +86,21 @@ test('returns level', () => {
       'Add an if/else condition using `warrior.feel().isEmpty()` to decide whether to attack or walk.',
     floorMap: [
       [
-        {
-          character: '╔',
-          stairs: false,
-        },
-        {
-          character: '═',
-          stairs: false,
-        },
-        {
-          character: '═',
-          stairs: false,
-        },
-        {
-          character: '═',
-          stairs: false,
-        },
-        {
-          character: '═',
-          stairs: false,
-        },
-        {
-          character: '═',
-          stairs: false,
-        },
-        {
-          character: '═',
-          stairs: false,
-        },
-        {
-          character: '═',
-          stairs: false,
-        },
-        {
-          character: '═',
-          stairs: false,
-        },
-        {
-          character: '╗',
-          stairs: false,
-        },
+        { character: '╔' },
+        { character: '═' },
+        { character: '═' },
+        { character: '═' },
+        { character: '═' },
+        { character: '═' },
+        { character: '═' },
+        { character: '═' },
+        { character: '═' },
+        { character: '╗' },
       ],
       [
-        {
-          character: '║',
-          stairs: false,
-        },
+        { character: '║' },
         {
           character: '@',
-          stairs: false,
           unit: {
             name: 'Joe',
             maxHealth: 20,
@@ -161,84 +127,32 @@ test('returns level', () => {
             ],
           },
         },
-        {
-          character: ' ',
-          stairs: false,
-        },
-        {
-          character: ' ',
-          stairs: false,
-        },
-        {
-          character: ' ',
-          stairs: false,
-        },
+        { character: ' ' },
+        { character: ' ' },
+        { character: ' ' },
         {
           character: 's',
-          stairs: false,
           unit: {
             name: 'Sludge',
             maxHealth: 12,
           },
         },
-        {
-          character: ' ',
-          stairs: false,
-        },
-        {
-          character: ' ',
-          stairs: false,
-        },
-        {
-          character: '>',
-          stairs: true,
-        },
-        {
-          character: '║',
-          stairs: false,
-        },
+        { character: ' ' },
+        { character: ' ' },
+        { character: '>' },
+        { character: '║' },
       ],
       [
-        {
-          character: '╚',
-          stairs: false,
-        },
-        {
-          character: '═',
-          stairs: false,
-        },
-        {
-          character: '═',
-          stairs: false,
-        },
-        {
-          character: '═',
-          stairs: false,
-        },
-        {
-          character: '═',
-          stairs: false,
-        },
-        {
-          character: '═',
-          stairs: false,
-        },
-        {
-          character: '═',
-          stairs: false,
-        },
-        {
-          character: '═',
-          stairs: false,
-        },
-        {
-          character: '═',
-          stairs: false,
-        },
-        {
-          character: '╝',
-          stairs: false,
-        },
+        { character: '╚' },
+        { character: '═' },
+        { character: '═' },
+        { character: '═' },
+        { character: '═' },
+        { character: '═' },
+        { character: '═' },
+        { character: '═' },
+        { character: '═' },
+        { character: '╝' },
       ],
     ],
     warriorAbilities: {
