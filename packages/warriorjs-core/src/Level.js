@@ -7,7 +7,6 @@ class Level {
   /**
    * Creates a level.
    *
-   * @param {string} towerId The identifier of the tower.
    * @param {number} number The number of the level.
    * @param {string} description The description of the level.
    * @param {string} tip A tip for the level.
@@ -15,8 +14,7 @@ class Level {
    * @param {number} timeBonus The bonus for completing the level fast.
    * @param {Floor} floor The floor of the level.
    */
-  constructor(towerId, number, description, tip, clue, timeBonus, floor) {
-    this.towerId = towerId;
+  constructor(number, description, tip, clue, timeBonus, floor) {
     this.number = number;
     this.description = description;
     this.tip = tip;
@@ -104,6 +102,22 @@ class Level {
       clearBonus,
       timeBonus,
       warriorScore,
+    };
+  }
+
+  /**
+   * Customizes the JSON stringification behavior of the level.
+   *
+   * @returns {Object} The value to be serialized.
+   */
+  toJSON() {
+    return {
+      number: this.number,
+      description: this.description,
+      tip: this.tip,
+      clue: this.clue,
+      floorMap: this.floor.getMap(),
+      warriorAbilities: this.floor.warrior.getAbilities(),
     };
   }
 }

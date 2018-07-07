@@ -5,7 +5,6 @@ jest.mock('./getWarriorAbilities');
 
 const profile = {
   tower: {
-    id: 'foo',
     name: 'Foo',
     levels: ['level1', 'level2'],
     getLevel: () => ({ floor: { foo: 42, warrior: { bar: 'baz' } } }),
@@ -18,7 +17,6 @@ getWarriorAbilities.mockReturnValue('abilities');
 test('returns level config', () => {
   const levelConfig = getLevelConfig(1, profile);
   expect(levelConfig).toEqual({
-    towerId: 'foo',
     number: 1,
     floor: {
       foo: 42,

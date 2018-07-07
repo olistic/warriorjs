@@ -9,7 +9,7 @@ test('prints level header, description, and floor map', () => {
   const level = {
     number: 1,
     description: 'foo',
-    floor: { map: 'map' },
+    floorMap: 'map',
   };
   printLevel(level);
   expect(printLevelHeader).toHaveBeenCalledWith(1);

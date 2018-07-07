@@ -10,24 +10,20 @@ jest.mock('./printFloorMap');
 jest.mock('./printWarriorStatus');
 
 test('prints warrior status and floor map', () => {
-  const floor = {
-    map: {},
-    warrior: {},
-  };
-  printBoard(floor);
+  const floorMap = ['row1', 'row2'];
+  const warriorStatus = 'status';
+  printBoard(floorMap, warriorStatus);
   expect(print).not.toHaveBeenCalled();
-  expect(printWarriorStatus).toHaveBeenCalledWith(floor.warrior);
-  expect(printFloorMap).toHaveBeenCalledWith(floor.map);
+  expect(printWarriorStatus).toHaveBeenCalledWith(warriorStatus);
+  expect(printFloorMap).toHaveBeenCalledWith(floorMap);
 });
 
 test('moves cursor up and down with offset', () => {
-  const floor = {
-    map: { length: 1 },
-    warrior: {},
-  };
-  printBoard(floor, 1);
-  expect(print).toHaveBeenCalledWith(ansiEscapes.cursorUp(4));
-  expect(printWarriorStatus).toHaveBeenCalledWith(floor.warrior);
-  expect(printFloorMap).toHaveBeenCalledWith(floor.map);
+  const floorMap = ['row1', 'row2'];
+  const warriorStatus = 'status';
+  printBoard(floorMap, warriorStatus, 1);
+  expect(print).toHaveBeenCalledWith(ansiEscapes.cursorUp(5));
+  expect(printWarriorStatus).toHaveBeenCalledWith(warriorStatus);
+  expect(printFloorMap).toHaveBeenCalledWith(floorMap);
   expect(print).toHaveBeenCalledWith(ansiEscapes.cursorDown(1));
 });

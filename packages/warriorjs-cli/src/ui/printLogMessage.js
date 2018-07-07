@@ -7,12 +7,13 @@ import printLine from './printLine';
  * Prints a message to the log.
  *
  * @param {Object} unit The unit the message belongs to.
+ * @param {string} unit.name The name of the unit.
  * @param {string} message The message to print.
  */
-function printLogMessage(unit, message) {
+function printLogMessage({ name }, message) {
   const prompt = chalk.gray.dim('>');
-  const style = getUnitStyle(unit);
-  const logMessage = style(`${unit.name} ${message}`);
+  const style = getUnitStyle(name);
+  const logMessage = style(`${name} ${message}`);
   printLine(`${prompt} ${logMessage}`);
 }
 

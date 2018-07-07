@@ -18,10 +18,13 @@ test('prints turn header on each new turn', async () => {
 });
 
 test('prints board on each event', async () => {
-  const events = [[{ floor: 'floor1' }], [{ floor: 'floor2' }]];
+  const events = [
+    [{ floorMap: 'floor1', warriorStatus: 'status1' }],
+    [{ floorMap: 'floor2', warriorStatus: 'status2' }],
+  ];
   await printPlay(events);
-  expect(printBoard).toHaveBeenCalledWith('floor1', 0);
-  expect(printBoard).toHaveBeenCalledWith('floor2', 0);
+  expect(printBoard).toHaveBeenCalledWith('floor1', 'status1', 0);
+  expect(printBoard).toHaveBeenCalledWith('floor2', 'status2', 0);
 });
 
 test('prints log message on each event', async () => {
@@ -44,10 +47,10 @@ test('starts counting board offset from zero, increments on each event and reset
     [{ unit: 'foo', message: 'bar' }],
   ];
   await printPlay(events);
-  expect(printBoard.mock.calls[0][1]).toBe(0);
-  expect(printBoard.mock.calls[1][1]).toBe(1);
-  expect(printBoard.mock.calls[2][1]).toBe(0);
-  expect(printBoard.mock.calls[3][1]).toBe(0);
+  expect(printBoard.mock.calls[0][2]).toBe(0);
+  expect(printBoard.mock.calls[1][2]).toBe(1);
+  expect(printBoard.mock.calls[2][2]).toBe(0);
+  expect(printBoard.mock.calls[3][2]).toBe(0);
 });
 
 test('sleeps the specified time at the beginning and after each event', async () => {

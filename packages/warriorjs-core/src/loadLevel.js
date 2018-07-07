@@ -87,7 +87,6 @@ function loadUnit(
  */
 function loadLevel(
   {
-    towerId,
     number,
     description,
     tip,
@@ -104,7 +103,7 @@ function loadLevel(
   loadWarrior(warrior, floor, playerCode);
   units.forEach(unit => loadUnit(unit, floor));
 
-  return new Level(towerId, number, description, tip, clue, timeBonus, floor);
+  return new Level(number, description, tip, clue, timeBonus, floor);
 }
 
 export default loadLevel;

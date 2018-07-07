@@ -9,11 +9,11 @@ test('prints floor map', () => {
   const style = jest.fn(unit => unit);
   getUnitStyle.mockImplementation(() => style);
   const map = [
-    [{ character: 'a' }, { character: 'b', unit: 'unit' }],
-    [{ character: 'c' }, { character: 'd' }],
+    [{ character: 'a' }, { character: 'f', unit: { name: 'foo' } }],
+    [{ character: 'b' }, { character: 'c' }],
   ];
   printFloorMap(map);
-  expect(getUnitStyle).toHaveBeenCalledWith('unit');
-  expect(style).toHaveBeenCalledWith('b');
-  expect(printLine).toHaveBeenCalledWith('ab\ncd');
+  expect(getUnitStyle).toHaveBeenCalledWith('foo');
+  expect(style).toHaveBeenCalledWith('f');
+  expect(printLine).toHaveBeenCalledWith('af\nbc');
 });

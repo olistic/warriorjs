@@ -6,11 +6,11 @@ import printLevelHeader from './printLevelHeader';
  *
  * @param {Object} level The level to print.
  * @param {number} level.number The number of the level.
- * @param {Object} level.floor.map The map of the floor.
+ * @param {Object[][]} level.floorMap The map of the floor.
  */
-function printLevel({ number, floor: { map } }) {
+function printLevel({ number, floorMap }) {
   printLevelHeader(number);
-  printFloorMap(map);
+  printFloorMap(floorMap);
 }
 
 export default printLevel;

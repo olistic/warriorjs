@@ -30,16 +30,43 @@ class Warrior extends Unit {
     this.log(`loses ${points} points`);
   }
 
-  toJSON() {
-    return {
-      ...super.toJSON(),
-      warrior: true,
-      score: this.score,
-      abilities: [...this.abilities].map(([name, { action, description }]) => ({
+  /**
+   * Returns a grouped collection of abilities.
+   *
+   * @returns {Object} The collection of abilities.
+   */
+  getAbilities() {
+    const abilities = [...this.abilities].map(
+      ([name, { action, description }]) => ({
         name,
         action,
         description,
-      })),
+      }),
+    );
+    const sortedAbilities = abilities.sort((a, b) => a.name > b.name);
+    const actions = sortedAbilities
+      .filter(ability => ability.action)
+      .map(({ action, ...rest }) => rest);
+    const senses = sortedAbilities
+      .filter(ability => !ability.action)
+      .map(({ action, ...rest }) => rest);
+    return {
+      actions,
+      senses,
+    };
+  }
+
+  /**
+   * Returns the status of the warrior.
+   *
+   * The status includes the current health and score values.
+   *
+   * @returns {Object} The status of the warrior.
+   */
+  getStatus() {
+    return {
+      health: this.health,
+      score: this.score,
     };
   }
 }

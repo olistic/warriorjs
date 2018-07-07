@@ -287,4 +287,11 @@ describe('Space', () => {
       expect(fullSpace.location).toEqual(space.location);
     });
   });
+
+  test('has a minimal JSON representation', () => {
+    expect(space.toJSON()).toEqual({
+      character: space.getCharacter(),
+      unit: space.getUnit(),
+    });
+  });
 });

@@ -3,7 +3,6 @@ import { EAST, FORWARD, RELATIVE_DIRECTIONS, WEST } from '@warriorjs/geography';
 import getLevel from './getLevel';
 
 const levelConfig = {
-  towerId: 'beginner',
   number: 2,
   description: "It's too dark to see anything, but you smell sludge nearby.",
   tip:
@@ -79,203 +78,82 @@ const levelConfig = {
 
 test('returns level', () => {
   expect(getLevel(levelConfig)).toEqual({
-    towerId: 'beginner',
     number: 2,
     description: "It's too dark to see anything, but you smell sludge nearby.",
     tip:
       "Use `warrior.feel().isEmpty()` to see if there's anything in front of you, and `warrior.attack()` to fight it. Remember, you can only do one action per turn.",
     clue:
       'Add an if/else condition using `warrior.feel().isEmpty()` to decide whether to attack or walk.',
-    timeBonus: 20,
-    floor: {
-      map: [
-        [
-          {
-            character: '╔',
-            stairs: false,
-          },
-          {
-            character: '═',
-            stairs: false,
-          },
-          {
-            character: '═',
-            stairs: false,
-          },
-          {
-            character: '═',
-            stairs: false,
-          },
-          {
-            character: '═',
-            stairs: false,
-          },
-          {
-            character: '═',
-            stairs: false,
-          },
-          {
-            character: '═',
-            stairs: false,
-          },
-          {
-            character: '═',
-            stairs: false,
-          },
-          {
-            character: '═',
-            stairs: false,
-          },
-          {
-            character: '╗',
-            stairs: false,
-          },
-        ],
-        [
-          {
-            character: '║',
-            stairs: false,
-          },
-          {
-            character: '@',
-            stairs: false,
-            unit: {
-              name: 'Joe',
-              character: '@',
-              maxHealth: 20,
-              warrior: true,
-              health: 20,
-              score: 0,
-              abilities: [
-                {
-                  name: 'walk',
-                  action: true,
-                  description:
-                    'Move one space in the given direction (forward by default).',
-                },
-                {
-                  name: 'attack',
-                  action: true,
-                  description:
-                    'Attack a unit in the given direction (forward by default) dealing 5 HP of damage.',
-                },
-                {
-                  name: 'feel',
-                  description:
-                    'Return the adjacent space in the given direction (forward by default).',
-                },
-              ],
-            },
-          },
-          {
-            character: ' ',
-            stairs: false,
-          },
-          {
-            character: ' ',
-            stairs: false,
-          },
-          {
-            character: ' ',
-            stairs: false,
-          },
-          {
-            character: 's',
-            stairs: false,
-            unit: {
-              name: 'Sludge',
-              character: 's',
-              maxHealth: 12,
-              health: 12,
-            },
-          },
-          {
-            character: ' ',
-            stairs: false,
-          },
-          {
-            character: ' ',
-            stairs: false,
-          },
-          {
-            character: '>',
-            stairs: true,
-          },
-          {
-            character: '║',
-            stairs: false,
-          },
-        ],
-        [
-          {
-            character: '╚',
-            stairs: false,
-          },
-          {
-            character: '═',
-            stairs: false,
-          },
-          {
-            character: '═',
-            stairs: false,
-          },
-          {
-            character: '═',
-            stairs: false,
-          },
-          {
-            character: '═',
-            stairs: false,
-          },
-          {
-            character: '═',
-            stairs: false,
-          },
-          {
-            character: '═',
-            stairs: false,
-          },
-          {
-            character: '═',
-            stairs: false,
-          },
-          {
-            character: '═',
-            stairs: false,
-          },
-          {
-            character: '╝',
-            stairs: false,
-          },
-        ],
+    floorMap: [
+      [
+        { character: '╔' },
+        { character: '═' },
+        { character: '═' },
+        { character: '═' },
+        { character: '═' },
+        { character: '═' },
+        { character: '═' },
+        { character: '═' },
+        { character: '═' },
+        { character: '╗' },
       ],
-      warrior: {
-        name: 'Joe',
-        character: '@',
-        maxHealth: 20,
-        warrior: true,
-        abilities: [
-          {
-            name: 'walk',
-            action: true,
-            description:
-              'Move one space in the given direction (forward by default).',
+      [
+        { character: '║' },
+        {
+          character: '@',
+          unit: {
+            name: 'Joe',
+            maxHealth: 20,
           },
-          {
-            name: 'attack',
-            action: true,
-            description:
-              'Attack a unit in the given direction (forward by default) dealing 5 HP of damage.',
+        },
+        { character: ' ' },
+        { character: ' ' },
+        { character: ' ' },
+        {
+          character: 's',
+          unit: {
+            name: 'Sludge',
+            maxHealth: 12,
           },
-          {
-            name: 'feel',
-            description:
-              'Return the adjacent space in the given direction (forward by default).',
-          },
-        ],
-        health: 20,
-        score: 0,
-      },
+        },
+        { character: ' ' },
+        { character: ' ' },
+        { character: '>' },
+        { character: '║' },
+      ],
+      [
+        { character: '╚' },
+        { character: '═' },
+        { character: '═' },
+        { character: '═' },
+        { character: '═' },
+        { character: '═' },
+        { character: '═' },
+        { character: '═' },
+        { character: '═' },
+        { character: '╝' },
+      ],
+    ],
+    warriorAbilities: {
+      actions: [
+        {
+          name: 'attack',
+          description:
+            'Attack a unit in the given direction (forward by default) dealing 5 HP of damage.',
+        },
+        {
+          name: 'walk',
+          description:
+            'Move one space in the given direction (forward by default).',
+        },
+      ],
+      senses: [
+        {
+          name: 'feel',
+          description:
+            'Return the adjacent space in the given direction (forward by default).',
+        },
+      ],
     },
   });
 });

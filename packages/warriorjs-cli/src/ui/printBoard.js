@@ -9,17 +9,18 @@ const warriorStatusRows = 2;
 /**
  * Prints the game board after moving the cursor up a given number of rows.
  *
- * @param {Object} floor The level floor.
+ * @param {Object[][]} floorMap The map of the floor.
+ * @param {Object} warriorStatus The status of the warrior.
  * @param {number} offset The number of rows.
  */
-function printBoard(floor, offset) {
+function printBoard(floorMap, warriorStatus, offset) {
   if (offset > 0) {
-    const floorMapRows = floor.map.length;
+    const floorMapRows = floorMap.length;
     print(ansiEscapes.cursorUp(offset + floorMapRows + warriorStatusRows));
   }
 
-  printWarriorStatus(floor.warrior);
-  printFloorMap(floor.map);
+  printWarriorStatus(warriorStatus);
+  printFloorMap(floorMap);
 
   if (offset > 0) {
     print(ansiEscapes.cursorDown(offset));

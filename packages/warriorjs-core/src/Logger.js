@@ -26,7 +26,8 @@ const Logger = {
     Logger.lastTurn.push({
       message,
       unit: JSON.parse(JSON.stringify(unit)),
-      floor: JSON.parse(JSON.stringify(Logger.floor)),
+      floorMap: JSON.parse(JSON.stringify(Logger.floor.getMap())),
+      warriorStatus: Logger.floor.warrior.getStatus(),
     });
   },
 };
