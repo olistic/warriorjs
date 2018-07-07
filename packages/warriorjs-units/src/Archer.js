@@ -4,6 +4,7 @@ import { look, shoot } from '@warriorjs/abilities';
 const Archer = {
   name: 'Archer',
   character: 'a',
+  color: '#ebcb8b',
   maxHealth: 7,
   abilities: {
     look: look({ range: 3 }),

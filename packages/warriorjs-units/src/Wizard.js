@@ -6,6 +6,7 @@ const Wizard = {
   ...Archer,
   name: 'Wizard',
   character: 'w',
+  color: '#b48ead',
   maxHealth: 3,
   abilities: {
     look: look({ range: 3 }),

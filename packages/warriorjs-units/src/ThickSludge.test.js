@@ -14,6 +14,10 @@ describe('ThickSludge', () => {
     expect(ThickSludge.character).toBe('S');
   });
 
+  test('has #bf616a color', () => {
+    expect(ThickSludge.color).toBe('#bf616a');
+  });
+
   test('has 24 max health', () => {
     expect(ThickSludge.maxHealth).toBe(24);
   });

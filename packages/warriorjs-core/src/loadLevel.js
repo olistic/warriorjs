@@ -38,11 +38,11 @@ function loadEffects(unit, effects = {}) {
  * @param {string} [playerCode] The code of the player.
  */
 function loadWarrior(
-  { name, character, maxHealth, abilities, effects, position },
+  { name, character, color, maxHealth, abilities, effects, position },
   floor,
   playerCode,
 ) {
-  const warrior = new Warrior(name, character, maxHealth);
+  const warrior = new Warrior(name, character, color, maxHealth);
   loadAbilities(warrior, abilities);
   loadEffects(warrior, effects);
   warrior.playTurn = playerCode ? loadPlayer(playerCode) : () => {};
@@ -59,6 +59,7 @@ function loadUnit(
   {
     name,
     character,
+    color,
     maxHealth,
     reward,
     enemy,
@@ -70,7 +71,15 @@ function loadUnit(
   },
   floor,
 ) {
-  const unit = new Unit(name, character, maxHealth, reward, enemy, bound);
+  const unit = new Unit(
+    name,
+    character,
+    color,
+    maxHealth,
+    reward,
+    enemy,
+    bound,
+  );
   loadAbilities(unit, abilities);
   loadEffects(unit, effects);
   unit.playTurn = playTurn;

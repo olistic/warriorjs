@@ -8,6 +8,7 @@ class Unit {
    *
    * @param {string} name The name of the unit.
    * @param {string} character The character of the unit.
+   * @param {string} color The color of the unit.
    * @param {number} maxHealth The max health in HP.
    * @param {number} reward The number of points to reward when interacting.
    * @param {boolean} enemy Whether the unit is an enemy or not.
@@ -16,6 +17,7 @@ class Unit {
   constructor(
     name,
     character,
+    color,
     maxHealth,
     reward = null,
     enemy = true,
@@ -23,6 +25,7 @@ class Unit {
   ) {
     this.name = name;
     this.character = character;
+    this.color = color;
     this.maxHealth = maxHealth;
     this.reward = reward === null ? maxHealth : reward;
     this.enemy = enemy;
@@ -407,6 +410,7 @@ class Unit {
   toJSON() {
     return {
       name: this.name,
+      color: this.color,
       maxHealth: this.maxHealth,
     };
   }

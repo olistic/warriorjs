@@ -5,6 +5,10 @@ describe('Captive', () => {
     expect(Captive.character).toBe('C');
   });
 
+  test('has #81a1c1 color', () => {
+    expect(Captive.color).toBe('#81a1c1');
+  });
+
   test('has 1 max health', () => {
     expect(Captive.maxHealth).toBe(1);
   });

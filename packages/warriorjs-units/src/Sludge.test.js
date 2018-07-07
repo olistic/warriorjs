@@ -14,6 +14,10 @@ describe('Sludge', () => {
     expect(Sludge.character).toBe('s');
   });
 
+  test('has #d08770 color', () => {
+    expect(Sludge.color).toBe('#d08770');
+  });
+
   test('has 12 max health', () => {
     expect(Sludge.maxHealth).toBe(12);
   });
