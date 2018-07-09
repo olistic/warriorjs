@@ -12,7 +12,7 @@ and this project adheres to
 
 ### Changed
 
-- Use less fragile method to check for player code errors ([olistic][] in
+- Use less fragile method to check for player code errors ([@olistic][] in
   [#213][])
 
 ## [0.8.0] - 2018-07-06
