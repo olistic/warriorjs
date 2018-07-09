@@ -8,6 +8,13 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [0.9.0] - 2018-07-09
+
+### Changed
+
+- Use less fragile method to check for player code errors ([olistic][] in
+  [#213][])
+
 ## [0.8.0] - 2018-07-06
 
 ### Added
@@ -155,7 +162,8 @@ and this project adheres to
 
 Initial version.
 
-[unreleased]: https://github.com/olistic/warriorjs/compare/v0.8.0...HEAD
+[unreleased]: https://github.com/olistic/warriorjs/compare/v0.9.0...HEAD
+[0.9.0]: https://github.com/olistic/warriorjs/compare/v0.8.0...v0.9.0
 [0.8.0]: https://github.com/olistic/warriorjs/compare/v0.7.0...v0.8.0
 [0.7.0]: https://github.com/olistic/warriorjs/compare/v0.6.0...v0.7.0
 [0.6.0]: https://github.com/olistic/warriorjs/compare/v0.5.1...v0.6.0
@@ -220,3 +228,4 @@ Initial version.
 [#208]: https://github.com/olistic/warriorjs/pull/208
 [#209]: https://github.com/olistic/warriorjs/pull/209
 [#210]: https://github.com/olistic/warriorjs/pull/210
+[#213]: https://github.com/olistic/warriorjs/pull/213
