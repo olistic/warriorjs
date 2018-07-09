@@ -23,7 +23,7 @@ test('throws if invalid syntax', () => {
     loadPlayer(playerCode);
   }).toThrow(
     new Error(
-      'Invalid Player code. Check your syntax and try again!\n\nPlayer.js:3\n      playTurn() {}\n                  ^\n\nSyntaxError: Unexpected end of input',
+      'Check your syntax and try again!\n\nPlayer.js:3\n      playTurn() {}\n                  ^\n\nSyntaxError: Unexpected end of input',
     ),
   );
 });
@@ -32,18 +32,14 @@ test('throws if Player class is not defined', () => {
   const playerCode = 'function playTurn() {}';
   expect(() => {
     loadPlayer(playerCode);
-  }).toThrow(new Error('Invalid Player code. You must define a Player class!'));
+  }).toThrow(new Error('You must define a Player class!'));
 });
 
 test('throws if playTurn method is not defined', () => {
   const playerCode = 'class Player {}';
   expect(() => {
     loadPlayer(playerCode);
-  }).toThrow(
-    new Error(
-      'Invalid Player code. Your Player class must define a playTurn method!',
-    ),
-  );
+  }).toThrow(new Error('Your Player class must define a playTurn method!'));
 });
 
 test("throws when playing turn if there's something wrong", () => {
@@ -58,5 +54,5 @@ test("throws when playing turn if there's something wrong", () => {
   const warrior = {};
   expect(() => {
     playTurn(warrior);
-  }).toThrow(new Error('Invalid Player code: warrior.walk is not a function'));
+  }).toThrow(new Error('warrior.walk is not a function'));
 });

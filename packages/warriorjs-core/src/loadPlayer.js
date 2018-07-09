@@ -23,9 +23,9 @@ function loadPlayer(playerCode) {
       timeout: playerCodeTimeout,
     });
   } catch (err) {
-    throw new Error(
-      `Invalid Player code. Check your syntax and try again!\n\n${err.stack}`,
-    );
+    const error = new Error(`Check your syntax and try again!\n\n${err.stack}`);
+    error.code = 'InvalidPlayerCode';
+    throw error;
   }
 
   try {
@@ -37,20 +37,26 @@ function loadPlayer(playerCode) {
       try {
         player.playTurn(turn);
       } catch (err) {
-        throw new Error(`Invalid Player code: ${err.message}`);
+        const error = new Error(err.message);
+        error.code = 'InvalidPlayerCode';
+        throw error;
       }
     };
     return playTurn;
   } catch (err) {
     if (err.message === 'Player is not defined') {
-      throw new Error('Invalid Player code. You must define a Player class!');
+      const error = new Error('You must define a Player class!');
+      error.code = 'InvalidPlayerCode';
+      throw error;
     } else if (err.message === 'playTurn is not defined') {
-      throw new Error(
-        'Invalid Player code. Your Player class must define a playTurn method!',
+      const error = new Error(
+        'Your Player class must define a playTurn method!',
       );
+      error.code = 'InvalidPlayerCode';
+      throw error;
     }
 
-    throw new Error(`Invalid Player code: ${err.message}`);
+    throw err;
   }
 }
 

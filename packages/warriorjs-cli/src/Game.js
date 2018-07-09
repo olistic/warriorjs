@@ -63,10 +63,7 @@ class Game {
         await this.playNormalMode();
       }
     } catch (err) {
-      if (
-        err instanceof GameError ||
-        err.message.startsWith('Invalid Player code')
-      ) {
+      if (err instanceof GameError || err.code === 'InvalidPlayerCode') {
         printFailureLine(err.message);
       } else {
         throw err;
