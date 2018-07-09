@@ -1,6 +1,6 @@
 {
   "name": "@warriorjs/cli",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "description": "WarriorJS command line",
   "author": "Matias Olivera <moliverafreire@gmail.com>",
   "license": "MIT",
@@ -46,7 +46,7 @@
     "mock-fs": "^4.5.0"
   },
   "dependencies": {
-    "@warriorjs/core": "^0.8.0",
+    "@warriorjs/core": "^0.9.0",
     "@warriorjs/tower-beginner": "^0.8.0",
     "ansi-escapes": "^3.0.0",
     "array-shuffle": "^1.0.1",
