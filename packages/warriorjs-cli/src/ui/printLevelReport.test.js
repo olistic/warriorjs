@@ -14,20 +14,35 @@ const profile = {
 };
 
 test('prints level score', () => {
-  printLevelReport(profile, { warriorScore: 3, timeBonus: 2, clearBonus: 0 });
+  printLevelReport(profile, {
+    warrior: 3,
+    timeBonus: 2,
+    clearBonus: 0,
+    total: 5,
+  });
   expect(printLine).toHaveBeenCalledWith('Warrior Score: 3');
   expect(printLine).toHaveBeenCalledWith('Time Bonus: 2');
   expect(printLine).toHaveBeenCalledWith('Clear Bonus: 0');
 });
 
 test('prints regular score if not epic', () => {
-  printLevelReport(profile, { warriorScore: 3, timeBonus: 2, clearBonus: 0 });
+  printLevelReport(profile, {
+    warrior: 3,
+    timeBonus: 2,
+    clearBonus: 0,
+    total: 5,
+  });
   expect(printTotalScore).toHaveBeenCalledWith(3, 5);
 });
 
 test('prints epic score if epic', () => {
   profile.isEpic = () => true;
-  printLevelReport(profile, { warriorScore: 3, timeBonus: 2, clearBonus: 0 });
+  printLevelReport(profile, {
+    warrior: 3,
+    timeBonus: 2,
+    clearBonus: 0,
+    total: 5,
+  });
   expect(printTotalScore).toHaveBeenCalledWith(2, 5);
 });
 
@@ -36,7 +51,7 @@ test('prints level grade if epic and ace score', () => {
   getGradeForScore.mockReturnValue('A');
   printLevelReport(
     profile,
-    { warriorScore: 3, timeBonus: 2, clearBonus: 0 },
+    { warrior: 3, timeBonus: 2, clearBonus: 0, total: 5 },
     4,
   );
   expect(printLine).toHaveBeenCalledWith('Level Grade: A');

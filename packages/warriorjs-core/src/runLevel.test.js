@@ -123,9 +123,10 @@ test('passes level with a winner player code', () => {
   const { passed, score } = runLevel(levelConfig, playerCode);
   expect(passed).toBe(true);
   expect(score).toEqual({
-    clearBonus: 4,
+    warrior: 12,
     timeBonus: 10,
-    warriorScore: 12,
+    clearBonus: 4,
+    total: 26,
   });
 });
 

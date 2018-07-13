@@ -1,4 +1,4 @@
-import { EAST, FORWARD } from '@warriorjs/geography';
+import { EAST, FORWARD, WEST } from '@warriorjs/geography';
 
 import Floor from './Floor';
 import Level from './Level';
@@ -73,23 +73,31 @@ describe('Level', () => {
   describe('score', () => {
     test('has warrior score', () => {
       warrior.score = 8;
-      expect(level.getScore().warriorScore).toBe(8);
+      expect(level.getScore().warrior).toBe(8);
     });
 
     test('has time bonus', () => {
       expect(level.getScore().timeBonus).toBe(10);
     });
 
-    test('has clear bonus when clearing the level', () => {
+    test('has clear bonus when the level is cleared', () => {
       warrior.getOtherUnits = () => [];
       warrior.score = 8;
       expect(level.getScore().clearBonus).toBe(4);
     });
 
-    test("doesn't have clear bonus when not clearing the level", () => {
+    test("doesn't have clear bonus when the level is not cleared", () => {
       warrior.getOtherUnits = () => [new Unit()];
       expect(level.getScore().clearBonus).toBe(0);
     });
+  });
+
+  test('considers cleared when there are no units other than the warrior', () => {
+    const unit = new Unit();
+    floor.addUnit(unit, { x: 1, y: 0, facing: WEST });
+    expect(level.isCleared()).toBe(false);
+    unit.isAlive = () => false;
+    expect(level.isCleared()).toBe(true);
   });
 
   test('has a minimal JSON representation', () => {
