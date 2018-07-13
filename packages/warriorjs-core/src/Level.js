@@ -91,18 +91,31 @@ class Level {
    * @returns {Object} The score of the play.
    */
   getScore() {
-    const { warrior } = this.floor;
-    const { score: warriorScore } = warrior;
+    const {
+      warrior: { score: warrior },
+    } = this.floor;
     const { timeBonus } = this;
-    const levelCleared = warrior.getOtherUnits().length === 0;
-    const clearBonus = levelCleared
-      ? Math.round((warriorScore + timeBonus) * 0.2)
+    const clearBonus = this.isCleared()
+      ? Math.round((warrior + timeBonus) * 0.2)
       : 0;
+    const total = warrior + timeBonus + clearBonus;
     return {
-      clearBonus,
+      warrior,
       timeBonus,
-      warriorScore,
+      clearBonus,
+      total,
     };
+  }
+
+  /**
+   * Checks if the level is cleared.
+   *
+   * The level is cleared when there are no units other than the warrior.
+   *
+   * @returns {boolean} Whether the level is cleared or not.
+   */
+  isCleared() {
+    return this.floor.warrior.getOtherUnits().length === 0;
   }
 
   /**

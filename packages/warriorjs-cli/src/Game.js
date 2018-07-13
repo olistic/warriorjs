@@ -315,12 +315,8 @@ class Game {
     }
 
     const { aceScore } = levelConfig;
-
     printLevelReport(this.profile, score, aceScore);
-
-    const { warriorScore, timeBonus, clearBonus } = score;
-    const totalScore = warriorScore + timeBonus + clearBonus;
-    this.profile.tallyPoints(levelNumber, totalScore, aceScore);
+    this.profile.tallyPoints(levelNumber, score.total, aceScore);
 
     if (this.profile.isEpic()) {
       if (!hasNextLevel && !this.practiceLevel) {
