@@ -2,20 +2,20 @@ import fs from 'fs';
 import path from 'path';
 
 import mock from 'mock-fs';
+import getLevelConfig from '@warriorjs/helper-get-level-config';
 import { getLevel } from '@warriorjs/core';
 
 import Game from './Game';
 import GameError from './GameError';
 import ProfileGenerator from './ProfileGenerator';
 import Profile from './Profile';
-import getLevelConfig from './utils/getLevelConfig';
 import printLine from './ui/printLine';
 import printSuccessLine from './ui/printSuccessLine';
 import requestConfirmation from './ui/requestConfirmation';
 
 jest.mock('@warriorjs/core');
+jest.mock('@warriorjs/helper-get-level-config');
 jest.mock('./ProfileGenerator');
-jest.mock('./utils/getLevelConfig');
 jest.mock('./ui/printLine');
 jest.mock('./ui/printSuccessLine');
 jest.mock('./ui/requestConfirmation');
@@ -326,13 +326,18 @@ describe('Game', () => {
   });
 
   test('generates player', () => {
-    game.profile = { levelNumber: 1 };
+    game.profile = {
+      tower: 'tower',
+      levelNumber: 1,
+      warriorName: 'Joe',
+      epic: false,
+    };
     getLevelConfig.mockReturnValue('config');
     getLevel.mockReturnValue('level');
     const mockGenerate = jest.fn();
     ProfileGenerator.mockImplementation(() => ({ generate: mockGenerate }));
     game.generateProfileFiles();
-    expect(getLevelConfig).toHaveBeenCalledWith(1, game.profile);
+    expect(getLevelConfig).toHaveBeenCalledWith('tower', 1, 'Joe', false);
     expect(getLevel).toHaveBeenCalledWith('config');
     expect(ProfileGenerator).toHaveBeenCalledWith(game.profile, 'level');
     expect(mockGenerate).toHaveBeenCalled();
