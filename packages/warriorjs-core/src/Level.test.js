@@ -1,8 +1,7 @@
-import { EAST, FORWARD, WEST } from '@warriorjs/geography';
+import { EAST, FORWARD } from '@warriorjs/geography';
 
 import Floor from './Floor';
 import Level from './Level';
-import Unit from './Unit';
 import Warrior from './Warrior';
 
 describe('Level', () => {
@@ -16,7 +15,7 @@ describe('Level', () => {
     floor = new Floor(2, 1, [1, 0]);
     floor.addUnit(warrior, { x: 0, y: 0, facing: EAST });
     floor.warrior = warrior;
-    level = new Level(1, 'a description', 'a tip', 'a clue', 10, floor);
+    level = new Level(1, 'a description', 'a tip', 'a clue', floor);
   });
 
   describe('playing', () => {
@@ -48,16 +47,6 @@ describe('Level', () => {
       level.play(2);
       expect(warrior.performTurn).not.toHaveBeenCalled();
     });
-
-    test('counts down time bonus once each turn', () => {
-      level.play(3);
-      expect(level.timeBonus).toBe(7);
-    });
-
-    test('does not count down time bonus below zero', () => {
-      level.play(11);
-      expect(level.timeBonus).toBe(0);
-    });
   });
 
   test('considers passed when warrior is on stairs', () => {
@@ -68,36 +57,6 @@ describe('Level', () => {
   test('considers failed when warrior is dead', () => {
     warrior.isAlive = () => false;
     expect(level.wasFailed()).toBe(true);
-  });
-
-  describe('score', () => {
-    test('has warrior score', () => {
-      warrior.score = 8;
-      expect(level.getScore().warrior).toBe(8);
-    });
-
-    test('has time bonus', () => {
-      expect(level.getScore().timeBonus).toBe(10);
-    });
-
-    test('has clear bonus when the level is cleared', () => {
-      warrior.getOtherUnits = () => [];
-      warrior.score = 8;
-      expect(level.getScore().clearBonus).toBe(4);
-    });
-
-    test("doesn't have clear bonus when the level is not cleared", () => {
-      warrior.getOtherUnits = () => [new Unit()];
-      expect(level.getScore().clearBonus).toBe(0);
-    });
-  });
-
-  test('considers cleared when there are no units other than the warrior', () => {
-    const unit = new Unit();
-    floor.addUnit(unit, { x: 1, y: 0, facing: WEST });
-    expect(level.isCleared()).toBe(false);
-    unit.isAlive = () => false;
-    expect(level.isCleared()).toBe(true);
   });
 
   test('has a minimal JSON representation', () => {

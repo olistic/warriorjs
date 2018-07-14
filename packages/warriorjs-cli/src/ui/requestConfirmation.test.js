@@ -19,3 +19,15 @@ test('requests confirmation from the user', async () => {
     },
   ]);
 });
+
+test('default option defaults to false', async () => {
+  await requestConfirmation('foo');
+  expect(inquirer.prompt).toHaveBeenCalledWith([
+    {
+      name: 'requestConfirmation',
+      type: 'confirm',
+      message: 'foo',
+      default: false,
+    },
+  ]);
+});

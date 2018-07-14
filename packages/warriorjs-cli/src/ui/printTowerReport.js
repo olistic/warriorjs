@@ -1,4 +1,5 @@
-import getGradeLetter from '../utils/getGradeLetter';
+import getGradeLetter from '@warriorjs/helper-get-grade-letter';
+
 import printLine from './printLine';
 
 /**
@@ -18,8 +19,9 @@ function printTowerReport(profile) {
   Object.keys(profile.currentEpicGrades)
     .sort()
     .forEach(levelNumber => {
-      const grade = getGradeLetter(profile.currentEpicGrades[levelNumber]);
-      printLine(`  Level ${levelNumber}: ${grade}`);
+      const grade = profile.currentEpicGrades[levelNumber];
+      const gradeLetter = getGradeLetter(grade);
+      printLine(`  Level ${levelNumber}: ${gradeLetter}`);
     });
 
   printLine('\nTo practice a level, use the -l option.');

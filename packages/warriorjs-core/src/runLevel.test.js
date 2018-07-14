@@ -9,7 +9,6 @@ import {
 import runLevel from './runLevel';
 
 const levelConfig = {
-  timeBonus: 20,
   floor: {
     size: {
       width: 8,
@@ -120,14 +119,8 @@ test('passes level with a winner player code', () => {
       }
     }
   `;
-  const { passed, score } = runLevel(levelConfig, playerCode);
+  const { passed } = runLevel(levelConfig, playerCode);
   expect(passed).toBe(true);
-  expect(score).toEqual({
-    warrior: 12,
-    timeBonus: 10,
-    clearBonus: 4,
-    total: 26,
-  });
 });
 
 test('fails level with a loser player code', () => {
@@ -136,7 +129,6 @@ test('fails level with a loser player code', () => {
       playTurn(warrior) {}
     }
   `;
-  const { passed, score } = runLevel(levelConfig, playerCode);
+  const { passed } = runLevel(levelConfig, playerCode);
   expect(passed).toBe(false);
-  expect(score).toBeUndefined();
 });

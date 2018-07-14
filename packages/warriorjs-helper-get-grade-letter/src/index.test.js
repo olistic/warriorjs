@@ -1,6 +1,6 @@
-import getGradeLetter from './getGradeLetter';
+import getGradeLetter from '.';
 
-test('returns letter based on percentage', () => {
+test('returns letter based on grade', () => {
   expect(getGradeLetter(1.0)).toBe('S');
   expect(getGradeLetter(0.99)).toBe('A');
   expect(getGradeLetter(0.9)).toBe('A');

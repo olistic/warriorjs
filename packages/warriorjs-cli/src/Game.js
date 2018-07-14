@@ -3,6 +3,7 @@ import path from 'path';
 
 import globby from 'globby';
 import getLevelConfig from '@warriorjs/helper-get-level-config';
+import getPlayScore from '@warriorjs/helper-get-play-score';
 import { getLevel, runLevel } from '@warriorjs/core';
 
 import GameError from './GameError';
@@ -274,15 +275,15 @@ class Game {
     printLevel(level);
 
     const playerCode = this.profile.readPlayerCode();
-    const { events, passed, score } = runLevel(levelConfig, playerCode);
+    const playResult = runLevel(levelConfig, playerCode);
 
     if (!this.silencePlay) {
-      await printPlay(events, this.delay);
+      await printPlay(playResult.events, this.delay);
     }
 
     printSeparator();
 
-    if (!passed) {
+    if (!playResult.passed) {
       printFailureLine(
         `Sorry, you failed level ${levelNumber}. Change your script and try again.`,
       );
@@ -315,9 +316,9 @@ class Game {
       );
     }
 
-    const { aceScore } = levelConfig;
-    printLevelReport(this.profile, score, aceScore);
-    this.profile.tallyPoints(levelNumber, score.total, aceScore);
+    const score = getPlayScore(playResult, levelConfig);
+    printLevelReport(this.profile, score);
+    this.profile.tallyPoints(levelNumber, score);
 
     if (this.profile.isEpic()) {
       if (!hasNextLevel && !this.practiceLevel) {
