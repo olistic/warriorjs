@@ -1,13 +1,13 @@
-const { EAST, WEST } = require('@warriorjs/geography');
-const {
+import { EAST, WEST } from '@warriorjs/geography';
+import {
   Archer,
   Captive,
   Sludge,
   ThickSludge,
   Warrior,
   Wizard,
-} = require('@warriorjs/units');
-const {
+} from '@warriorjs/units';
+import {
   attack,
   feel,
   health,
@@ -18,9 +18,9 @@ const {
   think,
   shoot,
   walk,
-} = require('@warriorjs/abilities');
+} from '@warriorjs/abilities';
 
-module.exports = {
+export default {
   name: 'beginner',
   levels: [
     {
