@@ -8,12 +8,19 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [0.11.0] - 2018-07-14
+
+### Changed
+
+- Calling `.default` after `require('@warriorjs/helper-**')` is no longer needed
+  (nor supported) ([@olistic][] in [#216][]).
+
 ## [0.10.0] - 2018-07-14
 
 This release modularizes the codebase even more, adding new helper packages
 whose logic can be reused by different flavors of the game.
 
-## Changed
+### Changed
 
 - Remove play score from play result ([@olistic][] in [#215][])
 
@@ -171,7 +178,8 @@ whose logic can be reused by different flavors of the game.
 
 Initial version.
 
-[unreleased]: https://github.com/olistic/warriorjs/compare/v0.10.0...HEAD
+[unreleased]: https://github.com/olistic/warriorjs/compare/v0.11.0...HEAD
+[0.11.0]: https://github.com/olistic/warriorjs/compare/v0.10.0...v0.11.0
 [0.10.0]: https://github.com/olistic/warriorjs/compare/v0.9.0...v0.10.0
 [0.9.0]: https://github.com/olistic/warriorjs/compare/v0.8.0...v0.9.0
 [0.8.0]: https://github.com/olistic/warriorjs/compare/v0.7.0...v0.8.0
@@ -240,3 +248,4 @@ Initial version.
 [#210]: https://github.com/olistic/warriorjs/pull/210
 [#213]: https://github.com/olistic/warriorjs/pull/213
 [#215]: https://github.com/olistic/warriorjs/pull/215
+[#216]: https://github.com/olistic/warriorjs/pull/216
