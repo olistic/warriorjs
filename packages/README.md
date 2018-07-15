@@ -6,21 +6,34 @@ sharing.
 
 Here is the list of packages with a brief description:
 
-| Package                                       | Version                                                      |
-| --------------------------------------------- | ------------------------------------------------------------ |
-| [`@warriorjs/core`][warriorjs-core]           | [![npm][warriorjs-core-badge]][warriorjs-core-npm]           |
-| [`@warriorjs/geography`][warriorjs-geography] | [![npm][warriorjs-geography-badge]][warriorjs-geography-npm] |
-| [`@warriorjs/abilities`][warriorjs-abilities] | [![npm][warriorjs-abilities-badge]][warriorjs-abilities-npm] |
-| [`@warriorjs/effects`][warriorjs-effects]     | [![npm][warriorjs-effects-badge]][warriorjs-effects-npm]     |
-| [`@warriorjs/units`][warriorjs-units]         | [![npm][warriorjs-units-badge]][warriorjs-units-npm]         |
-| [`@warriorjs/cli`][warriorjs-cli]             | [![npm][warriorjs-cli-badge]][warriorjs-cli-npm]             |
+| Package                                                                   | Version                                                                                  |
+| ------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| [`@warriorjs/core`][warriorjs-core]                                       | [![npm][warriorjs-core-badge]][warriorjs-core-npm]                                       |
+| [`@warriorjs/helper-get-level-config`][warriorjs-helper-get-level-config] | [![npm][warriorjs-helper-get-level-config-badge]][warriorjs-helper-get-level-config-npm] |
+| [`@warriorjs/helper-get-play-score`][warriorjs-helper-get-play-score]     | [![npm][warriorjs-helper-get-play-score-badge]][warriorjs-helper-get-play-score-npm]     |
+| [`@warriorjs/helper-get-grade-letter`][warriorjs-helper-get-grade-letter] | [![npm][warriorjs-helper-get-grade-letter-badge]][warriorjs-helper-get-grade-letter-npm] |
+| [`@warriorjs/geography`][warriorjs-geography]                             | [![npm][warriorjs-geography-badge]][warriorjs-geography-npm]                             |
+| [`@warriorjs/abilities`][warriorjs-abilities]                             | [![npm][warriorjs-abilities-badge]][warriorjs-abilities-npm]                             |
+| [`@warriorjs/effects`][warriorjs-effects]                                 | [![npm][warriorjs-effects-badge]][warriorjs-effects-npm]                                 |
+| [`@warriorjs/units`][warriorjs-units]                                     | [![npm][warriorjs-units-badge]][warriorjs-units-npm]                                     |
+| [`@warriorjs/cli`][warriorjs-cli]                                         | [![npm][warriorjs-cli-badge]][warriorjs-cli-npm]                                         |
 
 - [`@warriorjs/core`][warriorjs-core] is where the game mechanics are
-  implemented; it exposes the `warriorjs.runLevel` method to run the given level
-  with the given code and return the result of that run.
+  implemented; it exposes the `warriorjs.runLevel` function to run the given
+  level with the given code and return the result of that run.
+- [`@warriorjs/helper-get-level-config`][warriorjs-helper-get-level-config]
+  exposes a helper function to get the config for a level defined in a tower, to
+  use as input for the functions exposed by the core.
+- [`@warriorjs/helper-get-play-score`][warriorjs-helper-get-play-score] exposes
+  a helper function to get the score for a play.
+- [`@warriorjs/helper-get-grade-letter`][warriorjs-helper-get-grade-letter]
+  exposes a helper function to get the letter for a numeric grade.
+- [`@warriorjs/helper-get-level-config`][warriorjs-helper-get-level-config]
+  exposes a helper function to get the config for a level defined in a tower, to
+  use as input for the functions exposed by the core.
 - [`@warriorjs/geography`][warriorjs-geography] exposes some constants and
-  methods related to directioning (absolute and relative) of units and abilities
-  in the game.
+  functions related to directioning (absolute and relative) of units and
+  abilities in the game.
 - [`@warriorjs/abilities`][warriorjs-abilities] defines the abilities that are
   used in the official towers.
 - [`@warriorjs/effects`][warriorjs-effects] defines the effects that are used in
@@ -51,6 +64,21 @@ universes (levels, abilities and units) to the game.
 [warriorjs-core-badge]:
   https://img.shields.io/npm/v/@warriorjs/core.svg?style=flat-square
 [warriorjs-core-npm]: https://www.npmjs.com/package/@warriorjs/core
+[warriorjs-helper-get-level-config]: /packages/warriorjs-helper-get-level-config
+[warriorjs-helper-get-level-config-badge]:
+  https://img.shields.io/npm/v/@warriorjs/helper-get-level-config.svg?style=flat-square
+[warriorjs-helper-get-level-config-npm]:
+  https://www.npmjs.com/package/@warriorjs/helper-get-level-config
+[warriorjs-helper-get-play-score]: /packages/warriorjs-helper-get-play-score
+[warriorjs-helper-get-play-score-badge]:
+  https://img.shields.io/npm/v/@warriorjs/helper-get-play-score.svg?style=flat-square
+[warriorjs-helper-get-play-score-npm]:
+  https://www.npmjs.com/package/@warriorjs/helper-get-play-score
+[warriorjs-helper-get-grade-letter]: /packages/warriorjs-helper-get-grade-letter
+[warriorjs-helper-get-grade-letter-badge]:
+  https://img.shields.io/npm/v/@warriorjs/helper-get-grade-letter.svg?style=flat-square
+[warriorjs-helper-get-grade-letter-npm]:
+  https://www.npmjs.com/package/@warriorjs/helper-get-grade-letter
 [warriorjs-geography]: /packages/warriorjs-geography
 [warriorjs-geography-badge]:
   https://img.shields.io/npm/v/@warriorjs/geography.svg?style=flat-square
