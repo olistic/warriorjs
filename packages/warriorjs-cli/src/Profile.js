@@ -1,8 +1,9 @@
 import fs from 'fs';
 import path from 'path';
 
+import getGradeLetter from '@warriorjs/helper-get-grade-letter';
+
 import GameError from './GameError';
-import getGradeLetter from './utils/getGradeLetter';
 
 const profileFile = '.profile';
 const playerCodeFile = 'Player.js';
@@ -233,18 +234,14 @@ class Profile {
    * Calculates the total score and secondary scores after playing a level.
    *
    * @param {number} levelNumber The number of the level.
-   * @param {number} score The score of the level.
-   * @param {number} aceScore The ace score of the level.
+   * @param {Object} score The score of the play.
    */
-  tallyPoints(levelNumber, score, aceScore) {
+  tallyPoints(levelNumber, { total: totalScore, grade }) {
     if (this.isEpic()) {
-      if (aceScore) {
-        this.currentEpicGrades[levelNumber] = (score * 1.0) / aceScore;
-      }
-
-      this.currentEpicScore += score;
+      this.currentEpicGrades[levelNumber] = grade;
+      this.currentEpicScore += totalScore;
     } else {
-      this.score += score;
+      this.score += totalScore;
     }
   }
 

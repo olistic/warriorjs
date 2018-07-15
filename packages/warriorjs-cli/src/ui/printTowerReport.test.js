@@ -1,8 +1,9 @@
-import getGradeLetter from '../utils/getGradeLetter';
+import getGradeLetter from '@warriorjs/helper-get-grade-letter';
+
 import printLine from './printLine';
 import printTowerReport from './printTowerReport';
 
-jest.mock('../utils/getGradeLetter');
+jest.mock('@warriorjs/helper-get-grade-letter');
 jest.mock('./printLine');
 
 test("doesn't print if no average grade", () => {

@@ -9,8 +9,6 @@ const levelConfig = {
     "Use `warrior.feel().isEmpty()` to see if there's anything in front of you, and `warrior.attack()` to fight it. Remember, you can only do one action per turn.",
   clue:
     'Add an if/else condition using `warrior.feel().isEmpty()` to decide whether to attack or walk.',
-  timeBonus: 20,
-  aceScore: 26,
   floor: {
     size: {
       width: 8,

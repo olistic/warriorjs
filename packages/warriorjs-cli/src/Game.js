@@ -2,12 +2,13 @@ import fs from 'fs';
 import path from 'path';
 
 import globby from 'globby';
+import getLevelConfig from '@warriorjs/helper-get-level-config';
+import getPlayScore from '@warriorjs/helper-get-play-score';
 import { getLevel, runLevel } from '@warriorjs/core';
 
 import GameError from './GameError';
 import Profile from './Profile';
 import ProfileGenerator from './ProfileGenerator';
-import getLevelConfig from './utils/getLevelConfig';
 import getWarriorNameSuggestions from './utils/getWarriorNameSuggestions';
 import loadTowers from './loadTowers';
 import printFailureLine from './ui/printFailureLine';
@@ -267,21 +268,22 @@ class Game {
    * @returns {boolean} Whether playing can continue or not (for epic mode),
    */
   async playLevel(levelNumber) {
-    const levelConfig = getLevelConfig(levelNumber, this.profile);
+    const { tower, warriorName, epic } = this.profile;
+    const levelConfig = getLevelConfig(tower, levelNumber, warriorName, epic);
 
     const level = getLevel(levelConfig);
     printLevel(level);
 
     const playerCode = this.profile.readPlayerCode();
-    const { events, passed, score } = runLevel(levelConfig, playerCode);
+    const playResult = runLevel(levelConfig, playerCode);
 
     if (!this.silencePlay) {
-      await printPlay(events, this.delay);
+      await printPlay(playResult.events, this.delay);
     }
 
     printSeparator();
 
-    if (!passed) {
+    if (!playResult.passed) {
       printFailureLine(
         `Sorry, you failed level ${levelNumber}. Change your script and try again.`,
       );
@@ -314,9 +316,9 @@ class Game {
       );
     }
 
-    const { aceScore } = levelConfig;
-    printLevelReport(this.profile, score, aceScore);
-    this.profile.tallyPoints(levelNumber, score.total, aceScore);
+    const score = getPlayScore(playResult, levelConfig);
+    printLevelReport(this.profile, score);
+    this.profile.tallyPoints(levelNumber, score);
 
     if (this.profile.isEpic()) {
       if (!hasNextLevel && !this.practiceLevel) {
@@ -379,7 +381,8 @@ class Game {
    * Generates the profile files.
    */
   generateProfileFiles() {
-    const levelConfig = getLevelConfig(this.profile.levelNumber, this.profile);
+    const { tower, levelNumber, warriorName, epic } = this.profile;
+    const levelConfig = getLevelConfig(tower, levelNumber, warriorName, epic);
     const level = getLevel(levelConfig);
     new ProfileGenerator(this.profile, level).generate();
   }

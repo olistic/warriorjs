@@ -11,15 +11,13 @@ class Level {
    * @param {string} description The description of the level.
    * @param {string} tip A tip for the level.
    * @param {string} clue A clue for the level.
-   * @param {number} timeBonus The bonus for completing the level fast.
    * @param {Floor} floor The floor of the level.
    */
-  constructor(number, description, tip, clue, timeBonus, floor) {
+  constructor(number, description, tip, clue, floor) {
     this.number = number;
     this.description = description;
     this.tip = tip;
     this.clue = clue;
-    this.timeBonus = timeBonus;
     this.floor = floor;
   }
 
@@ -44,22 +42,14 @@ class Level {
 
       this.floor.getUnits().forEach(unit => unit.prepareTurn());
       this.floor.getUnits().forEach(unit => unit.performTurn());
-
-      if (this.timeBonus > 0) {
-        this.timeBonus -= 1;
-      }
     }
 
     const passed = this.wasPassed();
-    const result = {
+
+    return {
       passed,
       events: Logger.events,
     };
-    if (passed) {
-      result.score = this.getScore();
-    }
-
-    return result;
   }
 
   /**
@@ -83,39 +73,6 @@ class Level {
    */
   wasFailed() {
     return !this.floor.warrior.isAlive();
-  }
-
-  /**
-   * Returns the score of the play.
-   *
-   * @returns {Object} The score of the play.
-   */
-  getScore() {
-    const {
-      warrior: { score: warrior },
-    } = this.floor;
-    const { timeBonus } = this;
-    const clearBonus = this.isCleared()
-      ? Math.round((warrior + timeBonus) * 0.2)
-      : 0;
-    const total = warrior + timeBonus + clearBonus;
-    return {
-      warrior,
-      timeBonus,
-      clearBonus,
-      total,
-    };
-  }
-
-  /**
-   * Checks if the level is cleared.
-   *
-   * The level is cleared when there are no units other than the warrior.
-   *
-   * @returns {boolean} Whether the level is cleared or not.
-   */
-  isCleared() {
-    return this.floor.warrior.getOtherUnits().length === 0;
   }
 
   /**
