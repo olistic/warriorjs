@@ -1,6 +1,6 @@
 {
   "name": "@warriorjs/helper-get-play-score",
-  "version": "0.10.0",
+  "version": "0.11.1",
   "description": "WarriorJS helper to get the score for a play",
   "author": "Matias Olivera <moliverafreire@gmail.com>",
   "license": "MIT",

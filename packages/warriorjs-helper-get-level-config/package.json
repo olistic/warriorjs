@@ -1,6 +1,6 @@
 {
   "name": "@warriorjs/helper-get-level-config",
-  "version": "0.10.0",
+  "version": "0.11.1",
   "description": "WarriorJS helper to get the config of a level",
   "author": "Matias Olivera <moliverafreire@gmail.com>",
   "license": "MIT",
