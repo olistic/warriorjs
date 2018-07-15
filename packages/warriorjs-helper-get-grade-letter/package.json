@@ -1,6 +1,6 @@
 {
   "name": "@warriorjs/helper-get-grade-letter",
-  "version": "0.0.0",
+  "version": "0.10.0",
   "description": "WarriorJS helper to get the letter for a grade",
   "author": "Matias Olivera <moliverafreire@gmail.com>",
   "license": "MIT",
