@@ -8,6 +8,15 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [0.10.0] - 2018-07-14
+
+This release modularizes the codebase even more, adding new helper packages
+whose logic can be reused by different flavors of the game.
+
+## Changed
+
+- Remove play score from play result ([@olistic][] in [#215][])
+
 ## [0.9.0] - 2018-07-09
 
 ### Changed
@@ -162,7 +171,8 @@ and this project adheres to
 
 Initial version.
 
-[unreleased]: https://github.com/olistic/warriorjs/compare/v0.9.0...HEAD
+[unreleased]: https://github.com/olistic/warriorjs/compare/v0.10.0...HEAD
+[0.10.0]: https://github.com/olistic/warriorjs/compare/v0.9.0...v0.10.0
 [0.9.0]: https://github.com/olistic/warriorjs/compare/v0.8.0...v0.9.0
 [0.8.0]: https://github.com/olistic/warriorjs/compare/v0.7.0...v0.8.0
 [0.7.0]: https://github.com/olistic/warriorjs/compare/v0.6.0...v0.7.0
@@ -229,3 +239,4 @@ Initial version.
 [#209]: https://github.com/olistic/warriorjs/pull/209
 [#210]: https://github.com/olistic/warriorjs/pull/210
 [#213]: https://github.com/olistic/warriorjs/pull/213
+[#215]: https://github.com/olistic/warriorjs/pull/215
