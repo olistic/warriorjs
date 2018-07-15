@@ -8,7 +8,11 @@ and this project adheres to
 
 ## [Unreleased]
 
-## [0.11.0] - 2018-07-14
+## [0.11.1] - 2018-07-14
+
+Force publish of helper packages.
+
+## [0.11.0] - 2018-07-14 [YANKED]
 
 ### Changed
 
@@ -178,7 +182,8 @@ whose logic can be reused by different flavors of the game.
 
 Initial version.
 
-[unreleased]: https://github.com/olistic/warriorjs/compare/v0.11.0...HEAD
+[unreleased]: https://github.com/olistic/warriorjs/compare/v0.11.1...HEAD
+[0.11.1]: https://github.com/olistic/warriorjs/compare/v0.11.0...v0.11.1
 [0.11.0]: https://github.com/olistic/warriorjs/compare/v0.10.0...v0.11.0
 [0.10.0]: https://github.com/olistic/warriorjs/compare/v0.9.0...v0.10.0
 [0.9.0]: https://github.com/olistic/warriorjs/compare/v0.8.0...v0.9.0
