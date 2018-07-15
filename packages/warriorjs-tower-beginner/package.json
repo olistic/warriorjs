@@ -6,12 +6,18 @@
   "license": "MIT",
   "homepage": "https://warrior.js.org",
   "repository": "https://github.com/olistic/warriorjs/tree/master/packages/warriorjs-tower-beginner",
-  "main": "index.js",
   "keywords": [
     "warriorjs-tower"
   ],
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
   "publishConfig": {
     "access": "public"
+  },
+  "scripts": {
+    "build": "babel src --out-dir lib --ignore test.js"
   },
   "dependencies": {
     "@warriorjs/abilities": "^0.7.0",
