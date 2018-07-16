@@ -5252,7 +5252,7 @@ mem@^1.1.0:
   dependencies:
     mimic-fn "^1.0.0"
 
-meow@^3.0.0, meow@^3.1.0, meow@^3.3.0, meow@^3.5.0:
+meow@^3.1.0, meow@^3.3.0, meow@^3.5.0:
   version "3.7.0"
   resolved "https://registry.yarnpkg.com/meow/-/meow-3.7.0.tgz#72cb668b425228290abbfa856892587308a801fb"
   dependencies:
@@ -7399,11 +7399,10 @@ sum-up@^1.0.1:
   dependencies:
     chalk "^1.0.0"
 
-superheroes@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/superheroes/-/superheroes-1.0.0.tgz#a00db39e2606c442e7731b8abd82865416acbe6c"
+superheroes@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/superheroes/-/superheroes-2.0.0.tgz#8e18ea99b718973afb9b76afd213c7c0e0263537"
   dependencies:
-    meow "^3.0.0"
     unique-random-array "^1.0.0"
 
 supports-color@^2.0.0:
