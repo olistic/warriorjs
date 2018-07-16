@@ -8,6 +8,11 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Changed
+
+- Update `superheroes` dependency to version that doesn't include a CLI
+  ([@wtgtybhertgeghgtwtg][] in [#217][])
+
 ## [0.11.1] - 2018-07-14
 
 Force publish of helper packages.
@@ -208,6 +213,7 @@ Initial version.
 [@xaviserrag]: https://github.com/xaviserrag
 [@pigalot]: https://github.com/pigalot
 [@djohalo2]: https://github.com/djohalo2
+[@wtgtybhertgeghgtwtg]: https://github.com/wtgtybhertgeghgtwtg
 [#67]: https://github.com/olistic/warriorjs/pull/67
 [#70]: https://github.com/olistic/warriorjs/pull/70
 [#77]: https://github.com/olistic/warriorjs/pull/77
@@ -254,3 +260,4 @@ Initial version.
 [#213]: https://github.com/olistic/warriorjs/pull/213
 [#215]: https://github.com/olistic/warriorjs/pull/215
 [#216]: https://github.com/olistic/warriorjs/pull/216
+[#217]: https://github.com/olistic/warriorjs/pull/217

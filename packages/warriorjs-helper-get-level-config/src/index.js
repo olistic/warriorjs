@@ -3,6 +3,8 @@
  *
  * @param {Object} tower The tower.
  * @param {number} levelNumber The number of the level.
+ * @param {string} warriorName The name of the warrior.
+ * @param {boolean} epic Whether the level is to be used in epic mode or not.
  *
  * @returns {Object} The level config.
  */
