@@ -39,7 +39,8 @@
     "access": "public"
   },
   "scripts": {
-    "build": "babel src --out-dir lib --ignore test.js"
+    "build": "babel src --out-dir lib --ignore test.js",
+    "postinstall": "node -e \"console.log('\\u001b[35m\\u001b[1mLove WarriorJS? You can now donate to our open collective:\\u001b[22m\\u001b[39m\\n> \\u001b[34mhttps://opencollective.com/warriorjs/donate\\u001b[0m')\""
   },
   "devDependencies": {
     "ansi-styles": "^3.2.1",
