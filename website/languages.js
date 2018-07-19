@@ -10,7 +10,7 @@ const languages = [
     tag: 'ja',
   },
   {
-    enabled: false,
+    enabled: true,
     name: 'العربية',
     tag: 'ar',
   },
