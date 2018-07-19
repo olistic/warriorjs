@@ -110,7 +110,7 @@ const languages = [
     tag: 'no-NO',
   },
   {
-    enabled: false,
+    enabled: true,
     name: 'Polskie',
     tag: 'pl',
   },
