@@ -8,9 +8,11 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [0.11.3] - 2018-07-24
+
 ### Added
 
-- Warrior status to level JSON
+- Warrior status to level JSON ([@olistic][] in [#219][])
 
 ## [0.11.2] - 2018-07-17
 
@@ -193,7 +195,8 @@ whose logic can be reused by different flavors of the game.
 
 Initial version.
 
-[unreleased]: https://github.com/olistic/warriorjs/compare/v0.11.2...HEAD
+[unreleased]: https://github.com/olistic/warriorjs/compare/v0.11.3...HEAD
+[0.11.3]: https://github.com/olistic/warriorjs/compare/v0.11.2...v0.11.3
 [0.11.2]: https://github.com/olistic/warriorjs/compare/v0.11.1...v0.11.2
 [0.11.1]: https://github.com/olistic/warriorjs/compare/v0.11.0...v0.11.1
 [0.11.0]: https://github.com/olistic/warriorjs/compare/v0.10.0...v0.11.0
@@ -268,3 +271,4 @@ Initial version.
 [#215]: https://github.com/olistic/warriorjs/pull/215
 [#216]: https://github.com/olistic/warriorjs/pull/216
 [#217]: https://github.com/olistic/warriorjs/pull/217
+[#219]: https://github.com/olistic/warriorjs/pull/219
