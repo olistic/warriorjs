@@ -8,6 +8,10 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Added
+
+- Warrior status to level JSON
+
 ## [0.11.2] - 2018-07-17
 
 ### Changed
