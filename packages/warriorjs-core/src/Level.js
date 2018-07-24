@@ -87,6 +87,7 @@ class Level {
       tip: this.tip,
       clue: this.clue,
       floorMap: this.floor.getMap(),
+      warriorStatus: this.floor.warrior.getStatus(),
       warriorAbilities: this.floor.warrior.getAbilities(),
     };
   }

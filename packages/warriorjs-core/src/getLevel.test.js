@@ -136,6 +136,10 @@ test('returns level', () => {
         { character: '╝' },
       ],
     ],
+    warriorStatus: {
+      health: 20,
+      score: 0,
+    },
     warriorAbilities: {
       actions: [
         {
