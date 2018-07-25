@@ -1,9 +1,11 @@
+import util from 'util';
+
 function think() {
   return unit => ({
-    description:
-      'Think about your options before choosing an action (`console.log` replacement).',
-    perform(thought) {
-      unit.log(`thinks ${thought || 'nothing'}`);
+    description: 'Think out loud (`console.log` replacement).',
+    perform(...args) {
+      const thought = args.length > 0 ? util.format(...args) : 'nothing';
+      unit.log(`thinks ${thought}`);
     },
   });
 }

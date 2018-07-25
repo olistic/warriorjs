@@ -8,6 +8,10 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Fixed
+
+- Think ability with complex thoughts
+
 ## [0.11.3] - 2018-07-24
 
 ### Added
