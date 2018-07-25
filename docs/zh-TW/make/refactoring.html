@@ -310,9 +310,9 @@
 });
 </code></pre>
 <blockquote>
-<p>We can call this the &quot;ability creator&quot; pattern, where we define a function (the ability creator) which returns another function (the ability) customized with the parameters we passed to the creator.</p>
+<p>我們稱呼其為&quot;技能創造者(ability creator)&quot;模式，在這模式中我們會定義一個函數(the ability creator)，這函數會傳回另一個我們自訂了參數的函數給這個創造者。</p>
 </blockquote>
-<p>To end with the refactor, let's get rid of all those magic strings representing directions. There's an official package called <a href="https://github.com/olistic/warriorjs/tree/master/packages/warriorjs-geography"><code>@warriorjs/geography</code></a> that exposes a bunch of constants and methods related to directioning. Let's use it:</p>
+<p>讓我們清除所有代表了方向的魔術字串去結束這個重構。 我們有一個官方包叫做<a href="https://github.com/olistic/warriorjs/tree/master/packages/warriorjs-geography"><code>@warriorjs/geography</code></a>，它公開了我們一系列與方向相關的常數及方法。 讓我們來使用它：</p>
 <pre><code class="hljs css languages- js"><span class="hljs-keyword">const</span> {
   EAST,
   FORWARD,
@@ -476,7 +476,7 @@
   <span class="hljs-attr">levels</span>: [Level1, Level2],
 };
 </code></pre>
-<p>Much better! Keep reading to learn how to test and publish your tower so that other players can play!</p>
+<p>這樣就好多了！繼續閱讀下來，學懂如何測試及發佈你的層塔，讓其他玩家都可以玩！</p>
 </span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="defining-units">← 定義單位</a><a class="docs-next button" href="testing">Testing →</a></div></div></div><nav class="onPageNav"></nav></div><footer class="footerSection nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/warriorjs-sword.svg" alt="WarriorJS"/></a><div><h5>Docs</h5><a href="/docs/zh-TW/play/overview">Play</a><a href="/docs/zh-TW/make/introduction">Make</a></div><div><h5>Community</h5><a href="https://spectrum.chat/warriorjs" target="_blank" rel="noopener noreferrer">Spectrum</a><a href="https://twitter.com/warrior_js" target="_blank" rel="noopener noreferrer">Twitter</a><a href="https://twitter.com/warrior_js" target="_blank" rel="noopener noreferrer"><img alt="Follow WarriorJS on Twitter" src="https://img.shields.io/twitter/follow/warrior_js.svg?label=Follow+WarriorJS&amp;style=social"/></a></div><div><h5>More</h5><a href="https://opencollective.com/warriorjs" target="_blank" rel="noopener noreferrer">Donate</a><a href="https://github.com/olistic/warriorjs" target="_blank" rel="noopener noreferrer">GitHub</a><a class="github-button" href="https://github.com/olistic/warriorjs" data-icon="octicon-star" data-show-count="true" aria-label="Star this project on GitHub">Star</a></div></section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script><script>
               var search = docsearch({
                 

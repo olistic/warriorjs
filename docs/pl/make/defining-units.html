@@ -16,7 +16,7 @@
             languagesDropDown.className = "hide";
           }
         });
-      </script></span><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><li class=""><a href="https://github.com/olistic/warriorjs" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>Przewodnik</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup navGroupActive"><h3>Przewodnik</h3><ul><li class="navListItem"><a class="navItem" href="/docs/pl/make/introduction">Wprowadzenie</a></li><li class="navListItem"><a class="navItem" href="/docs/pl/make/creating-tower">Tworzenie Własnej Wieży</a></li><li class="navListItem"><a class="navItem" href="/docs/pl/make/adding-levels">Dodawanie Poziomów</a></li><li class="navListItem"><a class="navItem" href="/docs/pl/make/defining-abilities">Określenie Umiejętności</a></li><li class="navListItem navListItemActive"><a class="navItem navItemActive" href="/docs/pl/make/defining-units">Określenie Jednostek</a></li><li class="navListItem"><a class="navItem" href="/docs/pl/make/refactoring">Refaktoryzacja</a></li><li class="navListItem"><a class="navItem" href="/docs/pl/make/testing">Testowanie</a></li><li class="navListItem"><a class="navItem" href="/docs/pl/make/publishing">Publikowanie</a></li></ul></div><div class="navGroup navGroupActive"><h3>Maker API</h3><ul><li class="navListItem"><a class="navItem" href="/docs/pl/make/space-api">Obszary API</a></li><li class="navListItem"><a class="navItem" href="/docs/pl/make/unit-api">Jednostka API</a></li></ul></div></div></section></div><script>
+      </script></span><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><li class=""><a href="https://github.com/olistic/warriorjs" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>Przewodnik</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup navGroupActive"><h3>Przewodnik</h3><ul><li class="navListItem"><a class="navItem" href="/docs/pl/make/introduction">Wprowadzenie</a></li><li class="navListItem"><a class="navItem" href="/docs/pl/make/creating-tower">Tworzenie Własnej Wieży</a></li><li class="navListItem"><a class="navItem" href="/docs/pl/make/adding-levels">Dodawanie Poziomów</a></li><li class="navListItem"><a class="navItem" href="/docs/pl/make/defining-abilities">Określenie Umiejętności</a></li><li class="navListItem navListItemActive"><a class="navItem navItemActive" href="/docs/pl/make/defining-units">Określenie Jednostek</a></li><li class="navListItem"><a class="navItem" href="/docs/pl/make/refactoring">Refaktoryzacja</a></li><li class="navListItem"><a class="navItem" href="/docs/pl/make/testing">Testowanie</a></li><li class="navListItem"><a class="navItem" href="/docs/pl/make/publishing">Publikowanie</a></li></ul></div><div class="navGroup navGroupActive"><h3>API Twórcy</h3><ul><li class="navListItem"><a class="navItem" href="/docs/pl/make/space-api">Obszar API</a></li><li class="navListItem"><a class="navItem" href="/docs/pl/make/unit-api">Jednostka API</a></li></ul></div></div></section></div><script>
             document.addEventListener('DOMContentLoaded', function() {
               createToggler('#navToggler', '#docsNav', 'docsSliderActive');
               createToggler('#tocToggler', 'body', 'tocActive');
@@ -50,7 +50,7 @@
 };
 </code></pre>
 <blockquote>
-<p>Nie dodaliśmy imienia dla Wojownika ponieważ jest dostarczane przez gracza podczas gry.</p>
+<p>Nie nazwaliśmy tego Wojownika, ponieważ imię jest ustalane przez gracza podczas gry.</p>
 </blockquote>
 <p>Tak jak Wojownik, inne jednostki także potrzebują charakteru i wartości maksymalnego zdrowia:</p>
 <pre><code class="hljs css languages- js"><span class="hljs-keyword">const</span> WhiteWalker = {
@@ -77,7 +77,7 @@
   };
 }
 </code></pre>
-<p>I dodajmy ją do White Walker'a. Dodajmy także tę samą umiejętność odczucia którą juz zdefiniowaliśmy:</p>
+<p>I dodajmy ją do White Walker'a. Dodajmy także tę samą umiejętność odczuwania którą już zdefiniowaliśmy:</p>
 <pre><code class="hljs css languages- js"><span class="hljs-keyword">const</span> WhiteWalker = {
   <span class="hljs-attr">name</span>: <span class="hljs-string">'White Walker'</span>,
   <span class="hljs-attr">character</span>: <span class="hljs-string">'w'</span>,
@@ -88,7 +88,7 @@
   },
 };
 </code></pre>
-<p>Wkońcu, musimy określić AI naszego White Walker'a. It'll be a very rudimentary AI: the White Walker will start his turn by feeling in every direction looking for an enemy (the Warrior). Jeżeli znajdzie go w jakimkolwiek kierunku, zaatakuje go w tym kierunku. Let's write that logic in the <code>playTurn</code> function:</p>
+<p>W końcu, musimy określić AI naszego White Walker'a. It'll be a very rudimentary AI: the White Walker will start his turn by feeling in every direction looking for an enemy (the Warrior). Jeżeli znajdzie go w jakimkolwiek kierunku, zaatakuje go w tym kierunku. Let's write that logic in the <code>playTurn</code> function:</p>
 <pre><code class="hljs css languages- js"><span class="hljs-keyword">const</span> WhiteWalker = {
   <span class="hljs-attr">name</span>: <span class="hljs-string">'White Walker'</span>,
   <span class="hljs-attr">character</span>: <span class="hljs-string">'w'</span>,
@@ -111,9 +111,9 @@
 };
 </code></pre>
 <blockquote>
-<p>Także nie napisalismy AI dla Wojownika ponieważ, zostanie dodany przez gracza podczas gry.</p>
+<p>Nie napisaliśmy AI dla Wojownika, ponieważ to również jest ustalanie przez gracza podczas gry.</p>
 </blockquote>
-<p>Teraz potrzebujemy dodać White Walker'a na drugi poziom. Jednostki inne niż Wojownik sądodane do tablicy <code>Jednostki</code>:</p>
+<p>Teraz potrzebujemy dodać White Walker'a do drugiego poziom. Jednostki inne niż Wojownik są dodawane do szeregu <code>jednostek</code> na piętrze:</p>
 <pre><code class="hljs css languages- js"><span class="hljs-keyword">const</span> Level2 = {
   <span class="hljs-attr">description</span>:
     <span class="hljs-string">'The cold became more intense. In the distance, you see a pair of deep and blue eyes, a blue that burns like ice.'</span>,
@@ -161,7 +161,7 @@
 <blockquote>
 <p>Here, we used spread properties to merge the unit definition with its position in the floor.</p>
 </blockquote>
-<p>Gratulacje! Utworzyłeś swoją pierwszą wieże. W tym momencie ta wieża jest w pełni grywalna ale może użyc niektórych refaktoryzacji.</p>
+<p>Gratulacje! Utworzyłeś swoją pierwszą wieżę. W tym momencie twoja wieża jest w pełni grywalna, jednak dobrze byłoby poddać ją refaktoryzacji.</p>
 </span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="defining-abilities">← Określenie Umiejętności</a><a class="docs-next button" href="refactoring">Refaktoryzacja →</a></div></div></div><nav class="onPageNav"></nav></div><footer class="footerSection nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/warriorjs-sword.svg" alt="WarriorJS"/></a><div><h5>Docs</h5><a href="/docs/pl/play/overview">Play</a><a href="/docs/pl/make/introduction">Make</a></div><div><h5>Community</h5><a href="https://spectrum.chat/warriorjs" target="_blank" rel="noopener noreferrer">Spectrum</a><a href="https://twitter.com/warrior_js" target="_blank" rel="noopener noreferrer">Twitter</a><a href="https://twitter.com/warrior_js" target="_blank" rel="noopener noreferrer"><img alt="Follow WarriorJS on Twitter" src="https://img.shields.io/twitter/follow/warrior_js.svg?label=Follow+WarriorJS&amp;style=social"/></a></div><div><h5>More</h5><a href="https://opencollective.com/warriorjs" target="_blank" rel="noopener noreferrer">Donate</a><a href="https://github.com/olistic/warriorjs" target="_blank" rel="noopener noreferrer">GitHub</a><a class="github-button" href="https://github.com/olistic/warriorjs" data-icon="octicon-star" data-show-count="true" aria-label="Star this project on GitHub">Star</a></div></section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script><script>
               var search = docsearch({
                 
