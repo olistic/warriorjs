@@ -15,7 +15,7 @@ describe('think', () => {
 
   test('has a description', () => {
     expect(think.description).toBe(
-      'Think about your options before choosing an action (`console.log` replacement).',
+      'Think out loud (`console.log` replacement).',
     );
   });
 
@@ -28,6 +28,11 @@ describe('think', () => {
     test('allows to specify thought', () => {
       think.perform('he should be brave');
       expect(unit.log).toHaveBeenCalledWith('thinks he should be brave');
+    });
+
+    test('allows complex thoughts', () => {
+      think.perform('that %o', { brave: true });
+      expect(unit.log).toHaveBeenCalledWith('thinks that { brave: true }');
     });
   });
 });
