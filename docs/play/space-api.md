@@ -4,7 +4,8 @@ title: Space API
 ---
 
 Whenever you sense an area, often one or multiple spaces (in an array) will be
-returned. For example, the "feel" sense in the beginner tower returns one space:
+returned. For example, the "feel" sense in the "Baby Steps" tower returns one
+space:
 
 ```js
 const space = warrior.feel();

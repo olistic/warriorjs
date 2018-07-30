@@ -8,6 +8,6 @@ example.
 
 This guide assumes that you're familiar with the basic concepts of WarriorJS.
 It's also important that you have played the game, ideally having completed at
-least the beginner tower.
+least the "Baby Steps" tower.
 
 Let's get started!

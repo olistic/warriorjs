@@ -8,6 +8,10 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Changed
+
+- Official towers names and descriptions
+
 ### Fixed
 
 - Think ability with complex thoughts

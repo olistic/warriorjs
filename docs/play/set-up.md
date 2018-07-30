@@ -23,19 +23,19 @@ warriorjs
 ```
 
 That's it! This will guide you through the creation of your warrior. Give your
-warrior a proper name and choose the beginner tower.
+warrior a proper name and choose the "Baby Steps" tower.
 
 After you've done that, you should have the following file structure (we decided
 to name our warrior after the bastard son of Lord Eddard Stark):
 
 ```sh
 warriorjs
-└── jon-snow-beginner
+└── jon-snow-baby-steps
     ├── Player.js
     └── README.md
 ```
 
-- `jon-snow-beginner` is your profile's directory.
+- `jon-snow-baby-steps` is your profile's directory.
 - `Player.js` is your warrior's brain, you'll be editing this file often.
 - `README.md` contains the instructions for the current level.
 

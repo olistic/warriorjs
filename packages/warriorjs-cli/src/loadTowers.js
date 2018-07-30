@@ -8,7 +8,7 @@ import uniqBy from 'lodash.uniqby';
 import Tower from './Tower';
 import getTowerId from './utils/getTowerId';
 
-const internalTowerPackageNames = ['@warriorjs/tower-beginner'];
+const internalTowerPackageNames = ['@warriorjs/tower-baby-steps'];
 
 const officialTowerPackageJsonPattern = '@warriorjs/tower-*/package.json';
 const communityTowerPackageJsonPattern = 'warriorjs-tower-*/package.json';

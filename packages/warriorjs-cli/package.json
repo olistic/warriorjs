@@ -51,7 +51,7 @@
     "@warriorjs/helper-get-grade-letter": "^0.11.1",
     "@warriorjs/helper-get-level-config": "^0.11.2",
     "@warriorjs/helper-get-play-score": "^0.11.1",
-    "@warriorjs/tower-beginner": "^0.11.0",
+    "@warriorjs/tower-baby-steps": "^0.11.0",
     "ansi-escapes": "^3.0.0",
     "array-shuffle": "^1.0.1",
     "chalk": "^2.4.1",

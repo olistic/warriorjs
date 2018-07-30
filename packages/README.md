@@ -48,14 +48,14 @@ Here is the list of packages with a brief description:
 The towers available in WarriorJS are independent packages that add new
 universes (levels, abilities and units) to the game.
 
-| Package                                                         | Version                                                                        |
-| --------------------------------------------------------------- | ------------------------------------------------------------------------------ |
-| [`@warriorjs/tower-beginner`][warriorjs-tower-beginner]         | [![npm][warriorjs-tower-beginner-badge]][warriorjs-tower-beginner-npm]         |
-| [`@warriorjs/tower-intermediate`][warriorjs-tower-intermediate] | [![npm][warriorjs-tower-intermediate-badge]][warriorjs-tower-intermediate-npm] |
+| Package                                                             | Version                                                                            |
+| ------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| [`@warriorjs/tower-baby-steps`][warriorjs-tower-baby-steps]         | [![npm][warriorjs-tower-baby-steps-badge]][warriorjs-tower-baby-steps-npm]         |
+| [`@warriorjs/tower-tick-tick-boom`][warriorjs-tower-tick-tick-boom] | [![npm][warriorjs-tower-tick-tick-boom-badge]][warriorjs-tower-tick-tick-boom-npm] |
 
-- [`@warriorjs/tower-beginner`][warriorjs-tower-beginner] is the entry-level
+- [`@warriorjs/tower-baby-steps`][warriorjs-tower-baby-steps] is the entry-level
   tower. You should play this first.
-- [`@warriorjs/tower-intermediate`][warriorjs-tower-intermediate] is a more
+- [`@warriorjs/tower-tick-tick-boom`][warriorjs-tower-tick-tick-boom] is a more
   challenging tower.
 
 > You can find community maintained towers in [npm][community-towers-npm].
@@ -99,14 +99,14 @@ universes (levels, abilities and units) to the game.
 [warriorjs-cli-badge]:
   https://img.shields.io/npm/v/@warriorjs/cli.svg?style=flat-square
 [warriorjs-cli-npm]: https://www.npmjs.com/package/@warriorjs/cli
-[warriorjs-tower-beginner]: /packages/warriorjs-tower-beginner
-[warriorjs-tower-beginner-badge]:
-  https://img.shields.io/npm/v/@warriorjs/tower-beginner.svg?style=flat-square
-[warriorjs-tower-beginner-npm]:
-  https://www.npmjs.com/package/@warriorjs/tower-beginner
-[warriorjs-tower-intermediate]: /packages/warriorjs-tower-intermediate
-[warriorjs-tower-intermediate-badge]:
-  https://img.shields.io/npm/v/@warriorjs/tower-intermediate.svg?style=flat-square
-[warriorjs-tower-intermediate-npm]:
-  https://www.npmjs.com/package/@warriorjs/tower-intermediate
+[warriorjs-tower-baby-steps]: /packages/warriorjs-tower-baby-steps
+[warriorjs-tower-baby-steps-badge]:
+  https://img.shields.io/npm/v/@warriorjs/tower-baby-steps.svg?style=flat-square
+[warriorjs-tower-baby-steps-npm]:
+  https://www.npmjs.com/package/@warriorjs/tower-baby-steps
+[warriorjs-tower-tick-tick-boom]: /packages/warriorjs-tower-tick-tick-boom
+[warriorjs-tower-tick-tick-boom-badge]:
+  https://img.shields.io/npm/v/@warriorjs/tower-tick-tick-boom.svg?style=flat-square
+[warriorjs-tower-tick-tick-boom-npm]:
+  https://www.npmjs.com/package/@warriorjs/tower-tick-tick-boom
 [community-towers-npm]: https://www.npmjs.com/search?q=warriorjs-tower

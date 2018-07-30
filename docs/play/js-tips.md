@@ -36,8 +36,8 @@ class Player {
 ```
 
 - You can call methods of the Space API directly after a sense. For example, the
-  "feel" sense in the beginner tower returns one space. You can call `isEmpty()`
-  on this to determine if the space is clear before walking there:
+  "feel" sense in the "Baby Steps" tower returns one space. You can call
+  `isEmpty()` on this to determine if the space is clear before walking there:
 
 ```js
 class Player {
@@ -49,9 +49,10 @@ class Player {
 }
 ```
 
-- Some senses (like "look" and "listen" in the beginner tower) return an array
-  of spaces instead, so **you might find many of the [Array prototype methods][]
-  really useful**. Here is an example of the [Array.prototype.find][] method:
+- Some senses (like "look" and "listen" in the "Baby Steps" tower) return an
+  array of spaces instead, so **you might find many of the [Array prototype
+  methods][] really useful**. Here is an example of the [Array.prototype.find][]
+  method:
 
 ```js
 class Player {

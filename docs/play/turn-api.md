@@ -8,8 +8,8 @@ turn. The methods you can call on that turn are determined by the abilities your
 warrior has available in the current level. See the README in your profile's
 directory to find that out.
 
-Here is an example extracted from the README of the second level in the beginner
-tower:
+Here is an example extracted from the README of the second level in the "Baby
+Steps" tower:
 
 ```markdown
 ### Abilities
