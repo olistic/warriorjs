@@ -8,13 +8,15 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [0.12.0] - 2018-07-30
+
 ### Changed
 
-- Official towers names and descriptions
+- Official towers names and descriptions ([@olistic][] in [#221][])
 
 ### Fixed
 
-- Think ability with complex thoughts
+- Think ability with complex thoughts ([@olistic][] in [#220][])
 
 ## [0.11.3] - 2018-07-24
 
@@ -203,7 +205,8 @@ whose logic can be reused by different flavors of the game.
 
 Initial version.
 
-[unreleased]: https://github.com/olistic/warriorjs/compare/v0.11.3...HEAD
+[unreleased]: https://github.com/olistic/warriorjs/compare/v0.12.0...HEAD
+[0.12.0]: https://github.com/olistic/warriorjs/compare/v0.11.3...v0.12.0
 [0.11.3]: https://github.com/olistic/warriorjs/compare/v0.11.2...v0.11.3
 [0.11.2]: https://github.com/olistic/warriorjs/compare/v0.11.1...v0.11.2
 [0.11.1]: https://github.com/olistic/warriorjs/compare/v0.11.0...v0.11.1
@@ -280,3 +283,5 @@ Initial version.
 [#216]: https://github.com/olistic/warriorjs/pull/216
 [#217]: https://github.com/olistic/warriorjs/pull/217
 [#219]: https://github.com/olistic/warriorjs/pull/219
+[#220]: https://github.com/olistic/warriorjs/pull/220
+[#221]: https://github.com/olistic/warriorjs/pull/221
