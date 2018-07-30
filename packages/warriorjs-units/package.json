@@ -1,6 +1,6 @@
 {
   "name": "@warriorjs/units",
-  "version": "0.8.0",
+  "version": "0.12.0",
   "description": "WarriorJS base units",
   "author": "Matias Olivera <moliverafreire@gmail.com>",
   "license": "MIT",
@@ -17,7 +17,7 @@
     "build": "babel src --out-dir lib --ignore test.js"
   },
   "dependencies": {
-    "@warriorjs/abilities": "^0.7.0",
+    "@warriorjs/abilities": "^0.12.0",
     "@warriorjs/geography": "^0.7.0"
   }
 }
