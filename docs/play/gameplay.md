@@ -25,8 +25,8 @@ do depending on the situation.
 See the README in your profile's directory for details on what's on the current
 level and what abilities your warrior has available to deal with it.
 
-Here is an example from the beginner tower which will instruct the warrior to
-walk if there's nothing ahead, otherwise attack:
+Here is an example from the "Baby Steps" tower which will instruct the warrior
+to walk if there's nothing ahead, otherwise attack:
 
 ```js
 class Player {

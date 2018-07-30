@@ -6,8 +6,8 @@ title: Towers
 A **tower** is a WarriorJS world. In addition to defining levels, towers can
 also add new abilities, effects, and units to the game.
 
-WarriorJS CLI ships with a beginner tower built-in. You'll need to install any
-additional tower you want to play.
+WarriorJS CLI ships with an entry-level tower built-in. You'll need to install
+any additional tower you want to play.
 
 ## Installing Towers
 
