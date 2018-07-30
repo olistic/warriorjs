@@ -67,7 +67,7 @@
 }
 </code></pre>
 <ul>
-<li>Du kannst Methoden der Space-API aufrufen sobald du einen Bereich (Space) wahrgenommen hast. Zum Beispiel gibt die &quot;feel&quot;-Methode im Einsteiger-Turm einen einzelnen Bereich zurück. Dann kannst du <code>isEmpty()</code> aufrufen, um zu bestimmen, ob der Bereich vor dir frei ist:</li>
+<li>Du kannst Methoden der Space-API aufrufen sobald du einen Bereich (Space) wahrgenommen hast. For example, the &quot;feel&quot; sense in the &quot;Baby Steps&quot; tower returns one space. You can call <code>isEmpty()</code> on this to determine if the space is clear before walking there:</li>
 </ul>
 <pre><code class="hljs css languages- js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Player</span> </span>{
   playTurn(warrior) {
@@ -78,7 +78,7 @@
 }
 </code></pre>
 <ul>
-<li>Einige Wahrnehmungs-Funktionen (wie &quot;look&quot; und &quot;listen&quot; im Einsteiger-Turm) geben ein Array von Bereichen zurück, sodass sich <strong>viele der <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/prototype#Methods">Array-Prototyp-Methoden</a> als nützlich erweisen sollten</strong>. Hier ist ein Beispiel der <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find">Array.prototype.find</a>-Methode:</li>
+<li>Some senses (like &quot;look&quot; and &quot;listen&quot; in the &quot;Baby Steps&quot; tower) return an array of spaces instead, so <strong>you might find many of the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/prototype#Methods">Array prototype methods</a> really useful</strong>. Here is an example of the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find">Array.prototype.find</a> method:</li>
 </ul>
 <pre><code class="hljs css languages- js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Player</span> </span>{
   <span class="hljs-comment">// ...</span>

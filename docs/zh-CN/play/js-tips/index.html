@@ -67,7 +67,7 @@
 }
 </code></pre>
 <ul>
-<li>你可以直接在一个感知动作（sense）后调用空间API的方法。 比如，在初学者塔中感知动作 “feel” 会返回一个空间（space）。 你可以在这里调用 <code>isEmpty ()</code>, 以确定在行走到此处之前是否已清除此处的空间:</li>
+<li>你可以直接在一个感知动作（sense）后调用空间API的方法。 For example, the &quot;feel&quot; sense in the &quot;Baby Steps&quot; tower returns one space. You can call <code>isEmpty()</code> on this to determine if the space is clear before walking there:</li>
 </ul>
 <pre><code class="hljs css languages- js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Player</span> </span>{
   playTurn(warrior) {
@@ -78,7 +78,7 @@
 }
 </code></pre>
 <ul>
-<li>某些感知动作 (如初学者塔中的&quot;look&quot;和&quot;listen&quot;) 会返回一个空间数组, 因此 <strong>你可能会发现许多 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/prototype#Methods">数组的原型方法</a> 真的非常有用</strong>。 下面是 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/find">Array.prototype.find</a> 方法的一个示例:</li>
+<li>Some senses (like &quot;look&quot; and &quot;listen&quot; in the &quot;Baby Steps&quot; tower) return an array of spaces instead, so <strong>you might find many of the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/prototype#Methods">Array prototype methods</a> really useful</strong>. Here is an example of the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find">Array.prototype.find</a> method:</li>
 </ul>
 <pre><code class="hljs css languages- js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Player</span> </span>{
   <span class="hljs-comment">// ...</span>

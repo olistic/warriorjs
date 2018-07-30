@@ -50,7 +50,7 @@
 </code></pre>
 <p>Die <code>playTurn</code>-Methode muss nun mit Logik gefüllt werden, die deinem Kämpfer sagt, was er je nach Situation zu tun hat.</p>
 <p>Lese ausführlich die README-Datei innerhalb des Ordners deines Profils, um Informationen über den aktuellen Level und den Fähigkeiten deines Kämpfers zu erhalten.</p>
-<p>Hier ist ein Beispiel aus dem Einsteiger-Turm. Wenn der Bereich vor dem Kämpfer frei ist, läuft er nach vorne, ansonsten greift er an:</p>
+<p>Here is an example from the &quot;Baby Steps&quot; tower which will instruct the warrior to walk if there's nothing ahead, otherwise attack:</p>
 <pre><code class="hljs css languages- js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Player</span> </span>{
   playTurn(warrior) {
     <span class="hljs-keyword">if</span> (warrior.feel().isEmpty()) {

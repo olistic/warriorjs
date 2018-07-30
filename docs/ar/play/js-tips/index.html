@@ -67,7 +67,7 @@
 }
 </code></pre>
 <ul>
-<li>يمكنك استدعاء أساليب حيز الـ API مباشرة بعد الشعور. على سبيل المثال، حاسة &quot;الشعور&quot; في برج المبتدئين ترجع حيز واحد. يمكنك استدعاء <code>isEmpty()</code> على هذا لتحديد ما إذا كان هذا الحيز واضح قبل المشي هناك:</li>
+<li>يمكنك استدعاء أساليب حيز الـ API مباشرة بعد الشعور. For example, the &quot;feel&quot; sense in the &quot;Baby Steps&quot; tower returns one space. You can call <code>isEmpty()</code> on this to determine if the space is clear before walking there:</li>
 </ul>
 <pre><code class="hljs css languages- js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Player</span> </span>{
   playTurn(warrior) {
@@ -78,7 +78,7 @@
 }
 </code></pre>
 <ul>
-<li>بعض الحواس (مثل &quot;النظر&quot; و &quot;الاستماع&quot; في برج المبتدئين) تعيد نسقا من الأحياز عوض ذلك، لهذا <strong>قد تجد العديد من <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/prototype#Methods">نماذج ترتيب الأنساق</a>مفيد جداً.</strong>. هنا نموذج عن <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find">Array.prototype.find</a>الأسلوب:</li>
+<li>Some senses (like &quot;look&quot; and &quot;listen&quot; in the &quot;Baby Steps&quot; tower) return an array of spaces instead, so <strong>you might find many of the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/prototype#Methods">Array prototype methods</a> really useful</strong>. Here is an example of the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find">Array.prototype.find</a> method:</li>
 </ul>
 <pre><code class="hljs css languages- js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Player</span> </span>{
   <span class="hljs-comment">// ...</span>

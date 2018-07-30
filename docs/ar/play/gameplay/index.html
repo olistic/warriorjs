@@ -50,7 +50,7 @@
 </code></pre>
 <p>ينبغي عليك تعبئة أسلوب <code>playTurn</code> بواسطة أوامر منطقية لتعليم المحارب ما يجب فعله وفقاً للحالة.</p>
 <p>راجع ملف README في مجلدحسابك للحصول على تفاصيل حول المستوى الحالي و ماهي القدرات المتاحة لمحاربك للتعامل معها.</p>
-<p>هنا مثال من برج المبتدئين الذي سيصدر تعليمات للمحارب للمشي إذا لم يكن هنالك شئ في الأمام، وعلى خلاف ذلك الهجوم:</p>
+<p>Here is an example from the &quot;Baby Steps&quot; tower which will instruct the warrior to walk if there's nothing ahead, otherwise attack:</p>
 <pre><code class="hljs css languages- js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Player</span> </span>{
   playTurn(warrior) {
     <span class="hljs-keyword">if</span> (warrior.feel().isEmpty()) {
