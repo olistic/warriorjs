@@ -19,7 +19,8 @@ import {
 import { ticking } from '@warriorjs/effects';
 
 export default {
-  name: 'intermediate',
+  name: 'Tick, Tick... Boom!',
+  description: 'Try not to blow the tower apart',
   levels: [
     {
       description:

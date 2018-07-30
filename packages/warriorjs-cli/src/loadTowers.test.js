@@ -4,9 +4,9 @@ import mock from 'mock-fs';
 import Tower from './Tower';
 import loadTowers from './loadTowers';
 
-jest.mock('@warriorjs/tower-beginner', () => ({
-  name: 'beginner',
-  description: 'A tower for beginners.',
+jest.mock('@warriorjs/tower-baby-steps', () => ({
+  name: 'Baby Steps',
+  description: 'For players new to WarriorJS',
   levels: ['level1', 'level2'],
 }));
 jest.mock('find-up');
@@ -19,9 +19,9 @@ test('loads internal towers', () => {
   loadTowers();
   mock.restore();
   expect(Tower).toHaveBeenCalledWith(
-    'beginner',
-    'beginner',
-    'A tower for beginners.',
+    'baby-steps',
+    'Baby Steps',
+    'For players new to WarriorJS',
     ['level1', 'level2'],
   );
 });

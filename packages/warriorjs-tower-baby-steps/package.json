@@ -1,11 +1,11 @@
 {
-  "name": "@warriorjs/tower-beginner",
+  "name": "@warriorjs/tower-baby-steps",
   "version": "0.11.0",
-  "description": "WarriorJS beginner tower",
+  "description": "Baby Steps",
   "author": "Matias Olivera <moliverafreire@gmail.com>",
   "license": "MIT",
   "homepage": "https://warrior.js.org",
-  "repository": "https://github.com/olistic/warriorjs/tree/master/packages/warriorjs-tower-beginner",
+  "repository": "https://github.com/olistic/warriorjs/tree/master/packages/warriorjs-tower-baby-steps",
   "keywords": [
     "warriorjs-tower"
   ],

@@ -21,7 +21,8 @@ import {
 } from '@warriorjs/abilities';
 
 export default {
-  name: 'beginner',
+  name: 'Baby Steps',
+  description: 'For players new to WarriorJS',
   levels: [
     {
       description:

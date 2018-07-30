@@ -22,8 +22,8 @@ Tower package names start with `@warriorjs/tower-` for official towers, or
 
 ### Official Towers
 
-- [`@warriorjs/tower-beginner`][warriorjs-tower-beginner]
-- [`@warriorjs/tower-intermediate`][warriorjs-tower-intermediate] (beta)
+- [`@warriorjs/tower-baby-steps`][warriorjs-tower-baby-steps]
+- [`@warriorjs/tower-tick-tick-boom`][warriorjs-tower-tick-tick-boom] (beta)
 
 ### Community Towers
 
@@ -33,9 +33,9 @@ Have you made a tower? [Add it][add-community-tower] to the list!
 
 Follow this [guide](make/introduction.md).
 
-[warriorjs-tower-beginner]:
-  https://github.com/olistic/warriorjs/tree/master/packages/warriorjs-tower-beginner
-[warriorjs-tower-intermediate]:
-  https://github.com/olistic/warriorjs/tree/master/packages/warriorjs-tower-intermediate
+[warriorjs-tower-baby-steps]:
+  https://github.com/olistic/warriorjs/tree/master/packages/warriorjs-tower-baby-steps
+[warriorjs-tower-tick-tick-boom]:
+  https://github.com/olistic/warriorjs/tree/master/packages/warriorjs-tower-tick-tick-boom
 [add-community-tower]:
   https://github.com/olistic/warriorjs/edit/master/docs/towers.md
