@@ -44,7 +44,7 @@
 ├── index.js
 └── package.json
 </code></pre>
-<p><code>index.js</code>內含我們通過這指南所編寫的代理，而<code>package.json</code>則是npm套裝的資料：</p>
+<p><code>index.js</code>內含我們通過這指南所編寫的代理，而<code>package.json</code>則是npm包的資料：</p>
 <pre><code class="hljs css languages- json">{
   <span class="hljs-attr">"name"</span>: <span class="hljs-string">"warriorjs-tower-got"</span>,
   <span class="hljs-attr">"version"</span>: <span class="hljs-string">"0.1.0"</span>,
@@ -59,7 +59,7 @@
 </code></pre>
 <p>一些特別的考慮點：</p>
 <ul>
-<li>套裝包的名字必須以<code>warriorjs-tower-</code>開頭，方便WarriorJS自動載入層塔。</li>
+<li>包的名字必須以<code>warriorjs-tower-</code>開頭，方便WarriorJS自動載入層塔。</li>
 <li><code>warriorjs-tower</code>需放在&quot;關鍵字(keyword)&quot;欄位中，這會讓你的層塔更容易被發現到。</li>
 </ul>
 <p>在製作層塔的時候，你可以使用<a href="https://docs.npmjs.com/cli/pack"><code>npm pack</code></a>來製作tar文件包，然後將其安裝在你安裝<code>@warriorjs/cli</code>的地方，如下：</p>

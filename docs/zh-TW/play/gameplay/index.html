@@ -50,7 +50,7 @@
 </code></pre>
 <p>你需要有邏輯地編寫<code>playTurn</code>並指導勇士在不同情況下的行動。</p>
 <p>在設定檔目錄查看README，你可得知所在塔層的詳情及勇士所擁有的技能去應付當前的情況。</p>
-<p>Here is an example from the &quot;Baby Steps&quot; tower which will instruct the warrior to walk if there's nothing ahead, otherwise attack:</p>
+<p>以下是一個新手塔的例子，描述勇士在沒有遇到任何情況時前進，否則就攻擊：</p>
 <pre><code class="hljs css languages- js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Player</span> </span>{
   playTurn(warrior) {
     <span class="hljs-keyword">if</span> (warrior.feel().isEmpty()) {

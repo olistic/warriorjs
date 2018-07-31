@@ -67,7 +67,7 @@
 }
 </code></pre>
 <ul>
-<li>在使用感官技 (sense) 後，你可以直接呼叫 (call) 空間應用程式介面 (Space API) 的方法， For example, the &quot;feel&quot; sense in the &quot;Baby Steps&quot; tower returns one space. You can call <code>isEmpty()</code> on this to determine if the space is clear before walking there:</li>
+<li>在使用感官技 (sense) 後，你可以直接呼叫 (call) 空間應用程式介面 (Space API) 的方法， 例如新手塔 (Baby Steps tower) 的&quot;感應 (feel)&quot; 感官技就會傳回一個空間 (space)， 在移動到這空間前，你可以呼叫<code>isEmpty()</code>來判斷這空間是否已清空。</li>
 </ul>
 <pre><code class="hljs css languages- js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Player</span> </span>{
   playTurn(warrior) {
@@ -78,7 +78,7 @@
 }
 </code></pre>
 <ul>
-<li>Some senses (like &quot;look&quot; and &quot;listen&quot; in the &quot;Baby Steps&quot; tower) return an array of spaces instead, so <strong>you might find many of the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/prototype#Methods">Array prototype methods</a> really useful</strong>. Here is an example of the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find">Array.prototype.find</a> method:</li>
+<li>有一些感官技 (如新手塔的 &quot;觀察 (look)&quot;及&quot;聆聽 (listen)&quot;) 並不傳回空間，而是傳回一個陣列 (array)，<strong>你可以在<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/prototype#Methods">陣列原型方法 (Array Prototype methods)</a></strong>中找到很多有用的方法。 以下是一個<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find">Array.prototype.find</a>方法的例子：</li>
 </ul>
 <pre><code class="hljs css languages- js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Player</span> </span>{
   <span class="hljs-comment">// ...</span>
