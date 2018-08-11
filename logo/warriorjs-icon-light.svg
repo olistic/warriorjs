@@ -30,33 +30,19 @@
     <use fill="#8FBCBB" xlink:href="#warriorjs-icon-light-f"/>
     <use fill="#4D566A" xlink:href="#warriorjs-icon-light-g"/>
     <use fill="#8FBCBB" xlink:href="#warriorjs-icon-light-g"/>
-    <g>
-      <use fill="#4D566A" xlink:href="#warriorjs-icon-light-h"/>
-      <use fill="#8FBCBB" xlink:href="#warriorjs-icon-light-h"/>
-    </g>
-    <g>
-      <use fill="#4D566A" xlink:href="#warriorjs-icon-light-i"/>
-      <use fill="#8FBCBB" xlink:href="#warriorjs-icon-light-i"/>
-    </g>
-    <g>
-      <use fill="#4D566A" xlink:href="#warriorjs-icon-light-j"/>
-      <use fill="#8FBCBB" xlink:href="#warriorjs-icon-light-j"/>
-    </g>
-    <g>
-      <use fill="#4D566A" xlink:href="#warriorjs-icon-light-k"/>
-      <use fill="#8FBCBB" xlink:href="#warriorjs-icon-light-k"/>
-    </g>
-    <g>
-      <use fill="#4D566A" xlink:href="#warriorjs-icon-light-l"/>
-      <use fill="#8FBCBB" xlink:href="#warriorjs-icon-light-l"/>
-    </g>
-    <g>
-      <use fill="#4D566A" xlink:href="#warriorjs-icon-light-m"/>
-      <use fill="#8FBCBB" xlink:href="#warriorjs-icon-light-m"/>
-    </g>
-    <g>
-      <use fill="#4D566A" xlink:href="#warriorjs-icon-light-n"/>
-      <use fill="#8FBCBB" xlink:href="#warriorjs-icon-light-n"/>
-    </g>
+    <use fill="#4D566A" xlink:href="#warriorjs-icon-light-h"/>
+    <use fill="#8FBCBB" xlink:href="#warriorjs-icon-light-h"/>
+    <use fill="#4D566A" xlink:href="#warriorjs-icon-light-i"/>
+    <use fill="#8FBCBB" xlink:href="#warriorjs-icon-light-i"/>
+    <use fill="#4D566A" xlink:href="#warriorjs-icon-light-j"/>
+    <use fill="#8FBCBB" xlink:href="#warriorjs-icon-light-j"/>
+    <use fill="#4D566A" xlink:href="#warriorjs-icon-light-k"/>
+    <use fill="#8FBCBB" xlink:href="#warriorjs-icon-light-k"/>
+    <use fill="#4D566A" xlink:href="#warriorjs-icon-light-l"/>
+    <use fill="#8FBCBB" xlink:href="#warriorjs-icon-light-l"/>
+    <use fill="#4D566A" xlink:href="#warriorjs-icon-light-m"/>
+    <use fill="#8FBCBB" xlink:href="#warriorjs-icon-light-m"/>
+    <use fill="#4D566A" xlink:href="#warriorjs-icon-light-n"/>
+    <use fill="#8FBCBB" xlink:href="#warriorjs-icon-light-n"/>
   </g>
 </svg>

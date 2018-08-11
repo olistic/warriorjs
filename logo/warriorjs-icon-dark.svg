@@ -30,33 +30,19 @@
     <use fill="#8FBCBB" xlink:href="#warriorjs-icon-dark-f"/>
     <use fill="#4D566A" xlink:href="#warriorjs-icon-dark-g"/>
     <use fill="#8FBCBB" xlink:href="#warriorjs-icon-dark-g"/>
-    <g>
-      <use fill="#4D566A" xlink:href="#warriorjs-icon-dark-h"/>
-      <use fill="#8FBCBB" xlink:href="#warriorjs-icon-dark-h"/>
-    </g>
-    <g>
-      <use fill="#4D566A" xlink:href="#warriorjs-icon-dark-i"/>
-      <use fill="#8FBCBB" xlink:href="#warriorjs-icon-dark-i"/>
-    </g>
-    <g>
-      <use fill="#4D566A" xlink:href="#warriorjs-icon-dark-j"/>
-      <use fill="#8FBCBB" xlink:href="#warriorjs-icon-dark-j"/>
-    </g>
-    <g>
-      <use fill="#4D566A" xlink:href="#warriorjs-icon-dark-k"/>
-      <use fill="#8FBCBB" xlink:href="#warriorjs-icon-dark-k"/>
-    </g>
-    <g>
-      <use fill="#4D566A" xlink:href="#warriorjs-icon-dark-l"/>
-      <use fill="#8FBCBB" xlink:href="#warriorjs-icon-dark-l"/>
-    </g>
-    <g>
-      <use fill="#4D566A" xlink:href="#warriorjs-icon-dark-m"/>
-      <use fill="#8FBCBB" xlink:href="#warriorjs-icon-dark-m"/>
-    </g>
-    <g>
-      <use fill="#4D566A" xlink:href="#warriorjs-icon-dark-n"/>
-      <use fill="#8FBCBB" xlink:href="#warriorjs-icon-dark-n"/>
-    </g>
+    <use fill="#4D566A" xlink:href="#warriorjs-icon-dark-h"/>
+    <use fill="#8FBCBB" xlink:href="#warriorjs-icon-dark-h"/>
+    <use fill="#4D566A" xlink:href="#warriorjs-icon-dark-i"/>
+    <use fill="#8FBCBB" xlink:href="#warriorjs-icon-dark-i"/>
+    <use fill="#4D566A" xlink:href="#warriorjs-icon-dark-j"/>
+    <use fill="#8FBCBB" xlink:href="#warriorjs-icon-dark-j"/>
+    <use fill="#4D566A" xlink:href="#warriorjs-icon-dark-k"/>
+    <use fill="#8FBCBB" xlink:href="#warriorjs-icon-dark-k"/>
+    <use fill="#4D566A" xlink:href="#warriorjs-icon-dark-l"/>
+    <use fill="#8FBCBB" xlink:href="#warriorjs-icon-dark-l"/>
+    <use fill="#4D566A" xlink:href="#warriorjs-icon-dark-m"/>
+    <use fill="#8FBCBB" xlink:href="#warriorjs-icon-dark-m"/>
+    <use fill="#4D566A" xlink:href="#warriorjs-icon-dark-n"/>
+    <use fill="#8FBCBB" xlink:href="#warriorjs-icon-dark-n"/>
   </g>
 </svg>
