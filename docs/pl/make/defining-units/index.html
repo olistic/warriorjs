@@ -88,7 +88,7 @@
   },
 };
 </code></pre>
-<p>W końcu, musimy określić AI naszego White Walker'a. It'll be a very rudimentary AI: the White Walker will start his turn by feeling in every direction looking for an enemy (the Warrior). Jeżeli znajdzie go w jakimkolwiek kierunku, zaatakuje go w tym kierunku. Let's write that logic in the <code>playTurn</code> function:</p>
+<p>W końcu, musimy określić AI naszego White Walker'a. To będzie bardzo prymitywny AI: White Walker rozpocznie swoją kolej poprzez wyczuwanie każdej drogi by znaleźć wroga (Wojownika). Jeżeli znajdzie go w jakimkolwiek kierunku, zaatakuje go w tym kierunku. Zapiszmy tę zasadę w funkcji <code>playTurn</code>:</p>
 <pre><code class="hljs css languages- js"><span class="hljs-keyword">const</span> WhiteWalker = {
   <span class="hljs-attr">name</span>: <span class="hljs-string">'White Walker'</span>,
   <span class="hljs-attr">character</span>: <span class="hljs-string">'w'</span>,
