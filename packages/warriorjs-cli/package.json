@@ -44,7 +44,7 @@
   },
   "devDependencies": {
     "ansi-styles": "^3.2.1",
-    "mock-fs": "^4.5.0"
+    "mock-fs": "^4.6.0"
   },
   "dependencies": {
     "@warriorjs/core": "^0.11.3",
@@ -59,7 +59,7 @@
     "ejs": "^2.6.1",
     "find-up": "^3.0.0",
     "globby": "^8.0.1",
-    "inquirer": "^6.0.0",
+    "inquirer": "^6.1.0",
     "inquirer-prompt-suggest": "^0.1.0",
     "lodash.uniqby": "^4.7.0",
     "resolve": "^1.8.1",
