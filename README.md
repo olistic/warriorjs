@@ -38,13 +38,26 @@ rescue captives, and reach the stairs alive...
 **No matter if you are new to programming or a JavaScript guru, WarriorJS will
 put your skills to the test. Will you dare?**
 
-## Quick Start
+## Play
 
-**Go to [warriorjs.com](https://warriorjs.com/?ref=gh) and play from the comfort
+Go to [warriorjs.com](https://warriorjs.com/?ref=gh) and play from the comfort
 of your browser! Sharpen your skills and compete against other players around
-the globe. See you there!**
+the globe. Good luck in your journey, warrior!
 
-Wanna play offline? No problem, just follow this quick start guide:
+## Documentation
+
+Although there is some in-game documentation, at some point you may want to
+visit the [official docs](https://warrior.js.org).
+
+Jump straight to some of the most-visited pages:
+
+- [Gameplay](https://warrior.js.org/docs/play/gameplay)
+- [Towers](https://warrior.js.org/docs/play/towers)
+- [Player API](https://warrior.js.org/docs/play/space-api)
+
+## CLI
+
+Wanna play offline? No problem, just follow these steps:
 
 1.  Install WarriorJS CLI with [npm](https://npmjs.com):
 
@@ -62,28 +75,14 @@ warriorjs
 
 4.  You'll be pointed to a README file with instructions for the first level.
 
-Good luck in your journey, warrior!
-
-> If you encounter any issue following the quick start guide, check out the more
-> detailed [Set Up](https://warrior.js.org/docs/play/set-up) docs before opening
-> an issue.
-
-## Documentation
-
-Learn how to play WarriorJS on the [official docs](https://warrior.js.org)!
-
-Jump straight to some of the most-visited pages:
-
-- [Gameplay](https://warrior.js.org/docs/play/gameplay)
-- [Towers](https://warrior.js.org/docs/play/towers)
-- [Player API](https://warrior.js.org/docs/play/space-api)
-- [CLI Options](https://warrior.js.org/docs/play/cli-options)
+Check out the [Set Up](https://warrior.js.org/docs/play/set-up) docs for more
+details.
 
 ## Preview
 
 ![WarriorJS Preview](https://user-images.githubusercontent.com/5600126/40150855-8b2acdd2-5952-11e8-9034-00dcee0c4c2c.gif)
 
-> WarriorJS launched from the
+> WarriorJS CLI launched from the
 > [Integrated Terminal](https://code.visualstudio.com/docs/editor/integrated-terminal)
 > in [VS Code](https://code.visualstudio.com). To the left, `Player.js`, and to
 > the right, a
