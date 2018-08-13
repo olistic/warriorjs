@@ -22,4 +22,4 @@ npm install @warriorjs/tower-tick-tick-boom
 warriorjs
 ```
 
-For more in depth documentation see: https://warrior.js.org/docs/towers.
+For more in depth documentation see: https://warrior.js.org/docs/player/towers.

@@ -168,8 +168,8 @@ whose logic can be reused by different flavors of the game.
 
 ### Fixed
 
-- Enforce [Player API](https://warrior.js.org/docs/space-api) ([@olistic][] in
-  [#114][])
+- Enforce [Player API](https://warrior.js.org/docs/player/space-api)
+  ([@olistic][] in [#114][])
 
 ## [0.2.0] - 2018-05-14
 

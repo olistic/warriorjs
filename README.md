@@ -75,8 +75,8 @@ warriorjs
 
 4.  You'll be pointed to a README file with instructions for the first level.
 
-Check out the [Set Up](https://warrior.js.org/docs/player/set-up) docs for more
-details.
+Check out the [Install](https://warrior.js.org/docs/player/install) docs for
+more details.
 
 ## Preview
 

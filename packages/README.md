@@ -43,7 +43,7 @@ Here is the list of packages with a brief description:
 - [`@warriorjs/cli`][warriorjs-cli] is the original version of WarriorJS,
   playable from the terminal.
 
-## [Towers](https://warrior.js.org/docs/towers)
+## [Towers](https://warrior.js.org/docs/player/towers)
 
 The towers available in WarriorJS are independent packages that add new
 universes (levels, abilities and units) to the game.
