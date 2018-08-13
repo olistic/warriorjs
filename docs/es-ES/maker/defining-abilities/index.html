@@ -61,7 +61,7 @@
   };
 }
 </code></pre>
-<p>Y por último pero no menos importante, debemos escribir la lógica de la habilidad en la función <code>perform</code>. Here, we can use any of the methods in the <a href="/docs/es-ES/maker/unit-api">Unit Maker API</a>. Hagámoslo:</p>
+<p>Y por último pero no menos importante, debemos escribir la lógica de la habilidad en la función <code>perform</code>. Aquí, podemos utilizar cualquiera de los métodos en la <a href="/docs/es-ES/maker/unit-api">API de la Unidad del Creador</a>. Hagámoslo:</p>
 <pre><code class="hljs css languages- js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">walk</span>(<span class="hljs-params">unit</span>) </span>{
   <span class="hljs-keyword">return</span> {
     <span class="hljs-attr">action</span>: <span class="hljs-literal">true</span>,
@@ -141,7 +141,7 @@
 }
 </code></pre>
 <blockquote>
-<p><strong>IMPORTANTE:</strong> Cuando devuelvas uno o más espacios desde los sentidos, utiliza <code>unit.getSensedSpaceAt()</code> en lugar de <code>unit.getSpaceAt()</code>. The former returns a space that exposes only the <a href="/docs/es-ES/player/space-api">Space Player API</a>, whereas the latter exposes the <a href="/docs/es-ES/maker/space-api">Space Maker API</a> and is meant to be used internally, like in the attack ability before.</p>
+<p><strong>IMPORTANTE:</strong> Cuando devuelvas uno o más espacios desde los sentidos, utiliza <code>unit.getSensedSpaceAt()</code> en lugar de <code>unit.getSpaceAt()</code>. El primero devuelve un espacio que expone solo la <a href="/docs/es-ES/player/space-api">API del Espacio del Jugador</a>, mientras que el último expone la <a href="/docs/es-ES/maker/space-api">API del Espacio del Creador</a> y esta pensada para ser usada internamente, como en la habilidad de atacar que creamos anteriormente.</p>
 </blockquote>
 <p>Finalmente, agreguémoslas al Guerrero del segundo nivel:</p>
 <pre><code class="hljs css languages- js"><span class="hljs-keyword">const</span> Level2 = {
