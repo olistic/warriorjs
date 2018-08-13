@@ -40,7 +40,13 @@ put your skills to the test. Will you dare?**
 
 ## Quick Start
 
-1.  Install WarriorJS with [npm](https://npmjs.com):
+**Go to [warriorjs.com](https://warriorjs.com/?ref=gh) and play from the comfort
+of your browser! Sharpen your skills and compete against other players around
+the globe. See you there!**
+
+Wanna play offline? No problem, just follow this quick start guide:
+
+1.  Install WarriorJS CLI with [npm](https://npmjs.com):
 
 ```sh
 npm install --global @warriorjs/cli
@@ -58,13 +64,16 @@ warriorjs
 
 Good luck in your journey, warrior!
 
+> If you encounter any issue following the quick start guide, check out the more
+> detailed [Set Up](https://warrior.js.org/docs/play/set-up) docs before opening
+> an issue.
+
 ## Documentation
 
-Learn how to play WarriorJS on the [official site](https://warrior.js.org)!
+Learn how to play WarriorJS on the [official docs](https://warrior.js.org)!
 
 Jump straight to some of the most-visited pages:
 
-- [**Set Up**](https://warrior.js.org/docs/play/set-up)
 - [Gameplay](https://warrior.js.org/docs/play/gameplay)
 - [Towers](https://warrior.js.org/docs/play/towers)
 - [Player API](https://warrior.js.org/docs/play/space-api)
@@ -116,7 +125,7 @@ Support us with a monthly donation and help us continue our activities!
 ## Sponsors
 
 Become a sponsor and get your logo here and on the
-[official site](https://warrior.js.org)!
+[official docs](https://warrior.js.org)!
 [Become a sponsor](https://opencollective.com/warriorjs#sponsors).
 
 <a href="https://opencollective.com/warriorjs#sponsors"><img src="https://opencollective.com/warriorjs/sponsors.svg?width=890" /></a>
