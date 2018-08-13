@@ -8,7 +8,7 @@ const siteConfig = {
   gitHubUrl,
   twitterUsername,
   sponsors,
-  title: 'WarriorJS',
+  title: 'WarriorJS Docs',
   tagline: 'An exciting game of programming and Artificial Intelligence',
   url: pkg.homepage,
   baseUrl: '/',
@@ -39,6 +39,7 @@ const siteConfig = {
   },
   scripts: ['https://buttons.github.io/buttons.js'],
   disableHeaderTitle: true,
+  disableTitleTagline: true,
   onPageNav: 'separate',
   gaTrackingId: 'UA-118632697-1',
   algolia: {

@@ -63,10 +63,12 @@ const HomeSplash = ({ language }) => (
             <small>{translation[language]['localized-strings'].tagline}</small>
           </h2>
           <PromoSection>
-            <Button href={getDocUrl('play/overview', language)} primary>
-              <translate>Get Started</translate>
+            <Button href="https://warriorjs.com/warriors/new?ref=docs" primary>
+              <translate>Play Now</translate>
             </Button>
-            <Button href={siteConfig.gitHubUrl}>GitHub</Button>
+            <Button href={getDocUrl('play/overview', language)}>
+              <translate>Docs</translate>
+            </Button>
           </PromoSection>
           <div className="githubButton" style={{ minHeight: '20px' }}>
             <GitHubButton
@@ -113,14 +115,35 @@ const Play = () => (
         {
           content: (
             <translate>
-              Launch the game from your terminal and check how your warrior
-              does.
+              Run your code and check how your warrior does.
             </translate>
           ),
           imageAlign: 'left',
           image: getImgUrl('play-preview.png'),
           imageAlt: 'Play Preview',
           title: <translate>Play</translate>,
+        },
+      ]}
+      layout="twoColumn"
+    />
+  </Container>
+);
+
+const Make = () => (
+  <Container padding={['bottom', 'top']}>
+    <GridBlock
+      contents={[
+        {
+          content: (
+            <translate>
+              Make your own towers and share them with the world. Add new
+              abilities, effects, and units to the game.
+            </translate>
+          ),
+          imageAlign: 'right',
+          image: getImgUrl('make-preview.png'),
+          imageAlt: 'Make Preview',
+          title: <translate>Make</translate>,
         },
       ]}
       layout="twoColumn"
@@ -186,7 +209,7 @@ const Index = ({ language }) => (
     <div className="mainContainer">
       <Code />
       <Play />
-      <QuickStart />
+      <Make />
       <Sponsors />
     </div>
   </div>
