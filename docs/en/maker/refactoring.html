@@ -1,0 +1,497 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Refactoring · WarriorJS Docs</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="At this point, you should have the following code:"/><meta property="og:title" content="Refactoring · WarriorJS Docs"/><meta property="og:type" content="website"/><meta property="og:url" content="https://warrior.js.org/index.html"/><meta property="og:description" content="At this point, you should have the following code:"/><meta property="og:image" content="https://warrior.js.org/img/warriorjs.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://warrior.js.org/img/warriorjs.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-118632697-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible doc separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/en"><img class="logo" src="/img/warriorjs-text.svg" alt="WarriorJS Docs"/></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/en/player/overview" target="_self">Player</a></li><li class="siteNavGroupActive"><a href="/docs/en/maker/introduction" target="_self">Maker</a></li><li class=""><a href="/docs/en/community/socialize" target="_self">Community</a></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg"/>English</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/ar/maker/refactoring">العربية</a></li><li><a href="/docs/ca/maker/refactoring">Català</a></li><li><a href="/docs/cs/maker/refactoring">Čeština</a></li><li><a href="/docs/de/maker/refactoring">Deutsch</a></li><li><a href="/docs/es-ES/maker/refactoring">Español</a></li><li><a href="/docs/fr/maker/refactoring">Français</a></li><li><a href="/docs/pl/maker/refactoring">Polskie</a></li><li><a href="/docs/ru/maker/refactoring">Русский</a></li><li><a href="/docs/sv-SE/maker/refactoring">Svenska</a></li><li><a href="/docs/tr/maker/refactoring">Türkçe</a></li><li><a href="/docs/zh-CN/maker/refactoring">中文</a></li><li><a href="/docs/zh-TW/maker/refactoring">繁體中文</a></li><li><a href="https://crowdin.com/project/warriorjs" target="_blank" rel="noreferrer noopener">Help Translate</a></li></ul></div></li><script>
+        const languagesMenuItem = document.getElementById("languages-menu");
+        const languagesDropDown = document.getElementById("languages-dropdown");
+        languagesMenuItem.addEventListener("click", function(){
+          if(languagesDropDown.className == "hide") {
+            languagesDropDown.className = "visible";
+          } else {
+            languagesDropDown.className = "hide";
+          }
+        });
+      </script></span><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><li class=""><a href="https://github.com/olistic/warriorjs" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>Guide</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup navGroupActive"><h3>Guide</h3><ul><li class="navListItem"><a class="navItem" href="/docs/en/maker/introduction">Introduction</a></li><li class="navListItem"><a class="navItem" href="/docs/en/maker/creating-tower">Creating Your Tower</a></li><li class="navListItem"><a class="navItem" href="/docs/en/maker/adding-levels">Adding Levels</a></li><li class="navListItem"><a class="navItem" href="/docs/en/maker/defining-abilities">Defining Abilities</a></li><li class="navListItem"><a class="navItem" href="/docs/en/maker/defining-units">Defining Units</a></li><li class="navListItem navListItemActive"><a class="navItem navItemActive" href="/docs/en/maker/refactoring">Refactoring</a></li><li class="navListItem"><a class="navItem" href="/docs/en/maker/testing">Testing</a></li><li class="navListItem"><a class="navItem" href="/docs/en/maker/publishing">Publishing</a></li></ul></div><div class="navGroup navGroupActive"><h3>Maker API</h3><ul><li class="navListItem"><a class="navItem" href="/docs/en/maker/space-api">Space API</a></li><li class="navListItem"><a class="navItem" href="/docs/en/maker/unit-api">Unit API</a></li></ul></div></div></section></div><script>
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/olistic/warriorjs/edit/master/docs/maker/refactoring.md" target="_blank" rel="noreferrer noopener">Edit</a><h1>Refactoring</h1></header><article><div><span><p>At this point, you should have the following code:</p>
+<pre><code class="hljs css languages- js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">valyrianSteelSwordAttack</span>(<span class="hljs-params">unit</span>) </span>{
+  <span class="hljs-keyword">return</span> {
+    <span class="hljs-attr">action</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">description</span>:
+      <span class="hljs-string">'Attack a unit in the given direction (forward by default) with your Valyrian steel sword, dealing 5 HP of damage.'</span>,
+    perform(direction = <span class="hljs-string">'forward'</span>) {
+      <span class="hljs-keyword">const</span> receiver = unit.getSpaceAt(direction).getUnit();
+      <span class="hljs-keyword">if</span> (receiver) {
+        unit.log(<span class="hljs-string">`attacks <span class="hljs-subst">${direction}</span> and hits <span class="hljs-subst">${receiver}</span>`</span>);
+        unit.damage(receiver, <span class="hljs-number">5</span>);
+      } <span class="hljs-keyword">else</span> {
+        unit.log(<span class="hljs-string">`attacks <span class="hljs-subst">${direction}</span> and hits nothing`</span>);
+      }
+    },
+  };
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">iceCrystalSwordAttack</span>(<span class="hljs-params">unit</span>) </span>{
+  <span class="hljs-keyword">return</span> {
+    <span class="hljs-attr">action</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">description</span>:
+      <span class="hljs-string">'Attack a unit in the given direction (forward by default) with your ice blade, dealing 3 HP of damage.'</span>,
+    perform(direction = <span class="hljs-string">'forward'</span>) {
+      <span class="hljs-keyword">const</span> receiver = unit.getSpaceAt(direction).getUnit();
+      <span class="hljs-keyword">if</span> (receiver) {
+        unit.log(<span class="hljs-string">`attacks <span class="hljs-subst">${direction}</span> and hits <span class="hljs-subst">${receiver}</span>`</span>);
+        unit.damage(receiver, <span class="hljs-number">3</span>);
+      } <span class="hljs-keyword">else</span> {
+        unit.log(<span class="hljs-string">`attacks <span class="hljs-subst">${direction}</span> and hits nothing`</span>);
+      }
+    },
+  };
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">feel</span>(<span class="hljs-params">unit</span>) </span>{
+  <span class="hljs-keyword">return</span> {
+    <span class="hljs-attr">description</span>:
+      <span class="hljs-string">'Return the adjacent space in the given direction (forward by default).'</span>,
+    perform(direction = <span class="hljs-string">'forward'</span>) {
+      <span class="hljs-keyword">return</span> unit.getSensedSpaceAt(direction);
+    },
+  };
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">walk</span>(<span class="hljs-params">unit</span>) </span>{
+  <span class="hljs-keyword">return</span> {
+    <span class="hljs-attr">action</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">description</span>: <span class="hljs-string">'Move one space in the given direction (forward by default).'</span>,
+    perform(direction = <span class="hljs-string">'forward'</span>) {
+      <span class="hljs-keyword">const</span> space = unit.getSpaceAt(direction);
+      <span class="hljs-keyword">if</span> (space.isEmpty()) {
+        unit.move(direction);
+        unit.log(<span class="hljs-string">`walks <span class="hljs-subst">${direction}</span>`</span>);
+      } <span class="hljs-keyword">else</span> {
+        unit.log(<span class="hljs-string">`walks <span class="hljs-subst">${direction}</span> and bumps into <span class="hljs-subst">${space}</span>`</span>);
+      }
+    },
+  };
+}
+
+<span class="hljs-keyword">const</span> WhiteWalker = {
+  <span class="hljs-attr">name</span>: <span class="hljs-string">'White Walker'</span>,
+  <span class="hljs-attr">character</span>: <span class="hljs-string">'w'</span>,
+  <span class="hljs-attr">maxHealth</span>: <span class="hljs-number">12</span>,
+  <span class="hljs-attr">abilities</span>: {
+    <span class="hljs-attr">attack</span>: iceCrystalSwordAttack,
+    <span class="hljs-attr">feel</span>: feel,
+  },
+  playTurn(whiteWalker) {
+    <span class="hljs-keyword">const</span> enemyDirection = [<span class="hljs-string">'forward'</span>, <span class="hljs-string">'right'</span>, <span class="hljs-string">'backward'</span>, <span class="hljs-string">'left'</span>].find(
+      <span class="hljs-function"><span class="hljs-params">direction</span> =&gt;</span> {
+        <span class="hljs-keyword">const</span> unit = whiteWalker.feel(direction).getUnit();
+        <span class="hljs-keyword">return</span> unit &amp;&amp; unit.isEnemy();
+      },
+    );
+    <span class="hljs-keyword">if</span> (enemyDirection) {
+      whiteWalker.attack(enemyDirection);
+    }
+  },
+};
+
+<span class="hljs-keyword">const</span> Level1 = {
+  <span class="hljs-attr">description</span>:
+    <span class="hljs-string">"You've entered the ancient castle of Eastwatch to escape from a blizzard. But it's deadly cold inside too."</span>,
+  <span class="hljs-attr">tip</span>:
+    <span class="hljs-string">"Call `warrior.walk()` to walk forward in the Player's `playTurn` method."</span>,
+  <span class="hljs-attr">timeBonus</span>: <span class="hljs-number">15</span>,
+  <span class="hljs-attr">aceScore</span>: <span class="hljs-number">10</span>,
+  <span class="hljs-attr">floor</span>: {
+    <span class="hljs-attr">size</span>: {
+      <span class="hljs-attr">width</span>: <span class="hljs-number">8</span>,
+      <span class="hljs-attr">height</span>: <span class="hljs-number">1</span>,
+    },
+    <span class="hljs-attr">stairs</span>: {
+      <span class="hljs-attr">x</span>: <span class="hljs-number">7</span>,
+      <span class="hljs-attr">y</span>: <span class="hljs-number">0</span>,
+    },
+    <span class="hljs-attr">warrior</span>: {
+      <span class="hljs-attr">character</span>: <span class="hljs-string">'@'</span>,
+      <span class="hljs-attr">maxHealth</span>: <span class="hljs-number">20</span>,
+      <span class="hljs-attr">position</span>: {
+        <span class="hljs-attr">x</span>: <span class="hljs-number">0</span>,
+        <span class="hljs-attr">y</span>: <span class="hljs-number">0</span>,
+        <span class="hljs-attr">facing</span>: <span class="hljs-string">'east'</span>,
+      },
+      <span class="hljs-attr">abilities</span>: {
+        <span class="hljs-attr">walk</span>: walk,
+      },
+    },
+  },
+};
+
+<span class="hljs-keyword">const</span> Level2 = {
+  <span class="hljs-attr">description</span>:
+    <span class="hljs-string">'The cold became more intense. In the distance, you see a pair of deep and blue eyes, a blue that burns like ice.'</span>,
+  <span class="hljs-attr">tip</span>:
+    <span class="hljs-string">"Use `warrior.feel().isEmpty()` to see if there's anything in front of you, and `warrior.attack()` to fight it. Remember, you can only do one action per turn."</span>,
+  <span class="hljs-attr">clue</span>:
+    <span class="hljs-string">'Add an if/else condition using `warrior.feel().isEmpty()` to decide whether to attack or walk.'</span>,
+  <span class="hljs-attr">timeBonus</span>: <span class="hljs-number">20</span>,
+  <span class="hljs-attr">aceScore</span>: <span class="hljs-number">26</span>,
+  <span class="hljs-attr">floor</span>: {
+    <span class="hljs-attr">size</span>: {
+      <span class="hljs-attr">width</span>: <span class="hljs-number">8</span>,
+      <span class="hljs-attr">height</span>: <span class="hljs-number">1</span>,
+    },
+    <span class="hljs-attr">stairs</span>: {
+      <span class="hljs-attr">x</span>: <span class="hljs-number">7</span>,
+      <span class="hljs-attr">y</span>: <span class="hljs-number">0</span>,
+    },
+    <span class="hljs-attr">warrior</span>: {
+      <span class="hljs-attr">character</span>: <span class="hljs-string">'@'</span>,
+      <span class="hljs-attr">maxHealth</span>: <span class="hljs-number">20</span>,
+      <span class="hljs-attr">position</span>: {
+        <span class="hljs-attr">x</span>: <span class="hljs-number">0</span>,
+        <span class="hljs-attr">y</span>: <span class="hljs-number">0</span>,
+        <span class="hljs-attr">facing</span>: <span class="hljs-string">'east'</span>,
+      },
+      <span class="hljs-attr">abilities</span>: {
+        <span class="hljs-attr">attack</span>: valyrianSteelSwordAttack,
+        <span class="hljs-attr">feel</span>: feel,
+      },
+    },
+    <span class="hljs-attr">units</span>: [
+      {
+        ...WhiteWalker,
+        <span class="hljs-attr">position</span>: {
+          <span class="hljs-attr">x</span>: <span class="hljs-number">4</span>,
+          <span class="hljs-attr">y</span>: <span class="hljs-number">0</span>,
+          <span class="hljs-attr">facing</span>: <span class="hljs-string">'west'</span>,
+        },
+      },
+    ],
+  },
+};
+
+<span class="hljs-built_in">module</span>.exports = {
+  <span class="hljs-attr">name</span>: <span class="hljs-string">'Game of Thrones'</span>,
+  <span class="hljs-attr">description</span>:
+    <span class="hljs-string">'There is only one war that matters: the Great War. And it is here.'</span>,
+  <span class="hljs-attr">levels</span>: [Level1, Level2],
+};
+</code></pre>
+<p>Just like what we did with the White Walker definition, we can extract the
+common fields of the Warrior to an object and then use spread properties to add
+it to every level:</p>
+<pre><code class="hljs css languages- js"><span class="hljs-keyword">const</span> Warrior = {
+  <span class="hljs-attr">character</span>: <span class="hljs-string">'@'</span>,
+  <span class="hljs-attr">maxHealth</span>: <span class="hljs-number">20</span>,
+};
+
+<span class="hljs-keyword">const</span> Level1 = {
+  <span class="hljs-attr">description</span>:
+    <span class="hljs-string">"You've entered the ancient castle of Eastwatch to escape from a blizzard. But it's deadly cold inside too."</span>,
+  <span class="hljs-attr">tip</span>:
+    <span class="hljs-string">"Call `warrior.walk()` to walk forward in the Player's `playTurn` method."</span>,
+  <span class="hljs-attr">timeBonus</span>: <span class="hljs-number">15</span>,
+  <span class="hljs-attr">aceScore</span>: <span class="hljs-number">10</span>,
+  <span class="hljs-attr">floor</span>: {
+    <span class="hljs-attr">size</span>: {
+      <span class="hljs-attr">width</span>: <span class="hljs-number">8</span>,
+      <span class="hljs-attr">height</span>: <span class="hljs-number">1</span>,
+    },
+    <span class="hljs-attr">stairs</span>: {
+      <span class="hljs-attr">x</span>: <span class="hljs-number">7</span>,
+      <span class="hljs-attr">y</span>: <span class="hljs-number">0</span>,
+    },
+    <span class="hljs-attr">warrior</span>: {
+      ...Warrior,
+      <span class="hljs-attr">abilities</span>: {
+        <span class="hljs-attr">walk</span>: walk,
+      },
+      <span class="hljs-attr">position</span>: {
+        <span class="hljs-attr">x</span>: <span class="hljs-number">0</span>,
+        <span class="hljs-attr">y</span>: <span class="hljs-number">0</span>,
+        <span class="hljs-attr">facing</span>: <span class="hljs-string">'east'</span>,
+      },
+    },
+  },
+};
+
+<span class="hljs-keyword">const</span> Level2 = {
+  <span class="hljs-attr">description</span>:
+    <span class="hljs-string">'The cold became more intense. In the distance, you see a pair of deep and blue eyes, a blue that burns like ice.'</span>,
+  <span class="hljs-attr">tip</span>:
+    <span class="hljs-string">"Use `warrior.feel().isEmpty()` to see if there's anything in front of you, and `warrior.attack()` to fight it. Remember, you can only do one action per turn."</span>,
+  <span class="hljs-attr">clue</span>:
+    <span class="hljs-string">'Add an if/else condition using `warrior.feel().isEmpty()` to decide whether to attack or walk.'</span>,
+  <span class="hljs-attr">timeBonus</span>: <span class="hljs-number">20</span>,
+  <span class="hljs-attr">aceScore</span>: <span class="hljs-number">26</span>,
+  <span class="hljs-attr">floor</span>: {
+    <span class="hljs-attr">size</span>: {
+      <span class="hljs-attr">width</span>: <span class="hljs-number">8</span>,
+      <span class="hljs-attr">height</span>: <span class="hljs-number">1</span>,
+    },
+    <span class="hljs-attr">stairs</span>: {
+      <span class="hljs-attr">x</span>: <span class="hljs-number">7</span>,
+      <span class="hljs-attr">y</span>: <span class="hljs-number">0</span>,
+    },
+    <span class="hljs-attr">warrior</span>: {
+      ...Warrior,
+      <span class="hljs-attr">abilities</span>: {
+        <span class="hljs-attr">attack</span>: valyrianSteelSwordAttack,
+        <span class="hljs-attr">feel</span>: feel,
+      },
+      <span class="hljs-attr">position</span>: {
+        <span class="hljs-attr">x</span>: <span class="hljs-number">0</span>,
+        <span class="hljs-attr">y</span>: <span class="hljs-number">0</span>,
+        <span class="hljs-attr">facing</span>: <span class="hljs-string">'east'</span>,
+      },
+    },
+    <span class="hljs-attr">units</span>: [
+      {
+        ...WhiteWalker,
+        <span class="hljs-attr">position</span>: {
+          <span class="hljs-attr">x</span>: <span class="hljs-number">4</span>,
+          <span class="hljs-attr">y</span>: <span class="hljs-number">0</span>,
+          <span class="hljs-attr">facing</span>: <span class="hljs-string">'west'</span>,
+        },
+      },
+    ],
+  },
+};
+</code></pre>
+<p>With regard to the abilities, we can see that both attack abilities are very
+similar. Let's do something about that:</p>
+<pre><code class="hljs css languages- js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">attackCreator</span>(<span class="hljs-params">{ power, weapon }</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">unit</span> =&gt;</span> ({
+    <span class="hljs-attr">action</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">description</span>: <span class="hljs-string">`Attack a unit in the given direction (forward by default) with your <span class="hljs-subst">${weapon}</span>, dealing <span class="hljs-subst">${power}</span> HP of damage.`</span>,
+    perform(direction = <span class="hljs-string">'forward'</span>) {
+      <span class="hljs-keyword">const</span> receiver = unit.getSpaceAt(direction).getUnit();
+      <span class="hljs-keyword">if</span> (receiver) {
+        unit.log(<span class="hljs-string">`attacks <span class="hljs-subst">${direction}</span> and hits <span class="hljs-subst">${receiver}</span>`</span>);
+        unit.damage(receiver, power);
+      } <span class="hljs-keyword">else</span> {
+        unit.log(<span class="hljs-string">`attacks <span class="hljs-subst">${direction}</span> and hits nothing`</span>);
+      }
+    },
+  });
+}
+
+<span class="hljs-keyword">const</span> valyrianSteelSwordAttack = attackCreator({
+  <span class="hljs-attr">power</span>: <span class="hljs-number">5</span>,
+  <span class="hljs-attr">weapon</span>: <span class="hljs-string">'Valyrian steel sword'</span>,
+});
+
+<span class="hljs-keyword">const</span> iceCrystalSwordAttack = attackCreator({
+  <span class="hljs-attr">power</span>: <span class="hljs-number">3</span>,
+  <span class="hljs-attr">weapon</span>: <span class="hljs-string">'ice blade'</span>,
+});
+</code></pre>
+<blockquote>
+<p>We can call this the &quot;ability creator&quot; pattern, where we define a function
+(the ability creator) which returns another function (the ability) customized
+with the parameters we passed to the creator.</p>
+</blockquote>
+<p>To end with the refactor, let's get rid of all those magic strings representing
+directions. There's an official package called
+<a href="https://github.com/olistic/warriorjs/tree/master/packages/warriorjs-geography"><code>@warriorjs/geography</code></a>
+that exposes a bunch of constants and methods related to directioning. Let's use
+it:</p>
+<pre><code class="hljs css languages- js"><span class="hljs-keyword">const</span> {
+  EAST,
+  FORWARD,
+  RELATIVE_DIRECTIONS,
+  WEST,
+} = <span class="hljs-built_in">require</span>(<span class="hljs-string">'@warriorjs/geography'</span>);
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">attackCreator</span>(<span class="hljs-params">{ power, weapon }</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">unit</span> =&gt;</span> ({
+    <span class="hljs-attr">action</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">description</span>: <span class="hljs-string">`Attack a unit in the given direction (forward by default) with your <span class="hljs-subst">${weapon}</span>, dealing <span class="hljs-subst">${power}</span> HP of damage.`</span>,
+    perform(direction = FORWARD) {
+      <span class="hljs-keyword">const</span> receiver = unit.getSpaceAt(direction).getUnit();
+      <span class="hljs-keyword">if</span> (receiver) {
+        unit.log(<span class="hljs-string">`attacks <span class="hljs-subst">${direction}</span> and hits <span class="hljs-subst">${receiver}</span>`</span>);
+        unit.damage(receiver, power);
+      } <span class="hljs-keyword">else</span> {
+        unit.log(<span class="hljs-string">`attacks <span class="hljs-subst">${direction}</span> and hits nothing`</span>);
+      }
+    },
+  });
+}
+
+<span class="hljs-keyword">const</span> valyrianSteelSwordAttack = attackCreator({
+  <span class="hljs-attr">power</span>: <span class="hljs-number">5</span>,
+  <span class="hljs-attr">weapon</span>: <span class="hljs-string">'Valyrian steel sword'</span>,
+});
+
+<span class="hljs-keyword">const</span> iceCrystalSwordAttack = attackCreator({
+  <span class="hljs-attr">power</span>: <span class="hljs-number">3</span>,
+  <span class="hljs-attr">weapon</span>: <span class="hljs-string">'ice blade'</span>,
+});
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">feel</span>(<span class="hljs-params">unit</span>) </span>{
+  <span class="hljs-keyword">return</span> {
+    <span class="hljs-attr">description</span>:
+      <span class="hljs-string">'Return the adjacent space in the given direction (forward by default).'</span>,
+    perform(direction = FORWARD) {
+      <span class="hljs-keyword">return</span> unit.getSensedSpaceAt(direction);
+    },
+  };
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">walk</span>(<span class="hljs-params">unit</span>) </span>{
+  <span class="hljs-keyword">return</span> {
+    <span class="hljs-attr">action</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">description</span>: <span class="hljs-string">'Move one space in the given direction (forward by default).'</span>,
+    perform(direction = FORWARD) {
+      <span class="hljs-keyword">const</span> space = unit.getSpaceAt(direction);
+      <span class="hljs-keyword">if</span> (space.isEmpty()) {
+        unit.move(direction);
+        unit.log(<span class="hljs-string">`walks <span class="hljs-subst">${direction}</span>`</span>);
+      } <span class="hljs-keyword">else</span> {
+        unit.log(<span class="hljs-string">`walks <span class="hljs-subst">${direction}</span> and bumps into <span class="hljs-subst">${space}</span>`</span>);
+      }
+    },
+  };
+}
+
+<span class="hljs-keyword">const</span> Warrior = {
+  <span class="hljs-attr">character</span>: <span class="hljs-string">'@'</span>,
+  <span class="hljs-attr">maxHealth</span>: <span class="hljs-number">20</span>,
+};
+
+<span class="hljs-keyword">const</span> WhiteWalker = {
+  <span class="hljs-attr">name</span>: <span class="hljs-string">'White Walker'</span>,
+  <span class="hljs-attr">character</span>: <span class="hljs-string">'w'</span>,
+  <span class="hljs-attr">maxHealth</span>: <span class="hljs-number">12</span>,
+  <span class="hljs-attr">abilities</span>: {
+    <span class="hljs-attr">attack</span>: iceCrystalSwordAttack,
+    <span class="hljs-attr">feel</span>: feel,
+  },
+  playTurn(whiteWalker) {
+    <span class="hljs-keyword">const</span> enemyDirection = RELATIVE_DIRECTIONS.find(<span class="hljs-function"><span class="hljs-params">direction</span> =&gt;</span> {
+      <span class="hljs-keyword">const</span> unit = whiteWalker.feel(direction).getUnit();
+      <span class="hljs-keyword">return</span> unit &amp;&amp; unit.isEnemy();
+    });
+    <span class="hljs-keyword">if</span> (enemyDirection) {
+      whiteWalker.attack(enemyDirection);
+    }
+  },
+};
+
+<span class="hljs-keyword">const</span> Level1 = {
+  <span class="hljs-attr">description</span>:
+    <span class="hljs-string">"You've entered the ancient castle of Eastwatch to escape from a blizzard. But it's deadly cold inside too."</span>,
+  <span class="hljs-attr">tip</span>:
+    <span class="hljs-string">"Call `warrior.walk()` to walk forward in the Player's `playTurn` method."</span>,
+  <span class="hljs-attr">timeBonus</span>: <span class="hljs-number">15</span>,
+  <span class="hljs-attr">aceScore</span>: <span class="hljs-number">10</span>,
+  <span class="hljs-attr">floor</span>: {
+    <span class="hljs-attr">size</span>: {
+      <span class="hljs-attr">width</span>: <span class="hljs-number">8</span>,
+      <span class="hljs-attr">height</span>: <span class="hljs-number">1</span>,
+    },
+    <span class="hljs-attr">stairs</span>: {
+      <span class="hljs-attr">x</span>: <span class="hljs-number">7</span>,
+      <span class="hljs-attr">y</span>: <span class="hljs-number">0</span>,
+    },
+    <span class="hljs-attr">warrior</span>: {
+      ...Warrior,
+      <span class="hljs-attr">abilities</span>: {
+        <span class="hljs-attr">walk</span>: walk,
+      },
+      <span class="hljs-attr">position</span>: {
+        <span class="hljs-attr">x</span>: <span class="hljs-number">0</span>,
+        <span class="hljs-attr">y</span>: <span class="hljs-number">0</span>,
+        <span class="hljs-attr">facing</span>: EAST,
+      },
+    },
+  },
+};
+
+<span class="hljs-keyword">const</span> Level2 = {
+  <span class="hljs-attr">description</span>:
+    <span class="hljs-string">'The cold became more intense. In the distance, you see a pair of deep and blue eyes, a blue that burns like ice.'</span>,
+  <span class="hljs-attr">tip</span>:
+    <span class="hljs-string">"Use `warrior.feel().isEmpty()` to see if there's anything in front of you, and `warrior.attack()` to fight it. Remember, you can only do one action per turn."</span>,
+  <span class="hljs-attr">clue</span>:
+    <span class="hljs-string">'Add an if/else condition using `warrior.feel().isEmpty()` to decide whether to attack or walk.'</span>,
+  <span class="hljs-attr">timeBonus</span>: <span class="hljs-number">20</span>,
+  <span class="hljs-attr">aceScore</span>: <span class="hljs-number">26</span>,
+  <span class="hljs-attr">floor</span>: {
+    <span class="hljs-attr">size</span>: {
+      <span class="hljs-attr">width</span>: <span class="hljs-number">8</span>,
+      <span class="hljs-attr">height</span>: <span class="hljs-number">1</span>,
+    },
+    <span class="hljs-attr">stairs</span>: {
+      <span class="hljs-attr">x</span>: <span class="hljs-number">7</span>,
+      <span class="hljs-attr">y</span>: <span class="hljs-number">0</span>,
+    },
+    <span class="hljs-attr">warrior</span>: {
+      ...Warrior,
+      <span class="hljs-attr">abilities</span>: {
+        <span class="hljs-attr">attack</span>: valyrianSteelSwordAttack,
+        <span class="hljs-attr">feel</span>: feel,
+      },
+      <span class="hljs-attr">position</span>: {
+        <span class="hljs-attr">x</span>: <span class="hljs-number">0</span>,
+        <span class="hljs-attr">y</span>: <span class="hljs-number">0</span>,
+        <span class="hljs-attr">facing</span>: EAST,
+      },
+    },
+    <span class="hljs-attr">units</span>: [
+      {
+        ...WhiteWalker,
+        <span class="hljs-attr">position</span>: {
+          <span class="hljs-attr">x</span>: <span class="hljs-number">4</span>,
+          <span class="hljs-attr">y</span>: <span class="hljs-number">0</span>,
+          <span class="hljs-attr">facing</span>: WEST,
+        },
+      },
+    ],
+  },
+};
+
+<span class="hljs-built_in">module</span>.exports = {
+  <span class="hljs-attr">name</span>: <span class="hljs-string">'Game of Thrones'</span>,
+  <span class="hljs-attr">description</span>:
+    <span class="hljs-string">'There is only one war that matters: the Great War. And it is here.'</span>,
+  <span class="hljs-attr">levels</span>: [Level1, Level2],
+};
+</code></pre>
+<p>Much better! Keep reading to learn how to test and publish your tower so that
+other players can play!</p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="defining-units">← Defining Units</a><a class="docs-next button" href="testing">Testing →</a></div></div></div><nav class="onPageNav"></nav></div><footer class="footerSection nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/warriorjs-sword.svg" alt="WarriorJS Docs"/></a><div><h5>Docs</h5><a href="/docs/en/player/overview">Player</a><a href="/docs/en/maker/introduction">Maker</a></div><div><h5>Community</h5><a href="https://spectrum.chat/warriorjs" target="_blank" rel="noopener noreferrer">Spectrum</a><a href="https://twitter.com/warrior_js" target="_blank" rel="noopener noreferrer">Twitter</a><a href="https://twitter.com/warrior_js" target="_blank" rel="noopener noreferrer"><img alt="Follow WarriorJS on Twitter" src="https://img.shields.io/twitter/follow/warrior_js.svg?label=Follow+WarriorJS&amp;style=social"/></a></div><div><h5>More</h5><a href="https://opencollective.com/warriorjs" target="_blank" rel="noopener noreferrer">Donate</a><a href="https://github.com/olistic/warriorjs" target="_blank" rel="noopener noreferrer">GitHub</a><a class="github-button" href="https://github.com/olistic/warriorjs" data-icon="octicon-star" data-show-count="true" aria-label="Star this project on GitHub">Star</a></div></section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script><script>
+              var search = docsearch({
+                
+                apiKey: 'af0d3f56837aacc96ccd573d9208966c',
+                indexName: 'warriorjs',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>

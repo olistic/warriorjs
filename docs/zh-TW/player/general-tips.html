@@ -1,0 +1,55 @@
+<!DOCTYPE html><html lang="zh-TW"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>基本秘訣 · WarriorJS Docs</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="- **如果你在某層卡住了，請查看README檔**，確保你已嘗試過每一個技能 (ability)。"/><meta property="og:title" content="基本秘訣 · WarriorJS Docs"/><meta property="og:type" content="website"/><meta property="og:url" content="https://warrior.js.org/index.html"/><meta property="og:description" content="- **如果你在某層卡住了，請查看README檔**，確保你已嘗試過每一個技能 (ability)。"/><meta property="og:image" content="https://warrior.js.org/img/warriorjs.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://warrior.js.org/img/warriorjs.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-118632697-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible doc separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/zh-TW"><img class="logo" src="/img/warriorjs-text.svg" alt="WarriorJS Docs"/></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/zh-TW/player/overview" target="_self">Player</a></li><li class=""><a href="/docs/zh-TW/maker/introduction" target="_self">Maker</a></li><li class=""><a href="/docs/zh-TW/community/socialize" target="_self">社區</a></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg"/>繁體中文</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/en/player/general-tips">English</a></li><li><a href="/docs/ar/player/general-tips">العربية</a></li><li><a href="/docs/ca/player/general-tips">Català</a></li><li><a href="/docs/cs/player/general-tips">Čeština</a></li><li><a href="/docs/de/player/general-tips">Deutsch</a></li><li><a href="/docs/es-ES/player/general-tips">Español</a></li><li><a href="/docs/fr/player/general-tips">Français</a></li><li><a href="/docs/pl/player/general-tips">Polskie</a></li><li><a href="/docs/ru/player/general-tips">Русский</a></li><li><a href="/docs/sv-SE/player/general-tips">Svenska</a></li><li><a href="/docs/tr/player/general-tips">Türkçe</a></li><li><a href="/docs/zh-CN/player/general-tips">中文</a></li><li><a href="https://crowdin.com/project/warriorjs" target="_blank" rel="noreferrer noopener">協助翻譯</a></li></ul></div></li><script>
+        const languagesMenuItem = document.getElementById("languages-menu");
+        const languagesDropDown = document.getElementById("languages-dropdown");
+        languagesMenuItem.addEventListener("click", function(){
+          if(languagesDropDown.className == "hide") {
+            languagesDropDown.className = "visible";
+          } else {
+            languagesDropDown.className = "hide";
+          }
+        });
+      </script></span><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><li class=""><a href="https://github.com/olistic/warriorjs" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>提示 &amp; 技巧</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup navGroupActive"><h3>遊戲</h3><ul><li class="navListItem"><a class="navItem" href="/docs/zh-TW/player/overview">概覽</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-TW/player/object">目的</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-TW/player/gameplay">開始遊戲</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-TW/player/perspective">視角</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-TW/player/scoring">得分</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-TW/player/epic-mode">史詩模式</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-TW/player/towers">塔樓</a></li></ul></div><div class="navGroup navGroupActive"><h3>概念</h3><ul><li class="navListItem"><a class="navItem" href="/docs/zh-TW/player/units">單位</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-TW/player/warrior">勇士</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-TW/player/abilities">技能</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-TW/player/spaces">空間</a></li></ul></div><div class="navGroup navGroupActive"><h3>玩家 API</h3><ul><li class="navListItem"><a class="navItem" href="/docs/zh-TW/player/space-api">空間 API</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-TW/player/unit-api">單位 API</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-TW/player/turn-api">回合應用程式介面 (Turn API)</a></li></ul></div><div class="navGroup navGroupActive"><h3>提示 &amp; 技巧</h3><ul><li class="navListItem navListItemActive"><a class="navItem navItemActive" href="/docs/zh-TW/player/general-tips">一般</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-TW/player/js-tips">JavaScript</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-TW/player/ai-tips">人工智能</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-TW/player/cli-tips">命令列</a></li></ul></div><div class="navGroup navGroupActive"><h3>命令列</h3><ul><li class="navListItem"><a class="navItem" href="/docs/zh-TW/player/install">Install</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-TW/player/options">Options</a></li></ul></div></div></section></div><script>
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/warriorjs/zh-TW" target="_blank" rel="noreferrer noopener">Translate</a><h1>基本秘訣</h1></header><article><div><span><ul>
+<li><p><strong>如果你在某層卡住了，請查看README檔</strong>，確保你已嘗試過每一個技能 (ability)。</p></li>
+<li><p><strong>如果你的體力值差不多用光了，請確保你在沒有敵人在附近時休息</strong> (並注意著你的體力值)。 另外，在可能的情況下，盡量使用遠程武器 (例如新手塔 (Baby Steps tower) 的弓)。</p></li>
+<li><p><strong>使用感官技 (senses) 的消耗很低，請大量使用。</strong>好好存儲得到的資訊，好幫助你更好的判斷之後要採取的行動。</p></li>
+<li><p><strong>如果你的目標是分數，記得清掃整個區域，</strong>就算你已走近樓梯了都不要進去，待你完成該層的所有東西才好通關 (如果你還有充足體力)， 你可使用遠程感官技 (例如新手塔的&quot;觀察 (look)&quot;及&quot;聆聽 (listen)&quot;) 判斷還有沒有餘下的敵人。</p></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="turn-api">← 回合應用程式介面 (Turn API)</a><a class="docs-next button" href="js-tips">JavaScript 秘訣 →</a></div></div></div><nav class="onPageNav"></nav></div><footer class="footerSection nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/warriorjs-sword.svg" alt="WarriorJS Docs"/></a><div><h5>Docs</h5><a href="/docs/zh-TW/player/overview">Player</a><a href="/docs/zh-TW/maker/introduction">Maker</a></div><div><h5>Community</h5><a href="https://spectrum.chat/warriorjs" target="_blank" rel="noopener noreferrer">Spectrum</a><a href="https://twitter.com/warrior_js" target="_blank" rel="noopener noreferrer">Twitter</a><a href="https://twitter.com/warrior_js" target="_blank" rel="noopener noreferrer"><img alt="Follow WarriorJS on Twitter" src="https://img.shields.io/twitter/follow/warrior_js.svg?label=Follow+WarriorJS&amp;style=social"/></a></div><div><h5>More</h5><a href="https://opencollective.com/warriorjs" target="_blank" rel="noopener noreferrer">Donate</a><a href="https://github.com/olistic/warriorjs" target="_blank" rel="noopener noreferrer">GitHub</a><a class="github-button" href="https://github.com/olistic/warriorjs" data-icon="octicon-star" data-show-count="true" aria-label="Star this project on GitHub">Star</a></div></section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script><script>
+              var search = docsearch({
+                
+                apiKey: 'af0d3f56837aacc96ccd573d9208966c',
+                indexName: 'warriorjs',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>

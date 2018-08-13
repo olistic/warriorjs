@@ -1,0 +1,80 @@
+<!DOCTYPE html><html lang="de"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Gameplay · WarriorJS Docs</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="Das Spiel ist in Züge unterteilt. Jeder Zug startet mit der Aktion deines Kämpfers, gefolgt von Aktionen der anderen Einheiten auf der Etage."/><meta property="og:title" content="Gameplay · WarriorJS Docs"/><meta property="og:type" content="website"/><meta property="og:url" content="https://warrior.js.org/index.html"/><meta property="og:description" content="Das Spiel ist in Züge unterteilt. Jeder Zug startet mit der Aktion deines Kämpfers, gefolgt von Aktionen der anderen Einheiten auf der Etage."/><meta property="og:image" content="https://warrior.js.org/img/warriorjs.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://warrior.js.org/img/warriorjs.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-118632697-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible doc separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/de"><img class="logo" src="/img/warriorjs-text.svg" alt="WarriorJS Docs"/></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/de/player/overview" target="_self">Player</a></li><li class=""><a href="/docs/de/maker/introduction" target="_self">Maker</a></li><li class=""><a href="/docs/de/community/socialize" target="_self">Community</a></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg"/>Deutsch</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/en/player/gameplay">English</a></li><li><a href="/docs/ar/player/gameplay">العربية</a></li><li><a href="/docs/ca/player/gameplay">Català</a></li><li><a href="/docs/cs/player/gameplay">Čeština</a></li><li><a href="/docs/es-ES/player/gameplay">Español</a></li><li><a href="/docs/fr/player/gameplay">Français</a></li><li><a href="/docs/pl/player/gameplay">Polskie</a></li><li><a href="/docs/ru/player/gameplay">Русский</a></li><li><a href="/docs/sv-SE/player/gameplay">Svenska</a></li><li><a href="/docs/tr/player/gameplay">Türkçe</a></li><li><a href="/docs/zh-CN/player/gameplay">中文</a></li><li><a href="/docs/zh-TW/player/gameplay">繁體中文</a></li><li><a href="https://crowdin.com/project/warriorjs" target="_blank" rel="noreferrer noopener">Hilf bei der Übersetzung</a></li></ul></div></li><script>
+        const languagesMenuItem = document.getElementById("languages-menu");
+        const languagesDropDown = document.getElementById("languages-dropdown");
+        languagesMenuItem.addEventListener("click", function(){
+          if(languagesDropDown.className == "hide") {
+            languagesDropDown.className = "visible";
+          } else {
+            languagesDropDown.className = "hide";
+          }
+        });
+      </script></span><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><li class=""><a href="https://github.com/olistic/warriorjs" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>Spiel</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup navGroupActive"><h3>Spiel</h3><ul><li class="navListItem"><a class="navItem" href="/docs/de/player/overview">Übersicht</a></li><li class="navListItem"><a class="navItem" href="/docs/de/player/object">Ziel</a></li><li class="navListItem navListItemActive"><a class="navItem navItemActive" href="/docs/de/player/gameplay">Gameplay</a></li><li class="navListItem"><a class="navItem" href="/docs/de/player/perspective">Perspektive</a></li><li class="navListItem"><a class="navItem" href="/docs/de/player/scoring">Punkte erzielen</a></li><li class="navListItem"><a class="navItem" href="/docs/de/player/epic-mode">Epic-Mode</a></li><li class="navListItem"><a class="navItem" href="/docs/de/player/towers">Türme</a></li></ul></div><div class="navGroup navGroupActive"><h3>Konzepte</h3><ul><li class="navListItem"><a class="navItem" href="/docs/de/player/units">Einheiten</a></li><li class="navListItem"><a class="navItem" href="/docs/de/player/warrior">Kämpfer</a></li><li class="navListItem"><a class="navItem" href="/docs/de/player/abilities">Fähigkeiten</a></li><li class="navListItem"><a class="navItem" href="/docs/de/player/spaces">Bereiche</a></li></ul></div><div class="navGroup navGroupActive"><h3>Player API</h3><ul><li class="navListItem"><a class="navItem" href="/docs/de/player/space-api">Space API</a></li><li class="navListItem"><a class="navItem" href="/docs/de/player/unit-api">Unit API</a></li><li class="navListItem"><a class="navItem" href="/docs/de/player/turn-api">Turn API</a></li></ul></div><div class="navGroup navGroupActive"><h3>Tipps &amp; Tricks</h3><ul><li class="navListItem"><a class="navItem" href="/docs/de/player/general-tips">Allgemeines</a></li><li class="navListItem"><a class="navItem" href="/docs/de/player/js-tips">JavaScript</a></li><li class="navListItem"><a class="navItem" href="/docs/de/player/ai-tips">Künstliche Intelligenz</a></li><li class="navListItem"><a class="navItem" href="/docs/de/player/cli-tips">CLI</a></li></ul></div><div class="navGroup navGroupActive"><h3>CLI</h3><ul><li class="navListItem"><a class="navItem" href="/docs/de/player/install">Install</a></li><li class="navListItem"><a class="navItem" href="/docs/de/player/options">Options</a></li></ul></div></div></section></div><script>
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/warriorjs/de" target="_blank" rel="noreferrer noopener">Translate</a><h1>Gameplay</h1></header><article><div><span><p>Das Spiel ist in Züge unterteilt. Jeder Zug startet mit der Aktion deines Kämpfers, gefolgt von Aktionen der anderen Einheiten auf der Etage.</p>
+<h2><a class="anchor" aria-hidden="true" id="code"></a><a href="#code" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Code</h2>
+<p>Öffne die <code>Player.js</code>-Datei in dem Ordner deines Profils. Folgenden Code solltest du sehen:</p>
+<pre><code class="hljs css languages- js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Player</span> </span>{
+  playTurn(warrior) {
+    <span class="hljs-comment">// Cool code goes here.</span>
+  }
+}
+</code></pre>
+<p>Die <code>playTurn</code>-Methode muss nun mit Logik gefüllt werden, die deinem Kämpfer sagt, was er je nach Situation zu tun hat.</p>
+<p>Lese ausführlich die README-Datei innerhalb des Ordners deines Profils, um Informationen über den aktuellen Level und den Fähigkeiten deines Kämpfers zu erhalten.</p>
+<p>Here is an example from the &quot;Baby Steps&quot; tower which will instruct the warrior to walk if there's nothing ahead, otherwise attack:</p>
+<pre><code class="hljs css languages- js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Player</span> </span>{
+  playTurn(warrior) {
+    <span class="hljs-keyword">if</span> (warrior.feel().isEmpty()) {
+      warrior.walk();
+    } <span class="hljs-keyword">else</span> {
+      warrior.attack();
+    }
+  }
+}
+</code></pre>
+<blockquote>
+<p>Dieses Beispiel setzt voraus, dass dein Kämpfer die Fähigkeiten &quot;attack&quot;, &quot;feel&quot; und &quot;walk&quot; besitzt.</p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="spielen"></a><a href="#spielen" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Spielen</h2>
+<p>Sobald du die <code>Player.js</code>-Datei fertig bearbeitet hast, speichere sie und führe den <code>warriorjs</code>-Befehl erneut aus, um das aktuelle Level zu spielen.</p>
+<p>Du kannst deinen Code nicht mitten im Level ändern, sodass du von Beginn an deinen Kämpfer für alle Eventualitäten des Levels wappnen musst.</p>
+<h2><a class="anchor" aria-hidden="true" id="ergebnis"></a><a href="#ergebnis" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Ergebnis</h2>
+<p>Solltest alle Lebenspunkte verlieren, ist der Level verloren. Allerdings wirst du hierfür nicht bestraft. Schau dir einfach nochmal deinen Code in der <code>Player.js</code>-Datei an, verbessere ihn und versuche es erneut.</p>
+<p>Sobald du (durch das Erreichen der Treppe) ein Level abgeschlossen hast, wird die README-Datei für das nächste Level geupdated. Verändere die <code>Player.js</code>-Datei und führe den <code>warriorjs</code>-Befehl erneut aus, um das nächste Level zu spielen.</p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="object">← Ziel</a><a class="docs-next button" href="perspective">Perspektive →</a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#code">Code</a></li><li><a href="#spielen">Spielen</a></li><li><a href="#ergebnis">Ergebnis</a></li></ul></nav></div><footer class="footerSection nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/warriorjs-sword.svg" alt="WarriorJS Docs"/></a><div><h5>Docs</h5><a href="/docs/de/player/overview">Player</a><a href="/docs/de/maker/introduction">Maker</a></div><div><h5>Community</h5><a href="https://spectrum.chat/warriorjs" target="_blank" rel="noopener noreferrer">Spectrum</a><a href="https://twitter.com/warrior_js" target="_blank" rel="noopener noreferrer">Twitter</a><a href="https://twitter.com/warrior_js" target="_blank" rel="noopener noreferrer"><img alt="Follow WarriorJS on Twitter" src="https://img.shields.io/twitter/follow/warrior_js.svg?label=Follow+WarriorJS&amp;style=social"/></a></div><div><h5>More</h5><a href="https://opencollective.com/warriorjs" target="_blank" rel="noopener noreferrer">Donate</a><a href="https://github.com/olistic/warriorjs" target="_blank" rel="noopener noreferrer">GitHub</a><a class="github-button" href="https://github.com/olistic/warriorjs" data-icon="octicon-star" data-show-count="true" aria-label="Star this project on GitHub">Star</a></div></section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script><script>
+              var search = docsearch({
+                
+                apiKey: 'af0d3f56837aacc96ccd573d9208966c',
+                indexName: 'warriorjs',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>
