@@ -74,14 +74,10 @@ yourself).
 Returns an array of up to `[range]` [spaces][spaces] in the given direction
 (forward by default).
 
-[actions]: https://warrior.js.org/docs/abilities#actions
-[senses]: https://warrior.js.org/docs/abilities#senses
-[spaces]: https://warrior.js.org/docs/spaces
-
 ### `unit.think(thought)`:
 
-Think about your options before choosing an action.
+Think out loud (`console.log` replacement).
 
-[actions]: https://warrior.js.org/docs/abilities#actions
-[senses]: https://warrior.js.org/docs/abilities#senses
-[spaces]: https://warrior.js.org/docs/spaces
+[actions]: https://warrior.js.org/docs/player/abilities#actions
+[senses]: https://warrior.js.org/docs/player/abilities#senses
+[spaces]: https://warrior.js.org/docs/player/spaces

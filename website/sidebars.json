@@ -1,36 +1,41 @@
 {
   "play": {
-    "Introduction": ["play/overview", "play/set-up"],
     "Game": [
-      "play/object",
-      "play/gameplay",
-      "play/perspective",
-      "play/scoring",
-      "play/epic-mode",
-      "play/towers"
+      "player/overview",
+      "player/object",
+      "player/gameplay",
+      "player/perspective",
+      "player/scoring",
+      "player/epic-mode",
+      "player/towers"
     ],
-    "Concepts": ["play/units", "play/warrior", "play/abilities", "play/spaces"],
-    "Player API": ["play/space-api", "play/unit-api", "play/turn-api"],
+    "Concepts": [
+      "player/units",
+      "player/warrior",
+      "player/abilities",
+      "player/spaces"
+    ],
+    "Player API": ["player/space-api", "player/unit-api", "player/turn-api"],
     "Tips & Tricks": [
-      "play/general-tips",
-      "play/js-tips",
-      "play/ai-tips",
-      "play/cli-tips"
+      "player/general-tips",
+      "player/js-tips",
+      "player/ai-tips",
+      "player/cli-tips"
     ],
-    "Configuration": ["play/cli-options"]
+    "CLI": ["player/install", "player/options"]
   },
   "make": {
     "Guide": [
-      "make/introduction",
-      "make/creating-tower",
-      "make/adding-levels",
-      "make/defining-abilities",
-      "make/defining-units",
-      "make/refactoring",
-      "make/testing",
-      "make/publishing"
+      "maker/introduction",
+      "maker/creating-tower",
+      "maker/adding-levels",
+      "maker/defining-abilities",
+      "maker/defining-units",
+      "maker/refactoring",
+      "maker/testing",
+      "maker/publishing"
     ],
-    "Maker API": ["make/space-api", "make/unit-api"]
+    "Maker API": ["maker/space-api", "maker/unit-api"]
   },
   "community": {
     "Community": [

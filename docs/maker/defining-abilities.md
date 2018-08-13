@@ -38,7 +38,7 @@ function walk(unit) {
 
 And last but not least, we need to write the ability's logic in the `perform`
 function. Here, we can use any of the methods in the
-[Unit Maker API](make/unit-api.md). Let's do that:
+[Unit Maker API](maker/unit-api.md). Let's do that:
 
 ```js
 function walk(unit) {
@@ -135,9 +135,9 @@ function feel(unit) {
 
 > **IMPORTANT:** When returning one or multiple spaces from senses, use
 > `unit.getSensedSpaceAt()` instead of `unit.getSpaceAt()`. The former returns a
-> space that exposes only the [Space Player API](play/space-api.md), whereas the
-> latter exposes the [Space Maker API](make/space-api.md) and is meant to be
-> used internally, like in the attack ability before.
+> space that exposes only the [Space Player API](player/space-api.md), whereas
+> the latter exposes the [Space Maker API](maker/space-api.md) and is meant to
+> be used internally, like in the attack ability before.
 
 Finally, let's add them to the Warrior of the second level:
 

@@ -2,7 +2,7 @@
 
 > WarriorJS official effects.
 
-## [Effects](https://warrior.js.org/docs/effects)
+## [Effects](https://warrior.js.org/docs/player/effects)
 
 ### ticking
 

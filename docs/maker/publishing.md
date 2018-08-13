@@ -18,8 +18,7 @@ and `package.json` the npm package info:
 {
   "name": "warriorjs-tower-got",
   "version": "0.1.0",
-  "description":
-    "There is only one war that matters: the Great War. And it is here.",
+  "description": "There is only one war that matters: the Great War. And it is here.",
   "main": "index.js",
   "keywords": ["warriorjs-tower"],
   "dependencies": {

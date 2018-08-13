@@ -31,11 +31,11 @@ Have you made a tower? [Add it][add-community-tower] to the list!
 
 ## Making Towers
 
-Follow this [guide](make/introduction.md).
+Follow this [guide](maker/introduction.md).
 
 [warriorjs-tower-baby-steps]:
   https://github.com/olistic/warriorjs/tree/master/packages/warriorjs-tower-baby-steps
 [warriorjs-tower-tick-tick-boom]:
   https://github.com/olistic/warriorjs/tree/master/packages/warriorjs-tower-tick-tick-boom
 [add-community-tower]:
-  https://github.com/olistic/warriorjs/edit/master/docs/towers.md
+  https://github.com/olistic/warriorjs/edit/master/docs/player/towers.md

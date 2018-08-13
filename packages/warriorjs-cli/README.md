@@ -14,4 +14,4 @@ npm install --global @warriorjs/cli
 warriorjs
 ```
 
-For more in depth documentation see: https://warrior.js.org/docs/cli-options.
+For more in depth documentation see: https://warrior.js.org/docs/player/options.

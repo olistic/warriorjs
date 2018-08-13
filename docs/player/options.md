@@ -1,6 +1,6 @@
 ---
-id: cli-options
-title: CLI Options
+id: options
+title: Options
 ---
 
 There are various options you can pass to the `warriorjs` command to customize
