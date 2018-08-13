@@ -1,6 +1,6 @@
 ---
-id: set-up
-title: Set Up
+id: install
+title: Install
 ---
 
 Let's start by installing WarriorJS globally with [npm](https://npmjs.com).

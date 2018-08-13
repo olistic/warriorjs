@@ -13,7 +13,7 @@ Some future plans are briefly discussed in the repo's
 These are the many ways you can help:
 
 - Submit patches and features
-- Make [towers](play/towers.md) (new levels for the game)
+- Make [towers](player/towers.md) (new levels for the game)
 - Improve this documentation and website
 - Report bugs
 - Follow us on [Twitter](https://twitter.com/warrior_js)

@@ -51,9 +51,9 @@ visit the [official docs](https://warrior.js.org).
 
 Jump straight to some of the most-visited pages:
 
-- [Gameplay](https://warrior.js.org/docs/play/gameplay)
-- [Towers](https://warrior.js.org/docs/play/towers)
-- [Player API](https://warrior.js.org/docs/play/space-api)
+- [Gameplay](https://warrior.js.org/docs/player/gameplay)
+- [Towers](https://warrior.js.org/docs/player/towers)
+- [Player API](https://warrior.js.org/docs/player/space-api)
 
 ## CLI
 
@@ -75,7 +75,7 @@ warriorjs
 
 4.  You'll be pointed to a README file with instructions for the first level.
 
-Check out the [Set Up](https://warrior.js.org/docs/play/set-up) docs for more
+Check out the [Set Up](https://warrior.js.org/docs/player/set-up) docs for more
 details.
 
 ## Preview
@@ -94,7 +94,7 @@ details.
 We welcome contributions to WarriorJS! These are the many ways you can help:
 
 - Submit patches and features
-- Make [towers](https://warrior.js.org/docs/play/towers) (new levels for the
+- Make [towers](https://warrior.js.org/docs/player/towers) (new levels for the
   game)
 - Improve the [documentation and website](https://warrior.js.org)
 - Report bugs

@@ -66,7 +66,7 @@ const HomeSplash = ({ language }) => (
             <Button href="https://warriorjs.com/warriors/new?ref=docs" primary>
               <translate>Play Now</translate>
             </Button>
-            <Button href={getDocUrl('play/overview', language)}>
+            <Button href={getDocUrl('player/overview', language)}>
               <translate>Docs</translate>
             </Button>
           </PromoSection>
