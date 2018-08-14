@@ -1,6 +1,9 @@
 {
   "private": true,
-  "workspaces": ["packages/*", "website"],
+  "workspaces": [
+    "packages/*",
+    "website"
+  ],
   "homepage": "https://warrior.js.org",
   "repository": "https://github.com/olistic/warriorjs",
   "scripts": {
@@ -23,13 +26,13 @@
     "babel-plugin-add-module-exports": "^0.3.2",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.7.0",
-    "eslint": "^4.19.1",
-    "eslint-config-airbnb": "^17.0.0",
-    "eslint-config-prettier": "^2.9.0",
-    "eslint-plugin-import": "^2.13.0",
-    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint": "^5.3.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-prettier": "^3.0.1",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-prettier": "^2.6.2",
-    "eslint-plugin-react": "^7.10.0",
+    "eslint-plugin-react": "^7.11.0",
     "husky": "^1.0.0-rc.13",
     "jest": "^23.5.0",
     "lerna": "^2.11.0",
@@ -42,6 +45,9 @@
     }
   },
   "lint-staged": {
-    "*.{js,json,css,md,yaml}": ["prettier --write", "git add"]
+    "*.{js,json,css,md,yaml}": [
+      "prettier --write",
+      "git add"
+    ]
   }
 }
