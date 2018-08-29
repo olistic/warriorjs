@@ -92,12 +92,13 @@ class Unit {
    */
   performTurn() {
     if (this.isAlive()) {
-      this.effects.forEach(effect => { 
-        if(this.isAlive()) {
-          effect.passTurn(); 
+      for (let effect of this.effects) {
+        effect.passTurn();
+        if (this.isAlive()) {
+          break;
         }
-      });
-      if(this.isAlive()){
+      }
+      if (this.isAlive()) {
         if (this.turn.action && !this.isBound()) {
           const [name, args] = this.turn.action;
           this.abilities.get(name).perform(...args);
