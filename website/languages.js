@@ -140,7 +140,7 @@ const languages = [
     tag: 'sk-SK',
   },
   {
-    enabled: false,
+    enabled: true,
     name: 'Српски језик (Ћирилица)',
     tag: 'sr',
   },
