@@ -44,7 +44,7 @@
   },
   "devDependencies": {
     "ansi-styles": "^3.2.1",
-    "mock-fs": "^4.6.0"
+    "mock-fs": "^4.7.0"
   },
   "dependencies": {
     "@warriorjs/core": "^0.11.3",
@@ -55,16 +55,16 @@
     "ansi-escapes": "^3.0.0",
     "array-shuffle": "^1.0.1",
     "chalk": "^2.4.1",
-    "delay": "^3.0.0",
+    "delay": "^4.0.1",
     "ejs": "^2.6.1",
     "find-up": "^3.0.0",
     "globby": "^8.0.1",
-    "inquirer": "^6.1.0",
+    "inquirer": "^6.2.0",
     "inquirer-prompt-suggest": "^0.1.0",
     "lodash.uniqby": "^4.7.0",
     "resolve": "^1.8.1",
     "string-width": "^2.1.1",
     "superheroes": "^2.0.0",
-    "yargs": "^12.0.1"
+    "yargs": "^12.0.2"
   }
 }
