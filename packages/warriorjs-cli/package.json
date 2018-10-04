@@ -1,6 +1,6 @@
 {
   "name": "@warriorjs/cli",
-  "version": "0.12.2",
+  "version": "0.12.3",
   "description": "WarriorJS command line",
   "author": "Matias Olivera <moliverafreire@gmail.com>",
   "license": "MIT",
@@ -49,7 +49,7 @@
   "dependencies": {
     "@warriorjs/core": "^0.11.3",
     "@warriorjs/helper-get-grade-letter": "^0.11.1",
-    "@warriorjs/helper-get-level-config": "^0.12.2",
+    "@warriorjs/helper-get-level-config": "^0.12.3",
     "@warriorjs/helper-get-play-score": "^0.11.1",
     "@warriorjs/tower-baby-steps": "^0.12.2",
     "ansi-escapes": "^3.0.0",
