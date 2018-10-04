@@ -8,6 +8,18 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [0.12.2] - 2018-10-04
+
+### Fixed
+
+- Make `getLevelConfig` a pure function ([@olistic][] in [#234][])
+
+## [0.12.1] - 2018-07-31
+
+### Fixed
+
+- Fix `tick-tick-boom` tower description
+
 ## [0.12.0] - 2018-07-30
 
 ### Changed
@@ -205,7 +217,9 @@ whose logic can be reused by different flavors of the game.
 
 Initial version.
 
-[unreleased]: https://github.com/olistic/warriorjs/compare/v0.12.0...HEAD
+[unreleased]: https://github.com/olistic/warriorjs/compare/v0.12.2...HEAD
+[0.12.2]: https://github.com/olistic/warriorjs/compare/v0.12.1...v0.12.2
+[0.12.1]: https://github.com/olistic/warriorjs/compare/v0.12.0...v0.12.1
 [0.12.0]: https://github.com/olistic/warriorjs/compare/v0.11.3...v0.12.0
 [0.11.3]: https://github.com/olistic/warriorjs/compare/v0.11.2...v0.11.3
 [0.11.2]: https://github.com/olistic/warriorjs/compare/v0.11.1...v0.11.2
@@ -285,3 +299,4 @@ Initial version.
 [#219]: https://github.com/olistic/warriorjs/pull/219
 [#220]: https://github.com/olistic/warriorjs/pull/220
 [#221]: https://github.com/olistic/warriorjs/pull/221
+[#234]: https://github.com/olistic/warriorjs/pull/234
