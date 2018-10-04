@@ -15,5 +15,8 @@
   },
   "scripts": {
     "build": "babel src --out-dir lib --ignore test.js"
+  },
+  "dependencies": {
+    "lodash.clonedeep": "^4.5.0"
   }
 }

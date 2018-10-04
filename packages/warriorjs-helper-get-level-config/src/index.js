@@ -1,3 +1,5 @@
+import cloneDeep from 'lodash.clonedeep';
+
 /**
  * Returns the config for the level with the given number.
  *
@@ -14,9 +16,7 @@ function getLevelConfig(tower, levelNumber, warriorName, epic) {
     return null;
   }
 
-  const levelConfig = {
-    ...level,
-  };
+  const levelConfig = cloneDeep(level);
 
   const levels = epic ? tower.levels : tower.levels.slice(0, levelNumber);
   const warriorAbilities = Object.assign(
