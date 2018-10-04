@@ -8,6 +8,12 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [0.12.3] - 2018-10-04
+
+### Fixed
+
+- Fix `getLevelConfig` (make it pure for real) ([@olistic][] in [#236][])
+
 ## [0.12.2] - 2018-10-04
 
 ### Fixed
@@ -217,7 +223,8 @@ whose logic can be reused by different flavors of the game.
 
 Initial version.
 
-[unreleased]: https://github.com/olistic/warriorjs/compare/v0.12.2...HEAD
+[unreleased]: https://github.com/olistic/warriorjs/compare/v0.12.3...HEAD
+[0.12.3]: https://github.com/olistic/warriorjs/compare/v0.12.2...v0.12.3
 [0.12.2]: https://github.com/olistic/warriorjs/compare/v0.12.1...v0.12.2
 [0.12.1]: https://github.com/olistic/warriorjs/compare/v0.12.0...v0.12.1
 [0.12.0]: https://github.com/olistic/warriorjs/compare/v0.11.3...v0.12.0
@@ -300,3 +307,4 @@ Initial version.
 [#220]: https://github.com/olistic/warriorjs/pull/220
 [#221]: https://github.com/olistic/warriorjs/pull/221
 [#234]: https://github.com/olistic/warriorjs/pull/234
+[#236]: https://github.com/olistic/warriorjs/pull/236
