@@ -11,6 +11,7 @@ import {
   attack,
   feel,
   health,
+  maxHealth,
   look,
   pivot,
   rescue,
@@ -101,7 +102,7 @@ export default {
       description:
         'The air feels thicker than before. There must be a horde of sludge.',
       tip:
-        'Be careful not to die! Use `warrior.health()` to keep an eye on your health, and `warrior.rest()` to earn 10% of your max health back.',
+        'Be careful not to die! Use `warrior.health()` and `warrior.maxHealth()` to keep an eye on your health, and `warrior.rest()` to earn 10% of your max health back.',
       clue:
         "When there's no enemy ahead of you, call `warrior.rest()` until your health is full before walking forward.",
       timeBonus: 35,
@@ -119,6 +120,7 @@ export default {
           ...Warrior,
           abilities: {
             health: health(),
+            maxHealth: maxHealth(),
             rest: rest({ healthGain: 0.1 }),
           },
           position: {
