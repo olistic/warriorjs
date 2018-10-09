@@ -1,6 +1,6 @@
 {
   "name": "@warriorjs/tower-tick-tick-boom",
-  "version": "0.12.2",
+  "version": "0.13.0",
   "description": "Tick, Tick... Boom!",
   "author": "Matias Olivera <moliverafreire@gmail.com>",
   "license": "MIT",
@@ -20,9 +20,9 @@
     "build": "babel src --out-dir lib --ignore test.js"
   },
   "dependencies": {
-    "@warriorjs/abilities": "^0.12.2",
+    "@warriorjs/abilities": "^0.13.0",
     "@warriorjs/effects": "^0.12.2",
     "@warriorjs/geography": "^0.7.0",
-    "@warriorjs/units": "^0.12.2"
+    "@warriorjs/units": "^0.13.0"
   }
 }
