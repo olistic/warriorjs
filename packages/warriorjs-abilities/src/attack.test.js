@@ -20,7 +20,7 @@ describe('attack', () => {
 
   test('has a description', () => {
     expect(attack.description).toBe(
-      `Attack a unit in the given direction (${FORWARD} by default) dealing 3 HP of damage.`,
+      `Attacks a unit in the given direction (\`'${FORWARD}'\` by default), dealing 3 HP of damage.`,
     );
   });
 

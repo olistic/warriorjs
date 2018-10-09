@@ -20,7 +20,7 @@ describe('pivot', () => {
 
   test('has a description', () => {
     expect(pivot.description).toBe(
-      `Rotate in the given direction (${BACKWARD} by default).`,
+      `Rotates in the given direction (\`'${BACKWARD}'\` by default).`,
     );
   });
 

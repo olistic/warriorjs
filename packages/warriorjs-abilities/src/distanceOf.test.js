@@ -15,7 +15,7 @@ describe('distanceOf', () => {
 
   test('has a description', () => {
     expect(distanceOf.description).toBe(
-      'Return an integer representing the distance to the given space.',
+      'Returns an integer representing the distance to the given space.',
     );
   });
 

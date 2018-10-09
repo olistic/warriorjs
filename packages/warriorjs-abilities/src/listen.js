@@ -3,7 +3,7 @@ import { FORWARD, getRelativeOffset } from '@warriorjs/geography';
 function listen() {
   return unit => ({
     description:
-      'Return an array of all spaces which have units in them (excluding yourself).',
+      'Returns an array of all spaces which have units in them (excluding yourself).',
     perform() {
       return unit
         .getOtherUnits()
