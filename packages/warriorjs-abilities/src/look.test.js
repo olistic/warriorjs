@@ -17,7 +17,7 @@ describe('look', () => {
 
   test('has a description', () => {
     expect(look.description).toBe(
-      `Returns an array of up to 3 spaces in the given direction (${FORWARD} by default).`,
+      `Return an array of up to 3 spaces in the given direction (${FORWARD} by default).`,
     );
   });
 
