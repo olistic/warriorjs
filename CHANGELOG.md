@@ -8,6 +8,16 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [0.13.0] - 2018-10-09
+
+### Added
+
+- Add `maxHealth` ability ([@jseed][] in [#238][])
+
+### Changed
+
+- Improve abilities descriptions ([@olistic][] in [#240][])
+
 ## [0.12.3] - 2018-10-04
 
 ### Fixed
@@ -223,7 +233,8 @@ whose logic can be reused by different flavors of the game.
 
 Initial version.
 
-[unreleased]: https://github.com/olistic/warriorjs/compare/v0.12.3...HEAD
+[unreleased]: https://github.com/olistic/warriorjs/compare/v0.13.0...HEAD
+[0.13.0]: https://github.com/olistic/warriorjs/compare/v0.12.3...v0.13.0
 [0.12.3]: https://github.com/olistic/warriorjs/compare/v0.12.2...v0.12.3
 [0.12.2]: https://github.com/olistic/warriorjs/compare/v0.12.1...v0.12.2
 [0.12.1]: https://github.com/olistic/warriorjs/compare/v0.12.0...v0.12.1
@@ -256,6 +267,7 @@ Initial version.
 [@pigalot]: https://github.com/pigalot
 [@djohalo2]: https://github.com/djohalo2
 [@wtgtybhertgeghgtwtg]: https://github.com/wtgtybhertgeghgtwtg
+[@jseed]: https://github.com/JSeed
 [#67]: https://github.com/olistic/warriorjs/pull/67
 [#70]: https://github.com/olistic/warriorjs/pull/70
 [#77]: https://github.com/olistic/warriorjs/pull/77
@@ -308,3 +320,5 @@ Initial version.
 [#221]: https://github.com/olistic/warriorjs/pull/221
 [#234]: https://github.com/olistic/warriorjs/pull/234
 [#236]: https://github.com/olistic/warriorjs/pull/236
+[#238]: https://github.com/olistic/warriorjs/pull/238
+[#240]: https://github.com/olistic/warriorjs/pull/240
