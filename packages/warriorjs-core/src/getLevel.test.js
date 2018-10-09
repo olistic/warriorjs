@@ -26,14 +26,14 @@ const levelConfig = {
       abilities: {
         walk: () => ({
           action: true,
-          description: `Move one space in the given direction (\`'${FORWARD}'\` by default).`,
+          description: `Moves one space in the given direction (\`'${FORWARD}'\` by default).`,
         }),
         attack: () => ({
           action: true,
-          description: `Attack a unit in the given direction (\`'${FORWARD}'\` by default) dealing 5 HP of damage.`,
+          description: `Attacks a unit in the given direction (\`'${FORWARD}'\` by default), dealing 5 HP of damage.`,
         }),
         feel: () => ({
-          description: `Return the adjacent space in the given direction (\`'${FORWARD}'\` by default).`,
+          description: `Returns the adjacent space in the given direction (\`'${FORWARD}'\` by default).`,
         }),
       },
       position: {
@@ -51,10 +51,10 @@ const levelConfig = {
         abilities: {
           attack: () => ({
             action: true,
-            description: `Attack a unit in the given direction (\`'${FORWARD}'\` by default) dealing 3 HP of damage.`,
+            description: `Attacks a unit in the given direction (\`'${FORWARD}'\` by default), dealing 3 HP of damage.`,
           }),
           feel: () => ({
-            description: `Return the adjacent space in the given direction (\`'${FORWARD}'\` by default).`,
+            description: `Returns the adjacent space in the given direction (\`'${FORWARD}'\` by default).`,
           }),
         },
         playTurn(sludge) {
@@ -145,19 +145,19 @@ test('returns level', () => {
         {
           name: 'attack',
           description:
-            "Attack a unit in the given direction (`'forward'` by default) dealing 5 HP of damage.",
+            "Attacks a unit in the given direction (`'forward'` by default), dealing 5 HP of damage.",
         },
         {
           name: 'walk',
           description:
-            "Move one space in the given direction (`'forward'` by default).",
+            "Moves one space in the given direction (`'forward'` by default).",
         },
       ],
       senses: [
         {
           name: 'feel',
           description:
-            "Return the adjacent space in the given direction (`'forward'` by default).",
+            "Returns the adjacent space in the given direction (`'forward'` by default).",
         },
       ],
     },
