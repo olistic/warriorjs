@@ -1,7 +1,7 @@
 function distanceOf() {
   return unit => ({
     description:
-      'Return an integer representing the distance to the given space.',
+      'Returns an integer representing the distance to the given space.',
     perform(space) {
       return unit.getDistanceOf(space);
     },

@@ -20,7 +20,7 @@ describe('rescue', () => {
 
   test('has a description', () => {
     expect(rescue.description).toBe(
-      `Release a unit from his chains in the given direction (\`'${FORWARD}'\` by default).`,
+      `Releases a unit from his chains in the given direction (\`'${FORWARD}'\` by default).`,
     );
   });
 

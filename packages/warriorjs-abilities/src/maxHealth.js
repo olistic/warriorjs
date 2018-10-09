@@ -1,6 +1,6 @@
 function maxHealth() {
   return unit => ({
-    description: 'Return an integer representing your maximum health.',
+    description: 'Returns an integer representing your maximum health.',
     perform() {
       return unit.maxHealth;
     },

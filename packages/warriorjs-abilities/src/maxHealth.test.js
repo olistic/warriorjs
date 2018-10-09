@@ -15,7 +15,7 @@ describe('maxHealth', () => {
 
   test('has a description', () => {
     expect(maxHealth.description).toBe(
-      'Return an integer representing your maximum health.',
+      'Returns an integer representing your maximum health.',
     );
   });
 
