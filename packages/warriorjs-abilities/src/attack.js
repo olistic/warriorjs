@@ -5,7 +5,7 @@ const defaultDirection = FORWARD;
 function attack({ power }) {
   return unit => ({
     action: true,
-    description: `Attacks a unit in the given direction (\`'${defaultDirection}'\` by default) dealing ${power} HP of damage.`,
+    description: `Attacks a unit in the given direction (\`'${defaultDirection}'\` by default), dealing ${power} HP of damage.`,
     perform(direction = defaultDirection) {
       const receiver = unit.getSpaceAt(direction).getUnit();
       if (receiver) {

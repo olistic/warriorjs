@@ -21,7 +21,7 @@ describe('detonate', () => {
 
   test('has a description', () => {
     expect(detonate.description).toBe(
-      `Detonates a bomb in a given direction (\`'${FORWARD}'\` by default) dealing 4 HP of damage to that space and 2 HP of damage to surrounding 4 spaces (including yourself).`,
+      `Detonates a bomb in a given direction (\`'${FORWARD}'\` by default), dealing 4 HP of damage to that space and 2 HP of damage to surrounding 4 spaces (including yourself).`,
     );
   });
 
