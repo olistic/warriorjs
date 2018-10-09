@@ -17,7 +17,7 @@ describe('feel', () => {
 
   test('has a description', () => {
     expect(feel.description).toBe(
-      `Return the adjacent space in the given direction (${FORWARD} by default).`,
+      `Return the adjacent space in the given direction (\`'${FORWARD}'\` by default).`,
     );
   });
 

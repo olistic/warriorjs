@@ -20,7 +20,7 @@ describe('walk', () => {
 
   test('has a description', () => {
     expect(walk.description).toBe(
-      `Move one space in the given direction (${FORWARD} by default).`,
+      `Move one space in the given direction (\`'${FORWARD}'\` by default).`,
     );
   });
 
