@@ -17,7 +17,7 @@ describe('directionOfStairs', () => {
 
   test('has a description', () => {
     expect(directionOfStairs.description).toBe(
-      `Returns the direction (${FORWARD}, ${RIGHT}, ${BACKWARD} or ${LEFT}) the stairs are from your location.`,
+      `Returns the direction (\`'${FORWARD}'\`, \`'${RIGHT}'\`, \`'${BACKWARD}'\` or \`'${LEFT}'\`) the stairs are from your location.`,
     );
   });
 

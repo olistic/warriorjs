@@ -17,7 +17,7 @@ describe('directionOf', () => {
 
   test('has a description', () => {
     expect(directionOf.description).toBe(
-      `Returns the direction (${FORWARD}, ${RIGHT}, ${BACKWARD} or ${LEFT}) to the given space.`,
+      `Returns the direction (\`'${FORWARD}'\`, \`'${RIGHT}'\`, \`'${BACKWARD}'\` or \`'${LEFT}'\`) to the given space.`,
     );
   });
 

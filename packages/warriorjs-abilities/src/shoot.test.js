@@ -20,7 +20,7 @@ describe('shoot', () => {
 
   test('has a description', () => {
     expect(shoot.description).toBe(
-      `Shoots the bow & arrow in the given direction (\`'${FORWARD}'\` by default), dealing 3 HP of damage to the first unit in a range of 3 spaces.`,
+      `Shoots the bow & arrow in the given direction (${FORWARD} by default), dealing 3 HP of damage to the first unit in a range of 3 spaces.`,
     );
   });
 

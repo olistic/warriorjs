@@ -20,7 +20,7 @@ describe('rest', () => {
 
   test('has a description', () => {
     expect(rest.description).toBe(
-      'Gains 10% of max health back, but does nothing more.',
+      'Gains 10% of max health back (rounded half-up to the nearest integer), but does nothing more.',
     );
   });
 

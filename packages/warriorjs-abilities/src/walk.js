@@ -5,7 +5,8 @@ const defaultDirection = FORWARD;
 function walk() {
   return unit => ({
     action: true,
-    description: `Moves one space in the given direction (\`'${defaultDirection}'\` by default).`,
+    argumentsDescription: `direction = '${defaultDirection}'`,
+    description: `Moves one space in the given direction (${defaultDirection} by default).`,
     perform(direction = defaultDirection) {
       const space = unit.getSpaceAt(direction);
       if (space.isEmpty()) {

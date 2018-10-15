@@ -17,7 +17,7 @@ describe('bind', () => {
 
   test('has a description', () => {
     expect(bind.description).toBe(
-      `Binds a unit in the given direction (\`'${FORWARD}'\` by default) to keep him from moving.`,
+      `Binds a unit in the given direction (${FORWARD} by default) to keep him from moving.`,
     );
   });
 

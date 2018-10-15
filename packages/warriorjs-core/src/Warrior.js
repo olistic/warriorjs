@@ -38,9 +38,10 @@ class Warrior extends Unit {
    */
   getAbilities() {
     const abilities = [...this.abilities].map(
-      ([name, { action, description }]) => ({
+      ([name, { action, argumentsDescription, description }]) => ({
         name,
         action,
+        argumentsDescription,
         description,
       }),
     );
