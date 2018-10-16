@@ -15,7 +15,7 @@ import getWarriorScore from './getWarriorScore';
  *
  * @returns {Object} The score of the play.
  */
-function getPlayScore({ passed, events }, { timeBonus, aceScore }) {
+function getLevelScore({ passed, events }, { timeBonus, aceScore }) {
   if (!passed) {
     return null;
   }
@@ -36,4 +36,4 @@ function getPlayScore({ passed, events }, { timeBonus, aceScore }) {
   };
 }
 
-export default getPlayScore;
+export default getLevelScore;

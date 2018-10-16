@@ -12,5 +12,5 @@ npm install @warriorjs/helper-get-level-score
 ## Usage
 
 ```js
-import getPlayScore from '@warriorjs/helper-get-level-score';
+import getLevelScore from '@warriorjs/helper-get-level-score';
 ```
