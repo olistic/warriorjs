@@ -8,6 +8,11 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Changed
+
+- Rename `@warriorjs/helper-get-play-score` package to
+  `@warriorjs/helper-get-level-score` ([@olistic][] in [#246][])
+
 ## [0.13.0] - 2018-10-09
 
 ### Added
@@ -322,3 +327,4 @@ Initial version.
 [#236]: https://github.com/olistic/warriorjs/pull/236
 [#238]: https://github.com/olistic/warriorjs/pull/238
 [#240]: https://github.com/olistic/warriorjs/pull/240
+[#246]: https://github.com/olistic/warriorjs/pull/246
