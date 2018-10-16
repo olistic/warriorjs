@@ -10,7 +10,7 @@ Here is the list of packages with a brief description:
 | ------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | [`@warriorjs/core`][warriorjs-core]                                       | [![npm][warriorjs-core-badge]][warriorjs-core-npm]                                       |
 | [`@warriorjs/helper-get-level-config`][warriorjs-helper-get-level-config] | [![npm][warriorjs-helper-get-level-config-badge]][warriorjs-helper-get-level-config-npm] |
-| [`@warriorjs/helper-get-play-score`][warriorjs-helper-get-play-score]     | [![npm][warriorjs-helper-get-play-score-badge]][warriorjs-helper-get-play-score-npm]     |
+| [`@warriorjs/helper-get-level-score`][warriorjs-helper-get-level-score]   | [![npm][warriorjs-helper-get-level-score-badge]][warriorjs-helper-get-level-score-npm]   |
 | [`@warriorjs/helper-get-grade-letter`][warriorjs-helper-get-grade-letter] | [![npm][warriorjs-helper-get-grade-letter-badge]][warriorjs-helper-get-grade-letter-npm] |
 | [`@warriorjs/geography`][warriorjs-geography]                             | [![npm][warriorjs-geography-badge]][warriorjs-geography-npm]                             |
 | [`@warriorjs/abilities`][warriorjs-abilities]                             | [![npm][warriorjs-abilities-badge]][warriorjs-abilities-npm]                             |
@@ -24,8 +24,8 @@ Here is the list of packages with a brief description:
 - [`@warriorjs/helper-get-level-config`][warriorjs-helper-get-level-config]
   exposes a helper function to get the config for a level defined in a tower, to
   use as input for the functions exposed by the core.
-- [`@warriorjs/helper-get-play-score`][warriorjs-helper-get-play-score] exposes
-  a helper function to get the score for a play.
+- [`@warriorjs/helper-get-level-score`][warriorjs-helper-get-level-score]
+  exposes a helper function to get a level's score.
 - [`@warriorjs/helper-get-grade-letter`][warriorjs-helper-get-grade-letter]
   exposes a helper function to get the letter for a numeric grade.
 - [`@warriorjs/helper-get-level-config`][warriorjs-helper-get-level-config]
@@ -69,11 +69,11 @@ universes (levels, abilities and units) to the game.
   https://img.shields.io/npm/v/@warriorjs/helper-get-level-config.svg?style=flat-square
 [warriorjs-helper-get-level-config-npm]:
   https://www.npmjs.com/package/@warriorjs/helper-get-level-config
-[warriorjs-helper-get-play-score]: /packages/warriorjs-helper-get-play-score
-[warriorjs-helper-get-play-score-badge]:
-  https://img.shields.io/npm/v/@warriorjs/helper-get-play-score.svg?style=flat-square
-[warriorjs-helper-get-play-score-npm]:
-  https://www.npmjs.com/package/@warriorjs/helper-get-play-score
+[warriorjs-helper-get-level-score]: /packages/warriorjs-helper-get-level-score
+[warriorjs-helper-get-level-score-badge]:
+  https://img.shields.io/npm/v/@warriorjs/helper-get-level-score.svg?style=flat-square
+[warriorjs-helper-get-level-score-npm]:
+  https://www.npmjs.com/package/@warriorjs/helper-get-level-score
 [warriorjs-helper-get-grade-letter]: /packages/warriorjs-helper-get-grade-letter
 [warriorjs-helper-get-grade-letter-badge]:
   https://img.shields.io/npm/v/@warriorjs/helper-get-grade-letter.svg?style=flat-square

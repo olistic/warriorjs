@@ -3,7 +3,7 @@ import path from 'path';
 
 import globby from 'globby';
 import getLevelConfig from '@warriorjs/helper-get-level-config';
-import getPlayScore from '@warriorjs/helper-get-play-score';
+import getPlayScore from '@warriorjs/helper-get-level-score';
 import { getLevel, runLevel } from '@warriorjs/core';
 
 import GameError from './GameError';
