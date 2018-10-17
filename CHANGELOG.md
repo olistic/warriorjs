@@ -8,8 +8,11 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [0.14.0] - 2018-10-17
+
 ### Changed
 
+- Simplify `@warriorjs/helper-get-level-score` ([@olistic][] in [#247][])
 - Rename `@warriorjs/helper-get-play-score` package to
   `@warriorjs/helper-get-level-score` ([@olistic][] in [#246][])
 
@@ -238,7 +241,8 @@ whose logic can be reused by different flavors of the game.
 
 Initial version.
 
-[unreleased]: https://github.com/olistic/warriorjs/compare/v0.13.0...HEAD
+[unreleased]: https://github.com/olistic/warriorjs/compare/v0.14.0...HEAD
+[0.14.0]: https://github.com/olistic/warriorjs/compare/v0.13.0...v0.14.0
 [0.13.0]: https://github.com/olistic/warriorjs/compare/v0.12.3...v0.13.0
 [0.12.3]: https://github.com/olistic/warriorjs/compare/v0.12.2...v0.12.3
 [0.12.2]: https://github.com/olistic/warriorjs/compare/v0.12.1...v0.12.2
@@ -328,3 +332,4 @@ Initial version.
 [#238]: https://github.com/olistic/warriorjs/pull/238
 [#240]: https://github.com/olistic/warriorjs/pull/240
 [#246]: https://github.com/olistic/warriorjs/pull/246
+[#247]: https://github.com/olistic/warriorjs/pull/247
