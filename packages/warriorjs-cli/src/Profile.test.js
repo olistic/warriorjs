@@ -290,7 +290,7 @@ describe('Profile', () => {
 
   test('tallies the points by adding to the score', () => {
     profile.score = 0;
-    profile.tallyPoints(1, { total: 123 });
+    profile.tallyPoints(1, 123);
     expect(profile.score).toBe(123);
   });
 
@@ -342,7 +342,7 @@ describe('Profile', () => {
     test('tallies the points by adding to the current epic score and grades', () => {
       profile.epicScore = 0;
       profile.currentEpicGrades = {};
-      profile.tallyPoints(1, { total: 124, grade: 0.8 });
+      profile.tallyPoints(1, 124, 0.8);
       expect(profile.currentEpicScore).toBe(124);
       expect(profile.currentEpicGrades['1']).toBe(0.8);
     });
