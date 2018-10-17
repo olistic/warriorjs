@@ -316,9 +316,14 @@ class Game {
       );
     }
 
-    const score = getLevelScore(levelResult, levelConfig);
-    printLevelReport(this.profile, score);
-    this.profile.tallyPoints(levelNumber, score);
+    const scoreParts = getLevelScore(levelResult, levelConfig);
+    const totalScore = Object.values(scoreParts).reduce(
+      (sum, value) => sum + value,
+      0,
+    );
+    const grade = (totalScore * 1.0) / levelConfig.aceScore;
+    printLevelReport(this.profile, scoreParts, totalScore, grade);
+    this.profile.tallyPoints(levelNumber, totalScore, grade);
 
     if (this.profile.isEpic()) {
       if (!hasNextLevel && !this.practiceLevel) {

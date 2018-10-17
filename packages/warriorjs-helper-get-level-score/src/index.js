@@ -1,21 +1,19 @@
 import getClearBonus from './getClearBonus';
-import getGradeForScore from './getGradeForScore';
 import getRemainingTimeBonus from './getRemainingTimeBonus';
 import getWarriorScore from './getWarriorScore';
 
 /**
- * Returns the score for the given play.
+ * Returns the score for the given level.
  *
- * @param {Object} play The play.
- * @param {boolean} play.passed Whether the level was passed or not.
- * @param {Object[][]} play.events The events that happened during the play.
+ * @param {Object} result The level result.
+ * @param {boolean} result.passed Whether the level was passed or not.
+ * @param {Object[][]} result.events The events of the level.
  * @param {Object} levelConfig The level config.
  * @param {number} levelConfig.timeBonus The bonus for passing the level in time.
- * @param {number} levelConfig.aceScore The score in which to base the grade.
  *
- * @returns {Object} The score of the play.
+ * @returns {Object} The score of the level, broken down into its components.
  */
-function getLevelScore({ passed, events }, { timeBonus, aceScore }) {
+function getLevelScore({ passed, events }, { timeBonus }) {
   if (!passed) {
     return null;
   }
@@ -23,16 +21,10 @@ function getLevelScore({ passed, events }, { timeBonus, aceScore }) {
   const warriorScore = getWarriorScore(events);
   const remainingTimeBonus = getRemainingTimeBonus(events, timeBonus);
   const clearBonus = getClearBonus(events, warriorScore, remainingTimeBonus);
-  const totalScore = warriorScore + remainingTimeBonus + clearBonus;
-  const grade = getGradeForScore(totalScore, aceScore);
   return {
-    grade,
-    parts: {
-      clearBonus,
-      warrior: warriorScore,
-      timeBonus: remainingTimeBonus,
-    },
-    total: totalScore,
+    clearBonus,
+    timeBonus: remainingTimeBonus,
+    warrior: warriorScore,
   };
 }
 
