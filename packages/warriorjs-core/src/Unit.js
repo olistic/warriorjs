@@ -91,13 +91,11 @@ class Unit {
    * Performs the prepared turn.
    */
   performTurn() {
+    this.effects.forEach(effect => effect.passTurn());
     if (this.isAlive()) {
-      this.effects.forEach(effect => effect.passTurn());
-      if (this.isAlive()) {
-        if (this.turn.action && !this.isBound()) {
-          const [name, args] = this.turn.action;
-          this.abilities.get(name).perform(...args);
-        }
+      if (this.turn.action && !this.isBound()) {
+        const [name, args] = this.turn.action;
+        this.abilities.get(name).perform(...args);
       }
     }
   }
