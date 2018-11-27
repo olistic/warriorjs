@@ -40,7 +40,7 @@ const languages = [
     tag: 'de',
   },
   {
-    enabled: false,
+    enabled: true,
     name: 'Ελληνικά',
     tag: 'el',
   },
@@ -80,7 +80,7 @@ const languages = [
     tag: 'id-ID',
   },
   {
-    enabled: false,
+    enabled: true,
     name: 'Italiano',
     tag: 'it',
   },
@@ -140,7 +140,7 @@ const languages = [
     tag: 'sk-SK',
   },
   {
-    enabled: false,
+    enabled: true,
     name: 'Српски језик (Ћирилица)',
     tag: 'sr',
   },

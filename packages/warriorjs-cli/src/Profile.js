@@ -236,7 +236,7 @@ class Profile {
    * @param {number} levelNumber The number of the level.
    * @param {Object} score The score of the play.
    */
-  tallyPoints(levelNumber, { total: totalScore, grade }) {
+  tallyPoints(levelNumber, totalScore, grade) {
     if (this.isEpic()) {
       this.currentEpicGrades[levelNumber] = grade;
       this.currentEpicScore += totalScore;

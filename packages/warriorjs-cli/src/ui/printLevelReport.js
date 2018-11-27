@@ -7,19 +7,18 @@ import printTotalScore from './printTotalScore';
  * Prints the level report.
  *
  * @param {Profile} profile The profile.
- * @param {Object} score The score of the play.
- * @param {number} score.warrior The points earned by the warrior.
- * @param {number} score.timeBonus The time bonus.
- * @param {number} score.clearBonus The clear bonus.
- * @param {number} score.total The total score.
+ * @param {Object} scoreParts The score components.
+ * @param {number} scoreParts.warrior The points earned by the warrior.
+ * @param {number} scoreParts.timeBonus The time bonus.
+ * @param {number} scoreParts.clearBonus The clear bonus.
+ * @param {number} totalScore The total score.
+ * @param {number} grade The grade.
  */
 function printLevelReport(
   profile,
-  {
-    parts: { warrior: warriorScore, timeBonus, clearBonus },
-    total: totalScore,
-    grade,
-  },
+  { warrior: warriorScore, timeBonus, clearBonus },
+  totalScore,
+  grade,
 ) {
   printLine(`Warrior Score: ${warriorScore}`);
   printLine(`Time Bonus: ${timeBonus}`);

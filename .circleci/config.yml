@@ -1,37 +1,37 @@
 aliases:
   - &restore-yarn-cache
-      name: Restore Yarn package cache
-      keys:
-        - yarn-packages-{{ .Branch }}-{{ checksum "yarn.lock" }}
-        - yarn-packages-{{ .Branch }}
-        - yarn-packages-master
-        - yarn-packages-
+    name: Restore Yarn package cache
+    keys:
+      - yarn-packages-{{ .Branch }}-{{ checksum "yarn.lock" }}
+      - yarn-packages-{{ .Branch }}
+      - yarn-packages-master
+      - yarn-packages-
 
   - &save-yarn-cache
-      name: Save Yarn package cache
-      key: yarn-packages-{{ .Branch }}-{{ checksum "yarn.lock" }}
-      paths:
-        - node_modules
+    name: Save Yarn package cache
+    key: yarn-packages-{{ .Branch }}-{{ checksum "yarn.lock" }}
+    paths:
+      - node_modules
 
   - &install-yarn-dependencies
-      name: Install dependencies
-      command: yarn install
+    name: Install dependencies
+    command: yarn install
 
   - &build-cross-dependencies
-      name: Build cross-dependencies
-      command: yarn build
+    name: Build cross-dependencies
+    command: yarn build
 
   - &link-cross-dependencies
-      name: Link cross-dependencies
-      command: yarn bootstrap
+    name: Link cross-dependencies
+    command: yarn bootstrap
 
   - &filter-only-master
-      branches:
-        only: master
+    branches:
+      only: master
 
   - &filter-ignore-gh-pages
-      branches:
-        ignore: gh-pages
+    branches:
+      ignore: gh-pages
 
 defaults: &defaults
   working_directory: ~/warriorjs
@@ -55,21 +55,6 @@ jobs:
       - run:
           name: Report coverage
           command: bash <(curl -s https://codecov.io/bash)
-
-  test-node-9:
-    <<: *defaults
-    docker:
-      - image: circleci/node:9
-    steps:
-      - checkout
-      - restore_cache: *restore-yarn-cache
-      - run: *install-yarn-dependencies
-      - save_cache: *save-yarn-cache
-      - run: *build-cross-dependencies
-      - run: *link-cross-dependencies
-      - run:
-          name: Run tests
-          command: yarn test
 
   test-node-10:
     <<: *defaults
@@ -109,7 +94,8 @@ jobs:
           command: cd website && yarn write-translations && cd ..
       - run:
           name: Sync translation files
-          command: cd website && yarn crowdin-upload && yarn crowdin-download && cd ..
+          command:
+            cd website && yarn crowdin-upload && yarn crowdin-download && cd ..
       - run:
           name: Configure GitHub machine user
           command: |
@@ -118,7 +104,8 @@ jobs:
             echo "machine github.com login warriorjs-bot password $GITHUB_TOKEN" > ~/.netrc
       - run:
           name: Deploy website to GitHub Pages
-          command: cd website && GIT_USER=warriorjs-bot yarn publish-gh-pages && cd ..
+          command:
+            cd website && GIT_USER=warriorjs-bot yarn publish-gh-pages && cd ..
 
 workflows:
   version: 2
@@ -126,8 +113,6 @@ workflows:
   build-and-deploy:
     jobs:
       - test-node-8:
-          filters: *filter-ignore-gh-pages
-      - test-node-9:
           filters: *filter-ignore-gh-pages
       - test-node-10:
           filters: *filter-ignore-gh-pages

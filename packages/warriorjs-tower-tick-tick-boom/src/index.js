@@ -11,6 +11,7 @@ import {
   health,
   listen,
   look,
+  maxHealth,
   rescue,
   rest,
   think,
@@ -77,8 +78,9 @@ export default {
           abilities: {
             attack: attack({ power: 5 }),
             feel: feel(),
-            rest: rest({ healthGain: 0.1 }),
             health: health(),
+            maxHealth: maxHealth(),
+            rest: rest({ healthGain: 0.1 }),
           },
           position: {
             x: 0,

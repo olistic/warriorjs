@@ -8,6 +8,7 @@ export { default as feel } from './feel';
 export { default as health } from './health';
 export { default as listen } from './listen';
 export { default as look } from './look';
+export { default as maxHealth } from './maxHealth';
 export { default as pivot } from './pivot';
 export { default as rescue } from './rescue';
 export { default as rest } from './rest';

@@ -1,6 +1,6 @@
 {
   "name": "@warriorjs/cli",
-  "version": "0.12.0",
+  "version": "0.14.0",
   "description": "WarriorJS command line",
   "author": "Matias Olivera <moliverafreire@gmail.com>",
   "license": "MIT",
@@ -44,27 +44,27 @@
   },
   "devDependencies": {
     "ansi-styles": "^3.2.1",
-    "mock-fs": "^4.6.0"
+    "mock-fs": "^4.7.0"
   },
   "dependencies": {
-    "@warriorjs/core": "^0.11.3",
+    "@warriorjs/core": "^0.14.0",
     "@warriorjs/helper-get-grade-letter": "^0.11.1",
-    "@warriorjs/helper-get-level-config": "^0.11.2",
-    "@warriorjs/helper-get-play-score": "^0.11.1",
-    "@warriorjs/tower-baby-steps": "^0.12.0",
+    "@warriorjs/helper-get-level-config": "^0.12.3",
+    "@warriorjs/helper-get-level-score": "^0.14.0",
+    "@warriorjs/tower-baby-steps": "^0.13.0",
     "ansi-escapes": "^3.0.0",
     "array-shuffle": "^1.0.1",
     "chalk": "^2.4.1",
-    "delay": "^3.0.0",
+    "delay": "^4.0.1",
     "ejs": "^2.6.1",
     "find-up": "^3.0.0",
     "globby": "^8.0.1",
-    "inquirer": "^6.1.0",
+    "inquirer": "^6.2.0",
     "inquirer-prompt-suggest": "^0.1.0",
     "lodash.uniqby": "^4.7.0",
     "resolve": "^1.8.1",
     "string-width": "^2.1.1",
     "superheroes": "^2.0.0",
-    "yargs": "^12.0.1"
+    "yargs": "^12.0.2"
   }
 }
