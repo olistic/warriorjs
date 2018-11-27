@@ -15,7 +15,7 @@ describe('think', () => {
 
   test('has a description', () => {
     expect(think.description).toBe(
-      'Think out loud (`console.log` replacement).',
+      'Thinks out loud (`console.log` replacement).',
     );
   });
 

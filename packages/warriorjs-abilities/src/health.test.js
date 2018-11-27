@@ -15,7 +15,7 @@ describe('health', () => {
 
   test('has a description', () => {
     expect(health.description).toBe(
-      'Return an integer representing your health.',
+      'Returns an integer representing your health.',
     );
   });
 
