@@ -203,7 +203,7 @@
   <span class="hljs-attr">levels</span>: [Level1, Level2],
 };
 </code></pre>
-<p>Just like what we did with the White Walker definition, we can extract the common fields of the Warrior to an object and then use spread properties to add it to every level:</p>
+<p>Możemy tu zrobić dokładnie to samo co zrobiliśmy z definicją White Walker'a - wydobyć stałe cechy wojownika do obiektu, a następnie użyć syntaksu spread, aby dodać je do każdego poziomu:</p>
 <pre><code class="hljs css languages- js"><span class="hljs-keyword">const</span> Warrior = {
   <span class="hljs-attr">character</span>: <span class="hljs-string">'@'</span>,
   <span class="hljs-attr">maxHealth</span>: <span class="hljs-number">20</span>,
@@ -282,7 +282,7 @@
   },
 };
 </code></pre>
-<p>With regard to the abilities, we can see that both attack abilities are very similar. Let's do something about that:</p>
+<p>W odniesieniu do zdolności, widzimy, że obydwie umiejętności ofensywne są bardzo podobne do siebie. Naprawmy to:</p>
 <pre><code class="hljs css languages- js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">attackCreator</span>(<span class="hljs-params">{ power, weapon }</span>) </span>{
   <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">unit</span> =&gt;</span> ({
     <span class="hljs-attr">action</span>: <span class="hljs-literal">true</span>,
@@ -310,9 +310,9 @@
 });
 </code></pre>
 <blockquote>
-<p>We can call this the &quot;ability creator&quot; pattern, where we define a function (the ability creator) which returns another function (the ability) customized with the parameters we passed to the creator.</p>
+<p>Nazywamy to wzorem &quot;tworzenia umiejętności&quot;, gdzie definiujemy funkcję (tworzącą umiejętności), która zwraca inną funkcję (umiejętność) dostosowaną przez parametry, które dostarczyliśmy jej twórcy.</p>
 </blockquote>
-<p>To end with the refactor, let's get rid of all those magic strings representing directions. There's an official package called <a href="https://github.com/olistic/warriorjs/tree/master/packages/warriorjs-geography"><code>@warriorjs/geography</code></a> that exposes a bunch of constants and methods related to directioning. Użyjmy tego:</p>
+<p>Aby zakończyć refaktoryzację, pozbądźmy się wszystkich magicznych łańcuchów tekstowych reprezentujących kierunki. Istnieje oficjalny pakiet o nazwie <a href="https://github.com/olistic/warriorjs/tree/master/packages/warriorjs-geography"><code>@warriorjs/geography</code></a>, który udostępnia kilka stałych i metod powiązanych z wyznaczaniem kierunku. Użyjmy tego:</p>
 <pre><code class="hljs css languages- js"><span class="hljs-keyword">const</span> {
   EAST,
   FORWARD,
