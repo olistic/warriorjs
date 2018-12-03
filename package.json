@@ -14,7 +14,7 @@
     "clean:build": "rm -rf packages/*/lib",
     "clean:coverage": "rm -rf coverage",
     "clean:modules": "lerna clean --yes",
-    "lint": "eslint --cache packages/**/src",
+    "lint": "eslint --cache packages/**/src/*.js",
     "lint:fix": "yarn lint --fix",
     "pretest": "yarn lint",
     "test": "jest",
