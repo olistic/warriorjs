@@ -12,6 +12,7 @@ import {
   listen,
   look,
   maxHealth,
+  pivot,
   rescue,
   rest,
   think,
@@ -141,6 +142,7 @@ export default {
           },
           abilities: {
             bind: bind(),
+            pivot: pivot(),
             rescue: rescue(),
           },
         },
