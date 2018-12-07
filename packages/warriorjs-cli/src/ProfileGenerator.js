@@ -44,15 +44,32 @@ class ProfileGenerator {
    */
   generateReadmeFile() {
     const template = fs.readFileSync(README_TEMPLATE_FILE_PATH, 'utf8');
-    const data = {
-      getFloorMap,
-      getFloorMapKey,
-      profile: this.profile,
-      level: this.level,
-    };
+    const levels = [];
+
     const options = { filename: README_TEMPLATE_FILE_PATH };
-    const renderedReadme = ejs.render(template, data, options);
-    fs.writeFileSync(this.profile.getReadmeFilePath(), renderedReadme);
+    if (this.profile.epic) {
+      for (let i = 1; i < 10; i += 1) {
+        const data = {
+          getFloorMap,
+          getFloorMapKey,
+          profile: this.profile,
+          level: i,
+        };
+        levels.push(data);
+      }
+      const renderedReadme = ejs.render(template, levels, options);
+      fs.writeFileSync(this.profile.getReadmeFilePath(), renderedReadme);
+    } else {
+      const data = {
+        getFloorMap,
+        getFloorMapKey,
+        profile: this.profile,
+        level: this.level,
+      };
+      levels.push(data);
+      const renderedReadme = ejs.render(template, levels, options);
+      fs.writeFileSync(this.profile.getReadmeFilePath(), renderedReadme);
+    }
   }
 
   /**

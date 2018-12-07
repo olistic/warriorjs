@@ -397,6 +397,7 @@ class Game {
    */
   prepareEpicMode() {
     this.profile.enableEpicMode();
+    this.generateProfileFiles();
   }
 }
 
