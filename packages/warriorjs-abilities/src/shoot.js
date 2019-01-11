@@ -5,7 +5,8 @@ const defaultDirection = FORWARD;
 function shoot({ power, range }) {
   return unit => ({
     action: true,
-    description: `Shoots the bow & arrow in the given direction (\`'${defaultDirection}'\` by default), dealing ${power} HP of damage to the first unit in a range of ${range} spaces.`,
+    argumentsDescription: `direction = '${defaultDirection}'`,
+    description: `Shoots the bow & arrow in the given direction (${defaultDirection} by default), dealing ${power} HP of damage to the first unit in a range of ${range} spaces.`,
     perform(direction = defaultDirection) {
       const offsets = Array.from(new Array(range), (_, index) => index + 1);
       const receiver = offsets

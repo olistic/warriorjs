@@ -27,7 +27,7 @@ describe('listen', () => {
 
   test('has a description', () => {
     expect(listen.description).toBe(
-      'Returns an array of all spaces which have units in them (excluding yourself).',
+      'Returns an array of all `Space`s which have units in them (excluding yourself).',
     );
   });
 

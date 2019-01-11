@@ -6,7 +6,8 @@ const surroundingOffsets = [[1, 1], [1, -1], [2, 0], [0, 0]];
 function detonate({ targetPower, surroundingPower }) {
   return unit => ({
     action: true,
-    description: `Detonates a bomb in a given direction (\`'${defaultDirection}'\` by default), dealing ${targetPower} HP of damage to that space and ${surroundingPower} HP of damage to surrounding 4 spaces (including yourself).`,
+    argumentsDescription: `direction = '${defaultDirection}'`,
+    description: `Detonates a bomb in a given direction (${defaultDirection} by default), dealing ${targetPower} HP of damage to that space and ${surroundingPower} HP of damage to surrounding 4 spaces (including yourself).`,
     perform(direction = defaultDirection) {
       unit.log(`detonates a bomb ${direction} launching a deadly explosion`);
       const targetSpace = unit.getSpaceAt(direction);

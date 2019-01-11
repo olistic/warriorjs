@@ -2,6 +2,7 @@ import util from 'util';
 
 function think() {
   return unit => ({
+    argumentsDescription: `thought`,
     description: 'Thinks out loud (`console.log` replacement).',
     perform(...args) {
       const thought = args.length > 0 ? util.format(...args) : 'nothing';
