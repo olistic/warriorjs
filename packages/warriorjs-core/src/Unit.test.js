@@ -172,6 +172,17 @@ describe('Unit', () => {
     expect(walk.perform).toHaveBeenCalledWith('backward');
   });
 
+  test("doesn't perform action if the unit died after effects", () => {
+    const poison = { passTurn: () => unit.takeDamage(2) };
+    const walk = { perform: jest.fn() };
+    unit.health = 1;
+    unit.addEffect('poison', poison);
+    unit.addAbility('walk', walk);
+    unit.turn = { action: ['walk', []] };
+    unit.performTurn();
+    expect(walk.perform).toHaveBeenCalledTimes(0);
+  });
+
   test("doesn't throw when calling performTurn when there is no action", () => {
     unit.turn = { action: null };
     unit.performTurn();

@@ -92,8 +92,13 @@ class Unit {
    */
   performTurn() {
     if (this.isAlive()) {
-      this.effects.forEach(effect => effect.passTurn());
-      if (this.turn.action && !this.isBound()) {
+      const diedAfterEffects = Array.from(this.effects.values()).some(
+        effect => {
+          effect.passTurn();
+          return !this.isAlive();
+        },
+      );
+      if (!diedAfterEffects && this.turn.action && !this.isBound()) {
         const [name, args] = this.turn.action;
         this.abilities.get(name).perform(...args);
       }
