@@ -150,6 +150,11 @@ const languages = [
     tag: 'sv-SE',
   },
   {
+    enabled: false,
+    name: 'தமிழ்',
+    tag: 'ta',
+  },
+  {
     enabled: true,
     name: 'Türkçe',
     tag: 'tr',
