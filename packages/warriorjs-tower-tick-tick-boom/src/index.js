@@ -12,6 +12,7 @@ import {
   listen,
   look,
   maxHealth,
+  pivot,
   rescue,
   rest,
   think,
@@ -80,6 +81,7 @@ export default {
             feel: feel(),
             health: health(),
             maxHealth: maxHealth(),
+            pivot: pivot(),
             rest: rest({ healthGain: 0.1 }),
           },
           position: {
