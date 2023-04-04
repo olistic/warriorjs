@@ -81,6 +81,7 @@ export default {
             feel: feel(),
             health: health(),
             maxHealth: maxHealth(),
+            pivot: pivot(),
             rest: rest({ healthGain: 0.1 }),
           },
           position: {
@@ -142,7 +143,6 @@ export default {
           },
           abilities: {
             bind: bind(),
-            pivot: pivot(),
             rescue: rescue(),
           },
         },
