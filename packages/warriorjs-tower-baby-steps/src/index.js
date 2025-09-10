@@ -98,6 +98,50 @@ export default {
         ],
       },
     },
+    // Healing Intro Level (new Level 3)
+    {
+      description:
+        'You sense a larger sludge ahead, but you feel a bit weaker than usual.',
+      tip:
+        'You must heal between battles! Use `warrior.health()` to check your health and `warrior.rest()` to regain health before fighting the second sludge.',
+      clue:
+        "When there's no enemy ahead of you, call `warrior.rest()` until your health is full before walking forward.",
+      timeBonus: 30,
+      aceScore: 40,
+      floor: {
+        size: {
+          width: 6,
+          height: 1,
+        },
+        stairs: {
+          x: 5,
+          y: 0,
+        },
+        warrior: {
+          ...Warrior,
+          abilities: {
+            health: health(),
+            rest: rest({ healthGain: 0.1 }),
+          },
+          position: {
+            x: 0,
+            y: 0,
+            facing: EAST,
+          },
+          health: 10, // low health to require healing
+        },
+        units: [
+          {
+            ...Sludge,
+            position: { x: 2, y: 0, facing: WEST },
+          },
+          {
+            ...Sludge,
+            position: { x: 4, y: 0, facing: WEST },
+          },
+        ],
+      },
+    },
     {
       description:
         'The air feels thicker than before. There must be a horde of sludge.',
