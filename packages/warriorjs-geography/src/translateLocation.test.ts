@@ -1,3 +1,4 @@
+import { test, expect } from 'vitest';
 import translateLocation from './translateLocation.js';
 
 test('translates the given location by the given offset', () => {

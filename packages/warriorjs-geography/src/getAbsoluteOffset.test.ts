@@ -1,3 +1,4 @@
+import { test, expect } from 'vitest';
 import getAbsoluteOffset from './getAbsoluteOffset.js';
 import { EAST, NORTH, SOUTH, WEST } from './absoluteDirections.js';
 

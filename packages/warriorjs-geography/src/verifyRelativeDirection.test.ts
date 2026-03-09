@@ -1,3 +1,4 @@
+import { test, expect } from 'vitest';
 import verifyRelativeDirection from './verifyRelativeDirection.js';
 import {
   BACKWARD,

@@ -1,3 +1,4 @@
+import { test, expect } from 'vitest';
 import verifyAbsoluteDirection from './verifyAbsoluteDirection.js';
 import {
   ABSOLUTE_DIRECTIONS,

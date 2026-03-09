@@ -1,3 +1,4 @@
+import { test, expect } from 'vitest';
 import rotateRelativeOffset from './rotateRelativeOffset.js';
 import { BACKWARD, FORWARD, LEFT, RIGHT } from './relativeDirections.js';
 
