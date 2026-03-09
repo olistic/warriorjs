@@ -1,3 +1,5 @@
+process.env.FORCE_COLOR = '1';
+
 module.exports = {
   clearMocks: true,
   collectCoverageFrom: [

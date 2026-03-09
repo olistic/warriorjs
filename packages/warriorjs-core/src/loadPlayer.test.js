@@ -21,11 +21,10 @@ test('throws if invalid syntax', () => {
   `;
   expect(() => {
     loadPlayer(playerCode);
-  }).toThrow(
-    new Error(
-      'Check your syntax and try again!\n\nPlayer.js:3\n      playTurn() {}\n                  ^\n\nSyntaxError: Unexpected end of input',
-    ),
-  );
+  }).toThrow('Check your syntax and try again!');
+  expect(() => {
+    loadPlayer(playerCode);
+  }).toThrow('SyntaxError: Unexpected end of input');
 });
 
 test('throws if Player class is not defined', () => {

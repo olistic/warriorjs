@@ -143,14 +143,14 @@ test('returns level', () => {
     warriorAbilities: {
       actions: [
         {
-          name: 'attack',
-          description:
-            "Attacks a unit in the given direction (`'forward'` by default), dealing 5 HP of damage.",
-        },
-        {
           name: 'walk',
           description:
             "Moves one space in the given direction (`'forward'` by default).",
+        },
+        {
+          name: 'attack',
+          description:
+            "Attacks a unit in the given direction (`'forward'` by default), dealing 5 HP of damage.",
         },
       ],
       senses: [

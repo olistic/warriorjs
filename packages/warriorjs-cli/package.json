@@ -44,7 +44,7 @@
   },
   "devDependencies": {
     "ansi-styles": "^3.2.1",
-    "mock-fs": "^4.7.0"
+    "mock-fs": "^5.5.0"
   },
   "dependencies": {
     "@warriorjs/core": "^0.14.0",
