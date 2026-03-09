@@ -1,4 +1,5 @@
-import getGradeLetter from '.';
+import { test, expect } from 'vitest';
+import getGradeLetter from './index.js';
 
 test('returns letter based on grade', () => {
   expect(getGradeLetter(1.0)).toBe('S');

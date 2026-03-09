@@ -1,16 +1,22 @@
-import tickingCreator from './ticking';
+import { test, expect, describe, beforeEach, vi } from 'vitest';
+import tickingCreator from './ticking.js';
 
 describe('ticking', () => {
-  let ticking;
-  let unit;
+  let ticking: ReturnType<ReturnType<typeof tickingCreator>>;
+  let unit: {
+    health: number;
+    takeDamage: ReturnType<typeof vi.fn>;
+    log: ReturnType<typeof vi.fn>;
+    getOtherUnits?: () => { health: number; takeDamage: ReturnType<typeof vi.fn> }[];
+  };
 
   beforeEach(() => {
     unit = {
       health: 20,
-      takeDamage: jest.fn(),
-      log: jest.fn(),
+      takeDamage: vi.fn(),
+      log: vi.fn(),
     };
-    ticking = tickingCreator({ time: 3 })(unit);
+    ticking = tickingCreator({ time: 3 })(unit as never);
   });
 
   test('has a description', () => {
@@ -34,7 +40,7 @@ describe('ticking', () => {
     });
 
     test('triggers when bomb time reaches zero', () => {
-      ticking.trigger = jest.fn();
+      ticking.trigger = vi.fn();
       ticking.time = 2;
       ticking.passTurn();
       expect(ticking.trigger).not.toHaveBeenCalled();
@@ -47,9 +53,9 @@ describe('ticking', () => {
     test('kills each unit on the floor', () => {
       const anotherUnit = {
         health: 10,
-        takeDamage: jest.fn(),
+        takeDamage: vi.fn(),
       };
-      unit.getOtherUnits = () => [anotherUnit];
+      unit.getOtherUnits = () => [anotherUnit as never];
       ticking.trigger();
       expect(unit.log).toHaveBeenCalledWith(
         'explodes, collapsing the ceiling and killing every unit',

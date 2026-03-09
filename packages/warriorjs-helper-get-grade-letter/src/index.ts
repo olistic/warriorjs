@@ -1,11 +1,10 @@
 /**
  * Returns the letter for the given grade.
  *
- * @param {number} grade The grade.
- *
- * @returns {string} The grade letter.
+ * @param grade The grade.
+ * @returns The grade letter.
  */
-function getGradeLetter(grade) {
+function getGradeLetter(grade: number): string {
   if (grade >= 1.0) {
     return 'S';
   }
