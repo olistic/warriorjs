@@ -6,4 +6,6 @@ export const LEFT = 'left';
 /**
  * The relative directions in clockwise order.
  */
-export const RELATIVE_DIRECTIONS = [FORWARD, RIGHT, BACKWARD, LEFT];
+export const RELATIVE_DIRECTIONS = [FORWARD, RIGHT, BACKWARD, LEFT] as const;
+
+export type RelativeDirection = (typeof RELATIVE_DIRECTIONS)[number];

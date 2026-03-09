@@ -1,5 +1,5 @@
-import rotateRelativeOffset from './rotateRelativeOffset';
-import { BACKWARD, FORWARD, LEFT, RIGHT } from './relativeDirections';
+import rotateRelativeOffset from './rotateRelativeOffset.js';
+import { BACKWARD, FORWARD, LEFT, RIGHT } from './relativeDirections.js';
 
 test('rotates the relative offset in the given direction', () => {
   expect(rotateRelativeOffset([1, 2], FORWARD)).toEqual([1, 2]);

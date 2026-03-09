@@ -1,6 +1,6 @@
-import getAbsoluteDirection from './getAbsoluteDirection';
-import { BACKWARD, FORWARD, LEFT, RIGHT } from './relativeDirections';
-import { EAST, NORTH, SOUTH, WEST } from './absoluteDirections';
+import getAbsoluteDirection from './getAbsoluteDirection.js';
+import { BACKWARD, FORWARD, LEFT, RIGHT } from './relativeDirections.js';
+import { EAST, NORTH, SOUTH, WEST } from './absoluteDirections.js';
 
 let direction;
 

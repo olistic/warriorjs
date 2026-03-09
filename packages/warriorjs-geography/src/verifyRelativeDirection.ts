@@ -4,7 +4,7 @@ import {
   LEFT,
   RELATIVE_DIRECTIONS,
   RIGHT,
-} from './relativeDirections';
+} from './relativeDirections.js';
 
 /**
  * Checks if the given direction is a valid relative direction.
@@ -13,8 +13,8 @@ import {
  *
  * @throws Will throw if the direction is not valid.
  */
-function verifyRelativeDirection(direction) {
-  if (!RELATIVE_DIRECTIONS.includes(direction)) {
+function verifyRelativeDirection(direction: string): void {
+  if (!(RELATIVE_DIRECTIONS as readonly string[]).includes(direction)) {
     throw new Error(
       `Unknown direction: '${direction}'. Should be one of: '${FORWARD}', '${RIGHT}', '${BACKWARD}' or '${LEFT}'.`,
     );

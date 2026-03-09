@@ -4,7 +4,7 @@ import {
   LEFT,
   RELATIVE_DIRECTIONS,
   RIGHT,
-} from './relativeDirections';
+} from './relativeDirections.js';
 
 test("exports a FORWARD constant whose value is 'forward'", () => {
   expect(FORWARD).toBe('forward');

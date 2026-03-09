@@ -1,5 +1,5 @@
-import getRelativeOffset from './getRelativeOffset';
-import { EAST, NORTH, SOUTH, WEST } from './absoluteDirections';
+import getRelativeOffset from './getRelativeOffset.js';
+import { EAST, NORTH, SOUTH, WEST } from './absoluteDirections.js';
 
 test('returns the relative offset based on location and direction', () => {
   expect(getRelativeOffset([3, 3], [1, 2], NORTH)).toEqual([-1, 2]);

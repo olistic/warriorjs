@@ -6,4 +6,6 @@ export const WEST = 'west';
 /**
  * The absolute directions in clockwise order.
  */
-export const ABSOLUTE_DIRECTIONS = [NORTH, EAST, SOUTH, WEST];
+export const ABSOLUTE_DIRECTIONS = [NORTH, EAST, SOUTH, WEST] as const;
+
+export type AbsoluteDirection = (typeof ABSOLUTE_DIRECTIONS)[number];

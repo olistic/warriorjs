@@ -1,11 +1,11 @@
-import verifyRelativeDirection from './verifyRelativeDirection';
+import verifyRelativeDirection from './verifyRelativeDirection.js';
 import {
   BACKWARD,
   FORWARD,
   LEFT,
   RELATIVE_DIRECTIONS,
   RIGHT,
-} from './relativeDirections';
+} from './relativeDirections.js';
 
 test("doesn't throw if direction is valid", () => {
   const validDirections = RELATIVE_DIRECTIONS;

@@ -1,4 +1,4 @@
-import { EAST, NORTH, SOUTH, WEST } from './absoluteDirections';
+import { EAST, NORTH, SOUTH, WEST } from './absoluteDirections.js';
 
 /**
  * Returns the direction of a location from another location (reference
@@ -9,7 +9,7 @@ import { EAST, NORTH, SOUTH, WEST } from './absoluteDirections';
  *
  * @returns {string} The direction.
  */
-function getDirectionOfLocation([x1, y1], [x2, y2]) {
+function getDirectionOfLocation([x1, y1]: [number, number], [x2, y2]: [number, number]): string {
   if (Math.abs(x2 - x1) > Math.abs(y2 - y1)) {
     if (x1 > x2) {
       return EAST;

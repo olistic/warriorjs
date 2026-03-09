@@ -22,10 +22,6 @@
     "test:watch": "yarn test --watch"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-plugin-add-module-exports": "^1.0.0",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
     "eslint": "^5.9.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-prettier": "^3.3.0",
@@ -37,7 +33,8 @@
     "jest": "^23.6.0",
     "lerna": "^2.11.0",
     "lint-staged": "^8.1.0",
-    "prettier": "1.15.3"
+    "prettier": "1.15.3",
+    "typescript": "^5.9.3"
   },
   "husky": {
     "hooks": {

@@ -4,7 +4,7 @@ import {
   NORTH,
   SOUTH,
   WEST,
-} from './absoluteDirections';
+} from './absoluteDirections.js';
 
 test("exports a NORTH constant whose value is 'north'", () => {
   expect(NORTH).toBe('north');

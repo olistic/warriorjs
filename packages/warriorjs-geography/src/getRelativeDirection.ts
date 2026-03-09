@@ -1,6 +1,6 @@
-import verifyAbsoluteDirection from './verifyAbsoluteDirection';
-import { ABSOLUTE_DIRECTIONS } from './absoluteDirections';
-import { RELATIVE_DIRECTIONS } from './relativeDirections';
+import verifyAbsoluteDirection from './verifyAbsoluteDirection.js';
+import { ABSOLUTE_DIRECTIONS } from './absoluteDirections.js';
+import { RELATIVE_DIRECTIONS } from './relativeDirections.js';
 
 /**
  * Returns the relative direction for a given direction, with reference to a
@@ -11,13 +11,13 @@ import { RELATIVE_DIRECTIONS } from './relativeDirections';
  *
  * @returns {string} The relative direction.
  */
-function getRelativeDirection(direction, referenceDirection) {
+function getRelativeDirection(direction: string, referenceDirection: string): string {
   verifyAbsoluteDirection(direction);
   verifyAbsoluteDirection(referenceDirection);
 
   const index =
-    (ABSOLUTE_DIRECTIONS.indexOf(direction) -
-      ABSOLUTE_DIRECTIONS.indexOf(referenceDirection) +
+    ((ABSOLUTE_DIRECTIONS as readonly string[]).indexOf(direction) -
+      (ABSOLUTE_DIRECTIONS as readonly string[]).indexOf(referenceDirection) +
       RELATIVE_DIRECTIONS.length) %
     RELATIVE_DIRECTIONS.length;
   return RELATIVE_DIRECTIONS[index];

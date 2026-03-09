@@ -7,7 +7,7 @@
  *
  * @returns {number} The distance between the locations.
  */
-function getDistanceOfLocation([x1, y1], [x2, y2]) {
+function getDistanceOfLocation([x1, y1]: [number, number], [x2, y2]: [number, number]): number {
   return Math.abs(x2 - x1) + Math.abs(y2 - y1);
 }
 

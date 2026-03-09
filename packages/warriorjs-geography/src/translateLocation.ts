@@ -6,7 +6,7 @@
  *
  * @returns {number[]} The translated location.
  */
-function translateLocation([x, y], [deltaX, deltaY]) {
+function translateLocation([x, y]: [number, number], [deltaX, deltaY]: [number, number]): [number, number] {
   return [x + deltaX, y + deltaY];
 }
 

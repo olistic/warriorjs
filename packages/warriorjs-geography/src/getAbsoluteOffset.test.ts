@@ -1,5 +1,5 @@
-import getAbsoluteOffset from './getAbsoluteOffset';
-import { EAST, NORTH, SOUTH, WEST } from './absoluteDirections';
+import getAbsoluteOffset from './getAbsoluteOffset.js';
+import { EAST, NORTH, SOUTH, WEST } from './absoluteDirections.js';
 
 test('returns the absolute offset based on direction', () => {
   expect(getAbsoluteOffset([1, 2], NORTH)).toEqual([2, -1]);
