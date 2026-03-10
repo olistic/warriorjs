@@ -6,15 +6,25 @@
   "license": "MIT",
   "homepage": "https://warrior.js.org",
   "repository": "https://github.com/olistic/warriorjs/tree/master/packages/warriorjs-abilities",
+  "type": "module",
   "main": "lib/index.js",
+  "exports": {
+    ".": {
+      "import": "./lib/index.js",
+      "types": "./lib/index.d.ts"
+    }
+  },
   "files": [
     "lib"
   ],
   "publishConfig": {
     "access": "public"
   },
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
-    "build": "babel src --out-dir lib --ignore test.js"
+    "build": "tsc -p tsconfig.json"
   },
   "dependencies": {
     "@warriorjs/geography": "^0.7.0"

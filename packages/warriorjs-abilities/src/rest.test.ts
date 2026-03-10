@@ -1,0 +1,43 @@
+import { describe, test, expect, beforeEach, vi } from 'vitest';
+
+import restCreator from './rest.js';
+
+describe('rest', () => {
+  let rest: ReturnType<ReturnType<typeof restCreator>>;
+  let unit: any;
+
+  beforeEach(() => {
+    unit = {
+      maxHealth: 20,
+      health: 10,
+      heal: vi.fn(),
+      log: vi.fn(),
+    };
+    rest = restCreator({ healthGain: 0.1 })(unit);
+  });
+
+  test('is an action', () => {
+    expect(rest.action).toBe(true);
+  });
+
+  test('has a description', () => {
+    expect(rest.description).toBe(
+      'Gains 10% of max health back, but does nothing more.',
+    );
+  });
+
+  describe('performing', () => {
+    test('gives health back', () => {
+      rest.perform();
+      expect(unit.log).toHaveBeenCalledWith('rests');
+      expect(unit.heal).toHaveBeenCalledWith(2);
+    });
+
+    test("doesn't add health when at max", () => {
+      unit.health = 20;
+      rest.perform();
+      expect(unit.log).toHaveBeenCalledWith('is already fit as a fiddle');
+      expect(unit.heal).not.toHaveBeenCalled();
+    });
+  });
+});

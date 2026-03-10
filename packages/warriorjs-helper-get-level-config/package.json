@@ -6,17 +6,24 @@
   "license": "MIT",
   "homepage": "https://warrior.js.org",
   "repository": "https://github.com/olistic/warriorjs/tree/master/packages/warriorjs-helper-get-level-config",
+  "type": "module",
   "main": "lib/index.js",
+  "exports": {
+    ".": {
+      "import": "./lib/index.js",
+      "types": "./lib/index.d.ts"
+    }
+  },
   "files": [
     "lib"
   ],
   "publishConfig": {
     "access": "public"
   },
-  "scripts": {
-    "build": "babel src --out-dir lib --ignore test.js"
+  "engines": {
+    "node": ">=20"
   },
-  "dependencies": {
-    "lodash.clonedeep": "^4.5.0"
+  "scripts": {
+    "build": "tsc -p tsconfig.json"
   }
 }
