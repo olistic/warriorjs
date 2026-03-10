@@ -19,7 +19,43 @@ import {
 } from '@warriorjs/abilities';
 import { ticking } from '@warriorjs/effects';
 
-export default {
+interface Position {
+  x: number;
+  y: number;
+  facing?: string;
+}
+
+interface FloorUnit {
+  [key: string]: unknown;
+  position: Position;
+}
+
+interface Floor {
+  size: { width: number; height: number };
+  stairs: { x: number; y: number };
+  warrior: {
+    [key: string]: unknown;
+    position: Position;
+  };
+  units: FloorUnit[];
+}
+
+interface Level {
+  description: string;
+  tip: string;
+  clue?: string;
+  timeBonus: number;
+  aceScore: number;
+  floor: Floor;
+}
+
+interface TowerDefinition {
+  name: string;
+  description: string;
+  levels: Level[];
+}
+
+const tower: TowerDefinition = {
   name: 'Tick, Tick... Boom!',
   description: 'Try not to blow this tower apart',
   levels: [
@@ -617,3 +653,5 @@ export default {
     },
   ],
 };
+
+export default tower;

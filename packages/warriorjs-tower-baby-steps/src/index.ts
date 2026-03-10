@@ -21,7 +21,43 @@ import {
   walk,
 } from '@warriorjs/abilities';
 
-export default {
+interface Position {
+  x: number;
+  y: number;
+  facing?: string;
+}
+
+interface FloorUnit {
+  [key: string]: unknown;
+  position: Position;
+}
+
+interface Floor {
+  size: { width: number; height: number };
+  stairs: { x: number; y: number };
+  warrior: {
+    [key: string]: unknown;
+    position: Position;
+  };
+  units: FloorUnit[];
+}
+
+interface Level {
+  description: string;
+  tip: string;
+  clue?: string;
+  timeBonus: number;
+  aceScore: number;
+  floor: Floor;
+}
+
+interface TowerDefinition {
+  name: string;
+  description: string;
+  levels: Level[];
+}
+
+const tower: TowerDefinition = {
   name: 'Baby Steps',
   description: 'For players new to WarriorJS',
   levels: [
@@ -528,3 +564,5 @@ export default {
     },
   ],
 };
+
+export default tower;
