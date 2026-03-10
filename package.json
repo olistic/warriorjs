@@ -1,11 +1,7 @@
 {
   "private": true,
-  "workspaces": [
-    "packages/*",
-    "website"
-  ],
   "type": "module",
-  "packageManager": "yarn@1.22.22",
+  "packageManager": "pnpm@10.11.0",
   "engines": {
     "node": ">=20"
   },

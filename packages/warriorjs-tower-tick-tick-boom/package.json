@@ -31,9 +31,9 @@
     "build": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@warriorjs/abilities": "^0.13.0",
-    "@warriorjs/effects": "^0.12.2",
-    "@warriorjs/geography": "^0.7.0",
-    "@warriorjs/units": "^0.13.0"
+    "@warriorjs/abilities": "workspace:^",
+    "@warriorjs/effects": "workspace:^",
+    "@warriorjs/geography": "workspace:^",
+    "@warriorjs/units": "workspace:^"
   }
 }

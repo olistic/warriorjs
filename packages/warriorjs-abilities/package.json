@@ -27,6 +27,6 @@
     "build": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@warriorjs/geography": "^0.7.0"
+    "@warriorjs/geography": "workspace:^"
   }
 }
