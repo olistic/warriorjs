@@ -46,7 +46,7 @@ class Space {
 
   getCharacter(): string {
     if (this.isUnit()) {
-      return this.getUnit()?.character;
+      return this.getUnit()!.character;
     }
 
     if (this.isWall()) {
@@ -108,7 +108,7 @@ class Space {
   as(unit: Unit): SensedSpace {
     return {
       getLocation: () =>
-        getRelativeOffset(this.location, unit.position?.location, unit.position?.orientation) as [
+        getRelativeOffset(this.location, unit.position!.location, unit.position!.orientation) as [
           number,
           number,
         ],
@@ -125,7 +125,7 @@ class Space {
 
   toString(): string {
     if (this.isUnit()) {
-      return this.getUnit()?.toString();
+      return this.getUnit()!.toString();
     }
 
     if (this.isWall()) {

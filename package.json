@@ -4,7 +4,11 @@
     "packages/*",
     "website"
   ],
+  "type": "module",
   "packageManager": "yarn@1.22.22",
+  "engines": {
+    "node": ">=20"
+  },
   "homepage": "https://warrior.js.org",
   "repository": "https://github.com/olistic/warriorjs",
   "scripts": {

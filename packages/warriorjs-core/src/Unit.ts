@@ -188,11 +188,11 @@ class Unit {
   }
 
   getOtherUnits(): Unit[] {
-    return this.position?.floor.getUnits().filter((unit) => unit !== this);
+    return this.position!.floor.getUnits().filter((unit) => unit !== this);
   }
 
   getSpace(): Space {
-    return this.position?.getSpace();
+    return this.position!.getSpace();
   }
 
   getSensedSpaceAt(direction: string, forward: number = 1, right: number = 0): SensedSpace {
@@ -200,25 +200,25 @@ class Unit {
   }
 
   getSpaceAt(direction: string, forward: number = 1, right: number = 0): Space {
-    return this.position?.getRelativeSpace(direction, [forward, right]);
+    return this.position!.getRelativeSpace(direction, [forward, right]);
   }
 
   getDirectionOfStairs(): string {
-    return this.position?.getRelativeDirectionOf(this.position?.floor.getStairsSpace());
+    return this.position!.getRelativeDirectionOf(this.position!.floor.getStairsSpace());
   }
 
   getDirectionOf(sensedSpace: SensedSpace): string {
     const space = Space.from(sensedSpace, this);
-    return this.position?.getRelativeDirectionOf(space);
+    return this.position!.getRelativeDirectionOf(space);
   }
 
   getDistanceOf(sensedSpace: SensedSpace): number {
     const space = Space.from(sensedSpace, this);
-    return this.position?.getDistanceOf(space);
+    return this.position!.getDistanceOf(space);
   }
 
   move(direction: string, forward: number = 1, right: number = 0): void {
-    this.position?.move(direction, [forward, right]);
+    this.position!.move(direction, [forward, right]);
   }
 
   rotate(direction: string): void {

@@ -5,7 +5,7 @@ interface LogEvent {
   message: string;
   unit: any;
   floorMap: any;
-  warriorStatus: { health: number; score: number };
+  warriorStatus: { health: number; score: number } | undefined;
 }
 
 const Logger: {
