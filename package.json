@@ -14,26 +14,21 @@
     "lint:fix": "biome check --write packages/",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "prepare": "husky"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.4.6",
     "@types/node": "^25.4.0",
-    "husky": "^1.2.0",
-    "lint-staged": "^8.1.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.3.3",
     "turbo": "^2.4.4",
     "typescript": "^5.9.3",
     "vitest": "^4.0.18"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged": {
-    "*.{ts,json,css,md,yaml}": [
-      "biome check --write --no-errors-on-unmatched",
-      "git add"
+    "*.{js,ts,json,css,md,yaml}": [
+      "biome check --write --no-errors-on-unmatched"
     ]
   }
 }
