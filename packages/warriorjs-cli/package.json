@@ -6,6 +6,7 @@
   "license": "MIT",
   "homepage": "https://warrior.js.org",
   "repository": "https://github.com/olistic/warriorjs/tree/master/packages/warriorjs-cli",
+  "type": "module",
   "keywords": [
     "warriorjs",
     "warriorjs-cli",
@@ -28,7 +29,14 @@
     "warriorjs": "./bin/warriorjs.js"
   },
   "engines": {
-    "node": ">=8"
+    "node": ">=20"
+  },
+  "main": "lib/cli.js",
+  "exports": {
+    ".": {
+      "import": "./lib/cli.js",
+      "types": "./lib/cli.d.ts"
+    }
   },
   "files": [
     "bin",
@@ -39,32 +47,28 @@
     "access": "public"
   },
   "scripts": {
-    "build": "babel src --out-dir lib --ignore test.js",
+    "build": "tsc -p tsconfig.json",
     "postinstall": "node -e \"console.log('\\u001b[35m\\u001b[1mLove WarriorJS? You can now donate to our open collective:\\u001b[22m\\u001b[39m\\n> \\u001b[34mhttps://opencollective.com/warriorjs/donate\\u001b[0m')\""
   },
   "devDependencies": {
-    "ansi-styles": "^3.2.1",
     "mock-fs": "^5.5.0"
   },
   "dependencies": {
+    "@inquirer/prompts": "^7.0.0",
     "@warriorjs/core": "^0.14.0",
     "@warriorjs/helper-get-grade-letter": "^0.11.1",
     "@warriorjs/helper-get-level-config": "^0.12.3",
     "@warriorjs/helper-get-level-score": "^0.14.0",
     "@warriorjs/tower-baby-steps": "^0.13.0",
-    "ansi-escapes": "^3.0.0",
-    "array-shuffle": "^1.0.1",
-    "chalk": "^2.4.1",
-    "delay": "^4.1.0",
-    "ejs": "^2.6.1",
-    "find-up": "^3.0.0",
-    "globby": "^8.0.1",
-    "inquirer": "^6.2.1",
-    "inquirer-prompt-suggest": "^0.1.0",
-    "lodash.uniqby": "^4.7.0",
-    "resolve": "^1.8.1",
-    "string-width": "^2.1.1",
-    "superheroes": "^2.0.0",
-    "yargs": "^12.0.5"
+    "ansi-escapes": "^7.0.0",
+    "array-shuffle": "^3.0.0",
+    "chalk": "^5.4.0",
+    "delay": "^6.0.0",
+    "ejs": "^3.1.0",
+    "find-up": "^7.0.0",
+    "globby": "^14.0.0",
+    "string-width": "^7.0.0",
+    "superheroes": "^4.0.0",
+    "yargs": "^17.0.0"
   }
 }
