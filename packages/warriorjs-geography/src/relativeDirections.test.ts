@@ -1,11 +1,5 @@
-import { test, expect } from 'vitest';
-import {
-  BACKWARD,
-  FORWARD,
-  LEFT,
-  RELATIVE_DIRECTIONS,
-  RIGHT,
-} from './relativeDirections.js';
+import { expect, test } from 'vitest';
+import { BACKWARD, FORWARD, LEFT, RELATIVE_DIRECTIONS, RIGHT } from './relativeDirections.js';
 
 test("exports a FORWARD constant whose value is 'forward'", () => {
   expect(FORWARD).toBe('forward');

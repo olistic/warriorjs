@@ -30,7 +30,12 @@ interface Tower {
  *
  * @returns The level config.
  */
-function getLevelConfig(tower: Tower, levelNumber: number, warriorName: string, epic: boolean): LevelConfig | null {
+function getLevelConfig(
+  tower: Tower,
+  levelNumber: number,
+  warriorName: string,
+  epic: boolean,
+): LevelConfig | null {
   const level = tower.levels[levelNumber - 1];
   if (!level) {
     return null;

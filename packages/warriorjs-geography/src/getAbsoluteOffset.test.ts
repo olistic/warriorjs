@@ -1,6 +1,6 @@
-import { test, expect } from 'vitest';
-import getAbsoluteOffset from './getAbsoluteOffset.js';
+import { expect, test } from 'vitest';
 import { EAST, NORTH, SOUTH, WEST } from './absoluteDirections.js';
+import getAbsoluteOffset from './getAbsoluteOffset.js';
 
 test('returns the absolute offset based on direction', () => {
   expect(getAbsoluteOffset([1, 2], NORTH)).toEqual([2, -1]);

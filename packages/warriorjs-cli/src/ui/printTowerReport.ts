@@ -18,7 +18,7 @@ function printTowerReport(profile: ProfileLike): void {
 
   Object.keys(profile.currentEpicGrades)
     .sort()
-    .forEach(levelNumber => {
+    .forEach((levelNumber) => {
       const grade = profile.currentEpicGrades[levelNumber];
       const gradeLetter = getGradeLetter(grade);
       printLine(`  Level ${levelNumber}: ${gradeLetter}`);

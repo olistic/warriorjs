@@ -1,4 +1,4 @@
-import { describe, test, expect, beforeEach } from 'vitest';
+import { beforeEach, describe, expect, test } from 'vitest';
 
 import maxHealthCreator from './maxHealth.js';
 
@@ -16,9 +16,7 @@ describe('maxHealth', () => {
   });
 
   test('has a description', () => {
-    expect(maxHealth.description).toBe(
-      'Returns an integer representing your maximum health.',
-    );
+    expect(maxHealth.description).toBe('Returns an integer representing your maximum health.');
   });
 
   describe('performing', () => {

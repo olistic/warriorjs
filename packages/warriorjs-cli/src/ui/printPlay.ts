@@ -1,8 +1,8 @@
 import sleep from 'delay';
 
 import printBoard from './printBoard.js';
-import printTurnHeader from './printTurnHeader.js';
 import printLogMessage from './printLogMessage.js';
+import printTurnHeader from './printTurnHeader.js';
 
 interface PlayEvent {
   floorMap: unknown[][];

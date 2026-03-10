@@ -1,6 +1,6 @@
-import verifyAbsoluteDirection from './verifyAbsoluteDirection.js';
 import { ABSOLUTE_DIRECTIONS } from './absoluteDirections.js';
 import { RELATIVE_DIRECTIONS } from './relativeDirections.js';
+import verifyAbsoluteDirection from './verifyAbsoluteDirection.js';
 
 /**
  * Returns the relative direction for a given direction, with reference to a

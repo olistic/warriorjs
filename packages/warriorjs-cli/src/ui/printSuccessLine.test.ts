@@ -1,5 +1,5 @@
-import { test, expect, vi } from 'vitest';
 import chalk from 'chalk';
+import { expect, test, vi } from 'vitest';
 
 import printLine from './printLine.js';
 import printSuccessLine from './printSuccessLine.js';

@@ -1,5 +1,5 @@
-import { describe, test, expect, beforeEach, vi } from 'vitest';
 import { FORWARD, RIGHT } from '@warriorjs/geography';
+import { beforeEach, describe, expect, test, vi } from 'vitest';
 
 import rescueCreator from './rescue.js';
 
@@ -41,9 +41,7 @@ describe('rescue', () => {
     test('misses if no receiver', () => {
       unit.getSpaceAt = () => ({ getUnit: () => null });
       rescue.perform();
-      expect(unit.log).toHaveBeenCalledWith(
-        `unbinds ${FORWARD} and rescues nothing`,
-      );
+      expect(unit.log).toHaveBeenCalledWith(`unbinds ${FORWARD} and rescues nothing`);
     });
 
     describe('with receiver', () => {
@@ -60,17 +58,13 @@ describe('rescue', () => {
       test("does nothing to receiver if it's not bound", () => {
         receiver.isBound = () => false;
         rescue.perform();
-        expect(unit.log).toHaveBeenCalledWith(
-          `unbinds ${FORWARD} and rescues nothing`,
-        );
+        expect(unit.log).toHaveBeenCalledWith(`unbinds ${FORWARD} and rescues nothing`);
         expect(unit.release).not.toHaveBeenCalled();
       });
 
       test('releases receiver', () => {
         rescue.perform();
-        expect(unit.log).toHaveBeenCalledWith(
-          `unbinds ${FORWARD} and rescues receiver`,
-        );
+        expect(unit.log).toHaveBeenCalledWith(`unbinds ${FORWARD} and rescues receiver`);
         expect(unit.release).toHaveBeenCalledWith(receiver);
       });
     });

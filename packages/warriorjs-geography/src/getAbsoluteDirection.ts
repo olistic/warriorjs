@@ -1,7 +1,7 @@
-import verifyAbsoluteDirection from './verifyAbsoluteDirection.js';
-import verifyRelativeDirection from './verifyRelativeDirection.js';
 import { ABSOLUTE_DIRECTIONS } from './absoluteDirections.js';
 import { RELATIVE_DIRECTIONS } from './relativeDirections.js';
+import verifyAbsoluteDirection from './verifyAbsoluteDirection.js';
+import verifyRelativeDirection from './verifyRelativeDirection.js';
 
 /**
  * Returns the absolute direction for a given direction, with reference to

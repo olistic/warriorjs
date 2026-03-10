@@ -1,4 +1,4 @@
-import { test, expect } from 'vitest';
+import { expect, test } from 'vitest';
 import isFloorClear from './isFloorClear.js';
 
 test('considers clear when there are no units other than the warrior', () => {
@@ -12,7 +12,10 @@ test('considers clear when there are no units other than the warrior', () => {
 test("doesn't consider clear when there are other units apart from the warrior", () => {
   const floorMap = [
     [{ character: 'a' }, { character: 'b' }],
-    [{ character: '@', unit: 'warrior' }, { character: 'f', unit: 'foo' }],
+    [
+      { character: '@', unit: 'warrior' },
+      { character: 'f', unit: 'foo' },
+    ],
   ];
   expect(isFloorClear(floorMap)).toBe(false);
 });

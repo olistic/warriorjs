@@ -14,6 +14,5 @@ export { default as rescue } from './rescue.js';
 export { default as rest } from './rest.js';
 export { default as shoot } from './shoot.js';
 export { default as think } from './think.js';
+export type { Ability, AbilityCreator, SensedSpace, Space, Unit } from './types.js';
 export { default as walk } from './walk.js';
-
-export type { Ability, AbilityCreator, Unit, Space, SensedSpace } from './types.js';

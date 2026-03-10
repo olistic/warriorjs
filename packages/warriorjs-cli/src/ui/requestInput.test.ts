@@ -1,6 +1,5 @@
-import { test, expect, vi } from 'vitest';
-
 import { input } from '@inquirer/prompts';
+import { expect, test, vi } from 'vitest';
 
 import requestInput from './requestInput.js';
 

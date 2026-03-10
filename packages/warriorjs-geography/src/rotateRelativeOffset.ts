@@ -1,5 +1,5 @@
-import verifyRelativeDirection from './verifyRelativeDirection.js';
 import { BACKWARD, FORWARD, RIGHT } from './relativeDirections.js';
+import verifyRelativeDirection from './verifyRelativeDirection.js';
 
 /**
  * Rotates the given relative offset in the given direction.
@@ -9,7 +9,10 @@ import { BACKWARD, FORWARD, RIGHT } from './relativeDirections.js';
  *
  * @returns {number[]} The rotated offset as [forward, right].
  */
-function rotateRelativeOffset([forward, right]: [number, number], direction: string): [number, number] {
+function rotateRelativeOffset(
+  [forward, right]: [number, number],
+  direction: string,
+): [number, number] {
   verifyRelativeDirection(direction);
 
   if (direction === FORWARD) {

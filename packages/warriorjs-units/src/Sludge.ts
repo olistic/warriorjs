@@ -1,5 +1,5 @@
-import { RELATIVE_DIRECTIONS } from '@warriorjs/geography';
 import { attack, feel } from '@warriorjs/abilities';
+import { RELATIVE_DIRECTIONS } from '@warriorjs/geography';
 
 export interface UnitTurn {
   feel(direction: string): {
@@ -18,9 +18,9 @@ const Sludge = {
     feel: feel(),
   },
   playTurn(sludge: UnitTurn) {
-    const threatDirection = RELATIVE_DIRECTIONS.find(direction => {
+    const threatDirection = RELATIVE_DIRECTIONS.find((direction) => {
       const unit = sludge.feel(direction).getUnit();
-      return unit && unit.isEnemy() && !unit.isBound();
+      return unit?.isEnemy() && !unit.isBound();
     });
     if (threatDirection) {
       sludge.attack(threatDirection);

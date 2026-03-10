@@ -1,5 +1,5 @@
-import { describe, test, expect, beforeEach, vi } from 'vitest';
 import { FORWARD, NORTH } from '@warriorjs/geography';
+import { beforeEach, describe, expect, test, vi } from 'vitest';
 
 import listenCreator from './listen.js';
 
@@ -34,9 +34,7 @@ describe('listen', () => {
 
   describe('performing', () => {
     test('returns all spaces which have units in them', () => {
-      unit.getSensedSpaceAt
-        .mockReturnValueOnce('space1')
-        .mockReturnValueOnce('space2');
+      unit.getSensedSpaceAt.mockReturnValueOnce('space1').mockReturnValueOnce('space2');
       expect(listen.perform()).toEqual(['space1', 'space2']);
       expect(unit.getSensedSpaceAt).toHaveBeenCalledWith(FORWARD, 1, -1);
       expect(unit.getSensedSpaceAt).toHaveBeenCalledWith(FORWARD, -2, 1);

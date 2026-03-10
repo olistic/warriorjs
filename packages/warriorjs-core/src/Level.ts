@@ -1,5 +1,5 @@
-import Logger from './Logger.js';
 import type Floor from './Floor.js';
+import Logger from './Logger.js';
 
 const maxTurns = 200;
 
@@ -29,8 +29,8 @@ class Level {
 
       Logger.turn();
 
-      this.floor.getUnits().forEach(unit => unit.prepareTurn());
-      this.floor.getUnits().forEach(unit => unit.performTurn());
+      this.floor.getUnits().forEach((unit) => unit.prepareTurn());
+      this.floor.getUnits().forEach((unit) => unit.performTurn());
     }
 
     const passed = this.wasPassed();
@@ -47,7 +47,7 @@ class Level {
   }
 
   wasFailed(): boolean {
-    return !this.floor.warrior!.isAlive();
+    return !this.floor.warrior?.isAlive();
   }
 
   toJSON(): any {
@@ -57,8 +57,8 @@ class Level {
       tip: this.tip,
       clue: this.clue,
       floorMap: this.floor.getMap(),
-      warriorStatus: this.floor.warrior!.getStatus(),
-      warriorAbilities: this.floor.warrior!.getAbilities(),
+      warriorStatus: this.floor.warrior?.getStatus(),
+      warriorAbilities: this.floor.warrior?.getAbilities(),
     };
   }
 }

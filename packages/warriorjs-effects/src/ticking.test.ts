@@ -1,4 +1,4 @@
-import { test, expect, describe, beforeEach, vi } from 'vitest';
+import { beforeEach, describe, expect, test, vi } from 'vitest';
 import tickingCreator from './ticking.js';
 
 describe('ticking', () => {
@@ -20,9 +20,7 @@ describe('ticking', () => {
   });
 
   test('has a description', () => {
-    expect(ticking.description).toBe(
-      'Kills you and all surrounding units when time reaches zero.',
-    );
+    expect(ticking.description).toBe('Kills you and all surrounding units when time reaches zero.');
   });
 
   describe('passing turn', () => {

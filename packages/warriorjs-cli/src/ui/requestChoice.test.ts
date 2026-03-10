@@ -1,6 +1,5 @@
-import { test, expect, vi } from 'vitest';
-
 import { select } from '@inquirer/prompts';
+import { expect, test, vi } from 'vitest';
 
 import requestChoice from './requestChoice.js';
 

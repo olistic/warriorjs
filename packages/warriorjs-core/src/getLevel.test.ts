@@ -1,15 +1,13 @@
-import { test, expect } from 'vitest';
 import { EAST, FORWARD, RELATIVE_DIRECTIONS, WEST } from '@warriorjs/geography';
+import { expect, test } from 'vitest';
 
 import getLevel from './getLevel.js';
 
 const levelConfig = {
   number: 2,
   description: "It's too dark to see anything, but you smell sludge nearby.",
-  tip:
-    "Use \`warrior.feel().isEmpty()\` to see if there's anything in front of you, and \`warrior.attack()\` to fight it. Remember, you can only do one action per turn.",
-  clue:
-    'Add an if/else condition using \`warrior.feel().isEmpty()\` to decide whether to attack or walk.',
+  tip: "Use `warrior.feel().isEmpty()` to see if there's anything in front of you, and `warrior.attack()` to fight it. Remember, you can only do one action per turn.",
+  clue: 'Add an if/else condition using `warrior.feel().isEmpty()` to decide whether to attack or walk.',
   floor: {
     size: {
       width: 8,
@@ -59,7 +57,7 @@ const levelConfig = {
           }),
         },
         playTurn(sludge: any) {
-          const playerDirection = RELATIVE_DIRECTIONS.find(direction => {
+          const playerDirection = RELATIVE_DIRECTIONS.find((direction) => {
             const space = sludge.feel(direction);
             return space.isUnit() && space.getUnit().isPlayer();
           });
@@ -81,10 +79,8 @@ test('returns level', () => {
   expect(getLevel(levelConfig)).toEqual({
     number: 2,
     description: "It's too dark to see anything, but you smell sludge nearby.",
-    tip:
-      "Use \`warrior.feel().isEmpty()\` to see if there's anything in front of you, and \`warrior.attack()\` to fight it. Remember, you can only do one action per turn.",
-    clue:
-      'Add an if/else condition using \`warrior.feel().isEmpty()\` to decide whether to attack or walk.',
+    tip: "Use `warrior.feel().isEmpty()` to see if there's anything in front of you, and `warrior.attack()` to fight it. Remember, you can only do one action per turn.",
+    clue: 'Add an if/else condition using `warrior.feel().isEmpty()` to decide whether to attack or walk.',
     floorMap: [
       [
         { character: '\u2554' },
@@ -146,19 +142,18 @@ test('returns level', () => {
         {
           name: 'attack',
           description:
-            "Attacks a unit in the given direction (\`'forward'\` by default), dealing 5 HP of damage.",
+            "Attacks a unit in the given direction (`'forward'` by default), dealing 5 HP of damage.",
         },
         {
           name: 'walk',
-          description:
-            "Moves one space in the given direction (\`'forward'\` by default).",
+          description: "Moves one space in the given direction (`'forward'` by default).",
         },
       ],
       senses: [
         {
           name: 'feel',
           description:
-            "Returns the adjacent space in the given direction (\`'forward'\` by default).",
+            "Returns the adjacent space in the given direction (`'forward'` by default).",
         },
       ],
     },

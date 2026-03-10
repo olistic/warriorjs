@@ -1,4 +1,4 @@
-import { test, expect, vi } from 'vitest';
+import { expect, test, vi } from 'vitest';
 
 import getUnitStyle from './getUnitStyle.js';
 import printFloorMap from './printFloorMap.js';

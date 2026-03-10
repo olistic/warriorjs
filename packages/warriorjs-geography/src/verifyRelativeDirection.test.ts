@@ -1,23 +1,15 @@
-import { test, expect } from 'vitest';
+import { expect, test } from 'vitest';
+import { BACKWARD, FORWARD, LEFT, RELATIVE_DIRECTIONS, RIGHT } from './relativeDirections.js';
 import verifyRelativeDirection from './verifyRelativeDirection.js';
-import {
-  BACKWARD,
-  FORWARD,
-  LEFT,
-  RELATIVE_DIRECTIONS,
-  RIGHT,
-} from './relativeDirections.js';
 
 test("doesn't throw if direction is valid", () => {
   const validDirections = RELATIVE_DIRECTIONS;
-  validDirections.forEach(validDirection =>
-    verifyRelativeDirection(validDirection),
-  );
+  validDirections.forEach((validDirection) => verifyRelativeDirection(validDirection));
 });
 
 test('throws an error if direction is not valid', () => {
   const invalidDirections = ['', 'foo', 'forward\n', 'Forward', 'backwards'];
-  invalidDirections.forEach(invalidDirection => {
+  invalidDirections.forEach((invalidDirection) => {
     expect(() => {
       verifyRelativeDirection(invalidDirection);
     }).toThrow(

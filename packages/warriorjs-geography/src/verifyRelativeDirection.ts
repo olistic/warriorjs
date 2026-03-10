@@ -1,10 +1,4 @@
-import {
-  BACKWARD,
-  FORWARD,
-  LEFT,
-  RELATIVE_DIRECTIONS,
-  RIGHT,
-} from './relativeDirections.js';
+import { BACKWARD, FORWARD, LEFT, RELATIVE_DIRECTIONS, RIGHT } from './relativeDirections.js';
 
 /**
  * Checks if the given direction is a valid relative direction.

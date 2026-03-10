@@ -1,5 +1,5 @@
-import { describe, test, expect, beforeEach, vi } from 'vitest';
 import { FORWARD, LEFT } from '@warriorjs/geography';
+import { beforeEach, describe, expect, test, vi } from 'vitest';
 
 import lookCreator from './look.js';
 

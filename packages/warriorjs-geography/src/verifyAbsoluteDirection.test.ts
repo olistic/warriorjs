@@ -1,23 +1,15 @@
-import { test, expect } from 'vitest';
+import { expect, test } from 'vitest';
+import { ABSOLUTE_DIRECTIONS, EAST, NORTH, SOUTH, WEST } from './absoluteDirections.js';
 import verifyAbsoluteDirection from './verifyAbsoluteDirection.js';
-import {
-  ABSOLUTE_DIRECTIONS,
-  EAST,
-  NORTH,
-  SOUTH,
-  WEST,
-} from './absoluteDirections.js';
 
 test("doesn't throw if direction is valid", () => {
   const validDirections = ABSOLUTE_DIRECTIONS;
-  validDirections.forEach(validDirection =>
-    verifyAbsoluteDirection(validDirection),
-  );
+  validDirections.forEach((validDirection) => verifyAbsoluteDirection(validDirection));
 });
 
 test('throws an error if direction is not valid', () => {
   const invalidDirections = ['', 'foo', 'north\n', 'North', 'southern'];
-  invalidDirections.forEach(invalidDirection => {
+  invalidDirections.forEach((invalidDirection) => {
     expect(() => {
       verifyAbsoluteDirection(invalidDirection);
     }).toThrow(

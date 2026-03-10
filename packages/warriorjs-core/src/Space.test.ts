@@ -1,5 +1,5 @@
-import { describe, test, expect, beforeEach } from 'vitest';
 import { NORTH } from '@warriorjs/geography';
+import { beforeEach, describe, expect, test } from 'vitest';
 
 import Floor from './Floor.js';
 import Space from './Space.js';
@@ -257,15 +257,8 @@ describe('Space', () => {
     });
 
     test('allows calling sensed space methods', () => {
-      const allowedApi = [
-        'getLocation',
-        'getUnit',
-        'isEmpty',
-        'isStairs',
-        'isUnit',
-        'isWall',
-      ];
-      allowedApi.forEach(propertyName => {
+      const allowedApi = ['getLocation', 'getUnit', 'isEmpty', 'isStairs', 'isUnit', 'isWall'];
+      allowedApi.forEach((propertyName) => {
         sensedSpace[propertyName]();
       });
     });

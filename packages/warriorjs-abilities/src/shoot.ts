@@ -11,8 +11,8 @@ function shoot({ power, range }: { power: number; range: number }) {
     perform(direction: RelativeDirection = defaultDirection) {
       const offsets = Array.from(new Array(range), (_, index) => index + 1);
       const receiver = offsets
-        .map(offset => unit.getSpaceAt(direction, offset).getUnit())
-        .find(unitInRange => unitInRange);
+        .map((offset) => unit.getSpaceAt(direction, offset).getUnit())
+        .find((unitInRange) => unitInRange);
       if (receiver) {
         unit.log(`shoots ${direction} and hits ${receiver}`);
         unit.damage(receiver, power);

@@ -1,11 +1,5 @@
-import { test, expect } from 'vitest';
-import {
-  ABSOLUTE_DIRECTIONS,
-  EAST,
-  NORTH,
-  SOUTH,
-  WEST,
-} from './absoluteDirections.js';
+import { expect, test } from 'vitest';
+import { ABSOLUTE_DIRECTIONS, EAST, NORTH, SOUTH, WEST } from './absoluteDirections.js';
 
 test("exports a NORTH constant whose value is 'north'", () => {
   expect(NORTH).toBe('north');

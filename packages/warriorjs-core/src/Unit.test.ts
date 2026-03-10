@@ -1,12 +1,5 @@
-import { describe, test, expect, beforeEach, vi } from 'vitest';
-import {
-  BACKWARD,
-  FORWARD,
-  LEFT,
-  NORTH,
-  RIGHT,
-  SOUTH,
-} from '@warriorjs/geography';
+import { BACKWARD, FORWARD, LEFT, NORTH, RIGHT, SOUTH } from '@warriorjs/geography';
+import { beforeEach, describe, expect, test, vi } from 'vitest';
 
 import Floor from './Floor.js';
 import Unit from './Unit.js';
@@ -183,26 +176,20 @@ describe('Unit', () => {
       unit.health = 5;
       unit.heal(3);
       expect(unit.health).toBe(8);
-      expect(unit.log).toHaveBeenCalledWith(
-        'receives 3 health, up to 8 health',
-      );
+      expect(unit.log).toHaveBeenCalledWith('receives 3 health, up to 8 health');
     });
 
     test("doesn't go over max health", () => {
       unit.health = 19;
       unit.heal(2);
       expect(unit.health).toBe(20);
-      expect(unit.log).toHaveBeenCalledWith(
-        'receives 2 health, up to 20 health',
-      );
+      expect(unit.log).toHaveBeenCalledWith('receives 2 health, up to 20 health');
     });
 
     test("doesn't add health when at max", () => {
       unit.heal(1);
       expect(unit.health).toBe(20);
-      expect(unit.log).toHaveBeenCalledWith(
-        'receives 1 health, up to 20 health',
-      );
+      expect(unit.log).toHaveBeenCalledWith('receives 1 health, up to 20 health');
     });
   });
 
@@ -210,25 +197,19 @@ describe('Unit', () => {
     test('subtracts health', () => {
       unit.takeDamage(3);
       expect(unit.health).toBe(17);
-      expect(unit.log).toHaveBeenCalledWith(
-        'takes 3 damage, 17 health power left',
-      );
+      expect(unit.log).toHaveBeenCalledWith('takes 3 damage, 17 health power left');
     });
 
     test("doesn't go under zero health", () => {
       unit.takeDamage(21);
       expect(unit.health).toBe(0);
-      expect(unit.log).toHaveBeenCalledWith(
-        'takes 21 damage, 0 health power left',
-      );
+      expect(unit.log).toHaveBeenCalledWith('takes 21 damage, 0 health power left');
     });
 
     test('dies when running out of health', () => {
       unit.takeDamage(20);
       expect(unit.isAlive()).toBe(false);
-      expect(unit.log).toHaveBeenCalledWith(
-        'takes 20 damage, 0 health power left',
-      );
+      expect(unit.log).toHaveBeenCalledWith('takes 20 damage, 0 health power left');
       expect(unit.log).toHaveBeenCalledWith('dies');
     });
   });
@@ -265,7 +246,11 @@ describe('Unit', () => {
       receiver.reward = 10;
       receiver.health = 5;
       receiver.position = {} as any;
-      receiver.as = () => ({ isEnemy: () => true, isBound: () => false, isUnderEffect: () => false });
+      receiver.as = () => ({
+        isEnemy: () => true,
+        isBound: () => false,
+        isUnderEffect: () => false,
+      });
       receiver.log = vi.fn();
     });
 
@@ -282,7 +267,11 @@ describe('Unit', () => {
     });
 
     test('lose points equal to reward when killing a friend', () => {
-      receiver.as = () => ({ isEnemy: () => false, isBound: () => false, isUnderEffect: () => false });
+      receiver.as = () => ({
+        isEnemy: () => false,
+        isBound: () => false,
+        isUnderEffect: () => false,
+      });
       unit.losePoints = vi.fn();
       unit.damage(receiver, 5);
       expect(unit.losePoints).toHaveBeenCalledWith(10);
@@ -306,7 +295,11 @@ describe('Unit', () => {
       receiver.reward = 10;
       receiver.bound = true;
       receiver.position = {} as any;
-      receiver.as = () => ({ isEnemy: () => true, isBound: () => false, isUnderEffect: () => false });
+      receiver.as = () => ({
+        isEnemy: () => true,
+        isBound: () => false,
+        isUnderEffect: () => false,
+      });
       receiver.log = vi.fn();
     });
 
@@ -324,7 +317,11 @@ describe('Unit', () => {
 
     describe('friendly unit', () => {
       beforeEach(() => {
-        receiver.as = () => ({ isEnemy: () => false, isBound: () => false, isUnderEffect: () => false });
+        receiver.as = () => ({
+          isEnemy: () => false,
+          isBound: () => false,
+          isUnderEffect: () => false,
+        });
       });
 
       test('vanishes the unit', () => {
@@ -423,7 +420,7 @@ describe('Unit', () => {
 
   test("returns the space where it's located", () => {
     const space = unit.getSpace();
-    expect(space.location).toEqual(unit.position!.location);
+    expect(space.location).toEqual(unit.position?.location);
   });
 
   test('returns sensed space at a given direction and number of spaces', () => {
@@ -437,13 +434,13 @@ describe('Unit', () => {
   test('returns space at a given direction and number of spaces', () => {
     unit.position = { getRelativeSpace: vi.fn() } as any;
     unit.getSpaceAt(RIGHT, 2, 1);
-    expect(unit.position!.getRelativeSpace).toHaveBeenCalledWith(RIGHT, [2, 1]);
+    expect(unit.position?.getRelativeSpace).toHaveBeenCalledWith(RIGHT, [2, 1]);
   });
 
   test('returns immediate space at a given direction if number of spaces is omitted', () => {
     unit.position = { getRelativeSpace: vi.fn() } as any;
     unit.getSpaceAt(LEFT);
-    expect(unit.position!.getRelativeSpace).toHaveBeenCalledWith(LEFT, [1, 0]);
+    expect(unit.position?.getRelativeSpace).toHaveBeenCalledWith(LEFT, [1, 0]);
   });
 
   test('returns the direction of the stairs', () => {
@@ -451,13 +448,9 @@ describe('Unit', () => {
   });
 
   test('returns the direction of a given space', () => {
-    expect(unit.getDirectionOf(unit.getSensedSpaceAt(FORWARD, 1))).toEqual(
-      FORWARD,
-    );
+    expect(unit.getDirectionOf(unit.getSensedSpaceAt(FORWARD, 1))).toEqual(FORWARD);
     expect(unit.getDirectionOf(unit.getSensedSpaceAt(RIGHT, 1))).toEqual(RIGHT);
-    expect(unit.getDirectionOf(unit.getSensedSpaceAt(BACKWARD, 1))).toEqual(
-      BACKWARD,
-    );
+    expect(unit.getDirectionOf(unit.getSensedSpaceAt(BACKWARD, 1))).toEqual(BACKWARD);
     expect(unit.getDirectionOf(unit.getSensedSpaceAt(LEFT, 1))).toEqual(LEFT);
   });
 
@@ -472,12 +465,12 @@ describe('Unit', () => {
 
     test('moves in the given direction by a given number of spaces', () => {
       unit.move(RIGHT, 2, 1);
-      expect(unit.position!.move).toHaveBeenCalledWith(RIGHT, [2, 1]);
+      expect(unit.position?.move).toHaveBeenCalledWith(RIGHT, [2, 1]);
     });
 
     test('moves one space in the given direction if number of spaces is omitted', () => {
       unit.move(LEFT);
-      expect(unit.position!.move).toHaveBeenCalledWith(LEFT, [1, 0]);
+      expect(unit.position?.move).toHaveBeenCalledWith(LEFT, [1, 0]);
     });
   });
 
@@ -488,7 +481,7 @@ describe('Unit', () => {
 
     test('rotates in the given direction', () => {
       unit.rotate(RIGHT);
-      expect(unit.position!.rotate).toHaveBeenCalledWith(RIGHT);
+      expect(unit.position?.rotate).toHaveBeenCalledWith(RIGHT);
     });
   });
 
@@ -513,7 +506,7 @@ describe('Unit', () => {
 
     test('allows calling sensed unit methods', () => {
       const allowedApi = ['isBound', 'isEnemy', 'isUnderEffect'];
-      allowedApi.forEach(propertyName => {
+      allowedApi.forEach((propertyName) => {
         sensedUnit[propertyName]();
       });
     });
@@ -550,7 +543,7 @@ describe('Unit', () => {
         'unbind',
         'vanish',
       ];
-      forbiddenApi.forEach(propertyName => {
+      forbiddenApi.forEach((propertyName) => {
         expect(sensedUnit).not.toHaveProperty(propertyName);
       });
     });

@@ -1,8 +1,8 @@
 import Floor from './Floor.js';
 import Level from './Level.js';
+import loadPlayer from './loadPlayer.js';
 import Unit from './Unit.js';
 import Warrior from './Warrior.js';
-import loadPlayer from './loadPlayer.js';
 
 interface UnitConfig {
   name: string;
@@ -75,15 +75,7 @@ function loadUnit(
   }: UnitConfig,
   floor: Floor,
 ): void {
-  const unit = new Unit(
-    name,
-    character,
-    color,
-    maxHealth,
-    reward,
-    enemy,
-    bound,
-  );
+  const unit = new Unit(name, character, color, maxHealth, reward, enemy, bound);
   loadAbilities(unit, abilities);
   loadEffects(unit, effects);
   if (playTurn) {
@@ -93,13 +85,7 @@ function loadUnit(
 }
 
 function loadLevel(
-  {
-    number,
-    description,
-    tip,
-    clue,
-    floor: { size, stairs, warrior, units = [] },
-  }: LevelConfig,
+  { number, description, tip, clue, floor: { size, stairs, warrior, units = [] } }: LevelConfig,
   playerCode?: string,
 ): Level {
   const { width, height } = size;
@@ -107,7 +93,7 @@ function loadLevel(
   const floor = new Floor(width, height, stairsLocation);
 
   loadWarrior(warrior, floor, playerCode);
-  units.forEach(unit => loadUnit(unit, floor));
+  units.forEach((unit) => loadUnit(unit, floor));
 
   return new Level(number!, description!, tip!, clue!, floor);
 }

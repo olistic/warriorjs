@@ -1,5 +1,5 @@
-import { test, expect, vi } from 'vitest';
 import getGradeLetter from '@warriorjs/helper-get-grade-letter';
+import { expect, test, vi } from 'vitest';
 
 import printLine from './printLine.js';
 import printTowerReport from './printTowerReport.js';
@@ -26,12 +26,8 @@ test("prints tower's average grade and each level's grade", () => {
     calculateAverageGrade: () => 0.9,
   } as any;
   printTowerReport(profile);
-  expect(printLine).toHaveBeenCalledWith(
-    'Your average grade for this tower is: A\n',
-  );
+  expect(printLine).toHaveBeenCalledWith('Your average grade for this tower is: A\n');
   expect(printLine).toHaveBeenCalledWith('  Level 1: B');
   expect(printLine).toHaveBeenCalledWith('  Level 2: A');
-  expect(printLine).toHaveBeenCalledWith(
-    '\nTo practice a level, use the -l option.',
-  );
+  expect(printLine).toHaveBeenCalledWith('\nTo practice a level, use the -l option.');
 });

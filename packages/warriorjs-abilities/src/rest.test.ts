@@ -1,4 +1,4 @@
-import { describe, test, expect, beforeEach, vi } from 'vitest';
+import { beforeEach, describe, expect, test, vi } from 'vitest';
 
 import restCreator from './rest.js';
 
@@ -21,9 +21,7 @@ describe('rest', () => {
   });
 
   test('has a description', () => {
-    expect(rest.description).toBe(
-      'Gains 10% of max health back, but does nothing more.',
-    );
+    expect(rest.description).toBe('Gains 10% of max health back, but does nothing more.');
   });
 
   describe('performing', () => {

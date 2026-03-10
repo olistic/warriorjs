@@ -32,11 +32,11 @@ const Logger: {
   },
 
   unit(unit: Unit, message: string) {
-    Logger.lastTurn!.push({
+    Logger.lastTurn?.push({
       message,
       unit: JSON.parse(JSON.stringify(unit)),
-      floorMap: JSON.parse(JSON.stringify(Logger.floor!.getMap())),
-      warriorStatus: Logger.floor!.warrior!.getStatus(),
+      floorMap: JSON.parse(JSON.stringify(Logger.floor?.getMap())),
+      warriorStatus: Logger.floor?.warrior?.getStatus(),
     });
   },
 };

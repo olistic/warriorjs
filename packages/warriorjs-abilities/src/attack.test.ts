@@ -1,5 +1,5 @@
-import { describe, test, expect, beforeEach, vi } from 'vitest';
 import { BACKWARD, FORWARD, LEFT } from '@warriorjs/geography';
+import { beforeEach, describe, expect, test, vi } from 'vitest';
 
 import attackCreator from './attack.js';
 
@@ -41,9 +41,7 @@ describe('attack', () => {
     test('misses if no receiver', () => {
       unit.getSpaceAt = () => ({ getUnit: () => null });
       attack.perform();
-      expect(unit.log).toHaveBeenCalledWith(
-        `attacks ${FORWARD} and hits nothing`,
-      );
+      expect(unit.log).toHaveBeenCalledWith(`attacks ${FORWARD} and hits nothing`);
       expect(unit.damage).not.toHaveBeenCalled();
     });
 
@@ -54,17 +52,13 @@ describe('attack', () => {
 
       test('damages receiver', () => {
         attack.perform();
-        expect(unit.log).toHaveBeenCalledWith(
-          `attacks ${FORWARD} and hits receiver`,
-        );
+        expect(unit.log).toHaveBeenCalledWith(`attacks ${FORWARD} and hits receiver`);
         expect(unit.damage).toHaveBeenCalledWith('receiver', 3);
       });
 
       test('reduces power when attacking backward', () => {
         attack.perform(BACKWARD);
-        expect(unit.log).toHaveBeenCalledWith(
-          `attacks ${BACKWARD} and hits receiver`,
-        );
+        expect(unit.log).toHaveBeenCalledWith(`attacks ${BACKWARD} and hits receiver`);
         expect(unit.damage).toHaveBeenCalledWith('receiver', 2);
       });
     });

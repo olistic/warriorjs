@@ -1,7 +1,7 @@
-import { describe, test, expect, beforeEach } from 'vitest';
+import { beforeEach, describe, expect, test } from 'vitest';
+import { EAST, NORTH, SOUTH, WEST } from './absoluteDirections.js';
 import getAbsoluteDirection from './getAbsoluteDirection.js';
 import { BACKWARD, FORWARD, LEFT, RIGHT } from './relativeDirections.js';
-import { EAST, NORTH, SOUTH, WEST } from './absoluteDirections.js';
 
 let direction;
 

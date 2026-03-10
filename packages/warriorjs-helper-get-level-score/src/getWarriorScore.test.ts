@@ -1,4 +1,4 @@
-import { test, expect, vi } from 'vitest';
+import { expect, test, vi } from 'vitest';
 import getLastEvent from './getLastEvent.js';
 import getWarriorScore from './getWarriorScore.js';
 

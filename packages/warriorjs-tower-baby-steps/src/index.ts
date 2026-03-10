@@ -1,12 +1,3 @@
-import { EAST, WEST } from '@warriorjs/geography';
-import {
-  Archer,
-  Captive,
-  Sludge,
-  ThickSludge,
-  Warrior,
-  Wizard,
-} from '@warriorjs/units';
 import {
   attack,
   feel,
@@ -16,10 +7,12 @@ import {
   pivot,
   rescue,
   rest,
-  think,
   shoot,
+  think,
   walk,
 } from '@warriorjs/abilities';
+import { EAST, WEST } from '@warriorjs/geography';
+import { Archer, Captive, Sludge, ThickSludge, Warrior, Wizard } from '@warriorjs/units';
 
 interface Position {
   x: number;
@@ -64,8 +57,7 @@ const tower: TowerDefinition = {
     {
       description:
         "You see before yourself a long hallway with stairs at the end. There's nothing in the way.",
-      tip:
-        "Call `warrior.walk()` to walk forward in the Player's `playTurn` method.",
+      tip: "Call `warrior.walk()` to walk forward in the Player's `playTurn` method.",
       timeBonus: 15,
       aceScore: 10,
       floor: {
@@ -93,12 +85,9 @@ const tower: TowerDefinition = {
       },
     },
     {
-      description:
-        "It's too dark to see anything, but you smell sludge nearby.",
-      tip:
-        "Use `warrior.feel().isEmpty()` to see if there's anything in front of you, and `warrior.attack()` to fight it. Remember, you can only do one action per turn.",
-      clue:
-        'Add an if/else condition using `warrior.feel().isEmpty()` to decide whether to attack or walk.',
+      description: "It's too dark to see anything, but you smell sludge nearby.",
+      tip: "Use `warrior.feel().isEmpty()` to see if there's anything in front of you, and `warrior.attack()` to fight it. Remember, you can only do one action per turn.",
+      clue: 'Add an if/else condition using `warrior.feel().isEmpty()` to decide whether to attack or walk.',
       timeBonus: 20,
       aceScore: 26,
       floor: {
@@ -135,12 +124,9 @@ const tower: TowerDefinition = {
       },
     },
     {
-      description:
-        'The air feels thicker than before. There must be a horde of sludge.',
-      tip:
-        'Be careful not to die! Use `warrior.health()` and `warrior.maxHealth()` to keep an eye on your health, and `warrior.rest()` to earn 10% of your max health back.',
-      clue:
-        "When there's no enemy ahead of you, call `warrior.rest()` until your health is full before walking forward.",
+      description: 'The air feels thicker than before. There must be a horde of sludge.',
+      tip: 'Be careful not to die! Use `warrior.health()` and `warrior.maxHealth()` to keep an eye on your health, and `warrior.rest()` to earn 10% of your max health back.',
+      clue: "When there's no enemy ahead of you, call `warrior.rest()` until your health is full before walking forward.",
       timeBonus: 35,
       aceScore: 71,
       floor: {
@@ -203,10 +189,8 @@ const tower: TowerDefinition = {
     },
     {
       description: 'You can hear bow strings being stretched.',
-      tip:
-        "No new abilities this time, but you must be careful not to rest while taking damage. Save a `this.health` variable and compare it on each turn to see if you're taking damage.",
-      clue:
-        "Set `this.health` to your current health at the end of `playTurn`. If this is greater than your current health next turn, then you know you're taking damage and shouldn't rest.",
+      tip: "No new abilities this time, but you must be careful not to rest while taking damage. Save a `this.health` variable and compare it on each turn to see if you're taking damage.",
+      clue: "Set `this.health` to your current health at the end of `playTurn`. If this is greater than your current health next turn, then you know you're taking damage and shouldn't rest.",
       timeBonus: 45,
       aceScore: 90,
       floor: {
@@ -256,10 +240,8 @@ const tower: TowerDefinition = {
     },
     {
       description: 'You hear cries for help. Captives must need rescuing.',
-      tip:
-        "Combine `warrior.feel().getUnit().isEnemy()` and `warrior.feel().getUnit().isBound()` to see if there's a captive, and `warrior.rescue()` to rescue him. Don't attack captives.",
-      clue:
-        "Don't forget to constantly check if you are being attacked. Rest until your health is full if you're not taking damage.",
+      tip: "Combine `warrior.feel().getUnit().isEnemy()` and `warrior.feel().getUnit().isBound()` to see if there's a captive, and `warrior.rescue()` to rescue him. Don't attack captives.",
+      clue: "Don't forget to constantly check if you are being attacked. Rest until your health is full if you're not taking damage.",
       timeBonus: 45,
       aceScore: 123,
       floor: {
@@ -329,10 +311,8 @@ const tower: TowerDefinition = {
     {
       description:
         'The wall behind you feels a bit further away in this room. And you hear more cries for help.',
-      tip:
-        "You can walk backward by passing `'backward'` as an argument to `walk()`. Same goes for `feel()`, `rescue()` and `attack()`. Archers have a limited attack distance.",
-      clue:
-        "Walk backward if you're taking damage from afar and don't have enough health to attack. You may also want to consider walking backward until you hit a wall. Use `warrior.feel().isWall()` to see if there's a wall.",
+      tip: "You can walk backward by passing `'backward'` as an argument to `walk()`. Same goes for `feel()`, `rescue()` and `attack()`. Archers have a limited attack distance.",
+      clue: "Walk backward if you're taking damage from afar and don't have enough health to attack. You may also want to consider walking backward until you hit a wall. Use `warrior.feel().isWall()` to see if there's a wall.",
       timeBonus: 55,
       aceScore: 105,
       floor: {
@@ -389,10 +369,8 @@ const tower: TowerDefinition = {
       },
     },
     {
-      description:
-        'You feel a wall right in front of you and an opening behind you.',
-      tip:
-        "You're not as effective at attacking backward. Use `warrior.feel().isWall()` and `warrior.pivot()` to turn around.",
+      description: 'You feel a wall right in front of you and an opening behind you.',
+      tip: "You're not as effective at attacking backward. Use `warrior.feel().isWall()` and `warrior.pivot()` to turn around.",
       timeBonus: 30,
       aceScore: 50,
       floor: {
@@ -438,10 +416,8 @@ const tower: TowerDefinition = {
     {
       description:
         'You hear the mumbling of wizards. Beware of their deadly wands! Good thing you found a bow.',
-      tip:
-        'Use `warrior.look()` to determine your surroundings, and `warrior.shoot()` to fire an arrow.',
-      clue:
-        "Wizards are deadly but low in health. Kill them before they've time to attack.",
+      tip: 'Use `warrior.look()` to determine your surroundings, and `warrior.shoot()` to fire an arrow.',
+      clue: "Wizards are deadly but low in health. Kill them before they've time to attack.",
       timeBonus: 20,
       aceScore: 46,
       floor: {
@@ -494,11 +470,9 @@ const tower: TowerDefinition = {
       },
     },
     {
-      description:
-        "Time to hone your skills and apply all of the abilities that you've learned.",
+      description: "Time to hone your skills and apply all of the abilities that you've learned.",
       tip: 'Watch your back.',
-      clue:
-        "Don't just keep shooting the bow while you're being attacked from behind.",
+      clue: "Don't just keep shooting the bow while you're being attacked from behind.",
       timeBonus: 40,
       aceScore: 100,
       floor: {

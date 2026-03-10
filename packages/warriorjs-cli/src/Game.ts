@@ -1,20 +1,18 @@
-import fs from 'fs';
-import path from 'path';
-
-import { globbySync } from 'globby';
+import fs from 'node:fs';
+import path from 'node:path';
+import { getLevel, runLevel } from '@warriorjs/core';
 import getLevelConfig from '@warriorjs/helper-get-level-config';
 import getLevelScore from '@warriorjs/helper-get-level-score';
-import { getLevel, runLevel } from '@warriorjs/core';
+import { globbySync } from 'globby';
 
 import GameError from './GameError.js';
+import loadTowers from './loadTowers.js';
 import Profile from './Profile.js';
 import ProfileGenerator from './ProfileGenerator.js';
-import Tower from './Tower.js';
-import getWarriorNameSuggestions from './utils/getWarriorNameSuggestions.js';
-import loadTowers from './loadTowers.js';
+import type Tower from './Tower.js';
 import printFailureLine from './ui/printFailureLine.js';
-import printLevelReport from './ui/printLevelReport.js';
 import printLevel from './ui/printLevel.js';
+import printLevelReport from './ui/printLevelReport.js';
 import printLine from './ui/printLine.js';
 import printPlay from './ui/printPlay.js';
 import printSeparator from './ui/printSeparator.js';
@@ -25,6 +23,7 @@ import printWelcomeHeader from './ui/printWelcomeHeader.js';
 import requestChoice, { SEPARATOR } from './ui/requestChoice.js';
 import requestConfirmation from './ui/requestConfirmation.js';
 import requestInput from './ui/requestInput.js';
+import getWarriorNameSuggestions from './utils/getWarriorNameSuggestions.js';
 
 const gameDirectory = 'warriorjs';
 
@@ -101,7 +100,7 @@ class Game {
 
   getProfiles(): Profile[] {
     const profileDirectoriesPaths = this.getProfileDirectoriesPaths();
-    return profileDirectoriesPaths.map(profileDirectoryPath =>
+    return profileDirectoriesPaths.map((profileDirectoryPath) =>
       Profile.load(profileDirectoryPath, this.towers),
     ) as Profile[];
   }
@@ -119,7 +118,7 @@ class Game {
     }
 
     const towerChoices = this.towers;
-    const tower = await requestChoice('Choose a tower:', towerChoices) as Tower;
+    const tower = (await requestChoice('Choose a tower:', towerChoices)) as Tower;
 
     const profileDirectoryPath = path.join(
       this.gameDirectoryPath,
@@ -150,7 +149,7 @@ class Game {
   isExistingProfile(profile: Profile): boolean {
     const profileDirectoriesPaths = this.getProfileDirectoriesPaths();
     return profileDirectoriesPaths.some(
-      profileDirectoryPath => profileDirectoryPath === profile.directoryPath,
+      (profileDirectoryPath) => profileDirectoryPath === profile.directoryPath,
     );
   }
 
@@ -182,9 +181,7 @@ class Game {
     if (this.practiceLevel) {
       const hasPracticeLevel = this.profile.tower.hasLevel(this.practiceLevel);
       if (!hasPracticeLevel) {
-        throw new GameError(
-          'Unable to practice non-existent level, try another.',
-        );
+        throw new GameError('Unable to practice non-existent level, try another.');
       }
 
       await this.playLevel(this.practiceLevel);
@@ -202,9 +199,7 @@ class Game {
 
   async playNormalMode(): Promise<void> {
     if (this.practiceLevel) {
-      throw new GameError(
-        'Unable to practice level while not in epic mode, remove -l option.',
-      );
+      throw new GameError('Unable to practice level while not in epic mode, remove -l option.');
     }
 
     if (this.profile.levelNumber === 0) {
@@ -234,9 +229,7 @@ class Game {
     printSeparator();
 
     if (!levelResult.passed) {
-      printFailureLine(
-        `Sorry, you failed level ${levelNumber}. Change your script and try again.`,
-      );
+      printFailureLine(`Sorry, you failed level ${levelNumber}. Change your script and try again.`);
 
       if ((levelConfig as any).clue && !this.profile.isShowingClue()) {
         const showClue =
@@ -247,9 +240,7 @@ class Game {
         if (showClue) {
           this.profile.requestClue();
           this.generateProfileFiles();
-          printSuccessLine(
-            `See ${this.profile.getReadmeFilePath()} for the clues.`,
-          );
+          printSuccessLine(`See ${this.profile.getReadmeFilePath()} for the clues.`);
         }
       }
 
@@ -261,9 +252,7 @@ class Game {
     if (hasNextLevel) {
       printSuccessLine('Success! You have found the stairs.');
     } else {
-      printSuccessLine(
-        'CONGRATULATIONS! You have climbed to the top of the tower.',
-      );
+      printSuccessLine('CONGRATULATIONS! You have climbed to the top of the tower.');
     }
 
     const scoreParts = getLevelScore(levelResult, levelConfig as any);
@@ -290,27 +279,17 @@ class Game {
     if (this.profile.tower.hasLevel(this.profile.levelNumber + 1)) {
       const continueToNextLevel =
         this.assumeYes ||
-        (await requestConfirmation(
-          'Would you like to continue on to the next level?',
-          true,
-        ));
+        (await requestConfirmation('Would you like to continue on to the next level?', true));
       if (continueToNextLevel) {
         this.prepareNextLevel();
-        printSuccessLine(
-          `See ${this.profile.getReadmeFilePath()} for updated instructions.`,
-        );
+        printSuccessLine(`See ${this.profile.getReadmeFilePath()} for updated instructions.`);
       } else {
-        printLine(
-          'Staying on current level. Try to earn more points next time.',
-        );
+        printLine('Staying on current level. Try to earn more points next time.');
       }
     } else {
       const continueToEpicMode =
         this.assumeYes ||
-        (await requestConfirmation(
-          'Would you like to continue on to epic mode?',
-          true,
-        ));
+        (await requestConfirmation('Would you like to continue on to epic mode?', true));
       if (continueToEpicMode) {
         this.prepareEpicMode();
         printSuccessLine('Run warriorjs again to play epic mode.');

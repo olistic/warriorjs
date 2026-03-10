@@ -1,5 +1,5 @@
-import { test, expect, vi } from 'vitest';
 import arrayShuffle from 'array-shuffle';
+import { expect, test, vi } from 'vitest';
 
 import getWarriorNameSuggestions from './getWarriorNameSuggestions.js';
 

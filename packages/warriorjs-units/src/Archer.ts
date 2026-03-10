@@ -1,5 +1,5 @@
-import { RELATIVE_DIRECTIONS } from '@warriorjs/geography';
 import { look, shoot } from '@warriorjs/abilities';
+import { RELATIVE_DIRECTIONS } from '@warriorjs/geography';
 
 export interface UnitTurn {
   look(direction: string): Array<{
@@ -19,15 +19,9 @@ const Archer = {
     shoot: shoot({ range: 3, power: 3 }),
   },
   playTurn(archer: UnitTurn) {
-    const threatDirection = RELATIVE_DIRECTIONS.find(direction => {
-      const spaceWithUnit = archer
-        .look(direction)
-        .find(space => space.isUnit());
-      return (
-        spaceWithUnit &&
-        spaceWithUnit.getUnit().isEnemy() &&
-        !spaceWithUnit.getUnit().isBound()
-      );
+    const threatDirection = RELATIVE_DIRECTIONS.find((direction) => {
+      const spaceWithUnit = archer.look(direction).find((space) => space.isUnit());
+      return spaceWithUnit?.getUnit().isEnemy() && !spaceWithUnit.getUnit().isBound();
     });
     if (threatDirection) {
       archer.shoot(threatDirection);

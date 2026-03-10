@@ -1,8 +1,7 @@
-import { test, expect, describe, beforeEach, vi } from 'vitest';
-import fs from 'fs';
-
+import fs from 'node:fs';
 import ejs from 'ejs';
 import mock from 'mock-fs';
+import { beforeEach, describe, expect, test, vi } from 'vitest';
 
 import ProfileGenerator, {
   PLAYER_CODE_TEMPLATE_FILE_PATH,
@@ -87,9 +86,7 @@ describe('ProfileGenerator', () => {
       '/path/to/profile': {},
     });
     profileGenerator.generatePlayerCodeFile();
-    expect(fs.readFileSync('/path/to/profile/player-code', 'utf8')).toBe(
-      'player-code',
-    );
+    expect(fs.readFileSync('/path/to/profile/player-code', 'utf8')).toBe('player-code');
     mock.restore();
   });
 });

@@ -1,6 +1,6 @@
-import { test, expect } from 'vitest';
-import getDirectionOfLocation from './getDirectionOfLocation.js';
+import { expect, test } from 'vitest';
 import { EAST, NORTH, SOUTH, WEST } from './absoluteDirections.js';
+import getDirectionOfLocation from './getDirectionOfLocation.js';
 
 test('returns the direction from a given location to another given location', () => {
   expect(getDirectionOfLocation([1, 1], [1, 2])).toEqual(NORTH);

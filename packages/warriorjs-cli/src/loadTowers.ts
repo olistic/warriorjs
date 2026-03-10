@@ -1,8 +1,6 @@
-import path from 'path';
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
-import { createRequire } from 'module';
-
+import { createRequire } from 'node:module';
+import path, { dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { findUpSync } from 'find-up';
 import { globbySync } from 'globby';
 
@@ -24,7 +22,7 @@ interface TowerInfo {
 }
 
 function getInternalTowersInfo(): TowerInfo[] {
-  return internalTowerPackageNames.map(towerPackageName => ({
+  return internalTowerPackageNames.map((towerPackageName) => ({
     id: getTowerId(towerPackageName),
     requirePath: towerPackageName,
   }));
@@ -64,14 +62,12 @@ function loadTowers(): Tower[] {
   const internalTowersInfo = getInternalTowersInfo();
   const externalTowersInfo = getExternalTowersInfo();
   const allInfo = internalTowersInfo.concat(externalTowersInfo);
-  const uniqueInfo = [...new Map(allInfo.map(item => [item.id, item])).values()];
-  return uniqueInfo.map(
-    ({ id, requirePath }) => {
-      const mod = require(requirePath);
-      const { name, description, levels } = mod.default || mod;
-      return new Tower(id, name, description, levels);
-    },
-  );
+  const uniqueInfo = [...new Map(allInfo.map((item) => [item.id, item])).values()];
+  return uniqueInfo.map(({ id, requirePath }) => {
+    const mod = require(requirePath);
+    const { name, description, levels } = mod.default || mod;
+    return new Tower(id, name, description, levels);
+  });
 }
 
 export default loadTowers;

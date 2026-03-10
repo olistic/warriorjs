@@ -1,11 +1,5 @@
-import { test, expect } from 'vitest';
-import {
-  BACKWARD,
-  EAST,
-  FORWARD,
-  RELATIVE_DIRECTIONS,
-  WEST,
-} from '@warriorjs/geography';
+import { BACKWARD, EAST, FORWARD, RELATIVE_DIRECTIONS, WEST } from '@warriorjs/geography';
+import { expect, test } from 'vitest';
 
 import runLevel from './runLevel.js';
 
@@ -89,9 +83,9 @@ const levelConfig = {
           }),
         },
         playTurn(sludge: any) {
-          const threatDirection = RELATIVE_DIRECTIONS.find(direction => {
+          const threatDirection = RELATIVE_DIRECTIONS.find((direction) => {
             const unit = sludge.feel(direction).getUnit();
-            return unit && unit.isEnemy() && !unit.isBound();
+            return unit?.isEnemy() && !unit.isBound();
           });
           if (threatDirection) {
             sludge.attack(threatDirection);

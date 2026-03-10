@@ -1,5 +1,5 @@
-import { describe, test, expect, beforeEach, vi } from 'vitest';
 import { FORWARD, LEFT } from '@warriorjs/geography';
+import { beforeEach, describe, expect, test, vi } from 'vitest';
 
 import shootCreator from './shoot.js';
 
@@ -50,9 +50,7 @@ describe('shoot', () => {
         .mockReturnValueOnce({ getUnit: () => null })
         .mockReturnValueOnce({ getUnit: () => 'anotherUnit' });
       shoot.perform();
-      expect(unit.log).toHaveBeenCalledWith(
-        `shoots ${FORWARD} and hits nothing`,
-      );
+      expect(unit.log).toHaveBeenCalledWith(`shoots ${FORWARD} and hits nothing`);
       expect(unit.damage).not.toHaveBeenCalled();
     });
 
@@ -67,9 +65,7 @@ describe('shoot', () => {
 
       test('damages receiver', () => {
         shoot.perform();
-        expect(unit.log).toHaveBeenCalledWith(
-          `shoots ${FORWARD} and hits receiver`,
-        );
+        expect(unit.log).toHaveBeenCalledWith(`shoots ${FORWARD} and hits receiver`);
         expect(unit.damage).toHaveBeenCalledWith('receiver', 3);
       });
 

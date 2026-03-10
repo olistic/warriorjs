@@ -1,5 +1,5 @@
-import { describe, test, expect, beforeEach, vi } from 'vitest';
 import { BACKWARD, FORWARD, LEFT, RIGHT } from '@warriorjs/geography';
+import { beforeEach, describe, expect, test, vi } from 'vitest';
 
 import directionOfCreator from './directionOf.js';
 

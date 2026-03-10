@@ -1,5 +1,5 @@
-import { describe, test, expect, beforeEach, vi } from 'vitest';
 import { FORWARD, LEFT } from '@warriorjs/geography';
+import { beforeEach, describe, expect, test, vi } from 'vitest';
 
 import bindCreator from './bind.js';
 
@@ -38,9 +38,7 @@ describe('bind', () => {
     test('misses if no receiver', () => {
       unit.getSpaceAt = () => ({ getUnit: () => null });
       bind.perform();
-      expect(unit.log).toHaveBeenCalledWith(
-        `binds ${FORWARD} and restricts nothing`,
-      );
+      expect(unit.log).toHaveBeenCalledWith(`binds ${FORWARD} and restricts nothing`);
     });
 
     describe('with receiver', () => {
@@ -56,9 +54,7 @@ describe('bind', () => {
 
       test('binds receiver', () => {
         bind.perform();
-        expect(unit.log).toHaveBeenCalledWith(
-          `binds ${FORWARD} and restricts receiver`,
-        );
+        expect(unit.log).toHaveBeenCalledWith(`binds ${FORWARD} and restricts receiver`);
         expect(receiver.bind).toHaveBeenCalled();
       });
     });

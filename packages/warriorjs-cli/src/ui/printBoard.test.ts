@@ -1,5 +1,5 @@
-import { test, expect, vi } from 'vitest';
 import ansiEscapes from 'ansi-escapes';
+import { expect, test, vi } from 'vitest';
 
 import print from './print.js';
 import printBoard from './printBoard.js';

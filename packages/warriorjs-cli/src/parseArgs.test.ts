@@ -1,4 +1,4 @@
-import { test, expect, describe, vi } from 'vitest';
+import { describe, expect, test, vi } from 'vitest';
 
 import parseArgs from './parseArgs.js';
 
@@ -12,9 +12,7 @@ describe('-d', () => {
   });
 
   test('has alias --directory', () => {
-    expect(parseArgs(['--directory', '/path/to/run']).directory).toBe(
-      '/path/to/run',
-    );
+    expect(parseArgs(['--directory', '/path/to/run']).directory).toBe('/path/to/run');
   });
 
   test("defaults to '.'", () => {
@@ -42,9 +40,7 @@ describe('-l', () => {
       // yargs may throw after calling process.exit in test environments
     }
     expect(process.exit).toHaveBeenCalledWith(1);
-    expect(console.error).toHaveBeenCalledWith(
-      'Invalid argument: level must be a number',
-    );
+    expect(console.error).toHaveBeenCalledWith('Invalid argument: level must be a number');
     process.exit = originalExit;
     console.error = originalError;
   });
@@ -88,9 +84,7 @@ describe('-t', () => {
       // yargs may throw after calling process.exit in test environments
     }
     expect(process.exit).toHaveBeenCalledWith(1);
-    expect(console.error).toHaveBeenCalledWith(
-      'Invalid argument: time must be a number',
-    );
+    expect(console.error).toHaveBeenCalledWith('Invalid argument: time must be a number');
     process.exit = originalExit;
     console.error = originalError;
   });

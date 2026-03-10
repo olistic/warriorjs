@@ -1,9 +1,9 @@
-import { select, Separator } from '@inquirer/prompts';
+import { Separator, select } from '@inquirer/prompts';
 
 export const SEPARATOR = '';
 
 function getChoices(items: any[]): any[] {
-  return items.map(item => {
+  return items.map((item) => {
     if (item === SEPARATOR) {
       return new Separator();
     }

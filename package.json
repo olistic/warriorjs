@@ -10,24 +10,17 @@
   "scripts": {
     "build": "turbo run build --filter='!warriorjs-website'",
     "clean": "rm -rf packages/*/lib",
-    "lint": "eslint --cache packages/**/src",
-    "lint:fix": "yarn lint --fix",
+    "lint": "biome check packages/",
+    "lint:fix": "biome check --write packages/",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
     "test:watch": "vitest"
   },
   "devDependencies": {
+    "@biomejs/biome": "^2.4.6",
     "@types/node": "^25.4.0",
-    "eslint": "^5.9.0",
-    "eslint-config-airbnb": "^17.1.0",
-    "eslint-config-prettier": "^3.3.0",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-jsx-a11y": "^6.1.2",
-    "eslint-plugin-prettier": "^3.0.0",
-    "eslint-plugin-react": "^7.11.1",
     "husky": "^1.2.0",
     "lint-staged": "^8.1.0",
-    "prettier": "1.15.3",
     "turbo": "^2.4.4",
     "typescript": "^5.9.3",
     "vitest": "^4.0.18"
@@ -38,8 +31,8 @@
     }
   },
   "lint-staged": {
-    "*.{js,json,css,md,yaml}": [
-      "prettier --write",
+    "*.{ts,json,css,md,yaml}": [
+      "biome check --write --no-errors-on-unmatched",
       "git add"
     ]
   }

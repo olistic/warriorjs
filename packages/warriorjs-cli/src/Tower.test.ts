@@ -1,4 +1,4 @@
-import { test, expect, describe, beforeEach } from 'vitest';
+import { beforeEach, describe, expect, test } from 'vitest';
 
 import Tower from './Tower.js';
 

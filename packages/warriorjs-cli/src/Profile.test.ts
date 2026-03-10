@@ -1,12 +1,11 @@
-import { test, expect, describe, beforeEach, afterEach, vi } from 'vitest';
-import fs from 'fs';
-import path from 'path';
-
+import fs from 'node:fs';
+import path from 'node:path';
 import mock from 'mock-fs';
+import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
 
 import GameError from './GameError.js';
 import Profile from './Profile.js';
-import Tower from './Tower.js';
+import type Tower from './Tower.js';
 
 describe('Profile.load', () => {
   const originalRead = Profile.read;
@@ -32,8 +31,7 @@ describe('Profile.load', () => {
 
   test('sets the directory path to the path from where the profile is being loaded', () => {
     Profile.isProfileDirectory = () => true;
-    Profile.read = () =>
-      'eyJ3YXJyaW9yTmFtZSI6ICJKb2UiLCAidG93ZXJJZCI6ICJmb28ifQ==';
+    Profile.read = () => 'eyJ3YXJyaW9yTmFtZSI6ICJKb2UiLCAidG93ZXJJZCI6ICJmb28ifQ==';
     const profile = Profile.load('/path/to/profile', towers)!;
     expect(profile.directoryPath).toBe('/path/to/profile');
   });
@@ -68,9 +66,7 @@ describe('Profile.load', () => {
       'eyJ3YXJyaW9yTmFtZSI6ICJKb2UiLCAidG93ZXJJZCI6ICJmb28iLCAiYW5vdGhlcktleSI6IDQyfQ==';
     expect(() => {
       Profile.load('/path/to/profile', []);
-    }).toThrow(
-      new GameError(`Unable to find tower 'foo', make sure it is available.`),
-    );
+    }).toThrow(new GameError(`Unable to find tower 'foo', make sure it is available.`));
   });
 });
 
@@ -210,15 +206,11 @@ describe('Profile', () => {
   });
 
   test('knows the path to the player code file', () => {
-    expect(profile.getPlayerCodeFilePath()).toBe(
-      path.normalize('/path/to/profile/Player.js'),
-    );
+    expect(profile.getPlayerCodeFilePath()).toBe(path.normalize('/path/to/profile/Player.js'));
   });
 
   test('knows the path to the README file', () => {
-    expect(profile.getReadmeFilePath()).toBe(
-      path.normalize('/path/to/profile/README.md'),
-    );
+    expect(profile.getReadmeFilePath()).toBe(path.normalize('/path/to/profile/README.md'));
   });
 
   describe('when going to the next level', () => {
@@ -306,9 +298,7 @@ describe('Profile', () => {
   });
 
   test('knows the path to the profile file', () => {
-    expect(profile.getProfileFilePath()).toBe(
-      path.normalize('/path/to/profile/.profile'),
-    );
+    expect(profile.getProfileFilePath()).toBe(path.normalize('/path/to/profile/.profile'));
   });
 
   test('encodes with JSON + base64', () => {
@@ -402,9 +392,7 @@ describe('Profile', () => {
       profile.tower.toString = () => 'Foo';
       profile.score = 123;
       profile.getEpicScoreWithGrade = () => '124 (C)';
-      expect(profile.toString()).toBe(
-        'Joe - Foo - first score 123 - epic score 124 (C)',
-      );
+      expect(profile.toString()).toBe('Joe - Foo - first score 123 - epic score 124 (C)');
     });
   });
 });

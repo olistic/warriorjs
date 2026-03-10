@@ -1,5 +1,3 @@
-import { EAST, NORTH, SOUTH, WEST } from '@warriorjs/geography';
-import { Captive, Sludge, ThickSludge, Warrior } from '@warriorjs/units';
 import {
   attack,
   bind,
@@ -18,6 +16,8 @@ import {
   walk,
 } from '@warriorjs/abilities';
 import { ticking } from '@warriorjs/effects';
+import { EAST, NORTH, SOUTH, WEST } from '@warriorjs/geography';
+import { Captive, Sludge, ThickSludge, Warrior } from '@warriorjs/units';
 
 interface Position {
   x: number;
@@ -62,8 +62,7 @@ const tower: TowerDefinition = {
     {
       description:
         'Silence. The room feels large, but empty. Luckily you have a map of this tower to help find the stairs.',
-      tip:
-        'Use `warrior.directionOfStairs()` to determine which direction the stairs are located. Pass this to `warrior.walk()` to walk in that direction.',
+      tip: 'Use `warrior.directionOfStairs()` to determine which direction the stairs are located. Pass this to `warrior.walk()` to walk in that direction.',
       timeBonus: 20,
       aceScore: 19,
       floor: {
@@ -92,12 +91,9 @@ const tower: TowerDefinition = {
       },
     },
     {
-      description:
-        'Another large room, but with several enemies blocking your way to the stairs.',
-      tip:
-        'Just like walking, you can attack and feel in multiple directions (forward, left, right, backward).',
-      clue:
-        "Call `warrior.feel().isUnit()` and `warrior.feel().getUnit().isEnemy()` in each direction to make sure there isn't an enemy beside you (attack if there is). Call `warrior.rest()` if you're low in health when there are no enemies around.",
+      description: 'Another large room, but with several enemies blocking your way to the stairs.',
+      tip: 'Just like walking, you can attack and feel in multiple directions (forward, left, right, backward).',
+      clue: "Call `warrior.feel().isUnit()` and `warrior.feel().getUnit().isEnemy()` in each direction to make sure there isn't an enemy beside you (attack if there is). Call `warrior.rest()` if you're low in health when there are no enemies around.",
       timeBonus: 40,
       aceScore: 84,
       floor: {
@@ -155,8 +151,7 @@ const tower: TowerDefinition = {
     {
       description: 'You feel slime on all sides, you are surrounded!',
       tip: 'Call `warrior.bind()` to bind an enemy to keep him from attacking.',
-      clue:
-        'Count the number of unbound enemies around you. Bind an enemy if there are two or more.',
+      clue: 'Count the number of unbound enemies around you. Bind an enemy if there are two or more.',
       timeBonus: 50,
       aceScore: 101,
       floor: {
@@ -219,10 +214,8 @@ const tower: TowerDefinition = {
     {
       description:
         'Your ears become more in tune with the surroundings. Listen to find enemies and captives!',
-      tip:
-        "Use `warrior.listen()` to find spaces with other units, and `warrior.directionOf()` to determine what direction they're in.",
-      clue:
-        'Walk towards a unit with `warrior.walk(warrior.directionOf(warrior.listen()[0]))`. Once `warrior.listen().length === 0`, head for the stairs.',
+      tip: "Use `warrior.listen()` to find spaces with other units, and `warrior.directionOf()` to determine what direction they're in.",
+      clue: 'Walk towards a unit with `warrior.walk(warrior.directionOf(warrior.listen()[0]))`. Once `warrior.listen().length === 0`, head for the stairs.',
       timeBonus: 55,
       aceScore: 144,
       floor: {
@@ -293,10 +286,8 @@ const tower: TowerDefinition = {
     {
       description:
         'You can feel the stairs right next to you, but are you sure you want to go up them right away?',
-      tip:
-        "You'll get more points for clearing the level first. Use `warrior.feel().isStairs()` and `warrior.feel().isEmpty()` to determine where to go.",
-      clue:
-        'If going towards a unit is the same direction as the stairs, try moving in another empty direction until you can safely move toward the enemies.',
+      tip: "You'll get more points for clearing the level first. Use `warrior.feel().isStairs()` and `warrior.feel().isEmpty()` to determine where to go.",
+      clue: 'If going towards a unit is the same direction as the stairs, try moving in another empty direction until you can safely move toward the enemies.',
       timeBonus: 45,
       aceScore: 107,
       floor: {
@@ -345,12 +336,9 @@ const tower: TowerDefinition = {
       },
     },
     {
-      description:
-        "What's that ticking? Some captives have a timed bomb at their feet!",
-      tip:
-        "Hurry and rescue captives that have `space.getUnit().isUnderEffect('ticking')` first, they'll soon go!",
-      clue:
-        "Avoid fighting enemies at first. Use `warrior.listen()` and `space.getUnit().isUnderEffect('ticking')` and quickly rescue those captives.",
+      description: "What's that ticking? Some captives have a timed bomb at their feet!",
+      tip: "Hurry and rescue captives that have `space.getUnit().isUnderEffect('ticking')` first, they'll soon go!",
+      clue: "Avoid fighting enemies at first. Use `warrior.listen()` and `space.getUnit().isUnderEffect('ticking')` and quickly rescue those captives.",
       timeBonus: 50,
       aceScore: 108,
       floor: {
@@ -410,12 +398,9 @@ const tower: TowerDefinition = {
       },
     },
     {
-      description:
-        'Another ticking sound, but some sludge is blocking the way.',
-      tip:
-        "Quickly kill the sludge and rescue the captive before the bomb goes off. You can't simply go around them.",
-      clue:
-        'Determine the direction of the ticking captive and kill any enemies blocking that path. You may need to bind surrounding enemies first.',
+      description: 'Another ticking sound, but some sludge is blocking the way.',
+      tip: "Quickly kill the sludge and rescue the captive before the bomb goes off. You can't simply go around them.",
+      clue: 'Determine the direction of the ticking captive and kill any enemies blocking that path. You may need to bind surrounding enemies first.',
       timeBonus: 70,
       aceScore: 134,
       floor: {
@@ -483,12 +468,9 @@ const tower: TowerDefinition = {
       },
     },
     {
-      description:
-        'You discover a satchel of bombs which will help when facing a mob of enemies.',
-      tip:
-        'Detonate a bomb when you see a couple enemies ahead of you (`warrior.look()`). Watch out for your health too.',
-      clue:
-        'Calling `warrior.look()` will return an array of spaces. If the first two contain enemies, detonate a bomb with `warrior.detonate()`.',
+      description: 'You discover a satchel of bombs which will help when facing a mob of enemies.',
+      tip: 'Detonate a bomb when you see a couple enemies ahead of you (`warrior.look()`). Watch out for your health too.',
+      clue: 'Calling `warrior.look()` will return an array of spaces. If the first two contain enemies, detonate a bomb with `warrior.detonate()`.',
       timeBonus: 30,
       aceScore: 91,
       floor: {
@@ -544,12 +526,9 @@ const tower: TowerDefinition = {
       },
     },
     {
-      description:
-        'Never before have you seen a room so full of sludge. Start the fireworks!',
-      tip:
-        'Be careful not to let the ticking captive get caught in the flames. Use `warrior.distanceOf()` to avoid the captives.',
-      clue:
-        'Be sure to bind the surrounding enemies before fighting. Check your health before detonating explosives.',
+      description: 'Never before have you seen a room so full of sludge. Start the fireworks!',
+      tip: 'Be careful not to let the ticking captive get caught in the flames. Use `warrior.distanceOf()` to avoid the captives.',
+      clue: 'Be sure to bind the surrounding enemies before fighting. Check your health before detonating explosives.',
       timeBonus: 70,
       aceScore: 176,
       floor: {

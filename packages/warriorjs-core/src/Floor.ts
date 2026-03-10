@@ -67,11 +67,11 @@ class Floor {
   }
 
   getUnitAt(location: [number, number]): Unit | undefined {
-    return this.getUnits().find(unit => unit.position!.isAt(location));
+    return this.getUnits().find((unit) => unit.position?.isAt(location));
   }
 
   getUnits(): Unit[] {
-    return this.units.filter(unit => unit.isAlive());
+    return this.units.filter((unit) => unit.isAlive());
   }
 }
 

@@ -9,12 +9,10 @@ interface FloorSpace {
 function getFloorMapKey(map: FloorSpace[][]): string {
   return map
     .reduce<FloorSpace[]>((acc, row) => acc.concat(row), [])
-    .filter(space => space.unit)
+    .filter((space) => space.unit)
     .filter(
       (space, index, arr) =>
-        arr.findIndex(
-          anotherSpace => anotherSpace.character === space.character,
-        ) === index,
+        arr.findIndex((anotherSpace) => anotherSpace.character === space.character) === index,
     )
     .map(({ character, unit }) => {
       const { name, maxHealth } = unit!;

@@ -1,5 +1,5 @@
-import { describe, test, expect, beforeEach, vi } from 'vitest';
 import { EAST, FORWARD } from '@warriorjs/geography';
+import { beforeEach, describe, expect, test, vi } from 'vitest';
 
 import Floor from './Floor.js';
 import Level from './Level.js';
@@ -67,8 +67,8 @@ describe('Level', () => {
       tip: 'a tip',
       clue: 'a clue',
       floorMap: level.floor.getMap(),
-      warriorStatus: level.floor.warrior!.getStatus(),
-      warriorAbilities: level.floor.warrior!.getAbilities(),
+      warriorStatus: level.floor.warrior?.getStatus(),
+      warriorAbilities: level.floor.warrior?.getAbilities(),
     });
   });
 });

@@ -1,5 +1,5 @@
-import { describe, test, expect, beforeEach, vi } from 'vitest';
 import { BACKWARD, FORWARD, LEFT, RIGHT } from '@warriorjs/geography';
+import { beforeEach, describe, expect, test, vi } from 'vitest';
 
 import Sludge from './Sludge.js';
 
@@ -47,14 +47,12 @@ describe('Sludge', () => {
     });
 
     test('stops looking if it finds threat', () => {
-      turn.feel
-        .mockReturnValueOnce({ getUnit: () => undefined })
-        .mockReturnValueOnce({
-          getUnit: () => ({
-            isBound: () => false,
-            isEnemy: () => true,
-          }),
-        });
+      turn.feel.mockReturnValueOnce({ getUnit: () => undefined }).mockReturnValueOnce({
+        getUnit: () => ({
+          isBound: () => false,
+          isEnemy: () => true,
+        }),
+      });
       Sludge.playTurn(turn);
       expect(turn.feel).toHaveBeenCalledWith(FORWARD);
       expect(turn.feel).toHaveBeenCalledWith(RIGHT);

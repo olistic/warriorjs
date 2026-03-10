@@ -1,10 +1,9 @@
-import fs from 'fs';
-import path from 'path';
-
+import fs from 'node:fs';
+import path from 'node:path';
 import getGradeLetter from '@warriorjs/helper-get-grade-letter';
 
 import GameError from './GameError.js';
-import Tower from './Tower.js';
+import type Tower from './Tower.js';
 
 const profileFile = '.profile';
 const playerCodeFile = 'Player.js';
@@ -48,18 +47,12 @@ class Profile {
     } = decodedProfile;
 
     const towerKey = towerId || towerName; // Support legacy profiles.
-    const profileTower = towers.find(tower => tower.id === towerKey);
+    const profileTower = towers.find((tower) => tower.id === towerKey);
     if (!profileTower) {
-      throw new GameError(
-        `Unable to find tower '${towerKey}', make sure it is available.`,
-      );
+      throw new GameError(`Unable to find tower '${towerKey}', make sure it is available.`);
     }
 
-    const profile = new Profile(
-      warriorName as string,
-      profileTower,
-      profileDirectoryPath,
-    );
+    const profile = new Profile(warriorName as string, profileTower, profileDirectoryPath);
     return Object.assign(profile, profileData);
   }
 
@@ -67,10 +60,7 @@ class Profile {
     const profileFilePath = path.join(profileDirectoryPath, profileFile);
     const playerCodeFilePath = path.join(profileDirectoryPath, playerCodeFile);
     try {
-      return (
-        fs.statSync(profileFilePath).isFile() &&
-        fs.statSync(playerCodeFilePath).isFile()
-      );
+      return fs.statSync(profileFilePath).isFile() && fs.statSync(playerCodeFilePath).isFile();
     } catch (err: any) {
       if (err.code === 'ENOENT') {
         return false;
@@ -231,9 +221,7 @@ class Profile {
   toString(): string {
     let result = `${this.warriorName} - ${this.tower}`;
     if (this.isEpic()) {
-      result += ` - first score ${
-        this.score
-      } - epic score ${this.getEpicScoreWithGrade()}`;
+      result += ` - first score ${this.score} - epic score ${this.getEpicScoreWithGrade()}`;
     } else {
       result += ` - level ${this.levelNumber} - score ${this.score}`;
     }

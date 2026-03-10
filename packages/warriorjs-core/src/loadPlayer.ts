@@ -1,5 +1,5 @@
-import assert from 'assert';
-import vm from 'vm';
+import assert from 'node:assert';
+import vm from 'node:vm';
 
 const playerCodeFilename = 'Player.js';
 const playerCodeTimeout = 3000;
@@ -42,9 +42,7 @@ function loadPlayer(playerCode: string): (turn: any) => void {
       error.code = 'InvalidPlayerCode';
       throw error;
     } else if (err.message === 'playTurn is not defined') {
-      const error: any = new Error(
-        'Your Player class must define a playTurn method!',
-      );
+      const error: any = new Error('Your Player class must define a playTurn method!');
       error.code = 'InvalidPlayerCode';
       throw error;
     }

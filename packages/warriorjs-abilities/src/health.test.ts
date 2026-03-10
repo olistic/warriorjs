@@ -1,4 +1,4 @@
-import { describe, test, expect, beforeEach } from 'vitest';
+import { beforeEach, describe, expect, test } from 'vitest';
 
 import healthCreator from './health.js';
 
@@ -16,9 +16,7 @@ describe('health', () => {
   });
 
   test('has a description', () => {
-    expect(health.description).toBe(
-      'Returns an integer representing your health.',
-    );
+    expect(health.description).toBe('Returns an integer representing your health.');
   });
 
   describe('performing', () => {

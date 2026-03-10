@@ -1,6 +1,6 @@
-import { test, expect } from 'vitest';
-import rotateRelativeOffset from './rotateRelativeOffset.js';
+import { expect, test } from 'vitest';
 import { BACKWARD, FORWARD, LEFT, RIGHT } from './relativeDirections.js';
+import rotateRelativeOffset from './rotateRelativeOffset.js';
 
 test('rotates the relative offset in the given direction', () => {
   expect(rotateRelativeOffset([1, 2], FORWARD)).toEqual([1, 2]);

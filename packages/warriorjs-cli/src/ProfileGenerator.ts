@@ -1,26 +1,17 @@
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
-
+import fs from 'node:fs';
+import path, { dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import ejs from 'ejs';
-
+import type Profile from './Profile.js';
 import getFloorMap from './utils/getFloorMap.js';
 import getFloorMapKey from './utils/getFloorMapKey.js';
-import Profile from './Profile.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const templatesPath = path.resolve(__dirname, '..', 'templates');
-export const PLAYER_CODE_TEMPLATE_FILE_PATH = path.join(
-  templatesPath,
-  'Player.js',
-);
-export const README_TEMPLATE_FILE_PATH = path.join(
-  templatesPath,
-  'README.md.ejs',
-);
+export const PLAYER_CODE_TEMPLATE_FILE_PATH = path.join(templatesPath, 'Player.js');
+export const README_TEMPLATE_FILE_PATH = path.join(templatesPath, 'README.md.ejs');
 
 /** Class representing a profile generator. */
 class ProfileGenerator {
@@ -53,10 +44,7 @@ class ProfileGenerator {
   }
 
   generatePlayerCodeFile(): void {
-    fs.copyFileSync(
-      PLAYER_CODE_TEMPLATE_FILE_PATH,
-      this.profile.getPlayerCodeFilePath(),
-    );
+    fs.copyFileSync(PLAYER_CODE_TEMPLATE_FILE_PATH, this.profile.getPlayerCodeFilePath());
   }
 }
 

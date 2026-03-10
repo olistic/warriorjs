@@ -1,15 +1,14 @@
-import { test, expect, describe, beforeEach, afterEach, vi } from 'vitest';
-import fs from 'fs';
-import path from 'path';
-
-import mock from 'mock-fs';
-import getLevelConfig from '@warriorjs/helper-get-level-config';
+import fs from 'node:fs';
+import path from 'node:path';
 import { getLevel } from '@warriorjs/core';
+import getLevelConfig from '@warriorjs/helper-get-level-config';
+import mock from 'mock-fs';
+import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
 
 import Game from './Game.js';
 import GameError from './GameError.js';
-import ProfileGenerator from './ProfileGenerator.js';
 import Profile from './Profile.js';
+import ProfileGenerator from './ProfileGenerator.js';
 import printLine from './ui/printLine.js';
 import printSuccessLine from './ui/printSuccessLine.js';
 import requestConfirmation from './ui/requestConfirmation.js';
@@ -17,7 +16,7 @@ import requestConfirmation from './ui/requestConfirmation.js';
 vi.mock('@warriorjs/core');
 vi.mock('@warriorjs/helper-get-level-config');
 vi.mock('./ProfileGenerator.js', () => {
-  const MockProfileGenerator = vi.fn(function(this: any) {});
+  const MockProfileGenerator = vi.fn(function (this: any) {});
   return { default: MockProfileGenerator, __esModule: true };
 });
 vi.mock('./ui/printLine.js');
@@ -37,9 +36,7 @@ describe('Game', () => {
   });
 
   test('has a game directory path', () => {
-    expect(game.gameDirectoryPath).toBe(
-      path.normalize('/path/to/game/warriorjs'),
-    );
+    expect(game.gameDirectoryPath).toBe(path.normalize('/path/to/game/warriorjs'));
   });
 
   describe('when loading profile', () => {
@@ -78,14 +75,14 @@ describe('Game', () => {
     ];
     Profile.load = vi.fn() as any;
     game.getProfiles();
-    expect(Profile.load).toHaveBeenCalledWith(
-      '/path/to/game/warriorjs/profile1',
-      ['tower1', 'tower2'],
-    );
-    expect(Profile.load).toHaveBeenCalledWith(
-      '/path/to/game/warriorjs/profile2',
-      ['tower1', 'tower2'],
-    );
+    expect(Profile.load).toHaveBeenCalledWith('/path/to/game/warriorjs/profile1', [
+      'tower1',
+      'tower2',
+    ]);
+    expect(Profile.load).toHaveBeenCalledWith('/path/to/game/warriorjs/profile2', [
+      'tower1',
+      'tower2',
+    ]);
     Profile.load = originalLoad;
   });
 
@@ -186,9 +183,7 @@ describe('Game', () => {
         test("throws if tower doesn't have practice level", async () => {
           game.profile.tower.hasLevel.mockReturnValue(false);
           await expect(game.playEpicMode()).rejects.toThrow(
-            new GameError(
-              'Unable to practice non-existent level, try another.',
-            ),
+            new GameError('Unable to practice non-existent level, try another.'),
           );
           expect(game.profile.tower.hasLevel).toHaveBeenCalledWith(2);
         });
@@ -219,9 +214,7 @@ describe('Game', () => {
       test('throws if practice level', async () => {
         game.practiceLevel = 2;
         await expect(game.playNormalMode()).rejects.toThrow(
-          new GameError(
-            'Unable to practice level while not in epic mode, remove -l option.',
-          ),
+          new GameError('Unable to practice level while not in epic mode, remove -l option.'),
         );
       });
     });
@@ -305,9 +298,7 @@ describe('Game', () => {
         (requestConfirmation as any).mockResolvedValue(true);
         await game.requestNextLevel();
         expect(game.prepareEpicMode).toHaveBeenCalled();
-        expect(printSuccessLine).toHaveBeenCalledWith(
-          'Run warriorjs again to play epic mode.',
-        );
+        expect(printSuccessLine).toHaveBeenCalledWith('Run warriorjs again to play epic mode.');
       });
 
       test('prepares epic mode if assume yes', async () => {
@@ -315,9 +306,7 @@ describe('Game', () => {
         await game.requestNextLevel();
         expect(requestConfirmation).not.toHaveBeenCalled();
         expect(game.prepareEpicMode).toHaveBeenCalled();
-        expect(printSuccessLine).toHaveBeenCalledWith(
-          'Run warriorjs again to play epic mode.',
-        );
+        expect(printSuccessLine).toHaveBeenCalledWith('Run warriorjs again to play epic mode.');
       });
     });
   });
@@ -340,7 +329,9 @@ describe('Game', () => {
     (getLevelConfig as any).mockReturnValue('config');
     (getLevel as any).mockReturnValue('level');
     const mockGenerate = vi.fn();
-    (ProfileGenerator as any).mockImplementation(function(this: any) { this.generate = mockGenerate; });
+    (ProfileGenerator as any).mockImplementation(function (this: any) {
+      this.generate = mockGenerate;
+    });
     game.generateProfileFiles();
     expect(getLevelConfig).toHaveBeenCalledWith('tower', 1, 'Joe', false);
     expect(getLevel).toHaveBeenCalledWith('config');

@@ -1,4 +1,4 @@
-import { test, expect } from 'vitest';
+import { expect, test } from 'vitest';
 import getDistanceOfLocation from './getDistanceOfLocation.js';
 
 test('returns the distance between the two given locations', () => {

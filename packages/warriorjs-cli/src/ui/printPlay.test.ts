@@ -1,5 +1,5 @@
-import { test, expect, vi, beforeEach } from 'vitest';
 import delay from 'delay';
+import { beforeEach, expect, test, vi } from 'vitest';
 
 import printBoard from './printBoard.js';
 import printLogMessage from './printLogMessage.js';
@@ -47,7 +47,10 @@ test('starts counting turn from zero and increments on each new turn', async () 
 
 test('starts counting board offset from zero, increments on each event and resets on each new turn', async () => {
   const events = [
-    [{ unit: 'foo', message: 'bar' }, { unit: 'foo', message: 'bar' }],
+    [
+      { unit: 'foo', message: 'bar' },
+      { unit: 'foo', message: 'bar' },
+    ],
     [{ unit: 'foo', message: 'bar' }],
     [{ unit: 'foo', message: 'bar' }],
   ] as any;
@@ -60,7 +63,10 @@ test('starts counting board offset from zero, increments on each event and reset
 
 test('sleeps the specified time at the beginning and after each event', async () => {
   const events = [
-    [{ unit: 'foo', message: 'bar' }, { unit: 'foo', message: 'bar' }],
+    [
+      { unit: 'foo', message: 'bar' },
+      { unit: 'foo', message: 'bar' },
+    ],
     [{ unit: 'foo', message: 'bar' }],
     [{ unit: 'foo', message: 'bar' }],
   ] as any;

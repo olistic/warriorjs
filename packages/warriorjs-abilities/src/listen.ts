@@ -4,21 +4,18 @@ import type { Unit } from './types.js';
 
 function listen() {
   return (unit: Unit) => ({
-    description:
-      'Returns an array of all spaces which have units in them (excluding yourself).',
+    description: 'Returns an array of all spaces which have units in them (excluding yourself).',
     perform() {
       return unit
         .getOtherUnits()
-        .map(anotherUnit =>
+        .map((anotherUnit) =>
           getRelativeOffset(
             anotherUnit.getSpace().location,
             unit.position.location,
             unit.position.orientation,
           ),
         )
-        .map(([forward, right]) =>
-          unit.getSensedSpaceAt(FORWARD, forward, right),
-        );
+        .map(([forward, right]) => unit.getSensedSpaceAt(FORWARD, forward, right));
     },
   });
 }

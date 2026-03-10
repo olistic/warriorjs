@@ -9,7 +9,7 @@ interface FloorSpace {
 function printFloorMap(floorMap: FloorSpace[][]): void {
   printLine(
     floorMap
-      .map(row =>
+      .map((row) =>
         row
           .map(({ character, unit }) => {
             if (unit) {

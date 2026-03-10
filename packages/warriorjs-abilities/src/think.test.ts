@@ -1,4 +1,4 @@
-import { describe, test, expect, beforeEach, vi } from 'vitest';
+import { beforeEach, describe, expect, test, vi } from 'vitest';
 
 import thinkCreator from './think.js';
 
@@ -16,9 +16,7 @@ describe('think', () => {
   });
 
   test('has a description', () => {
-    expect(think.description).toBe(
-      'Thinks out loud (`console.log` replacement).',
-    );
+    expect(think.description).toBe('Thinks out loud (`console.log` replacement).');
   });
 
   describe('performing', () => {

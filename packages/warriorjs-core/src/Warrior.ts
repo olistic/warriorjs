@@ -30,20 +30,21 @@ class Warrior extends Unit {
     this.log(`loses ${points} points`);
   }
 
-  getAbilities(): { actions: Omit<AbilityInfo, 'action'>[]; senses: Omit<AbilityInfo, 'action'>[] } {
-    const abilities: AbilityInfo[] = [...this.abilities].map(
-      ([name, { action, description }]) => ({
-        name,
-        action,
-        description,
-      }),
-    );
+  getAbilities(): {
+    actions: Omit<AbilityInfo, 'action'>[];
+    senses: Omit<AbilityInfo, 'action'>[];
+  } {
+    const abilities: AbilityInfo[] = [...this.abilities].map(([name, { action, description }]) => ({
+      name,
+      action,
+      description,
+    }));
     const sortedAbilities = abilities.sort((a, b) => (a.name > b.name ? 1 : -1));
     const actions = sortedAbilities
-      .filter(ability => ability.action)
+      .filter((ability) => ability.action)
       .map(({ action, ...rest }) => rest);
     const senses = sortedAbilities
-      .filter(ability => !ability.action)
+      .filter((ability) => !ability.action)
       .map(({ action, ...rest }) => rest);
     return {
       actions,

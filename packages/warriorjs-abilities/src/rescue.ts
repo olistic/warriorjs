@@ -10,7 +10,7 @@ function rescue() {
     description: `Releases a unit from his chains in the given direction (\`'${defaultDirection}'\` by default).`,
     perform(direction: RelativeDirection = defaultDirection) {
       const receiver = unit.getSpaceAt(direction).getUnit();
-      if (receiver && receiver.isBound()) {
+      if (receiver?.isBound()) {
         unit.log(`unbinds ${direction} and rescues ${receiver}`);
         unit.release(receiver);
       } else {

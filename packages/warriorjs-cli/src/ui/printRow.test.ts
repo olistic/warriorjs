@@ -1,4 +1,4 @@
-import { test, expect, vi, beforeEach } from 'vitest';
+import { beforeEach, expect, test, vi } from 'vitest';
 
 import getScreenSize from './getScreenSize.js';
 import printLine from './printLine.js';

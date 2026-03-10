@@ -1,5 +1,5 @@
-import { describe, test, expect, beforeEach, vi } from 'vitest';
 import { FORWARD, RIGHT } from '@warriorjs/geography';
+import { beforeEach, describe, expect, test, vi } from 'vitest';
 
 import walkCreator from './walk.js';
 
@@ -44,9 +44,7 @@ describe('walk', () => {
         toString: () => 'space',
       });
       walk.perform();
-      expect(unit.log).toHaveBeenCalledWith(
-        `walks ${FORWARD} and bumps into space`,
-      );
+      expect(unit.log).toHaveBeenCalledWith(`walks ${FORWARD} and bumps into space`);
       expect(unit.move).not.toHaveBeenCalled();
     });
 

@@ -1,10 +1,4 @@
-import {
-  ABSOLUTE_DIRECTIONS,
-  EAST,
-  NORTH,
-  SOUTH,
-  WEST,
-} from './absoluteDirections.js';
+import { ABSOLUTE_DIRECTIONS, EAST, NORTH, SOUTH, WEST } from './absoluteDirections.js';
 
 /**
  * Checks if the given direction is a valid absolute direction.

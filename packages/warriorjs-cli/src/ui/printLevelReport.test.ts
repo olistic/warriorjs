@@ -1,5 +1,5 @@
-import { test, expect, describe, beforeEach, vi } from 'vitest';
 import getGradeLetter from '@warriorjs/helper-get-grade-letter';
+import { beforeEach, describe, expect, test, vi } from 'vitest';
 
 import printLevelReport from './printLevelReport.js';
 import printLine from './printLine.js';

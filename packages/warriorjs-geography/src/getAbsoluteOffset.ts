@@ -1,5 +1,5 @@
-import verifyAbsoluteDirection from './verifyAbsoluteDirection.js';
 import { EAST, NORTH, SOUTH } from './absoluteDirections.js';
+import verifyAbsoluteDirection from './verifyAbsoluteDirection.js';
 
 /**
  * Returns the absolute offset for a given relative offset with reference
@@ -10,7 +10,10 @@ import { EAST, NORTH, SOUTH } from './absoluteDirections.js';
  *
  * @returns {number[]} The absolute offset as [deltaX, deltaY].
  */
-function getAbsoluteOffset([forward, right]: [number, number], referenceDirection: string): [number, number] {
+function getAbsoluteOffset(
+  [forward, right]: [number, number],
+  referenceDirection: string,
+): [number, number] {
   verifyAbsoluteDirection(referenceDirection);
 
   if (referenceDirection === NORTH) {

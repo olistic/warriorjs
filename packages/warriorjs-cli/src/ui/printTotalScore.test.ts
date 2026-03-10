@@ -1,4 +1,4 @@
-import { test, expect, vi } from 'vitest';
+import { expect, test, vi } from 'vitest';
 
 import printLine from './printLine.js';
 import printTotalScore from './printTotalScore.js';

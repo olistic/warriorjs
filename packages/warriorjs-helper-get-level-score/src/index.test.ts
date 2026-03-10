@@ -1,8 +1,8 @@
-import { test, expect, describe, beforeEach, vi } from 'vitest';
+import { beforeEach, describe, expect, test, vi } from 'vitest';
 import getClearBonus from './getClearBonus.js';
-import getLevelScore from './index.js';
 import getRemainingTimeBonus from './getRemainingTimeBonus.js';
 import getWarriorScore from './getWarriorScore.js';
+import getLevelScore from './index.js';
 
 vi.mock('./getClearBonus.js');
 vi.mock('./getRemainingTimeBonus.js');
@@ -26,12 +26,12 @@ describe('level passed', () => {
 
   test('has warrior score part', () => {
     vi.mocked(getWarriorScore).mockReturnValue(8);
-    expect(getLevelScore(levelResult, levelConfig)!.warrior).toBe(8);
+    expect(getLevelScore(levelResult, levelConfig)?.warrior).toBe(8);
   });
 
   test('has time bonus part', () => {
     vi.mocked(getRemainingTimeBonus).mockReturnValue(10);
-    expect(getLevelScore(levelResult, levelConfig)!.timeBonus).toBe(10);
+    expect(getLevelScore(levelResult, levelConfig)?.timeBonus).toBe(10);
     expect(getRemainingTimeBonus).toHaveBeenCalledWith([['events']], 16);
   });
 
@@ -39,7 +39,7 @@ describe('level passed', () => {
     vi.mocked(getWarriorScore).mockReturnValue(8);
     vi.mocked(getRemainingTimeBonus).mockReturnValue(12);
     vi.mocked(getClearBonus).mockReturnValue(4);
-    expect(getLevelScore(levelResult, levelConfig)!.clearBonus).toBe(4);
+    expect(getLevelScore(levelResult, levelConfig)?.clearBonus).toBe(4);
     expect(getClearBonus).toHaveBeenCalledWith([['events']], 8, 12);
   });
 });

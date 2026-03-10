@@ -8,7 +8,10 @@ interface PrintRowOptions {
   padding?: string;
 }
 
-function printRow(message: string, { position = 'start', padding = ' ' }: PrintRowOptions = {}): void {
+function printRow(
+  message: string,
+  { position = 'start', padding = ' ' }: PrintRowOptions = {},
+): void {
   const [screenWidth] = getScreenSize();
   const rowWidth = screenWidth - 1; // Consider line break length.
   const messageWidth = stringWidth(message);

@@ -1,8 +1,7 @@
-import { test, expect, vi, beforeEach } from 'vitest';
 import mock from 'mock-fs';
-
-import Tower from './Tower.js';
+import { beforeEach, expect, test, vi } from 'vitest';
 import loadTowers from './loadTowers.js';
+import Tower from './Tower.js';
 
 const { mockRequire } = vi.hoisted(() => {
   const mockRequire = vi.fn();
@@ -10,7 +9,7 @@ const { mockRequire } = vi.hoisted(() => {
 });
 
 vi.mock('module', async (importOriginal) => {
-  const original = await importOriginal() as any;
+  const original = (await importOriginal()) as any;
   return {
     ...original,
     createRequire: () => mockRequire,
@@ -35,12 +34,10 @@ test('loads internal towers', () => {
   mock({ '/path/to/node_modules/@warriorjs/cli': {} });
   loadTowers();
   mock.restore();
-  expect(Tower).toHaveBeenCalledWith(
-    'baby-steps',
-    'Baby Steps',
-    'For players new to WarriorJS',
-    ['level1', 'level2'],
-  );
+  expect(Tower).toHaveBeenCalledWith('baby-steps', 'Baby Steps', 'For players new to WarriorJS', [
+    'level1',
+    'level2',
+  ]);
 });
 
 test('loads external official towers', () => {
@@ -122,14 +119,8 @@ test("ignores directories that are seemingly towers but don't have a package.jso
   });
   loadTowers();
   mock.restore();
-  expect(Tower).not.toHaveBeenCalledWith('foo', 'Foo', 'baz', [
-    'level1',
-    'level2',
-  ]);
-  expect(Tower).not.toHaveBeenCalledWith('bar', 'Bar', 'baz', [
-    'level1',
-    'level2',
-  ]);
+  expect(Tower).not.toHaveBeenCalledWith('foo', 'Foo', 'baz', ['level1', 'level2']);
+  expect(Tower).not.toHaveBeenCalledWith('bar', 'Bar', 'baz', ['level1', 'level2']);
 });
 
 test("doesn't throw when @warriorjs/cli doesn't exist", async () => {

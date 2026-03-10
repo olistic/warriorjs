@@ -1,14 +1,5 @@
-import { describe, test, expect, beforeEach } from 'vitest';
-import {
-  BACKWARD,
-  EAST,
-  FORWARD,
-  LEFT,
-  NORTH,
-  RIGHT,
-  SOUTH,
-  WEST,
-} from '@warriorjs/geography';
+import { BACKWARD, EAST, FORWARD, LEFT, NORTH, RIGHT, SOUTH, WEST } from '@warriorjs/geography';
+import { beforeEach, describe, expect, test } from 'vitest';
 
 import Floor from './Floor.js';
 import Unit from './Unit.js';
@@ -67,13 +58,9 @@ describe('Position', () => {
   });
 
   test('returns relative direction of given space', () => {
-    expect(position.getRelativeDirectionOf(floor.getSpaceAt([5, 3]))).toEqual(
-      RIGHT,
-    );
+    expect(position.getRelativeDirectionOf(floor.getSpaceAt([5, 3]))).toEqual(RIGHT);
     position.rotate(RIGHT);
-    expect(position.getRelativeDirectionOf(floor.getSpaceAt([1, 4]))).toEqual(
-      RIGHT,
-    );
+    expect(position.getRelativeDirectionOf(floor.getSpaceAt([1, 4]))).toEqual(RIGHT);
   });
 
   test('rotates position on floor relatively', () => {

@@ -1,8 +1,4 @@
-import {
-  getAbsoluteOffset,
-  getRelativeOffset,
-  translateLocation,
-} from '@warriorjs/geography';
+import { getAbsoluteOffset, getRelativeOffset, translateLocation } from '@warriorjs/geography';
 
 import type Floor from './Floor.js';
 import type Unit from './Unit.js';
@@ -50,7 +46,7 @@ class Space {
 
   getCharacter(): string {
     if (this.isUnit()) {
-      return this.getUnit()!.character;
+      return this.getUnit()?.character;
     }
 
     if (this.isWall()) {
@@ -112,11 +108,10 @@ class Space {
   as(unit: Unit): SensedSpace {
     return {
       getLocation: () =>
-        getRelativeOffset(
-          this.location,
-          unit.position!.location,
-          unit.position!.orientation,
-        ) as [number, number],
+        getRelativeOffset(this.location, unit.position?.location, unit.position?.orientation) as [
+          number,
+          number,
+        ],
       getUnit: () => {
         const spaceUnit = this.getUnit.call(this);
         return spaceUnit ? spaceUnit.as(unit) : null;
@@ -130,7 +125,7 @@ class Space {
 
   toString(): string {
     if (this.isUnit()) {
-      return this.getUnit()!.toString();
+      return this.getUnit()?.toString();
     }
 
     if (this.isWall()) {

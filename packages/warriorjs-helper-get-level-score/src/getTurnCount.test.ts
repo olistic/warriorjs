@@ -1,4 +1,4 @@
-import { test, expect } from 'vitest';
+import { expect, test } from 'vitest';
 import getTurnCount from './getTurnCount.js';
 
 test('returns the number of turns played', () => {
