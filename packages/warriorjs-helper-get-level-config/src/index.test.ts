@@ -44,3 +44,30 @@ test('gets abilities from all levels if epic', () => {
 test('returns null for non-existent level', () => {
   expect(getLevelConfig(tower, 5, 'Joe', false)).toBeNull();
 });
+
+test('preserves functions in cloned config', () => {
+  const abilityFn = () => ({ action: true, description: 'test' });
+  const playTurn = () => {};
+  const towerWithFns = {
+    levels: [
+      {
+        floor: {
+          warrior: { abilities: { walk: abilityFn } },
+          units: [{ playTurn }],
+        },
+      },
+    ],
+  };
+  const config = getLevelConfig(towerWithFns, 1, 'Joe', false);
+  expect(config).not.toBeNull();
+  expect(config!.floor.units[0].playTurn).toBe(playTurn);
+});
+
+test('does not mutate original tower config', () => {
+  const towerCopy = {
+    levels: [{ floor: { warrior: { abilities: { a: 1 } } } }],
+  };
+  const config = getLevelConfig(towerCopy, 1, 'Joe', false);
+  config!.floor.warrior.name = 'Modified';
+  expect(towerCopy.levels[0].floor.warrior).not.toHaveProperty('name');
+});

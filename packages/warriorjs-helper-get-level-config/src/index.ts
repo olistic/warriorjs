@@ -20,6 +20,22 @@ interface Tower {
   [key: string]: unknown;
 }
 
+function deepClone<T>(obj: T): T {
+  if (obj === null || typeof obj !== 'object') {
+    return obj;
+  }
+
+  if (Array.isArray(obj)) {
+    return obj.map((item) => deepClone(item)) as T;
+  }
+
+  const clone = {} as Record<string, unknown>;
+  for (const key of Object.keys(obj)) {
+    clone[key] = deepClone((obj as Record<string, unknown>)[key]);
+  }
+  return clone as T;
+}
+
 /**
  * Returns the config for the level with the given number.
  *
@@ -41,7 +57,7 @@ function getLevelConfig(
     return null;
   }
 
-  const levelConfig = structuredClone(level);
+  const levelConfig = deepClone(level);
 
   const levels = epic ? tower.levels : tower.levels.slice(0, levelNumber);
   const warriorAbilities = Object.assign(
