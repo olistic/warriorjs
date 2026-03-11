@@ -17,6 +17,10 @@ function bind() {
         unit.log(`binds ${direction} and restricts nothing`);
       }
     },
+    meta: {
+      params: [{ name: 'direction', type: 'Direction' as const, optional: true }],
+      returns: 'void' as const,
+    },
   });
 }
 

@@ -51,11 +51,12 @@ function loadWarrior(
   { name, character, color, maxHealth, abilities, effects, position }: WarriorConfig,
   floor: Floor,
   playerCode?: string,
+  language: 'javascript' | 'typescript' = 'javascript',
 ): void {
   const warrior = new Warrior(name, character, color, maxHealth);
   loadAbilities(warrior, abilities);
   loadEffects(warrior, effects);
-  warrior.playTurn = playerCode ? loadPlayer(playerCode) : () => {};
+  warrior.playTurn = playerCode ? loadPlayer(playerCode, language) : () => {};
   floor.addWarrior(warrior, position);
 }
 
@@ -87,12 +88,13 @@ function loadUnit(
 function loadLevel(
   { number, description, tip, clue, floor: { size, stairs, warrior, units = [] } }: LevelConfig,
   playerCode?: string,
+  language: 'javascript' | 'typescript' = 'javascript',
 ): Level {
   const { width, height } = size;
   const stairsLocation: [number, number] = [stairs.x, stairs.y];
   const floor = new Floor(width, height, stairsLocation);
 
-  loadWarrior(warrior, floor, playerCode);
+  loadWarrior(warrior, floor, playerCode, language);
   units.forEach((unit) => loadUnit(unit, floor));
 
   return new Level(number!, description!, tip!, clue!, floor);

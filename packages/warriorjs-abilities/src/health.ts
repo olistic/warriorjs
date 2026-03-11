@@ -6,6 +6,10 @@ function health() {
     perform() {
       return unit.health;
     },
+    meta: {
+      params: [],
+      returns: 'number' as const,
+    },
   });
 }
 

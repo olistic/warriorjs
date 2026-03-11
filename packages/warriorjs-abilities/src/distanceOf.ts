@@ -6,6 +6,10 @@ function distanceOf() {
     perform(space: unknown) {
       return unit.getDistanceOf(space);
     },
+    meta: {
+      params: [{ name: 'space', type: 'Space' as const }],
+      returns: 'number' as const,
+    },
   });
 }
 

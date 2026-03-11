@@ -10,6 +10,10 @@ function feel() {
     perform(direction: RelativeDirection = defaultDirection) {
       return unit.getSensedSpaceAt(direction);
     },
+    meta: {
+      params: [{ name: 'direction', type: 'Direction' as const, optional: true }],
+      returns: 'Space' as const,
+    },
   });
 }
 

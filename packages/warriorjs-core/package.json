@@ -45,6 +45,7 @@
     "build": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@warriorjs/geography": "workspace:^"
+    "@warriorjs/geography": "workspace:^",
+    "esbuild": "^0.27.3"
   }
 }

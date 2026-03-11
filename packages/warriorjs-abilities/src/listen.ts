@@ -17,6 +17,10 @@ function listen() {
         )
         .map(([forward, right]) => unit.getSensedSpaceAt(FORWARD, forward, right));
     },
+    meta: {
+      params: [],
+      returns: 'Space[]' as const,
+    },
   });
 }
 

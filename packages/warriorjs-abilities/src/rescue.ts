@@ -17,6 +17,10 @@ function rescue() {
         unit.log(`unbinds ${direction} and rescues nothing`);
       }
     },
+    meta: {
+      params: [{ name: 'direction', type: 'Direction' as const, optional: true }],
+      returns: 'void' as const,
+    },
   });
 }
 

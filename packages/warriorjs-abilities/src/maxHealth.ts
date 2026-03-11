@@ -6,6 +6,10 @@ function maxHealth() {
     perform() {
       return unit.maxHealth;
     },
+    meta: {
+      params: [],
+      returns: 'number' as const,
+    },
   });
 }
 

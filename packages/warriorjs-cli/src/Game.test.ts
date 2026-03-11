@@ -1,6 +1,5 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { getLevel } from '@warriorjs/core';
 import getLevelConfig from '@warriorjs/helper-get-level-config';
 import mock from 'mock-fs';
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
@@ -194,14 +193,10 @@ describe('Game', () => {
       test('prepares first level if level number is zero', async () => {
         game.profile = {
           levelNumber: 0,
-          getReadmeFilePath: () => '/path/to/profile/readme',
         };
         game.prepareNextLevel = vi.fn();
         await game.playNormalMode();
         expect(game.prepareNextLevel).toHaveBeenCalled();
-        expect(printSuccessLine).toHaveBeenCalledWith(
-          'First level has been generated. See /path/to/profile/readme for instructions.',
-        );
         expect(game.playLevel).not.toHaveBeenCalled();
       });
 
@@ -325,17 +320,16 @@ describe('Game', () => {
       levelNumber: 1,
       warriorName: 'Joe',
       epic: false,
+      getReadmeFilePath: () => '/path/to/profile/readme',
     };
     (getLevelConfig as any).mockReturnValue('config');
-    (getLevel as any).mockReturnValue('level');
     const mockGenerate = vi.fn();
     (ProfileGenerator as any).mockImplementation(function (this: any) {
       this.generate = mockGenerate;
     });
     game.generateProfileFiles();
     expect(getLevelConfig).toHaveBeenCalledWith('tower', 1, 'Joe', false);
-    expect(getLevel).toHaveBeenCalledWith('config');
-    expect(ProfileGenerator).toHaveBeenCalledWith(game.profile, 'level');
+    expect(ProfileGenerator).toHaveBeenCalledWith(game.profile, 'config');
     expect(mockGenerate).toHaveBeenCalled();
   });
 

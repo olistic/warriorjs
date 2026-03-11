@@ -117,6 +117,13 @@ class Game {
       );
     }
 
+    const languageChoices = ['JavaScript', 'TypeScript'];
+    const languageChoice = (await requestChoice(
+      'Choose your language:',
+      languageChoices,
+    )) as string;
+    const language = languageChoice === 'TypeScript' ? 'typescript' : 'javascript';
+
     const towerChoices = this.towers;
     const tower = (await requestChoice('Choose a tower:', towerChoices)) as Tower;
 
@@ -125,7 +132,12 @@ class Game {
       `${warriorName}-${tower.id}`.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
     );
 
-    const profile = new Profile(warriorName, tower, profileDirectoryPath);
+    const profile = new Profile(
+      warriorName,
+      tower,
+      profileDirectoryPath,
+      language as 'javascript' | 'typescript',
+    );
 
     if (this.isExistingProfile(profile)) {
       printWarningLine(
@@ -204,9 +216,6 @@ class Game {
 
     if (this.profile.levelNumber === 0) {
       this.prepareNextLevel();
-      printSuccessLine(
-        `First level has been generated. See ${this.profile.getReadmeFilePath()} for instructions.`,
-      );
     } else {
       await this.playLevel(this.profile.levelNumber);
     }
@@ -220,7 +229,8 @@ class Game {
     printLevel(level);
 
     const playerCode = this.profile.readPlayerCode();
-    const levelResult = runLevel(levelConfig!, playerCode as any);
+    const language = this.profile.language || 'javascript';
+    const levelResult = runLevel(levelConfig!, playerCode as any, language);
 
     if (!this.silencePlay) {
       await printPlay(levelResult.events, this.delay);
@@ -305,8 +315,15 @@ class Game {
   generateProfileFiles(): void {
     const { tower, levelNumber, warriorName, epic } = this.profile;
     const levelConfig = getLevelConfig(tower as any, levelNumber, warriorName, epic);
-    const level = getLevel(levelConfig);
-    new ProfileGenerator(this.profile, level).generate();
+    new ProfileGenerator(this.profile, levelConfig).generate();
+
+    if (this.profile.levelNumber === 1) {
+      printSuccessLine(
+        `First level has been generated. See ${this.profile.getReadmeFilePath()} for instructions.`,
+      );
+    } else if (this.profile.language === 'typescript') {
+      printSuccessLine('New abilities available! Check types.ts for details.');
+    }
   }
 
   prepareEpicMode(): void {

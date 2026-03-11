@@ -303,7 +303,7 @@ describe('Profile', () => {
 
   test('encodes with JSON + base64', () => {
     expect(profile.encode()).toBe(
-      'eyJ3YXJyaW9yTmFtZSI6IkpvZSIsInRvd2VySWQiOiJmb28iLCJsZXZlbE51bWJlciI6MCwiY2x1ZSI6ZmFsc2UsImVwaWMiOmZhbHNlLCJzY29yZSI6MCwiZXBpY1Njb3JlIjowLCJhdmVyYWdlR3JhZGUiOm51bGx9',
+      'eyJ3YXJyaW9yTmFtZSI6IkpvZSIsInRvd2VySWQiOiJmb28iLCJsYW5ndWFnZSI6ImphdmFzY3JpcHQiLCJsZXZlbE51bWJlciI6MCwiY2x1ZSI6ZmFsc2UsImVwaWMiOmZhbHNlLCJzY29yZSI6MCwiZXBpY1Njb3JlIjowLCJhdmVyYWdlR3JhZGUiOm51bGx9',
     );
   });
 

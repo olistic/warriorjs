@@ -39,10 +39,23 @@ export interface Unit {
   toString(): string;
 }
 
+export interface AbilityParam {
+  name: string;
+  type: 'Direction' | 'Space' | 'number' | 'any';
+  optional?: boolean;
+  rest?: boolean;
+}
+
+export interface AbilityMeta {
+  params: AbilityParam[];
+  returns: 'void' | 'number' | 'string' | 'Direction' | 'Space' | 'Space[]';
+}
+
 export interface Ability {
   action?: boolean;
   description: string;
   perform(...args: unknown[]): unknown;
+  meta?: AbilityMeta;
 }
 
 export type AbilityCreator = (unit: Unit) => Ability;

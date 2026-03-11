@@ -12,6 +12,10 @@ function pivot() {
       unit.rotate(direction);
       unit.log(`pivots ${direction}`);
     },
+    meta: {
+      params: [{ name: 'direction', type: 'Direction' as const, optional: true }],
+      returns: 'void' as const,
+    },
   });
 }
 

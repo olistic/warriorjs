@@ -17,6 +17,10 @@ function walk() {
         unit.log(`walks ${direction} and bumps into ${space}`);
       }
     },
+    meta: {
+      params: [{ name: 'direction', type: 'Direction' as const, optional: true }],
+      returns: 'void' as const,
+    },
   });
 }
 

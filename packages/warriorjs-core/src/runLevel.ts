@@ -1,7 +1,11 @@
 import loadLevel from './loadLevel.js';
 
-function runLevel(levelConfig: any, playerCode: string): { passed: boolean; events: any[][] } {
-  const level = loadLevel(levelConfig, playerCode);
+function runLevel(
+  levelConfig: any,
+  playerCode: string,
+  language: 'javascript' | 'typescript' = 'javascript',
+): { passed: boolean; events: any[][] } {
+  const level = loadLevel(levelConfig, playerCode, language);
   return level.play();
 }
 

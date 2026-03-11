@@ -8,6 +8,10 @@ function directionOf() {
     perform(space: unknown) {
       return unit.getDirectionOf(space);
     },
+    meta: {
+      params: [{ name: 'space', type: 'Space' as const }],
+      returns: 'Direction' as const,
+    },
   });
 }
 

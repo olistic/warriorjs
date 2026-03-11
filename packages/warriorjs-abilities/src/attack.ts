@@ -19,6 +19,10 @@ function attack({ power }: { power: number }) {
         unit.log(`attacks ${direction} and hits nothing`);
       }
     },
+    meta: {
+      params: [{ name: 'direction', type: 'Direction' as const, optional: true }],
+      returns: 'void' as const,
+    },
   });
 }
 

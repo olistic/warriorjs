@@ -9,6 +9,10 @@ function think() {
       const thought = args.length > 0 ? util.format(...args) : 'nothing';
       unit.log(`thinks ${thought}`);
     },
+    meta: {
+      params: [{ name: 'args', type: 'any' as const, rest: true }],
+      returns: 'void' as const,
+    },
   });
 }
 

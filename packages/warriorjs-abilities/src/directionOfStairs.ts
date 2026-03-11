@@ -8,6 +8,10 @@ function directionOfStairs() {
     perform() {
       return unit.getDirectionOfStairs();
     },
+    meta: {
+      params: [],
+      returns: 'Direction' as const,
+    },
   });
 }
 

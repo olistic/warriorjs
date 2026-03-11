@@ -20,6 +20,10 @@ function shoot({ power, range }: { power: number; range: number }) {
         unit.log(`shoots ${direction} and hits nothing`);
       }
     },
+    meta: {
+      params: [{ name: 'direction', type: 'Direction' as const, optional: true }],
+      returns: 'void' as const,
+    },
   });
 }
 

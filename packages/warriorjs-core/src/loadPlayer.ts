@@ -1,17 +1,31 @@
 import assert from 'node:assert';
 import vm from 'node:vm';
+import { transformSync } from 'esbuild';
 
-const playerCodeFilename = 'Player.js';
 const playerCodeTimeout = 3000;
 
-function loadPlayer(playerCode: string): (turn: any) => void {
+function loadPlayer(
+  playerCode: string,
+  language: 'javascript' | 'typescript' = 'javascript',
+): (turn: any) => void {
+  let code = playerCode;
+  const playerCodeFilename = language === 'typescript' ? 'Player.ts' : 'Player.js';
+
+  if (language === 'typescript') {
+    const result = transformSync(code, {
+      loader: 'ts',
+      format: 'cjs',
+    });
+    code = result.code;
+  }
+
   const sandbox = vm.createContext();
 
   // Do not collect stack frames for errors in the player code.
   vm.runInContext('Error.stackTraceLimit = 0;', sandbox);
 
   try {
-    vm.runInContext(playerCode, sandbox, {
+    vm.runInContext(code, sandbox, {
       filename: playerCodeFilename,
       timeout: playerCodeTimeout,
     });

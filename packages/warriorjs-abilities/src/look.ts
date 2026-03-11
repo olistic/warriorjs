@@ -13,6 +13,10 @@ function look({ range }: { range: number }) {
       const firstWallIndex = spaces.findIndex((space) => space?.isWall());
       return firstWallIndex === -1 ? spaces : spaces.slice(0, firstWallIndex + 1);
     },
+    meta: {
+      params: [{ name: 'direction', type: 'Direction' as const, optional: true }],
+      returns: 'Space[]' as const,
+    },
   });
 }
 

@@ -6,7 +6,8 @@ import GameError from './GameError.js';
 import type Tower from './Tower.js';
 
 const profileFile = '.profile';
-const playerCodeFile = 'Player.js';
+const playerCodeFileJs = 'Player.js';
+const playerCodeFileTs = 'Player.ts';
 const readmeFile = 'README.md';
 
 /** Class representing a profile. */
@@ -14,6 +15,7 @@ class Profile {
   warriorName: string;
   tower: Tower;
   directoryPath: string;
+  language: 'javascript' | 'typescript';
   levelNumber: number;
   score: number;
   clue: boolean;
@@ -58,16 +60,21 @@ class Profile {
 
   static isProfileDirectory(profileDirectoryPath: string): boolean {
     const profileFilePath = path.join(profileDirectoryPath, profileFile);
-    const playerCodeFilePath = path.join(profileDirectoryPath, playerCodeFile);
-    try {
-      return fs.statSync(profileFilePath).isFile() && fs.statSync(playerCodeFilePath).isFile();
-    } catch (err: any) {
-      if (err.code === 'ENOENT') {
+    const playerCodeFilePathJs = path.join(profileDirectoryPath, playerCodeFileJs);
+    const playerCodeFilePathTs = path.join(profileDirectoryPath, playerCodeFileTs);
+
+    const fileExists = (p: string) => {
+      try {
+        return fs.statSync(p).isFile();
+      } catch {
         return false;
       }
+    };
 
-      throw err;
-    }
+    return (
+      fileExists(profileFilePath) &&
+      (fileExists(playerCodeFilePathJs) || fileExists(playerCodeFilePathTs))
+    );
   }
 
   static read(profileFilePath: string): string | null {
@@ -96,10 +103,16 @@ class Profile {
     }
   }
 
-  constructor(warriorName: string, tower: Tower, directoryPath: string) {
+  constructor(
+    warriorName: string,
+    tower: Tower,
+    directoryPath: string,
+    language: 'javascript' | 'typescript' = 'javascript',
+  ) {
     this.warriorName = warriorName;
     this.tower = tower;
     this.directoryPath = directoryPath;
+    this.language = language;
     this.levelNumber = 0;
     this.score = 0;
     this.clue = false;
@@ -127,6 +140,7 @@ class Profile {
   }
 
   getPlayerCodeFilePath(): string {
+    const playerCodeFile = this.language === 'typescript' ? playerCodeFileTs : playerCodeFileJs;
     return path.join(this.directoryPath, playerCodeFile);
   }
 
@@ -209,6 +223,7 @@ class Profile {
     return {
       warriorName: this.warriorName,
       towerId: this.tower.id,
+      language: this.language,
       levelNumber: this.levelNumber,
       clue: this.clue,
       epic: this.epic,
