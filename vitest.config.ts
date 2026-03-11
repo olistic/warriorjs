@@ -9,6 +9,12 @@ export default defineConfig({
     coverage: {
       include: ['packages/**/src/**/*.ts'],
       exclude: ['packages/warriorjs-tower-**/src/**', '**/*.test.ts'],
+      thresholds: {
+        lines: 80,
+        functions: 80,
+        branches: 80,
+        statements: 80,
+      },
     },
   },
 });
