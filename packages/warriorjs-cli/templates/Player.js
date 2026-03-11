@@ -1,6 +1,5 @@
-// biome-ignore lint/correctness/noUnusedVariables: template file for users
 class Player {
-  playTurn(_warrior) {
+  playTurn(warrior) {
     // Cool code goes here.
   }
 }

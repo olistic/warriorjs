@@ -38,7 +38,12 @@
     }
   },
   "files": {
-    "includes": ["packages/**"],
-    "experimentalScannerIgnores": ["**/lib/**", "**/node_modules/**", "website/**"]
+    "includes": ["packages/**", "!**/lib", "!**/templates"],
+    "experimentalScannerIgnores": [
+      "**/lib/**",
+      "**/node_modules/**",
+      "**/templates/**",
+      "website/**"
+    ]
   }
 }
