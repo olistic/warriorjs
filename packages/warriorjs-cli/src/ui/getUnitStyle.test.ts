@@ -8,6 +8,6 @@ test('downsamples RGB to 256 color ANSI', () => {
   const result = unitStyle('@');
   // Chalk 5 with level 2 produces 256-color ANSI escape sequences
   expect(result).toContain('@');
-  // Should contain ANSI escape codes
+  // biome-ignore lint/suspicious/noControlCharactersInRegex: matching ANSI escape codes
   expect(result).toMatch(/\x1b\[/);
 });

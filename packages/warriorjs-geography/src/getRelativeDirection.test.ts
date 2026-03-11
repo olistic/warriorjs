@@ -3,7 +3,7 @@ import { EAST, NORTH, SOUTH, WEST } from './absoluteDirections.js';
 import getRelativeDirection from './getRelativeDirection.js';
 import { BACKWARD, FORWARD, LEFT, RIGHT } from './relativeDirections.js';
 
-let direction;
+let direction: string;
 
 describe('north', () => {
   beforeEach(() => {

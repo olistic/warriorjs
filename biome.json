@@ -17,17 +17,25 @@
     "enabled": true,
     "rules": {
       "recommended": true,
-      "suspicious": {
-        "noExplicitAny": "off",
-        "noImplicitAnyLet": "off",
-        "useIterableCallbackReturn": "off",
-        "noControlCharactersInRegex": "off"
+      "correctness": {
+        "noUnusedImports": "error",
+        "noUnusedVariables": "error"
       },
       "style": {
-        "noNonNullAssertion": "off"
+        "noNonNullAssertion": "off",
+        "useConst": "error",
+        "useNodejsImportProtocol": "error",
+        "useTemplate": "error",
+        "useImportType": "error",
+        "useExportType": "error",
+        "useForOf": "error",
+        "useThrowOnlyError": "error",
+        "useDefaultParameterLast": "error",
+        "useCollapsedElseIf": "error"
       },
-      "correctness": {
-        "noUnusedImports": "error"
+      "suspicious": {
+        "noExplicitAny": "off",
+        "useIterableCallbackReturn": "off"
       }
     }
   },
