@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path, { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { getLevel } from '@warriorjs/core';
+import { getLevel, type LevelConfig } from '@warriorjs/core';
 import ejs from 'ejs';
 import type Profile from './Profile.js';
 import getFloorMap from './utils/getFloorMap.js';
@@ -18,9 +18,9 @@ export const README_TEMPLATE_FILE_PATH = path.join(templatesPath, 'README.md.ejs
 /** Class representing a profile generator. */
 class ProfileGenerator {
   profile: Profile;
-  levelConfig: unknown;
+  levelConfig: LevelConfig;
 
-  constructor(profile: Profile, levelConfig: unknown) {
+  constructor(profile: Profile, levelConfig: LevelConfig) {
     this.profile = profile;
     this.levelConfig = levelConfig;
   }
@@ -56,8 +56,7 @@ class ProfileGenerator {
   }
 
   generateTypesFile(): void {
-    const levelConfig = this.levelConfig as any;
-    const abilities: Record<string, (unit: any) => any> = levelConfig.floor.warrior.abilities;
+    const abilities = this.levelConfig.floor.warrior.abilities ?? {};
 
     const methods: string[] = [];
     let needsSpace = false;

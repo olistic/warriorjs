@@ -1,37 +1,9 @@
 import Floor from './Floor.js';
 import Level from './Level.js';
 import loadPlayer from './loadPlayer.js';
+import type { LevelConfig, UnitConfig } from './types.js';
 import Unit from './Unit.js';
 import Warrior from './Warrior.js';
-
-interface UnitConfig {
-  name: string;
-  character: string;
-  color: string;
-  maxHealth: number;
-  reward?: number;
-  enemy?: boolean;
-  bound?: boolean;
-  abilities?: Record<string, (unit: Unit) => any>;
-  effects?: Record<string, (unit: Unit) => any>;
-  playTurn?: (turn: any) => void;
-  position: { x: number; y: number; facing: string };
-}
-
-interface WarriorConfig extends UnitConfig {}
-
-interface LevelConfig {
-  number?: number;
-  description?: string;
-  tip?: string;
-  clue?: string;
-  floor: {
-    size: { width: number; height: number };
-    stairs: { x: number; y: number };
-    warrior: WarriorConfig;
-    units?: UnitConfig[];
-  };
-}
 
 function loadAbilities(unit: Unit, abilities: Record<string, (unit: Unit) => any> = {}): void {
   Object.entries(abilities).forEach(([abilityName, abilityCreator]) => {
@@ -48,7 +20,7 @@ function loadEffects(unit: Unit, effects: Record<string, (unit: Unit) => any> = 
 }
 
 function loadWarrior(
-  { name, character, color, maxHealth, abilities, effects, position }: WarriorConfig,
+  { name, character, color, maxHealth, abilities, effects, position }: UnitConfig,
   floor: Floor,
   playerCode?: string,
   language: 'javascript' | 'typescript' = 'javascript',

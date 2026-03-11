@@ -223,14 +223,14 @@ class Game {
 
   async playLevel(levelNumber: number): Promise<boolean> {
     const { tower, warriorName, epic } = this.profile;
-    const levelConfig = getLevelConfig(tower as any, levelNumber, warriorName, epic);
+    const levelConfig = getLevelConfig(tower, levelNumber, warriorName, epic);
 
-    const level = getLevel(levelConfig);
+    const level = getLevel(levelConfig!);
     printLevel(level);
 
     const playerCode = this.profile.readPlayerCode();
     const language = this.profile.language || 'javascript';
-    const levelResult = runLevel(levelConfig!, playerCode as any, language);
+    const levelResult = runLevel(levelConfig!, playerCode!, language);
 
     if (!this.silencePlay) {
       await printPlay(levelResult.events, this.delay);
@@ -241,7 +241,7 @@ class Game {
     if (!levelResult.passed) {
       printFailureLine(`Sorry, you failed level ${levelNumber}. Change your script and try again.`);
 
-      if ((levelConfig as any).clue && !this.profile.isShowingClue()) {
+      if (levelConfig!.clue && !this.profile.isShowingClue()) {
         const showClue =
           this.assumeYes ||
           (await requestConfirmation(
@@ -270,7 +270,7 @@ class Game {
       (sum: number, value: number) => sum + value,
       0,
     );
-    const grade = (totalScore * 1.0) / (levelConfig as any).aceScore;
+    const grade = (totalScore * 1.0) / (levelConfig!.aceScore ?? 0);
     printLevelReport(this.profile, scoreParts as any, totalScore, grade);
     this.profile.tallyPoints(levelNumber, totalScore, grade);
 
@@ -314,8 +314,8 @@ class Game {
 
   generateProfileFiles(): void {
     const { tower, levelNumber, warriorName, epic } = this.profile;
-    const levelConfig = getLevelConfig(tower as any, levelNumber, warriorName, epic);
-    new ProfileGenerator(this.profile, levelConfig).generate();
+    const levelConfig = getLevelConfig(tower, levelNumber, warriorName, epic);
+    new ProfileGenerator(this.profile, levelConfig!).generate();
 
     if (this.profile.levelNumber === 1) {
       printSuccessLine(

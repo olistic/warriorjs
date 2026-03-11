@@ -1,23 +1,7 @@
-interface WarriorConfig {
-  name?: string;
-  abilities?: Record<string, unknown>;
-  [key: string]: unknown;
-}
-
-interface FloorConfig {
-  warrior: WarriorConfig;
-  [key: string]: unknown;
-}
-
-interface LevelConfig {
-  number?: number;
-  floor: FloorConfig;
-  [key: string]: unknown;
-}
+import type { LevelConfig } from '@warriorjs/core';
 
 interface Tower {
   levels: LevelConfig[];
-  [key: string]: unknown;
 }
 
 function deepClone<T>(obj: T): T {

@@ -100,7 +100,11 @@ importers:
 
   packages/warriorjs-helper-get-grade-letter: {}
 
-  packages/warriorjs-helper-get-level-config: {}
+  packages/warriorjs-helper-get-level-config:
+    dependencies:
+      '@warriorjs/core':
+        specifier: workspace:*
+        version: link:../warriorjs-core
 
   packages/warriorjs-helper-get-level-score: {}
 

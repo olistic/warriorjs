@@ -23,6 +23,9 @@
   "engines": {
     "node": ">=20"
   },
+  "dependencies": {
+    "@warriorjs/core": "workspace:*"
+  },
   "scripts": {
     "build": "tsc -p tsconfig.json"
   }
