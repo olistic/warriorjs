@@ -47,10 +47,10 @@ You can take this free course:
 
 ### How do I set up the project?
 
-WarriorJS relies on [yarn](https://yarnpkg.com) instead of npm to manage
-dependencies.
+WarriorJS uses [pnpm](https://pnpm.io) to manage dependencies and
+[Turborepo](https://turbo.build/repo) to orchestrate the monorepo.
 
-Run `yarn install` and edit code in the `src/` folder of the corresponding
+Run `pnpm install` and edit code in the `src/` folder of the corresponding
 package(s) in `packages/`. If your contribution is to the docs or the website,
 you're looking for the `docs/` or the `website/` directories, respectively.
 
@@ -58,11 +58,7 @@ you're looking for the `docs/` or the `website/` directories, respectively.
 
 To verify your changes, run the following commands:
 
-1.  Install dependencies (you probably already did this): `yarn install`.
-2.  Build cross-dependencies: `yarn build`.
-3.  Link cross-dependencies: `yarn bootstrap`.
-4.  Run tests: `yarn test`.
-
-Steps #2 and #3 above are required because we're using
-[Lerna](http://lernajs.io). If you have ideas on how to improve that to make
-these steps simpler, please don't hesitate to create an issue or submit a PR.
+1.  Install dependencies (you probably already did this): `pnpm install`.
+2.  Build packages: `pnpm build`.
+3.  Run tests: `pnpm test`.
+4.  Lint: `pnpm lint`.
