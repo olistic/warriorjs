@@ -38,12 +38,6 @@
     }
   },
   "files": {
-    "includes": ["packages/**", "!**/lib", "!**/templates"],
-    "experimentalScannerIgnores": [
-      "**/lib/**",
-      "**/node_modules/**",
-      "**/templates/**",
-      "website/**"
-    ]
+    "includes": ["packages/**", "!**/lib", "!**/templates"]
   }
 }
