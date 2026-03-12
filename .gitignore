@@ -62,10 +62,10 @@ typings/
 .turbo
 
 # Build directories
-apps/*/lib/
+apps/*/dist/
 apps/website/build/
-libs/*/lib/
-towers/*/lib/
+libs/*/dist/
+towers/*/dist/
 
 # Website
 apps/website/translated_docs

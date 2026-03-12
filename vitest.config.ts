@@ -6,7 +6,7 @@ export default defineConfig({
     environment: 'node',
     clearMocks: true,
     include: ['libs/**/src/**/*.test.ts'],
-    exclude: ['**/node_modules/**', '**/lib/**'],
+    exclude: ['**/node_modules/**', '**/dist/**'],
     coverage: {
       include: ['libs/**/src/**/*.ts'],
       exclude: ['libs/warriorjs-tower-**/src/**', '**/*.test.ts'],

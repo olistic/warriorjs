@@ -7,11 +7,11 @@
   "homepage": "https://warrior.js.org",
   "repository": "https://github.com/olistic/warriorjs/tree/master/libs/core",
   "type": "module",
-  "main": "lib/index.js",
+  "main": "dist/index.js",
   "exports": {
     ".": {
-      "import": "./lib/index.js",
-      "types": "./lib/index.d.ts"
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
     }
   },
   "keywords": [
@@ -33,7 +33,7 @@
     "skills"
   ],
   "files": [
-    "lib"
+    "dist"
   ],
   "publishConfig": {
     "access": "public"

@@ -31,16 +31,16 @@
   "engines": {
     "node": ">=20"
   },
-  "main": "lib/cli.js",
+  "main": "dist/cli.js",
   "exports": {
     ".": {
-      "import": "./lib/cli.js",
-      "types": "./lib/cli.d.ts"
+      "import": "./dist/cli.js",
+      "types": "./dist/cli.d.ts"
     }
   },
   "files": [
     "bin",
-    "lib"
+    "dist"
   ],
   "publishConfig": {
     "access": "public"
