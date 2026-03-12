@@ -15,7 +15,7 @@ describe('renderReadme', () => {
 
   beforeEach(() => {
     profile = {
-      warriorName: 'Spartacus',
+      warriorName: 'Aldric',
       tower: { name: 'The Narrow Path', description: 'A tower for beginners' },
       language: 'javascript',
       isShowingClue: () => false,
@@ -45,7 +45,7 @@ describe('renderReadme', () => {
   test('renders readme for javascript profile', () => {
     expect(renderReadme(profile, levelConfig)).toBe(
       [
-        '# Spartacus - The Narrow Path',
+        '# Aldric - The Narrow Path',
         '',
         '### _A tower for beginners_',
         '',
@@ -89,7 +89,7 @@ describe('renderReadme', () => {
     const result = renderReadme(profile, levelConfig);
     expect(result).toBe(
       [
-        '# Spartacus - The Narrow Path',
+        '# Aldric - The Narrow Path',
         '',
         '## Level 1',
         '',
@@ -124,7 +124,7 @@ describe('renderReadme', () => {
     const result = renderReadme(profile, levelConfig);
     expect(result).toBe(
       [
-        '# Spartacus - The Narrow Path',
+        '# Aldric - The Narrow Path',
         '',
         '### _A tower for beginners_',
         '',
@@ -163,7 +163,7 @@ describe('renderReadme', () => {
     const result = renderReadme(profile, levelConfig);
     expect(result).toBe(
       [
-        '# Spartacus - The Narrow Path',
+        '# Aldric - The Narrow Path',
         '',
         '### _A tower for beginners_',
         '',
