@@ -115,12 +115,12 @@ class Game {
       throw new GameError('Every legend needs a name! Enter one for your warrior.');
     }
 
-    const languageChoices = ['JavaScript', 'TypeScript'];
+    const languageChoices = ['TypeScript (recommended)', 'JavaScript'];
     const languageChoice = (await requestChoice(
       'Choose your language:',
       languageChoices,
     )) as string;
-    const language = languageChoice === 'TypeScript' ? 'typescript' : 'javascript';
+    const language = languageChoice.startsWith('TypeScript') ? 'typescript' : 'javascript';
 
     const towerChoices = this.towers;
     const tower = (await requestChoice('Choose a tower:', towerChoices)) as Tower;
