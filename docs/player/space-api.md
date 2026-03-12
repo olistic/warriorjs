@@ -4,7 +4,7 @@ title: Space API
 ---
 
 Whenever you sense an area, often one or multiple spaces (in an array) will be
-returned. For example, the "feel" sense in the "Baby Steps" tower returns one
+returned. For example, the "feel" sense in the "The Narrow Path" tower returns one
 space:
 
 ```js

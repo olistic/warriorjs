@@ -53,10 +53,10 @@ universes (levels, abilities and units) to the game.
 | [`@warriorjs/tower-baby-steps`][warriorjs-tower-baby-steps]         | [![npm][warriorjs-tower-baby-steps-badge]][warriorjs-tower-baby-steps-npm]         |
 | [`@warriorjs/tower-tick-tick-boom`][warriorjs-tower-tick-tick-boom] | [![npm][warriorjs-tower-tick-tick-boom-badge]][warriorjs-tower-tick-tick-boom-npm] |
 
-- [`@warriorjs/tower-baby-steps`][warriorjs-tower-baby-steps] is the entry-level
-  tower. You should play this first.
-- [`@warriorjs/tower-tick-tick-boom`][warriorjs-tower-tick-tick-boom] is a more
-  challenging tower.
+- [`@warriorjs/tower-baby-steps`][warriorjs-tower-baby-steps] is "The Narrow
+  Path", the entry-level tower. You should play this first.
+- [`@warriorjs/tower-tick-tick-boom`][warriorjs-tower-tick-tick-boom] is "The
+  Powder Keep", a more challenging tower.
 
 > You can find community maintained towers in [npm][community-towers-npm].
 

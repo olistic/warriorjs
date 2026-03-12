@@ -1,6 +1,6 @@
 # @warriorjs/tower-tick-tick-boom
 
-> Try not to blow the tower apart.
+> The Powder Keep — try not to blow the tower apart.
 
 ## Install
 

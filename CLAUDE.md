@@ -27,7 +27,7 @@ pnpm monorepo with Turborepo. All packages live in `packages/`.
 - **@warriorjs/helper-get-level-config** — Level configuration loader
 - **@warriorjs/helper-get-level-score** — Score calculation
 - **@warriorjs/helper-get-grade-letter** — Grade letter from score
-- **@warriorjs/tower-baby-steps** / **tower-tick-tick-boom** — Built-in towers (level sets)
+- **@warriorjs/tower-baby-steps** / **tower-tick-tick-boom** — Built-in towers: The Narrow Path and The Powder Keep
 
 Dependency flow: geography → abilities → units → towers, geography → core → helpers → cli.
 

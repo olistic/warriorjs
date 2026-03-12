@@ -1,6 +1,6 @@
 # @warriorjs/tower-baby-steps
 
-> For players new to WarriorJS.
+> The Narrow Path — for players new to WarriorJS.
 
 ## Install
 
