@@ -7,7 +7,7 @@
 <br />
 
 <div align="center">
-  <strong>An exciting game of programming and Artificial Intelligence</strong>
+  <strong>Learn JavaScript and TypeScript by writing code that fights</strong>
 </div>
 
 <br />
@@ -23,83 +23,63 @@
 
 <br />
 
-In WarriorJS, you are a warrior climbing a tall tower to reach _The JavaScript
-Sword_ at the top level. Legend has it that the sword bearer becomes enlightened
-in the JavaScript language, but be warned: the journey will not be easy. On each
-floor, you need to write JavaScript (or TypeScript) to instruct the warrior to
-battle enemies, rescue captives, and reach the stairs alive...
+In WarriorJS, you write JavaScript or TypeScript to guide a warrior through
+towers full of enemies. Each floor is a puzzle: battle sludge, dodge archers,
+rescue captives, and reach the stairs alive. The code you write _is_ the
+strategy — there's no clicking, no dragging, just logic and sharp thinking.
 
-**No matter if you are new to programming or a JavaScript guru, WarriorJS will
-put your skills to the test. Will you dare?**
+**Whether you're writing your first `if` statement or refactoring for a perfect
+score, every floor will test you.**
 
-## Play
+## Quick Start
 
-Go to [warriorjs.com](https://warriorjs.com/?ref=gh) and play from the comfort
-of your browser! Sharpen your skills and compete against other players around
-the globe. Good luck in your journey, warrior!
+1. Install [Node.js](https://nodejs.org) 22 or later.
 
-## Documentation
-
-Although there is some in-game documentation, at some point you may want to
-visit the [official docs](https://warrior.js.org).
-
-Jump straight to some of the most-visited pages:
-
-- [Gameplay](https://warrior.js.org/docs/player/gameplay)
-- [Towers](https://warrior.js.org/docs/player/towers)
-- [Player API](https://warrior.js.org/docs/player/space-api)
-
-## CLI
-
-Wanna play offline? No problem, just follow these steps:
-
-1.  Make sure you have [Node.js](https://nodejs.org) 22 or later installed.
-
-2.  Install WarriorJS CLI with [npm](https://npmjs.com):
+2. Install the CLI:
 
 ```sh
 npm install --global @warriorjs/cli
 ```
 
-3.  Launch the game:
+3. Launch the game:
 
 ```sh
 warriorjs
 ```
 
-4.  Create your warrior.
+The game walks you through creating a warrior and choosing a tower. Open the
+generated `README.md` for your first level's instructions, write your solution
+in `Player.js`, then run `warriorjs` again to see how your warrior fares.
 
-5.  You'll be pointed to a README file with instructions for the first level.
-
-Check out the [Install](https://warrior.js.org/docs/player/install) docs for
-more details.
+You can also play from your browser at
+[warriorjs.com](https://warriorjs.com/?ref=gh).
 
 ## Preview
 
 ![WarriorJS Preview](https://user-images.githubusercontent.com/5600126/40150855-8b2acdd2-5952-11e8-9034-00dcee0c4c2c.gif)
 
-> WarriorJS CLI launched from the
-> [Integrated Terminal](https://code.visualstudio.com/docs/editor/integrated-terminal)
-> in [VS Code](https://code.visualstudio.com). To the left, `Player.js`, and to
-> the right, a
-> [Markdown Preview](https://code.visualstudio.com/docs/languages/markdown#_markdown-preview)
-> of `README.md`.
+## Documentation
+
+The [official docs](https://warrior.js.org) cover everything from first steps
+to building your own towers:
+
+- [Gameplay](https://warrior.js.org/docs/player/gameplay)
+- [Towers](https://warrior.js.org/docs/player/towers)
+- [Player API](https://warrior.js.org/docs/player/space-api)
 
 ## Contributing
 
-We welcome contributions to WarriorJS! These are the many ways you can help:
+There are many ways to help:
 
 - Submit patches and features
-- Make [towers](https://warrior.js.org/docs/player/towers) (new levels for the
+- Build [towers](https://warrior.js.org/docs/player/towers) (new levels for the
   game)
 - Improve the [documentation and website](https://warrior.js.org)
 - Report bugs
-- And [donate financially](https://opencollective.com/warriorjs)!
+- [Donate](https://opencollective.com/warriorjs)
 
-Please read our [contribution guide](CONTRIBUTING.md) to get started. Also note
-that this project is released with a
-[Contributor Code of Conduct](CODE_OF_CONDUCT.md), please make sure to review
-and follow it.
+See the [contribution guide](CONTRIBUTING.md) and
+[Code of Conduct](CODE_OF_CONDUCT.md) to get started.
 
 ## Contributors
 
