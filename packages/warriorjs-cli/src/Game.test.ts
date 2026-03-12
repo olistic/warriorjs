@@ -26,7 +26,6 @@ describe('Game', () => {
   let game: any;
 
   beforeEach(() => {
-    vi.clearAllMocks();
     game = new Game('/path/to/game', undefined, false, 0, false);
   });
 

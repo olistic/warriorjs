@@ -1,4 +1,4 @@
-import { beforeEach, expect, test, vi } from 'vitest';
+import { expect, test, vi } from 'vitest';
 
 import getScreenSize from './getScreenSize.js';
 import printLine from './printLine.js';
@@ -6,10 +6,6 @@ import printRow from './printRow.js';
 
 vi.mock('./getScreenSize.js');
 vi.mock('./printLine.js');
-
-beforeEach(() => {
-  vi.clearAllMocks();
-});
 
 test('prints message and fills with padding', () => {
   (getScreenSize as any).mockReturnValue([11, 0]);

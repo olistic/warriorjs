@@ -17,7 +17,6 @@ describe('ProfileGenerator', () => {
   let levelConfig: any;
 
   beforeEach(() => {
-    vi.clearAllMocks();
     profile = {
       getPlayerCodeFilePath: () => '/path/to/profile/player-code',
       getReadmeFilePath: () => '/path/to/profile/readme',

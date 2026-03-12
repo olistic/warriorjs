@@ -1,5 +1,5 @@
 import delay from 'delay';
-import { beforeEach, expect, test, vi } from 'vitest';
+import { expect, test, vi } from 'vitest';
 
 import printBoard from './printBoard.js';
 import printLogMessage from './printLogMessage.js';
@@ -11,10 +11,6 @@ vi.mock('./printBoard.js');
 vi.mock('./printLevelHeader.js');
 vi.mock('./printLogMessage.js');
 vi.mock('./printTurnHeader.js');
-
-beforeEach(() => {
-  vi.clearAllMocks();
-});
 
 test('prints turn header on each new turn', async () => {
   const events = [[]] as any;

@@ -1,5 +1,5 @@
 import mock from 'mock-fs';
-import { beforeEach, expect, test, vi } from 'vitest';
+import { expect, test, vi } from 'vitest';
 import loadTowers from './loadTowers.js';
 import Tower from './Tower.js';
 
@@ -20,10 +20,6 @@ vi.mock('find-up', () => ({
   findUpSync: vi.fn().mockReturnValue('/path/to/node_modules'),
 }));
 vi.mock('./Tower.js');
-
-beforeEach(() => {
-  vi.clearAllMocks();
-});
 
 test('loads internal towers', () => {
   mockRequire.mockReturnValue({

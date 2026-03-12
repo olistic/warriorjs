@@ -14,7 +14,6 @@ describe('renderReadme', () => {
   let level: any;
 
   beforeEach(() => {
-    vi.clearAllMocks();
     profile = {
       warriorName: 'Spartacus',
       tower: { name: 'Baby Steps', description: 'A tower for beginners' },
