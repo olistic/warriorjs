@@ -77,9 +77,6 @@ importers:
       string-width:
         specifier: ^7.0.0
         version: 7.2.0
-      superheroes:
-        specifier: ^4.0.0
-        version: 4.0.0
       yargs:
         specifier: ^17.0.0
         version: 17.7.2
@@ -4793,10 +4790,6 @@ packages:
     resolution: {integrity: sha512-7GlLk9JwlElY4Y6a/rmbH2MhVlTyVmiJd1PfTCqFaIBEGMYNsrO/v3SeGTdhBThLg4Z+NbOk/qFMwCa+J+3p/g==}
     engines: {node: '>=6.9.0'}
 
-  superheroes@4.0.0:
-    resolution: {integrity: sha512-7t1XlXcVOINyeglmHjyFGki70IwSKom3FGkC6ZtWO0NovY9M0L7d48kmZtJMOifFLLC5E5nrCZ5YvlW+Z0KKEA==}
-    engines: {node: '>=18.20'}
-
   supports-color@2.0.0:
     resolution: {integrity: sha512-KKNVtd6pCYgPIKU4cp2733HWYCpplQhddZLBUryaAHou723x+FRzQ5Df824Fj+IyyuiQTRoub4SnIFfIcrp70g==}
     engines: {node: '>=0.8.0'}
@@ -5071,14 +5064,6 @@ packages:
 
   uniqs@2.0.0:
     resolution: {integrity: sha512-mZdDpf3vBV5Efh29kMw5tXoup/buMgxLzOt/XKFKcVmi+15ManNQWr6HfZ2aiZTYlYixbdNJ0KFmIZIv52tHSQ==}
-
-  unique-random-array@3.0.0:
-    resolution: {integrity: sha512-AETNmMf8dV7VfCu4pM5SO1nKkZZp3lZsbHk9VxkvR2ZjMYy4mzWwzez0g+ZtYIr+RaVH+UN8A003E7woM/ud7Q==}
-    engines: {node: '>=12'}
-
-  unique-random@3.0.0:
-    resolution: {integrity: sha512-4vjtE3pH6xO5OmsSmjc6KPgHy2rbCw66BbMRLIyXkuq+WzOKA1oNkqQ+Y7Lh+sE0DrOrWMSpFkivhhzCF7J6HA==}
-    engines: {node: '>=12'}
 
   universalify@2.0.1:
     resolution: {integrity: sha512-gptHNQghINnc/vTGIk0SOFGFNXw7JVrlRUtConJRlvaw6DuX0wO5Jeko9sWrMBhh+PsYAZ7oXAiOnf/UKogyiw==}
@@ -10642,10 +10627,6 @@ snapshots:
       postcss: 7.0.39
       postcss-selector-parser: 3.1.2
 
-  superheroes@4.0.0:
-    dependencies:
-      unique-random-array: 3.0.0
-
   supports-color@2.0.0: {}
 
   supports-color@5.5.0:
@@ -10931,12 +10912,6 @@ snapshots:
   uniq@1.0.1: {}
 
   uniqs@2.0.0: {}
-
-  unique-random-array@3.0.0:
-    dependencies:
-      unique-random: 3.0.0
-
-  unique-random@3.0.0: {}
 
   universalify@2.0.1: {}
 

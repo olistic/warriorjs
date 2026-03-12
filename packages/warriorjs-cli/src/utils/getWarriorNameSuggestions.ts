@@ -1,8 +1,60 @@
 import arrayShuffle from 'array-shuffle';
-import superheroes from 'superheroes';
+
+const warriorNames = [
+  'Aldric',
+  'Brenna',
+  'Cedric',
+  'Dahlia',
+  'Elric',
+  'Freya',
+  'Gareth',
+  'Hilde',
+  'Isolde',
+  'Jareth',
+  'Kael',
+  'Liora',
+  'Maren',
+  'Nyx',
+  'Orin',
+  'Petra',
+  'Rowan',
+  'Sable',
+  'Theron',
+  'Ursa',
+  'Vesper',
+  'Wren',
+  'Xara',
+  'Yara',
+  'Zephyr',
+  'Ashwin',
+  'Briar',
+  'Corwin',
+  'Dusk',
+  'Ember',
+  'Flint',
+  'Gale',
+  'Hazel',
+  'Ingrid',
+  'Jorin',
+  'Kyra',
+  'Leander',
+  'Morrigan',
+  'Nerys',
+  'Onyx',
+  'Pike',
+  'Riven',
+  'Sage',
+  'Tormund',
+  'Ulric',
+  'Voss',
+  'Wynne',
+  'Xander',
+  'Ylva',
+  'Zareth',
+];
 
 function getWarriorNameSuggestions(): string[] {
-  return arrayShuffle(superheroes as unknown as string[]);
+  return arrayShuffle(warriorNames);
 }
 
 export default getWarriorNameSuggestions;

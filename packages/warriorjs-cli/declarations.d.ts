@@ -20,8 +20,3 @@ declare module 'array-shuffle' {
   function arrayShuffle<T>(array: T[]): T[];
   export default arrayShuffle;
 }
-
-declare module 'superheroes' {
-  const superheroes: string[];
-  export default superheroes;
-}
