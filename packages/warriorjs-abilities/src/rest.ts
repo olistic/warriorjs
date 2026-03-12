@@ -14,6 +14,10 @@ function rest({ healthGain }: { healthGain: number }) {
         unit.log('has nothing to heal');
       }
     },
+    meta: {
+      params: [],
+      returns: 'void' as const,
+    },
   });
 }
 
