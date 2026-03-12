@@ -13,14 +13,16 @@ test('requests input from the user', async () => {
   expect(answer).toBe('42');
   expect(input).toHaveBeenCalledWith({
     message: 'foo',
+    default: undefined,
   });
 });
 
-test('requests input from the user with suggestions (ignored in new API)', async () => {
+test('requests input from the user with first suggestion as default', async () => {
   (input as any).mockResolvedValue('bar');
   const answer = await requestInput('foo', ['bar', 'baz']);
   expect(answer).toBe('bar');
   expect(input).toHaveBeenCalledWith({
     message: 'foo',
+    default: 'bar',
   });
 });
