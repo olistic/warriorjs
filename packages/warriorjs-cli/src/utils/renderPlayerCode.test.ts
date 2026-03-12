@@ -12,7 +12,7 @@ describe('renderPlayerCode', () => {
     expect(renderPlayerCode(profile, levelConfig)).toBe(
       `class Player {
   playTurn(warrior) {
-    // Cool code goes here.
+    // Decide what your warrior should do.
   }
 }
 `,
@@ -26,7 +26,7 @@ describe('renderPlayerCode', () => {
 
 class Player {
   playTurn(warrior: Warrior) {
-    // Cool code goes here.
+    // Decide what your warrior should do.
   }
 }
 `,

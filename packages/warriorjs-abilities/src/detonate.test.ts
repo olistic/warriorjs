@@ -75,7 +75,7 @@ describe('detonate', () => {
         .mockReturnValue({ getUnit: () => null });
       detonate.perform();
       expect(receiver.log).toHaveBeenCalledWith(
-        "caught in bomb's flames which detonates ticking explosive",
+        'caught in the blast, detonating the ticking explosive',
       );
       expect(receiver.triggerEffect).toHaveBeenCalledWith('ticking');
     });

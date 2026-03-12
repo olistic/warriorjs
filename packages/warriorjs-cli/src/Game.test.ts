@@ -166,7 +166,7 @@ describe('Game', () => {
 
       describe('with practice level', () => {
         beforeEach(() => {
-          game.profile.tower = { hasLevel: vi.fn() };
+          game.profile.tower = { hasLevel: vi.fn(), levels: [{}, {}, {}] };
           game.practiceLevel = 2;
         });
 
@@ -181,7 +181,7 @@ describe('Game', () => {
         test("throws if tower doesn't have practice level", async () => {
           game.profile.tower.hasLevel.mockReturnValue(false);
           await expect(game.playEpicMode()).rejects.toThrow(
-            new GameError('Unable to practice non-existent level, try another.'),
+            new GameError("Level 2 doesn't exist. This tower has 3 levels."),
           );
           expect(game.profile.tower.hasLevel).toHaveBeenCalledWith(2);
         });
@@ -198,7 +198,7 @@ describe('Game', () => {
         await game.playNormalMode();
         expect(game.prepareNextLevel).toHaveBeenCalled();
         expect(printSuccessLine).toHaveBeenCalledWith(
-          'First level has been generated. See /path/to/profile/readme for instructions.',
+          'Level 1 is ready. See /path/to/profile/readme for instructions.',
         );
         expect(game.playLevel).not.toHaveBeenCalled();
       });
@@ -212,7 +212,9 @@ describe('Game', () => {
       test('throws if practice level', async () => {
         game.practiceLevel = 2;
         await expect(game.playNormalMode()).rejects.toThrow(
-          new GameError('Unable to practice level while not in epic mode, remove -l option.'),
+          new GameError(
+            'The -l option is only available in epic mode. Remove it to play normally.',
+          ),
         );
       });
     });
@@ -271,7 +273,7 @@ describe('Game', () => {
         (requestConfirmation as any).mockResolvedValue(false);
         await game.requestNextLevel();
         expect(printLine).toHaveBeenCalledWith(
-          'Staying on current level. Try to earn more points next time.',
+          'You stayed on the current level. Aim for more points next time.',
         );
         expect(game.prepareNextLevel).not.toHaveBeenCalled();
         expect(game.prepareEpicMode).not.toHaveBeenCalled();

@@ -11,7 +11,7 @@ function rest({ healthGain }: { healthGain: number }) {
         const amount = Math.round(unit.maxHealth * healthGain);
         unit.heal(amount);
       } else {
-        unit.log('is already fit as a fiddle');
+        unit.log('has nothing to heal');
       }
     },
   });

@@ -150,7 +150,7 @@ const tower: TowerDefinition = {
     },
     {
       description: 'You feel slime on all sides, you are surrounded!',
-      tip: 'Call `warrior.bind()` to bind an enemy to keep him from attacking.',
+      tip: 'Call `warrior.bind()` to bind an enemy to keep them from attacking.',
       clue: 'Count the number of unbound enemies around you. Bind an enemy if there are two or more.',
       timeBonus: 50,
       aceScore: 101,

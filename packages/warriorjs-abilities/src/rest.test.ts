@@ -34,7 +34,7 @@ describe('rest', () => {
     test("doesn't add health when at max", () => {
       unit.health = 20;
       rest.perform();
-      expect(unit.log).toHaveBeenCalledWith('is already fit as a fiddle');
+      expect(unit.log).toHaveBeenCalledWith('has nothing to heal');
       expect(unit.heal).not.toHaveBeenCalled();
     });
   });

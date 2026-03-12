@@ -7,7 +7,7 @@ const defaultDirection = FORWARD;
 function rescue() {
   return (unit: Unit) => ({
     action: true as const,
-    description: `Releases a unit from his chains in the given direction (\`'${defaultDirection}'\` by default).`,
+    description: `Releases a unit from their chains in the given direction (\`'${defaultDirection}'\` by default).`,
     perform(direction: RelativeDirection = defaultDirection) {
       const receiver = unit.getSpaceAt(direction).getUnit();
       if (receiver?.isBound()) {

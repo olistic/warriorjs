@@ -7,7 +7,7 @@ const defaultDirection = FORWARD;
 function bind() {
   return (unit: Unit) => ({
     action: true as const,
-    description: `Binds a unit in the given direction (\`'${defaultDirection}'\` by default) to keep him from moving.`,
+    description: `Binds a unit in the given direction (\`'${defaultDirection}'\` by default) to keep them from moving.`,
     perform(direction: RelativeDirection = defaultDirection) {
       const receiver = unit.getSpaceAt(direction).getUnit();
       if (receiver) {

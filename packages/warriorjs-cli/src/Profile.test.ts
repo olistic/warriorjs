@@ -134,7 +134,7 @@ describe('Profile.decode', () => {
       Profile.decode('invalid encoded profile');
     }).toThrow(
       new GameError(
-        'Invalid .profile file. Try changing the directory under which you are running warriorjs.',
+        'Corrupted .profile file. Run warriorjs from a directory with a valid profile.',
       ),
     );
   });

@@ -7,7 +7,7 @@ function renderPlayerCode(profile: Profile, _levelConfig: LevelConfig): string {
 
 class Player {
   playTurn(warrior: Warrior) {
-    // Cool code goes here.
+    // Decide what your warrior should do.
   }
 }
 `;
@@ -15,7 +15,7 @@ class Player {
 
   return `class Player {
   playTurn(warrior) {
-    // Cool code goes here.
+    // Decide what your warrior should do.
   }
 }
 `;

@@ -112,9 +112,7 @@ class Game {
       warriorNameSuggestions,
     );
     if (!warriorName) {
-      throw new GameError(
-        'Your warrior must have a name if you want him or her to become a legend!',
-      );
+      throw new GameError('Every legend needs a name! Enter one for your warrior.');
     }
 
     const languageChoices = ['JavaScript', 'TypeScript'];
@@ -193,7 +191,9 @@ class Game {
     if (this.practiceLevel) {
       const hasPracticeLevel = this.profile.tower.hasLevel(this.practiceLevel);
       if (!hasPracticeLevel) {
-        throw new GameError('Unable to practice non-existent level, try another.');
+        throw new GameError(
+          `Level ${this.practiceLevel} doesn't exist. This tower has ${this.profile.tower.levels.length} levels.`,
+        );
       }
 
       await this.playLevel(this.practiceLevel);
@@ -211,13 +211,15 @@ class Game {
 
   async playNormalMode(): Promise<void> {
     if (this.practiceLevel) {
-      throw new GameError('Unable to practice level while not in epic mode, remove -l option.');
+      throw new GameError(
+        'The -l option is only available in epic mode. Remove it to play normally.',
+      );
     }
 
     if (this.profile.levelNumber === 0) {
       this.prepareNextLevel();
       printSuccessLine(
-        `First level has been generated. See ${this.profile.getReadmeFilePath()} for instructions.`,
+        `Level 1 is ready. See ${this.profile.getReadmeFilePath()} for instructions.`,
       );
     } else {
       await this.playLevel(this.profile.levelNumber);
@@ -242,7 +244,7 @@ class Game {
     printSeparator();
 
     if (!levelResult.passed) {
-      printFailureLine(`Sorry, you failed level ${levelNumber}. Change your script and try again.`);
+      printFailureLine(`You failed level ${levelNumber}. Update your code and try again.`);
 
       if (levelConfig!.clue && !this.profile.isShowingClue()) {
         const showClue =
@@ -297,7 +299,7 @@ class Game {
         this.prepareNextLevel();
         printSuccessLine(`See ${this.profile.getReadmeFilePath()} for updated instructions.`);
       } else {
-        printLine('Staying on current level. Try to earn more points next time.');
+        printLine('You stayed on the current level. Aim for more points next time.');
       }
     } else {
       const continueToEpicMode =

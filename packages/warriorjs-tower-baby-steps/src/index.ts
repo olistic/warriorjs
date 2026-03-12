@@ -86,7 +86,7 @@ const tower: TowerDefinition = {
     },
     {
       description: "It's too dark to see anything, but you smell sludge nearby.",
-      tip: "Use `warrior.feel().isEmpty()` to see if there's anything in front of you, and `warrior.attack()` to fight it. Remember, you can only do one action per turn.",
+      tip: "Use `warrior.feel().isEmpty()` to check if the space ahead is clear. If not, `warrior.attack()` will fight whatever's there. Remember: one action per turn.",
       clue: 'Add an if/else condition using `warrior.feel().isEmpty()` to decide whether to attack or walk.',
       timeBonus: 20,
       aceScore: 26,
@@ -240,7 +240,7 @@ const tower: TowerDefinition = {
     },
     {
       description: 'You hear cries for help. Captives must need rescuing.',
-      tip: "Combine `warrior.feel().getUnit().isEnemy()` and `warrior.feel().getUnit().isBound()` to see if there's a captive, and `warrior.rescue()` to rescue him. Don't attack captives.",
+      tip: "Combine `warrior.feel().getUnit().isEnemy()` and `warrior.feel().getUnit().isBound()` to see if there's a captive, and `warrior.rescue()` to rescue them. Don't attack captives.",
       clue: "Don't forget to constantly check if you are being attacked. Rest until your health is full if you're not taking damage.",
       timeBonus: 45,
       aceScore: 123,
@@ -310,7 +310,7 @@ const tower: TowerDefinition = {
     },
     {
       description:
-        'The wall behind you feels a bit further away in this room. And you hear more cries for help.',
+        'This room is wider than the last. You hear cries for help from both directions.',
       tip: "You can walk backward by passing `'backward'` as an argument to `walk()`. Same goes for `feel()`, `rescue()` and `attack()`. Archers have a limited attack distance.",
       clue: "Walk backward if you're taking damage from afar and don't have enough health to attack. You may also want to consider walking backward until you hit a wall. Use `warrior.feel().isWall()` to see if there's a wall.",
       timeBonus: 55,

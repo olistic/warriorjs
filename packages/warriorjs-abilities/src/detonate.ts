@@ -35,7 +35,7 @@ function detonate({
       if (receiver) {
         unit.damage(receiver, power);
         if (receiver.isUnderEffect('ticking')) {
-          receiver.log("caught in bomb's flames which detonates ticking explosive");
+          receiver.log('caught in the blast, detonating the ticking explosive');
           receiver.triggerEffect('ticking');
         }
       }

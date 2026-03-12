@@ -176,20 +176,20 @@ describe('Unit', () => {
       unit.health = 5;
       unit.heal(3);
       expect(unit.health).toBe(8);
-      expect(unit.log).toHaveBeenCalledWith('receives 3 health, up to 8 health');
+      expect(unit.log).toHaveBeenCalledWith('recovers 3 health, up to 8 health');
     });
 
     test("doesn't go over max health", () => {
       unit.health = 19;
       unit.heal(2);
       expect(unit.health).toBe(20);
-      expect(unit.log).toHaveBeenCalledWith('receives 2 health, up to 20 health');
+      expect(unit.log).toHaveBeenCalledWith('recovers 2 health, up to 20 health');
     });
 
     test("doesn't add health when at max", () => {
       unit.heal(1);
       expect(unit.health).toBe(20);
-      expect(unit.log).toHaveBeenCalledWith('receives 1 health, up to 20 health');
+      expect(unit.log).toHaveBeenCalledWith('recovers 1 health, up to 20 health');
     });
   });
 
