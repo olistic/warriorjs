@@ -21,6 +21,13 @@ describe('distanceOf', () => {
     );
   });
 
+  test('has meta for type generation', () => {
+    expect(distanceOf.meta).toEqual({
+      params: [{ name: 'space', type: 'Space' }],
+      returns: 'number',
+    });
+  });
+
   describe('performing', () => {
     test('returns distance of specified space', () => {
       unit.getDistanceOf.mockReturnValue(3);

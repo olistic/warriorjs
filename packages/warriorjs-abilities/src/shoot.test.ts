@@ -25,6 +25,13 @@ describe('shoot', () => {
     );
   });
 
+  test('has meta for type generation', () => {
+    expect(shoot.meta).toEqual({
+      params: [{ name: 'direction', type: 'Direction', optional: true }],
+      returns: 'void',
+    });
+  });
+
   describe('performing', () => {
     test('shoots forward by default', () => {
       unit.getSpaceAt = vi.fn(() => ({ getUnit: () => null }));

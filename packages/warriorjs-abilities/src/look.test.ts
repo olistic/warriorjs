@@ -22,6 +22,13 @@ describe('look', () => {
     );
   });
 
+  test('has meta for type generation', () => {
+    expect(look.meta).toEqual({
+      params: [{ name: 'direction', type: 'Direction', optional: true }],
+      returns: 'Space[]',
+    });
+  });
+
   describe('performing', () => {
     test('looks forward by default', () => {
       look.perform();

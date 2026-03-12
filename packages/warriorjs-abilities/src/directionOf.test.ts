@@ -22,6 +22,13 @@ describe('directionOf', () => {
     );
   });
 
+  test('has meta for type generation', () => {
+    expect(directionOf.meta).toEqual({
+      params: [{ name: 'space', type: 'Space' }],
+      returns: 'Direction',
+    });
+  });
+
   describe('performing', () => {
     test('returns direction of specified space', () => {
       unit.getDirectionOf.mockReturnValue(RIGHT);

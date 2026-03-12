@@ -22,6 +22,13 @@ describe('bind', () => {
     );
   });
 
+  test('has meta for type generation', () => {
+    expect(bind.meta).toEqual({
+      params: [{ name: 'direction', type: 'Direction', optional: true }],
+      returns: 'void',
+    });
+  });
+
   describe('performing', () => {
     test('binds forward by default', () => {
       unit.getSpaceAt = vi.fn(() => ({ getUnit: () => null }));

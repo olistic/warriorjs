@@ -19,6 +19,13 @@ describe('maxHealth', () => {
     expect(maxHealth.description).toBe('Returns an integer representing your maximum health.');
   });
 
+  test('has meta for type generation', () => {
+    expect(maxHealth.meta).toEqual({
+      params: [],
+      returns: 'number',
+    });
+  });
+
   describe('performing', () => {
     test('returns the maximum health', () => {
       expect(maxHealth.perform()).toBe(10);

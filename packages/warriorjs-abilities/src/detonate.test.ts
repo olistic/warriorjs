@@ -26,6 +26,13 @@ describe('detonate', () => {
     );
   });
 
+  test('has meta for type generation', () => {
+    expect(detonate.meta).toEqual({
+      params: [{ name: 'direction', type: 'Direction', optional: true }],
+      returns: 'void',
+    });
+  });
+
   describe('performing', () => {
     test('detonates forward by default', () => {
       unit.getSpaceAt = vi.fn(() => ({ getUnit: () => null }));

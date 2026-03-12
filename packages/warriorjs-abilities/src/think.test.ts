@@ -19,6 +19,13 @@ describe('think', () => {
     expect(think.description).toBe('Thinks out loud (`console.log` replacement).');
   });
 
+  test('has meta for type generation', () => {
+    expect(think.meta).toEqual({
+      params: [{ name: 'args', type: 'any', rest: true }],
+      returns: 'void',
+    });
+  });
+
   describe('performing', () => {
     test('thinks nothing by default', () => {
       think.perform();

@@ -25,6 +25,13 @@ describe('rescue', () => {
     );
   });
 
+  test('has meta for type generation', () => {
+    expect(rescue.meta).toEqual({
+      params: [{ name: 'direction', type: 'Direction', optional: true }],
+      returns: 'void',
+    });
+  });
+
   describe('performing', () => {
     test('rescues forward by default', () => {
       unit.getSpaceAt = vi.fn(() => ({ getUnit: () => null }));

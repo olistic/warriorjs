@@ -24,6 +24,13 @@ describe('rest', () => {
     expect(rest.description).toBe('Gains 10% of max health back, but does nothing more.');
   });
 
+  test('has meta for type generation', () => {
+    expect(rest.meta).toEqual({
+      params: [],
+      returns: 'void',
+    });
+  });
+
   describe('performing', () => {
     test('gives health back', () => {
       rest.perform();

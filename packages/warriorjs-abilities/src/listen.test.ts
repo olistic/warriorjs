@@ -32,6 +32,13 @@ describe('listen', () => {
     );
   });
 
+  test('has meta for type generation', () => {
+    expect(listen.meta).toEqual({
+      params: [],
+      returns: 'Space[]',
+    });
+  });
+
   describe('performing', () => {
     test('returns all spaces which have units in them', () => {
       unit.getSensedSpaceAt.mockReturnValueOnce('space1').mockReturnValueOnce('space2');

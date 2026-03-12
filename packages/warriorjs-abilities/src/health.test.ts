@@ -19,6 +19,13 @@ describe('health', () => {
     expect(health.description).toBe('Returns an integer representing your health.');
   });
 
+  test('has meta for type generation', () => {
+    expect(health.meta).toEqual({
+      params: [],
+      returns: 'number',
+    });
+  });
+
   describe('performing', () => {
     test('returns the amount of health', () => {
       expect(health.perform()).toBe(10);

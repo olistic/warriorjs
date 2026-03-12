@@ -22,6 +22,13 @@ describe('directionOfStairs', () => {
     );
   });
 
+  test('has meta for type generation', () => {
+    expect(directionOfStairs.meta).toEqual({
+      params: [],
+      returns: 'Direction',
+    });
+  });
+
   describe('performing', () => {
     test('returns direction of stairs', () => {
       unit.getDirectionOfStairs.mockReturnValue(RIGHT);

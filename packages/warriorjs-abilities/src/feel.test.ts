@@ -22,6 +22,13 @@ describe('feel', () => {
     );
   });
 
+  test('has meta for type generation', () => {
+    expect(feel.meta).toEqual({
+      params: [{ name: 'direction', type: 'Direction', optional: true }],
+      returns: 'Space',
+    });
+  });
+
   describe('performing', () => {
     test('feels forward by default', () => {
       feel.perform();

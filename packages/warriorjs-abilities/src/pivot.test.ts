@@ -25,6 +25,13 @@ describe('pivot', () => {
     );
   });
 
+  test('has meta for type generation', () => {
+    expect(pivot.meta).toEqual({
+      params: [{ name: 'direction', type: 'Direction', optional: true }],
+      returns: 'void',
+    });
+  });
+
   describe('performing', () => {
     test('flips around when not passing direction', () => {
       pivot.perform();

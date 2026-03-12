@@ -25,6 +25,13 @@ describe('walk', () => {
     );
   });
 
+  test('has meta for type generation', () => {
+    expect(walk.meta).toEqual({
+      params: [{ name: 'direction', type: 'Direction', optional: true }],
+      returns: 'void',
+    });
+  });
+
   describe('performing', () => {
     test('walks forward by default', () => {
       unit.getSpaceAt = vi.fn(() => ({ isEmpty: () => true }));
