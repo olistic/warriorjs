@@ -8,18 +8,6 @@ declare module 'yargs/helpers' {
   export { hideBin };
 }
 
-declare module 'ejs' {
-  const ejs: {
-    render(
-      template: string,
-      data: Record<string, unknown>,
-      options?: Record<string, unknown>,
-    ): string;
-    [key: string]: unknown;
-  };
-  export default ejs;
-}
-
 declare module 'mock-fs' {
   function mock(config: Record<string, unknown>): void;
   namespace mock {
