@@ -5,3 +5,6 @@ packages:
   - 'apps/*'
   - 'packages/*'
   - 'towers/*'
+
+settings:
+  strictPeerDependencies: false
