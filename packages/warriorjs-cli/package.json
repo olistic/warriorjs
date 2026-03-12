@@ -58,7 +58,7 @@
     "@warriorjs/helper-get-grade-letter": "workspace:^",
     "@warriorjs/helper-get-level-config": "workspace:^",
     "@warriorjs/helper-get-level-score": "workspace:^",
-    "@warriorjs/tower-baby-steps": "workspace:^",
+    "@warriorjs/tower-the-narrow-path": "workspace:^",
     "ansi-escapes": "^7.0.0",
     "array-shuffle": "^3.0.0",
     "chalk": "^5.4.0",

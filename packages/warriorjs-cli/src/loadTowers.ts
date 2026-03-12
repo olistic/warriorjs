@@ -8,7 +8,7 @@ import getTowerId from './utils/getTowerId.js';
 
 const require = createRequire(import.meta.url);
 
-const internalTowerPackageNames = ['@warriorjs/tower-baby-steps'];
+const internalTowerPackageNames = ['@warriorjs/tower-the-narrow-path'];
 
 const officialTowerPackageJsonPattern = '@warriorjs/tower-*/package.json';
 const communityTowerPackageJsonPattern = 'warriorjs-tower-*/package.json';

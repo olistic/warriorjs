@@ -1,11 +1,11 @@
 {
-  "name": "@warriorjs/tower-tick-tick-boom",
+  "name": "@warriorjs/tower-the-narrow-path",
   "version": "0.13.0",
-  "description": "Tick, Tick... Boom!",
+  "description": "The Narrow Path",
   "author": "Matias Olivera <moliverafreire@gmail.com>",
   "license": "MIT",
   "homepage": "https://warrior.js.org",
-  "repository": "https://github.com/olistic/warriorjs/tree/master/packages/warriorjs-tower-tick-tick-boom",
+  "repository": "https://github.com/olistic/warriorjs/tree/master/packages/warriorjs-tower-the-narrow-path",
   "keywords": [
     "warriorjs-tower"
   ],
@@ -33,7 +33,6 @@
   "dependencies": {
     "@warriorjs/abilities": "workspace:^",
     "@warriorjs/core": "workspace:^",
-    "@warriorjs/effects": "workspace:^",
     "@warriorjs/geography": "workspace:^",
     "@warriorjs/units": "workspace:^"
   }

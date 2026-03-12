@@ -31,7 +31,7 @@ test('loads internal towers', () => {
   loadTowers();
   mock.restore();
   expect(Tower).toHaveBeenCalledWith(
-    'baby-steps',
+    'the-narrow-path',
     'The Narrow Path',
     'A corridor of stone where the only way out is forward',
     ['level1', 'level2'],
@@ -44,8 +44,8 @@ test('loads external official towers', () => {
       return { name: 'Foo', description: 'bar', levels: ['level1', 'level2'] };
     }
     return {
-      name: 'Baby Steps',
-      description: 'For players new to WarriorJS',
+      name: 'The Narrow Path',
+      description: 'A corridor of stone where the only way out is forward',
       levels: ['level1', 'level2'],
     };
   });
@@ -72,8 +72,8 @@ test('loads external community towers', () => {
       return { name: 'Foo', description: 'bar', levels: ['level1', 'level2'] };
     }
     return {
-      name: 'Baby Steps',
-      description: 'For players new to WarriorJS',
+      name: 'The Narrow Path',
+      description: 'A corridor of stone where the only way out is forward',
       levels: ['level1', 'level2'],
     };
   });

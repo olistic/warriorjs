@@ -1,15 +1,15 @@
-# @warriorjs/tower-baby-steps
+# @warriorjs/tower-the-narrow-path
 
 > The Narrow Path — for players new to WarriorJS.
 
 ## Install
 
-`@warriorjs/cli` already ships with `@warriorjs/tower-baby-steps` built-in.
+`@warriorjs/cli` already ships with `@warriorjs/tower-the-narrow-path` built-in.
 
 If you still want to install it:
 
 ```sh
-npm install @warriorjs/tower-baby-steps
+npm install @warriorjs/tower-the-narrow-path
 ```
 
 ## Usage

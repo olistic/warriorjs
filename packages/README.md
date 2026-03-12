@@ -50,12 +50,12 @@ universes (levels, abilities and units) to the game.
 
 | Package                                                             | Version                                                                            |
 | ------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| [`@warriorjs/tower-baby-steps`][warriorjs-tower-baby-steps]         | [![npm][warriorjs-tower-baby-steps-badge]][warriorjs-tower-baby-steps-npm]         |
-| [`@warriorjs/tower-tick-tick-boom`][warriorjs-tower-tick-tick-boom] | [![npm][warriorjs-tower-tick-tick-boom-badge]][warriorjs-tower-tick-tick-boom-npm] |
+| [`@warriorjs/tower-the-narrow-path`][warriorjs-tower-the-narrow-path]   | [![npm][warriorjs-tower-the-narrow-path-badge]][warriorjs-tower-the-narrow-path-npm]   |
+| [`@warriorjs/tower-the-powder-keep`][warriorjs-tower-the-powder-keep] | [![npm][warriorjs-tower-the-powder-keep-badge]][warriorjs-tower-the-powder-keep-npm] |
 
-- [`@warriorjs/tower-baby-steps`][warriorjs-tower-baby-steps] is "The Narrow
+- [`@warriorjs/tower-the-narrow-path`][warriorjs-tower-the-narrow-path] is "The Narrow
   Path", the entry-level tower. You should play this first.
-- [`@warriorjs/tower-tick-tick-boom`][warriorjs-tower-tick-tick-boom] is "The
+- [`@warriorjs/tower-the-powder-keep`][warriorjs-tower-the-powder-keep] is "The
   Powder Keep", a more challenging tower.
 
 > You can find community maintained towers in [npm][community-towers-npm].
@@ -99,14 +99,14 @@ universes (levels, abilities and units) to the game.
 [warriorjs-cli-badge]:
   https://img.shields.io/npm/v/@warriorjs/cli.svg?style=flat-square
 [warriorjs-cli-npm]: https://www.npmjs.com/package/@warriorjs/cli
-[warriorjs-tower-baby-steps]: /packages/warriorjs-tower-baby-steps
-[warriorjs-tower-baby-steps-badge]:
-  https://img.shields.io/npm/v/@warriorjs/tower-baby-steps.svg?style=flat-square
-[warriorjs-tower-baby-steps-npm]:
-  https://www.npmjs.com/package/@warriorjs/tower-baby-steps
-[warriorjs-tower-tick-tick-boom]: /packages/warriorjs-tower-tick-tick-boom
-[warriorjs-tower-tick-tick-boom-badge]:
-  https://img.shields.io/npm/v/@warriorjs/tower-tick-tick-boom.svg?style=flat-square
-[warriorjs-tower-tick-tick-boom-npm]:
-  https://www.npmjs.com/package/@warriorjs/tower-tick-tick-boom
+[warriorjs-tower-the-narrow-path]: /packages/warriorjs-tower-the-narrow-path
+[warriorjs-tower-the-narrow-path-badge]:
+  https://img.shields.io/npm/v/@warriorjs/tower-the-narrow-path.svg?style=flat-square
+[warriorjs-tower-the-narrow-path-npm]:
+  https://www.npmjs.com/package/@warriorjs/tower-the-narrow-path
+[warriorjs-tower-the-powder-keep]: /packages/warriorjs-tower-the-powder-keep
+[warriorjs-tower-the-powder-keep-badge]:
+  https://img.shields.io/npm/v/@warriorjs/tower-the-powder-keep.svg?style=flat-square
+[warriorjs-tower-the-powder-keep-npm]:
+  https://www.npmjs.com/package/@warriorjs/tower-the-powder-keep
 [community-towers-npm]: https://www.npmjs.com/search?q=warriorjs-tower

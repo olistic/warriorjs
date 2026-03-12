@@ -53,9 +53,9 @@ importers:
       '@warriorjs/helper-get-level-score':
         specifier: workspace:^
         version: link:../warriorjs-helper-get-level-score
-      '@warriorjs/tower-baby-steps':
+      '@warriorjs/tower-the-narrow-path':
         specifier: workspace:^
-        version: link:../warriorjs-tower-baby-steps
+        version: link:../warriorjs-tower-the-narrow-path
       ansi-escapes:
         specifier: ^7.0.0
         version: 7.3.0
@@ -111,7 +111,7 @@ importers:
 
   packages/warriorjs-helper-get-level-score: {}
 
-  packages/warriorjs-tower-baby-steps:
+  packages/warriorjs-tower-the-narrow-path:
     dependencies:
       '@warriorjs/abilities':
         specifier: workspace:^
@@ -126,7 +126,7 @@ importers:
         specifier: workspace:^
         version: link:../warriorjs-units
 
-  packages/warriorjs-tower-tick-tick-boom:
+  packages/warriorjs-tower-the-powder-keep:
     dependencies:
       '@warriorjs/abilities':
         specifier: workspace:^
