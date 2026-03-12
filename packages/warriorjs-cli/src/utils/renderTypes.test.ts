@@ -69,18 +69,27 @@ describe('renderTypes', () => {
         '',
         "export type Direction = 'forward' | 'right' | 'backward' | 'left';",
         '',
-        'export interface SensedUnit {',
+        'export interface Unit {',
+        '  /** Determines if the unit is bound. */',
         '  isBound(): boolean;',
+        '  /** Determines if the unit is an enemy. */',
         '  isEnemy(): boolean;',
+        '  /** Determines if the unit is under the given effect. */',
         '  isUnderEffect(name: string): boolean;',
         '}',
         '',
         'export interface Space {',
+        '  /** Returns the relative location of this space as the offset `[forward, right]`. */',
         '  getLocation(): [number, number];',
-        '  getUnit(): SensedUnit | null;',
+        '  /** Returns the unit located at this space, or `null` if there is none. */',
+        '  getUnit(): Unit | null;',
+        '  /** Determines if nothing (except maybe stairs) is at this space. */',
         '  isEmpty(): boolean;',
+        '  /** Determines if the stairs are at this space. */',
         '  isStairs(): boolean;',
+        '  /** Determines if there is a unit at this space. */',
         '  isUnit(): boolean;',
+        '  /** Determines if this space is the edge of the level. */',
         '  isWall(): boolean;',
         '}',
         '',
@@ -97,7 +106,7 @@ describe('renderTypes', () => {
     );
   });
 
-  test('omits Space and SensedUnit interfaces when no abilities use Space', () => {
+  test('omits Space and Unit interfaces when no abilities use Space', () => {
     expect(
       renderTypes(
         profile,
