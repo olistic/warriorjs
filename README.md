@@ -26,8 +26,8 @@
 In WarriorJS, you are a warrior climbing a tall tower to reach _The JavaScript
 Sword_ at the top level. Legend has it that the sword bearer becomes enlightened
 in the JavaScript language, but be warned: the journey will not be easy. On each
-floor, you need to write JavaScript to instruct the warrior to battle enemies,
-rescue captives, and reach the stairs alive...
+floor, you need to write JavaScript (or TypeScript) to instruct the warrior to
+battle enemies, rescue captives, and reach the stairs alive...
 
 **No matter if you are new to programming or a JavaScript guru, WarriorJS will
 put your skills to the test. Will you dare?**
@@ -53,21 +53,23 @@ Jump straight to some of the most-visited pages:
 
 Wanna play offline? No problem, just follow these steps:
 
-1.  Install WarriorJS CLI with [npm](https://npmjs.com):
+1.  Make sure you have [Node.js](https://nodejs.org) 22 or later installed.
+
+2.  Install WarriorJS CLI with [npm](https://npmjs.com):
 
 ```sh
 npm install --global @warriorjs/cli
 ```
 
-2.  Launch the game:
+3.  Launch the game:
 
 ```sh
 warriorjs
 ```
 
-3.  Create your warrior.
+4.  Create your warrior.
 
-4.  You'll be pointed to a README file with instructions for the first level.
+5.  You'll be pointed to a README file with instructions for the first level.
 
 Check out the [Install](https://warrior.js.org/docs/player/install) docs for
 more details.
@@ -92,8 +94,6 @@ We welcome contributions to WarriorJS! These are the many ways you can help:
   game)
 - Improve the [documentation and website](https://warrior.js.org)
 - Report bugs
-- Follow us on [Twitter](https://twitter.com/warrior_js)
-- Participate in the [Spectrum community](https://spectrum.chat/warriorjs)
 - And [donate financially](https://opencollective.com/warriorjs)!
 
 Please read our [contribution guide](CONTRIBUTING.md) to get started. Also note
