@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import getGradeLetter from '@warriorjs/helper-get-grade-letter';
+import { getGradeLetter } from '@warriorjs/scoring';
 
 import GameError from './GameError.js';
 import type Tower from './Tower.js';

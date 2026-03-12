@@ -44,15 +44,9 @@ importers:
       '@warriorjs/core':
         specifier: workspace:^
         version: link:../warriorjs-core
-      '@warriorjs/helper-get-grade-letter':
+      '@warriorjs/scoring':
         specifier: workspace:^
-        version: link:../warriorjs-helper-get-grade-letter
-      '@warriorjs/helper-get-level-config':
-        specifier: workspace:^
-        version: link:../warriorjs-helper-get-level-config
-      '@warriorjs/helper-get-level-score':
-        specifier: workspace:^
-        version: link:../warriorjs-helper-get-level-score
+        version: link:../warriorjs-scoring
       '@warriorjs/tower-the-narrow-path':
         specifier: workspace:^
         version: link:../warriorjs-tower-the-narrow-path
@@ -96,15 +90,7 @@ importers:
 
   packages/warriorjs-effects: {}
 
-  packages/warriorjs-helper-get-grade-letter: {}
-
-  packages/warriorjs-helper-get-level-config:
-    dependencies:
-      '@warriorjs/core':
-        specifier: workspace:*
-        version: link:../warriorjs-core
-
-  packages/warriorjs-helper-get-level-score: {}
+  packages/warriorjs-scoring: {}
 
   packages/warriorjs-spatial: {}
 

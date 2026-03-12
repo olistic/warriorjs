@@ -1,10 +1,10 @@
-import getGradeLetter from '@warriorjs/helper-get-grade-letter';
+import { getGradeLetter } from '@warriorjs/scoring';
 import { expect, test, vi } from 'vitest';
 
 import printLine from './printLine.js';
 import printTowerReport from './printTowerReport.js';
 
-vi.mock('@warriorjs/helper-get-grade-letter');
+vi.mock('@warriorjs/scoring');
 vi.mock('./printLine.js');
 
 test("doesn't print if no average grade", () => {

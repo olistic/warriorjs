@@ -24,12 +24,10 @@ pnpm monorepo with Turborepo. All packages live in `packages/`.
 - **@warriorjs/units** — Game units/enemies
 - **@warriorjs/effects** — Status effects system
 - **@warriorjs/spatial** — Spatial/direction utilities (foundational, no deps)
-- **@warriorjs/helper-get-level-config** — Level configuration loader
-- **@warriorjs/helper-get-level-score** — Score calculation
-- **@warriorjs/helper-get-grade-letter** — Grade letter from score
+- **@warriorjs/scoring** — Score calculation and grade letters
 - **@warriorjs/tower-the-narrow-path** / **tower-the-powder-keep** — Built-in towers: The Narrow Path and The Powder Keep
 
-Dependency flow: spatial → abilities → units → towers, spatial → core → helpers → cli.
+Dependency flow: spatial → abilities → units → towers, spatial → core → scoring → cli.
 
 Each package compiles with `tsc` to `lib/`.
 

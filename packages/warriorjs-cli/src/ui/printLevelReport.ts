@@ -1,4 +1,4 @@
-import getGradeLetter from '@warriorjs/helper-get-grade-letter';
+import { getGradeLetter } from '@warriorjs/scoring';
 
 import printLine from './printLine.js';
 import printTotalScore from './printTotalScore.js';

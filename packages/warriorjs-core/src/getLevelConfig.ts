@@ -1,4 +1,4 @@
-import type { LevelConfig } from '@warriorjs/core';
+import type { LevelConfig } from './types.js';
 
 interface Tower {
   levels: LevelConfig[];

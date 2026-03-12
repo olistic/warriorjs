@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import getLevelConfig from '@warriorjs/helper-get-level-config';
+import { getLevelConfig } from '@warriorjs/core';
 import mock from 'mock-fs';
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
 
@@ -13,7 +13,6 @@ import printSuccessLine from './ui/printSuccessLine.js';
 import requestConfirmation from './ui/requestConfirmation.js';
 
 vi.mock('@warriorjs/core');
-vi.mock('@warriorjs/helper-get-level-config');
 vi.mock('./ProfileGenerator.js', () => {
   const MockProfileGenerator = vi.fn(function (this: any) {});
   return { default: MockProfileGenerator, __esModule: true };

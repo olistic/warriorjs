@@ -9,9 +9,7 @@ Here is the list of packages with a brief description:
 | Package                                                                   | Version                                                                                  |
 | ------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | [`@warriorjs/core`][warriorjs-core]                                       | [![npm][warriorjs-core-badge]][warriorjs-core-npm]                                       |
-| [`@warriorjs/helper-get-level-config`][warriorjs-helper-get-level-config] | [![npm][warriorjs-helper-get-level-config-badge]][warriorjs-helper-get-level-config-npm] |
-| [`@warriorjs/helper-get-level-score`][warriorjs-helper-get-level-score]   | [![npm][warriorjs-helper-get-level-score-badge]][warriorjs-helper-get-level-score-npm]   |
-| [`@warriorjs/helper-get-grade-letter`][warriorjs-helper-get-grade-letter] | [![npm][warriorjs-helper-get-grade-letter-badge]][warriorjs-helper-get-grade-letter-npm] |
+| [`@warriorjs/scoring`][warriorjs-scoring]                                 | [![npm][warriorjs-scoring-badge]][warriorjs-scoring-npm]                                 |
 | [`@warriorjs/spatial`][warriorjs-spatial]                             | [![npm][warriorjs-spatial-badge]][warriorjs-spatial-npm]                             |
 | [`@warriorjs/abilities`][warriorjs-abilities]                             | [![npm][warriorjs-abilities-badge]][warriorjs-abilities-npm]                             |
 | [`@warriorjs/effects`][warriorjs-effects]                                 | [![npm][warriorjs-effects-badge]][warriorjs-effects-npm]                                 |
@@ -21,16 +19,8 @@ Here is the list of packages with a brief description:
 - [`@warriorjs/core`][warriorjs-core] is where the game mechanics are
   implemented; it exposes the `warriorjs.runLevel` function to run the given
   level with the given code and return the result of that run.
-- [`@warriorjs/helper-get-level-config`][warriorjs-helper-get-level-config]
-  exposes a helper function to get the config for a level defined in a tower, to
-  use as input for the functions exposed by the core.
-- [`@warriorjs/helper-get-level-score`][warriorjs-helper-get-level-score]
-  exposes a helper function to get a level's score.
-- [`@warriorjs/helper-get-grade-letter`][warriorjs-helper-get-grade-letter]
-  exposes a helper function to get the letter for a numeric grade.
-- [`@warriorjs/helper-get-level-config`][warriorjs-helper-get-level-config]
-  exposes a helper function to get the config for a level defined in a tower, to
-  use as input for the functions exposed by the core.
+- [`@warriorjs/scoring`][warriorjs-scoring] exposes functions for computing
+  level scores and converting numeric grades to letter grades.
 - [`@warriorjs/spatial`][warriorjs-spatial] exposes some constants and
   functions related to directioning (absolute and relative) of units and
   abilities in the game.
@@ -64,21 +54,11 @@ universes (levels, abilities and units) to the game.
 [warriorjs-core-badge]:
   https://img.shields.io/npm/v/@warriorjs/core.svg?style=flat-square
 [warriorjs-core-npm]: https://www.npmjs.com/package/@warriorjs/core
-[warriorjs-helper-get-level-config]: /packages/warriorjs-helper-get-level-config
-[warriorjs-helper-get-level-config-badge]:
-  https://img.shields.io/npm/v/@warriorjs/helper-get-level-config.svg?style=flat-square
-[warriorjs-helper-get-level-config-npm]:
-  https://www.npmjs.com/package/@warriorjs/helper-get-level-config
-[warriorjs-helper-get-level-score]: /packages/warriorjs-helper-get-level-score
-[warriorjs-helper-get-level-score-badge]:
-  https://img.shields.io/npm/v/@warriorjs/helper-get-level-score.svg?style=flat-square
-[warriorjs-helper-get-level-score-npm]:
-  https://www.npmjs.com/package/@warriorjs/helper-get-level-score
-[warriorjs-helper-get-grade-letter]: /packages/warriorjs-helper-get-grade-letter
-[warriorjs-helper-get-grade-letter-badge]:
-  https://img.shields.io/npm/v/@warriorjs/helper-get-grade-letter.svg?style=flat-square
-[warriorjs-helper-get-grade-letter-npm]:
-  https://www.npmjs.com/package/@warriorjs/helper-get-grade-letter
+[warriorjs-scoring]: /packages/warriorjs-scoring
+[warriorjs-scoring-badge]:
+  https://img.shields.io/npm/v/@warriorjs/scoring.svg?style=flat-square
+[warriorjs-scoring-npm]:
+  https://www.npmjs.com/package/@warriorjs/scoring
 [warriorjs-spatial]: /packages/warriorjs-spatial
 [warriorjs-spatial-badge]:
   https://img.shields.io/npm/v/@warriorjs/spatial.svg?style=flat-square

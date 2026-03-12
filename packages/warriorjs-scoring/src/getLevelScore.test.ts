@@ -1,8 +1,8 @@
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 import getClearBonus from './getClearBonus.js';
+import getLevelScore from './getLevelScore.js';
 import getRemainingTimeBonus from './getRemainingTimeBonus.js';
 import getWarriorScore from './getWarriorScore.js';
-import getLevelScore from './index.js';
 
 vi.mock('./getClearBonus.js');
 vi.mock('./getRemainingTimeBonus.js');

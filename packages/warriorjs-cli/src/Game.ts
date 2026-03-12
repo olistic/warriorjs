@@ -1,8 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { getLevel, runLevel } from '@warriorjs/core';
-import getLevelConfig from '@warriorjs/helper-get-level-config';
-import getLevelScore from '@warriorjs/helper-get-level-score';
+import { getLevel, getLevelConfig, runLevel } from '@warriorjs/core';
+import { getLevelScore } from '@warriorjs/scoring';
 import { globbySync } from 'globby';
 
 import GameError from './GameError.js';

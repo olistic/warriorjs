@@ -1,11 +1,11 @@
-import getGradeLetter from '@warriorjs/helper-get-grade-letter';
+import { getGradeLetter } from '@warriorjs/scoring';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 
 import printLevelReport from './printLevelReport.js';
 import printLine from './printLine.js';
 import printTotalScore from './printTotalScore.js';
 
-vi.mock('@warriorjs/helper-get-grade-letter');
+vi.mock('@warriorjs/scoring');
 vi.mock('./printLine.js');
 vi.mock('./printTotalScore.js');
 

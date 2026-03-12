@@ -1,6 +1,6 @@
 import { expect, test } from 'vitest';
 
-import getLevelConfig from './index.js';
+import getLevelConfig from './getLevelConfig.js';
 
 const tower = {
   id: 'foo',
