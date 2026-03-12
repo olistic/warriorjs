@@ -234,7 +234,8 @@ class Profile {
   }
 
   toString(): string {
-    let result = `${this.warriorName} - ${this.tower}`;
+    const languageLabel = this.language === 'typescript' ? 'TypeScript' : 'JavaScript';
+    let result = `${this.warriorName} - ${languageLabel} - ${this.tower}`;
     if (this.isEpic()) {
       result += ` - first score ${this.score} - epic score ${this.getEpicScoreWithGrade()}`;
     } else {

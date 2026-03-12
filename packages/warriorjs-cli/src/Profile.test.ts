@@ -323,7 +323,7 @@ describe('Profile', () => {
     profile.tower.toString = () => 'Foo';
     profile.levelNumber = 4;
     profile.score = 123;
-    expect(profile.toString()).toBe('Joe - Foo - level 4 - score 123');
+    expect(profile.toString()).toBe('Joe - JavaScript - Foo - level 4 - score 123');
   });
 
   describe('epic mode', () => {
@@ -392,7 +392,9 @@ describe('Profile', () => {
       profile.tower.toString = () => 'Foo';
       profile.score = 123;
       profile.getEpicScoreWithGrade = () => '124 (C)';
-      expect(profile.toString()).toBe('Joe - Foo - first score 123 - epic score 124 (C)');
+      expect(profile.toString()).toBe(
+        'Joe - JavaScript - Foo - first score 123 - epic score 124 (C)',
+      );
     });
   });
 });
