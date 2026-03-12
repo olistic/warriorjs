@@ -5,7 +5,7 @@ declare module 'yargs' {
 
 declare module 'yargs/helpers' {
   function hideBin(args: string[]): string[];
-  export { hideBin };
+  export type { hideBin };
 }
 
 declare module 'mock-fs' {
