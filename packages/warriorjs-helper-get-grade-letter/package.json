@@ -2,7 +2,7 @@
   "name": "@warriorjs/helper-get-grade-letter",
   "version": "0.11.1",
   "description": "WarriorJS helper to get the letter for a grade",
-  "author": "Matias Olivera <moliverafreire@gmail.com>",
+  "author": "Matias Olivera <hi@matiasolivera.com>",
   "license": "MIT",
   "homepage": "https://warrior.js.org",
   "repository": "https://github.com/olistic/warriorjs/tree/master/packages/warriorjs-helper-get-grade-letter",

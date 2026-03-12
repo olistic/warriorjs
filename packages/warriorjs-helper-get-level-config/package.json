@@ -2,7 +2,7 @@
   "name": "@warriorjs/helper-get-level-config",
   "version": "0.12.3",
   "description": "WarriorJS helper to get the config of a level",
-  "author": "Matias Olivera <moliverafreire@gmail.com>",
+  "author": "Matias Olivera <hi@matiasolivera.com>",
   "license": "MIT",
   "homepage": "https://warrior.js.org",
   "repository": "https://github.com/olistic/warriorjs/tree/master/packages/warriorjs-helper-get-level-config",
