@@ -9,7 +9,7 @@
       "request": "launch",
       "name": "Launch WarriorJS CLI",
       "preLaunchTask": "build",
-      "program": "${workspaceFolder}/packages/warriorjs-cli/src/cli.js",
+      "program": "${workspaceFolder}/apps/cli/src/cli.js",
       "args": ["-t", "0.1"],
       "outFiles": ["${workspaceFolder}/packages/**/lib/**/*.js"],
       "console": "integratedTerminal",

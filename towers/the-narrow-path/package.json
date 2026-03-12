@@ -1,37 +1,23 @@
 {
-  "name": "@warriorjs/core",
-  "version": "0.14.0",
-  "description": "WarriorJS core",
+  "name": "@warriorjs/tower-the-narrow-path",
+  "version": "0.13.0",
+  "description": "The Narrow Path",
   "author": "Matias Olivera <hi@matiasolivera.com>",
   "license": "MIT",
   "homepage": "https://warrior.js.org",
-  "repository": "https://github.com/olistic/warriorjs/tree/master/packages/warriorjs-core",
+  "repository": "https://github.com/olistic/warriorjs/tree/master/towers/the-narrow-path",
+  "keywords": [
+    "warriorjs-tower"
+  ],
   "type": "module",
   "main": "lib/index.js",
   "exports": {
     ".": {
       "import": "./lib/index.js",
+      "require": "./lib/index.js",
       "types": "./lib/index.d.ts"
     }
   },
-  "keywords": [
-    "warriorjs",
-    "warriorjs-core",
-    "warrior",
-    "epic",
-    "battle",
-    "game",
-    "learn",
-    "polish",
-    "refine",
-    "test",
-    "js",
-    "javascript",
-    "nodejs",
-    "ai",
-    "artificial-intelligence",
-    "skills"
-  ],
   "files": [
     "lib"
   ],
@@ -45,7 +31,9 @@
     "build": "tsc -p tsconfig.json"
   },
   "dependencies": {
+    "@warriorjs/abilities": "workspace:^",
+    "@warriorjs/core": "workspace:^",
     "@warriorjs/spatial": "workspace:^",
-    "esbuild": "^0.27.3"
+    "@warriorjs/units": "workspace:^"
   }
 }

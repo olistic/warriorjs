@@ -30,26 +30,20 @@ importers:
         specifier: ^4.0.18
         version: 4.0.18(@types/node@25.4.0)(terser@5.46.0)(yaml@2.8.2)
 
-  packages/warriorjs-abilities:
-    dependencies:
-      '@warriorjs/spatial':
-        specifier: workspace:^
-        version: link:../warriorjs-spatial
-
-  packages/warriorjs-cli:
+  apps/cli:
     dependencies:
       '@inquirer/prompts':
         specifier: ^7.0.0
         version: 7.10.1(@types/node@25.4.0)
       '@warriorjs/core':
         specifier: workspace:^
-        version: link:../warriorjs-core
+        version: link:../../packages/core
       '@warriorjs/scoring':
         specifier: workspace:^
-        version: link:../warriorjs-scoring
+        version: link:../../packages/scoring
       '@warriorjs/tower-the-narrow-path':
         specifier: workspace:^
-        version: link:../warriorjs-tower-the-narrow-path
+        version: link:../../towers/the-narrow-path
       ansi-escapes:
         specifier: ^7.0.0
         version: 7.3.0
@@ -79,64 +73,7 @@ importers:
         specifier: ^5.5.0
         version: 5.5.0
 
-  packages/warriorjs-core:
-    dependencies:
-      '@warriorjs/spatial':
-        specifier: workspace:^
-        version: link:../warriorjs-spatial
-      esbuild:
-        specifier: ^0.27.3
-        version: 0.27.3
-
-  packages/warriorjs-effects: {}
-
-  packages/warriorjs-scoring: {}
-
-  packages/warriorjs-spatial: {}
-
-  packages/warriorjs-tower-the-narrow-path:
-    dependencies:
-      '@warriorjs/abilities':
-        specifier: workspace:^
-        version: link:../warriorjs-abilities
-      '@warriorjs/core':
-        specifier: workspace:^
-        version: link:../warriorjs-core
-      '@warriorjs/spatial':
-        specifier: workspace:^
-        version: link:../warriorjs-spatial
-      '@warriorjs/units':
-        specifier: workspace:^
-        version: link:../warriorjs-units
-
-  packages/warriorjs-tower-the-powder-keep:
-    dependencies:
-      '@warriorjs/abilities':
-        specifier: workspace:^
-        version: link:../warriorjs-abilities
-      '@warriorjs/core':
-        specifier: workspace:^
-        version: link:../warriorjs-core
-      '@warriorjs/effects':
-        specifier: workspace:^
-        version: link:../warriorjs-effects
-      '@warriorjs/spatial':
-        specifier: workspace:^
-        version: link:../warriorjs-spatial
-      '@warriorjs/units':
-        specifier: workspace:^
-        version: link:../warriorjs-units
-
-  packages/warriorjs-units:
-    dependencies:
-      '@warriorjs/abilities':
-        specifier: workspace:^
-        version: link:../warriorjs-abilities
-      '@warriorjs/spatial':
-        specifier: workspace:^
-        version: link:../warriorjs-spatial
-
-  website:
+  apps/website:
     dependencies:
       prop-types:
         specifier: ^15.6.2
@@ -145,6 +82,69 @@ importers:
       docusaurus:
         specifier: ^1.2.0
         version: 1.14.7(typescript@5.9.3)(webpack@5.105.4)
+
+  packages/abilities:
+    dependencies:
+      '@warriorjs/spatial':
+        specifier: workspace:^
+        version: link:../spatial
+
+  packages/core:
+    dependencies:
+      '@warriorjs/spatial':
+        specifier: workspace:^
+        version: link:../spatial
+      esbuild:
+        specifier: ^0.27.3
+        version: 0.27.3
+
+  packages/effects: {}
+
+  packages/scoring: {}
+
+  packages/spatial: {}
+
+  packages/units:
+    dependencies:
+      '@warriorjs/abilities':
+        specifier: workspace:^
+        version: link:../abilities
+      '@warriorjs/spatial':
+        specifier: workspace:^
+        version: link:../spatial
+
+  towers/the-narrow-path:
+    dependencies:
+      '@warriorjs/abilities':
+        specifier: workspace:^
+        version: link:../../packages/abilities
+      '@warriorjs/core':
+        specifier: workspace:^
+        version: link:../../packages/core
+      '@warriorjs/spatial':
+        specifier: workspace:^
+        version: link:../../packages/spatial
+      '@warriorjs/units':
+        specifier: workspace:^
+        version: link:../../packages/units
+
+  towers/the-powder-keep:
+    dependencies:
+      '@warriorjs/abilities':
+        specifier: workspace:^
+        version: link:../../packages/abilities
+      '@warriorjs/core':
+        specifier: workspace:^
+        version: link:../../packages/core
+      '@warriorjs/effects':
+        specifier: workspace:^
+        version: link:../../packages/effects
+      '@warriorjs/spatial':
+        specifier: workspace:^
+        version: link:../../packages/spatial
+      '@warriorjs/units':
+        specifier: workspace:^
+        version: link:../../packages/units
 
 packages:
 
@@ -8214,7 +8214,7 @@ snapshots:
 
   fork-ts-checker-webpack-plugin@4.1.6(typescript@5.9.3)(webpack@5.105.4):
     dependencies:
-      '@babel/code-frame': 7.10.4
+      '@babel/code-frame': 7.29.0
       chalk: 2.4.2
       micromatch: 3.1.10
       minimatch: 3.1.5
@@ -8365,7 +8365,7 @@ snapshots:
       fs.realpath: 1.0.0
       inflight: 1.0.6
       inherits: 2.0.4
-      minimatch: 3.0.8
+      minimatch: 3.1.5
       once: 1.4.0
       path-is-absolute: 1.0.1
 

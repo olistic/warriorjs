@@ -1,11 +1,11 @@
 {
-  "name": "@warriorjs/scoring",
-  "version": "0.14.0",
-  "description": "WarriorJS scoring utilities",
+  "name": "@warriorjs/units",
+  "version": "0.13.0",
+  "description": "WarriorJS base units",
   "author": "Matias Olivera <hi@matiasolivera.com>",
   "license": "MIT",
   "homepage": "https://warrior.js.org",
-  "repository": "https://github.com/olistic/warriorjs/tree/master/packages/warriorjs-scoring",
+  "repository": "https://github.com/olistic/warriorjs/tree/master/packages/units",
   "type": "module",
   "main": "lib/index.js",
   "exports": {
@@ -25,5 +25,9 @@
   },
   "scripts": {
     "build": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@warriorjs/abilities": "workspace:^",
+    "@warriorjs/spatial": "workspace:^"
   }
 }

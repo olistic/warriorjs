@@ -12,20 +12,23 @@ pnpm lint           # Check linting/formatting (Biome)
 pnpm lint:fix       # Auto-fix linting/formatting
 ```
 
-Run a single package's tests: `npx vitest run packages/warriorjs-cli/`
+Run a single package's tests: `npx vitest run apps/cli/`
 
 ## Architecture
 
-pnpm monorepo with Turborepo. All packages live in `packages/`.
+pnpm monorepo with Turborepo. Code is organized into three top-level directories:
 
-- **@warriorjs/core** — Game engine, level runner, player code loader
-- **@warriorjs/cli** — CLI for offline play
-- **@warriorjs/abilities** — Warrior abilities (walk, attack, feel, etc.)
-- **@warriorjs/units** — Game units/enemies
-- **@warriorjs/effects** — Status effects system
-- **@warriorjs/spatial** — Spatial/direction utilities (foundational, no deps)
-- **@warriorjs/scoring** — Score calculation and grade letters
-- **@warriorjs/tower-the-narrow-path** / **tower-the-powder-keep** — Built-in towers: The Narrow Path and The Powder Keep
+- **`apps/`** — End-user applications
+  - **@warriorjs/cli** — CLI for offline play
+- **`packages/`** — Shared libraries
+  - **@warriorjs/core** — Game engine, level runner, player code loader
+  - **@warriorjs/abilities** — Warrior abilities (walk, attack, feel, etc.)
+  - **@warriorjs/units** — Game units/enemies
+  - **@warriorjs/effects** — Status effects system
+  - **@warriorjs/spatial** — Spatial/direction utilities (foundational, no deps)
+  - **@warriorjs/scoring** — Score calculation and grade letters
+- **`towers/`** — Built-in tower definitions
+  - **@warriorjs/tower-the-narrow-path** / **tower-the-powder-keep** — The Narrow Path and The Powder Keep
 
 Dependency flow: spatial → abilities → units → towers, spatial → core → scoring → cli.
 

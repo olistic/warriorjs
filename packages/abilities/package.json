@@ -1,20 +1,16 @@
 {
-  "name": "@warriorjs/tower-the-powder-keep",
+  "name": "@warriorjs/abilities",
   "version": "0.13.0",
-  "description": "The Powder Keep",
+  "description": "WarriorJS base abilities",
   "author": "Matias Olivera <hi@matiasolivera.com>",
   "license": "MIT",
   "homepage": "https://warrior.js.org",
-  "repository": "https://github.com/olistic/warriorjs/tree/master/packages/warriorjs-tower-the-powder-keep",
-  "keywords": [
-    "warriorjs-tower"
-  ],
+  "repository": "https://github.com/olistic/warriorjs/tree/master/packages/abilities",
   "type": "module",
   "main": "lib/index.js",
   "exports": {
     ".": {
       "import": "./lib/index.js",
-      "require": "./lib/index.js",
       "types": "./lib/index.d.ts"
     }
   },
@@ -31,10 +27,6 @@
     "build": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@warriorjs/abilities": "workspace:^",
-    "@warriorjs/core": "workspace:^",
-    "@warriorjs/effects": "workspace:^",
-    "@warriorjs/spatial": "workspace:^",
-    "@warriorjs/units": "workspace:^"
+    "@warriorjs/spatial": "workspace:^"
   }
 }

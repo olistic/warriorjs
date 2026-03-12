@@ -2,5 +2,6 @@ onlyBuiltDependencies:
   - lefthook
 
 packages:
+  - 'apps/*'
   - 'packages/*'
-  - 'website'
+  - 'towers/*'

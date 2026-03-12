@@ -1,20 +1,15 @@
 # Packages
 
-This is a multi-package repository. That means that the codebase is separated
-into independently versioned packages for better code and infrastructure
-sharing.
-
-Here is the list of packages with a brief description:
+Shared libraries that power the WarriorJS game engine.
 
 | Package                                                                   | Version                                                                                  |
 | ------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | [`@warriorjs/core`][warriorjs-core]                                       | [![npm][warriorjs-core-badge]][warriorjs-core-npm]                                       |
 | [`@warriorjs/scoring`][warriorjs-scoring]                                 | [![npm][warriorjs-scoring-badge]][warriorjs-scoring-npm]                                 |
-| [`@warriorjs/spatial`][warriorjs-spatial]                             | [![npm][warriorjs-spatial-badge]][warriorjs-spatial-npm]                             |
+| [`@warriorjs/spatial`][warriorjs-spatial]                                 | [![npm][warriorjs-spatial-badge]][warriorjs-spatial-npm]                                 |
 | [`@warriorjs/abilities`][warriorjs-abilities]                             | [![npm][warriorjs-abilities-badge]][warriorjs-abilities-npm]                             |
 | [`@warriorjs/effects`][warriorjs-effects]                                 | [![npm][warriorjs-effects-badge]][warriorjs-effects-npm]                                 |
 | [`@warriorjs/units`][warriorjs-units]                                     | [![npm][warriorjs-units-badge]][warriorjs-units-npm]                                     |
-| [`@warriorjs/cli`][warriorjs-cli]                                         | [![npm][warriorjs-cli-badge]][warriorjs-cli-npm]                                         |
 
 - [`@warriorjs/core`][warriorjs-core] is where the game mechanics are
   implemented; it exposes the `warriorjs.runLevel` function to run the given
@@ -30,63 +25,29 @@ Here is the list of packages with a brief description:
   the official towers.
 - [`@warriorjs/units`][warriorjs-units] defines the units that are used in the
   official towers.
-- [`@warriorjs/cli`][warriorjs-cli] is the original version of WarriorJS,
-  playable from the terminal.
 
-## [Towers](https://warrior.js.org/docs/player/towers)
-
-The towers available in WarriorJS are independent packages that add new
-universes (levels, abilities and units) to the game.
-
-| Package                                                             | Version                                                                            |
-| ------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| [`@warriorjs/tower-the-narrow-path`][warriorjs-tower-the-narrow-path]   | [![npm][warriorjs-tower-the-narrow-path-badge]][warriorjs-tower-the-narrow-path-npm]   |
-| [`@warriorjs/tower-the-powder-keep`][warriorjs-tower-the-powder-keep] | [![npm][warriorjs-tower-the-powder-keep-badge]][warriorjs-tower-the-powder-keep-npm] |
-
-- [`@warriorjs/tower-the-narrow-path`][warriorjs-tower-the-narrow-path] is "The Narrow
-  Path", the entry-level tower. You should play this first.
-- [`@warriorjs/tower-the-powder-keep`][warriorjs-tower-the-powder-keep] is "The
-  Powder Keep", a more challenging tower.
-
-> You can find community maintained towers in [npm][community-towers-npm].
-
-[warriorjs-core]: /packages/warriorjs-core
+[warriorjs-core]: /packages/core
 [warriorjs-core-badge]:
   https://img.shields.io/npm/v/@warriorjs/core.svg?style=flat-square
 [warriorjs-core-npm]: https://www.npmjs.com/package/@warriorjs/core
-[warriorjs-scoring]: /packages/warriorjs-scoring
+[warriorjs-scoring]: /packages/scoring
 [warriorjs-scoring-badge]:
   https://img.shields.io/npm/v/@warriorjs/scoring.svg?style=flat-square
 [warriorjs-scoring-npm]:
   https://www.npmjs.com/package/@warriorjs/scoring
-[warriorjs-spatial]: /packages/warriorjs-spatial
+[warriorjs-spatial]: /packages/spatial
 [warriorjs-spatial-badge]:
   https://img.shields.io/npm/v/@warriorjs/spatial.svg?style=flat-square
 [warriorjs-spatial-npm]: https://www.npmjs.com/package/@warriorjs/spatial
-[warriorjs-abilities]: /packages/warriorjs-abilities
+[warriorjs-abilities]: /packages/abilities
 [warriorjs-abilities-badge]:
   https://img.shields.io/npm/v/@warriorjs/abilities.svg?style=flat-square
 [warriorjs-abilities-npm]: https://www.npmjs.com/package/@warriorjs/abilities
-[warriorjs-effects]: /packages/warriorjs-effects
+[warriorjs-effects]: /packages/effects
 [warriorjs-effects-badge]:
   https://img.shields.io/npm/v/@warriorjs/effects.svg?style=flat-square
 [warriorjs-effects-npm]: https://www.npmjs.com/package/@warriorjs/effects
-[warriorjs-units]: /packages/warriorjs-units
+[warriorjs-units]: /packages/units
 [warriorjs-units-badge]:
   https://img.shields.io/npm/v/@warriorjs/units.svg?style=flat-square
 [warriorjs-units-npm]: https://www.npmjs.com/package/@warriorjs/units
-[warriorjs-cli]: /packages/warriorjs-cli
-[warriorjs-cli-badge]:
-  https://img.shields.io/npm/v/@warriorjs/cli.svg?style=flat-square
-[warriorjs-cli-npm]: https://www.npmjs.com/package/@warriorjs/cli
-[warriorjs-tower-the-narrow-path]: /packages/warriorjs-tower-the-narrow-path
-[warriorjs-tower-the-narrow-path-badge]:
-  https://img.shields.io/npm/v/@warriorjs/tower-the-narrow-path.svg?style=flat-square
-[warriorjs-tower-the-narrow-path-npm]:
-  https://www.npmjs.com/package/@warriorjs/tower-the-narrow-path
-[warriorjs-tower-the-powder-keep]: /packages/warriorjs-tower-the-powder-keep
-[warriorjs-tower-the-powder-keep-badge]:
-  https://img.shields.io/npm/v/@warriorjs/tower-the-powder-keep.svg?style=flat-square
-[warriorjs-tower-the-powder-keep-npm]:
-  https://www.npmjs.com/package/@warriorjs/tower-the-powder-keep
-[community-towers-npm]: https://www.npmjs.com/search?q=warriorjs-tower

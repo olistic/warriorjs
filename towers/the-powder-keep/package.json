@@ -1,16 +1,20 @@
 {
-  "name": "@warriorjs/units",
+  "name": "@warriorjs/tower-the-powder-keep",
   "version": "0.13.0",
-  "description": "WarriorJS base units",
+  "description": "The Powder Keep",
   "author": "Matias Olivera <hi@matiasolivera.com>",
   "license": "MIT",
   "homepage": "https://warrior.js.org",
-  "repository": "https://github.com/olistic/warriorjs/tree/master/packages/warriorjs-units",
+  "repository": "https://github.com/olistic/warriorjs/tree/master/towers/the-powder-keep",
+  "keywords": [
+    "warriorjs-tower"
+  ],
   "type": "module",
   "main": "lib/index.js",
   "exports": {
     ".": {
       "import": "./lib/index.js",
+      "require": "./lib/index.js",
       "types": "./lib/index.d.ts"
     }
   },
@@ -28,6 +32,9 @@
   },
   "dependencies": {
     "@warriorjs/abilities": "workspace:^",
-    "@warriorjs/spatial": "workspace:^"
+    "@warriorjs/core": "workspace:^",
+    "@warriorjs/effects": "workspace:^",
+    "@warriorjs/spatial": "workspace:^",
+    "@warriorjs/units": "workspace:^"
   }
 }

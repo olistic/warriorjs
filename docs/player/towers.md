@@ -34,8 +34,8 @@ Have you made a tower? [Add it][add-community-tower] to the list!
 Follow this [guide](maker/introduction.md).
 
 [warriorjs-tower-the-narrow-path]:
-  https://github.com/olistic/warriorjs/tree/master/packages/warriorjs-tower-the-narrow-path
+  https://github.com/olistic/warriorjs/tree/master/towers/the-narrow-path
 [warriorjs-tower-the-powder-keep]:
-  https://github.com/olistic/warriorjs/tree/master/packages/warriorjs-tower-the-powder-keep
+  https://github.com/olistic/warriorjs/tree/master/towers/the-powder-keep
 [add-community-tower]:
   https://github.com/olistic/warriorjs/edit/master/docs/player/towers.md
