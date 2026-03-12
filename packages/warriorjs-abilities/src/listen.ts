@@ -1,4 +1,4 @@
-import { FORWARD, getRelativeOffset } from '@warriorjs/geography';
+import { FORWARD, getRelativeOffset } from '@warriorjs/spatial';
 
 import type { Unit } from './types.js';
 

@@ -1,4 +1,4 @@
-import { NORTH } from '@warriorjs/geography';
+import { NORTH } from '@warriorjs/spatial';
 import { beforeEach, describe, expect, test } from 'vitest';
 
 import Floor from './Floor.js';

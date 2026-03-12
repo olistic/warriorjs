@@ -1,4 +1,4 @@
-import { EAST, FORWARD, RELATIVE_DIRECTIONS, WEST } from '@warriorjs/geography';
+import { EAST, FORWARD, RELATIVE_DIRECTIONS, WEST } from '@warriorjs/spatial';
 import { expect, test } from 'vitest';
 
 import getLevel from './getLevel.js';

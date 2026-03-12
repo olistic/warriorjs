@@ -1,4 +1,4 @@
-import { BACKWARD, FORWARD, LEFT, RIGHT } from '@warriorjs/geography';
+import { BACKWARD, FORWARD, LEFT, RIGHT } from '@warriorjs/spatial';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 
 import ThickSludge from './ThickSludge.js';

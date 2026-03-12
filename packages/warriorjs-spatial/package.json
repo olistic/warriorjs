@@ -1,11 +1,11 @@
 {
-  "name": "@warriorjs/geography",
+  "name": "@warriorjs/spatial",
   "version": "0.7.0",
   "description": "WarriorJS directioning",
   "author": "Matias Olivera <hi@matiasolivera.com>",
   "license": "MIT",
   "homepage": "https://warrior.js.org",
-  "repository": "https://github.com/olistic/warriorjs/tree/master/packages/warriorjs-geography",
+  "repository": "https://github.com/olistic/warriorjs/tree/master/packages/warriorjs-spatial",
   "type": "module",
   "main": "lib/index.js",
   "exports": {

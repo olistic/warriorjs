@@ -1,5 +1,5 @@
 import { attack, feel } from '@warriorjs/abilities';
-import { RELATIVE_DIRECTIONS } from '@warriorjs/geography';
+import { RELATIVE_DIRECTIONS } from '@warriorjs/spatial';
 
 export interface UnitTurn {
   feel(direction: string): {

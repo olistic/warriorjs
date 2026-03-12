@@ -1,4 +1,4 @@
-import { getAbsoluteOffset, getRelativeOffset, translateLocation } from '@warriorjs/geography';
+import { getAbsoluteOffset, getRelativeOffset, translateLocation } from '@warriorjs/spatial';
 
 import type Floor from './Floor.js';
 import type Unit from './Unit.js';

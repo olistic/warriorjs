@@ -1,5 +1,5 @@
 import { look, shoot } from '@warriorjs/abilities';
-import { RELATIVE_DIRECTIONS } from '@warriorjs/geography';
+import { RELATIVE_DIRECTIONS } from '@warriorjs/spatial';
 
 export interface UnitTurn {
   look(direction: string): Array<{

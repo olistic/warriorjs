@@ -12,7 +12,7 @@ Here is the list of packages with a brief description:
 | [`@warriorjs/helper-get-level-config`][warriorjs-helper-get-level-config] | [![npm][warriorjs-helper-get-level-config-badge]][warriorjs-helper-get-level-config-npm] |
 | [`@warriorjs/helper-get-level-score`][warriorjs-helper-get-level-score]   | [![npm][warriorjs-helper-get-level-score-badge]][warriorjs-helper-get-level-score-npm]   |
 | [`@warriorjs/helper-get-grade-letter`][warriorjs-helper-get-grade-letter] | [![npm][warriorjs-helper-get-grade-letter-badge]][warriorjs-helper-get-grade-letter-npm] |
-| [`@warriorjs/geography`][warriorjs-geography]                             | [![npm][warriorjs-geography-badge]][warriorjs-geography-npm]                             |
+| [`@warriorjs/spatial`][warriorjs-spatial]                             | [![npm][warriorjs-spatial-badge]][warriorjs-spatial-npm]                             |
 | [`@warriorjs/abilities`][warriorjs-abilities]                             | [![npm][warriorjs-abilities-badge]][warriorjs-abilities-npm]                             |
 | [`@warriorjs/effects`][warriorjs-effects]                                 | [![npm][warriorjs-effects-badge]][warriorjs-effects-npm]                                 |
 | [`@warriorjs/units`][warriorjs-units]                                     | [![npm][warriorjs-units-badge]][warriorjs-units-npm]                                     |
@@ -31,7 +31,7 @@ Here is the list of packages with a brief description:
 - [`@warriorjs/helper-get-level-config`][warriorjs-helper-get-level-config]
   exposes a helper function to get the config for a level defined in a tower, to
   use as input for the functions exposed by the core.
-- [`@warriorjs/geography`][warriorjs-geography] exposes some constants and
+- [`@warriorjs/spatial`][warriorjs-spatial] exposes some constants and
   functions related to directioning (absolute and relative) of units and
   abilities in the game.
 - [`@warriorjs/abilities`][warriorjs-abilities] defines the abilities that are
@@ -79,10 +79,10 @@ universes (levels, abilities and units) to the game.
   https://img.shields.io/npm/v/@warriorjs/helper-get-grade-letter.svg?style=flat-square
 [warriorjs-helper-get-grade-letter-npm]:
   https://www.npmjs.com/package/@warriorjs/helper-get-grade-letter
-[warriorjs-geography]: /packages/warriorjs-geography
-[warriorjs-geography-badge]:
-  https://img.shields.io/npm/v/@warriorjs/geography.svg?style=flat-square
-[warriorjs-geography-npm]: https://www.npmjs.com/package/@warriorjs/geography
+[warriorjs-spatial]: /packages/warriorjs-spatial
+[warriorjs-spatial-badge]:
+  https://img.shields.io/npm/v/@warriorjs/spatial.svg?style=flat-square
+[warriorjs-spatial-npm]: https://www.npmjs.com/package/@warriorjs/spatial
 [warriorjs-abilities]: /packages/warriorjs-abilities
 [warriorjs-abilities-badge]:
   https://img.shields.io/npm/v/@warriorjs/abilities.svg?style=flat-square

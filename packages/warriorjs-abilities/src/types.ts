@@ -1,4 +1,4 @@
-import type { AbsoluteDirection, RelativeDirection } from '@warriorjs/geography';
+import type { AbsoluteDirection, RelativeDirection } from '@warriorjs/spatial';
 
 export interface Space {
   getUnit(): Unit | null;

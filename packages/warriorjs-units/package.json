@@ -28,6 +28,6 @@
   },
   "dependencies": {
     "@warriorjs/abilities": "workspace:^",
-    "@warriorjs/geography": "workspace:^"
+    "@warriorjs/spatial": "workspace:^"
   }
 }

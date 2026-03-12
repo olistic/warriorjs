@@ -17,7 +17,7 @@ import {
 } from '@warriorjs/abilities';
 import type { TowerDefinition } from '@warriorjs/core';
 import { ticking } from '@warriorjs/effects';
-import { EAST, NORTH, SOUTH, WEST } from '@warriorjs/geography';
+import { EAST, NORTH, SOUTH, WEST } from '@warriorjs/spatial';
 import { Captive, Sludge, ThickSludge, Warrior } from '@warriorjs/units';
 
 const tower: TowerDefinition = {

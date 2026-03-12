@@ -12,7 +12,7 @@ import {
   walk,
 } from '@warriorjs/abilities';
 import type { TowerDefinition } from '@warriorjs/core';
-import { EAST, WEST } from '@warriorjs/geography';
+import { EAST, WEST } from '@warriorjs/spatial';
 import { Archer, Captive, Sludge, ThickSludge, Warrior, Wizard } from '@warriorjs/units';
 
 const tower: TowerDefinition = {

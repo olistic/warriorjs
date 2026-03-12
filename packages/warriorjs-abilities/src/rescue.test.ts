@@ -1,4 +1,4 @@
-import { FORWARD, RIGHT } from '@warriorjs/geography';
+import { FORWARD, RIGHT } from '@warriorjs/spatial';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 
 import rescueCreator from './rescue.js';

@@ -7,7 +7,7 @@ import {
   rotateRelativeOffset,
   translateLocation,
   verifyAbsoluteDirection,
-} from '@warriorjs/geography';
+} from '@warriorjs/spatial';
 
 import type Floor from './Floor.js';
 import type Space from './Space.js';

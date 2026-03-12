@@ -1,4 +1,4 @@
-import { BACKWARD, RIGHT } from '@warriorjs/geography';
+import { BACKWARD, RIGHT } from '@warriorjs/spatial';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 
 import pivotCreator from './pivot.js';

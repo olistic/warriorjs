@@ -1,4 +1,4 @@
-import { EAST, FORWARD } from '@warriorjs/geography';
+import { EAST, FORWARD } from '@warriorjs/spatial';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 
 import Floor from './Floor.js';

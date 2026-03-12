@@ -1,17 +1,17 @@
-# @warriorjs/geography
+# @warriorjs/spatial
 
 > WarriorJS directioning.
 
 ## Install
 
 ```sh
-npm install @warriorjs/geography
+npm install @warriorjs/spatial
 ```
 
 ## Usage
 
 ```js
-import { FORWARD, getAbsoluteDirection } from '@warriorjs/geography');
+import { FORWARD, getAbsoluteDirection } from '@warriorjs/spatial');
 ```
 
 ## Top Level Exports

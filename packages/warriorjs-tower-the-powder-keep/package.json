@@ -34,7 +34,7 @@
     "@warriorjs/abilities": "workspace:^",
     "@warriorjs/core": "workspace:^",
     "@warriorjs/effects": "workspace:^",
-    "@warriorjs/geography": "workspace:^",
+    "@warriorjs/spatial": "workspace:^",
     "@warriorjs/units": "workspace:^"
   }
 }

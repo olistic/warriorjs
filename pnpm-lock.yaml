@@ -32,9 +32,9 @@ importers:
 
   packages/warriorjs-abilities:
     dependencies:
-      '@warriorjs/geography':
+      '@warriorjs/spatial':
         specifier: workspace:^
-        version: link:../warriorjs-geography
+        version: link:../warriorjs-spatial
 
   packages/warriorjs-cli:
     dependencies:
@@ -87,16 +87,14 @@ importers:
 
   packages/warriorjs-core:
     dependencies:
-      '@warriorjs/geography':
+      '@warriorjs/spatial':
         specifier: workspace:^
-        version: link:../warriorjs-geography
+        version: link:../warriorjs-spatial
       esbuild:
         specifier: ^0.27.3
         version: 0.27.3
 
   packages/warriorjs-effects: {}
-
-  packages/warriorjs-geography: {}
 
   packages/warriorjs-helper-get-grade-letter: {}
 
@@ -108,6 +106,8 @@ importers:
 
   packages/warriorjs-helper-get-level-score: {}
 
+  packages/warriorjs-spatial: {}
+
   packages/warriorjs-tower-the-narrow-path:
     dependencies:
       '@warriorjs/abilities':
@@ -116,9 +116,9 @@ importers:
       '@warriorjs/core':
         specifier: workspace:^
         version: link:../warriorjs-core
-      '@warriorjs/geography':
+      '@warriorjs/spatial':
         specifier: workspace:^
-        version: link:../warriorjs-geography
+        version: link:../warriorjs-spatial
       '@warriorjs/units':
         specifier: workspace:^
         version: link:../warriorjs-units
@@ -134,9 +134,9 @@ importers:
       '@warriorjs/effects':
         specifier: workspace:^
         version: link:../warriorjs-effects
-      '@warriorjs/geography':
+      '@warriorjs/spatial':
         specifier: workspace:^
-        version: link:../warriorjs-geography
+        version: link:../warriorjs-spatial
       '@warriorjs/units':
         specifier: workspace:^
         version: link:../warriorjs-units
@@ -146,9 +146,9 @@ importers:
       '@warriorjs/abilities':
         specifier: workspace:^
         version: link:../warriorjs-abilities
-      '@warriorjs/geography':
+      '@warriorjs/spatial':
         specifier: workspace:^
-        version: link:../warriorjs-geography
+        version: link:../warriorjs-spatial
 
   website:
     dependencies:

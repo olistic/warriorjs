@@ -1,4 +1,4 @@
-import { FORWARD, type RelativeDirection } from '@warriorjs/geography';
+import { FORWARD, type RelativeDirection } from '@warriorjs/spatial';
 
 import type { Space, Unit } from './types.js';
 
