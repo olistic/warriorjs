@@ -23,17 +23,19 @@ vi.mock('./Tower.js');
 
 test('loads internal towers', () => {
   mockRequire.mockReturnValue({
-    name: 'Baby Steps',
-    description: 'For players new to WarriorJS',
+    name: 'The Narrow Path',
+    description: 'A corridor of stone where the only way out is forward',
     levels: ['level1', 'level2'],
   });
   mock({ '/path/to/node_modules/@warriorjs/cli': {} });
   loadTowers();
   mock.restore();
-  expect(Tower).toHaveBeenCalledWith('baby-steps', 'Baby Steps', 'For players new to WarriorJS', [
-    'level1',
-    'level2',
-  ]);
+  expect(Tower).toHaveBeenCalledWith(
+    'baby-steps',
+    'The Narrow Path',
+    'A corridor of stone where the only way out is forward',
+    ['level1', 'level2'],
+  );
 });
 
 test('loads external official towers', () => {
@@ -94,8 +96,8 @@ test('loads external community towers', () => {
 
 test("ignores directories that are seemingly towers but don't have a package.json", () => {
   mockRequire.mockReturnValue({
-    name: 'Baby Steps',
-    description: 'For players new to WarriorJS',
+    name: 'The Narrow Path',
+    description: 'A corridor of stone where the only way out is forward',
     levels: ['level1', 'level2'],
   });
   mock({
@@ -121,8 +123,8 @@ test("ignores directories that are seemingly towers but don't have a package.jso
 
 test("doesn't throw when @warriorjs/cli doesn't exist", async () => {
   mockRequire.mockReturnValue({
-    name: 'Baby Steps',
-    description: 'For players new to WarriorJS',
+    name: 'The Narrow Path',
+    description: 'A corridor of stone where the only way out is forward',
     levels: ['level1', 'level2'],
   });
   const { findUpSync } = await import('find-up');
