@@ -19,12 +19,6 @@
   <a href="https://codecov.io/gh/olistic/warriorjs">
     <img alt="Codecov" src="https://img.shields.io/codecov/c/github/olistic/warriorjs.svg?style=flat-square">
   </a>
-  <a href="https://twitter.com/warrior_js">
-    <img alt="Follow+WarriorJS+on+Twitter" src="https://img.shields.io/twitter/follow/warrior_js.svg?label=follow+warriorjs&style=flat-square">
-  </a>
-  <a href="https://spectrum.chat/warriorjs">
-    <img alt="Join+WarriorJS+on+Spectrum" src="https://img.shields.io/badge/join_the_community-on_spectrum-7b16ff.svg?style=flat-square">
-  </a>
 </div>
 
 <br />
