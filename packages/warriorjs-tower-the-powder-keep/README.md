@@ -1,25 +1,29 @@
 # @warriorjs/tower-the-powder-keep
 
-> The Powder Keep — try not to blow the tower apart.
+> An old fortress where something ticks beneath the floor.
+
+The keep was abandoned long ago, but not emptied. Its rooms are vast and dark,
+and somewhere deep within, a faint ticking pulses through the walls like a
+second heartbeat. Move carefully. Not everything here can be fought — some
+things can only be outrun.
+
+**9 levels.** Navigate open rooms, listen for sounds, bind enemies, defuse
+ticking bombs. Floors are two-dimensional — threats come from every direction.
 
 ## Install
 
-If you have installed `@warriorjs/cli` globally, then run:
+Install alongside `@warriorjs/cli`:
 
 ```sh
 npm install --global @warriorjs/tower-the-powder-keep
 ```
 
-If instead you have installed the game locally, then run in the same location:
+Or locally:
 
 ```sh
 npm install @warriorjs/tower-the-powder-keep
 ```
 
-## Usage
+Then run `warriorjs` and select The Powder Keep.
 
-```sh
-warriorjs
-```
-
-For more in depth documentation see: https://warrior.js.org/docs/player/towers.
+See the [Towers](https://warrior.js.org/docs/player/towers) docs for more.

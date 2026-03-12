@@ -1,21 +1,27 @@
 # @warriorjs/tower-the-narrow-path
 
-> The Narrow Path — for players new to WarriorJS.
+> A corridor of stone where the only way out is forward.
+
+The walls press close. Torchlight flickers against wet stone, casting long
+shadows down a passage that stretches beyond sight. Whatever waits ahead, there
+is no turning back — only forward, one step at a time.
+
+**9 levels.** Walk, fight, rest, rescue, pivot, shoot — each floor teaches one
+new ability and asks you to combine it with everything you've learned so far.
+Start here.
 
 ## Install
 
-`@warriorjs/cli` already ships with `@warriorjs/tower-the-narrow-path` built-in.
-
-If you still want to install it:
-
-```sh
-npm install @warriorjs/tower-the-narrow-path
-```
-
-## Usage
+`@warriorjs/cli` ships with this tower built-in. Just run:
 
 ```sh
 warriorjs
 ```
 
-For more in depth documentation see: https://warrior.js.org/docs/player/towers.
+To install it separately:
+
+```sh
+npm install @warriorjs/tower-the-narrow-path
+```
+
+See the [Towers](https://warrior.js.org/docs/player/towers) docs for more.
