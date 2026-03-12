@@ -54,10 +54,6 @@ in `Player.js`, then run `warriorjs` again to see how your warrior fares.
 You can also play from your browser at
 [warriorjs.com](https://warriorjs.com/?ref=gh).
 
-## Preview
-
-![WarriorJS Preview](https://user-images.githubusercontent.com/5600126/40150855-8b2acdd2-5952-11e8-9034-00dcee0c4c2c.gif)
-
 ## Documentation
 
 The [official docs](https://warrior.js.org) cover everything from first steps
@@ -69,39 +65,13 @@ to building your own towers:
 
 ## Contributing
 
-There are many ways to help:
+The best way to contribute is to build a
+[tower](https://warrior.js.org/docs/player/towers) — a set of levels that
+other players can install and play.
 
-- Submit patches and features
-- Build [towers](https://warrior.js.org/docs/player/towers) (new levels for the
-  game)
-- Improve the [documentation and website](https://warrior.js.org)
-- Report bugs
-- [Donate](https://opencollective.com/warriorjs)
-
+You can also fix bugs, improve the docs, or add new abilities and units.
 See the [contribution guide](CONTRIBUTING.md) and
-[Code of Conduct](CODE_OF_CONDUCT.md) to get started.
-
-## Contributors
-
-Thanks goes to each one of our contributors! :pray:
-[Become a contributor](CONTRIBUTING.md).
-
-<a href="https://github.com/olistic/warriorjs/graphs/contributors"><img src="https://opencollective.com/warriorjs/contributors.svg?width=890&button=false" /></a>
-
-## Backers
-
-Support us with a monthly donation and help us continue our activities!
-[Become a backer](https://opencollective.com/warriorjs#backers).
-
-<a href="https://opencollective.com/warriorjs#backers"><img src="https://opencollective.com/warriorjs/backers.svg?width=890" /></a>
-
-## Sponsors
-
-Become a sponsor and get your logo here and on the
-[official docs](https://warrior.js.org)!
-[Become a sponsor](https://opencollective.com/warriorjs#sponsors).
-
-<a href="https://opencollective.com/warriorjs#sponsors"><img src="https://opencollective.com/warriorjs/sponsors.svg?width=890" /></a>
+[Code of Conduct](CODE_OF_CONDUCT.md).
 
 ## Acknowledgments
 
@@ -109,8 +79,8 @@ This project was born as a port of
 [ruby-warrior](https://github.com/ryanb/ruby-warrior). Credits for the original
 idea go to [Ryan Bates](https://github.com/ryanb).
 
-Special thanks to [Guillermo Cura](https://guillecura.co) for designing a
-wonderful [logo](logo).
+Special thanks to [Guillermo Cura](https://github.com/guillecura) for designing
+a wonderful [logo](logo).
 
 ## License
 

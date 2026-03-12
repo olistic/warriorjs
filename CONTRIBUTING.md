@@ -1,64 +1,29 @@
-# Contributing to WarriorJS
-
-Hey there! We’re really excited that you are interested in contributing to
-WarriorJS. Before submitting your contribution though, please make sure to take
-a moment and read through the following guidelines.
+# Contributing
 
 ## Code of Conduct
 
-Please note that this project has a [Code of Conduct](CODE_OF_CONDUCT.md). It's
-important that you review and enforce it.
+This project follows a [Code of Conduct](CODE_OF_CONDUCT.md). Please read it.
 
-## Code contributions
+## Getting Started
 
-Here is a quick guide to doing code contributions to the library.
+1. Fork and clone the repo.
+2. Install dependencies: `pnpm install`
+3. Build: `pnpm build`
+4. Run tests: `pnpm test`
+5. Lint: `pnpm lint`
 
-1.  Find some issue you're interested in, or a feature that you'd like to
-    tackle. Also make sure that no one else is already working on it. If it's a
-    feature you're requesting, make sure it's aligned with the direction of the
-    project by creating an issue and discussing it with the core maintainers. We
-    don't want you to be disappointed.
+Edit code in `packages/*/src/`. Tests live next to source files
+(`Foo.test.ts`).
 
-2.  Fork, then clone:
-    `git clone https://github.com/YOUR_USERNAME/warriorjs.git`.
+## Making Changes
 
-3.  Create a branch with a meaningful name for the issue:
-    `git checkout -b fix-something`
+- **Bug fix or feature?** Open an issue first to discuss scope.
+- **Building a tower?** See the
+  [tower guide](https://warrior.js.org/docs/player/towers).
+- Create a branch, make your changes, and open a PR.
+- Use [Conventional Commits](https://www.conventionalcommits.org) for commit
+  messages: `feat(cli): add language choice`, `fix(core): handle edge case`.
 
-4.  Make your changes and commit: `git add` and `git commit`.
-
-5.  Make sure that the tests still pass (see below).
-
-6.  Push your branch: `git push -u origin your-branch-name`.
-
-7.  Submit a Pull Request to the upstream warriorjs repository.
-
-8.  Choose a descriptive title and describe your changes briefly.
-
-9.  Wait for a maintainer to review your PR, make changes if it's being
-    recommended, and get it merged.
-
-10. Celebrate! :tada:
-
-### This is my first Pull Request, where can I learn how to contribute?
-
-You can take this free course:
-[_How to Contribute to an Open Source Project on GitHub_](https://egghead.io/courses/how-to-contribute-to-an-open-source-project-on-github).
-
-### How do I set up the project?
-
-WarriorJS uses [pnpm](https://pnpm.io) to manage dependencies and
-[Turborepo](https://turbo.build/repo) to orchestrate the monorepo.
-
-Run `pnpm install` and edit code in the `src/` folder of the corresponding
-package(s) in `packages/`. If your contribution is to the docs or the website,
-you're looking for the `docs/` or the `website/` directories, respectively.
-
-### How do I verify and test my changes?
-
-To verify your changes, run the following commands:
-
-1.  Install dependencies (you probably already did this): `pnpm install`.
-2.  Build packages: `pnpm build`.
-3.  Run tests: `pnpm test`.
-4.  Lint: `pnpm lint`.
+New to open source? GitHub's
+[guide to contributing](https://docs.github.com/en/get-started/exploring-projects-on-github/contributing-to-a-project)
+is a good starting point.
