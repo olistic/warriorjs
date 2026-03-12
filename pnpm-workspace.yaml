@@ -1,3 +1,6 @@
+onlyBuiltDependencies:
+  - lefthook
+
 packages:
   - 'packages/*'
   - 'website'
