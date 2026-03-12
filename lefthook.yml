@@ -2,5 +2,5 @@ pre-commit:
   commands:
     lint:
       glob: "*.{js,ts,json,css,md,yaml}"
-      run: npx biome check --write --no-errors-on-unmatched {staged_files}
+      run: pnpm biome check --write --no-errors-on-unmatched {staged_files}
       stage_fixed: true
