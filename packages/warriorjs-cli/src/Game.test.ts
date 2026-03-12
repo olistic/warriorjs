@@ -193,10 +193,14 @@ describe('Game', () => {
       test('prepares first level if level number is zero', async () => {
         game.profile = {
           levelNumber: 0,
+          getReadmeFilePath: () => '/path/to/profile/readme',
         };
         game.prepareNextLevel = vi.fn();
         await game.playNormalMode();
         expect(game.prepareNextLevel).toHaveBeenCalled();
+        expect(printSuccessLine).toHaveBeenCalledWith(
+          'First level has been generated. See /path/to/profile/readme for instructions.',
+        );
         expect(game.playLevel).not.toHaveBeenCalled();
       });
 

@@ -216,6 +216,9 @@ class Game {
 
     if (this.profile.levelNumber === 0) {
       this.prepareNextLevel();
+      printSuccessLine(
+        `First level has been generated. See ${this.profile.getReadmeFilePath()} for instructions.`,
+      );
     } else {
       await this.playLevel(this.profile.levelNumber);
     }
@@ -316,14 +319,6 @@ class Game {
     const { tower, levelNumber, warriorName, epic } = this.profile;
     const levelConfig = getLevelConfig(tower, levelNumber, warriorName, epic);
     new ProfileGenerator(this.profile, levelConfig!).generate();
-
-    if (this.profile.levelNumber === 1) {
-      printSuccessLine(
-        `First level has been generated. See ${this.profile.getReadmeFilePath()} for instructions.`,
-      );
-    } else if (this.profile.language === 'typescript') {
-      printSuccessLine('New abilities available! Check types.ts for details.');
-    }
   }
 
   prepareEpicMode(): void {
