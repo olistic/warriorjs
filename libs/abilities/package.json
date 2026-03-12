@@ -1,11 +1,11 @@
 {
-  "name": "@warriorjs/spatial",
-  "version": "0.7.0",
-  "description": "WarriorJS directioning",
+  "name": "@warriorjs/abilities",
+  "version": "0.13.0",
+  "description": "WarriorJS base abilities",
   "author": "Matias Olivera <hi@matiasolivera.com>",
   "license": "MIT",
   "homepage": "https://warrior.js.org",
-  "repository": "https://github.com/olistic/warriorjs/tree/master/packages/spatial",
+  "repository": "https://github.com/olistic/warriorjs/tree/master/libs/abilities",
   "type": "module",
   "main": "lib/index.js",
   "exports": {
@@ -25,5 +25,8 @@
   },
   "scripts": {
     "build": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@warriorjs/spatial": "workspace:^"
   }
 }

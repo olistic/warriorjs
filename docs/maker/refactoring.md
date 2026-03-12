@@ -291,7 +291,7 @@ const iceCrystalSwordAttack = attackCreator({
 
 To end with the refactor, let's get rid of all those magic strings representing
 directions. There's an official package called
-[`@warriorjs/geography`](https://github.com/olistic/warriorjs/tree/master/packages/warriorjs-geography)
+[`@warriorjs/geography`](https://github.com/olistic/warriorjs/tree/master/libs/warriorjs-geography)
 that exposes a bunch of constants and methods related to directioning. Let's use
 it:
 

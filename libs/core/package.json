@@ -5,7 +5,7 @@
   "author": "Matias Olivera <hi@matiasolivera.com>",
   "license": "MIT",
   "homepage": "https://warrior.js.org",
-  "repository": "https://github.com/olistic/warriorjs/tree/master/packages/core",
+  "repository": "https://github.com/olistic/warriorjs/tree/master/libs/core",
   "type": "module",
   "main": "lib/index.js",
   "exports": {

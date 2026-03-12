@@ -9,9 +9,9 @@
   "repository": "https://github.com/olistic/warriorjs",
   "scripts": {
     "build": "turbo run build --filter='!warriorjs-website'",
-    "clean": "rm -rf packages/*/lib",
-    "lint": "biome check packages/",
-    "lint:fix": "biome check --write packages/",
+    "clean": "rm -rf libs/*/lib",
+    "lint": "biome check libs/",
+    "lint:fix": "biome check --write libs/",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
     "test:watch": "vitest",

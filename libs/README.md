@@ -26,28 +26,28 @@ Shared libraries that power the WarriorJS game engine.
 - [`@warriorjs/units`][warriorjs-units] defines the units that are used in the
   official towers.
 
-[warriorjs-core]: /packages/core
+[warriorjs-core]: /libs/core
 [warriorjs-core-badge]:
   https://img.shields.io/npm/v/@warriorjs/core.svg?style=flat-square
 [warriorjs-core-npm]: https://www.npmjs.com/package/@warriorjs/core
-[warriorjs-scoring]: /packages/scoring
+[warriorjs-scoring]: /libs/scoring
 [warriorjs-scoring-badge]:
   https://img.shields.io/npm/v/@warriorjs/scoring.svg?style=flat-square
 [warriorjs-scoring-npm]:
   https://www.npmjs.com/package/@warriorjs/scoring
-[warriorjs-spatial]: /packages/spatial
+[warriorjs-spatial]: /libs/spatial
 [warriorjs-spatial-badge]:
   https://img.shields.io/npm/v/@warriorjs/spatial.svg?style=flat-square
 [warriorjs-spatial-npm]: https://www.npmjs.com/package/@warriorjs/spatial
-[warriorjs-abilities]: /packages/abilities
+[warriorjs-abilities]: /libs/abilities
 [warriorjs-abilities-badge]:
   https://img.shields.io/npm/v/@warriorjs/abilities.svg?style=flat-square
 [warriorjs-abilities-npm]: https://www.npmjs.com/package/@warriorjs/abilities
-[warriorjs-effects]: /packages/effects
+[warriorjs-effects]: /libs/effects
 [warriorjs-effects-badge]:
   https://img.shields.io/npm/v/@warriorjs/effects.svg?style=flat-square
 [warriorjs-effects-npm]: https://www.npmjs.com/package/@warriorjs/effects
-[warriorjs-units]: /packages/units
+[warriorjs-units]: /libs/units
 [warriorjs-units-badge]:
   https://img.shields.io/npm/v/@warriorjs/units.svg?style=flat-square
 [warriorjs-units-npm]: https://www.npmjs.com/package/@warriorjs/units

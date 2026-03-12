@@ -1,11 +1,11 @@
 {
-  "name": "@warriorjs/scoring",
-  "version": "0.14.0",
-  "description": "WarriorJS scoring utilities",
+  "name": "@warriorjs/effects",
+  "version": "0.12.2",
+  "description": "WarriorJS base effects",
   "author": "Matias Olivera <hi@matiasolivera.com>",
   "license": "MIT",
   "homepage": "https://warrior.js.org",
-  "repository": "https://github.com/olistic/warriorjs/tree/master/packages/scoring",
+  "repository": "https://github.com/olistic/warriorjs/tree/master/libs/effects",
   "type": "module",
   "main": "lib/index.js",
   "exports": {

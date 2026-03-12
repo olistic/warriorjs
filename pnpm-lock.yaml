@@ -37,10 +37,10 @@ importers:
         version: 7.10.1(@types/node@25.4.0)
       '@warriorjs/core':
         specifier: workspace:^
-        version: link:../../packages/core
+        version: link:../../libs/core
       '@warriorjs/scoring':
         specifier: workspace:^
-        version: link:../../packages/scoring
+        version: link:../../libs/scoring
       '@warriorjs/tower-the-narrow-path':
         specifier: workspace:^
         version: link:../../towers/the-narrow-path
@@ -83,13 +83,13 @@ importers:
         specifier: ^1.2.0
         version: 1.14.7(typescript@5.9.3)(webpack@5.105.4)
 
-  packages/abilities:
+  libs/abilities:
     dependencies:
       '@warriorjs/spatial':
         specifier: workspace:^
         version: link:../spatial
 
-  packages/core:
+  libs/core:
     dependencies:
       '@warriorjs/spatial':
         specifier: workspace:^
@@ -98,13 +98,13 @@ importers:
         specifier: ^0.27.3
         version: 0.27.3
 
-  packages/effects: {}
+  libs/effects: {}
 
-  packages/scoring: {}
+  libs/scoring: {}
 
-  packages/spatial: {}
+  libs/spatial: {}
 
-  packages/units:
+  libs/units:
     dependencies:
       '@warriorjs/abilities':
         specifier: workspace:^
@@ -117,34 +117,34 @@ importers:
     dependencies:
       '@warriorjs/abilities':
         specifier: workspace:^
-        version: link:../../packages/abilities
+        version: link:../../libs/abilities
       '@warriorjs/core':
         specifier: workspace:^
-        version: link:../../packages/core
+        version: link:../../libs/core
       '@warriorjs/spatial':
         specifier: workspace:^
-        version: link:../../packages/spatial
+        version: link:../../libs/spatial
       '@warriorjs/units':
         specifier: workspace:^
-        version: link:../../packages/units
+        version: link:../../libs/units
 
   towers/the-powder-keep:
     dependencies:
       '@warriorjs/abilities':
         specifier: workspace:^
-        version: link:../../packages/abilities
+        version: link:../../libs/abilities
       '@warriorjs/core':
         specifier: workspace:^
-        version: link:../../packages/core
+        version: link:../../libs/core
       '@warriorjs/effects':
         specifier: workspace:^
-        version: link:../../packages/effects
+        version: link:../../libs/effects
       '@warriorjs/spatial':
         specifier: workspace:^
-        version: link:../../packages/spatial
+        version: link:../../libs/spatial
       '@warriorjs/units':
         specifier: workspace:^
-        version: link:../../packages/units
+        version: link:../../libs/units
 
 packages:
 

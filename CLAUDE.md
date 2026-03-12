@@ -20,7 +20,7 @@ pnpm monorepo with Turborepo. Code is organized into three top-level directories
 
 - **`apps/`** — End-user applications
   - **@warriorjs/cli** — CLI for offline play
-- **`packages/`** — Shared libraries
+- **`libs/`** — Shared libraries
   - **@warriorjs/core** — Game engine, level runner, player code loader
   - **@warriorjs/abilities** — Warrior abilities (walk, attack, feel, etc.)
   - **@warriorjs/units** — Game units/enemies

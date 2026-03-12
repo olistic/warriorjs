@@ -64,7 +64,7 @@ typings/
 # Build directories
 apps/*/lib/
 apps/website/build/
-packages/*/lib/
+libs/*/lib/
 towers/*/lib/
 
 # Website

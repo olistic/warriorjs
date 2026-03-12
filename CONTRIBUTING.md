@@ -12,7 +12,7 @@ This project follows a [Code of Conduct](CODE_OF_CONDUCT.md). Please read it.
 4. Run tests: `pnpm test`
 5. Lint: `pnpm lint`
 
-Edit code in `packages/*/src/`. Tests live next to source files
+Edit code in `libs/*/src/`. Tests live next to source files
 (`Foo.test.ts`).
 
 ## Making Changes

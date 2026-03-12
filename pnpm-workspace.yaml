@@ -3,7 +3,7 @@ onlyBuiltDependencies:
 
 packages:
   - 'apps/*'
-  - 'packages/*'
+  - 'libs/*'
   - 'towers/*'
 
 settings:
