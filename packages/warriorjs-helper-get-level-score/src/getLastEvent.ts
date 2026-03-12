@@ -5,8 +5,8 @@
  * @returns The last event.
  */
 function getLastEvent(events: unknown[][]): Record<string, unknown> {
-  const lastTurnEvents = events[events.length - 1];
-  return lastTurnEvents[lastTurnEvents.length - 1] as Record<string, unknown>;
+  const lastTurnEvents = events.at(-1)!;
+  return lastTurnEvents.at(-1) as Record<string, unknown>;
 }
 
 export default getLastEvent;

@@ -1,14 +1,11 @@
 import { createRequire } from 'node:module';
-import path, { dirname } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import path from 'node:path';
 import { findUpSync } from 'find-up';
 import { globbySync } from 'globby';
 
 import Tower from './Tower.js';
 import getTowerId from './utils/getTowerId.js';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
 const require = createRequire(import.meta.url);
 
 const internalTowerPackageNames = ['@warriorjs/tower-baby-steps'];
@@ -29,7 +26,7 @@ function getInternalTowersInfo(): TowerInfo[] {
 }
 
 function getExternalTowersInfo(): TowerInfo[] {
-  const cliDir = findUpSync('@warriorjs/cli', { cwd: __dirname, type: 'directory' });
+  const cliDir = findUpSync('@warriorjs/cli', { cwd: import.meta.dirname, type: 'directory' });
   if (!cliDir) {
     return [];
   }

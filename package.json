@@ -3,7 +3,7 @@
   "type": "module",
   "packageManager": "pnpm@10.11.0",
   "engines": {
-    "node": ">=20"
+    "node": ">=22"
   },
   "homepage": "https://warrior.js.org",
   "repository": "https://github.com/olistic/warriorjs",
