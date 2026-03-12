@@ -26,3 +26,28 @@ export interface LevelConfig {
     units?: UnitConfig[];
   };
 }
+
+export interface TowerFloorUnit {
+  [key: string]: unknown;
+  position: { x: number; y: number; facing?: string };
+}
+
+export interface TowerLevel {
+  description: string;
+  tip: string;
+  clue?: string;
+  timeBonus: number;
+  aceScore: number;
+  floor: {
+    size: { width: number; height: number };
+    stairs: { x: number; y: number };
+    warrior: TowerFloorUnit;
+    units: TowerFloorUnit[];
+  };
+}
+
+export interface TowerDefinition {
+  name: string;
+  description: string;
+  levels: TowerLevel[];
+}

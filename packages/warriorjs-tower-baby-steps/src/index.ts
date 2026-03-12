@@ -11,44 +11,9 @@ import {
   think,
   walk,
 } from '@warriorjs/abilities';
+import type { TowerDefinition } from '@warriorjs/core';
 import { EAST, WEST } from '@warriorjs/geography';
 import { Archer, Captive, Sludge, ThickSludge, Warrior, Wizard } from '@warriorjs/units';
-
-interface Position {
-  x: number;
-  y: number;
-  facing?: string;
-}
-
-interface FloorUnit {
-  [key: string]: unknown;
-  position: Position;
-}
-
-interface Floor {
-  size: { width: number; height: number };
-  stairs: { x: number; y: number };
-  warrior: {
-    [key: string]: unknown;
-    position: Position;
-  };
-  units: FloorUnit[];
-}
-
-interface Level {
-  description: string;
-  tip: string;
-  clue?: string;
-  timeBonus: number;
-  aceScore: number;
-  floor: Floor;
-}
-
-interface TowerDefinition {
-  name: string;
-  description: string;
-  levels: Level[];
-}
 
 const tower: TowerDefinition = {
   name: 'Baby Steps',

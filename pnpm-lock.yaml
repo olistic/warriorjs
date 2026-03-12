@@ -116,6 +116,9 @@ importers:
       '@warriorjs/abilities':
         specifier: workspace:^
         version: link:../warriorjs-abilities
+      '@warriorjs/core':
+        specifier: workspace:^
+        version: link:../warriorjs-core
       '@warriorjs/geography':
         specifier: workspace:^
         version: link:../warriorjs-geography
@@ -128,6 +131,9 @@ importers:
       '@warriorjs/abilities':
         specifier: workspace:^
         version: link:../warriorjs-abilities
+      '@warriorjs/core':
+        specifier: workspace:^
+        version: link:../warriorjs-core
       '@warriorjs/effects':
         specifier: workspace:^
         version: link:../warriorjs-effects

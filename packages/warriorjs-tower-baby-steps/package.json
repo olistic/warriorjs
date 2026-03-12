@@ -32,6 +32,7 @@
   },
   "dependencies": {
     "@warriorjs/abilities": "workspace:^",
+    "@warriorjs/core": "workspace:^",
     "@warriorjs/geography": "workspace:^",
     "@warriorjs/units": "workspace:^"
   }
