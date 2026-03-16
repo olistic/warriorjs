@@ -1,4 +1,5 @@
-import { BACKWARD, EAST, FORWARD, RELATIVE_DIRECTIONS, WEST } from '@warriorjs/spatial';
+import { attack, feel, walk } from '@warriorjs/abilities';
+import { EAST, RELATIVE_DIRECTIONS, WEST } from '@warriorjs/spatial';
 import { expect, test } from 'vitest';
 
 import runLevel from './runLevel.js';
@@ -18,37 +19,9 @@ const levelConfig = {
       character: '@',
       maxHealth: 20,
       abilities: {
-        walk: (unit: any) => ({
-          action: true,
-          perform(direction = FORWARD) {
-            unit.log(`walks ${direction}`);
-            const space = unit.getSpaceAt(direction);
-            if (space.isEmpty()) {
-              unit.move(direction);
-            } else {
-              unit.log(`bumps into ${space}`);
-            }
-          },
-        }),
-        attack: (unit: any) => ({
-          action: true,
-          perform(direction = FORWARD) {
-            const receiver = unit.getSpaceAt(direction).getUnit();
-            if (receiver) {
-              unit.log(`attacks ${direction} and hits ${receiver}`);
-              const attackingBackward = direction === BACKWARD;
-              const amount = attackingBackward ? 3 : 5;
-              unit.damage(receiver, amount);
-            } else {
-              unit.log(`attacks ${direction} and hits nothing`);
-            }
-          },
-        }),
-        feel: (unit: any) => ({
-          perform(direction = FORWARD) {
-            return unit.getSensedSpaceAt(direction);
-          },
-        }),
+        walk: walk,
+        attack: attack.with({ power: 5 }),
+        feel: feel,
       },
       position: {
         x: 0,
@@ -62,25 +35,8 @@ const levelConfig = {
         character: 's',
         maxHealth: 12,
         abilities: {
-          attack: (unit: any) => ({
-            action: true,
-            perform(direction = FORWARD) {
-              const receiver = unit.getSpaceAt(direction).getUnit();
-              if (receiver) {
-                unit.log(`attacks ${direction} and hits ${receiver}`);
-                const attackingBackward = direction === BACKWARD;
-                const amount = attackingBackward ? 2 : 3;
-                unit.damage(receiver, amount);
-              } else {
-                unit.log(`attacks ${direction} and hits nothing`);
-              }
-            },
-          }),
-          feel: (unit: any) => ({
-            perform(direction = FORWARD) {
-              return unit.getSensedSpaceAt(direction);
-            },
-          }),
+          attack: attack.with({ power: 3 }),
+          feel: feel,
         },
         playTurn(sludge: any) {
           const threatDirection = RELATIVE_DIRECTIONS.find((direction) => {

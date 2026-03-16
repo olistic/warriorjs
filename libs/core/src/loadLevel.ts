@@ -1,3 +1,5 @@
+import type { AbilityBinding, Ability as AbilityInstance } from '@warriorjs/abilities';
+
 import Floor from './Floor.js';
 import Level from './Level.js';
 import loadPlayer from './loadPlayer.js';
@@ -5,18 +7,30 @@ import type { LevelConfig, UnitConfig } from './types.js';
 import Unit from './Unit.js';
 import Warrior from './Warrior.js';
 
-function loadAbilities(unit: Unit, abilities: Record<string, (unit: Unit) => any> = {}): void {
-  Object.entries(abilities).forEach(([abilityName, abilityCreator]) => {
-    const ability = abilityCreator(unit);
-    unit.addAbility(abilityName, ability);
-  });
+type AbilityEntry = AbilityBinding | (new (unit: any) => AbilityInstance) | ((unit: Unit) => any);
+
+function loadAbilities(unit: Unit, abilities: Record<string, AbilityEntry> = {}): void {
+  for (const [name, entry] of Object.entries(abilities)) {
+    if (Array.isArray(entry)) {
+      // AbilityBinding: [Class, config]
+      const [AbilityClass, config] = entry;
+      unit.addAbility(name, new AbilityClass(unit, config));
+    } else if (typeof entry === 'function' && entry.prototype?.perform) {
+      // Bare ability class (no config)
+      unit.addAbility(name, new (entry as new (unit: any) => AbilityInstance)(unit));
+    } else {
+      // Legacy factory function: (unit) => ability
+      const ability = (entry as (unit: Unit) => any)(unit);
+      unit.addAbility(name, ability);
+    }
+  }
 }
 
 function loadEffects(unit: Unit, effects: Record<string, (unit: Unit) => any> = {}): void {
-  Object.entries(effects).forEach(([effectName, effectCreator]) => {
+  for (const [effectName, effectCreator] of Object.entries(effects)) {
     const effect = effectCreator(unit);
     unit.addEffect(effectName, effect);
-  });
+  }
 }
 
 function loadWarrior(

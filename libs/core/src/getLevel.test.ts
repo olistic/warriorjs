@@ -1,4 +1,5 @@
-import { EAST, FORWARD, RELATIVE_DIRECTIONS, WEST } from '@warriorjs/spatial';
+import { attack, feel, walk } from '@warriorjs/abilities';
+import { EAST, RELATIVE_DIRECTIONS, WEST } from '@warriorjs/spatial';
 import { expect, test } from 'vitest';
 
 import getLevel from './getLevel.js';
@@ -23,17 +24,9 @@ const levelConfig = {
       color: '#8fbcbb',
       maxHealth: 20,
       abilities: {
-        walk: () => ({
-          action: true,
-          description: `Moves one space in the given direction (\`'${FORWARD}'\` by default).`,
-        }),
-        attack: () => ({
-          action: true,
-          description: `Attacks a unit in the given direction (\`'${FORWARD}'\` by default), dealing 5 HP of damage.`,
-        }),
-        feel: () => ({
-          description: `Returns the adjacent space in the given direction (\`'${FORWARD}'\` by default).`,
-        }),
+        walk: walk,
+        attack: attack.with({ power: 5 }),
+        feel: feel,
       },
       position: {
         x: 0,
@@ -48,13 +41,8 @@ const levelConfig = {
         color: '#d08770',
         maxHealth: 12,
         abilities: {
-          attack: () => ({
-            action: true,
-            description: `Attacks a unit in the given direction (\`'${FORWARD}'\` by default), dealing 3 HP of damage.`,
-          }),
-          feel: () => ({
-            description: `Returns the adjacent space in the given direction (\`'${FORWARD}'\` by default).`,
-          }),
+          attack: attack.with({ power: 3 }),
+          feel: feel,
         },
         playTurn(sludge: any) {
           const playerDirection = RELATIVE_DIRECTIONS.find((direction) => {

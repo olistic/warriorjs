@@ -1,10 +1,11 @@
+import { Action } from '@warriorjs/abilities';
+
 import Logger from './Logger.js';
 import type Position from './Position.js';
 import type { SensedSpace, SensedUnit } from './Space.js';
 import Space from './Space.js';
 
 interface Ability {
-  action?: boolean;
   description?: string;
   perform(...args: any[]): any;
 }
@@ -64,7 +65,7 @@ class Unit {
   getNextTurn(): Turn {
     const turn: Turn = { action: null };
     this.abilities.forEach((ability, name) => {
-      if (ability.action) {
+      if (ability instanceof Action) {
         Object.defineProperty(turn, name, {
           value: (...args: any[]) => {
             if (turn.action) {
