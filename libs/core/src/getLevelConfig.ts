@@ -13,6 +13,11 @@ function deepClone<T>(obj: T): T {
     return obj.map((item) => deepClone(item)) as T;
   }
 
+  // Preserve class instances (Unit subclasses, etc.) — don't deep-clone them.
+  if (obj.constructor !== Object) {
+    return obj;
+  }
+
   const clone = {} as Record<string, unknown>;
   for (const key of Object.keys(obj)) {
     clone[key] = deepClone((obj as Record<string, unknown>)[key]);

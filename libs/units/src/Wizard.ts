@@ -1,17 +1,16 @@
 import { look, shoot } from '@warriorjs/abilities';
 
-import Archer from './Archer.js';
+import RangedUnit from './RangedUnit.js';
 
-const Wizard = {
-  ...Archer,
-  name: 'Wizard',
-  character: 'w',
-  color: '#b48ead',
-  maxHealth: 3,
-  abilities: {
+class Wizard extends RangedUnit {
+  declaredAbilities = {
     look: look.with({ range: 3 }),
     shoot: shoot.with({ range: 3, power: 11 }),
-  },
-};
+  };
+
+  constructor() {
+    super('Wizard', 'w', '#b48ead', 3);
+  }
+}
 
 export default Wizard;

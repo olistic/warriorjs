@@ -88,7 +88,7 @@ const tower: TowerDefinition = {
         },
         units: [
           {
-            ...Sludge,
+            unit: new Sludge(),
             position: {
               x: 1,
               y: 0,
@@ -96,7 +96,7 @@ const tower: TowerDefinition = {
             },
           },
           {
-            ...ThickSludge,
+            unit: new ThickSludge(),
             position: {
               x: 2,
               y: 1,
@@ -104,7 +104,7 @@ const tower: TowerDefinition = {
             },
           },
           {
-            ...Sludge,
+            unit: new Sludge(),
             position: {
               x: 1,
               y: 1,
@@ -143,7 +143,7 @@ const tower: TowerDefinition = {
         },
         units: [
           {
-            ...Sludge,
+            unit: new Sludge(),
             position: {
               x: 1,
               y: 0,
@@ -151,7 +151,7 @@ const tower: TowerDefinition = {
             },
           },
           {
-            ...Captive,
+            unit: new Captive(),
             position: {
               x: 1,
               y: 2,
@@ -159,7 +159,7 @@ const tower: TowerDefinition = {
             },
           },
           {
-            ...Sludge,
+            unit: new Sludge(),
             position: {
               x: 0,
               y: 1,
@@ -167,7 +167,7 @@ const tower: TowerDefinition = {
             },
           },
           {
-            ...Sludge,
+            unit: new Sludge(),
             position: {
               x: 2,
               y: 1,
@@ -207,7 +207,7 @@ const tower: TowerDefinition = {
         },
         units: [
           {
-            ...Captive,
+            unit: new Captive(),
             position: {
               x: 0,
               y: 0,
@@ -215,7 +215,7 @@ const tower: TowerDefinition = {
             },
           },
           {
-            ...Captive,
+            unit: new Captive(),
             position: {
               x: 0,
               y: 2,
@@ -223,7 +223,7 @@ const tower: TowerDefinition = {
             },
           },
           {
-            ...Sludge,
+            unit: new Sludge(),
             position: {
               x: 2,
               y: 0,
@@ -231,7 +231,7 @@ const tower: TowerDefinition = {
             },
           },
           {
-            ...ThickSludge,
+            unit: new ThickSludge(),
             position: {
               x: 3,
               y: 1,
@@ -239,7 +239,7 @@ const tower: TowerDefinition = {
             },
           },
           {
-            ...Sludge,
+            unit: new Sludge(),
             position: {
               x: 2,
               y: 2,
@@ -275,7 +275,7 @@ const tower: TowerDefinition = {
         },
         units: [
           {
-            ...ThickSludge,
+            unit: new ThickSludge(),
             position: {
               x: 4,
               y: 0,
@@ -283,7 +283,7 @@ const tower: TowerDefinition = {
             },
           },
           {
-            ...ThickSludge,
+            unit: new ThickSludge(),
             position: {
               x: 3,
               y: 1,
@@ -291,7 +291,7 @@ const tower: TowerDefinition = {
             },
           },
           {
-            ...Captive,
+            unit: new Captive(),
             position: {
               x: 4,
               y: 1,
@@ -327,7 +327,7 @@ const tower: TowerDefinition = {
         },
         units: [
           {
-            ...Sludge,
+            unit: new Sludge(),
             position: {
               x: 1,
               y: 0,
@@ -335,7 +335,7 @@ const tower: TowerDefinition = {
             },
           },
           {
-            ...Sludge,
+            unit: new Sludge(),
             position: {
               x: 3,
               y: 1,
@@ -343,7 +343,7 @@ const tower: TowerDefinition = {
             },
           },
           {
-            ...Captive,
+            unit: new Captive(),
             position: {
               x: 0,
               y: 0,
@@ -351,7 +351,7 @@ const tower: TowerDefinition = {
             },
           },
           {
-            ...Captive,
+            unit: new Captive(),
             effects: {
               ticking: ticking({ time: 7 }),
             },
@@ -390,7 +390,7 @@ const tower: TowerDefinition = {
         },
         units: [
           {
-            ...Sludge,
+            unit: new Sludge(),
             position: {
               x: 1,
               y: 0,
@@ -398,7 +398,7 @@ const tower: TowerDefinition = {
             },
           },
           {
-            ...Sludge,
+            unit: new Sludge(),
             position: {
               x: 1,
               y: 2,
@@ -406,7 +406,7 @@ const tower: TowerDefinition = {
             },
           },
           {
-            ...Captive,
+            unit: new Captive(),
             position: {
               x: 2,
               y: 1,
@@ -414,7 +414,7 @@ const tower: TowerDefinition = {
             },
           },
           {
-            ...Captive,
+            unit: new Captive(),
             effects: {
               ticking: ticking({ time: 10 }),
             },
@@ -425,7 +425,7 @@ const tower: TowerDefinition = {
             },
           },
           {
-            ...Captive,
+            unit: new Captive(),
             position: {
               x: 2,
               y: 0,
@@ -465,7 +465,7 @@ const tower: TowerDefinition = {
         },
         units: [
           {
-            ...Captive,
+            unit: new Captive(),
             effects: {
               ticking: ticking({ time: 9 }),
             },
@@ -476,7 +476,7 @@ const tower: TowerDefinition = {
             },
           },
           {
-            ...ThickSludge,
+            unit: new ThickSludge(),
             position: {
               x: 2,
               y: 0,
@@ -484,7 +484,7 @@ const tower: TowerDefinition = {
             },
           },
           {
-            ...Sludge,
+            unit: new Sludge(),
             position: {
               x: 3,
               y: 0,
@@ -523,7 +523,7 @@ const tower: TowerDefinition = {
         },
         units: [
           {
-            ...Captive,
+            unit: new Captive(),
             effects: {
               ticking: ticking({ time: 20 }),
             },
@@ -534,7 +534,7 @@ const tower: TowerDefinition = {
             },
           },
           {
-            ...Captive,
+            unit: new Captive(),
             position: {
               x: 2,
               y: 2,
@@ -542,7 +542,7 @@ const tower: TowerDefinition = {
             },
           },
           {
-            ...Sludge,
+            unit: new Sludge(),
             position: {
               x: 0,
               y: 0,
@@ -550,7 +550,7 @@ const tower: TowerDefinition = {
             },
           },
           {
-            ...Sludge,
+            unit: new Sludge(),
             position: {
               x: 1,
               y: 0,
@@ -558,7 +558,7 @@ const tower: TowerDefinition = {
             },
           },
           {
-            ...Sludge,
+            unit: new Sludge(),
             position: {
               x: 1,
               y: 1,
@@ -566,7 +566,7 @@ const tower: TowerDefinition = {
             },
           },
           {
-            ...Sludge,
+            unit: new Sludge(),
             position: {
               x: 2,
               y: 1,
@@ -574,7 +574,7 @@ const tower: TowerDefinition = {
             },
           },
           {
-            ...Sludge,
+            unit: new Sludge(),
             position: {
               x: 3,
               y: 1,
@@ -582,7 +582,7 @@ const tower: TowerDefinition = {
             },
           },
           {
-            ...Sludge,
+            unit: new Sludge(),
             position: {
               x: 0,
               y: 2,
@@ -590,7 +590,7 @@ const tower: TowerDefinition = {
             },
           },
           {
-            ...Sludge,
+            unit: new Sludge(),
             position: {
               x: 1,
               y: 2,

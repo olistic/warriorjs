@@ -2,28 +2,37 @@ import { BACKWARD, FORWARD, LEFT, RIGHT } from '@warriorjs/spatial';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 
 import Archer from './Archer.js';
-
-vi.mock('@warriorjs/abilities');
+import RangedUnit from './RangedUnit.js';
 
 describe('Archer', () => {
+  let archer: Archer;
+
+  beforeEach(() => {
+    archer = new Archer();
+  });
+
+  test('extends RangedUnit', () => {
+    expect(archer).toBeInstanceOf(RangedUnit);
+  });
+
   test("appears as 'a' on map", () => {
-    expect(Archer.character).toBe('a');
+    expect(archer.character).toBe('a');
   });
 
   test('has #ebcb8b color', () => {
-    expect(Archer.color).toBe('#ebcb8b');
+    expect(archer.color).toBe('#ebcb8b');
   });
 
   test('has 7 max health', () => {
-    expect(Archer.maxHealth).toBe(7);
+    expect(archer.maxHealth).toBe(7);
   });
 
-  test('has shoot ability with power 3 and range 3', () => {
-    expect(Archer.abilities).toHaveProperty('shoot');
+  test('has shoot ability', () => {
+    expect(archer.declaredAbilities).toHaveProperty('shoot');
   });
 
-  test('has look ability with range 3', () => {
-    expect(Archer.abilities).toHaveProperty('look');
+  test('has look ability', () => {
+    expect(archer.declaredAbilities).toHaveProperty('look');
   });
 
   describe('playing turn', () => {
@@ -39,7 +48,7 @@ describe('Archer', () => {
     });
 
     test('looks for player in all directions', () => {
-      Archer.playTurn(turn);
+      archer.playTurn(turn);
       expect(turn.look).toHaveBeenCalledWith(FORWARD);
       expect(turn.look).toHaveBeenCalledWith(RIGHT);
       expect(turn.look).toHaveBeenCalledWith(BACKWARD);
@@ -56,7 +65,7 @@ describe('Archer', () => {
         },
         anotherSpace,
       ]);
-      Archer.playTurn(turn);
+      archer.playTurn(turn);
       expect(anotherSpace.isUnit).not.toHaveBeenCalled();
     });
 
@@ -72,7 +81,7 @@ describe('Archer', () => {
         },
         space,
       ]);
-      Archer.playTurn(turn);
+      archer.playTurn(turn);
       expect(turn.look).toHaveBeenCalledWith(FORWARD);
       expect(turn.look).toHaveBeenCalledWith(RIGHT);
       expect(turn.look).not.toHaveBeenCalledWith(BACKWARD);
@@ -92,7 +101,7 @@ describe('Archer', () => {
           }),
         },
       ]);
-      Archer.playTurn(turn);
+      archer.playTurn(turn);
       expect(turn.shoot).not.toHaveBeenCalled();
     });
   });

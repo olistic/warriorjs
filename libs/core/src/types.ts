@@ -1,3 +1,5 @@
+import type Unit from './Unit.js';
+
 export interface UnitConfig {
   name: string;
   character: string;
@@ -6,7 +8,7 @@ export interface UnitConfig {
   reward?: number;
   enemy?: boolean;
   bound?: boolean;
-  abilities?: Record<string, (unit: any) => any>;
+  abilities?: Record<string, any>;
   effects?: Record<string, (unit: any) => any>;
   playTurn?: (turn: any) => void;
   position: { x: number; y: number; facing: string };
@@ -23,8 +25,14 @@ export interface LevelConfig {
     size: { width: number; height: number };
     stairs: { x: number; y: number };
     warrior: UnitConfig;
-    units?: UnitConfig[];
+    units?: (UnitConfig | TowerUnitEntry)[];
   };
+}
+
+export interface TowerUnitEntry {
+  unit: Unit;
+  effects?: Record<string, (unit: any) => any>;
+  position: { x: number; y: number; facing: string };
 }
 
 export interface TowerFloorUnit {
@@ -42,7 +50,7 @@ export interface TowerLevel {
     size: { width: number; height: number };
     stairs: { x: number; y: number };
     warrior: TowerFloorUnit;
-    units: TowerFloorUnit[];
+    units: (TowerFloorUnit | TowerUnitEntry)[];
   };
 }
 

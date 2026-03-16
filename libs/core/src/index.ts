@@ -7,5 +7,7 @@ export type {
   TowerDefinition,
   TowerFloorUnit,
   TowerLevel,
+  TowerUnitEntry,
   UnitConfig,
 } from './types.js';
+export { default as Unit } from './Unit.js';

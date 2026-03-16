@@ -1,29 +1,38 @@
 import { BACKWARD, FORWARD, LEFT, RIGHT } from '@warriorjs/spatial';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 
+import RangedUnit from './RangedUnit.js';
 import Wizard from './Wizard.js';
 
-vi.mock('@warriorjs/abilities');
-
 describe('Wizard', () => {
+  let wizard: Wizard;
+
+  beforeEach(() => {
+    wizard = new Wizard();
+  });
+
+  test('extends RangedUnit', () => {
+    expect(wizard).toBeInstanceOf(RangedUnit);
+  });
+
   test("appears as 'w' on map", () => {
-    expect(Wizard.character).toBe('w');
+    expect(wizard.character).toBe('w');
   });
 
   test('has #b48ead color', () => {
-    expect(Wizard.color).toBe('#b48ead');
+    expect(wizard.color).toBe('#b48ead');
   });
 
   test('has 3 max health', () => {
-    expect(Wizard.maxHealth).toBe(3);
+    expect(wizard.maxHealth).toBe(3);
   });
 
-  test('has shoot ability with power 11 and range 3', () => {
-    expect(Wizard.abilities).toHaveProperty('shoot');
+  test('has shoot ability', () => {
+    expect(wizard.declaredAbilities).toHaveProperty('shoot');
   });
 
-  test('has look ability with range 3', () => {
-    expect(Wizard.abilities).toHaveProperty('look');
+  test('has look ability', () => {
+    expect(wizard.declaredAbilities).toHaveProperty('look');
   });
 
   describe('playing turn', () => {
@@ -39,7 +48,7 @@ describe('Wizard', () => {
     });
 
     test('looks for player in all directions', () => {
-      Wizard.playTurn(turn);
+      wizard.playTurn(turn);
       expect(turn.look).toHaveBeenCalledWith(FORWARD);
       expect(turn.look).toHaveBeenCalledWith(RIGHT);
       expect(turn.look).toHaveBeenCalledWith(BACKWARD);
@@ -56,7 +65,7 @@ describe('Wizard', () => {
         },
         anotherSpace,
       ]);
-      Wizard.playTurn(turn);
+      wizard.playTurn(turn);
       expect(anotherSpace.isUnit).not.toHaveBeenCalled();
     });
 
@@ -72,7 +81,7 @@ describe('Wizard', () => {
         },
         space,
       ]);
-      Wizard.playTurn(turn);
+      wizard.playTurn(turn);
       expect(turn.look).toHaveBeenCalledWith(FORWARD);
       expect(turn.look).toHaveBeenCalledWith(RIGHT);
       expect(turn.look).not.toHaveBeenCalledWith(BACKWARD);
@@ -92,7 +101,7 @@ describe('Wizard', () => {
           }),
         },
       ]);
-      Wizard.playTurn(turn);
+      wizard.playTurn(turn);
       expect(turn.shoot).not.toHaveBeenCalled();
     });
   });

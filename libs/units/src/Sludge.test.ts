@@ -1,29 +1,38 @@
 import { BACKWARD, FORWARD, LEFT, RIGHT } from '@warriorjs/spatial';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 
+import MeleeUnit from './MeleeUnit.js';
 import Sludge from './Sludge.js';
 
-vi.mock('@warriorjs/abilities');
-
 describe('Sludge', () => {
+  let sludge: Sludge;
+
+  beforeEach(() => {
+    sludge = new Sludge();
+  });
+
+  test('extends MeleeUnit', () => {
+    expect(sludge).toBeInstanceOf(MeleeUnit);
+  });
+
   test("appears as 's' on map", () => {
-    expect(Sludge.character).toBe('s');
+    expect(sludge.character).toBe('s');
   });
 
   test('has #d08770 color', () => {
-    expect(Sludge.color).toBe('#d08770');
+    expect(sludge.color).toBe('#d08770');
   });
 
   test('has 12 max health', () => {
-    expect(Sludge.maxHealth).toBe(12);
+    expect(sludge.maxHealth).toBe(12);
   });
 
-  test('has attack ability with power 3', () => {
-    expect(Sludge.abilities).toHaveProperty('attack');
+  test('has attack ability', () => {
+    expect(sludge.declaredAbilities).toHaveProperty('attack');
   });
 
   test('has feel ability', () => {
-    expect(Sludge.abilities).toHaveProperty('feel');
+    expect(sludge.declaredAbilities).toHaveProperty('feel');
   });
 
   describe('playing turn', () => {
@@ -39,7 +48,7 @@ describe('Sludge', () => {
     });
 
     test('looks for player in all directions', () => {
-      Sludge.playTurn(turn);
+      sludge.playTurn(turn);
       expect(turn.feel).toHaveBeenCalledWith(FORWARD);
       expect(turn.feel).toHaveBeenCalledWith(RIGHT);
       expect(turn.feel).toHaveBeenCalledWith(BACKWARD);
@@ -53,7 +62,7 @@ describe('Sludge', () => {
           isEnemy: () => true,
         }),
       });
-      Sludge.playTurn(turn);
+      sludge.playTurn(turn);
       expect(turn.feel).toHaveBeenCalledWith(FORWARD);
       expect(turn.feel).toHaveBeenCalledWith(RIGHT);
       expect(turn.feel).not.toHaveBeenCalledWith(BACKWARD);
@@ -62,7 +71,7 @@ describe('Sludge', () => {
     });
 
     test("does nothing if it doesn't find threat", () => {
-      Sludge.playTurn(turn);
+      sludge.playTurn(turn);
       expect(turn.attack).not.toHaveBeenCalled();
     });
   });

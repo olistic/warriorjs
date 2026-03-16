@@ -115,6 +115,9 @@ importers:
       '@warriorjs/abilities':
         specifier: workspace:^
         version: link:../abilities
+      '@warriorjs/core':
+        specifier: workspace:^
+        version: link:../core
       '@warriorjs/spatial':
         specifier: workspace:^
         version: link:../spatial

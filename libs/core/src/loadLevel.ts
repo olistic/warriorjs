@@ -3,7 +3,7 @@ import type { AbilityBinding, Ability as AbilityInstance } from '@warriorjs/abil
 import Floor from './Floor.js';
 import Level from './Level.js';
 import loadPlayer from './loadPlayer.js';
-import type { LevelConfig, UnitConfig } from './types.js';
+import type { LevelConfig, TowerUnitEntry, UnitConfig } from './types.js';
 import Unit from './Unit.js';
 import Warrior from './Warrior.js';
 
@@ -46,8 +46,12 @@ function loadWarrior(
   floor.addWarrior(warrior, position);
 }
 
-function loadUnit(
-  {
+function isTowerUnitEntry(entry: UnitConfig | TowerUnitEntry): entry is TowerUnitEntry {
+  return 'unit' in entry && entry.unit instanceof Unit;
+}
+
+function loadUnitFromConfig(config: UnitConfig, floor: Floor): void {
+  const {
     name,
     character,
     color,
@@ -59,14 +63,24 @@ function loadUnit(
     effects,
     playTurn,
     position,
-  }: UnitConfig,
-  floor: Floor,
-): void {
+  } = config;
   const unit = new Unit(name, character, color, maxHealth, reward, enemy, bound);
   loadAbilities(unit, abilities);
   loadEffects(unit, effects);
   if (playTurn) {
     unit.playTurn = playTurn;
+  }
+  floor.addUnit(unit, position);
+}
+
+function loadUnitFromInstance(entry: TowerUnitEntry, floor: Floor): void {
+  const { unit, effects, position } = entry;
+  const declaredAbilities = (unit as any).declaredAbilities;
+  if (declaredAbilities) {
+    loadAbilities(unit, declaredAbilities);
+  }
+  if (effects) {
+    loadEffects(unit, effects);
   }
   floor.addUnit(unit, position);
 }
@@ -81,7 +95,13 @@ function loadLevel(
   const floor = new Floor(width, height, stairsLocation);
 
   loadWarrior(warrior, floor, playerCode, language);
-  units.forEach((unit) => loadUnit(unit, floor));
+  for (const entry of units) {
+    if (isTowerUnitEntry(entry)) {
+      loadUnitFromInstance(entry, floor);
+    } else {
+      loadUnitFromConfig(entry, floor);
+    }
+  }
 
   return new Level(number!, description!, tip!, clue!, floor);
 }
