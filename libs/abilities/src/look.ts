@@ -32,7 +32,7 @@ class Look extends Sense {
   }
 
   static with(config: LookConfig): AbilityBinding {
-    return [Look, config as Record<string, unknown>];
+    return [Look, config];
   }
 }
 

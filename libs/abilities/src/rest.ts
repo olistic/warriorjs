@@ -32,7 +32,7 @@ class Rest extends Action {
   }
 
   static with(config: RestConfig): AbilityBinding {
-    return [Rest, config as Record<string, unknown>];
+    return [Rest, config];
   }
 }
 

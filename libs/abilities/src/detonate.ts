@@ -56,7 +56,7 @@ class Detonate extends Action {
   }
 
   static with(config: DetonateConfig): AbilityBinding {
-    return [Detonate, config as Record<string, unknown>];
+    return [Detonate, config];
   }
 }
 

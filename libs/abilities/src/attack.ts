@@ -37,7 +37,7 @@ class Attack extends Action {
   }
 
   static with(config: AttackConfig): AbilityBinding {
-    return [Attack, config as Record<string, unknown>];
+    return [Attack, config];
   }
 }
 

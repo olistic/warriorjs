@@ -1,6 +1,6 @@
 import type { AbilityMeta, Unit } from './types.js';
 
-export type AbilityBinding = [typeof Ability, Record<string, unknown>];
+export type AbilityBinding = [new (unit: any, config: any) => Ability, object];
 
 abstract class Ability {
   protected unit: Unit;

@@ -41,7 +41,7 @@ class Shoot extends Action {
   }
 
   static with(config: ShootConfig): AbilityBinding {
-    return [Shoot, config as Record<string, unknown>];
+    return [Shoot, config];
   }
 }
 
