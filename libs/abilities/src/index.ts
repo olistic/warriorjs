@@ -1,3 +1,6 @@
+export type { AbilityBinding } from './Ability.js';
+export { default as Ability } from './Ability.js';
+export { default as Action } from './Action.js';
 export { default as attack } from './attack.js';
 export { default as bind } from './bind.js';
 export { default as detonate } from './detonate.js';
@@ -12,7 +15,8 @@ export { default as maxHealth } from './maxHealth.js';
 export { default as pivot } from './pivot.js';
 export { default as rescue } from './rescue.js';
 export { default as rest } from './rest.js';
+export { default as Sense } from './Sense.js';
 export { default as shoot } from './shoot.js';
 export { default as think } from './think.js';
-export type { Ability, AbilityCreator, SensedSpace, Space, Unit } from './types.js';
+export type { AbilityCreator, SensedSpace, Space, Unit } from './types.js';
 export { default as walk } from './walk.js';
