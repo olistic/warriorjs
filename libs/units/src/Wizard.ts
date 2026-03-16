@@ -9,8 +9,8 @@ const Wizard = {
   color: '#b48ead',
   maxHealth: 3,
   abilities: {
-    look: look({ range: 3 }),
-    shoot: shoot({ range: 3, power: 11 }),
+    look: look.with({ range: 3 }),
+    shoot: shoot.with({ range: 3, power: 11 }),
   },
 };
 

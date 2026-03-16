@@ -14,8 +14,8 @@ const Sludge = {
   color: '#d08770',
   maxHealth: 12,
   abilities: {
-    attack: attack({ power: 3 }),
-    feel: feel(),
+    attack: attack.with({ power: 3 }),
+    feel: feel,
   },
   playTurn(sludge: UnitTurn) {
     const threatDirection = RELATIVE_DIRECTIONS.find((direction) => {

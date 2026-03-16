@@ -15,8 +15,8 @@ const Archer = {
   color: '#ebcb8b',
   maxHealth: 7,
   abilities: {
-    look: look({ range: 3 }),
-    shoot: shoot({ range: 3, power: 3 }),
+    look: look.with({ range: 3 }),
+    shoot: shoot.with({ range: 3, power: 3 }),
   },
   playTurn(archer: UnitTurn) {
     const threatDirection = RELATIVE_DIRECTIONS.find((direction) => {
