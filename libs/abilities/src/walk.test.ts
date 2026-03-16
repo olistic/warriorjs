@@ -1,10 +1,11 @@
 import { FORWARD, RIGHT } from '@warriorjs/spatial';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 
-import walkCreator from './walk.js';
+import Action from './Action.js';
+import Walk from './walk.js';
 
-describe('walk', () => {
-  let walk: ReturnType<ReturnType<typeof walkCreator>>;
+describe('Walk', () => {
+  let walk: Walk;
   let unit: any;
 
   beforeEach(() => {
@@ -12,11 +13,11 @@ describe('walk', () => {
       move: vi.fn(),
       log: vi.fn(),
     };
-    walk = walkCreator()(unit);
+    walk = new Walk(unit);
   });
 
   test('is an action', () => {
-    expect(walk.action).toBe(true);
+    expect(walk).toBeInstanceOf(Action);
   });
 
   test('has a description', () => {
@@ -55,7 +56,7 @@ describe('walk', () => {
       expect(unit.move).not.toHaveBeenCalled();
     });
 
-    test('moves in specified direction if space if empty', () => {
+    test('moves in specified direction if space is empty', () => {
       unit.getSpaceAt = () => ({ isEmpty: () => true });
       walk.perform(RIGHT);
       expect(unit.log).toHaveBeenCalledWith(`walks ${RIGHT}`);

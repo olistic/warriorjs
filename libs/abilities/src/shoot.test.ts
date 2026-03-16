@@ -1,10 +1,11 @@
 import { FORWARD, LEFT } from '@warriorjs/spatial';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 
-import shootCreator from './shoot.js';
+import Action from './Action.js';
+import Shoot from './shoot.js';
 
-describe('shoot', () => {
-  let shoot: ReturnType<ReturnType<typeof shootCreator>>;
+describe('Shoot', () => {
+  let shoot: Shoot;
   let unit: any;
 
   beforeEach(() => {
@@ -12,11 +13,11 @@ describe('shoot', () => {
       damage: vi.fn(),
       log: vi.fn(),
     };
-    shoot = shootCreator({ power: 3, range: 3 })(unit);
+    shoot = new Shoot(unit, { power: 3, range: 3 });
   });
 
   test('is an action', () => {
-    expect(shoot.action).toBe(true);
+    expect(shoot).toBeInstanceOf(Action);
   });
 
   test('has a description', () => {
@@ -30,6 +31,11 @@ describe('shoot', () => {
       params: [{ name: 'direction', type: 'Direction', optional: true }],
       returns: 'void',
     });
+  });
+
+  test('.with() returns an AbilityBinding', () => {
+    const binding = Shoot.with({ power: 3, range: 3 });
+    expect(binding).toEqual([Shoot, { power: 3, range: 3 }]);
   });
 
   describe('performing', () => {

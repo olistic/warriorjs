@@ -1,10 +1,11 @@
 import { BACKWARD, RIGHT } from '@warriorjs/spatial';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 
-import pivotCreator from './pivot.js';
+import Action from './Action.js';
+import Pivot from './pivot.js';
 
-describe('pivot', () => {
-  let pivot: ReturnType<ReturnType<typeof pivotCreator>>;
+describe('Pivot', () => {
+  let pivot: Pivot;
   let unit: any;
 
   beforeEach(() => {
@@ -12,11 +13,11 @@ describe('pivot', () => {
       rotate: vi.fn(),
       log: vi.fn(),
     };
-    pivot = pivotCreator()(unit);
+    pivot = new Pivot(unit);
   });
 
   test('is an action', () => {
-    expect(pivot.action).toBe(true);
+    expect(pivot).toBeInstanceOf(Action);
   });
 
   test('has a description', () => {

@@ -1,27 +1,27 @@
 import { FORWARD, type RelativeDirection } from '@warriorjs/spatial';
 
-import type { Unit } from './types.js';
+import Action from './Action.js';
+import type { AbilityMeta } from './types.js';
 
 const defaultDirection = FORWARD;
 
-function rescue() {
-  return (unit: Unit) => ({
-    action: true as const,
-    description: `Releases a unit from their chains in the given direction (\`'${defaultDirection}'\` by default).`,
-    perform(direction: RelativeDirection = defaultDirection) {
-      const receiver = unit.getSpaceAt(direction).getUnit();
-      if (receiver?.isBound()) {
-        unit.log(`unbinds ${direction} and rescues ${receiver}`);
-        unit.release(receiver);
-      } else {
-        unit.log(`unbinds ${direction} and rescues nothing`);
-      }
-    },
-    meta: {
-      params: [{ name: 'direction', type: 'Direction' as const, optional: true }],
-      returns: 'void' as const,
-    },
-  });
+class Rescue extends Action {
+  readonly description =
+    `Releases a unit from their chains in the given direction (\`'${defaultDirection}'\` by default).`;
+  readonly meta: AbilityMeta = {
+    params: [{ name: 'direction', type: 'Direction', optional: true }],
+    returns: 'void',
+  };
+
+  perform(direction: RelativeDirection = defaultDirection): void {
+    const receiver = this.unit.getSpaceAt(direction).getUnit();
+    if (receiver?.isBound()) {
+      this.unit.log(`unbinds ${direction} and rescues ${receiver}`);
+      this.unit.release(receiver);
+    } else {
+      this.unit.log(`unbinds ${direction} and rescues nothing`);
+    }
+  }
 }
 
-export default rescue;
+export default Rescue;

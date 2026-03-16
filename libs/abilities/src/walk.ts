@@ -1,27 +1,27 @@
 import { FORWARD, type RelativeDirection } from '@warriorjs/spatial';
 
-import type { Unit } from './types.js';
+import Action from './Action.js';
+import type { AbilityMeta } from './types.js';
 
 const defaultDirection = FORWARD;
 
-function walk() {
-  return (unit: Unit) => ({
-    action: true as const,
-    description: `Moves one space in the given direction (\`'${defaultDirection}'\` by default).`,
-    perform(direction: RelativeDirection = defaultDirection) {
-      const space = unit.getSpaceAt(direction);
-      if (space.isEmpty()) {
-        unit.move(direction);
-        unit.log(`walks ${direction}`);
-      } else {
-        unit.log(`walks ${direction} and bumps into ${space}`);
-      }
-    },
-    meta: {
-      params: [{ name: 'direction', type: 'Direction' as const, optional: true }],
-      returns: 'void' as const,
-    },
-  });
+class Walk extends Action {
+  readonly description =
+    `Moves one space in the given direction (\`'${defaultDirection}'\` by default).`;
+  readonly meta: AbilityMeta = {
+    params: [{ name: 'direction', type: 'Direction', optional: true }],
+    returns: 'void',
+  };
+
+  perform(direction: RelativeDirection = defaultDirection): void {
+    const space = this.unit.getSpaceAt(direction);
+    if (space.isEmpty()) {
+      this.unit.move(direction);
+      this.unit.log(`walks ${direction}`);
+    } else {
+      this.unit.log(`walks ${direction} and bumps into ${space}`);
+    }
+  }
 }
 
-export default walk;
+export default Walk;

@@ -1,27 +1,27 @@
 import { FORWARD, type RelativeDirection } from '@warriorjs/spatial';
 
-import type { Unit } from './types.js';
+import Action from './Action.js';
+import type { AbilityMeta } from './types.js';
 
 const defaultDirection = FORWARD;
 
-function bind() {
-  return (unit: Unit) => ({
-    action: true as const,
-    description: `Binds a unit in the given direction (\`'${defaultDirection}'\` by default) to keep them from moving.`,
-    perform(direction: RelativeDirection = defaultDirection) {
-      const receiver = unit.getSpaceAt(direction).getUnit();
-      if (receiver) {
-        unit.log(`binds ${direction} and restricts ${receiver}`);
-        receiver.bind();
-      } else {
-        unit.log(`binds ${direction} and restricts nothing`);
-      }
-    },
-    meta: {
-      params: [{ name: 'direction', type: 'Direction' as const, optional: true }],
-      returns: 'void' as const,
-    },
-  });
+class Bind extends Action {
+  readonly description =
+    `Binds a unit in the given direction (\`'${defaultDirection}'\` by default) to keep them from moving.`;
+  readonly meta: AbilityMeta = {
+    params: [{ name: 'direction', type: 'Direction', optional: true }],
+    returns: 'void',
+  };
+
+  perform(direction: RelativeDirection = defaultDirection): void {
+    const receiver = this.unit.getSpaceAt(direction).getUnit();
+    if (receiver) {
+      this.unit.log(`binds ${direction} and restricts ${receiver}`);
+      receiver.bind();
+    } else {
+      this.unit.log(`binds ${direction} and restricts nothing`);
+    }
+  }
 }
 
-export default bind;
+export default Bind;

@@ -1,10 +1,11 @@
 import { BACKWARD, FORWARD, LEFT } from '@warriorjs/spatial';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 
-import attackCreator from './attack.js';
+import Action from './Action.js';
+import Attack from './attack.js';
 
-describe('attack', () => {
-  let attack: ReturnType<ReturnType<typeof attackCreator>>;
+describe('Attack', () => {
+  let attack: Attack;
   let unit: any;
 
   beforeEach(() => {
@@ -12,11 +13,11 @@ describe('attack', () => {
       damage: vi.fn(),
       log: vi.fn(),
     };
-    attack = attackCreator({ power: 3 })(unit);
+    attack = new Attack(unit, { power: 3 });
   });
 
   test('is an action', () => {
-    expect(attack.action).toBe(true);
+    expect(attack).toBeInstanceOf(Action);
   });
 
   test('has a description', () => {
@@ -30,6 +31,11 @@ describe('attack', () => {
       params: [{ name: 'direction', type: 'Direction', optional: true }],
       returns: 'void',
     });
+  });
+
+  test('.with() returns an AbilityBinding', () => {
+    const binding = Attack.with({ power: 5 });
+    expect(binding).toEqual([Attack, { power: 5 }]);
   });
 
   describe('performing', () => {

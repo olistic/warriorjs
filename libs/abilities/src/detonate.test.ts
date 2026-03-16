@@ -1,10 +1,11 @@
 import { FORWARD, LEFT } from '@warriorjs/spatial';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 
-import detonateCreator from './detonate.js';
+import Action from './Action.js';
+import Detonate from './detonate.js';
 
-describe('detonate', () => {
-  let detonate: ReturnType<ReturnType<typeof detonateCreator>>;
+describe('Detonate', () => {
+  let detonate: Detonate;
   let unit: any;
 
   beforeEach(() => {
@@ -13,11 +14,11 @@ describe('detonate', () => {
       isUnderEffect: () => false,
       log: vi.fn(),
     };
-    detonate = detonateCreator({ targetPower: 4, surroundingPower: 2 })(unit);
+    detonate = new Detonate(unit, { targetPower: 4, surroundingPower: 2 });
   });
 
   test('is an action', () => {
-    expect(detonate.action).toBe(true);
+    expect(detonate).toBeInstanceOf(Action);
   });
 
   test('has a description', () => {
@@ -31,6 +32,11 @@ describe('detonate', () => {
       params: [{ name: 'direction', type: 'Direction', optional: true }],
       returns: 'void',
     });
+  });
+
+  test('.with() returns an AbilityBinding', () => {
+    const binding = Detonate.with({ targetPower: 4, surroundingPower: 2 });
+    expect(binding).toEqual([Detonate, { targetPower: 4, surroundingPower: 2 }]);
   });
 
   describe('performing', () => {
@@ -70,7 +76,7 @@ describe('detonate', () => {
       expect(unit.damage).toHaveBeenCalledWith(unit, 2);
     });
 
-    test('damages receivers depending on their position', () => {
+    test('triggers ticking effect on receivers under effect', () => {
       const receiver = {
         isUnderEffect: () => true,
         triggerEffect: vi.fn(),

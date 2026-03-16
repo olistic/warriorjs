@@ -1,10 +1,11 @@
 import { FORWARD, RIGHT } from '@warriorjs/spatial';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 
-import rescueCreator from './rescue.js';
+import Action from './Action.js';
+import Rescue from './rescue.js';
 
-describe('rescue', () => {
-  let rescue: ReturnType<ReturnType<typeof rescueCreator>>;
+describe('Rescue', () => {
+  let rescue: Rescue;
   let unit: any;
 
   beforeEach(() => {
@@ -12,11 +13,11 @@ describe('rescue', () => {
       release: vi.fn(),
       log: vi.fn(),
     };
-    rescue = rescueCreator()(unit);
+    rescue = new Rescue(unit);
   });
 
   test('is an action', () => {
-    expect(rescue.action).toBe(true);
+    expect(rescue).toBeInstanceOf(Action);
   });
 
   test('has a description', () => {

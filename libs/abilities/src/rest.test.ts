@@ -1,9 +1,10 @@
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 
-import restCreator from './rest.js';
+import Action from './Action.js';
+import Rest from './rest.js';
 
-describe('rest', () => {
-  let rest: ReturnType<ReturnType<typeof restCreator>>;
+describe('Rest', () => {
+  let rest: Rest;
   let unit: any;
 
   beforeEach(() => {
@@ -13,11 +14,11 @@ describe('rest', () => {
       heal: vi.fn(),
       log: vi.fn(),
     };
-    rest = restCreator({ healthGain: 0.1 })(unit);
+    rest = new Rest(unit, { healthGain: 0.1 });
   });
 
   test('is an action', () => {
-    expect(rest.action).toBe(true);
+    expect(rest).toBeInstanceOf(Action);
   });
 
   test('has a description', () => {
@@ -29,6 +30,11 @@ describe('rest', () => {
       params: [],
       returns: 'void',
     });
+  });
+
+  test('.with() returns an AbilityBinding', () => {
+    const binding = Rest.with({ healthGain: 0.1 });
+    expect(binding).toEqual([Rest, { healthGain: 0.1 }]);
   });
 
   describe('performing', () => {

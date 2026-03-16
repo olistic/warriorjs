@@ -1,19 +1,20 @@
 import { FORWARD, LEFT } from '@warriorjs/spatial';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 
-import bindCreator from './bind.js';
+import Action from './Action.js';
+import Bind from './bind.js';
 
-describe('bind', () => {
-  let bind: ReturnType<ReturnType<typeof bindCreator>>;
+describe('Bind', () => {
+  let bind: Bind;
   let unit: any;
 
   beforeEach(() => {
     unit = { log: vi.fn() };
-    bind = bindCreator()(unit);
+    bind = new Bind(unit);
   });
 
   test('is an action', () => {
-    expect(bind.action).toBe(true);
+    expect(bind).toBeInstanceOf(Action);
   });
 
   test('has a description', () => {
