@@ -1,3 +1,4 @@
+import { Action } from '@warriorjs/abilities';
 import type { LevelConfig } from '@warriorjs/core';
 import type Profile from '../Profile.js';
 
@@ -56,14 +57,28 @@ function renderWarriorInterface(methods: MethodEntry[]): string {
   return `export interface Warrior {\n${body}\n}`;
 }
 
+function instantiateAbility(entry: any): any {
+  if (Array.isArray(entry)) {
+    // AbilityBinding: [Class, config]
+    const [AbilityClass, config] = entry;
+    return new AbilityClass({} as any, config);
+  }
+  if (typeof entry === 'function' && entry.prototype?.perform) {
+    // Bare ability class
+    return new entry({} as any);
+  }
+  // Legacy factory
+  return entry({} as any);
+}
+
 function renderTypes(_profile: Profile, levelConfig: LevelConfig): string {
   const abilities = levelConfig.floor.warrior.abilities ?? {};
 
   const methods: MethodEntry[] = [];
   let needsSpace = false;
 
-  for (const [name, creator] of Object.entries(abilities)) {
-    const ability = creator({} as any);
+  for (const [name, entry] of Object.entries(abilities)) {
+    const ability = instantiateAbility(entry);
     if (!ability.meta) {
       continue;
     }
@@ -91,7 +106,7 @@ function renderTypes(_profile: Profile, levelConfig: LevelConfig): string {
 
     methods.push({
       name,
-      action: !!ability.action,
+      action: ability instanceof Action,
       description: ability.description,
       signature: `${name}(${params.join(', ')}): ${returnType}`,
     });

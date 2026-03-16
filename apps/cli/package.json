@@ -55,6 +55,7 @@
     "mock-fs": "^5.5.0"
   },
   "dependencies": {
+    "@warriorjs/abilities": "workspace:^",
     "@warriorjs/core": "workspace:^",
     "@warriorjs/scoring": "workspace:^",
     "@warriorjs/tower-the-narrow-path": "workspace:^",

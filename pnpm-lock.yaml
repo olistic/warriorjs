@@ -32,6 +32,9 @@ importers:
 
   apps/cli:
     dependencies:
+      '@warriorjs/abilities':
+        specifier: workspace:^
+        version: link:../../libs/abilities
       '@warriorjs/core':
         specifier: workspace:^
         version: link:../../libs/core
