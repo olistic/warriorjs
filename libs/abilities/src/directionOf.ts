@@ -1,18 +1,19 @@
 import { BACKWARD, FORWARD, LEFT, RIGHT } from '@warriorjs/spatial';
 
-import type { Unit } from './types.js';
+import Sense from './Sense.js';
+import type { AbilityMeta } from './types.js';
 
-function directionOf() {
-  return (unit: Unit) => ({
-    description: `Returns the direction (${FORWARD}, ${RIGHT}, ${BACKWARD} or ${LEFT}) to the given space.`,
-    perform(space: unknown) {
-      return unit.getDirectionOf(space);
-    },
-    meta: {
-      params: [{ name: 'space', type: 'Space' as const }],
-      returns: 'Direction' as const,
-    },
-  });
+class DirectionOf extends Sense {
+  readonly description =
+    `Returns the direction (${FORWARD}, ${RIGHT}, ${BACKWARD} or ${LEFT}) to the given space.`;
+  readonly meta: AbilityMeta = {
+    params: [{ name: 'space', type: 'Space' }],
+    returns: 'Direction',
+  };
+
+  perform(space: unknown) {
+    return this.unit.getDirectionOf(space);
+  }
 }
 
-export default directionOf;
+export default DirectionOf;

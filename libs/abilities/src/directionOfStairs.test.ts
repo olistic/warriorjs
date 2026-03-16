@@ -1,19 +1,19 @@
 import { BACKWARD, FORWARD, LEFT, RIGHT } from '@warriorjs/spatial';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
+import DirectionOfStairs from './directionOfStairs.js';
+import Sense from './Sense.js';
 
-import directionOfStairsCreator from './directionOfStairs.js';
-
-describe('directionOfStairs', () => {
-  let directionOfStairs: ReturnType<ReturnType<typeof directionOfStairsCreator>>;
+describe('DirectionOfStairs', () => {
+  let directionOfStairs: DirectionOfStairs;
   let unit: any;
 
   beforeEach(() => {
     unit = { getDirectionOfStairs: vi.fn() };
-    directionOfStairs = directionOfStairsCreator()(unit);
+    directionOfStairs = new DirectionOfStairs(unit);
   });
 
-  test('is not an action', () => {
-    expect(directionOfStairs.action).toBeUndefined();
+  test('is a sense', () => {
+    expect(directionOfStairs).toBeInstanceOf(Sense);
   });
 
   test('has a description', () => {

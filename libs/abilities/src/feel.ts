@@ -1,20 +1,21 @@
 import { FORWARD, type RelativeDirection } from '@warriorjs/spatial';
 
-import type { Unit } from './types.js';
+import Sense from './Sense.js';
+import type { AbilityMeta } from './types.js';
 
 const defaultDirection = FORWARD;
 
-function feel() {
-  return (unit: Unit) => ({
-    description: `Returns the adjacent space in the given direction (\`'${defaultDirection}'\` by default).`,
-    perform(direction: RelativeDirection = defaultDirection) {
-      return unit.getSensedSpaceAt(direction);
-    },
-    meta: {
-      params: [{ name: 'direction', type: 'Direction' as const, optional: true }],
-      returns: 'Space' as const,
-    },
-  });
+class Feel extends Sense {
+  readonly description =
+    `Returns the adjacent space in the given direction (\`'${defaultDirection}'\` by default).`;
+  readonly meta: AbilityMeta = {
+    params: [{ name: 'direction', type: 'Direction', optional: true }],
+    returns: 'Space',
+  };
+
+  perform(direction: RelativeDirection = defaultDirection) {
+    return this.unit.getSensedSpaceAt(direction);
+  }
 }
 
-export default feel;
+export default Feel;

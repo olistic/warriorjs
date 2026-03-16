@@ -1,19 +1,19 @@
 import { FORWARD, LEFT } from '@warriorjs/spatial';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
+import Feel from './feel.js';
+import Sense from './Sense.js';
 
-import feelCreator from './feel.js';
-
-describe('feel', () => {
-  let feel: ReturnType<ReturnType<typeof feelCreator>>;
+describe('Feel', () => {
+  let feel: Feel;
   let unit: any;
 
   beforeEach(() => {
     unit = { getSensedSpaceAt: vi.fn() };
-    feel = feelCreator()(unit);
+    feel = new Feel(unit);
   });
 
-  test('is not an action', () => {
-    expect(feel.action).toBeUndefined();
+  test('is a sense', () => {
+    expect(feel).toBeInstanceOf(Sense);
   });
 
   test('has a description', () => {

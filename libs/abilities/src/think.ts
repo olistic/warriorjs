@@ -1,19 +1,19 @@
 import util from 'node:util';
 
-import type { Unit } from './types.js';
+import Sense from './Sense.js';
+import type { AbilityMeta } from './types.js';
 
-function think() {
-  return (unit: Unit) => ({
-    description: 'Thinks out loud (`console.log` replacement).',
-    perform(...args: unknown[]) {
-      const thought = args.length > 0 ? util.format(...args) : 'nothing';
-      unit.log(`thinks ${thought}`);
-    },
-    meta: {
-      params: [{ name: 'args', type: 'any' as const, rest: true }],
-      returns: 'void' as const,
-    },
-  });
+class Think extends Sense {
+  readonly description = 'Thinks out loud (`console.log` replacement).';
+  readonly meta: AbilityMeta = {
+    params: [{ name: 'args', type: 'any', rest: true }],
+    returns: 'void',
+  };
+
+  perform(...args: unknown[]) {
+    const thought = args.length > 0 ? util.format(...args) : 'nothing';
+    this.unit.log(`thinks ${thought}`);
+  }
 }
 
-export default think;
+export default Think;

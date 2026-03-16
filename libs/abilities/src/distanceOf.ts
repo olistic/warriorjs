@@ -1,16 +1,16 @@
-import type { Unit } from './types.js';
+import Sense from './Sense.js';
+import type { AbilityMeta } from './types.js';
 
-function distanceOf() {
-  return (unit: Unit) => ({
-    description: 'Returns an integer representing the distance to the given space.',
-    perform(space: unknown) {
-      return unit.getDistanceOf(space);
-    },
-    meta: {
-      params: [{ name: 'space', type: 'Space' as const }],
-      returns: 'number' as const,
-    },
-  });
+class DistanceOf extends Sense {
+  readonly description = 'Returns an integer representing the distance to the given space.';
+  readonly meta: AbilityMeta = {
+    params: [{ name: 'space', type: 'Space' }],
+    returns: 'number',
+  };
+
+  perform(space: unknown) {
+    return this.unit.getDistanceOf(space);
+  }
 }
 
-export default distanceOf;
+export default DistanceOf;

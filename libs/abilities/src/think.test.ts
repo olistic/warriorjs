@@ -1,18 +1,19 @@
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 
-import thinkCreator from './think.js';
+import Sense from './Sense.js';
+import Think from './think.js';
 
-describe('think', () => {
-  let think: ReturnType<ReturnType<typeof thinkCreator>>;
+describe('Think', () => {
+  let think: Think;
   let unit: any;
 
   beforeEach(() => {
     unit = { log: vi.fn() };
-    think = thinkCreator()(unit);
+    think = new Think(unit);
   });
 
-  test('is not an action', () => {
-    expect(think.action).toBeUndefined();
+  test('is a sense', () => {
+    expect(think).toBeInstanceOf(Sense);
   });
 
   test('has a description', () => {

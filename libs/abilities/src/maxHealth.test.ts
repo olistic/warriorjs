@@ -1,18 +1,18 @@
 import { beforeEach, describe, expect, test } from 'vitest';
+import MaxHealth from './maxHealth.js';
+import Sense from './Sense.js';
 
-import maxHealthCreator from './maxHealth.js';
-
-describe('maxHealth', () => {
-  let maxHealth: ReturnType<ReturnType<typeof maxHealthCreator>>;
+describe('MaxHealth', () => {
+  let maxHealth: MaxHealth;
   let unit: any;
 
   beforeEach(() => {
     unit = { maxHealth: 10 };
-    maxHealth = maxHealthCreator()(unit);
+    maxHealth = new MaxHealth(unit);
   });
 
-  test('is not an action', () => {
-    expect(maxHealth.action).toBeUndefined();
+  test('is a sense', () => {
+    expect(maxHealth).toBeInstanceOf(Sense);
   });
 
   test('has a description', () => {

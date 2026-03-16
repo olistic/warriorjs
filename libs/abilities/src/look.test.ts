@@ -1,19 +1,19 @@
 import { FORWARD, LEFT } from '@warriorjs/spatial';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
+import Look from './look.js';
+import Sense from './Sense.js';
 
-import lookCreator from './look.js';
-
-describe('look', () => {
-  let look: ReturnType<ReturnType<typeof lookCreator>>;
+describe('Look', () => {
+  let look: Look;
   let unit: any;
 
   beforeEach(() => {
     unit = { getSensedSpaceAt: vi.fn() };
-    look = lookCreator({ range: 3 })(unit);
+    look = new Look(unit, { range: 3 });
   });
 
-  test('is not an action', () => {
-    expect(look.action).toBeUndefined();
+  test('is a sense', () => {
+    expect(look).toBeInstanceOf(Sense);
   });
 
   test('has a description', () => {
@@ -27,6 +27,11 @@ describe('look', () => {
       params: [{ name: 'direction', type: 'Direction', optional: true }],
       returns: 'Space[]',
     });
+  });
+
+  test('.with() returns an AbilityBinding', () => {
+    const binding = Look.with({ range: 3 });
+    expect(binding).toEqual([Look, { range: 3 }]);
   });
 
   describe('performing', () => {

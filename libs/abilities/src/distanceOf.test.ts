@@ -1,18 +1,18 @@
 import { beforeEach, describe, expect, test, vi } from 'vitest';
+import DistanceOf from './distanceOf.js';
+import Sense from './Sense.js';
 
-import distanceOfCreator from './distanceOf.js';
-
-describe('distanceOf', () => {
-  let distanceOf: ReturnType<ReturnType<typeof distanceOfCreator>>;
+describe('DistanceOf', () => {
+  let distanceOf: DistanceOf;
   let unit: any;
 
   beforeEach(() => {
     unit = { getDistanceOf: vi.fn() };
-    distanceOf = distanceOfCreator()(unit);
+    distanceOf = new DistanceOf(unit);
   });
 
-  test('is not an action', () => {
-    expect(distanceOf.action).toBeUndefined();
+  test('is a sense', () => {
+    expect(distanceOf).toBeInstanceOf(Sense);
   });
 
   test('has a description', () => {

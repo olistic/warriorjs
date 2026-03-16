@@ -1,16 +1,16 @@
-import type { Unit } from './types.js';
+import Sense from './Sense.js';
+import type { AbilityMeta } from './types.js';
 
-function maxHealth() {
-  return (unit: Unit) => ({
-    description: 'Returns an integer representing your maximum health.',
-    perform() {
-      return unit.maxHealth;
-    },
-    meta: {
-      params: [],
-      returns: 'number' as const,
-    },
-  });
+class MaxHealth extends Sense {
+  readonly description = 'Returns an integer representing your maximum health.';
+  readonly meta: AbilityMeta = {
+    params: [],
+    returns: 'number',
+  };
+
+  perform() {
+    return this.unit.maxHealth;
+  }
 }
 
-export default maxHealth;
+export default MaxHealth;

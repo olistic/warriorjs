@@ -1,16 +1,16 @@
-import type { Unit } from './types.js';
+import Sense from './Sense.js';
+import type { AbilityMeta } from './types.js';
 
-function health() {
-  return (unit: Unit) => ({
-    description: 'Returns an integer representing your health.',
-    perform() {
-      return unit.health;
-    },
-    meta: {
-      params: [],
-      returns: 'number' as const,
-    },
-  });
+class Health extends Sense {
+  readonly description = 'Returns an integer representing your health.';
+  readonly meta: AbilityMeta = {
+    params: [],
+    returns: 'number',
+  };
+
+  perform() {
+    return this.unit.health;
+  }
 }
 
-export default health;
+export default Health;

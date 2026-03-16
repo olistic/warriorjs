@@ -1,10 +1,10 @@
 import { FORWARD, NORTH } from '@warriorjs/spatial';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
+import Listen from './listen.js';
+import Sense from './Sense.js';
 
-import listenCreator from './listen.js';
-
-describe('listen', () => {
-  let listen: ReturnType<ReturnType<typeof listenCreator>>;
+describe('Listen', () => {
+  let listen: Listen;
   let unit: any;
 
   beforeEach(() => {
@@ -19,11 +19,11 @@ describe('listen', () => {
       ],
       getSensedSpaceAt: vi.fn(),
     };
-    listen = listenCreator()(unit);
+    listen = new Listen(unit);
   });
 
-  test('is not an action', () => {
-    expect(listen.action).toBeUndefined();
+  test('is a sense', () => {
+    expect(listen).toBeInstanceOf(Sense);
   });
 
   test('has a description', () => {

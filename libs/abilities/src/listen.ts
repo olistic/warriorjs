@@ -1,27 +1,28 @@
 import { FORWARD, getRelativeOffset } from '@warriorjs/spatial';
 
-import type { Unit } from './types.js';
+import Sense from './Sense.js';
+import type { AbilityMeta } from './types.js';
 
-function listen() {
-  return (unit: Unit) => ({
-    description: 'Returns an array of all spaces which have units in them (excluding yourself).',
-    perform() {
-      return unit
-        .getOtherUnits()
-        .map((anotherUnit) =>
-          getRelativeOffset(
-            anotherUnit.getSpace().location,
-            unit.position.location,
-            unit.position.orientation,
-          ),
-        )
-        .map(([forward, right]) => unit.getSensedSpaceAt(FORWARD, forward, right));
-    },
-    meta: {
-      params: [],
-      returns: 'Space[]' as const,
-    },
-  });
+class Listen extends Sense {
+  readonly description =
+    'Returns an array of all spaces which have units in them (excluding yourself).';
+  readonly meta: AbilityMeta = {
+    params: [],
+    returns: 'Space[]',
+  };
+
+  perform() {
+    return this.unit
+      .getOtherUnits()
+      .map((anotherUnit) =>
+        getRelativeOffset(
+          anotherUnit.getSpace().location,
+          this.unit.position.location,
+          this.unit.position.orientation,
+        ),
+      )
+      .map(([forward, right]) => this.unit.getSensedSpaceAt(FORWARD, forward, right));
+  }
 }
 
-export default listen;
+export default Listen;

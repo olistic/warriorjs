@@ -1,18 +1,19 @@
 import { BACKWARD, FORWARD, LEFT, RIGHT } from '@warriorjs/spatial';
 
-import type { Unit } from './types.js';
+import Sense from './Sense.js';
+import type { AbilityMeta } from './types.js';
 
-function directionOfStairs() {
-  return (unit: Unit) => ({
-    description: `Returns the direction (${FORWARD}, ${RIGHT}, ${BACKWARD} or ${LEFT}) the stairs are from your location.`,
-    perform() {
-      return unit.getDirectionOfStairs();
-    },
-    meta: {
-      params: [],
-      returns: 'Direction' as const,
-    },
-  });
+class DirectionOfStairs extends Sense {
+  readonly description =
+    `Returns the direction (${FORWARD}, ${RIGHT}, ${BACKWARD} or ${LEFT}) the stairs are from your location.`;
+  readonly meta: AbilityMeta = {
+    params: [],
+    returns: 'Direction',
+  };
+
+  perform() {
+    return this.unit.getDirectionOfStairs();
+  }
 }
 
-export default directionOfStairs;
+export default DirectionOfStairs;
