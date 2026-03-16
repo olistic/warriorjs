@@ -22,7 +22,7 @@ const tower: TowerDefinition = {
     {
       description:
         'A long hallway stretches before you, torchlight glinting off stairs at the far end. The air is still. Nothing stirs.',
-      tip: "The path is clear. Call `warrior.walk()` to walk forward in the Player's `playTurn` method.",
+      tip: "The path is clear. Call `warrior.walk` to walk forward in the Player's `playTurn` method.",
       timeBonus: 15,
       aceScore: 10,
       floor: {
@@ -37,8 +37,8 @@ const tower: TowerDefinition = {
         warrior: {
           ...Warrior,
           abilities: {
-            think: think(),
-            walk: walk(),
+            think: think,
+            walk: walk,
           },
           position: {
             x: 0,
@@ -52,8 +52,8 @@ const tower: TowerDefinition = {
     {
       description:
         'The torches have gone out. Darkness swallows the corridor, but the stench of sludge hangs thick in the air.',
-      tip: "Something lurks ahead. Use `warrior.feel().isEmpty()` to check if the space is clear. If not, `warrior.attack()` will fight whatever's there. Remember: one action per turn.",
-      clue: 'Add an if/else condition using `warrior.feel().isEmpty()` to decide whether to attack or walk.',
+      tip: "Something lurks ahead. Use `warrior.feel.isEmpty()` to check if the space is clear. If not, `warrior.attack()` will fight whatever's there. Remember: one action per turn.",
+      clue: 'Add an if/else condition using `warrior.feel.isEmpty()` to decide whether to attack or walk.',
       timeBonus: 20,
       aceScore: 26,
       floor: {
@@ -68,8 +68,8 @@ const tower: TowerDefinition = {
         warrior: {
           ...Warrior,
           abilities: {
-            attack: attack({ power: 5 }),
-            feel: feel(),
+            attack: attack.with({ power: 5 }),
+            feel: feel,
           },
           position: {
             x: 0,
@@ -92,7 +92,7 @@ const tower: TowerDefinition = {
     {
       description:
         'The air is heavy and wet, almost hard to breathe. The stench is overwhelming — there must be a horde of them.',
-      tip: 'These walls will wear you down. Use `warrior.health()` and `warrior.maxHealth()` to keep watch over your health, and `warrior.rest()` to recover 10% of your max health.',
+      tip: 'These walls will wear you down. Use `warrior.health` and `warrior.maxHealth` to keep watch over your health, and `warrior.rest()` to recover 10% of your max health.',
       clue: "When there's no enemy ahead of you, call `warrior.rest()` until your health is full before walking forward.",
       timeBonus: 35,
       aceScore: 71,
@@ -108,9 +108,9 @@ const tower: TowerDefinition = {
         warrior: {
           ...Warrior,
           abilities: {
-            health: health(),
-            maxHealth: maxHealth(),
-            rest: rest({ healthGain: 0.1 }),
+            health: health,
+            maxHealth: maxHealth,
+            rest: rest.with({ healthGain: 0.1 }),
           },
           position: {
             x: 0,
@@ -208,7 +208,7 @@ const tower: TowerDefinition = {
     },
     {
       description: 'Muffled cries echo through the stone. Someone is alive down here — and bound.',
-      tip: 'Not every figure in the dark is a foe. Use `warrior.feel().getUnit().isEnemy()` and `warrior.feel().getUnit().isBound()` to identify captives, and `warrior.rescue()` to free them.',
+      tip: 'Not every figure in the dark is a foe. Use `warrior.feel.getUnit().isEnemy()` and `warrior.feel.getUnit().isBound()` to identify captives, and `warrior.rescue` to free them.',
       clue: "Don't forget to constantly check if you are being attacked. Rest until your health is full if you're not taking damage.",
       timeBonus: 45,
       aceScore: 123,
@@ -224,7 +224,7 @@ const tower: TowerDefinition = {
         warrior: {
           ...Warrior,
           abilities: {
-            rescue: rescue(),
+            rescue: rescue,
           },
           position: {
             x: 0,
@@ -279,8 +279,8 @@ const tower: TowerDefinition = {
     {
       description:
         'The corridor opens wider than before. Cries reach you from both ends — ahead and behind.',
-      tip: "Danger on two fronts. Pass `'backward'` to `walk()`, `feel()`, `rescue()`, and `attack()` to act behind you. Archers have a limited attack distance.",
-      clue: "Walk backward if you're taking damage from afar and don't have enough health to attack. You may also want to consider walking backward until you hit a wall. Use `warrior.feel().isWall()` to see if there's a wall.",
+      tip: "Danger on two fronts. Pass `'backward'` to `walk`, `feel`, `rescue`, and `attack()` to act behind you. Archers have a limited attack distance.",
+      clue: "Walk backward if you're taking damage from afar and don't have enough health to attack. You may also want to consider walking backward until you hit a wall. Use `warrior.feel.isWall()` to see if there's a wall.",
       timeBonus: 55,
       aceScore: 105,
       floor: {
@@ -339,7 +339,7 @@ const tower: TowerDefinition = {
     {
       description:
         'Cold stone meets your outstretched hand. A dead end — but a draft at your back tells you the way lies behind.',
-      tip: "Fighting backward dulls your blade. Use `warrior.feel().isWall()` to detect the wall, and `warrior.pivot()` to turn and face what's coming.",
+      tip: "Fighting backward dulls your blade. Use `warrior.feel.isWall()` to detect the wall, and `warrior.pivot` to turn and face what's coming.",
       timeBonus: 30,
       aceScore: 50,
       floor: {
@@ -354,7 +354,7 @@ const tower: TowerDefinition = {
         warrior: {
           ...Warrior,
           abilities: {
-            pivot: pivot(),
+            pivot: pivot,
           },
           position: {
             x: 5,
@@ -406,8 +406,8 @@ const tower: TowerDefinition = {
             facing: EAST,
           },
           abilities: {
-            look: look({ range: 3 }),
-            shoot: shoot({ power: 3, range: 3 }),
+            look: look.with({ range: 3 }),
+            shoot: shoot.with({ power: 3, range: 3 }),
           },
         },
         units: [
