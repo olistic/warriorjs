@@ -1,17 +1,12 @@
 import type { LevelConfig, TowerDefinition } from './types.js';
 
 function deepClone<T>(obj: T): T {
-  if (obj === null || typeof obj !== 'object') {
+  if (obj === null || typeof obj !== 'object' || obj.constructor !== Object) {
     return obj;
   }
 
   if (Array.isArray(obj)) {
     return obj.map((item) => deepClone(item)) as T;
-  }
-
-  // Preserve class instances (Unit subclasses, etc.) — don't deep-clone them.
-  if (obj.constructor !== Object) {
-    return obj;
   }
 
   const clone = {} as Record<string, unknown>;
