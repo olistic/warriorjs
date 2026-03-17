@@ -1,39 +1,41 @@
-interface Unit {
-  health: number;
-  takeDamage(amount: number): void;
-  log(message: string): void;
-  getOtherUnits(): Unit[];
-}
+import { Effect } from '@warriorjs/core';
 
-interface TickingEffect {
+interface TickingConfig {
   time: number;
-  description: string;
-  passTurn(): void;
-  trigger(): void;
 }
 
-function ticking({ time }: { time: number }): (unit: Unit) => TickingEffect {
-  return (unit: Unit): TickingEffect => ({
-    time,
-    description: 'Kills you and all surrounding units when time reaches zero.',
-    passTurn() {
-      if (this.time) {
-        this.time -= 1;
-      }
+class Ticking extends Effect {
+  readonly description = 'Kills you and all surrounding units when time reaches zero.';
 
-      unit.log('is ticking');
+  time: number;
 
-      if (!this.time) {
-        this.trigger();
-      }
-    },
-    trigger() {
-      unit.log('explodes, collapsing the ceiling and killing every unit');
-      [...unit.getOtherUnits(), unit].forEach((anotherUnit: Unit) =>
-        anotherUnit.takeDamage(anotherUnit.health),
-      );
-    },
-  });
+  constructor(unit: any, { time }: TickingConfig) {
+    super(unit);
+    this.time = time;
+  }
+
+  passTurn(): void {
+    if (this.time) {
+      this.time -= 1;
+    }
+
+    this.unit.log('is ticking');
+
+    if (!this.time) {
+      this.trigger();
+    }
+  }
+
+  trigger(): void {
+    this.unit.log('explodes, collapsing the ceiling and killing every unit');
+    [...this.unit.getOtherUnits(), this.unit].forEach((anotherUnit: any) =>
+      anotherUnit.takeDamage(anotherUnit.health),
+    );
+  }
+
+  static with(config: TickingConfig) {
+    return [Ticking, config] as [new (unit: any, config: any) => Ticking, object];
+  }
 }
 
-export default ticking;
+export default Ticking;

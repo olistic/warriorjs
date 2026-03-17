@@ -1,14 +1,10 @@
 import type Ability from './Ability.js';
 import Action from './Action.js';
+import type Effect from './Effect.js';
 import Logger from './Logger.js';
 import type Position from './Position.js';
 import type { SensedSpace, SensedUnit } from './Space.js';
 import Space from './Space.js';
-
-interface Effect {
-  passTurn(): void;
-  trigger(): void;
-}
 
 interface Turn {
   action: [string, any[]] | null;

@@ -104,7 +104,11 @@ importers:
         specifier: ^0.27.3
         version: 0.27.3
 
-  libs/effects: {}
+  libs/effects:
+    dependencies:
+      '@warriorjs/core':
+        specifier: workspace:^
+        version: link:../core
 
   libs/scoring: {}
 

@@ -1,1 +1,2 @@
-export { default as ticking } from './ticking.js'; // eslint-disable-line import/prefer-default-export
+export { Effect } from '@warriorjs/core';
+export { default as Ticking } from './ticking.js';

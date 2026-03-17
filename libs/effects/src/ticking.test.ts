@@ -1,8 +1,10 @@
+import { Effect } from '@warriorjs/core';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
-import tickingCreator from './ticking.js';
 
-describe('ticking', () => {
-  let ticking: ReturnType<ReturnType<typeof tickingCreator>>;
+import Ticking from './ticking.js';
+
+describe('Ticking', () => {
+  let ticking: Ticking;
   let unit: {
     health: number;
     takeDamage: ReturnType<typeof vi.fn>;
@@ -16,11 +18,21 @@ describe('ticking', () => {
       takeDamage: vi.fn(),
       log: vi.fn(),
     };
-    ticking = tickingCreator({ time: 3 })(unit as never);
+    ticking = new Ticking(unit, { time: 3 });
+  });
+
+  test('extends Effect', () => {
+    expect(ticking).toBeInstanceOf(Effect);
   });
 
   test('has a description', () => {
     expect(ticking.description).toBe('Kills you and all surrounding units when time reaches zero.');
+  });
+
+  test('.with() returns a binding', () => {
+    const binding = Ticking.with({ time: 5 });
+    expect(binding[0]).toBe(Ticking);
+    expect(binding[1]).toEqual({ time: 5 });
   });
 
   describe('passing turn', () => {

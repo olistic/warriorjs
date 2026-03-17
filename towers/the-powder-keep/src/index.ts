@@ -16,7 +16,7 @@ import {
   Walk,
 } from '@warriorjs/abilities';
 import type { TowerDefinition } from '@warriorjs/core';
-import { ticking } from '@warriorjs/effects';
+import { Ticking } from '@warriorjs/effects';
 import { EAST, NORTH, SOUTH, WEST } from '@warriorjs/spatial';
 import { Captive, Sludge, ThickSludge, Warrior } from '@warriorjs/units';
 
@@ -353,7 +353,7 @@ const tower: TowerDefinition = {
           {
             unit: new Captive(),
             effects: {
-              ticking: ticking({ time: 7 }),
+              ticking: Ticking.with({ time: 7 }),
             },
             position: {
               x: 4,
@@ -416,7 +416,7 @@ const tower: TowerDefinition = {
           {
             unit: new Captive(),
             effects: {
-              ticking: ticking({ time: 10 }),
+              ticking: Ticking.with({ time: 10 }),
             },
             position: {
               x: 4,
@@ -467,7 +467,7 @@ const tower: TowerDefinition = {
           {
             unit: new Captive(),
             effects: {
-              ticking: ticking({ time: 9 }),
+              ticking: Ticking.with({ time: 9 }),
             },
             position: {
               x: 5,
@@ -525,7 +525,7 @@ const tower: TowerDefinition = {
           {
             unit: new Captive(),
             effects: {
-              ticking: ticking({ time: 20 }),
+              ticking: Ticking.with({ time: 20 }),
             },
             position: {
               x: 2,

@@ -25,5 +25,8 @@
   },
   "scripts": {
     "build": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@warriorjs/core": "workspace:^"
   }
 }

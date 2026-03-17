@@ -26,10 +26,17 @@ function loadAbilities(unit: Unit, abilities: Record<string, AbilityEntry> = {})
   }
 }
 
-function loadEffects(unit: Unit, effects: Record<string, (unit: Unit) => any> = {}): void {
-  for (const [effectName, effectCreator] of Object.entries(effects)) {
-    const effect = effectCreator(unit);
-    unit.addEffect(effectName, effect);
+function loadEffects(unit: Unit, effects: Record<string, any> = {}): void {
+  for (const [name, entry] of Object.entries(effects)) {
+    if (Array.isArray(entry)) {
+      const [EffectClass, config] = entry;
+      unit.addEffect(name, new EffectClass(unit, config));
+    } else if (typeof entry === 'function' && entry.prototype?.passTurn) {
+      unit.addEffect(name, new entry(unit));
+    } else {
+      const effect = entry(unit);
+      unit.addEffect(name, effect);
+    }
   }
 }
 
