@@ -1,7 +1,7 @@
+import { Sense } from '@warriorjs/core';
 import { FORWARD, LEFT } from '@warriorjs/spatial';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 import Feel from './Feel.js';
-import Sense from './Sense.js';
 
 describe('Feel', () => {
   let feel: Feel;

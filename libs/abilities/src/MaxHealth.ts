@@ -1,4 +1,4 @@
-import Sense from './Sense.js';
+import { Sense } from '@warriorjs/core';
 import type { AbilityMeta } from './types.js';
 
 class MaxHealth extends Sense {

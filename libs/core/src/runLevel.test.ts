@@ -1,33 +1,80 @@
-import { Attack, Feel, Walk } from '@warriorjs/abilities';
-import { EAST, RELATIVE_DIRECTIONS, WEST } from '@warriorjs/spatial';
+import { BACKWARD, EAST, FORWARD, RELATIVE_DIRECTIONS, WEST } from '@warriorjs/spatial';
 import { expect, test } from 'vitest';
 
+import type { AbilityMeta } from './Ability.js';
+import Action from './Action.js';
 import runLevel from './runLevel.js';
+import Sense from './Sense.js';
+
+class TestWalk extends Action {
+  readonly description = 'Walks forward';
+  readonly meta: AbilityMeta = {
+    params: [{ name: 'direction', type: 'Direction', optional: true }],
+    returns: 'void',
+  };
+  perform(direction = FORWARD) {
+    const space = this.unit.getSpaceAt(direction);
+    if (space.isEmpty()) {
+      this.unit.move(direction);
+      this.unit.log(`walks ${direction}`);
+    } else {
+      this.unit.log(`walks ${direction} and bumps into ${space}`);
+    }
+  }
+}
+
+class TestAttack extends Action {
+  readonly description: string;
+  readonly meta: AbilityMeta = {
+    params: [{ name: 'direction', type: 'Direction', optional: true }],
+    returns: 'void',
+  };
+  private power: number;
+  constructor(unit: any, { power }: { power: number }) {
+    super(unit);
+    this.description = `Attacks dealing ${power} HP`;
+    this.power = power;
+  }
+  perform(direction = FORWARD) {
+    const receiver = this.unit.getSpaceAt(direction).getUnit();
+    if (receiver) {
+      this.unit.log(`attacks ${direction} and hits ${receiver}`);
+      const amount = direction === BACKWARD ? Math.ceil(this.power / 2.0) : this.power;
+      this.unit.damage(receiver, amount);
+    } else {
+      this.unit.log(`attacks ${direction} and hits nothing`);
+    }
+  }
+  static with(config: { power: number }) {
+    return [TestAttack, config] as [new (unit: any, config: any) => TestAttack, object];
+  }
+}
+
+class TestFeel extends Sense {
+  readonly description = 'Feels ahead';
+  readonly meta: AbilityMeta = {
+    params: [{ name: 'direction', type: 'Direction', optional: true }],
+    returns: 'Space',
+  };
+  perform(direction = FORWARD) {
+    return this.unit.getSensedSpaceAt(direction);
+  }
+}
 
 const levelConfig = {
   floor: {
-    size: {
-      width: 8,
-      height: 1,
-    },
-    stairs: {
-      x: 7,
-      y: 0,
-    },
+    size: { width: 8, height: 1 },
+    stairs: { x: 7, y: 0 },
     warrior: {
       name: 'Joe',
       character: '@',
       maxHealth: 20,
       abilities: {
-        walk: Walk,
-        attack: Attack.with({ power: 5 }),
-        feel: Feel,
+        walk: TestWalk,
+        attack: TestAttack.with({ power: 5 }),
+        feel: TestFeel,
       },
-      position: {
-        x: 0,
-        y: 0,
-        facing: EAST,
-      },
+      position: { x: 0, y: 0, facing: EAST },
     },
     units: [
       {
@@ -35,8 +82,8 @@ const levelConfig = {
         character: 's',
         maxHealth: 12,
         abilities: {
-          attack: Attack.with({ power: 3 }),
-          feel: Feel,
+          attack: TestAttack.with({ power: 3 }),
+          feel: TestFeel,
         },
         playTurn(sludge: any) {
           const threatDirection = RELATIVE_DIRECTIONS.find((direction) => {
@@ -47,11 +94,7 @@ const levelConfig = {
             sludge.attack(threatDirection);
           }
         },
-        position: {
-          x: 4,
-          y: 0,
-          facing: WEST,
-        },
+        position: { x: 4, y: 0, facing: WEST },
       },
     ],
   },

@@ -1,5 +1,4 @@
-import { Action } from '@warriorjs/abilities';
-
+import Action from './Action.js';
 import Logger from './Logger.js';
 import type Position from './Position.js';
 import type { SensedSpace, SensedUnit } from './Space.js';

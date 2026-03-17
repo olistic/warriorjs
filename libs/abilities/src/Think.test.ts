@@ -1,6 +1,5 @@
+import { Sense } from '@warriorjs/core';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
-
-import Sense from './Sense.js';
 import Think from './Think.js';
 
 describe('Think', () => {

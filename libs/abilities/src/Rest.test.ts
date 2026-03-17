@@ -1,6 +1,5 @@
+import { Action } from '@warriorjs/core';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
-
-import Action from './Action.js';
 import Rest from './Rest.js';
 
 describe('Rest', () => {

@@ -1,6 +1,5 @@
-export type { AbilityBinding } from './Ability.js';
-export { default as Ability } from './Ability.js';
-export { default as Action } from './Action.js';
+export type { AbilityBinding, AbilityMeta } from '@warriorjs/core';
+export { Ability, Action, Sense } from '@warriorjs/core';
 export { default as Attack } from './Attack.js';
 export { default as Bind } from './Bind.js';
 export { default as Detonate } from './Detonate.js';
@@ -15,8 +14,7 @@ export { default as MaxHealth } from './MaxHealth.js';
 export { default as Pivot } from './Pivot.js';
 export { default as Rescue } from './Rescue.js';
 export { default as Rest } from './Rest.js';
-export { default as Sense } from './Sense.js';
 export { default as Shoot } from './Shoot.js';
 export { default as Think } from './Think.js';
-export type { AbilityMeta, SensedSpace, Space, Unit } from './types.js';
+export type { SensedSpace, Space, Unit } from './types.js';
 export { default as Walk } from './Walk.js';

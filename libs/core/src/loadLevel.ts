@@ -1,5 +1,5 @@
-import type { AbilityBinding, Ability as AbilityInstance } from '@warriorjs/abilities';
-
+import type Ability from './Ability.js';
+import type { AbilityBinding } from './Ability.js';
 import Floor from './Floor.js';
 import Level from './Level.js';
 import loadPlayer from './loadPlayer.js';
@@ -7,7 +7,7 @@ import type { LevelConfig, TowerUnitEntry, UnitConfig } from './types.js';
 import Unit from './Unit.js';
 import Warrior from './Warrior.js';
 
-type AbilityEntry = AbilityBinding | (new (unit: any) => AbilityInstance) | ((unit: Unit) => any);
+type AbilityEntry = AbilityBinding | (new (unit: any) => Ability) | ((unit: Unit) => any);
 
 function loadAbilities(unit: Unit, abilities: Record<string, AbilityEntry> = {}): void {
   for (const [name, entry] of Object.entries(abilities)) {
@@ -17,7 +17,7 @@ function loadAbilities(unit: Unit, abilities: Record<string, AbilityEntry> = {})
       unit.addAbility(name, new AbilityClass(unit, config));
     } else if (typeof entry === 'function' && entry.prototype?.perform) {
       // Bare ability class (no config)
-      unit.addAbility(name, new (entry as new (unit: any) => AbilityInstance)(unit));
+      unit.addAbility(name, new (entry as new (unit: any) => Ability)(unit));
     } else {
       // Legacy factory function: (unit) => ability
       const ability = (entry as (unit: Unit) => any)(unit);

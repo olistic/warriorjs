@@ -1,7 +1,6 @@
+import { Action } from '@warriorjs/core';
 import { FORWARD, RIGHT } from '@warriorjs/spatial';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
-
-import Action from './Action.js';
 import Rescue from './Rescue.js';
 
 describe('Rescue', () => {

@@ -27,6 +27,7 @@
     "build": "tsc -p tsconfig.json"
   },
   "dependencies": {
+    "@warriorjs/core": "workspace:^",
     "@warriorjs/spatial": "workspace:^"
   }
 }

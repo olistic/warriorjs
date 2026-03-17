@@ -1,6 +1,5 @@
+import { Sense } from '@warriorjs/core';
 import { BACKWARD, FORWARD, LEFT, RIGHT } from '@warriorjs/spatial';
-
-import Sense from './Sense.js';
 import type { AbilityMeta } from './types.js';
 
 class DirectionOf extends Sense {

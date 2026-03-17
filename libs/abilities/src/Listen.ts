@@ -1,6 +1,5 @@
+import { Sense } from '@warriorjs/core';
 import { FORWARD, getRelativeOffset } from '@warriorjs/spatial';
-
-import Sense from './Sense.js';
 import type { AbilityMeta } from './types.js';
 
 class Listen extends Sense {
@@ -14,14 +13,16 @@ class Listen extends Sense {
   perform() {
     return this.unit
       .getOtherUnits()
-      .map((anotherUnit) =>
+      .map((anotherUnit: any) =>
         getRelativeOffset(
           anotherUnit.getSpace().location,
           this.unit.position.location,
           this.unit.position.orientation,
         ),
       )
-      .map(([forward, right]) => this.unit.getSensedSpaceAt(FORWARD, forward, right));
+      .map(([forward, right]: [number, number]) =>
+        this.unit.getSensedSpaceAt(FORWARD, forward, right),
+      );
   }
 }
 

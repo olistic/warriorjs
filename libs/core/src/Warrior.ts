@@ -1,5 +1,4 @@
-import { Action } from '@warriorjs/abilities';
-
+import Action from './Action.js';
 import Unit from './Unit.js';
 
 interface AbilityInfo {

@@ -1,7 +1,7 @@
+import { Sense } from '@warriorjs/core';
 import { BACKWARD, FORWARD, LEFT, RIGHT } from '@warriorjs/spatial';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 import DirectionOf from './DirectionOf.js';
-import Sense from './Sense.js';
 
 describe('DirectionOf', () => {
   let directionOf: DirectionOf;

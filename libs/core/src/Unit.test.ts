@@ -1,8 +1,8 @@
-import { Action, Sense } from '@warriorjs/abilities';
 import { BACKWARD, FORWARD, LEFT, NORTH, RIGHT, SOUTH } from '@warriorjs/spatial';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
-
+import Action from './Action.js';
 import Floor from './Floor.js';
+import Sense from './Sense.js';
 import Unit from './Unit.js';
 
 class MockAction extends Action {

@@ -1,7 +1,7 @@
-import { FORWARD, type RelativeDirection } from '@warriorjs/spatial';
+import type { AbilityBinding } from '@warriorjs/core';
 
-import type { AbilityBinding } from './Ability.js';
-import Action from './Action.js';
+import { Action } from '@warriorjs/core';
+import { FORWARD, type RelativeDirection } from '@warriorjs/spatial';
 import type { AbilityMeta, Space, Unit } from './types.js';
 
 const defaultDirection = FORWARD;

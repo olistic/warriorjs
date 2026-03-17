@@ -1,6 +1,6 @@
+import { Sense } from '@warriorjs/core';
 import { beforeEach, describe, expect, test } from 'vitest';
 import MaxHealth from './MaxHealth.js';
-import Sense from './Sense.js';
 
 describe('MaxHealth', () => {
   let maxHealth: MaxHealth;

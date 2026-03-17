@@ -1,6 +1,5 @@
+import { Action } from '@warriorjs/core';
 import { BACKWARD, type RelativeDirection } from '@warriorjs/spatial';
-
-import Action from './Action.js';
 import type { AbilityMeta } from './types.js';
 
 const defaultDirection = BACKWARD;

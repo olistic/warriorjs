@@ -1,6 +1,6 @@
+import { Sense } from '@warriorjs/core';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 import DistanceOf from './DistanceOf.js';
-import Sense from './Sense.js';
 
 describe('DistanceOf', () => {
   let distanceOf: DistanceOf;

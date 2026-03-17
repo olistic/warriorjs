@@ -1,6 +1,6 @@
+import { Sense } from '@warriorjs/core';
 import { beforeEach, describe, expect, test } from 'vitest';
 import Health from './Health.js';
-import Sense from './Sense.js';
 
 describe('Health', () => {
   let health: Health;

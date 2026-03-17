@@ -1,5 +1,5 @@
-import type { AbilityBinding } from './Ability.js';
-import Action from './Action.js';
+import type { AbilityBinding } from '@warriorjs/core';
+import { Action } from '@warriorjs/core';
 import type { AbilityMeta, Unit } from './types.js';
 
 interface RestConfig {
