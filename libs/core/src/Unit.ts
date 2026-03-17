@@ -1,13 +1,9 @@
+import type Ability from './Ability.js';
 import Action from './Action.js';
 import Logger from './Logger.js';
 import type Position from './Position.js';
 import type { SensedSpace, SensedUnit } from './Space.js';
 import Space from './Space.js';
-
-interface Ability {
-  description?: string;
-  perform(...args: any[]): any;
-}
 
 interface Effect {
   passTurn(): void;
