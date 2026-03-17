@@ -11,19 +11,18 @@ import {
   Think,
   Walk,
 } from '@warriorjs/abilities';
-import type { TowerDefinition, WarriorConfig } from '@warriorjs/core';
+import type { TowerDefinition } from '@warriorjs/core';
 import { EAST, WEST } from '@warriorjs/spatial';
 import { Archer, Captive, Sludge, ThickSludge, Wizard } from '@warriorjs/units';
-
-const sharedWarriorConfig: Pick<WarriorConfig, 'character' | 'color' | 'maxHealth'> = {
-  character: '@',
-  color: '#8fbcbb',
-  maxHealth: 20,
-};
 
 const tower: TowerDefinition = {
   name: 'The Narrow Path',
   description: 'A corridor of stone where the only way out is forward',
+  warrior: {
+    character: '@',
+    color: '#8fbcbb',
+    maxHealth: 20,
+  },
   levels: [
     {
       description:
@@ -41,7 +40,6 @@ const tower: TowerDefinition = {
           y: 0,
         },
         warrior: {
-          ...sharedWarriorConfig,
           abilities: {
             think: Think,
             walk: Walk,
@@ -72,7 +70,6 @@ const tower: TowerDefinition = {
           y: 0,
         },
         warrior: {
-          ...sharedWarriorConfig,
           abilities: {
             attack: Attack.with({ power: 5 }),
             feel: Feel,
@@ -112,7 +109,6 @@ const tower: TowerDefinition = {
           y: 0,
         },
         warrior: {
-          ...sharedWarriorConfig,
           abilities: {
             health: Health,
             maxHealth: MaxHealth,
@@ -177,7 +173,6 @@ const tower: TowerDefinition = {
           y: 0,
         },
         warrior: {
-          ...sharedWarriorConfig,
           position: {
             x: 0,
             y: 0,
@@ -228,7 +223,6 @@ const tower: TowerDefinition = {
           y: 0,
         },
         warrior: {
-          ...sharedWarriorConfig,
           abilities: {
             rescue: Rescue,
           },
@@ -299,7 +293,6 @@ const tower: TowerDefinition = {
           y: 0,
         },
         warrior: {
-          ...sharedWarriorConfig,
           position: {
             x: 2,
             y: 0,
@@ -358,7 +351,6 @@ const tower: TowerDefinition = {
           y: 0,
         },
         warrior: {
-          ...sharedWarriorConfig,
           abilities: {
             pivot: Pivot,
           },
@@ -405,7 +397,6 @@ const tower: TowerDefinition = {
           y: 0,
         },
         warrior: {
-          ...sharedWarriorConfig,
           abilities: {
             look: Look.with({ range: 3 }),
             shoot: Shoot.with({ power: 3, range: 3 }),
@@ -461,7 +452,6 @@ const tower: TowerDefinition = {
           y: 0,
         },
         warrior: {
-          ...sharedWarriorConfig,
           position: {
             x: 5,
             y: 0,
