@@ -124,27 +124,6 @@ describe('renderTypes', () => {
     );
   });
 
-  test('skips abilities without meta', () => {
-    class NoMetaAbility extends Sense {
-      readonly description = 'No meta';
-      readonly meta = undefined as any;
-      perform() {}
-    }
-    expect(renderTypes(profile, makeLevelConfig({ walk: MockWalk, legacy: NoMetaAbility }))).toBe(
-      [
-        '// @generated — Auto-generated each level. Do not edit.',
-        '',
-        "export type Direction = 'forward' | 'right' | 'backward' | 'left';",
-        '',
-        'export interface Warrior {',
-        '  /** Walks forward */',
-        '  walk(direction?: Direction): void;',
-        '}',
-        '',
-      ].join('\n'),
-    );
-  });
-
   test('handles rest parameters', () => {
     class RestAction extends Action {
       readonly description = 'Does something with rest params';
