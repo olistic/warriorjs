@@ -25,6 +25,7 @@ test('loads internal towers', () => {
   mockRequire.mockReturnValue({
     name: 'The Narrow Path',
     description: 'A corridor of stone where the only way out is forward',
+    warrior: 'warrior',
     levels: ['level1', 'level2'],
   });
   mock({ '/path/to/node_modules/@warriorjs/cli': {} });
@@ -34,6 +35,7 @@ test('loads internal towers', () => {
     'the-narrow-path',
     'The Narrow Path',
     'A corridor of stone where the only way out is forward',
+    'warrior',
     ['level1', 'level2'],
   );
 });
@@ -41,11 +43,17 @@ test('loads internal towers', () => {
 test('loads external official towers', () => {
   mockRequire.mockImplementation((path: string) => {
     if (path.includes('tower-foo')) {
-      return { name: 'Foo', description: 'bar', levels: ['level1', 'level2'] };
+      return {
+        name: 'Foo',
+        description: 'bar',
+        warrior: 'warrior',
+        levels: ['level1', 'level2'],
+      };
     }
     return {
       name: 'The Narrow Path',
       description: 'A corridor of stone where the only way out is forward',
+      warrior: 'warrior',
       levels: ['level1', 'level2'],
     };
   });
@@ -56,24 +64,30 @@ test('loads external official towers', () => {
         'tower-foo': {
           'package.json': '',
           'index.js':
-            "module.exports = { name: 'Foo', description: 'bar', levels: ['level1', 'level2'] }",
+            "module.exports = { name: 'Foo', description: 'bar', warrior: 'warrior, levels: ['level1', 'level2'] }",
         },
       },
     },
   });
   loadTowers();
   mock.restore();
-  expect(Tower).toHaveBeenCalledWith('foo', 'Foo', 'bar', ['level1', 'level2']);
+  expect(Tower).toHaveBeenCalledWith('foo', 'Foo', 'bar', 'warrior', ['level1', 'level2']);
 });
 
 test('loads external community towers', () => {
   mockRequire.mockImplementation((path: string) => {
     if (path.includes('warriorjs-tower-foo')) {
-      return { name: 'Foo', description: 'bar', levels: ['level1', 'level2'] };
+      return {
+        name: 'Foo',
+        description: 'bar',
+        warrior: 'warrior',
+        levels: ['level1', 'level2'],
+      };
     }
     return {
       name: 'The Narrow Path',
       description: 'A corridor of stone where the only way out is forward',
+      warrior: 'warrior',
       levels: ['level1', 'level2'],
     };
   });
@@ -85,19 +99,20 @@ test('loads external community towers', () => {
       'warriorjs-tower-foo': {
         'package.json': '',
         'index.js':
-          "module.exports = { name: 'Foo', description: 'bar', levels: ['level1', 'level2'] }",
+          "module.exports = { name: 'Foo', description: 'bar', warrior: 'warrior, levels: ['level1', 'level2'] }",
       },
     },
   });
   loadTowers();
   mock.restore();
-  expect(Tower).toHaveBeenCalledWith('foo', 'Foo', 'bar', ['level1', 'level2']);
+  expect(Tower).toHaveBeenCalledWith('foo', 'Foo', 'bar', 'warrior', ['level1', 'level2']);
 });
 
 test("ignores directories that are seemingly towers but don't have a package.json", () => {
   mockRequire.mockReturnValue({
     name: 'The Narrow Path',
     description: 'A corridor of stone where the only way out is forward',
+    warrior: 'warrior',
     levels: ['level1', 'level2'],
   });
   mock({
@@ -106,25 +121,26 @@ test("ignores directories that are seemingly towers but don't have a package.jso
         cli: {},
         'tower-foo': {
           'index.js':
-            "module.exports = { name: 'Foo', description: 'baz', levels: ['level1', 'level2'] }",
+            "module.exports = { name: 'Foo', description: 'baz', warrior: 'warrior, levels: ['level1', 'level2'] }",
         },
       },
       'warriorjs-tower-bar': {
         'index.js':
-          "module.exports = { name: 'Bar', description: 'baz', levels: ['level1', 'level2'] }",
+          "module.exports = { name: 'Bar', description: 'baz', warrior: 'warrior, levels: ['level1', 'level2'] }",
       },
     },
   });
   loadTowers();
   mock.restore();
-  expect(Tower).not.toHaveBeenCalledWith('foo', 'Foo', 'baz', ['level1', 'level2']);
-  expect(Tower).not.toHaveBeenCalledWith('bar', 'Bar', 'baz', ['level1', 'level2']);
+  expect(Tower).not.toHaveBeenCalledWith('foo', 'Foo', 'baz', 'warrior', ['level1', 'level2']);
+  expect(Tower).not.toHaveBeenCalledWith('bar', 'Bar', 'baz', 'warrior', ['level1', 'level2']);
 });
 
 test("doesn't throw when @warriorjs/cli doesn't exist", async () => {
   mockRequire.mockReturnValue({
     name: 'The Narrow Path',
     description: 'A corridor of stone where the only way out is forward',
+    warrior: 'warrior',
     levels: ['level1', 'level2'],
   });
   const { findUpSync } = await import('find-up');

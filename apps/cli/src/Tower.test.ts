@@ -6,7 +6,7 @@ describe('Tower', () => {
   let tower: Tower;
 
   beforeEach(() => {
-    tower = new Tower('foo', 'Foo', 'bar baz', ['level1', 'level2']);
+    tower = new Tower('foo', 'Foo', 'bar baz', 'warrior' as any, ['level1', 'level2'] as any);
   });
 
   test('has an id', () => {
@@ -19,6 +19,10 @@ describe('Tower', () => {
 
   test('has a description', () => {
     expect(tower.description).toBe('bar baz');
+  });
+
+  test('has a warrior', () => {
+    expect(tower.warrior).toEqual('warrior');
   });
 
   test('has some levels', () => {

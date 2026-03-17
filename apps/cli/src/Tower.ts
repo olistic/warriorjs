@@ -1,16 +1,24 @@
-import type { LevelConfig } from '@warriorjs/core';
+import type { LevelDefinition, WarriorDefinition } from '@warriorjs/core';
 
 /** Class representing a tower. */
 class Tower {
   id: string;
   name: string;
   description: string;
-  levels: LevelConfig[];
+  warrior: WarriorDefinition;
+  levels: LevelDefinition[];
 
-  constructor(id: string, name: string, description: string, levels: LevelConfig[]) {
+  constructor(
+    id: string,
+    name: string,
+    description: string,
+    warrior: WarriorDefinition,
+    levels: LevelDefinition[],
+  ) {
     this.id = id;
     this.name = name;
     this.description = description;
+    this.warrior = warrior;
     this.levels = levels;
   }
 
@@ -18,7 +26,7 @@ class Tower {
     return !!this.getLevel(levelNumber);
   }
 
-  getLevel(levelNumber: number): LevelConfig | undefined {
+  getLevel(levelNumber: number): LevelDefinition | undefined {
     return this.levels[levelNumber - 1];
   }
 

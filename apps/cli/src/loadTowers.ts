@@ -62,8 +62,8 @@ function loadTowers(): Tower[] {
   const uniqueInfo = [...new Map(allInfo.map((item) => [item.id, item])).values()];
   return uniqueInfo.map(({ id, requirePath }) => {
     const mod = require(requirePath);
-    const { name, description, levels } = mod.default || mod;
-    return new Tower(id, name, description, levels);
+    const { name, description, warrior, levels } = mod.default || mod;
+    return new Tower(id, name, description, warrior, levels);
   });
 }
 
