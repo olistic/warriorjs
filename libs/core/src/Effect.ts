@@ -1,4 +1,10 @@
-export type EffectBinding = [new (unit: any, config: any) => Effect, object];
+export interface EffectClass {
+  new (unit: any, config?: any): Effect;
+}
+
+export type EffectBinding = [EffectClass, object];
+
+export type EffectEntry = EffectBinding | EffectClass;
 
 abstract class Effect {
   protected unit: any;

@@ -1,7 +1,13 @@
-export type { AbilityBinding, AbilityMeta, AbilityParam } from './Ability.js';
+export type {
+  AbilityBinding,
+  AbilityClass,
+  AbilityEntry,
+  AbilityMeta,
+  AbilityParam,
+} from './Ability.js';
 export { default as Ability } from './Ability.js';
 export { default as Action } from './Action.js';
-export type { EffectBinding } from './Effect.js';
+export type { EffectBinding, EffectClass, EffectEntry } from './Effect.js';
 export { default as Effect } from './Effect.js';
 export { default as getLevel } from './getLevel.js';
 export { default as getLevelConfig } from './getLevelConfig.js';
@@ -17,4 +23,5 @@ export type {
   WarriorDefinition,
   WarriorOverrides,
 } from './types.js';
+export type { UnitClass } from './Unit.js';
 export { default as Unit } from './Unit.js';

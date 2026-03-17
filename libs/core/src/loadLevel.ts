@@ -1,5 +1,5 @@
-import type Ability from './Ability.js';
-import type { AbilityBinding } from './Ability.js';
+import type { AbilityEntry } from './Ability.js';
+import type { EffectEntry } from './Effect.js';
 import Floor from './Floor.js';
 import Level from './Level.js';
 import loadPlayer from './loadPlayer.js';
@@ -7,26 +7,26 @@ import type { LevelConfig, UnitConfig } from './types.js';
 import type Unit from './Unit.js';
 import Warrior from './Warrior.js';
 
-type AbilityEntry = AbilityBinding | (new (unit: any) => Ability);
-
 function loadAbilities(unit: Unit, abilities: Record<string, AbilityEntry> = {}): void {
   for (const [name, entry] of Object.entries(abilities)) {
     if (Array.isArray(entry)) {
       const [AbilityClass, config] = entry;
       unit.addAbility(name, new AbilityClass(unit, config));
     } else {
-      unit.addAbility(name, new (entry as new (unit: any) => Ability)(unit));
+      const AbilityClass = entry;
+      unit.addAbility(name, new AbilityClass(unit));
     }
   }
 }
 
-function loadEffects(unit: Unit, effects: Record<string, any> = {}): void {
+function loadEffects(unit: Unit, effects: Record<string, EffectEntry> = {}): void {
   for (const [name, entry] of Object.entries(effects)) {
     if (Array.isArray(entry)) {
       const [EffectClass, config] = entry;
       unit.addEffect(name, new EffectClass(unit, config));
     } else {
-      unit.addEffect(name, new entry(unit));
+      const EffectClass = entry;
+      unit.addEffect(name, new EffectClass(unit));
     }
   }
 }

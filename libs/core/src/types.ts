@@ -1,14 +1,11 @@
-import type Unit from './Unit.js';
-
-export interface UnitClass {
-  new (): Unit;
-  declaredAbilities?: Record<string, any>;
-}
+import type { AbilityEntry } from './Ability.js';
+import type { EffectEntry } from './Effect.js';
+import type { UnitClass } from './Unit.js';
 
 export interface UnitConfig {
   unit: UnitClass;
   position: { x: number; y: number; facing: string };
-  effects?: Record<string, any>;
+  effects?: Record<string, EffectEntry>;
 }
 
 export interface WarriorConfig {
@@ -17,7 +14,7 @@ export interface WarriorConfig {
   color: string;
   maxHealth: number;
   position: { x: number; y: number; facing: string };
-  abilities?: Record<string, any>;
+  abilities?: Record<string, AbilityEntry>;
 }
 
 export interface LevelConfig {
@@ -43,7 +40,7 @@ export interface WarriorDefinition {
 
 export interface WarriorOverrides {
   position: { x: number; y: number; facing: string };
-  abilities?: Record<string, any>;
+  abilities?: Record<string, AbilityEntry>;
   maxHealth?: number;
 }
 

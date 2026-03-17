@@ -1,4 +1,5 @@
 import type Ability from './Ability.js';
+import type { AbilityEntry } from './Ability.js';
 import Action from './Action.js';
 import type Effect from './Effect.js';
 import Logger from './Logger.js';
@@ -11,9 +12,14 @@ interface Turn {
   [key: string]: any;
 }
 
+export interface UnitClass {
+  new (): Unit;
+  declaredAbilities?: Record<string, AbilityEntry>;
+}
+
 /** Class representing a unit. */
 class Unit {
-  static declaredAbilities?: Record<string, any>;
+  static declaredAbilities?: Record<string, AbilityEntry>;
   name: string;
   character: string;
   color: string;

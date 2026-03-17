@@ -10,7 +10,13 @@ export interface AbilityMeta {
   returns: 'void' | 'number' | 'string' | 'Direction' | 'Space' | 'Space[]';
 }
 
-export type AbilityBinding = [new (unit: any, config: any) => Ability, object];
+export interface AbilityClass {
+  new (unit: any, config?: any): Ability;
+}
+
+export type AbilityBinding = [AbilityClass, object];
+
+export type AbilityEntry = AbilityBinding | AbilityClass;
 
 abstract class Ability {
   protected unit: any;
