@@ -26,12 +26,25 @@ const tower: TowerDefinition = {
       timeBonus: 15,
       aceScore: 10,
       floor: {
-        size: { width: 8, height: 1 },
-        stairs: { x: 7, y: 0 },
+        size: {
+          width: 8,
+          height: 1,
+        },
+        stairs: {
+          x: 7,
+          y: 0,
+        },
         warrior: {
           ...Warrior,
-          abilities: { think: Think, walk: Walk },
-          position: { x: 0, y: 0, facing: EAST },
+          abilities: {
+            think: Think,
+            walk: Walk,
+          },
+          position: {
+            x: 0,
+            y: 0,
+            facing: EAST,
+          },
         },
         units: [],
       },
@@ -44,14 +57,36 @@ const tower: TowerDefinition = {
       timeBonus: 20,
       aceScore: 26,
       floor: {
-        size: { width: 8, height: 1 },
-        stairs: { x: 7, y: 0 },
+        size: {
+          width: 8,
+          height: 1,
+        },
+        stairs: {
+          x: 7,
+          y: 0,
+        },
         warrior: {
           ...Warrior,
-          abilities: { attack: Attack.with({ power: 5 }), feel: Feel },
-          position: { x: 0, y: 0, facing: EAST },
+          abilities: {
+            attack: Attack.with({ power: 5 }),
+            feel: Feel,
+          },
+          position: {
+            x: 0,
+            y: 0,
+            facing: EAST,
+          },
         },
-        units: [{ unit: Sludge, position: { x: 4, y: 0, facing: WEST } }],
+        units: [
+          {
+            unit: Sludge,
+            position: {
+              x: 4,
+              y: 0,
+              facing: WEST,
+            },
+          },
+        ],
       },
     },
     {
@@ -62,18 +97,60 @@ const tower: TowerDefinition = {
       timeBonus: 35,
       aceScore: 71,
       floor: {
-        size: { width: 9, height: 1 },
-        stairs: { x: 8, y: 0 },
+        size: {
+          width: 9,
+          height: 1,
+        },
+        stairs: {
+          x: 8,
+          y: 0,
+        },
         warrior: {
           ...Warrior,
-          abilities: { health: Health, maxHealth: MaxHealth, rest: Rest.with({ healthGain: 0.1 }) },
-          position: { x: 0, y: 0, facing: EAST },
+          abilities: {
+            health: Health,
+            maxHealth: MaxHealth,
+            rest: Rest.with({ healthGain: 0.1 }),
+          },
+          position: {
+            x: 0,
+            y: 0,
+            facing: EAST,
+          },
         },
         units: [
-          { unit: Sludge, position: { x: 2, y: 0, facing: WEST } },
-          { unit: Sludge, position: { x: 4, y: 0, facing: WEST } },
-          { unit: Sludge, position: { x: 5, y: 0, facing: WEST } },
-          { unit: Sludge, position: { x: 7, y: 0, facing: WEST } },
+          {
+            unit: Sludge,
+            position: {
+              x: 2,
+              y: 0,
+              facing: WEST,
+            },
+          },
+          {
+            unit: Sludge,
+            position: {
+              x: 4,
+              y: 0,
+              facing: WEST,
+            },
+          },
+          {
+            unit: Sludge,
+            position: {
+              x: 5,
+              y: 0,
+              facing: WEST,
+            },
+          },
+          {
+            unit: Sludge,
+            position: {
+              x: 7,
+              y: 0,
+              facing: WEST,
+            },
+          },
         ],
       },
     },
@@ -85,13 +162,47 @@ const tower: TowerDefinition = {
       timeBonus: 45,
       aceScore: 90,
       floor: {
-        size: { width: 7, height: 1 },
-        stairs: { x: 6, y: 0 },
-        warrior: { ...Warrior, position: { x: 0, y: 0, facing: EAST } },
+        size: {
+          width: 7,
+          height: 1,
+        },
+        stairs: {
+          x: 6,
+          y: 0,
+        },
+        warrior: {
+          ...Warrior,
+          position: {
+            x: 0,
+            y: 0,
+            facing: EAST,
+          },
+        },
         units: [
-          { unit: ThickSludge, position: { x: 2, y: 0, facing: WEST } },
-          { unit: Archer, position: { x: 3, y: 0, facing: WEST } },
-          { unit: ThickSludge, position: { x: 5, y: 0, facing: WEST } },
+          {
+            unit: ThickSludge,
+            position: {
+              x: 2,
+              y: 0,
+              facing: WEST,
+            },
+          },
+          {
+            unit: Archer,
+            position: {
+              x: 3,
+              y: 0,
+              facing: WEST,
+            },
+          },
+          {
+            unit: ThickSludge,
+            position: {
+              x: 5,
+              y: 0,
+              facing: WEST,
+            },
+          },
         ],
       },
     },
@@ -102,19 +213,66 @@ const tower: TowerDefinition = {
       timeBonus: 45,
       aceScore: 123,
       floor: {
-        size: { width: 7, height: 1 },
-        stairs: { x: 6, y: 0 },
+        size: {
+          width: 7,
+          height: 1,
+        },
+        stairs: {
+          x: 6,
+          y: 0,
+        },
         warrior: {
           ...Warrior,
-          abilities: { rescue: Rescue },
-          position: { x: 0, y: 0, facing: EAST },
+          abilities: {
+            rescue: Rescue,
+          },
+          position: {
+            x: 0,
+            y: 0,
+            facing: EAST,
+          },
         },
         units: [
-          { unit: Captive, position: { x: 2, y: 0, facing: WEST } },
-          { unit: Archer, position: { x: 3, y: 0, facing: WEST } },
-          { unit: Archer, position: { x: 4, y: 0, facing: WEST } },
-          { unit: ThickSludge, position: { x: 5, y: 0, facing: WEST } },
-          { unit: Captive, position: { x: 6, y: 0, facing: WEST } },
+          {
+            unit: Captive,
+            position: {
+              x: 2,
+              y: 0,
+              facing: WEST,
+            },
+          },
+          {
+            unit: Archer,
+            position: {
+              x: 3,
+              y: 0,
+              facing: WEST,
+            },
+          },
+          {
+            unit: Archer,
+            position: {
+              x: 4,
+              y: 0,
+              facing: WEST,
+            },
+          },
+          {
+            unit: ThickSludge,
+            position: {
+              x: 5,
+              y: 0,
+              facing: WEST,
+            },
+          },
+          {
+            unit: Captive,
+            position: {
+              x: 6,
+              y: 0,
+              facing: WEST,
+            },
+          },
         ],
       },
     },
@@ -126,14 +284,55 @@ const tower: TowerDefinition = {
       timeBonus: 55,
       aceScore: 105,
       floor: {
-        size: { width: 8, height: 1 },
-        stairs: { x: 7, y: 0 },
-        warrior: { ...Warrior, position: { x: 2, y: 0, facing: EAST } },
+        size: {
+          width: 8,
+          height: 1,
+        },
+        stairs: {
+          x: 7,
+          y: 0,
+        },
+        warrior: {
+          ...Warrior,
+          position: {
+            x: 2,
+            y: 0,
+            facing: EAST,
+          },
+        },
         units: [
-          { unit: Captive, position: { x: 0, y: 0, facing: EAST } },
-          { unit: ThickSludge, position: { x: 4, y: 0, facing: WEST } },
-          { unit: Archer, position: { x: 6, y: 0, facing: WEST } },
-          { unit: Archer, position: { x: 7, y: 0, facing: WEST } },
+          {
+            unit: Captive,
+            position: {
+              x: 0,
+              y: 0,
+              facing: EAST,
+            },
+          },
+          {
+            unit: ThickSludge,
+            position: {
+              x: 4,
+              y: 0,
+              facing: WEST,
+            },
+          },
+          {
+            unit: Archer,
+            position: {
+              x: 6,
+              y: 0,
+              facing: WEST,
+            },
+          },
+          {
+            unit: Archer,
+            position: {
+              x: 7,
+              y: 0,
+              facing: WEST,
+            },
+          },
         ],
       },
     },
@@ -144,16 +343,42 @@ const tower: TowerDefinition = {
       timeBonus: 30,
       aceScore: 50,
       floor: {
-        size: { width: 6, height: 1 },
-        stairs: { x: 0, y: 0 },
+        size: {
+          width: 6,
+          height: 1,
+        },
+        stairs: {
+          x: 0,
+          y: 0,
+        },
         warrior: {
           ...Warrior,
-          abilities: { pivot: Pivot },
-          position: { x: 5, y: 0, facing: EAST },
+          abilities: {
+            pivot: Pivot,
+          },
+          position: {
+            x: 5,
+            y: 0,
+            facing: EAST,
+          },
         },
         units: [
-          { unit: Archer, position: { x: 1, y: 0, facing: EAST } },
-          { unit: ThickSludge, position: { x: 3, y: 0, facing: EAST } },
+          {
+            unit: Archer,
+            position: {
+              x: 1,
+              y: 0,
+              facing: EAST,
+            },
+          },
+          {
+            unit: ThickSludge,
+            position: {
+              x: 3,
+              y: 0,
+              facing: EAST,
+            },
+          },
         ],
       },
     },
@@ -165,17 +390,51 @@ const tower: TowerDefinition = {
       timeBonus: 20,
       aceScore: 46,
       floor: {
-        size: { width: 6, height: 1 },
-        stairs: { x: 5, y: 0 },
+        size: {
+          width: 6,
+          height: 1,
+        },
+        stairs: {
+          x: 5,
+          y: 0,
+        },
         warrior: {
           ...Warrior,
-          position: { x: 0, y: 0, facing: EAST },
-          abilities: { look: Look.with({ range: 3 }), shoot: Shoot.with({ power: 3, range: 3 }) },
+          abilities: {
+            look: Look.with({ range: 3 }),
+            shoot: Shoot.with({ power: 3, range: 3 }),
+          },
+          position: {
+            x: 0,
+            y: 0,
+            facing: EAST,
+          },
         },
         units: [
-          { unit: Captive, position: { x: 2, y: 0, facing: WEST } },
-          { unit: Wizard, position: { x: 3, y: 0, facing: WEST } },
-          { unit: Wizard, position: { x: 4, y: 0, facing: WEST } },
+          {
+            unit: Captive,
+            position: {
+              x: 2,
+              y: 0,
+              facing: WEST,
+            },
+          },
+          {
+            unit: Wizard,
+            position: {
+              x: 3,
+              y: 0,
+              facing: WEST,
+            },
+          },
+          {
+            unit: Wizard,
+            position: {
+              x: 4,
+              y: 0,
+              facing: WEST,
+            },
+          },
         ],
       },
     },
@@ -187,15 +446,63 @@ const tower: TowerDefinition = {
       timeBonus: 40,
       aceScore: 100,
       floor: {
-        size: { width: 11, height: 1 },
-        stairs: { x: 0, y: 0 },
-        warrior: { ...Warrior, position: { x: 5, y: 0, facing: EAST } },
+        size: {
+          width: 11,
+          height: 1,
+        },
+        stairs: {
+          x: 0,
+          y: 0,
+        },
+        warrior: {
+          ...Warrior,
+          position: {
+            x: 5,
+            y: 0,
+            facing: EAST,
+          },
+        },
         units: [
-          { unit: Captive, position: { x: 1, y: 0, facing: EAST } },
-          { unit: Archer, position: { x: 2, y: 0, facing: EAST } },
-          { unit: ThickSludge, position: { x: 7, y: 0, facing: WEST } },
-          { unit: Wizard, position: { x: 9, y: 0, facing: WEST } },
-          { unit: Captive, position: { x: 10, y: 0, facing: WEST } },
+          {
+            unit: Captive,
+            position: {
+              x: 1,
+              y: 0,
+              facing: EAST,
+            },
+          },
+          {
+            unit: Archer,
+            position: {
+              x: 2,
+              y: 0,
+              facing: EAST,
+            },
+          },
+          {
+            unit: ThickSludge,
+            position: {
+              x: 7,
+              y: 0,
+              facing: WEST,
+            },
+          },
+          {
+            unit: Wizard,
+            position: {
+              x: 9,
+              y: 0,
+              facing: WEST,
+            },
+          },
+          {
+            unit: Captive,
+            position: {
+              x: 10,
+              y: 0,
+              facing: WEST,
+            },
+          },
         ],
       },
     },
