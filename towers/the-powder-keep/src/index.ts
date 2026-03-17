@@ -27,7 +27,7 @@ const tower: TowerDefinition = {
     {
       description:
         'Silence. The room stretches wide and empty, your footsteps swallowed by the dark. A crumpled map in your hand marks the way to the stairs.',
-      tip: "The dark won't guide you, but the map will. Use `warrior.directionOfStairs` to find the stairs, and pass the result to `warrior.walk` to move toward them.",
+      tip: "The dark won't guide you, but the map will. Use `warrior.directionOfStairs()` to find the stairs, and pass the result to `warrior.walk()` to move toward them.",
       timeBonus: 20,
       aceScore: 19,
       floor: {
@@ -59,7 +59,7 @@ const tower: TowerDefinition = {
       description:
         'The next chamber is not empty. Shapes shift in the darkness on all sides, between you and the stairs.',
       tip: 'Threats can come from any direction now. You can attack and feel forward, left, right, and backward.',
-      clue: "Call `warrior.feel.isUnit()` and `warrior.feel.getUnit().isEnemy()` in each direction to make sure there isn't an enemy beside you (attack if there is). Call `warrior.rest()` if you're low in health when there are no enemies around.",
+      clue: "Call `warrior.feel().isUnit()` and `warrior.feel().getUnit().isEnemy()` in each direction to make sure there isn't an enemy beside you (attack if there is). Call `warrior.rest()` if you're low in health when there are no enemies around.",
       timeBonus: 40,
       aceScore: 84,
       floor: {
@@ -116,7 +116,7 @@ const tower: TowerDefinition = {
     },
     {
       description: 'Slime presses against you from every direction. You are surrounded.',
-      tip: 'Too many to fight at once. Call `warrior.bind` to hold an enemy in place while you deal with the others.',
+      tip: 'Too many to fight at once. Call `warrior.bind()` to hold an enemy in place while you deal with the others.',
       clue: 'Count the number of unbound enemies around you. Bind an enemy if there are two or more.',
       timeBonus: 50,
       aceScore: 101,
@@ -180,8 +180,8 @@ const tower: TowerDefinition = {
     {
       description:
         'Your eyes are useless here, but your ears sharpen. Breathing. Struggling. Faint sounds scattered across the room.',
-      tip: 'Listen for what you cannot see. Use `warrior.listen` to find spaces with other units, and `warrior.directionOf` to determine which way they are.',
-      clue: 'Walk towards a unit with `warrior.walk(warrior.directionOf(warrior.listen[0]))`. Once `warrior.listen.length === 0`, head for the stairs.',
+      tip: 'Listen for what you cannot see. Use `warrior.listen()` to find spaces with other units, and `warrior.directionOf()` to determine which way they are.',
+      clue: 'Walk towards a unit with `warrior.walk(warrior.directionOf(warrior.listen()[0]))`. Once `warrior.listen().length === 0`, head for the stairs.',
       timeBonus: 55,
       aceScore: 144,
       floor: {
@@ -252,7 +252,7 @@ const tower: TowerDefinition = {
     {
       description:
         'The stairs are right beside you — you could leave now. But the room beyond is not empty, and neither is your conscience.',
-      tip: 'Leaving is easy. Clearing the floor is worth more. Use `warrior.feel.isStairs()` and `warrior.feel.isEmpty()` to choose your path.',
+      tip: 'Leaving is easy. Clearing the floor is worth more. Use `warrior.feel().isStairs()` and `warrior.feel().isEmpty()` to choose your path.',
       clue: 'If going towards a unit is the same direction as the stairs, try moving in another empty direction until you can safely move toward the enemies.',
       timeBonus: 45,
       aceScore: 107,
@@ -305,7 +305,7 @@ const tower: TowerDefinition = {
       description:
         'A rhythmic ticking cuts through the silence. Somewhere in the dark, a captive kneels over a bomb that will not wait.',
       tip: "Time is short. Rescue captives with `space.getUnit().isUnderEffect('ticking')` first — they won't last long.",
-      clue: "Avoid fighting enemies at first. Use `warrior.listen` and `space.getUnit().isUnderEffect('ticking')` and quickly rescue those captives.",
+      clue: "Avoid fighting enemies at first. Use `warrior.listen()` and `space.getUnit().isUnderEffect('ticking')` and quickly rescue those captives.",
       timeBonus: 50,
       aceScore: 108,
       floor: {
@@ -497,7 +497,7 @@ const tower: TowerDefinition = {
     {
       description:
         'The final chamber writhes with sludge — more than you have ever seen. The ticking beneath the floor has not stopped.',
-      tip: 'One wrong blast and the captive dies with the rest. Use `warrior.distanceOf` to keep the flames clear of those you came to save.',
+      tip: 'One wrong blast and the captive dies with the rest. Use `warrior.distanceOf()` to keep the flames clear of those you came to save.',
       clue: 'Be sure to bind the surrounding enemies before fighting. Check your health before detonating explosives.',
       timeBonus: 70,
       aceScore: 176,
