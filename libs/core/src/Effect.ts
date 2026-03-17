@@ -1,3 +1,5 @@
+export type EffectBinding = [new (unit: any, config: any) => Effect, object];
+
 abstract class Effect {
   protected unit: any;
 
