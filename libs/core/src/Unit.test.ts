@@ -90,8 +90,8 @@ describe('Unit', () => {
     expect(unit.effects.size).toBe(0);
   });
 
-  test('has a turn which starts as an empty object', () => {
-    expect(unit.turn).toEqual({});
+  test('has a turn which starts as null', () => {
+    expect(unit.turn).toBeNull();
   });
 
   describe('next turn', () => {

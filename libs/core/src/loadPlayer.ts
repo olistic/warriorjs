@@ -1,13 +1,14 @@
 import assert from 'node:assert';
 import vm from 'node:vm';
 import { transformSync } from 'esbuild';
+import type { Turn } from './Unit.js';
 
 const playerCodeTimeout = 3000;
 
 function loadPlayer(
   playerCode: string,
   language: 'javascript' | 'typescript' = 'javascript',
-): (turn: any) => void {
+): (turn: Turn) => void {
   const playerCodeFilename = language === 'typescript' ? 'Player.ts' : 'Player.js';
   const loader = language === 'typescript' ? 'ts' : 'js';
 
@@ -44,7 +45,7 @@ function loadPlayer(
       timeout: playerCodeTimeout,
     });
     assert(typeof player.playTurn === 'function', 'playTurn is not defined');
-    const playTurn = (turn: any): void => {
+    const playTurn = (turn: Turn): void => {
       try {
         player.playTurn(turn);
       } catch (err: any) {

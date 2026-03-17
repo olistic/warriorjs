@@ -7,7 +7,9 @@ import type Position from './Position.js';
 import type { SensedSpace, SensedUnit } from './Space.js';
 import Space from './Space.js';
 
-interface Turn {
+export type Turn = Record<string, (...args: any[]) => any>;
+
+interface TurnState {
   action: [string, any[]] | null;
   [key: string]: any;
 }
@@ -32,8 +34,7 @@ class Unit {
   score: number;
   abilities: Map<string, Ability>;
   effects: Map<string, Effect>;
-  turn: Turn | Record<string, never>;
-  playTurn: (turn: any) => void;
+  turn: TurnState | null;
 
   constructor(
     name?: string,
@@ -56,12 +57,11 @@ class Unit {
     this.score = 0;
     this.abilities = new Map();
     this.effects = new Map();
-    this.turn = {};
-    this.playTurn = () => {};
+    this.turn = null;
   }
 
-  getNextTurn(): Turn {
-    const turn: Turn = { action: null };
+  getNextTurn(): TurnState {
+    const turn: TurnState = { action: null };
     this.abilities.forEach((ability, name) => {
       if (ability instanceof Action) {
         Object.defineProperty(turn, name, {
@@ -82,6 +82,8 @@ class Unit {
     return turn;
   }
 
+  playTurn(_turn: Turn): void {}
+
   prepareTurn(): void {
     this.turn = this.getNextTurn();
     this.playTurn(this.turn);
@@ -90,9 +92,8 @@ class Unit {
   performTurn(): void {
     if (this.isAlive()) {
       this.effects.forEach((effect) => effect.passTurn());
-      const turn = this.turn as Turn;
-      if (turn.action && !this.isBound()) {
-        const [name, args] = turn.action;
+      if (this.turn?.action && !this.isBound()) {
+        const [name, args] = this.turn.action;
         this.abilities.get(name)?.perform(...args);
       }
     }

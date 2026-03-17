@@ -17,5 +17,5 @@ export type {
   WarriorDefinition,
   WarriorOverrides,
 } from './types.js';
-export type { UnitClass } from './Unit.js';
+export type { Turn, UnitClass } from './Unit.js';
 export { default as Unit } from './Unit.js';
