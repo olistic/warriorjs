@@ -68,6 +68,7 @@ const levelConfig = {
     warrior: {
       name: 'Joe',
       character: '@',
+      color: '#8fbcbb',
       maxHealth: 20,
       abilities: {
         walk: TestWalk,
@@ -80,6 +81,7 @@ const levelConfig = {
       {
         name: 'Sludge',
         character: 's',
+        color: '#d08770',
         maxHealth: 12,
         abilities: {
           attack: TestAttack.with({ power: 3 }),
