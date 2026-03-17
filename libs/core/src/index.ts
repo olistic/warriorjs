@@ -10,9 +10,11 @@ export { default as runLevel } from './runLevel.js';
 export { default as Sense } from './Sense.js';
 export type {
   LevelConfig,
+  LevelDefinition,
   TowerDefinition,
-  TowerLevel,
   UnitConfig,
   WarriorConfig,
+  WarriorDefinition,
+  WarriorOverrides,
 } from './types.js';
 export { default as Unit } from './Unit.js';

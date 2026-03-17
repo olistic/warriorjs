@@ -5,14 +5,14 @@ export interface WarriorConfig {
   character: string;
   color: string;
   maxHealth: number;
-  abilities?: Record<string, any>;
   position: { x: number; y: number; facing: string };
+  abilities?: Record<string, any>;
 }
 
 export interface UnitConfig {
   unit: new () => Unit;
-  effects?: Record<string, any>;
   position: { x: number; y: number; facing: string };
+  effects?: Record<string, any>;
 }
 
 export interface LevelConfig {
@@ -30,7 +30,19 @@ export interface LevelConfig {
   };
 }
 
-export interface TowerLevel {
+export interface WarriorDefinition {
+  character: string;
+  color: string;
+  maxHealth: number;
+}
+
+export interface WarriorOverrides {
+  position: { x: number; y: number; facing: string };
+  abilities?: Record<string, any>;
+  maxHealth?: number;
+}
+
+export interface LevelDefinition {
   description: string;
   tip: string;
   clue?: string;
@@ -39,7 +51,7 @@ export interface TowerLevel {
   floor: {
     size: { width: number; height: number };
     stairs: { x: number; y: number };
-    warrior: WarriorConfig;
+    warrior: WarriorOverrides;
     units: UnitConfig[];
   };
 }
@@ -47,5 +59,6 @@ export interface TowerLevel {
 export interface TowerDefinition {
   name: string;
   description: string;
-  levels: TowerLevel[];
+  warrior: WarriorDefinition;
+  levels: LevelDefinition[];
 }

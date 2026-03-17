@@ -7,8 +7,7 @@ function runLevel(
   playerCode: string,
   language: 'javascript' | 'typescript' = 'javascript',
 ): { passed: boolean; turns: TurnEvent[][]; initialState: TurnEvent | null } {
-  const level = loadLevel(levelConfig, playerCode, language);
-  return level.play();
+  return loadLevel(levelConfig, playerCode, language).play();
 }
 
 export default runLevel;
