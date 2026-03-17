@@ -2,7 +2,7 @@ import { BACKWARD, RIGHT } from '@warriorjs/spatial';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 
 import Action from './Action.js';
-import Pivot from './pivot.js';
+import Pivot from './Pivot.js';
 
 describe('Pivot', () => {
   let pivot: Pivot;

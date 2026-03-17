@@ -1,6 +1,6 @@
 import { FORWARD, LEFT } from '@warriorjs/spatial';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
-import Look from './look.js';
+import Look from './Look.js';
 import Sense from './Sense.js';
 
 describe('Look', () => {

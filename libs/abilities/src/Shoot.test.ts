@@ -2,7 +2,7 @@ import { FORWARD, LEFT } from '@warriorjs/spatial';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 
 import Action from './Action.js';
-import Shoot from './shoot.js';
+import Shoot from './Shoot.js';
 
 describe('Shoot', () => {
   let shoot: Shoot;

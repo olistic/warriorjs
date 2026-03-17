@@ -1,15 +1,15 @@
 import {
-  attack,
-  feel,
-  health,
-  look,
-  maxHealth,
-  pivot,
-  rescue,
-  rest,
-  shoot,
-  think,
-  walk,
+  Attack,
+  Feel,
+  Health,
+  Look,
+  MaxHealth,
+  Pivot,
+  Rescue,
+  Rest,
+  Shoot,
+  Think,
+  Walk,
 } from '@warriorjs/abilities';
 import type { TowerDefinition } from '@warriorjs/core';
 import { EAST, WEST } from '@warriorjs/spatial';
@@ -30,7 +30,7 @@ const tower: TowerDefinition = {
         stairs: { x: 7, y: 0 },
         warrior: {
           ...Warrior,
-          abilities: { think, walk },
+          abilities: { think: Think, walk: Walk },
           position: { x: 0, y: 0, facing: EAST },
         },
         units: [],
@@ -48,7 +48,7 @@ const tower: TowerDefinition = {
         stairs: { x: 7, y: 0 },
         warrior: {
           ...Warrior,
-          abilities: { attack: attack.with({ power: 5 }), feel },
+          abilities: { attack: Attack.with({ power: 5 }), feel: Feel },
           position: { x: 0, y: 0, facing: EAST },
         },
         units: [{ unit: new Sludge(), position: { x: 4, y: 0, facing: WEST } }],
@@ -66,7 +66,7 @@ const tower: TowerDefinition = {
         stairs: { x: 8, y: 0 },
         warrior: {
           ...Warrior,
-          abilities: { health, maxHealth, rest: rest.with({ healthGain: 0.1 }) },
+          abilities: { health: Health, maxHealth: MaxHealth, rest: Rest.with({ healthGain: 0.1 }) },
           position: { x: 0, y: 0, facing: EAST },
         },
         units: [
@@ -106,7 +106,7 @@ const tower: TowerDefinition = {
         stairs: { x: 6, y: 0 },
         warrior: {
           ...Warrior,
-          abilities: { rescue },
+          abilities: { rescue: Rescue },
           position: { x: 0, y: 0, facing: EAST },
         },
         units: [
@@ -148,7 +148,7 @@ const tower: TowerDefinition = {
         stairs: { x: 0, y: 0 },
         warrior: {
           ...Warrior,
-          abilities: { pivot },
+          abilities: { pivot: Pivot },
           position: { x: 5, y: 0, facing: EAST },
         },
         units: [
@@ -170,7 +170,7 @@ const tower: TowerDefinition = {
         warrior: {
           ...Warrior,
           position: { x: 0, y: 0, facing: EAST },
-          abilities: { look: look.with({ range: 3 }), shoot: shoot.with({ power: 3, range: 3 }) },
+          abilities: { look: Look.with({ range: 3 }), shoot: Shoot.with({ power: 3, range: 3 }) },
         },
         units: [
           { unit: new Captive(), position: { x: 2, y: 0, facing: WEST } },

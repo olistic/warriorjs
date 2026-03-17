@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, test } from 'vitest';
-import Health from './health.js';
+import Health from './Health.js';
 import Sense from './Sense.js';
 
 describe('Health', () => {

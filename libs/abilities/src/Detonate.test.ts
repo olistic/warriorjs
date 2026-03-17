@@ -2,7 +2,7 @@ import { FORWARD, LEFT } from '@warriorjs/spatial';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 
 import Action from './Action.js';
-import Detonate from './detonate.js';
+import Detonate from './Detonate.js';
 
 describe('Detonate', () => {
   let detonate: Detonate;

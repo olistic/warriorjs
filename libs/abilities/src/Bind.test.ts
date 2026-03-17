@@ -2,7 +2,7 @@ import { FORWARD, LEFT } from '@warriorjs/spatial';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 
 import Action from './Action.js';
-import Bind from './bind.js';
+import Bind from './Bind.js';
 
 describe('Bind', () => {
   let bind: Bind;

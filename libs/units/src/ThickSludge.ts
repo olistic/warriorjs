@@ -1,11 +1,11 @@
-import { attack, feel } from '@warriorjs/abilities';
+import { Attack, Feel } from '@warriorjs/abilities';
 
 import MeleeUnit from './MeleeUnit.js';
 
 class ThickSludge extends MeleeUnit {
   declaredAbilities = {
-    attack: attack.with({ power: 3 }),
-    feel: feel,
+    attack: Attack.with({ power: 3 }),
+    feel: Feel,
   };
 
   constructor() {

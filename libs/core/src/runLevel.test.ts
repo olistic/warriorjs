@@ -1,4 +1,4 @@
-import { attack, feel, walk } from '@warriorjs/abilities';
+import { Attack, Feel, Walk } from '@warriorjs/abilities';
 import { EAST, RELATIVE_DIRECTIONS, WEST } from '@warriorjs/spatial';
 import { expect, test } from 'vitest';
 
@@ -19,9 +19,9 @@ const levelConfig = {
       character: '@',
       maxHealth: 20,
       abilities: {
-        walk: walk,
-        attack: attack.with({ power: 5 }),
-        feel: feel,
+        walk: Walk,
+        attack: Attack.with({ power: 5 }),
+        feel: Feel,
       },
       position: {
         x: 0,
@@ -35,8 +35,8 @@ const levelConfig = {
         character: 's',
         maxHealth: 12,
         abilities: {
-          attack: attack.with({ power: 3 }),
-          feel: feel,
+          attack: Attack.with({ power: 3 }),
+          feel: Feel,
         },
         playTurn(sludge: any) {
           const threatDirection = RELATIVE_DIRECTIONS.find((direction) => {

@@ -2,7 +2,7 @@ import { BACKWARD, FORWARD, LEFT } from '@warriorjs/spatial';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 
 import Action from './Action.js';
-import Attack from './attack.js';
+import Attack from './Attack.js';
 
 describe('Attack', () => {
   let attack: Attack;

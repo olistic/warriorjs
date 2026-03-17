@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, test, vi } from 'vitest';
-import DistanceOf from './distanceOf.js';
+import DistanceOf from './DistanceOf.js';
 import Sense from './Sense.js';
 
 describe('DistanceOf', () => {

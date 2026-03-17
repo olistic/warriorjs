@@ -1,19 +1,19 @@
 import {
-  attack,
-  bind,
-  detonate,
-  directionOf,
-  directionOfStairs,
-  distanceOf,
-  feel,
-  health,
-  listen,
-  look,
-  maxHealth,
-  rescue,
-  rest,
-  think,
-  walk,
+  Attack,
+  Bind,
+  Detonate,
+  DirectionOf,
+  DirectionOfStairs,
+  DistanceOf,
+  Feel,
+  Health,
+  Listen,
+  Look,
+  MaxHealth,
+  Rescue,
+  Rest,
+  Think,
+  Walk,
 } from '@warriorjs/abilities';
 import type { TowerDefinition } from '@warriorjs/core';
 import { ticking } from '@warriorjs/effects';
@@ -42,9 +42,9 @@ const tower: TowerDefinition = {
         warrior: {
           ...Warrior,
           abilities: {
-            directionOfStairs: directionOfStairs,
-            think: think,
-            walk: walk,
+            directionOfStairs: DirectionOfStairs,
+            think: Think,
+            walk: Walk,
           },
           position: {
             x: 0,
@@ -74,11 +74,11 @@ const tower: TowerDefinition = {
         warrior: {
           ...Warrior,
           abilities: {
-            attack: attack.with({ power: 5 }),
-            feel: feel,
-            health: health,
-            maxHealth: maxHealth,
-            rest: rest.with({ healthGain: 0.1 }),
+            attack: Attack.with({ power: 5 }),
+            feel: Feel,
+            health: Health,
+            maxHealth: MaxHealth,
+            rest: Rest.with({ healthGain: 0.1 }),
           },
           position: {
             x: 0,
@@ -137,8 +137,8 @@ const tower: TowerDefinition = {
             facing: EAST,
           },
           abilities: {
-            bind: bind,
-            rescue: rescue,
+            bind: Bind,
+            rescue: Rescue,
           },
         },
         units: [
@@ -201,8 +201,8 @@ const tower: TowerDefinition = {
             facing: EAST,
           },
           abilities: {
-            directionOf: directionOf,
-            listen: listen,
+            directionOf: DirectionOf,
+            listen: Listen,
           },
         },
         units: [
@@ -459,8 +459,8 @@ const tower: TowerDefinition = {
             facing: EAST,
           },
           abilities: {
-            detonate: detonate.with({ targetPower: 8, surroundingPower: 4 }),
-            look: look.with({ range: 3 }),
+            detonate: Detonate.with({ targetPower: 8, surroundingPower: 4 }),
+            look: Look.with({ range: 3 }),
           },
         },
         units: [
@@ -518,7 +518,7 @@ const tower: TowerDefinition = {
             facing: EAST,
           },
           abilities: {
-            distanceOf: distanceOf,
+            distanceOf: DistanceOf,
           },
         },
         units: [
