@@ -1,7 +1,7 @@
 import { Effect } from '@warriorjs/core';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 
-import Ticking from './ticking.js';
+import Ticking from './Ticking.js';
 
 describe('Ticking', () => {
   let ticking: Ticking;
