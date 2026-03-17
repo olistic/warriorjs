@@ -64,7 +64,8 @@ function instantiateAbility(entry: any): any {
   }
   if (typeof entry === 'function' && entry.prototype?.perform) {
     // Bare ability class
-    return new entry({} as any);
+    const AbilityClass = entry;
+    return new AbilityClass({} as any);
   }
   // Legacy factory
   return entry({} as any);
