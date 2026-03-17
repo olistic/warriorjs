@@ -15,10 +15,16 @@ import {
   Think,
   Walk,
 } from '@warriorjs/abilities';
-import type { TowerDefinition } from '@warriorjs/core';
+import type { TowerDefinition, WarriorConfig } from '@warriorjs/core';
 import { Ticking } from '@warriorjs/effects';
 import { EAST, NORTH, SOUTH, WEST } from '@warriorjs/spatial';
-import { Captive, Sludge, ThickSludge, Warrior } from '@warriorjs/units';
+import { Captive, Sludge, ThickSludge } from '@warriorjs/units';
+
+const sharedWarriorConfig: Pick<WarriorConfig, 'character' | 'color' | 'maxHealth'> = {
+  character: '@',
+  color: '#8fbcbb',
+  maxHealth: 20,
+};
 
 const tower: TowerDefinition = {
   name: 'The Powder Keep',
@@ -40,7 +46,7 @@ const tower: TowerDefinition = {
           y: 3,
         },
         warrior: {
-          ...Warrior,
+          ...sharedWarriorConfig,
           abilities: {
             directionOfStairs: DirectionOfStairs,
             think: Think,
@@ -72,7 +78,7 @@ const tower: TowerDefinition = {
           y: 1,
         },
         warrior: {
-          ...Warrior,
+          ...sharedWarriorConfig,
           abilities: {
             attack: Attack.with({ power: 5 }),
             feel: Feel,
@@ -130,7 +136,7 @@ const tower: TowerDefinition = {
           y: 0,
         },
         warrior: {
-          ...Warrior,
+          ...sharedWarriorConfig,
           position: {
             x: 1,
             y: 1,
@@ -194,7 +200,7 @@ const tower: TowerDefinition = {
           y: 2,
         },
         warrior: {
-          ...Warrior,
+          ...sharedWarriorConfig,
           position: {
             x: 1,
             y: 1,
@@ -266,7 +272,7 @@ const tower: TowerDefinition = {
           y: 1,
         },
         warrior: {
-          ...Warrior,
+          ...sharedWarriorConfig,
           position: {
             x: 0,
             y: 1,
@@ -318,7 +324,7 @@ const tower: TowerDefinition = {
           y: 0,
         },
         warrior: {
-          ...Warrior,
+          ...sharedWarriorConfig,
           position: {
             x: 0,
             y: 1,
@@ -381,7 +387,7 @@ const tower: TowerDefinition = {
           y: 0,
         },
         warrior: {
-          ...Warrior,
+          ...sharedWarriorConfig,
           position: {
             x: 0,
             y: 1,
@@ -452,7 +458,7 @@ const tower: TowerDefinition = {
           y: 0,
         },
         warrior: {
-          ...Warrior,
+          ...sharedWarriorConfig,
           position: {
             x: 0,
             y: 0,
@@ -511,7 +517,7 @@ const tower: TowerDefinition = {
           y: 0,
         },
         warrior: {
-          ...Warrior,
+          ...sharedWarriorConfig,
           position: {
             x: 0,
             y: 1,

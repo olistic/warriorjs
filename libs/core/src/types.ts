@@ -1,16 +1,17 @@
 import type Unit from './Unit.js';
 
-export interface UnitConfig {
-  name: string;
+export interface WarriorConfig {
+  name?: string;
   character: string;
   color: string;
   maxHealth: number;
-  reward?: number;
-  enemy?: boolean;
-  bound?: boolean;
   abilities?: Record<string, any>;
+  position: { x: number; y: number; facing: string };
+}
+
+export interface UnitConfig {
+  unit: new () => Unit;
   effects?: Record<string, any>;
-  playTurn?: (turn: any) => void;
   position: { x: number; y: number; facing: string };
 }
 
@@ -24,23 +25,9 @@ export interface LevelConfig {
   floor: {
     size: { width: number; height: number };
     stairs: { x: number; y: number };
-    warrior: UnitConfig;
-    units?: (UnitConfig | TowerUnitEntry)[];
+    warrior: WarriorConfig;
+    units?: UnitConfig[];
   };
-}
-
-export interface TowerUnitEntry {
-  unit: new () => Unit;
-  effects?: Record<string, any>;
-  position: { x: number; y: number; facing: string };
-}
-
-export interface TowerWarriorEntry {
-  character: string;
-  color: string;
-  maxHealth: number;
-  abilities?: Record<string, any>;
-  position: { x: number; y: number; facing: string };
 }
 
 export interface TowerLevel {
@@ -52,8 +39,8 @@ export interface TowerLevel {
   floor: {
     size: { width: number; height: number };
     stairs: { x: number; y: number };
-    warrior: TowerWarriorEntry;
-    units: TowerUnitEntry[];
+    warrior: WarriorConfig;
+    units: UnitConfig[];
   };
 }
 

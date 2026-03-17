@@ -3,7 +3,7 @@ import type { AbilityBinding } from './Ability.js';
 import Floor from './Floor.js';
 import Level from './Level.js';
 import loadPlayer from './loadPlayer.js';
-import type { LevelConfig, TowerUnitEntry } from './types.js';
+import type { LevelConfig, UnitConfig } from './types.js';
 import type Unit from './Unit.js';
 import Warrior from './Warrior.js';
 
@@ -44,7 +44,7 @@ function loadWarrior(
   floor.addWarrior(unit, position);
 }
 
-function loadUnit({ unit: UnitClass, effects, position }: TowerUnitEntry, floor: Floor): void {
+function loadUnit({ unit: UnitClass, effects, position }: UnitConfig, floor: Floor): void {
   const unit = new UnitClass();
   const declaredAbilities = (unit as any).declaredAbilities;
   if (declaredAbilities) {
@@ -67,7 +67,7 @@ function loadLevel(
 
   loadWarrior(warrior, floor, playerCode, language);
   for (const entry of units) {
-    loadUnit(entry as TowerUnitEntry, floor);
+    loadUnit(entry as UnitConfig, floor);
   }
 
   return new Level(number!, description!, tip!, clue!, floor);

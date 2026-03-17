@@ -12,8 +12,7 @@ export type {
   LevelConfig,
   TowerDefinition,
   TowerLevel,
-  TowerUnitEntry,
-  TowerWarriorEntry,
   UnitConfig,
+  WarriorConfig,
 } from './types.js';
 export { default as Unit } from './Unit.js';

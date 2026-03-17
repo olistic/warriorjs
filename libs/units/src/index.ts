@@ -4,5 +4,4 @@ export { default as MeleeUnit } from './MeleeUnit.js';
 export { default as RangedUnit } from './RangedUnit.js';
 export { default as Sludge } from './Sludge.js';
 export { default as ThickSludge } from './ThickSludge.js';
-export { default as Warrior } from './Warrior.js';
 export { default as Wizard } from './Wizard.js';
