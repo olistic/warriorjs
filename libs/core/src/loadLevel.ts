@@ -44,7 +44,8 @@ function loadWarrior(
   floor.addWarrior(unit, position);
 }
 
-function loadUnit({ unit, effects, position }: TowerUnitEntry, floor: Floor): void {
+function loadUnit({ unit: UnitClass, effects, position }: TowerUnitEntry, floor: Floor): void {
+  const unit = new UnitClass();
   const declaredAbilities = (unit as any).declaredAbilities;
   if (declaredAbilities) {
     loadAbilities(unit, declaredAbilities);

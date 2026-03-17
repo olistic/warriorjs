@@ -100,7 +100,7 @@ const levelConfig = {
     },
     units: [
       {
-        unit: new TestSludge(),
+        unit: TestSludge,
         position: { x: 4, y: 0, facing: WEST },
       },
     ],

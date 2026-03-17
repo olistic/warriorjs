@@ -42,6 +42,26 @@ class TestFeel extends Sense {
   perform() {}
 }
 
+class TestSludge extends Unit {
+  declaredAbilities = {
+    attack: TestAttack.with({ power: 3 }),
+    feel: TestFeel,
+  };
+
+  constructor() {
+    super('Sludge', 's', '#d08770', 12);
+    this.playTurn = (turn: any) => {
+      const playerDirection = RELATIVE_DIRECTIONS.find((direction) => {
+        const space = turn.feel(direction);
+        return space.isUnit() && space.getUnit().isPlayer();
+      });
+      if (playerDirection) {
+        turn.attack(playerDirection);
+      }
+    };
+  }
+}
+
 const levelConfig = {
   number: 2,
   description: "It's too dark to see anything, but you smell sludge nearby.",
@@ -64,23 +84,7 @@ const levelConfig = {
     },
     units: [
       {
-        unit: (() => {
-          const sludge = new Unit('Sludge', 's', '#d08770', 12);
-          (sludge as any).declaredAbilities = {
-            attack: TestAttack.with({ power: 3 }),
-            feel: TestFeel,
-          };
-          sludge.playTurn = (turn: any) => {
-            const playerDirection = RELATIVE_DIRECTIONS.find((direction) => {
-              const space = turn.feel(direction);
-              return space.isUnit() && space.getUnit().isPlayer();
-            });
-            if (playerDirection) {
-              turn.attack(playerDirection);
-            }
-          };
-          return sludge;
-        })(),
+        unit: TestSludge,
         position: { x: 4, y: 0, facing: WEST },
       },
     ],

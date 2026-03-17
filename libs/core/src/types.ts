@@ -30,7 +30,7 @@ export interface LevelConfig {
 }
 
 export interface TowerUnitEntry {
-  unit: Unit;
+  unit: new () => Unit;
   effects?: Record<string, any>;
   position: { x: number; y: number; facing: string };
 }
