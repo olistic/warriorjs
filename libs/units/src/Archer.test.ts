@@ -28,11 +28,11 @@ describe('Archer', () => {
   });
 
   test('has shoot ability', () => {
-    expect(archer.declaredAbilities).toHaveProperty('shoot');
+    expect(Archer.declaredAbilities).toHaveProperty('shoot');
   });
 
   test('has look ability', () => {
-    expect(archer.declaredAbilities).toHaveProperty('look');
+    expect(Archer.declaredAbilities).toHaveProperty('look');
   });
 
   describe('playing turn', () => {

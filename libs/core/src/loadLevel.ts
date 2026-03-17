@@ -46,9 +46,8 @@ function loadWarrior(
 
 function loadUnit({ unit: UnitClass, effects, position }: UnitConfig, floor: Floor): void {
   const unit = new UnitClass();
-  const declaredAbilities = (unit as any).declaredAbilities;
-  if (declaredAbilities) {
-    loadAbilities(unit, declaredAbilities);
+  if (UnitClass.declaredAbilities) {
+    loadAbilities(unit, UnitClass.declaredAbilities);
   }
   if (effects) {
     loadEffects(unit, effects);

@@ -1,5 +1,16 @@
 import type Unit from './Unit.js';
 
+export interface UnitClass {
+  new (): Unit;
+  declaredAbilities?: Record<string, any>;
+}
+
+export interface UnitConfig {
+  unit: UnitClass;
+  position: { x: number; y: number; facing: string };
+  effects?: Record<string, any>;
+}
+
 export interface WarriorConfig {
   name?: string;
   character: string;
@@ -7,12 +18,6 @@ export interface WarriorConfig {
   maxHealth: number;
   position: { x: number; y: number; facing: string };
   abilities?: Record<string, any>;
-}
-
-export interface UnitConfig {
-  unit: new () => Unit;
-  position: { x: number; y: number; facing: string };
-  effects?: Record<string, any>;
 }
 
 export interface LevelConfig {

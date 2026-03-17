@@ -63,7 +63,7 @@ class TestFeel extends Sense {
 }
 
 class TestSludge extends Unit {
-  declaredAbilities = {
+  static declaredAbilities = {
     attack: TestAttack.with({ power: 3 }),
     feel: TestFeel,
   };

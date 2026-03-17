@@ -28,11 +28,11 @@ describe('Wizard', () => {
   });
 
   test('has shoot ability', () => {
-    expect(wizard.declaredAbilities).toHaveProperty('shoot');
+    expect(Wizard.declaredAbilities).toHaveProperty('shoot');
   });
 
   test('has look ability', () => {
-    expect(wizard.declaredAbilities).toHaveProperty('look');
+    expect(Wizard.declaredAbilities).toHaveProperty('look');
   });
 
   describe('playing turn', () => {

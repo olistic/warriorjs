@@ -13,6 +13,7 @@ interface Turn {
 
 /** Class representing a unit. */
 class Unit {
+  static declaredAbilities?: Record<string, any>;
   name: string;
   character: string;
   color: string;

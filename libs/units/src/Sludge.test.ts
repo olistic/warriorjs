@@ -28,11 +28,11 @@ describe('Sludge', () => {
   });
 
   test('has attack ability', () => {
-    expect(sludge.declaredAbilities).toHaveProperty('attack');
+    expect(Sludge.declaredAbilities).toHaveProperty('attack');
   });
 
   test('has feel ability', () => {
-    expect(sludge.declaredAbilities).toHaveProperty('feel');
+    expect(Sludge.declaredAbilities).toHaveProperty('feel');
   });
 
   describe('playing turn', () => {

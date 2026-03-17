@@ -28,11 +28,11 @@ describe('ThickSludge', () => {
   });
 
   test('has attack ability', () => {
-    expect(thickSludge.declaredAbilities).toHaveProperty('attack');
+    expect(ThickSludge.declaredAbilities).toHaveProperty('attack');
   });
 
   test('has feel ability', () => {
-    expect(thickSludge.declaredAbilities).toHaveProperty('feel');
+    expect(ThickSludge.declaredAbilities).toHaveProperty('feel');
   });
 
   describe('playing turn', () => {
