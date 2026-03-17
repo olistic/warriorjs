@@ -18,19 +18,20 @@ interface DetonateConfig {
 }
 
 class Detonate extends Action {
-  private targetPower: number;
-  private surroundingPower: number;
   readonly description: string;
   readonly meta: AbilityMeta = {
     params: [{ name: 'direction', type: 'Direction', optional: true }],
     returns: 'void',
   };
 
+  private targetPower: number;
+  private surroundingPower: number;
+
   constructor(unit: Unit, { targetPower, surroundingPower }: DetonateConfig) {
     super(unit);
+    this.description = `Detonates a bomb in a given direction (\`'${defaultDirection}'\` by default), dealing ${targetPower} HP of damage to that space and ${surroundingPower} HP of damage to surrounding 4 spaces (including yourself).`;
     this.targetPower = targetPower;
     this.surroundingPower = surroundingPower;
-    this.description = `Detonates a bomb in a given direction (\`'${defaultDirection}'\` by default), dealing ${targetPower} HP of damage to that space and ${surroundingPower} HP of damage to surrounding 4 spaces (including yourself).`;
   }
 
   perform(direction: RelativeDirection = defaultDirection): void {

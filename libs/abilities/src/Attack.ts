@@ -11,17 +11,18 @@ interface AttackConfig {
 }
 
 class Attack extends Action {
-  private power: number;
   readonly description: string;
   readonly meta: AbilityMeta = {
     params: [{ name: 'direction', type: 'Direction', optional: true }],
     returns: 'void',
   };
 
+  private power: number;
+
   constructor(unit: Unit, { power }: AttackConfig) {
     super(unit);
-    this.power = power;
     this.description = `Attacks a unit in the given direction (\`'${defaultDirection}'\` by default), dealing ${power} HP of damage.`;
+    this.power = power;
   }
 
   perform(direction: RelativeDirection = defaultDirection): void {

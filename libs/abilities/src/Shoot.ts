@@ -12,19 +12,20 @@ interface ShootConfig {
 }
 
 class Shoot extends Action {
-  private power: number;
-  private range: number;
   readonly description: string;
   readonly meta: AbilityMeta = {
     params: [{ name: 'direction', type: 'Direction', optional: true }],
     returns: 'void',
   };
 
+  private power: number;
+  private range: number;
+
   constructor(unit: Unit, { power, range }: ShootConfig) {
     super(unit);
+    this.description = `Shoots the bow & arrow in the given direction (\`'${defaultDirection}'\` by default), dealing ${power} HP of damage to the first unit in a range of ${range} spaces.`;
     this.power = power;
     this.range = range;
-    this.description = `Shoots the bow & arrow in the given direction (\`'${defaultDirection}'\` by default), dealing ${power} HP of damage to the first unit in a range of ${range} spaces.`;
   }
 
   perform(direction: RelativeDirection = defaultDirection): void {

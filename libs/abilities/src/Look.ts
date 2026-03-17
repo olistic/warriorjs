@@ -11,17 +11,18 @@ interface LookConfig {
 }
 
 class Look extends Sense {
-  private range: number;
   readonly description: string;
   readonly meta: AbilityMeta = {
     params: [{ name: 'direction', type: 'Direction', optional: true }],
     returns: 'Space[]',
   };
 
+  private range: number;
+
   constructor(unit: Unit, { range }: LookConfig) {
     super(unit);
-    this.range = range;
     this.description = `Returns an array of up to ${range} spaces in the given direction (\`'${defaultDirection}'\` by default).`;
+    this.range = range;
   }
 
   perform(direction: RelativeDirection = defaultDirection) {

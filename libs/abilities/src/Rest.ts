@@ -7,18 +7,18 @@ interface RestConfig {
 }
 
 class Rest extends Action {
-  private healthGain: number;
   readonly description: string;
   readonly meta: AbilityMeta = {
     params: [],
     returns: 'void',
   };
 
+  private healthGain: number;
+
   constructor(unit: Unit, { healthGain }: RestConfig) {
     super(unit);
+    this.description = `Gains ${healthGain * 100}% of max health back, but does nothing more.`;
     this.healthGain = healthGain;
-    const healthGainPercentage = healthGain * 100;
-    this.description = `Gains ${healthGainPercentage}% of max health back, but does nothing more.`;
   }
 
   perform(): void {
