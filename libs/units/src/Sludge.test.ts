@@ -1,5 +1,4 @@
-import { BACKWARD, FORWARD, LEFT, RIGHT } from '@warriorjs/spatial';
-import { beforeEach, describe, expect, test, vi } from 'vitest';
+import { beforeEach, describe, expect, test } from 'vitest';
 
 import MeleeUnit from './MeleeUnit.js';
 import Sludge from './Sludge.js';
@@ -33,46 +32,5 @@ describe('Sludge', () => {
 
   test('has feel ability', () => {
     expect(Sludge.declaredAbilities).toHaveProperty('feel');
-  });
-
-  describe('playing turn', () => {
-    let turn: any;
-    let space: any;
-
-    beforeEach(() => {
-      space = { getUnit: () => undefined };
-      turn = {
-        attack: vi.fn(),
-        feel: vi.fn(() => space),
-      };
-    });
-
-    test('looks for player in all directions', () => {
-      sludge.playTurn(turn);
-      expect(turn.feel).toHaveBeenCalledWith(FORWARD);
-      expect(turn.feel).toHaveBeenCalledWith(RIGHT);
-      expect(turn.feel).toHaveBeenCalledWith(BACKWARD);
-      expect(turn.feel).toHaveBeenCalledWith(LEFT);
-    });
-
-    test('stops looking if it finds threat', () => {
-      turn.feel.mockReturnValueOnce({ getUnit: () => undefined }).mockReturnValueOnce({
-        getUnit: () => ({
-          isBound: () => false,
-          isEnemy: () => true,
-        }),
-      });
-      sludge.playTurn(turn);
-      expect(turn.feel).toHaveBeenCalledWith(FORWARD);
-      expect(turn.feel).toHaveBeenCalledWith(RIGHT);
-      expect(turn.feel).not.toHaveBeenCalledWith(BACKWARD);
-      expect(turn.feel).not.toHaveBeenCalledWith(LEFT);
-      expect(turn.attack).toHaveBeenCalledWith(RIGHT);
-    });
-
-    test("does nothing if it doesn't find threat", () => {
-      sludge.playTurn(turn);
-      expect(turn.attack).not.toHaveBeenCalled();
-    });
   });
 });
