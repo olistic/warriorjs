@@ -1,5 +1,3 @@
-export type { AbilityBinding, AbilityMeta } from '@warriorjs/core';
-export { Ability, Action, Sense } from '@warriorjs/core';
 export { default as Attack } from './Attack.js';
 export { default as Bind } from './Bind.js';
 export { default as Detonate } from './Detonate.js';

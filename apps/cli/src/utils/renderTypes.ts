@@ -1,5 +1,4 @@
-import { Action } from '@warriorjs/abilities';
-import type { LevelConfig } from '@warriorjs/core';
+import { Action, type LevelConfig } from '@warriorjs/core';
 import type Profile from '../Profile.js';
 
 interface MethodEntry {

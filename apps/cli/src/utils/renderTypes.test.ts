@@ -1,5 +1,4 @@
-import type { AbilityMeta } from '@warriorjs/abilities';
-import { Action, Sense } from '@warriorjs/abilities';
+import { type AbilityMeta, Action, Sense } from '@warriorjs/core';
 import { describe, expect, test } from 'vitest';
 
 import renderTypes from './renderTypes.js';
