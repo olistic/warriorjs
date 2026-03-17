@@ -11,9 +11,9 @@ export { default as Sense } from './Sense.js';
 export type {
   LevelConfig,
   TowerDefinition,
-  TowerFloorUnit,
   TowerLevel,
   TowerUnitEntry,
+  TowerWarriorEntry,
   UnitConfig,
 } from './types.js';
 export { default as Unit } from './Unit.js';

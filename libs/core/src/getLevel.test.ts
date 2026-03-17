@@ -5,6 +5,7 @@ import type { AbilityMeta } from './Ability.js';
 import Action from './Action.js';
 import getLevel from './getLevel.js';
 import Sense from './Sense.js';
+import Unit from './Unit.js';
 
 class TestWalk extends Action {
   readonly description = "Moves one space in the given direction (`'forward'` by default).";
@@ -63,23 +64,23 @@ const levelConfig = {
     },
     units: [
       {
-        name: 'Sludge',
-        character: 's',
-        color: '#d08770',
-        maxHealth: 12,
-        abilities: {
-          attack: TestAttack.with({ power: 3 }),
-          feel: TestFeel,
-        },
-        playTurn(sludge: any) {
-          const playerDirection = RELATIVE_DIRECTIONS.find((direction) => {
-            const space = sludge.feel(direction);
-            return space.isUnit() && space.getUnit().isPlayer();
-          });
-          if (playerDirection) {
-            sludge.attack(playerDirection);
-          }
-        },
+        unit: (() => {
+          const sludge = new Unit('Sludge', 's', '#d08770', 12);
+          (sludge as any).declaredAbilities = {
+            attack: TestAttack.with({ power: 3 }),
+            feel: TestFeel,
+          };
+          sludge.playTurn = (turn: any) => {
+            const playerDirection = RELATIVE_DIRECTIONS.find((direction) => {
+              const space = turn.feel(direction);
+              return space.isUnit() && space.getUnit().isPlayer();
+            });
+            if (playerDirection) {
+              turn.attack(playerDirection);
+            }
+          };
+          return sludge;
+        })(),
         position: { x: 4, y: 0, facing: WEST },
       },
     ],

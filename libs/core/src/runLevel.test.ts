@@ -5,6 +5,7 @@ import type { AbilityMeta } from './Ability.js';
 import Action from './Action.js';
 import runLevel from './runLevel.js';
 import Sense from './Sense.js';
+import Unit from './Unit.js';
 
 class TestWalk extends Action {
   readonly description = 'Walks forward';
@@ -61,6 +62,26 @@ class TestFeel extends Sense {
   }
 }
 
+class TestSludge extends Unit {
+  declaredAbilities = {
+    attack: TestAttack.with({ power: 3 }),
+    feel: TestFeel,
+  };
+
+  constructor() {
+    super('Sludge', 's', '#d08770', 12);
+    this.playTurn = (turn: any) => {
+      const threatDirection = RELATIVE_DIRECTIONS.find((direction) => {
+        const unit = turn.feel(direction).getUnit();
+        return unit?.isEnemy() && !unit.isBound();
+      });
+      if (threatDirection) {
+        turn.attack(threatDirection);
+      }
+    };
+  }
+}
+
 const levelConfig = {
   floor: {
     size: { width: 8, height: 1 },
@@ -79,23 +100,7 @@ const levelConfig = {
     },
     units: [
       {
-        name: 'Sludge',
-        character: 's',
-        color: '#d08770',
-        maxHealth: 12,
-        abilities: {
-          attack: TestAttack.with({ power: 3 }),
-          feel: TestFeel,
-        },
-        playTurn(sludge: any) {
-          const threatDirection = RELATIVE_DIRECTIONS.find((direction) => {
-            const unit = sludge.feel(direction).getUnit();
-            return unit?.isEnemy() && !unit.isBound();
-          });
-          if (threatDirection) {
-            sludge.attack(threatDirection);
-          }
-        },
+        unit: new TestSludge(),
         position: { x: 4, y: 0, facing: WEST },
       },
     ],

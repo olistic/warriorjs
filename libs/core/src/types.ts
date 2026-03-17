@@ -9,7 +9,7 @@ export interface UnitConfig {
   enemy?: boolean;
   bound?: boolean;
   abilities?: Record<string, any>;
-  effects?: Record<string, (unit: any) => any>;
+  effects?: Record<string, any>;
   playTurn?: (turn: any) => void;
   position: { x: number; y: number; facing: string };
 }
@@ -31,13 +31,16 @@ export interface LevelConfig {
 
 export interface TowerUnitEntry {
   unit: Unit;
-  effects?: Record<string, (unit: any) => any>;
+  effects?: Record<string, any>;
   position: { x: number; y: number; facing: string };
 }
 
-export interface TowerFloorUnit {
-  [key: string]: unknown;
-  position: { x: number; y: number; facing?: string };
+export interface TowerWarriorEntry {
+  character: string;
+  color: string;
+  maxHealth: number;
+  abilities?: Record<string, any>;
+  position: { x: number; y: number; facing: string };
 }
 
 export interface TowerLevel {
@@ -49,8 +52,8 @@ export interface TowerLevel {
   floor: {
     size: { width: number; height: number };
     stairs: { x: number; y: number };
-    warrior: TowerFloorUnit;
-    units: (TowerFloorUnit | TowerUnitEntry)[];
+    warrior: TowerWarriorEntry;
+    units: TowerUnitEntry[];
   };
 }
 
